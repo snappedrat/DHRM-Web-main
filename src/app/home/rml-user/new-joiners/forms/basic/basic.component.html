@@ -2,7 +2,30 @@
     <h3>Basic Form</h3>
     <form [formGroup]="form" (ngSubmit)="submit()" >
         <div class="form-group">
-            <label for="mobileNumber">Mobile Number</label>
+            <label for="name">Full Name:</label>
+            <input
+                    formControlName="name"
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Full Name">
+            <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
+                <div *ngIf="name.name.errors.required">Full Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="fname">Father Name:</label>
+                <input
+                        formControlName="fname"
+                        id="fname"
+                        type="text"
+                        class="form-control"
+                        placeholder="Father Name">
+                <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
+                    <div *ngIf="fname.fname.errors.required">Father Name is required</div>
+                </div>
+            </div>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number:</label>
             <input
                     formControlName="mobileNumber"
                     id="mobileNumber"
@@ -16,7 +39,7 @@
                 <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
             </div>
         </div>
-        <p>Aadhar Number</p>
+        <p>Aadhar Number:</p>
         <div class="row">
             <div class="col-md-2">
                 <input #txt1
@@ -42,32 +65,10 @@
                        type="text" >
             </div>
         </div>
-        <div class="form-group">
-            <label for="name">Full Name</label>
-            <input
-                    formControlName="name"
-                    id="name"
-                    type="text"
-                    class="form-control"
-                    placeholder="Full Name">
-            <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
-                <div *ngIf="name.name.errors.required">Full Name is required</div>
-            </div>
+
         </div>
         <div class="form-group">
-            <label for="fname">Father Name</label>
-            <input
-                    formControlName="fname"
-                    id="fname"
-                    type="text"
-                    class="form-control"
-                    placeholder="Father Name">
-            <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
-                <div *ngIf="fname.fname.errors.required">Father Name is required</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="bd">Birth Date</label>
+            <label for="bd">Birth Date:</label>
             <input
                     formControlName="bd"
                     id="bd"
@@ -78,7 +79,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="">Nationality</label>
+            <label for="">Nationality:</label>
             <select formControlName="nation" class="form-control">
                 <option disabled>Select Nationality</option>
                 <option>Choose Nationality</option>
@@ -90,7 +91,7 @@
         </div>
         <div class="form-group">
             <label for="">
-                Permanent Address
+                Permanent Address:
             </label>
             <br>
             <textarea type="text"  formControlName="permanent"   style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
@@ -115,13 +116,13 @@
         </div>
         <div class="form-group">
             <label for="present">
-                Present Address
+                Present Address:
             </label>
             <br>
             <textarea type="text"  formControlName="present"  style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
         </div>
         <div class="form-group">
-            <label for="">Religion</label>
+            <label for="">Religion:</label>
             <select formControlName="reg" class="form-control">
                 <option disabled>Select Religion</option>
                 <option>Choose religion</option>
@@ -132,7 +133,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="">Marital Status</label>
+            <label for="">Marital Status:</label>
             <select formControlName="mar" class="form-control">
                 <option disabled>Select Marital Status</option>
                 <option>Choose Marital Status</option>
@@ -143,7 +144,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="">Gender</label>
+            <label for="">Gender:</label>
             <select formControlName="gender" class="form-control">
                 <option disabled>Select Gender</option>
                 <option>Choose Gender</option>
@@ -176,7 +177,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="height">Height</label>
+            <label for="height">Height:</label>
             <input
                     formControlName="height"
                     id="height"
@@ -188,7 +189,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="weight">Weight</label>
+            <label for="weight">Weight:</label>
             <input
                     formControlName="weight"
                     id="weight"
@@ -200,7 +201,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="">Physical Disability</label>
+            <label for="">Physical Disability:</label>
             <select formControlName="pd" class="form-control">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
