@@ -1,7 +1,7 @@
 <div class="mx-5">
     <h3>Bank Details</h3>
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="form-group">
+        <div class="form-group" style="width:fit-content;">
             <label for="account">Account Number</label>
             <input
                     formControlName="account"
@@ -13,7 +13,7 @@
                 <div *ngIf="account.account.errors.required">Account Number is required</div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="width:fit-content">
             <label for="ifsc">IFSC Code</label>
             <input
                     formControlName="ifsc"
@@ -25,7 +25,7 @@
                 <div *ngIf="ifsc.ifsc.errors.required">IFSC Code is required</div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" style="width:fit-content">
             <label for="bankName">Bank Name</label>
             <select formControlName="bankName" class="form-control">
                 <option>Choose</option>
@@ -36,6 +36,6 @@
             </div>
 
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save</button>
+        <button class="btn btn-primary" style ="margin-left: auto" type="submit" [disabled]="!form.valid">Save</button>
     </form>
 </div>
