@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
+import { AnyNaptrRecord } from 'dns';
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
@@ -146,7 +147,7 @@ export class BasicComponent {
                 error: (error) => console.log(error),
             });
     }
-    move(fromtext,totext){
+    move(fromtext:any,totext:any){
         var length = fromtext.value.length;
         var maxlength = fromtext.maxLength;
         if(length == maxlength)
