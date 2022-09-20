@@ -1,0 +1,74 @@
+.btn{
+  border-radius: 20px;
+}
+body {
+  overflow-x: hidden;
+}
+div-a{
+  font-style: oblique;
+  color: rgb(255, 112, 255);
+}
+div-c{
+  background-color: blue;
+  font-family: 'Kanit', sans-serif;
+  text-align: center;
+}
+.h1{
+  background-color: rgb(164, 202, 216);
+}
+body {
+  background-color: #fefbd8;
+}
+th{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+td{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-size: large;
+}
+.hr{
+  background-color: orange;
+}
+.but1{
+  background-color: orange;
+}
+div {
+  background-color: white;
+}
+
+span {
+  background-color: #f18973;
+}
+@media (max-width: 767px) {
+  .show
+  {
+    margin-left: -15rem!important;
+  }
+  .hide
+  {
+    margin-left: -0!important;
+  }
+}
+th { background: #c5c5c5;}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th { border: 1px solid #cdcdcd; padding: 8px;}
+.form-group{
+  background-color: lightgrey;
+}
+
+tbody{
+  text-align: center;
+
+}
+
+.table-wrapper
+{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}

@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Add Trainee Category</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="traineeCategoryForm">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="fullname" />
+                    <mat-error>Full Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Father Name</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="fathername" />
+                    <mat-error>Father Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput placeholder="" required formControlName="birthdate" />
+                    <mat-error>Date of Birth is required</mat-error>
+                </mat-form-field>
+                <!-- <mat-form-field appearance="outline" fxFlex="100%">
+                    <input matInput required formControlName="birthdate" [matDatepicker]="picker"
+                        placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>Date is required</mat-error>
+                </mat-form-field> -->
+            </div>
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Nationality</mat-label>
+                    <input matInput placeholder="" required formControlName="nationality" />
+                    <mat-error>Nationality is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-button [mat-dialog-close]="false">Cancel</button>
+            <button mat-button type="submit" [disabled]="loading" class="btn-primary">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3"
+                [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

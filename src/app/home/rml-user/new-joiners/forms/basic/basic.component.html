@@ -1,0 +1,215 @@
+<div class="container">
+    <h3>Basic Form</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input
+                    formControlName="mobileNumber"
+                    id="mobileNumber"
+                    type="text"
+                    class="form-control"
+                    maxlength="10"
+                    pattern="\d{10}"
+                    placeholder="Mobile Number">
+            <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">
+                <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>
+                <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+            </div>
+        </div>
+        <p>Aadhar Number</p>
+        <div class="row">
+            <div class="col-md-2">
+                <input #txt1
+                       maxlength=4
+                       type="text"
+                       (keyup)="move(txt1,txt2)">
+            </div>
+            <div class="col-md-2 mx-5">
+                <input #txt2
+                       maxlength=4
+                       type="text"
+                       (keyup)="move(txt2,txt3)">
+            </div>
+            <div class="col-md-2 mx-4">
+                <input #txt3
+                       maxlength=4
+                       type="text"
+                       (keyup)="move(txt3,txt4)" >
+            </div>
+            <div class="col-mb-2 mx-5">
+                <input #txt4
+                       maxlength=4
+                       type="text" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+                    formControlName="name"
+                    id="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Full Name">
+            <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
+                <div *ngIf="name.name.errors.required">Full Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="fname">Father Name</label>
+            <input
+                    formControlName="fname"
+                    id="fname"
+                    type="text"
+                    class="form-control"
+                    placeholder="Father Name">
+            <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
+                <div *ngIf="fname.fname.errors.required">Father Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="bd">Birth Date</label>
+            <input
+                    formControlName="bd"
+                    id="bd"
+                    type="date"
+                    class="form-control">
+            <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
+                <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Nationality</label>
+            <select formControlName="nation" class="form-control">
+                <option disabled>Select Nationality</option>
+                <option>Choose Nationality</option>
+                <option *ngFor="let nat of nation">{{nat}}</option>
+            </select>
+            <div *ngIf="Nation.nation.touched && Nation.nation.invalid" class="alert alert-danger">
+                <div *ngIf="Nation.nation.errors.required">Nation is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">
+                Permanent Address
+            </label>
+            <br>
+            <textarea type="text"  formControlName="permanent"   style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
+        </div>
+        <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
+            <div *ngIf="p.permanent.errors.required">Fill the permanent address.</div>
+        </div>
+        <p>Is permanent address same as present address</p>
+        <div class="form-group" style="margin-left:20px;">
+            <input
+                    (change)="getValue($event)"
+                    type="radio"
+                    name="address"
+                    class="form-check-input" checked>Yes
+        </div>
+        <div class="form-group" style="margin-left:20px;">
+            <input
+                    (change)="noValue($event)"
+                    type="radio"
+                    name="address"
+                    class="form-check-input">NO
+        </div>
+        <div class="form-group">
+            <label for="present">
+                Present Address
+            </label>
+            <br>
+            <textarea type="text"  formControlName="present"  style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
+        </div>
+        <div class="form-group">
+            <label for="">Religion</label>
+            <select formControlName="reg" class="form-control">
+                <option disabled>Select Religion</option>
+                <option>Choose religion</option>
+                <option *ngFor="let rg of religion">{{rg}}</option>
+            </select>
+            <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert alert-danger">
+                <div *ngIf="reg.reg.errors.required">Religion is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Marital Status</label>
+            <select formControlName="mar" class="form-control">
+                <option disabled>Select Marital Status</option>
+                <option>Choose Marital Status</option>
+                <option *ngFor="let mr of marital">{{mr}}</option>
+            </select>
+            <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert alert-danger">
+                <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Gender</label>
+            <select formControlName="gender" class="form-control">
+                <option disabled>Select Gender</option>
+                <option>Choose Gender</option>
+                <option *ngFor="let gen of  Gender">{{gen}}</option>
+            </select>
+            <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert alert-danger">
+                <div *ngIf="gender.gender.errors.required">Gender is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dd1">Dose1 Date</label>
+            <input
+                    formControlName="dd1"
+                    id="dd1"
+                    type="date"
+                    class="form-control">
+            <div *ngIf="dd1.dd1.touched && dd1.dd1.invalid" class="alert alert-danger">
+                <div *ngIf="dd1.dd1.errors.required">Dose1 Date is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dd2">Dose2 Date</label>
+            <input
+                    formControlName="dd2"
+                    id="dd2"
+                    type="date"
+                    class="form-control">
+            <div *ngIf="dd2.dd2.touched && dd2.dd2.invalid" class="alert alert-danger">
+                <div *ngIf="dd2.dd2.errors.required">Dose2 Date is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input
+                    formControlName="height"
+                    id="height"
+                    type="number"
+                    class="form-control"
+                    placeholder="height in cms">
+            <div *ngIf="height.height.touched && height.height.invalid" class="alert alert-danger">
+                <div *ngIf="height.height.errors.required">Height is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input
+                    formControlName="weight"
+                    id="weight"
+                    type="number"
+                    class="form-control"
+                    placeholder="weight in kgs">
+            <div *ngIf="weight.weight.touched && weight.weight.invalid" class="alert alert-danger">
+                <div *ngIf="weight.weight.errors.required">weight is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Physical Disability</label>
+            <select formControlName="pd" class="form-control">
+                <option disabled>Select Physical Disability</option>
+                <option *ngFor="let phd of physical">{{phd}}</option>
+            </select>
+            <div *ngIf="pd.pd.touched && pd.pd.invalid" class="alert alert-danger">
+                <div *ngIf="pd.pd.errors.required">Physical Disability field is required</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+</div>  

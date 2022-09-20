@@ -1,0 +1,50 @@
+
+<div class="row">
+    <div class="col" style="margin-top: 10px; margin-left: 10px">
+        <button mat-mini-fab color="warn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" style="margin-right: 5px">
+            <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <button mat-mini-fab color="warn" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+            <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+    </div>
+    <div class="cal">
+        <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</p>
+    </div>
+</div>
+<br><br>
+
+<ng-template #IN_OUT_TIME let-day="day" let-locale="locale">
+    <div class="cal-cell-top">
+        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+        <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+      </div>
+        <div >
+         <small> IN TIME :{{in_time}}</small>
+        </div>
+        <small >OUT TIME : {{out_time}}</small>
+  </ng-template>
+
+  <ng-template  let-day="day" let-locale="locale">
+    <div class="cal-cell-top">
+        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+        <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+      </div>
+  </ng-template>  
+
+<div [ngSwitch]="view">
+
+    <mwl-calendar-month-view (dayClicked)="dayClicked($event.day)" *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate"  [events]="events"  (beforeViewRender)="beforeMonthViewRender($event)"  [cellTemplate]= "IN_OUT_TIME" >
+    </mwl-calendar-month-view >
+
+</div>
+<div class="container-fluid event">
+    <div class="alert alert-primary" role="alert">
+        Event List:
+    </div>
+    <ul>
+        <li *ngFor="let index of title">
+            {{ index.title }}
+        </li>
+    </ul>
+</div>

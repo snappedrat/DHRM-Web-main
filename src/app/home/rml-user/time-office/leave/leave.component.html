@@ -1,0 +1,74 @@
+<div class="div-c" style="color: #2A2550">
+    <h1>Leave</h1>
+</div>
+<mat-divider style="padding-bottom: 10px"></mat-divider>
+<form>
+    <div style="padding-left: 20px; margin-bottom: 20px">
+        <h2>Type of leave:</h2>
+        <mat-radio-group aria-label="Select an option" color="primary">
+            <mat-radio-button value="cl">CL</mat-radio-button>
+            <mat-radio-button value="pl">PL</mat-radio-button>
+        </mat-radio-group>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h2>Start date:</h2>
+                <mat-form-field appearance="outline" style="padding-right: 20px">
+                    <mat-label>Start date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-radio-group aria-label="Select an option" color="primary">
+                    <mat-radio-button value="half">Half</mat-radio-button>
+                    <mat-radio-button value="full">Full</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h2>End date:</h2>
+                <mat-form-field appearance="outline" style="padding-right: 20px">
+                    <mat-label>End date</mat-label>
+                    <input matInput [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-radio-group aria-label="Select an option" color="primary">
+                    <mat-radio-button value="half">Half</mat-radio-button>
+                    <mat-radio-button value="full">Full</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <button mat-raised-button color="warn" type="submit">Submit</button>
+    </div>
+
+</form>
+
+
+<div style="margin-bottom: 20px; padding: 20px">
+    <h2>Leave data</h2>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="leave_type">
+            <mat-header-cell *matHeaderCellDef>Leave Type</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.leave_type}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.total}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="availed">
+            <mat-header-cell *matHeaderCellDef>Availed</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.availed}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+            <mat-header-cell *matHeaderCellDef>Balance</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

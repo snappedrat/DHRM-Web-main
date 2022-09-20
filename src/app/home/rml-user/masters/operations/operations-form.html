@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Add Operations</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="operationsForm">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Plant Code</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="plant_code" />
+                    <mat-error>Plant Code is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Operation Description</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="oprn_desc" />
+                    <mat-error>Operation Description is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Line Code</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="line_code" />
+                    <mat-error>Line Code is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Skill Level</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="skill_level" />
+                    <mat-error>Skill Level is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Critical Description</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="critical_oprn" />
+                    <mat-error>Critical Description is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-button [mat-dialog-close]="false">Cancel</button>
+            <button mat-button type="submit" [disabled]="loading" class="btn-primary">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3" [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

@@ -1,0 +1,43 @@
+.btn{
+  border-radius: 20px;
+}
+.btn1{
+  color: white;
+}
+body {
+  overflow-x: hidden;
+}
+.div-c{
+  padding-top: 10px;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+}
+th{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+td{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-size: large;
+}
+@media (max-width: 767px) {
+  .show
+  {
+    margin-left: -15rem!important;
+  }
+  .hide
+  {
+    margin-left: -0!important;
+  }
+}
+th { background: #c5c5c5;}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th { border: 1px solid #cdcdcd; padding: 2px;}
+
+.options{
+  justify-content: end; display: flex; padding-right: 10px; margin-bottom: 10px
+}

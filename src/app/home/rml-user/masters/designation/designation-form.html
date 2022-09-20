@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Add Designation</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="designationForm">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Designation Name</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="desig_name" />
+                    <mat-error>Designation Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Plant Name</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="plant_code" />
+                    <mat-error>Plant Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-button [mat-dialog-close]="false">Cancel</button>
+            <button mat-button type="submit" [disabled]="loading" class="btn-primary">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3" [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

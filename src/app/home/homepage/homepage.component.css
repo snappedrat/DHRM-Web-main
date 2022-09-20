@@ -1,0 +1,98 @@
+.box{
+  border-radius: 20px;
+  height: 200px;
+  width: 300px;
+}
+.btn{
+  border-radius: 20px;
+  margin: 10px;
+}
+.container{
+  display: inline-block;
+  margin-left: 4%;
+}
+
+.picture{
+  border-radius: 20px;
+}
+.text{
+  margin: 10px;
+  font-size: 22px;
+}
+.center {
+  display: block;
+  margin-left: 60%;
+  margin-right: auto;
+  margin-bottom: 50px;
+  width: 120px;
+  margin-top: 100px;
+}
+b{
+  padding: 40.5rem;
+}
+.row{
+  border-radius: 15px;
+  width:1400px;
+  height: 100%;
+}
+
+.home{
+  height: 1000px;
+  background-size: 100% ;
+  background-size: cover;
+  background-image:url('src\assets\background.jpg');
+  background-position:50% 50%;
+}
+h3{
+  color: whitesmoke;
+  border-color: black;
+}
+
+/* .home img{
+    width: 100%;
+    height: 1000px;
+    object-position: cover;
+    object-fit: cover;
+
+}
+.btn {
+    padding: auto;
+    margin-left: 5%;
+    margin-top:5%;
+    border-radius: 30px;
+}
+
+.homecontent{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%,-50%);
+}
+
+.homecontent h1{
+    color: #000a3b;
+    font-size: 50px;
+}
+
+
+.homecontent{
+    margin-top: 10px;
+    padding: 10%;
+}
+
+@media screen and (max-width:600px) {
+    .homecontent h1{
+       font-size: 40px;
+    }
+    .btn{
+        width: 100%;
+        height: 100%;
+        margin-bottom: 5%;
+    }
+} */
+
+/* .row{
+
+    width: auto;
+    height: 800px;
+} */

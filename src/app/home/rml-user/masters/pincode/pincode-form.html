@@ -1,0 +1,116 @@
+<h2 mat-dialog-title>Add Pincode</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="pincodeForm">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Pin Code</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="pincode" />
+                    <mat-error>Pincode is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Division Name</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="dvisionname" />
+                    <mat-error>Division Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Region Name</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="regionname" />
+                    <mat-error>Region Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Circle Name</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="circlename" />
+                    <mat-error>Circle Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>Taluk</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="taluk" />
+                    <mat-error>Taluk is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>District Name</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="districtname" />
+                    <mat-error>District Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="100%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>State Name</mat-label>
+                    <input matInput placeholder="" class="w-100" required formControlName="statename" />
+                    <mat-error>State Name is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>RBL Zone</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="rbl_zone" />
+                    <mat-error>RBL Zone is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>RML Zone</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="rml_zone" />
+                    <mat-error>RML Zone is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>RAP Zone</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="rap_zone" />
+                    <mat-error>RAP Zone is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>REVl Zone</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="revl_zone" />
+                    <mat-error>REVl Zone is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>RTSSL Zone</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="rtssL_zone" />
+                    <mat-error>RTSSL Zone is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50%">
+                <mat-form-field appearance="outline" fxFlex="100%">
+                    <mat-label>State Code</mat-label>
+                    <input matInput class="w-100" placeholder="" required formControlName="statecode" />
+                    <mat-error>State Code is required</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="end center">
+            <button mat-button [mat-dialog-close]="false">Cancel</button>
+            <button mat-button type="submit" [disabled]="loading" class="btn-primary">Save</button>
+            <mat-progress-spinner class="example-margin" *ngIf="loading" [mode]="'indeterminate'" [strokeWidth]="3" [diameter]="25">
+            </mat-progress-spinner>
+        </div>
+    </form>
+</mat-dialog-content>

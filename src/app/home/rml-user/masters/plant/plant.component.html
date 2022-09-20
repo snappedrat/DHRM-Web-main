@@ -1,0 +1,340 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div-c>
+                <h1 class="text-center" style="color: darkblue">Plant Masters</h1>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            </div-c>
+            <hr style="border-block-color: orange" />
+            <button mat-fab color="primary" (click)="showAddUserForm()"  style="float: right" aria-label="Example icon button with a delete icon">
+                <mat-icon>person_add</mat-icon>
+            </button>
+            <button mat-fab (click)="exportexcel()" style="float: right" aria-label="Example icon button with a delete icon">
+                <mat-icon>download</mat-icon>
+            </button>
+            <br /><br />
+            <br />
+            <div class = "table-wrapper"><table class="table table-bordered table-striped table-hover">
+                <table id="table">
+                    <thead>
+                    <tr>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            S.no
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Plant Code
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 800px"
+                                style="background-color: darkblue"
+                        >
+                            Plant Name
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 800px"
+                                style="background-color: darkblue"
+                        >
+                            Pl
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 800px"
+                                style="background-color: darkblue"
+                        >
+                             Address
+                        </th>
+                        <th
+                        class="text-center"
+                        style="width: 800px"
+                        style="background-color: darkblue"
+                        >
+                            Location
+                        </th>
+
+                        <th
+                                class="text-center"
+                                style="width: 800px"
+                                style="background-color: darkblue"
+                        >
+                            Plant sign
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Personal Area
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Payroll Area
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Created On
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Created By
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Modified On
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                        >
+                            Modified By
+                        </th>
+                        <th
+                                class="text-center"
+                                style="width: 500px"
+                                style="background-color: darkblue"
+                                >
+                            Actions
+                        </th>
+                    
+                        <link rel="preconnect" href="https://fonts.googleapis.com" />
+                        <link
+                                rel="preconnect"
+                                href="https://fonts.gstatic.com"
+                                crossorigin
+                        />
+                        <link
+                                href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,400&display=swap"
+                                rel="stylesheet"
+                        />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let user of master">
+                        <td>{{user.sno}}</td>
+                        <td>{{ user.plant_code }}</td>
+                        <td>{{ user.plant_name }}</td>
+                        <td>{{ user.pl }}</td>
+                        <td>{{user.addr}}</td>
+                        <td>{{user.locatn}}</td>
+                        <td>{{user.plant_sign}}</td>
+                        <td>{{user.personal_area}}</td>
+                        <td>{{user.payroll_area}}</td>
+                        <td>{{ user.created_on }}</td>
+                        <td>{{ user.created_by }}</td>
+                        <td>{{ user.modified_on }}</td>
+                        <td>{{ user.modified_by }}</td>
+                        <td>
+                            <button mat-mini-fab color = 'accent'  (click)="showEditUserForm(user.sno,user.plant_code,user.plant_name,user.pl, user.addr,user.locatn,user.plant_sign,user.personal_area,user.payroll_area)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab color="warn" type="button" (click)="removeUser(user.sno)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </table></div>
+
+            <!-- adding new user form -->
+            
+            <div [style.display]="showAdd ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:10rem; padding-left: 13rem">
+                <div class="modal-dialog"style="box-shadow: 20px 20px #888888; border:1px solid black;" >
+                    <div class="modal-content" style="background-color: lightgrey">
+                        <div-d class="mt-4" >
+                            <form *ngIf="userForm" style="background-color: lightgrey">
+                                <div class="container pt-7" style="background-color: lightgrey">
+                                    <div class="row" style="background-color: lightgrey">
+                                        <div class="col" style="background-color: lightgrey">
+                                            <h2 class="first" style="background-color: lightgrey">
+                                                <b style="padding-left: 6.5rem; font-size:150%">MASTER COMPANY</b>
+                                                <hr />
+                                            </h2>
+                                            <form [formGroup]="form" (ngSubmit)="loginUser()" style="background-color: lightgrey">
+                                                <div class="form-group" style="padding-left: 10rem;" style="float:left;">
+                                                    <label class="col-form-label" style="font-size: 20px">Plant Code</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="Code"/>
+                                                    <h6 id="err" class="text-danger" *ngIf="this.errmsg==true">plant Code Exists</h6>
+
+                                                </div>
+                                                <div class="form-group"style="padding-right: 20rem" style="float:right;" >
+                                                    <label class="col-form-label"style="font-size: 20px">Plant Name</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="Name" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 10rem" style="float:left;">
+                                                    <label class="col-form-label"style="font-size: 20px">pl</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="pl" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 10rem" style="float:right;" >
+                                                    <label class="col-form-label"style="font-size: 20px">Address</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="address" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 10rem"  style="float:left;" >
+                                                    <label class="col-form-label"style="font-size: 20px">Location</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="location" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 10rem"  style="float:right;" >
+                                                    <label class="col-form-label"style="font-size: 20px">plant sign</label><br />
+                                                    <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="plant_sign" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 10rem"  style="float:left;">
+                                                    <label class="col-form-label"style="font-size: 20px">Personal Area</label><br />
+                                                    <input type="number" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="personal" />
+
+                                                </div>
+                                                <div class="form-group"style="padding-left: 29rem">
+                                                    <label class="col-form-label"style="font-size: 20px">payroll area</label><br />
+                                                    <input type="number" style="border-radius: 10px; box-shadow: 100px" class="inputtext" formControlName="payroll" />
+                                                    <br>
+                                                    <br>
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer" style="background-color: lightgrey">
+                                                    <button type="button" class="btn btn-warning btn-md mr-2" (click)="loginUser()">
+                                                        <b style="font-size:15px;">Submit</b>
+                                                    </button>
+                                                    <button type="button"  class="btn btn-danger btn-md mr-2" data-dismiss="modal" (click)="hide()">
+                                                        <b style="font-size:15px;">Close</b>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div-d>
+                    </div>
+                </div>
+            </div>
+
+            <!-- editing form -->
+
+            <!-- <div
+                    [style.display]="showEdit ? 'block' : 'none'"
+                    class="modal"
+                    id="imagemodal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="myModalLabel"
+                    aria-hidden="true"
+                    style="padding-top:10rem; padding-left: 10rem"
+            >
+                <div class="modal-dialog" style="box-shadow: 20px 20px #888888; border:1px solid black;">
+
+                    <div class="modal-content"style="background-color:lightgrey;">
+                        <div>
+                            <form [formGroup]="form2" action="updateUser()"style="background-color:lightgrey;">
+                                <div class="container pt-9" style="background-color: lightgrey">
+                                <h1 style="font-size:150%;font-weight: bold;text-align: center">Edit Company Details</h1>
+                                <hr>
+                                <div class="form-group" style="padding-left: 10rem;background-color:lightgrey;">
+                                    <label class="col-form-label" style="font-size: 20px">Company Code</label><br />
+                                    <input
+                                            type="number"
+                                            style="border-radius: 10px; box-shadow: 100px;"
+                                            class="inputtext"
+                                            placeholder=""
+                                            ngModel="Code"
+                                            formControlName="Code"
+                                            [value]="plant_code"
+                                    />
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="form-group" style= "padding-left: 10rem;background-color:lightgrey;">
+                                    <label class="col-form-label" style="font-size:20px;">Company Name</label><br />
+                                    <input
+                                            type="text"
+                                            style="border-radius: 10px; box-shadow: 100px"
+                                            class="inputtext"
+                                            placeholder="test"
+                                            formControlName="Name"
+                                            [value]="plant_name"
+
+                                    />
+                                    <br />
+                                    <br />
+                                </div>
+                                
+                                
+
+                                <div class="form-group" style="padding-left: 10rem;background-color: lightgrey">
+                                    <label class="col-form-label"  style="font-size:20px;">Active_Status</label><br />
+
+                                    <div *ngIf="active_status=='Active'; else notActive">
+
+                                        <input style="font-size:20px;" type="radio"   class="inputtext" formControlName="active_status" checked="true"  value="Active"/>
+                                        <label> Active </label>
+                                        <input style="font-size:20px;" type="radio"   class="inputtext" formControlName="active_status" checked="false"  value="InActive"/>
+                                        <label> InActive </label>
+
+                                    </div>
+
+                                    <ng-template #notActive>
+
+                                        <input style="font-size:20px;" type="radio"   class="inputtext" formControlName="active_status" checked="false"  value="Active" />
+                                        <label> Active </label>
+                                        <input style="font-size:20px;" type="radio"   class="inputtext" formControlName="active_status" checked="true"  value="InActive" />
+                                        <label> InActive </label>
+
+                                    </ng-template>
+                                </div>
+
+                                <div class="modal-footer" style="background-color:lightgrey;">
+                                    <button
+                                            type="button"
+                                            class="btn btn-warning btn-sm mr-2"
+                                            (click)="updateUser(sno,company_code,company_name,active_status)"
+
+                                    >
+                                        <b>Submit</b>
+                                    </button>
+                                    <button
+                                            type="button"
+                                            class="btn btn-danger btn-sm mr-2"
+                                            data-dismiss="modal"
+                                            (click)="hides()"
+                                    >
+                                        <b>Close</b>
+                                    </button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

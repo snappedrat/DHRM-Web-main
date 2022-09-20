@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <div>
+                <h1 class="text-center" style="color: darkblue">Pincode Master</h1>
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
+            </div>
+            <hr style="border-block-color: orange" />
+        </div>
+        <div class="col-md-12 mt-4">
+            <button mat-fab color="primary" (click)="openDialog()" style="float: right" aria-label="Example icon button with a delete icon">
+                <mat-icon>person_add</mat-icon>
+            </button>
+            <button mat-fab style="float: right" aria-label="Example icon button with a delete icon">
+                <mat-icon>download</mat-icon>
+            </button>
+        </div>
+        <div class="col-md-12 mt-4">
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="Pincode">
+                    <mat-header-cell *matHeaderCellDef> Pin Code </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Pincode}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Dvisionname">
+                    <mat-header-cell *matHeaderCellDef> Division Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Dvisionname}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Regionname">
+                    <mat-header-cell *matHeaderCellDef> Region Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Regionname}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Circlename">
+                    <mat-header-cell *matHeaderCellDef> Circle Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Circlename}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Taluk">
+                    <mat-header-cell *matHeaderCellDef> Taluk </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Taluk}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Districtname">
+                    <mat-header-cell *matHeaderCellDef> District Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Districtname}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Statename">
+                    <mat-header-cell *matHeaderCellDef> State Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Statename}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="RblZone">
+                    <mat-header-cell *matHeaderCellDef> Rbl Zone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.RblZone}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="RmlZone">
+                    <mat-header-cell *matHeaderCellDef> Rml Zone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.RmlZone}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="RapZone">
+                    <mat-header-cell *matHeaderCellDef> Rap Zone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.RapZone}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="RevlZone">
+                    <mat-header-cell *matHeaderCellDef> Revl Zone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.RevlZone}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="RtssLZone">
+                    <mat-header-cell *matHeaderCellDef> RtssL Zone </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.RtssLZone}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Statecode">
+                    <mat-header-cell *matHeaderCellDef> State Code </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Statecode}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ActiveStatus">
+                    <mat-header-cell *matHeaderCellDef> Active Status </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.ActiveStatus}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="CreatedOn">
+                    <mat-header-cell *matHeaderCellDef> Created On </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.CreatedOn}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="CreatedBy">
+                    <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.CreatedBy}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ModifiedOn">
+                    <mat-header-cell *matHeaderCellDef> Modified On </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.ModifiedOn}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ModifiedBy">
+                    <mat-header-cell *matHeaderCellDef> Modified By </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.ModifiedBy}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Actions">
+                    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-icon>edit</mat-icon>
+                        <mat-icon>delete</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<mat-sidenav-container class="sidenav-container bg-primary">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar style="background-color:  #023075; color: white; padding-left: 90px">MENU</mat-toolbar>
+        <mat-nav-list style="background-color: #023075;">
+            <a mat-list-item routerLink="#" style="color: white">
+                <mat-icon class="icon-pad">dashboard</mat-icon> Dashboard</a>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        ballot
+                    </mat-icon>
+                    Masters
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="/rml/masters/company" style="color: white">
+                        <mat-icon class="icon-pad">device_hub</mat-icon> Company</a>
+                    <a mat-list-item routerLink="/rml/masters/plant" style="color: white">
+                        <mat-icon class="icon-pad">domain</mat-icon>Plant</a>
+                    <a mat-list-item routerLink="/rml/masters/dept" style="color: white">
+                        <mat-icon class="icon-pad">person_pin_circle</mat-icon>Department</a>
+                    <a mat-list-item routerLink="/rml/masters/line" style="color: white">
+                        <mat-icon class="icon-pad">linear_scale</mat-icon>Line</a>
+                    <a mat-list-item routerLink="/rml/masters/designation" style="color: white">
+                        <mat-icon class="icon-pad">event_seat</mat-icon>Designation</a>
+                    <a mat-list-item routerLink="/rml/masters/trainee-category" style="color: white">
+                        <mat-icon class="icon-pad">toc</mat-icon>Trainee Category</a>
+                    <a mat-list-item routerLink="/rml/masters/user" style="color: white">
+                        <mat-icon class="icon-pad">portrait</mat-icon>User</a>
+                    <a mat-list-item routerLink="/rml/masters/bank" style="color: white">
+                        <mat-icon class="icon-pad">account_balance</mat-icon>Bank Details</a>
+                    <a mat-list-item routerLink="/rml/masters/operations" style="color: white">
+                        <mat-icon class="icon-pad">business_center</mat-icon>Operations</a>
+                    <a mat-list-item routerLink="/rml/masters/pincode" style="color: white">
+                        <mat-icon class="icon-pad">pin</mat-icon>Pin code</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">person_add</mat-icon>Role Access</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">visibility</mat-icon>FTP path</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">email</mat-icon>E-Mail Notification</a>
+                    <a mat-list-item routerLink="/rml/masters/employees" style="color: white">
+                        <mat-icon class="icon-pad">perm_identity</mat-icon>Employee</a>
+                    <a mat-list-item routerLink="/rml/masters/shift" style="color: white">
+                        <mat-icon class="icon-pad">watch_later</mat-icon>Shift</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        fiber_new
+                    </mat-icon>
+                    New Joiners
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="/rml/new_joiners/trainee-application" style="color: white">
+                        <mat-icon class="icon-pad">assignment_ind</mat-icon>Trainee Application</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">how_to_reg</mat-icon>HR Approval</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        local_library
+                    </mat-icon>
+                    Training (DOJO)
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="" style="color: white">
+                        <mat-icon class="icon-pad">file_copy</mat-icon>Training Modules</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">question_mark</mat-icon>Question Bank</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">how_to_vote</mat-icon>Test Evaluation</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">cloud_done</mat-icon>Test Result Summary</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">score</mat-icon>Trainee Score Card</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        watch
+                    </mat-icon>
+                    Time Office
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="/rml/time_office/calender" style="color: white">
+                        <mat-icon class="icon-pad">transfer_within_a_station</mat-icon>Calendar</a>
+                    <a mat-list-item routerLink="/rml/time_office/attendance" style="color: white">
+                        <mat-icon class="icon-pad">event_note</mat-icon>Attendance</a>
+                    <a mat-list-item routerLink="/rml/time_office/forget_punch" style="color: white">
+                        <mat-icon class="icon-pad">edit_attributes</mat-icon>Forget Punch</a>
+                    <a mat-list-item routerLink="/rml/time_office/leave" style="color: white">
+                        <mat-icon class="icon-pad">edit_attributes</mat-icon>Leave</a>
+                    <a mat-list-item routerLink="/rml/time_office/od" style="color: white">
+                        <mat-icon class="icon-pad">edit_attributes</mat-icon>On-Duty</a>
+                    <a mat-list-item routerLink="/rml/time_office/shift_change" style="color: white">
+                        <mat-icon class="icon-pad">edit_attributes</mat-icon>Shift Change</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        fitness_center
+                    </mat-icon>
+                    Skill Development
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">people</mat-icon>Trainer Evaluation</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">people_outline</mat-icon>Supervisor Evaluation</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">plus_one</mat-icon>Evaluation Due Summary</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        wc
+                    </mat-icon>
+                    People Planning
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">today</mat-icon>Monthly Planning</a>
+                    <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">event</mat-icon>Annual Planning</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+            <a mat-list-item routerLink="#" style="color: white">
+                <mat-icon class="icon-pad">alarm_add</mat-icon>Shift Roaster</a>
+            <a mat-list-item routerLink="#" style="color: white">
+                <mat-icon class="icon-pad">report</mat-icon>Reports</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar id="bt" class="bg-primary border border-primary">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+            <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
+            <span style="color:white">DHRM</span>
+            <button class="btn btn-primary border border-secondary" (click)="delCookie()" id="logout" routerLink="/first" >
+                <span class="glyphicon glyphicon-log-out"></span> 
+              </button>
+        </mat-toolbar>
+        <!-- Add Content Here -->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

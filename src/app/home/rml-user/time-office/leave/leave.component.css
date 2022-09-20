@@ -1,0 +1,8 @@
+.div-c{
+    padding-top: 10px;
+    text-align: center;
+    font-family: 'Kanit', sans-serif;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
