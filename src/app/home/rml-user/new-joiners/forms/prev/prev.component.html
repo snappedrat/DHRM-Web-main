@@ -1,5 +1,5 @@
 <div class="mx-5">
-<h3>Previous Employment <button (click)="AddRow()" class="btn btn-success ml-5">Add Row</button></h3>
+<h3>Previous Employment <button (click)="AddRow()" class="btn btn-success btn-lg ml-5">Add Row</button></h3>
 
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
  <ol formArrayName="prev">
@@ -36,14 +36,14 @@
         <p *ngIf="prevArray.controls[i].get('sld')?.touched && prevArray.controls[i].get('sld')?.errors?.['pattern']" class="text-danger">Only digits are valid</p>
          </div>
 
-         <div class="col-sm-2">
-         <button (click)="delRow(i)" style="margin-left:80px;margin-top:30px;" class="btn btn-danger">Remove</button>
+         <div >
+         <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class="btn btn-danger">Remove</button>
         </div>
         </div>
     </div>
     </li>
  </ol>
-  <button type="submit" class="btn btn-primary"  [disabled]="fg.invalid" >Save</button>
+  <button type="submit" class="btn btn-primary btn-lg" style = "margin-top: 20px; margin-left: 1130px;"  [disabled]="fg.invalid" >Save</button>
 </form>
 </div>
 
