@@ -154,63 +154,83 @@
                 <div *ngIf="gender.gender.errors.required">Gender is required</div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="row">
+        
+            <div class="form-group">
+            
+                <div class="col-sm">
             <label for="dd1">Dose1 Date</label>
             <input
                     formControlName="dd1"
                     id="dd1"
                     type="date"
+                  style="width:fit-content"
                     class="form-control">
             <div *ngIf="dd1.dd1.touched && dd1.dd1.invalid" class="alert alert-danger">
                 <div *ngIf="dd1.dd1.errors.required">Dose1 Date is required</div>
-            </div>
+            </div></div>
         </div>
+        
         <div class="form-group">
+            
+            <div class="col-sm">
             <label for="dd2">Dose2 Date</label>
             <input
                     formControlName="dd2"
                     id="dd2"
                     type="date"
+                    style = "max-width:fit-content;"
                     class="form-control">
             <div *ngIf="dd2.dd2.touched && dd2.dd2.invalid" class="alert alert-danger">
                 <div *ngIf="dd2.dd2.errors.required">Dose2 Date is required</div>
-            </div>
+            </div></div>
         </div>
+        </div>
+        <div class="row">
         <div class="form-group">
+            
+                <div class="col-sm">
             <label for="height">Height:</label>
+        
             <input
                     formControlName="height"
                     id="height"
                     type="number"
+                    style="width:fit-content"
                     class="form-control"
                     placeholder="height in cms">
             <div *ngIf="height.height.touched && height.height.invalid" class="alert alert-danger">
                 <div *ngIf="height.height.errors.required">Height is required</div>
-            </div>
-        </div>
+            </div></div></div>
         <div class="form-group">
+                <div class="col-sm">
             <label for="weight">Weight:</label>
             <input
                     formControlName="weight"
                     id="weight"
                     type="number"
+                    style="width:fit-content"
                     class="form-control"
                     placeholder="weight in kgs">
             <div *ngIf="weight.weight.touched && weight.weight.invalid" class="alert alert-danger">
                 <div *ngIf="weight.weight.errors.required">weight is required</div>
-            </div>
-        </div>
+            
+        </div></div></div>
         <div class="form-group">
+                <div class="col-sm">
+
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" class="form-control">
+            <select formControlName="pd" style = "width:fit-content" class="form-control">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>
-            <div *ngIf="pd.pd.touched && pd.pd.invalid" class="alert alert-danger">
+            <div *ngIf="pd.pd.touched && pd.pd.invalid"  class="alert alert-danger">
                 <div *ngIf="pd.pd.errors.required">Physical Disability field is required</div>
             </div>
-        </div>
-
+        
+</div>
+</div>
+</div>
         <button class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
     </form>
 </div>  
