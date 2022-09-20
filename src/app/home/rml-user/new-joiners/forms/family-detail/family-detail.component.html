@@ -41,7 +41,7 @@
          <div class="col-sm-2" style="margin-left:80px;margin-top:10px;">
             <label class="form-label">Dependant/Self-Sufficient:</label>
             <select formControlName="dependant_self" class="form-control">
-                <option disabled>Select Nationality</option>
+                <option disabled>Select</option>
                 <option *ngFor="let dependant_self of dependant_self">{{dependant_self}}</option>
               </select>
             <p *ngIf="familyArray.controls[i].get('dependant_self')?.touched && familyArray.controls[i].get('dependant_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>

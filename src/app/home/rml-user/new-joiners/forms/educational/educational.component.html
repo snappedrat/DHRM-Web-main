@@ -1,8 +1,8 @@
 
 <div class="mx-5">
     <div style="margin-right: 50px;float: right">
-    <button style="margin-bottom:35px" (click)="AddRows()" class="btn btn-success ml-5" >Add Row</button></div><br>
-    <h3>Educational Details  </h3>
+    </div><br>
+    <h3>Educational Details  <button (click)="AddRows()" class="btn btn-success ml-5" >Add Row</button></h3>
   </div>
 <form [formGroup]="fgs" (ngSubmit)="onSubmit()">
  <ol formArrayName="educational">
