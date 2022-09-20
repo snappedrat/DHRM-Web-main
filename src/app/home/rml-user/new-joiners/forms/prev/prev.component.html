@@ -1,5 +1,5 @@
-
-<h3 class="mx-5">Previous Employment</h3>
+<div class="mx-5">
+<h3>Previous Employment</h3>
 <button (click)="AddRow()" class="btn btn-success ml-5">Add Row</button>
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
  <ol formArrayName="prev">
@@ -49,5 +49,5 @@
  </ol>
   <button type="submit" class="btn btn-primary"  [disabled]="fg.invalid" >Save</button>
 </form>
-
+</div>
 
