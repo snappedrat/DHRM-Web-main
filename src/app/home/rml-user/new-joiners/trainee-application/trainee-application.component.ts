@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-trainee-application',
@@ -44,6 +45,10 @@ get plant()
 get f()
 {
   return this.bankForms.controls;  
+}
+
+getcookie(){
+  
 }
 submit(){  
   console.log(this.bankForms.value);  
