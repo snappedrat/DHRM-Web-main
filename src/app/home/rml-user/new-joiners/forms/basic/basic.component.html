@@ -1,18 +1,23 @@
 <div class="mx-5">
     <h3>Basic Form</h3>
     <form [formGroup]="form" (ngSubmit)="submit()" >
-        <div style="width:max-content" class="form-group">
+        <div class="row">
+        <div  class="form-group">
+            <div class = "col-sm">
             <label for="name">Full Name:</label>
             <input
                     formControlName="name"
                     id="name"
                     type="text"
+                    style="width:max-content"
                     class="form-control"
                     placeholder="Full Name">
             <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
                 <div *ngIf="name.name.errors.required">Full Name is required</div>
-            </div>
+            </div></div></div>
             <div style="width: max-content" class="form-group">
+                <div class = "col-sm">
+
                 <label for="fname">Father Name:</label>
                 <input
                         formControlName="fname"
@@ -23,8 +28,9 @@
                 <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
                     <div *ngIf="fname.fname.errors.required">Father Name is required</div>
                 </div>
-            </div>
+            </div></div>
         <div style = "width: max-content" class="form-group">
+            <div class = "col-sm">
             <label for="mobileNumber">Mobile Number:</label>
             <input
                     formControlName="mobileNumber"
@@ -38,7 +44,7 @@
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>
                 <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
             </div>
-        </div>
+        </div></div></div>
         <p>Aadhar Number:</p>
         <div class="row">
             <div class="col-md-2">
@@ -66,7 +72,6 @@
             </div>
         </div>
 
-        </div>
         <div style="width:fit-content" class="form-group">
             <label for="bd">Birth Date:</label>
             <input
