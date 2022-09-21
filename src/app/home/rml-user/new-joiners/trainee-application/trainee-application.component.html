@@ -10,7 +10,7 @@
                 <label for="company">Company Name</label>  
                 <select formControlName="company" class="form-control">
                     <option>Choose</option>
-                    <option *ngFor="let item of items"> {{item}} </option>
+                    <option *ngFor="let c of CompanyName"> {{c}} </option>
                   </select>
                   <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   

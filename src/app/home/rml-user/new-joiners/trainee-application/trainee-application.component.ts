@@ -13,6 +13,7 @@ export class TraineeApplicationComponent {
   url='http://localhost:3000/compnamedown';
   items :any[] = [];
   PlantName:any=['plant code1','plant code2','plant code3'];
+  CompanyName : any = ['company1','company2','company3']
   public inputType:string ='password';
   public Tvalue:string='';
   public updateInput(event:any):void
@@ -45,10 +46,6 @@ get plant()
 get f()
 {
   return this.bankForms.controls;  
-}
-
-getcookie(){
-    return this.cookie
 }
 submit(){  
   console.log(this.bankForms.value);  
