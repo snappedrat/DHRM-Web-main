@@ -78,7 +78,7 @@
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>
         </div>
-        <div class="form-group">
+        <div style="width: :fit-content" class="form-group">
             <label for="">Nationality:</label>
             <select formControlName="nation" class="form-control">
                 <option disabled>Select Nationality</option>
@@ -121,7 +121,9 @@
             <br>
             <textarea type="text"  formControlName="present"  style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
         </div>
+        <div class ="row">
         <div class="form-group">
+            <div class="col-sm">
             <label for="">Religion:</label>
             <select formControlName="reg" class="form-control">
                 <option disabled>Select Religion</option>
@@ -130,9 +132,10 @@
             </select>
             <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert alert-danger">
                 <div *ngIf="reg.reg.errors.required">Religion is required</div>
-            </div>
+            </div></div>
         </div>
-        <div class="form-group">
+        <div style="width:fit-content" class="form-group">
+            <div class="col-sm">
             <label for="">Marital Status:</label>
             <select formControlName="mar" class="form-control">
                 <option disabled>Select Marital Status</option>
@@ -141,9 +144,11 @@
             </select>
             <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert alert-danger">
                 <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
-            </div>
+            </div></div>
         </div>
-        <div class="form-group">
+    
+        <div style="width:fit-content" class="form-group">
+            <div class="col-sm">
             <label for="">Gender:</label>
             <select formControlName="gender" class="form-control">
                 <option disabled>Select Gender</option>
@@ -152,8 +157,8 @@
             </select>
             <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert alert-danger">
                 <div *ngIf="gender.gender.errors.required">Gender is required</div>
-            </div>
-        </div>
+            </div></div>
+        </div></div>
         <div class="row">
         
             <div class="form-group">
