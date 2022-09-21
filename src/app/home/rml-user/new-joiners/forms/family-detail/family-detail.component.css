@@ -8,16 +8,21 @@ h3{
     font-weight:bold;
 }
 input{
-    border-radius:100px;
+    border-radius:5px;
+    box-sizing:content-box;
 }
 input:hover{
     border:2px solid grey;
+    box-sizing:content-box;
+
 }
 select{
-    border-radius:100px;
+    border-radius:5px;
+    box-sizing:content-box;
 }
 select:hover{
-    border:2px solid grey;
+    border:5px solid grey;
+    box-sizing: content-box;
 }
 
 .row{

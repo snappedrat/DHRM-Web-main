@@ -9,6 +9,7 @@ h3{
 
 input{
     border-radius:7px;
+    box-sizing: border-box;
 }
 input:hover{
     border:2px solid grey;
