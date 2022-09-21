@@ -12,7 +12,7 @@
             <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
                 <div *ngIf="name.name.errors.required">Full Name is required</div>
             </div>
-            <div class="form-group">
+            <div style="width: max-content" class="form-group">
                 <label for="fname">Father Name:</label>
                 <input
                         formControlName="fname"
