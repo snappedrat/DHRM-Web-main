@@ -1,6 +1,7 @@
 .btn{
     border-radius: 5px;
     margin-left:50%;
+    width:max-content
 }
 h3{
     margin-top:20px;
@@ -9,23 +10,19 @@ h3{
 input{
     border-radius:5px;
     box-sizing: content-box;
-    font-size: large;
 }
 input:hover{
     border:2px solid grey;
     box-sizing: content-box;
-    font-size: large;
 }
 select{
     border-radius:5px;
     box-sizing: content-box;
-    font-size: large;
     height: 34px;
 }
 select:hover{
     border:2px solid grey;
     box-sizing: content-box;
-    font-size: large;
 }
 
 .row{
