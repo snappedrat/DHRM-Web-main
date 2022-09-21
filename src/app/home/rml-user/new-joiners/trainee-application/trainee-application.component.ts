@@ -26,7 +26,7 @@ export class TraineeApplicationComponent {
       }
   }
  bankForms: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder,private http: HttpClient) {
+  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService) {
     this.bankForms = fb.group({ 
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
@@ -48,7 +48,7 @@ get f()
 }
 
 getcookie(){
-  
+    return this.cookie
 }
 submit(){  
   console.log(this.bankForms.value);  
