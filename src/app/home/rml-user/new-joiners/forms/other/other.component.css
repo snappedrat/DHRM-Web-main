@@ -7,11 +7,12 @@ h3{
     font-weight:bold;
 }
 input{
-    border-radius:70px;
+    border-radius:3px;
     width: max-content;
 }
 input:hover{
     border:2px solid grey;
+    border-radius: 5px;
 }
 select{
     border-radius:100px;
