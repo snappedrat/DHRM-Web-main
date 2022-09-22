@@ -1,0 +1,64 @@
+
+<div class="mx-5">
+    <div style="margin-right: 50px;float: right">
+    </div><br>
+    <h3>Educational Details  <button (click)="AddRows()" class="btn btn-success ml-5 btn-lg" >Add Row</button></h3>
+  </div>
+<form [formGroup]="fgs" (ngSubmit)="onSubmit()">
+ <ol formArrayName="educational">
+    <li *ngFor = "let edu of  eduArray.controls;let i = index" [formGroupName]="i">
+        <hr>
+
+        <div class="col-12">
+        <div class="row">
+          <label class="form-label"><b class="ml-3">Education {{i+1}} :</b></label>
+
+             <div class="col-sm-2">
+                  <label class="form-label">Institution & Location:</label>
+                  <input type="text" formControlName="s_c" class="form-control" placeholder="Location">
+                <p *ngIf=" eduArray.controls[i].get('s_c')?.touched &&  eduArray.controls[i].get('s_c')?.errors?.required" class="text-danger">Enter the School/College Institution & Location</p>
+             </div>
+             <div class="col-sm-2">
+              <label class="form-label">Exam Passed:</label>
+              <input type="text" formControlName="examPassed" class="form-control" placeholder="Exam Passed">
+              <p *ngIf=" eduArray.controls[i].get('examPassed')?.touched &&  eduArray.controls[i].get('examPassed')?.errors?.required" class="text-danger">Enter the Exam Passed</p>
+         </div>
+         <div class="col-sm-2">
+          <label class="form-label">Year of Passing:</label>
+          <input type="date" formControlName="YOP" class="form-control">
+          <p *ngIf=" eduArray.controls[i].get('YOP')?.touched &&  eduArray.controls[i].get('YOP')?.errors?.required" class="text-danger">Enter the Year of Passing</p>
+        </div>
+        <div class="col-sm-2">
+          <label class="form-label">Main Subjects</label>
+          <input type="text" formControlName="mainSub" class="form-control" placeholder="Main Subjects">
+          <p *ngIf=" eduArray.controls[i].get('mainSub')?.touched &&  eduArray.controls[i].get('mainSub')?.errors?.required" class="text-danger">Enter the Main Subjects</p>
+     </div>
+     <div class="col-sm-2">
+      <label class="form-label">Certified Number:</label>
+      <input type="text" formControlName="certificateNo" class="form-control" placeholder="Certified Number"   pattern="\d{10}">
+      <p *ngIf="eduArray.controls[i].get('certificateNo')?.touched && eduArray.controls[i].get('certificateNo')?.errors?.required" class="text-danger">Enter the Certified Number</p>
+ </div>
+ <div >
+  <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class="btn btn-danger btn-lg">Remove</button>
+ </div>
+          
+ <div class="col-sm-2" style="margin-left:90px;margin-top:30px;">
+  <label class="form-label">Certified Date:</label>
+    <input type="date" formControlName="certifiedDate" class="form-control">
+    <p *ngIf=" eduArray.controls[i].get('certifiedDate')?.touched &&  eduArray.controls[i].get('certifiedDate')?.errors?.required" class="text-danger">Enter the Certified Date</p>
+  </div>
+  <div class="col-sm-2" style="margin-top:30px;">
+      <label class="form-label">Percentage:</label>
+      <input type="text" formControlName="percentage" class="form-control">
+      <p *ngIf="eduArray.controls[i].get('percentage')?.touched && eduArray.controls[i].get('percentage')?.errors?.required" class="text-danger">Enter the Percentage</p>
+ </div>
+
+        
+
+        </div>
+    </div>
+    </li>
+ </ol>
+ <button type="submit" class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;" >Save</button>
+</form>
+

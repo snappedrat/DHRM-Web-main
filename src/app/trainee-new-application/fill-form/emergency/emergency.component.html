@@ -1,0 +1,51 @@
+<div class="mx-5">
+    <h3><b>Emergency Details</b></h3>  
+      <form [formGroup]="form" (ngSubmit)="submit()" >
+        <div class="row">
+        <div class="col-sm-3">
+        <div class="form-group">  
+            <label for="name">Contact Name</label>  
+            <input   
+                formControlName="contactName"  
+                id="name"  
+                type="text"   
+                class="form-control"
+                placeholder="Contact Name">  
+            <div *ngIf="name.contactName.touched && name.contactName.invalid" class="alert alert-danger">  
+                <div *ngIf="name.contactName.errors.required">Contact Name is required</div>   
+            </div>  
+        </div>
+    </div>
+      <div class="col-sm-3">
+        <div class="form-group">  
+            <label for="mobileNumber">Contact Number</label>  
+            <input   
+                formControlName="contactNumber"  
+                id="contactNumber"   
+                type="text"   
+                class="form-control"
+                maxlength="10" 
+                pattern="\d{10}"
+                placeholder="Contact Number">  
+            <div *ngIf="f.contactNumber.touched && f.contactNumber.invalid" class="alert alert-danger">  
+                <div *ngIf="f.contactNumber.errors.required">Contact Number is required.</div>  
+                <div *ngIf="f.contactNumber.errors.pattern">Please, Enter 10 digit Contact Number.</div>  
+            </div>  
+        </div>  
+    </div>
+    <div class="col-sm-3">
+   
+        <label class="form-label">Relation:</label>
+        <select formControlName="relations" class="form-control">
+            <option disabled>Select Relation</option>
+            <option *ngFor="let nat of relations">{{nat}}</option>
+          </select>
+          <div *ngIf="r.relations.touched && r.relations.invalid" class="alert alert-danger">  
+            <div *ngIf="r.relations.errors.required">Realtion is required</div>   
+        </div>  
+    </div>
+</div>
+<button type="submit" class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;"  >Save</button>
+    </form>  
+</div>
+
