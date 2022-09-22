@@ -11,6 +11,7 @@ import { EmergencyComponent } from './fill-form/emergency/emergency.component';
 import { FamilyDetailComponent } from './fill-form/family-detail/family-detail.component';
 import { OtherComponent } from './fill-form/other/other.component';
 import { PrevComponent } from './fill-form/prev/prev.component';
+import { LanguageComponent } from './fill-form/language/language.component';
 =======
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 >>>>>>> c9ff244fb4e381dc1c2cd2820e85ca9cf422907a
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EmergencyComponent,
     FamilyDetailComponent,
     OtherComponent,
-    PrevComponent
+    PrevComponent,
+    LanguageComponent
 =======
 >>>>>>> c9ff244fb4e381dc1c2cd2820e85ca9cf422907a
   ],
