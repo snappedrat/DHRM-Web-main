@@ -22,7 +22,10 @@ const routes: Routes = [
     path:'first',
     component:FirstPageComponent,
   },
-  
+  {
+    path: "trainee-new-application",
+    component: 
+  }
  
 ];
 
