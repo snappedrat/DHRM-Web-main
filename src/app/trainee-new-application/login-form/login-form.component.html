@@ -1,1 +1,62 @@
-<p>login-form works!</p>
+<div class="bd">
+
+    <div class="container pt-5">
+      <div class="row justify-content-sm-center pt-5">
+          <div class="table col-sm-6 shadow round pb-3">
+            <img src="../../assets/rane.png">
+            <h1 class="heading text-center pt-3 text-secondary">Trainee New Application</h1>
+              <form [formGroup]="bankForms" (ngSubmit)="submit()"> 
+            <div class="form-group">  
+                <label for="company">Company Name</label>  
+                <select formControlName="company" class="form-control">
+                    <option>Choose</option>
+                    <option *ngFor="let c of CompanyName"> {{c}} </option>
+                  </select>
+                  <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
+                    <div *ngIf="company.company.errors.required"> Company Name is required</div>   
+                </div>   
+                <br>
+            </div>  
+            <div class="form-group">  
+              <label for="plant">Plant Code</label>  
+              <select formControlName="plant" class="form-control">
+                  <option>Choose</option>
+                <option *ngFor="let pl of PlantName">{{pl}}</option>
+                </select>
+                <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert alert-danger">  
+                  <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   
+              </div>   
+              <br>
+          </div>  
+          <div class="form-group">  
+            <label for="mobileNumber">Mobile Number</label>  
+            <input   
+                formControlName="mobileNumber"  
+                id="mobileNumber"   
+                name = "mobilenumber"
+                type="text"   
+                class="form-control"
+                maxlength="10" 
+                pattern="\d{10}"
+                (blur)="getPasswors()">  
+            <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  
+                <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  
+                <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
+            </div>  
+        </div>  
+        <div class="form-group">
+          <label class="col-form-label">Password:</label>
+          <input formControlName="pass" [type]="inputType" class="form-control" [value]="Tvalue">
+        </div>
+        <div class="form-group" style="margin-left:25px;">
+          <input 
+          (change)="updateInput($event)"
+          type="checkbox" 
+          class="form-check-input">Show Password
+        </div>
+            <button class="btn btn-primary" type="submit" routerLink="/fill-form" [disabled]="!bankForms.valid">Sign In</button>
+                </form>
+          </div>
+      </div>
+    </div>
+    </div>

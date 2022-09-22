@@ -5,8 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomepageComponent } from './homepage/homepage.component';
 import {RmlUserRoutingModule} from "./rml-user/rml-user-routing.module";
 
-
-
 @NgModule({
   declarations: [
     HomepageComponent,

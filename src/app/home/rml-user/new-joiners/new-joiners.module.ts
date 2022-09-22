@@ -26,6 +26,7 @@ import { OtherComponent } from './forms/other/other.component';
 import { FormsModule } from '@angular/forms';
 import { FamilyDetailComponent } from './forms/family-detail/family-detail.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
+
 @NgModule({
     declarations: [
         HrApprovalComponent,
