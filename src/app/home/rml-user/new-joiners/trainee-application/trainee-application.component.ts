@@ -54,3 +54,6 @@ getPasswors(){
  this.Tvalue = this.bankForms.controls['mobileNumber'].value.substr(-4) ;
 }
 }
+
+
+

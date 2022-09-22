@@ -21,7 +21,9 @@ const routes: Routes = [
   {
     path:'first',
     component:FirstPageComponent,
-  }
+  },
+  
+ 
 ];
 
 @NgModule({
