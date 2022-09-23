@@ -18,3 +18,8 @@ select{
 select:hover{
     border:2px solid grey;
 }
+.img{
+    border-radius: 10px;
+    margin-left: 45%;
+}
+
