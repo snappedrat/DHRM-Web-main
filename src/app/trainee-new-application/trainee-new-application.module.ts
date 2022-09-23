@@ -29,7 +29,7 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 
 
 @NgModule({
-  declarations: [ ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
