@@ -11,7 +11,7 @@
                 <select formControlName="company" class="form-control">
                     <option>Choose</option>
                     <option *ngFor="let c of CompanyName"> {{c}} </option>
-                  </select>
+                </select>
                   <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   
                 </div>   
