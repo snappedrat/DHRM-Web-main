@@ -8,14 +8,14 @@ const routes: Routes = [
   //   path: '',
   //   redirectTo: 'login-form'
   // },
-  {
-    path:'login-form',
-    component: LoginFormComponent
-  },
-  {
-    path:'fill-form',
-    component: FillFormComponent
-  },
+  // {
+  //   path:'login-form',
+  //   component: LoginFormComponent
+  // },
+  // {
+  //   path:'fill-form',
+  //   component: FillFormComponent
+  // },
 ];
 
 @NgModule({
