@@ -1,0 +1,59 @@
+<div style="margin-right: 50px;float: right">
+</div><br>
+<h3 class="mx-5">Family Details  <button (click)="AddRow()" class="btn btn-success ml-5 btn-lg" >Add Row</button> </h3>
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+<ol formArrayName="family">
+ <li *ngFor = "let fam of familyArray.controls;let i = index" [formGroupName]="i">
+     <hr>
+     <div class="col-12">
+     <div class="row">
+          <label class="form-label"><b class="ml-3">Family {{i+1}}</b></label>
+          <div class="col-sm-2">
+               <label class="form-label">Name:</label>
+               <input type="text" formControlName="name" class="form-control" placeholder="Name">
+             <p *ngIf="familyArray.controls[i].get('name')?.touched && familyArray.controls[i].get('name')?.errors?.required" class="text-danger">Enter the Name</p>
+          </div>
+          <div class="col-sm-2">
+             <label class="form-label">Relation:</label>
+             <select formControlName="relation" class="form-control">
+                 <option disabled>Select Relation</option>
+                 <option *ngFor="let relation of relation">{{relation}}</option>
+               </select>
+             <p *ngIf="familyArray.controls[i].get('relation')?.touched && familyArray.controls[i].get('relation')?.errors?.required" class="text-danger">Enter the Relation</p>
+          </div>
+          <div class="col-sm-2">
+             <label class="form-label">Age:</label>
+             <input type="number" formControlName="age" class="form-control" placeholder="Age">
+             <p *ngIf="familyArray.controls[i].get('age')?.touched && familyArray.controls[i].get('age')?.errors?.required" class="text-danger">Enter the Age</p>
+        </div>
+        <div class="col-sm-2">
+         <label class="form-label">Occupation:</label>
+         <input type="text" formControlName="occupation" class="form-control" placeholder="Occupation">
+         <p *ngIf="familyArray.controls[i].get('occupation')?.touched && familyArray.controls[i].get('occupation')?.errors?.required" class="text-danger">Enter the occupation</p>
+       </div>
+        <div class="col-sm-2">
+         <label class="form-label">Contact Number:</label>
+     <input type="text" formControlName="contactNumber" maxlength="10" 
+     pattern="\d{10}" class="form-control" placeholder="Contact Number">
+     <p *ngIf="familyArray.controls[i].get('contactNumber')?.touched && familyArray.controls[i].get('contactNumber')?.errors?.required" class="text-danger">Enter the Contact Number</p>
+     <p *ngIf="familyArray.controls[i].get('contactNumber')?.touched && familyArray.controls[i].get('contactNumber')?.errors?.pattern" class="text-danger">Enter the 10 digits Number</p>
+      </div>
+      <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class=" btn btn-danger btn-lg">Remove</button>
+
+      <div class="col-sm-2" style="margin-left:60px;margin-top:30px;">
+         <label class="form-label">Dependant/Self-Sufficient:</label>
+         <select formControlName="dependant_self" class="form-control">
+             <option disabled>Select</option>
+             <option *ngFor="let dependant_self of dependant_self">{{dependant_self}}</option>
+           </select>
+         <p *ngIf="familyArray.controls[i].get('dependant_self')?.touched && familyArray.controls[i].get('dependant_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>
+      </div>
+
+     </div>
+ </div>
+ </li>
+</ol>
+<button type="submit" class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;"  [disabled]="fg.invalid" >Save</button>
+</form>
+
+
