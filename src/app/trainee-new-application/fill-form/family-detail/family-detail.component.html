@@ -42,11 +42,11 @@
 
       <div class="col-sm-2" style="margin-left:60px;margin-top:30px;">
          <label class="form-label">Dependant/Self-Sufficient:</label>
-         <select formControlName="dependant_self" class="form-control">
+         <select formControlName="dependent_self" class="form-control">
              <option disabled>Select</option>
-             <option *ngFor="let dependant_self of dependant_self">{{dependant_self}}</option>
+             <option *ngFor="let dependent_self of dependent_self">{{dependent_self}}</option>
            </select>
-         <p *ngIf="familyArray.controls[i].get('dependant_self')?.touched && familyArray.controls[i].get('dependant_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>
+         <p *ngIf="familyArray.controls[i].get('dependent_self')?.touched && familyArray.controls[i].get('dependent_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>
       </div>
 
      </div>

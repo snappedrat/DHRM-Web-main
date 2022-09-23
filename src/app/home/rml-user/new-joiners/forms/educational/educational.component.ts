@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl, FormArray, Validators } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-educational',
   templateUrl: './educational.component.html',
@@ -8,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class EducationalComponent implements OnInit {
   fgs : FormGroup
-  constructor(private fbs:FormBuilder, private http:HttpClient) {
+  constructor(private fbs:FormBuilder, private http:HttpClient, private cookie:CookieService) {
     this.fgs = this.fbs.group({
       educational:this.fbs.array([])
     })
@@ -29,6 +30,8 @@ export class EducationalComponent implements OnInit {
       certificateNo:['',[Validators.required]],
       certifiedDate:['',[Validators.required]],
       percentage:['',[Validators.required]],
+      mobilenumber : [this.cookie.get('mobilenum')]
+
     })
     this. eduArray.push(eduGroup);
     console.log(

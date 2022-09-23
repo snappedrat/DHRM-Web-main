@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,FormControl,Validator, FormArray, Validators } from '@angular/forms';
+import { FormBuilder,FormGroup,UntypedFormControl,Validator, FormArray, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
     selector: 'app-family-detail',
     templateUrl: './family-detail.component.html',
@@ -8,9 +10,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FamilyDetailComponent implements OnInit {
     relation :any = ['Father','Mother','Sister','Brother'];
-    dependant_self :any = ['Dependant','Self-sufficient'];
+    dependent_self :any = ['Dependant','Self-sufficient'];
     fg : FormGroup
-    constructor(private fb:FormBuilder, private http: HttpClient) {
+    constructor(private fb:FormBuilder, private http: HttpClient, private cookie:CookieService
+        ) {
         this.fg = this.fb.group({
             family:this.fb.array([])
         })
@@ -29,7 +32,8 @@ export class FamilyDetailComponent implements OnInit {
             age:['',[Validators.required]],
             occupation:['',[Validators.required]],
             contactNumber:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-            dependant_self:['',[Validators.required]]
+            dependent_self:['',[Validators.required]],
+            mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
         this.familyArray.push(familyGroup);
         console.log(

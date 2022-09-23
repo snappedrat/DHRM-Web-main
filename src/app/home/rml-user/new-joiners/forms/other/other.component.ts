@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
+import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-other',
   templateUrl: './other.component.html',
   styleUrls: ['./other.component.css']
 })
 export class OtherComponent  {
-  Works:any=['Yes','No'];
-  Relations:any=['Yes','No'];
+  Works:any=['Y','N'];
+  Relations:any=['Y','N'];
   forms: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private cookie:CookieService    ) {
     this.forms = fb.group({ 
       known:['',Validators.required],
       work:['',Validators.required],
@@ -18,6 +20,8 @@ export class OtherComponent  {
       place:['',Validators.required],
       com:['',Validators.required],
       extra:['',Validators.required],
+      mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
+
    })
 
 

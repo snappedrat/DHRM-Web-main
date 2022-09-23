@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,FormControl,Validator, FormArray, Validators } from '@angular/forms';
+import { FormBuilder,FormGroup,UntypedFormControl,Validator, FormArray, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+
 import {HttpClient} from "@angular/common/http";
 @Component({
   selector: 'app-prev',
@@ -8,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PrevComponent implements OnInit {
   fg : FormGroup
-  constructor(private fb:FormBuilder, private http:HttpClient) {
+  constructor(private fb:FormBuilder, private http:HttpClient, private cookie:CookieService) {
     this.fg = this.fb.group({
       prev:this.fb.array([])
     })
@@ -28,6 +30,7 @@ export class PrevComponent implements OnInit {
       pot:['',[Validators.required]],
       sld:['',[Validators.required,  Validators.pattern("^[0-9]*$")]],
       rfl:['',[Validators.required]],
+      mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
     })
     this.prevArray.push(prevGroup);
     console.log(

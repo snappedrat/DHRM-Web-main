@@ -71,5 +71,5 @@
                 <div *ngIf="extra.extra.errors.required"> Extra Curricular Activities (Sports/Hobbies) is required</div>   
             </div>  
         </div>
-           <button class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit" [disabled]="!forms.valid">Save</button>
+           <button (click)="submit()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit" [disabled]="!forms.valid">Save</button>
     </form></div>

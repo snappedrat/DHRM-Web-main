@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FamilyDetailComponent implements OnInit {
     relation :any = ['Father','Mother','Sister','Brother'];
-    dependant_self :any = ['Dependant','Self-sufficient'];
+    dependent_self :any = ['Dependant','Self-sufficient'];
     fg : FormGroup
     constructor(private fb:FormBuilder, private http: HttpClient) {
         this.fg = this.fb.group({
@@ -29,7 +29,7 @@ export class FamilyDetailComponent implements OnInit {
             age:['',[Validators.required]],
             occupation:['',[Validators.required]],
             contactNumber:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-            dependant_self:['',[Validators.required]]
+            dependent_self:['',[Validators.required]]
         })
         this.familyArray.push(familyGroup);
         console.log(
