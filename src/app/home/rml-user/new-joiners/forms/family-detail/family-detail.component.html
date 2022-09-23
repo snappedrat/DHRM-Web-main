@@ -46,7 +46,7 @@
                 <option *ngFor="let dependant_self of dependant_self">{{dependant_self}}</option>
               </select>
             <p *ngIf="familyArray.controls[i].get('dependant_self')?.touched && familyArray.controls[i].get('dependant_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>
-         </div>         <button (click)="delRow(i)" style="margin-left:90%;margin-top:20px;" class="btn btn-danger btn-sm">Remove</button>
+         </div>                  <button (click)="delRow(i)" style="margin-left:90%;margin-top:24px;" class="btn btn-danger btn-sm">Remove</button>
 
 
         </div>
