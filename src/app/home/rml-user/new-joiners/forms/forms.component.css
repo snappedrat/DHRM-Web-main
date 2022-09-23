@@ -20,6 +20,25 @@ select:hover{
 }
 .img{
     border-radius: 10px;
-    margin-left: 45%;
+    margin-left: 50%;
 }
 
+.container{
+    display: inline-block;
+    margin-left: 4%;
+  }
+
+.text{
+    margin: 10px;
+    font-size: 22px;
+  }
+  .textblock{
+    padding-top: 40px;
+      width:10000px;
+      height:100px;
+      background-color: blue;
+      border:0px solid rgb(235, 235, 244); 
+      position: relative;
+      text-shadow: 1px;
+      text-align: center;
+    }
