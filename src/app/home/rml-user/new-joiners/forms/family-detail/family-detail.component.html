@@ -1,6 +1,6 @@
 <div style="margin-right: 50px;float: right">
    </div><br>
-<h3 class="mx-5">Family Details  <button (click)="AddRow()" class="btn btn-success ml-5 btn-lg" >Add Row</button> </h3>
+<h3 class="mx-5">Family Details  <button (click)="AddRow()" class="btn btn-success ml-5 " >Add Row</button> </h3>
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
  <ol formArrayName="family">
     <li *ngFor = "let fam of familyArray.controls;let i = index" [formGroupName]="i">
@@ -38,7 +38,7 @@
         <p *ngIf="familyArray.controls[i].get('contactNumber')?.touched && familyArray.controls[i].get('contactNumber')?.errors?.required" class="text-danger">Enter the Contact Number</p>
         <p *ngIf="familyArray.controls[i].get('contactNumber')?.touched && familyArray.controls[i].get('contactNumber')?.errors?.pattern" class="text-danger">Enter the 10 digits Number</p>
          </div>
-         <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class=" btn btn-danger btn-lg">Remove</button>
+         <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class=" btn btn-danger">Remove</button>
 
          <div class="col-sm-2" style="margin-left:60px;margin-top:30px;">
             <label class="form-label">Dependant/Self-Sufficient:</label>
@@ -53,7 +53,7 @@
     </div>
     </li>
  </ol>
- <button type="submit" class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;"  [disabled]="fg.invalid" >Save</button>
+ <button type="submit" class="btn btn-primary" style = "margin-top: 20px; text-align:center;"  [disabled]="fg.invalid" >Save</button>
 </form>
 
 

@@ -5,12 +5,11 @@ const routes: Routes = [
   {
     path: "home",
     component: HomepageComponent,
-    children: [
-      {
-        path: "rml",
-        loadChildren: () => import('./rml-user/rml-user.module').then(m => m.RmlUserModule)
-      },
-    ]
+    children: []
+  },
+  {
+    path: "rml",
+    loadChildren: () => import('./rml-user/rml-user.module').then(m => m.RmlUserModule)
   }
   ];
 @NgModule({

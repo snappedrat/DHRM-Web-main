@@ -99,10 +99,10 @@
                 Permanent Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent"   style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
-            <div *ngIf="p.permanent.errors.required">Fill the permanent address.</div>
+            <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
         </div>
         <p>Is permanent address same as present address</p>
         <div class="form-group" style="margin-left:20px;">
@@ -124,7 +124,7 @@
                 Present Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="present"  style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
+            <textarea type="text"  formControlName="present" style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
         </div>
         <div class ="row">
         <div class="form-group">
@@ -242,6 +242,6 @@
 </div>
 </div>
 </div>
-        <button class="btn btn-primary btn-lg" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
+        <button class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
     </form>
 </div>  

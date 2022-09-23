@@ -15,6 +15,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import { HttpClientModule} from "@angular/common/http";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { FirstPageComponent } from './first-page/first-page.component';
     MatMenuModule,
     MatExpansionModule,
     MatDatepickerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

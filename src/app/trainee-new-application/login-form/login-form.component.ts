@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-trainee-application',
