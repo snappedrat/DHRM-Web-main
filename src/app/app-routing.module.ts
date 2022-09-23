@@ -22,10 +22,10 @@ const routes: Routes = [
     path:'first',
     component:FirstPageComponent,
   },
-  {
-    path:'trainee-new-application',
-    loadChildren:() => import('./trainee-new-application/trainee-new-application.module').then(m=> m.TraineeNewApplicationModule)
-  }
+  // {
+  //   path:'trainee-new-application',
+  //   loadChildren:() => import('./trainee-new-application/trainee-new-application.module').then(m=> m.TraineeNewApplicationModule)
+  // }
 ];
 
 @NgModule({
