@@ -18,3 +18,34 @@ select{
 select:hover{
     border:2px solid grey;
 }
+.img{
+    border-radius: 10px;
+    margin-left: 50%;
+}
+
+.container{
+    display: inline-block;
+    margin-left: 4%;
+  }
+
+.text{
+    margin: 10px;
+    font-size: 22px;
+  }
+  .textblock{
+    color: aliceblue;
+    text-decoration: solid;
+    display: inline-block;
+  margin-left:0px;
+    padding-top: 40px;
+      width:1800px;
+      height:100px;
+      background-color: blue;
+      border:0px solid rgb(235, 235, 244); 
+      position: relative;
+      text-shadow: 1px;
+    
+    }
+.h1{
+    margin-left: 10px;
+}
