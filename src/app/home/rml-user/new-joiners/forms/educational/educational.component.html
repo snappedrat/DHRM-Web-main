@@ -2,7 +2,7 @@
 <div class="mx-5">
     <div style="margin-right: 50px;float: right">
     </div><br>
-    <h3>Educational Details  <button (click)="AddRows()" class="btn btn-success btn-sm ml-5" >Add Row</button></h3>
+    <h3>Educational Details : <button (click)="AddRows()" class="btn btn-success btn-sm ml-5" >Add Row</button></h3>
   </div>
 <form [formGroup]="fgs" (ngSubmit)="onSubmit()">
  <ol formArrayName="educational">
@@ -50,7 +50,7 @@
       <label class="form-label">Percentage:</label>
       <input type="text" formControlName="percentage" class="form-control">
       <p *ngIf="eduArray.controls[i].get('percentage')?.touched && eduArray.controls[i].get('percentage')?.errors?.required" class="text-danger">Enter the Percentage</p>
- </div> <button (click)="delRow(i)" style="margin-left:90%;margin-top:20px;" class="btn btn-danger btn-sm">Remove</button>
+ </div> <button (click)="delRow(i)" style="margin-left:90%  ;" class="btn btn-danger btn-sm">Remove</button>
 
         
 

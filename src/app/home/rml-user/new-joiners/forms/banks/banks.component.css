@@ -9,20 +9,19 @@ h3{
 }
 input{
     border-radius:5px;
-    box-sizing: content-box;
 }
 input:hover{
     border:2px solid grey;
-    box-sizing: content-box;
+
 }
 select{
     border-radius:5px;
-    box-sizing: content-box;
+
     height: 34px;
 }
 select:hover{
     border:2px solid grey;
-    box-sizing: content-box;
+
 }
 
 .row{
