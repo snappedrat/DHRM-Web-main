@@ -29,10 +29,7 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 
 
 @NgModule({
-  declarations: [
-    FillFormComponent,
-    LoginFormComponent,
-  ],
+  declarations: [ ],
   imports: [
     CommonModule,
     FormsModule,
@@ -52,5 +49,5 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
     NgxMatTimepickerModule,
   ]
 
-// })
-// export class TraineeNewApplicationModule { }
+})
+export class TraineeNewApplicationModule { }
