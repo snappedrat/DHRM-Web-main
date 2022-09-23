@@ -33,12 +33,19 @@ select:hover{
     font-size: 22px;
   }
   .textblock{
+    color: aliceblue;
+    text-decoration: solid;
+    display: inline-block;
+  margin-left:0px;
     padding-top: 40px;
-      width:10000px;
+      width:1800px;
       height:100px;
       background-color: blue;
       border:0px solid rgb(235, 235, 244); 
       position: relative;
       text-shadow: 1px;
-      text-align: center;
+    
     }
+.h1{
+    margin-left: 10px;
+}
