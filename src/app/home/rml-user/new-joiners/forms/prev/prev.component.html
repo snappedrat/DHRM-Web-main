@@ -1,5 +1,5 @@
 <div class="mx-5">
-<h3>Previous Employment : <button (click)="AddRow()" class="btn btn-success ml-5">Add Row</button></h3>
+<h3>Previous Employment : <button (click)="AddRow()" class="btn btn-success ml-5 btn-sm">Add Row</button></h3>
 
 <form [formGroup]="fg" (ngSubmit)="onSubmit()">
  <ol formArrayName="prev">
@@ -37,13 +37,13 @@
          </div>
 
          <div >
-         <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class="btn btn-danger ">Remove</button>
+         <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class="btn btn-danger btn-sm">Remove</button>
         </div>
         </div>
     </div>
     </li>
  </ol>
-  <button type="submit" style="margin-top: 20px; text-align:center;"  class = "btn btn-primary" [disabled]="fg.invalid" >Save</button>
+  <button type="submit" style="margin-top: 20px; text-align:center;"  class = "btn btn-primary btn-sm" [disabled]="fg.invalid" >Save</button>
 </form> 
 
 </div>

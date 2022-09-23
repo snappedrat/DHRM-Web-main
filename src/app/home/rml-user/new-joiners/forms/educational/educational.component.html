@@ -39,7 +39,6 @@
       <p *ngIf="eduArray.controls[i].get('certificateNo')?.touched && eduArray.controls[i].get('certificateNo')?.errors?.required" class="text-danger">Enter the Certified Number</p>
  </div>
  <div >
-  <button (click)="delRow(i)" style="margin-left:6px;margin-top:24px;" class="btn btn-danger btn-sm">Remove</button>
  </div>
           
  <div class="col-sm-2" style="margin-left:90px;margin-top:30px;">
@@ -51,7 +50,7 @@
       <label class="form-label">Percentage:</label>
       <input type="text" formControlName="percentage" class="form-control">
       <p *ngIf="eduArray.controls[i].get('percentage')?.touched && eduArray.controls[i].get('percentage')?.errors?.required" class="text-danger">Enter the Percentage</p>
- </div>
+ </div> <button (click)="delRow(i)" style="margin-left:90%;margin-top:20px;" class="btn btn-danger btn-sm">Remove</button>
 
         
 
