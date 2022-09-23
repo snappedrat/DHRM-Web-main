@@ -10,7 +10,7 @@
                 <label for="company">Company Name</label>  
                 <select formControlName="company" class="form-control">
                     <option>Choose</option>
-                    <option *ngFor="let c of CompanyName"> {{c}} </option>
+                    <option *ngFor="let c of companycode"> {{c.company_code}} </option>
                 </select>
                   <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   
@@ -21,7 +21,7 @@
               <label for="plant">Plant Code</label>  
               <select formControlName="plant" class="form-control">
                   <option>Choose</option>
-                <option *ngFor="let pl of PlantName">{{pl}}</option>
+                <option *ngFor="let pl of plantcode">{{pl.plant_code}}</option>
                 </select>
                 <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert alert-danger">  
                   <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   
@@ -38,6 +38,7 @@
                 class="form-control"
                 maxlength="10" 
                 pattern="\d{10}"
+                [(ngModel)]="mobilenum"
                 (blur)="getPasswors()">  
             <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  
@@ -54,7 +55,7 @@
           type="checkbox" 
           class="form-check-input">Show Password
         </div>
-            <button class="btn btn-primary" type="submit" routerLink="/forms" [disabled]="!bankForms.valid">Sign In</button>
+            <button class="btn btn-primary" (click)="sendFormData()" (click)="setCookie()" type="submit" routerLink="/forms" [disabled]="!bankForms.valid">Sign In</button>
                 </form>
           </div>
       </div>

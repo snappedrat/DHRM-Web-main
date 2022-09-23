@@ -14,6 +14,12 @@ import { PlantcodeService } from '../plantcode.service';
 
 
 export class TraineeApplicationComponent implements OnInit{
+
+  mobilenum : any = ''
+  setCookie(){
+    this.cookie.set("mobilenum", this.mobilenum)
+}
+
   url='http://localhost:3000/compnamedown';
   items :any[] = [];
   PlantName:any=['plant code1','plant code2','plant code3'];
@@ -40,10 +46,13 @@ export class TraineeApplicationComponent implements OnInit{
    });
 }
 
-plantcode : any;
+plantcode:any;
+companycode : any;
+errmsg: any;
 
 ngOnInit(): void {
   this.getplantcode()
+  this.getcompanycode()
 }
 
 getplantcode(){
@@ -56,6 +65,24 @@ getplantcode(){
       next: (response) =>{ console.log(response); this.plantcode = response },
       error: (error) => console.log(error),
     });
+}
+
+getcompanycode(){
+
+  this.http.post('http://localhost:3000/companycodelist', '')
+  .subscribe({
+    next: (response) =>{ console.log(response); this.companycode = response },
+    error: (error) => console.log(error),
+  });
+}
+
+sendFormData()
+{
+  this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
+  .subscribe({
+    next: (response) => this.errmsg=response,
+    error: (error) => console.log(error),
+  })
 }
 
 get company()

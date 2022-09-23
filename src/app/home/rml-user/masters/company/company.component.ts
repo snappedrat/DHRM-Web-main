@@ -130,10 +130,10 @@ export class CompanyComponent implements OnInit {
     console.log(this.form.value)
     this.http
         .get('http://localhost:3000/usershow',this.form.value)
-        // .subscribe({
-        //   next: (response) =>{ console.log(response); this.master=response},
-        //   error: (error) => console.log(error),
-        // });
+        .subscribe({
+          next: (response) =>{ console.log(response); this.master=response},
+          error: (error) => console.log(error),
+        });
     return this.ServiceService.getUsersFromData();
   }
 

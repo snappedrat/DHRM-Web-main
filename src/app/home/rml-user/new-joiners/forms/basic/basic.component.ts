@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder} from '@angular/forms';
+import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import { AnyNaptrRecord } from 'dns';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
@@ -14,7 +15,7 @@ export class BasicComponent {
     marital: any =['Married','unmarried','widower'];
     physical:any=['Yes','No'];
     form: FormGroup = new FormGroup({});
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService) {
         this.form = fb.group({
             mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             permanent:['',Validators.required],
@@ -36,6 +37,7 @@ export class BasicComponent {
             reg:['',Validators.required],
             mar:['',Validators.required],
             pd:['',Validators.required],
+            mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
     }
 
@@ -122,24 +124,24 @@ export class BasicComponent {
     }
     submit(){
         console.log(this.form.value);
-        let formData: any = new FormData();
-        formData.append('mobileNumber', this.form.get('mobileNumber')!.value);
-        formData.append('permanent', this.form.get('permanent')!.value);
-        formData.append('present', this.form.get('present')!.value);
-        formData.append('name', this.form.get('name')!.value);
-        formData.append('fname', this.form.get('fname')!.value);
-        formData.append('bd', this.form.get('bd')!.value);
-        formData.append('height', this.form.get('height')!.value);
-        formData.append('checkbox', this.form.get('checkbox')!.value);
-        formData.append('weight', this.form.get('weight')!.value);
-        formData.append('dd1', this.form.get('dd1')!.value);
-        formData.append('dd2', this.form.get('dd2')!.value);
-        formData.append('gender', this.form.get('gender')!.value);
-        formData.append('aadhar1', this.form.get('aadhar1')!.value);
-        formData.append('nation', this.form.get('nation')!.value);
-        formData.append('reg', this.form.get('reg')!.value);
-        formData.append('mar', this.form.get('mar')!.value);
-        formData.append('pd', this.form.get('pd')!.value);
+        // let formData: any = new FormData();
+        // formData.append('mobileNumber', this.form.get('mobileNumber')!.value);
+        // formData.append('permanent', this.form.get('permanent')!.value);
+        // formData.append('present', this.form.get('present')!.value);
+        // formData.append('name', this.form.get('name')!.value);
+        // formData.append('fname', this.form.get('fname')!.value);
+        // formData.append('bd', this.form.get('bd')!.value);
+        // formData.append('height', this.form.get('height')!.value);
+        // formData.append('checkbox', this.form.get('checkbox')!.value);
+        // formData.append('weight', this.form.get('weight')!.value);
+        // formData.append('dd1', this.form.get('dd1')!.value);
+        // formData.append('dd2', this.form.get('dd2')!.value);
+        // formData.append('gender', this.form.get('gender')!.value);
+        // formData.append('aadhar1', this.form.get('aadhar1')!.value);
+        // formData.append('nation', this.form.get('nation')!.value);
+        // formData.append('reg', this.form.get('reg')!.value);
+        // formData.append('mar', this.form.get('mar')!.value);
+        // formData.append('pd', this.form.get('pd')!.value);
         this.http
             .post('http://localhost:3000/basicforms', this.form.value)
             .subscribe({

@@ -124,7 +124,7 @@
                 Present Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="present" style="width:800px;" class="form-control" [value]="inputValue" [readonly]=check></textarea>
+            <textarea type="text"  formControlName="present" style="width:800px;" class="form-control" [value]="inputValue"></textarea>
         </div>
         <div class ="row">
         <div class="form-group">
@@ -242,6 +242,6 @@
 </div>
 </div>
 </div>
-        <button class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
+        <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
     </form>
 </div>  

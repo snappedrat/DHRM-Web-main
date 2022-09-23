@@ -7,22 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PlantcodeService {
+  private upersons!: User[]
 
+  getUsersFromData(): User[] {
+    return this.upersons;
+
+  }
     constructor(private http: HttpClient){
 
     }
-    plantCodeList(){
-      console.log('====================================');
-      console.log('service');
-      console.log('====================================');
-      this.http.post('http://localhost:3000/plantcodelist', '')
-      .subscribe({
-        next: (response) =>{ console.log(response); },
-        error: (error) => console.log(error),
-      });
-      // .subscribe({
-      //   next: (response) =>{ console.log(response); list=response},
-      //   error: (error) => console.log(error),
-      // });
-    }
+    // plantCodeList(){
+    //   console.log('====================================');
+    //   console.log('service');
+    //   console.log('====================================');
+    //   this.http.post('http://localhost:3000/plantcodelist', '')
+    //   .subscribe({
+    //     next: (response) =>{ console.log(response); },
+    //     error: (error) => console.log(error),
+    //   });
+    // }
 }
