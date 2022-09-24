@@ -43,6 +43,7 @@ import { LanguageComponent } from './forms/language/language.component';
         LanguageComponent,
     ],
       imports: [
+          CommonModule,
           LoginModule,
           MatNativeDateModule,
           CommonModule,
