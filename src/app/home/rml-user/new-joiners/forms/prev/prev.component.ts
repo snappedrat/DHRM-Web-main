@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup,UntypedFormControl,Validator, FormArray, Validato
 import { CookieService } from 'ngx-cookie-service';
 
 import {HttpClient} from "@angular/common/http";
+import { PlantcodeService } from '../../plantcode.service';
 @Component({
   selector: 'app-prev',
   templateUrl: './prev.component.html',
@@ -10,7 +11,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PrevComponent implements OnInit {
   fg : FormGroup
-  constructor(private fb:FormBuilder, private http:HttpClient, private cookie:CookieService) {
+  constructor(private fb:FormBuilder, private http:HttpClient, private cookie:CookieService, private plantcodeService : PlantcodeService) {
     this.fg = this.fb.group({
       prev:this.fb.array([])
     })
@@ -41,14 +42,16 @@ export class PrevComponent implements OnInit {
   {
 
       console.log(this.prevArray.value)
-      console.log(this.prevArray.errors)
-      this.http
-          .post('http://localhost:3000/prev', this.prevArray.value)
-          .subscribe({
-              next: (response) => console.log(response),
-              error: (error) => console.log(error),
-          });
+      if(this.prevArray.value.length == 0){
+        console.log("good");
+      }
+      else{
+        this.plantcodeService.submitprev()
+      }
   }
+  sendData(){
+    this.plantcodeService.prev = this.prevArray.value
+  } 
   ngOnInit(): void {
   }
  delRow(index:number)

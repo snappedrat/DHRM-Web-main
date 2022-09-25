@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, Untyp
 import {HttpClient} from "@angular/common/http";
 import { AnyNaptrRecord } from 'dns';
 import { CookieService } from 'ngx-cookie-service';
+import { PlantcodeService } from '../../plantcode.service';
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
@@ -15,7 +16,7 @@ export class BasicComponent {
     marital: any =['Married','unmarried','widower'];
     physical:any=['Yes','No'];
     form: FormGroup = new FormGroup({});
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService) {
         this.form = fb.group({
             mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             permanent:['',Validators.required],
@@ -24,7 +25,6 @@ export class BasicComponent {
             fname:['',Validators.required],
             bd:['',Validators.required],
             height:['',Validators.required],
-            checkbox:['',Validators.required],
             weight:['',Validators.required],
             dd1:['',Validators.required],
             dd2:['',Validators.required],
@@ -123,32 +123,18 @@ export class BasicComponent {
         }
     }
     submit(){
-        console.log(this.form.value);
-        // let formData: any = new FormData();
-        // formData.append('mobileNumber', this.form.get('mobileNumber')!.value);
-        // formData.append('permanent', this.form.get('permanent')!.value);
-        // formData.append('present', this.form.get('present')!.value);
-        // formData.append('name', this.form.get('name')!.value);
-        // formData.append('fname', this.form.get('fname')!.value);
-        // formData.append('bd', this.form.get('bd')!.value);
-        // formData.append('height', this.form.get('height')!.value);
-        // formData.append('checkbox', this.form.get('checkbox')!.value);
-        // formData.append('weight', this.form.get('weight')!.value);
-        // formData.append('dd1', this.form.get('dd1')!.value);
-        // formData.append('dd2', this.form.get('dd2')!.value);
-        // formData.append('gender', this.form.get('gender')!.value);
-        // formData.append('aadhar1', this.form.get('aadhar1')!.value);
-        // formData.append('nation', this.form.get('nation')!.value);
-        // formData.append('reg', this.form.get('reg')!.value);
-        // formData.append('mar', this.form.get('mar')!.value);
-        // formData.append('pd', this.form.get('pd')!.value);
-        this.http
-            .post('http://localhost:3000/basicforms', this.form.value)
-            .subscribe({
-                next: (response) => console.log(response),
-                error: (error) => console.log(error),
-            });
+        if(this.form.value.length == 0){
+            console.log("good");
+          }
+          else{
+            this.plantcodeService.submitbasic()
+          }
     }
+    sendData(){
+        console.log(this.form.value);
+        this.plantcodeService.basic = this.form.value
+    }
+
     move(fromtext:any,totext:any){
         var length = fromtext.value.length;
         var maxlength = fromtext.maxLength;

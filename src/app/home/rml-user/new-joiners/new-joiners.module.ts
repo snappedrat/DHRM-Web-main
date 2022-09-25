@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { FamilyDetailComponent } from './forms/family-detail/family-detail.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { LanguageComponent } from './forms/language/language.component';
+import { TraineeApplicationStatusComponent } from './trainee-application-status/trainee-application-status.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import { LanguageComponent } from './forms/language/language.component';
         FamilyDetailComponent,
         EmergencyComponent,
         LanguageComponent,
+        TraineeApplicationStatusComponent,
     ],
       imports: [
           LoginModule,

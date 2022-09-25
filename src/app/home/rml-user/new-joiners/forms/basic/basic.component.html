@@ -41,32 +41,36 @@
                     pattern="\d{10}"
                     placeholder="Mobile Number">
             <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">
-                <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>
-                <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>
+                <!-- <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>
+                <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div> -->
             </div>
         </div></div></div>
         <p>Aadhar Number:</p>
         <div class="row">
             <div class="col-md-2">
                 <input #txt1
+                       formControlName = "aadhar1"
                        maxlength=4
                        type="text"
                        (keyup)="move(txt1,txt2)">
             </div>
             <div class="col-md-2">
                 <input #txt2
+                formControlName = "aadhar2"
                        maxlength=4
                        type="text"
                        (keyup)="move(txt2,txt3)">
             </div>
             <div class="col-md-2">
                 <input #txt3
+                formControlName = "aadhar3"
                        maxlength=4
                        type="text"
                        (keyup)="move(txt3,txt4)" >
             </div>
             <div class="col-md-2">
                 <input #txt4
+                formControlName = "aadhar4"
                        maxlength=4
                        type="text" >
             </div>
@@ -231,7 +235,7 @@
                 <div class="col-sm">
 
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" style = "width:fit-content" class="form-control">
+            <select formControlName="pd" style = "width:fit-content" class="form-control" (click)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>

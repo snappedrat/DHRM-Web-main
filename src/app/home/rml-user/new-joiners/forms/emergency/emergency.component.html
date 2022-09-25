@@ -36,12 +36,12 @@
     <div class="col-sm-3">
    
         <label class="form-label">Relation:</label>
-        <select formControlName="relations" class="form-control">
+        <select formControlName="relations" class="form-control" (click)="sendData()">
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
           </select>
           <div *ngIf="r.relations.touched && r.relations.invalid" class="alert alert-danger">  
-            <div *ngIf="r.relations.errors.required">Realtion is required</div>   
+            <div *ngIf="r.relations.errors.required">Relation is required</div>   
         </div>  
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,UntypedFormControl,Validator, FormArray, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { PlantcodeService } from '../../plantcode.service';
 
 @Component({
     selector: 'app-family-detail',
@@ -12,7 +13,7 @@ export class FamilyDetailComponent implements OnInit {
     relation :any = ['Father','Mother','Sister','Brother'];
     dependent_self :any = ['Dependant','Self-sufficient'];
     fg : FormGroup
-    constructor(private fb:FormBuilder, private http: HttpClient, private cookie:CookieService
+    constructor(private fb:FormBuilder, private http: HttpClient, private cookie:CookieService, private plantcodeService : PlantcodeService
         ) {
         this.fg = this.fb.group({
             family:this.fb.array([])
@@ -44,13 +45,16 @@ export class FamilyDetailComponent implements OnInit {
     {
         // console.log(this.fg.value)
         console.log(this.familyArray.value)
-        this.http
-            .post('http://localhost:3000/family', this.familyArray.value)
-            .subscribe({
-                next: (response) => console.log(response),
-                error: (error) => console.log(error),
-            })
+        if(this.familyArray.value.length == 0){
+            console.log("good");
+          }
+          else{
+            this.plantcodeService.submitfamily()
+          }
     }
+    sendData(){
+        this.plantcodeService.fam = this.familyArray.value
+    } 
     ngOnInit(): void {
     }
     delRow(index:number)

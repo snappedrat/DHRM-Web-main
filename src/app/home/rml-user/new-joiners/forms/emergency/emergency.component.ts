@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { PlantcodeService } from '../../plantcode.service';
 
 @Component({
   selector: 'app-emergency',
@@ -11,8 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class EmergencyComponent  {
 relations :any = ['Father','Mother','Sister','Brother'];
  form: FormGroup = new FormGroup({});  
-   constructor(private fb: FormBuilder, private http: HttpClient,private cookie:CookieService
-    ) {
+   constructor(private fb: FormBuilder, private http: HttpClient,private cookie:CookieService, private plantcodeService : PlantcodeService) {
     this.form = fb.group({
       contactNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       contactName:['',Validators.required],
@@ -35,16 +35,15 @@ relations :any = ['Father','Mother','Sister','Brother'];
  
 submit(){
     console.log(this.form.value);
-    // let formData: any = new FormData();
-    // formData.append('contactName', this.form.get('contactName')!.value);
-    // formData.append('contactNumber', this.form.get('contactNumber')!.value);
-    // formData.append('relations', this.form.get('relations')!.value);
-    this.http
-        .post('http://localhost:3000/emergency', this.form.value)
-        .subscribe({
-            next: (response) => console.log(response),
-            error: (error) => console.log(error),
-        });
-  }  
+    if(this.form.value.length == 0){
+      console.log("good");
+    }
+    else{
+      this.plantcodeService.submitemer()
+    }
+}
+sendData(){
+    this.plantcodeService.emer = this.form.value
+} 
   
 }

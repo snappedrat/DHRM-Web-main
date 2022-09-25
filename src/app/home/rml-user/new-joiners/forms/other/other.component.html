@@ -66,7 +66,7 @@
                 id="extra"   
                 type="text"   
                 class="form-control"
-                placeholder="Extra Curricular Activities (Sports/Hobbies)">  
+                placeholder="Extra Curricular Activities (Sports/Hobbies)" (click)="sendData()">  
             <div *ngIf="extra.extra.touched && extra.extra.invalid" class="alert alert-danger">  
                 <div *ngIf="extra.extra.errors.required"> Extra Curricular Activities (Sports/Hobbies) is required</div>   
             </div>  

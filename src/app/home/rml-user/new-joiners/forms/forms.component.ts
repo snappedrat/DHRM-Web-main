@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BanksComponent } from './banks/banks.component';
-import { BasicComponent } from './basic/basic.component';
-import { EducationalComponent } from './educational/educational.component';
-import { EmergencyComponent } from './emergency/emergency.component';
-import { FamilyDetailComponent } from './family-detail/family-detail.component';
-import { LanguageComponent } from './language/language.component';
-import { OtherComponent } from './other/other.component';
-import { PrevComponent } from './prev/prev.component';
+import { PlantcodeService } from '../plantcode.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-forms',
@@ -15,22 +9,91 @@ import { PrevComponent } from './prev/prev.component';
 })
 export class FormsComponent implements OnInit {
 
-  // constructor(private banks : BanksComponent, private basic: BasicComponent, private education: EducationalComponent, private emer: EmergencyComponent, private family : FamilyDetailComponent, private lang: LanguageComponent,private other: OtherComponent, private prev : PrevComponent)
-  //  { }
+  bankdata :any
+  basicData: any
+  eduData: any
+  emerData: any
+  famData: any
+  otherData: any
+  prevData: any
 
-  // allSave(){
-  //     // this.banks.submit()
-  //     // this.basic.submit()
-  //     // this.education.onSubmit()
-  //     // this.emer.submit()
-  //     // this.family.onSubmit()
-  //     // // this.lang.ngOnInit()
-  //     // this.other.submit()
-  //     // this.prev.onSubmit()
+  constructor(private formservice: PlantcodeService, private http: HttpClient ){
 
-  // }
+  }
+
+  allSave()
+  {
+    // this.formservice.submitbank()
+    // console.log(this.formservice.bank)
+
+    // this.formservice.submitbasic()
+    // console.log(this.formservice.basic)
+
+    this.formservice.submitedu()
+    console.log(this.formservice.edu)  
+
+    // this.formservice.submitemer()
+    // console.log(this.formservice.emer)    
+
+    this.formservice.submitfamily()
+    console.log(this.formservice.fam) 
+
+    // this.formservice.submitother()
+    // console.log(this.formservice.other) 
+
+    this.formservice.submitprev()
+    console.log(this.formservice.prev) 
+  }
+
+    // this.basicData = this.formservice.basic
+    // this.http
+    //     .post('http://localhost:3000/basicforms', this.basicData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+
+    // this.eduData = this.formservice.edu
+    // this.http
+    //     .post('http://localhost:3000/edu', this.eduData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+
+    // this.emerData = this.formservice.basic
+    // this.http
+    //     .post('http://localhost:3000/emergency', this.emerData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+
+    // this.famData = this.formservice.fam
+    // this.http
+    //     .post('http://localhost:3000/family', this.famData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+
+    // this.otherData = this.formservice.other
+    // this.http
+    //     .post('http://localhost:3000/others', this.otherData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+    
+    // this.prevData = this.formservice.prev
+    // this.http
+    //     .post('http://localhost:3000/prev', this.prevData)
+    //     .subscribe({
+    //         next: (response) => console.log(response),
+    //         error: (error) => console.log(error),
+    //     });
+    
 
   ngOnInit(): void {
   }
-
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,FormControl, FormArray, Validators } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
+import { PlantcodeService } from '../../plantcode.service';
 @Component({
   selector: 'app-educational',
   templateUrl: './educational.component.html',
@@ -9,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class EducationalComponent implements OnInit {
   fgs : FormGroup
-  constructor(private fbs:FormBuilder, private http:HttpClient, private cookie:CookieService) {
+  constructor(private fbs:FormBuilder, private http:HttpClient, private cookie:CookieService, private plantcodeService : PlantcodeService) {
     this.fgs = this.fbs.group({
       educational:this.fbs.array([])
     })
@@ -41,14 +42,11 @@ export class EducationalComponent implements OnInit {
   onSubmit()
   {
     console.log(this.eduArray.value)
-    console.log(this.eduArray.errors)
-      this.http
-          .post('http://localhost:3000/edu', this.eduArray.value)
-          .subscribe({
-              next: (response) => console.log(response),
-              error: (error) => console.log(error),
-          });
-  }
+    this.plantcodeService.submitedu()
+}
+sendData(){
+    this.plantcodeService.edu = this.eduArray.value
+}
   ngOnInit(): void {
   }
  delRow(index:number)

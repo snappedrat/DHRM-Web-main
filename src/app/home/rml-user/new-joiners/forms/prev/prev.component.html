@@ -30,7 +30,7 @@
            </div>
            <div class="col-sm-2">
             <label class="form-label">Salary Last Drawn:</label>
-        <input type="text" formControlName="sld" 
+        <input type="text" formControlName="sld" (click)="sendData()"
          class="form-control" placeholder="Salary Last Drawn">
         <p *ngIf="prevArray.controls[i].get('sld')?.touched && prevArray.controls[i].get('sld')?.errors?.['required']" class="text-danger">Enter the Salary Last Drawn</p>
         <p *ngIf="prevArray.controls[i].get('sld')?.touched && prevArray.controls[i].get('sld')?.errors?.['pattern']" class="text-danger">Only digits are valid</p>
