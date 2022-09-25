@@ -45,6 +45,7 @@ import { TraineeApplicationStatusComponent } from './trainee-application-status/
         TraineeApplicationStatusComponent,
     ],
       imports: [
+          CommonModule,
           LoginModule,
           MatNativeDateModule,
           CommonModule,

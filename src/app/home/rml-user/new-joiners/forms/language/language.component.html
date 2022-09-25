@@ -10,16 +10,20 @@
         <th scope="col">MotherTongue</th>
         <th scope="col">Understand</th>
         </tr>
+        <tr *ngFor="let data of languageList">
+        <td ><input type="text" [(ngModel)]="data.language"></td>
+        <td><input type = "checkbox" [checked]="data.speak == 1" (click)="changestatus($event, data, 'speak')"></td>
+        <td><input type = "checkbox" [checked]="data.read == 1" (click)="changestatus($event, data,'read')"></td>
+        <td><input type = "checkbox" [checked]="data.write == 1" (click)="changestatus($event, data,'write')"></td>
+        <td><input type = "checkbox" [checked]="data.mothertongue == 1" (click)="changestatus($event, data,'mothertongue')"></td>
+        <td><input type = "checkbox" [checked]="data.understand == 1" (click)="changestatus($event, data,'understand')"></td>
+    </tr>
+    
+   
+
+
         <tr>
-        <td>Tamil</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>English</td>
+        <!-- <td>English</td>
         <td><input type = "checkbox"></td>
         <td><input type = "checkbox"></td>
         <td><input type = "checkbox"></td>
@@ -65,8 +69,8 @@
         <td><input type = "checkbox"></td>
         <td><input type = "checkbox"></td>
         <td><input type = "checkbox"></td>
-        </tr>
+        </tr> -->
     </thead>    
     </table>
-    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;">Save</button>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
 </div> 
