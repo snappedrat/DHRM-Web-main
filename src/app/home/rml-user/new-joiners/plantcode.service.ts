@@ -99,6 +99,16 @@ submitprev(){
       error: (error) => console.log(error),
 })
 }
+
+sumbitlang(){
+        this.http.
+    post('http://localhost:3000/lang', this.lang)
+    .subscribe({
+      next: (response) => console.log(response),
+      error: (error) => console.log(error),
+  })
+}
+}
 //  allSave(){
 //      this.banks.submit()
 //      this.basic.submit()
@@ -109,4 +119,3 @@ submitprev(){
 //      this.prev.onSubmit()
 
 //  }
-}

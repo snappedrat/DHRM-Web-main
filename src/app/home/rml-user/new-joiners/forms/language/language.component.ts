@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { PlantcodeService } from '../../plantcode.service';
+import { leadingComment } from '@angular/compiler';
 
 @Component({
   selector: 'app-language',
@@ -66,7 +70,7 @@ languageList = [
   }
 ];
 
-  constructor() { }
+  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { }
 
   ngOnInit(): void {
   }
@@ -120,6 +124,23 @@ languageList = [
   }  
   submit(){
     console.log('language', this.languageList);
-    
-  }
+      if(this,this.languageList.length == 0){
+      console.log("good");
+      }
+      else{
+      this.plantcodeService.sumbitlang()
+    }
+}
+
+sendData(){
+  this.plantcodeService.lang = this.languageList
+} 
+
+//     this.http.
+//     post('http://localhost:3000/lang', this.languageList)
+//     .subscribe({
+//       next: (response) => console.log(response),
+//       error: (error) => console.log(error),
+//   })
+// }
 }

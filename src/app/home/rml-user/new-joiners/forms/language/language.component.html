@@ -11,7 +11,7 @@
         <th scope="col">Understand</th>
         </tr>
         <tr *ngFor="let data of languageList">
-        <td ><input type="text" [(ngModel)]="data.language"></td>
+        <td ><input type="text" [(ngModel)]="data.language" (click)="sendData()"></td>
         <td><input type = "checkbox" [checked]="data.speak == 1" (click)="changestatus($event, data, 'speak')"></td>
         <td><input type = "checkbox" [checked]="data.read == 1" (click)="changestatus($event, data,'read')"></td>
         <td><input type = "checkbox" [checked]="data.write == 1" (click)="changestatus($event, data,'write')"></td>
@@ -23,53 +23,6 @@
 
 
         <tr>
-        <!-- <td>English</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>Telugu</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>Hindi</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>Kannadam</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>Marati</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr>
-        <tr>
-        <td>Malayalam</td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        <td><input type = "checkbox"></td>
-        </tr> -->
     </thead>    
     </table>
     <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>

@@ -43,6 +43,9 @@ export class FormsComponent implements OnInit {
 
     this.formservice.submitprev()
     console.log(this.formservice.prev) 
+
+    this.formservice.sumbitlang()
+    console.log(this.formservice.lang) 
   }
 
     // this.basicData = this.formservice.basic

@@ -123,12 +123,8 @@ export class BasicComponent {
         }
     }
     submit(){
-        if(this.form.value.length == 0){
-            console.log("good");
-          }
-          else{
             this.plantcodeService.submitbasic()
-          }
+
     }
     sendData(){
         console.log(this.form.value);

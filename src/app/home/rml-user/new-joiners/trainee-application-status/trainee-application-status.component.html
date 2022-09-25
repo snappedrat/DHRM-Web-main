@@ -1,23 +1,117 @@
-
-    <div class = "container">
+<div class = "container">
 <div  style = "margin-top: 40px;">
-<label for="Status" id="center"> Status </label>
-  <select name="Status"id="Status">
-    <option value="pending">pending</option>
-    <option value="submitted">submitted</option>
-    <option value="waiting for approval">waiting for approval</option>
-    <option value="approved">approved</option>
-    <option value="Rejected">Rejected</option>
-    <option value="appointed">appointed</option>
-  </select> 
 
-  <label for="fromdate" id="center"> From date:</label>
-  <input type="date" id="fromdate" name="fromdate">
-  
-  <label for="todate" id="center"> To date:</label>
-  <input type="date" id="todate" name="todate">
-
-  <button class = "btn-primary">filter</button>
+  <form [formGroup]="form" (ngSubmit)="filter()">
+  <div class = "row">
+  <div class = "col-sm-3 boxx">
+  <label for="Status" id="center"> Status: </label>
+    <br>
+      <select name="Status" id="Status" formControlName = "status">
+        <option value="pending">PENDING</option>
+        <option value="submitted">SUBMITTED</option>
+        <option value="waiting for approval">WAITING FOR APPROVAL</option>
+        <option value="approved">APPROVED</option>
+        <option value="Rejected">REJECTED</option>
+        <option value="appointed">APPOINTED</option>
+      </select> 
+  </div>
+  <div class = "col-sm-3">
+      <label for="fromdate" id="center"> From date:</label>
+      <br>
+      <input type="date" id="fromdate" name="fromdate" formControlName = "fromdate">
+  </div>
+  <div class = "col-sm-3">
+      <label for="todate" id="center"> To date:</label>
+      <br>
+      <input type="date" id="todate" name="todate" formControlName = "todate">
+  </div>
 </div>
+  <button class = "btn btn-primary btn-lg" (click)="filter()" >filter</button>
+  <br><br>
+    <div class = "table-wrapper">
+    <table class="table table-bordered table-striped table-hover">
+      <table id="table">
+          <thead>
+          <tr>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                 Date
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  Full name
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 800px"
+                      style="background-color: darkblue"
+              >
+                  Father Name
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  Date of birth 
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  mobileNumber
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  Aaadhar number
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  Application status
+              </th>
 
-</div>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+                      >
+                  Actions
+              </th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of filterinfo">
+                    <td>{{ i.doj }}</td>
+                    <td>{{ i.fullname }}</td>
+                    <td>{{ i.fathername }}</td>
+                    <td>{{ i.birthdate }}</td>
+                    <td>{{ i.mobile_no1 }}</td>
+                    <td>{{ i.aadhar_no }}</td>
+                    <td>{{ i.apln_status }}</td>
+                    <td>
+                        <button mat-mini-fab color = 'accent' routerLink="/forms" >
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" type="button" >
+                            <mat-icon>download</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </table></div>
+
+
