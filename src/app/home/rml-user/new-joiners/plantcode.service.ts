@@ -109,13 +109,3 @@ sumbitlang(){
   })
 }
 }
-//  allSave(){
-//      this.banks.submit()
-//      this.basic.submit()
-//      this.education.onSubmit()
-//      this.emer.submit()
-//      this.family.onSubmit()
-//      this.other.submit()
-//      this.prev.onSubmit()
-
-//  }

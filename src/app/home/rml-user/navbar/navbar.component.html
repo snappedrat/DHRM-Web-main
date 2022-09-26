@@ -44,6 +44,7 @@
                         <mat-icon class="icon-pad">watch_later</mat-icon>Shift</a>
                 </mat-nav-list>
             </mat-expansion-panel>
+            <div *ngIf = "ishr[0]?.Is_HR || ishrappr[0]?.Is_HRAppr">
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -52,12 +53,18 @@
                     New Joiners
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
+
+                        <div *ngIf = "ishr[0]?.Is_HR">
                     <a mat-list-item routerLink="/rml/new_joiners/trainee-application-status" style="color: white">
-                        <mat-icon class="icon-pad">assignment_ind</mat-icon>Trainee Application status</a>    
+                        <mat-icon class="icon-pad">assignment_ind</mat-icon>Trainee Application status</a>  
+                    </div>
+                    <div *ngIf = "ishrappr[0]?.Is_HRAppr">  
                     <a mat-list-item routerLink="/rml/new_joiners/hr-approval" style="color: white">
                         <mat-icon class="icon-pad" >how_to_reg</mat-icon>HR Approval</a>
+                    </div>
                 </mat-nav-list>
             </mat-expansion-panel>
+            </div>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -143,7 +150,7 @@
       </button>
             <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
             <span style="color:white">DHRM</span>
-            <button class="btn btn-primary border border-secondary" (click)="delCookie()" id="logout" routerLink="/first" >
+            <button class="btn btn-primary border border-secondary" (click)="delCookie()" onmousemove="setlocal()" id="logout" routerLink="/first" >
                 <span class="glyphicon glyphicon-log-out"></span> 
               </button>
         </mat-toolbar>

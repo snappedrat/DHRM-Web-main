@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
 
         this.exform = new UntypedFormGroup({
             'User_Name' : new UntypedFormControl('', Validators.required),
-
             'Password': new UntypedFormControl(null, Validators.required),
         });
     }
@@ -35,10 +34,11 @@ export class LoginComponent implements OnInit {
         this.cookie.set("User_Name", this.username)
         this.cookie.set("Password", this.password)
     }
-    // login(User_Name: string, Password: string): Observable<any> {
-    //     console.log();
-    //     return this.http.post<any>('http://localhost:3000/rml/logins', {user: User_Name, pass: Password});
-    // }
+
+    setLocal(){
+        localStorage.setItem('user_name', this.exform.value.User_Name)
+        console.log(this.exform.value.User_Name)
+    }
 
     submit() {
         if (this.exform.invalid) {

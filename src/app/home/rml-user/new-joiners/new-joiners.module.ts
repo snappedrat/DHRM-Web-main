@@ -28,6 +28,7 @@ import { FamilyDetailComponent } from './forms/family-detail/family-detail.compo
 import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { LanguageComponent } from './forms/language/language.component';
 import { TraineeApplicationStatusComponent } from './trainee-application-status/trainee-application-status.component';
+import { IdcardComponent } from './idcard/idcard.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { TraineeApplicationStatusComponent } from './trainee-application-status/
         EmergencyComponent,
         LanguageComponent,
         TraineeApplicationStatusComponent,
+        IdcardComponent,
     ],
       imports: [
           CommonModule,

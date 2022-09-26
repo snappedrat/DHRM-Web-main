@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HrApprovalComponent implements OnInit {
 
-
+  var: any = 0
   form: any
   filterinfo: any
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
@@ -22,6 +22,7 @@ export class HrApprovalComponent implements OnInit {
       });
      }
     ngOnInit(): void {
+ 
     }
   
   filter()

@@ -21,7 +21,7 @@
               <label for="plant">Plant Code</label>  
               <select formControlName="plant" class="form-control">
                   <option>Choose</option>
-                <option *ngFor="let pl of plantcode">{{pl.plant_code}}</option>
+                <option *ngFor="let pl of plantcode">{{pl.plant_name}}</option>
                 </select>
                 <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert alert-danger">  
                   <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   

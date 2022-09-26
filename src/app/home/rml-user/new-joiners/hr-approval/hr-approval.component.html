@@ -1,6 +1,5 @@
-<div class = "container">
-    <div  style = "margin-top: 40px;">
-    
+<div class = "container" *ngIf = "this.var == 1">
+    <div  style = "margin-top: 40px;">   
       <form [formGroup]="form" (ngSubmit)="filter()">
       <div class = "row">
       <div class = "col-sm-3 boxx">
@@ -113,4 +112,7 @@
                     </tbody>
                 </table>
               </table>
-            </div>
+        </div>
+        </form>
+    </div>
+</div>
