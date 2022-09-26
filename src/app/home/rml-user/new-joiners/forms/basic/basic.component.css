@@ -1,5 +1,5 @@
 .btn{
-    border-radius: 5px;
+    border-radius: 0px;
     margin-left:50%;
     width:max-content
 }
@@ -11,14 +11,14 @@ input{
     border-radius:5px;
 }
 input:hover{
-    border:2px solid grey;  
+    border:0px solid grey;  
 }
 select{
-    border-radius:5px;
+    border-radius:0px;
     height: 34px;
 }
 select:hover{
-    border:2px solid grey;
+    border:0px solid grey;
 }
 
 .row{
