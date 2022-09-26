@@ -1,5 +1,5 @@
 .btn{
-    border-radius: 5px;
+    border-radius: 0px;
     margin-left:50%;
     
 }
@@ -8,14 +8,14 @@ h3{
     font-weight:bold;
 }
 input{
-    border-radius:5px;
+    border-radius:0px;
 }
 input:hover{
     border:2px solid grey;
 
 }
 select{
-    border-radius:5px;
+    border-radius:0px;
 }
 select:hover{
     border:5px solid grey;
