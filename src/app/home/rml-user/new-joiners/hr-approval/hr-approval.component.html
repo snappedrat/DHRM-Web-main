@@ -88,7 +88,7 @@
                           style="width: 500px"
                           style="background-color: darkblue"
                           >
-                      Actions
+                      Approval
                   </th>
                   </tr>
                   </thead>
@@ -102,11 +102,11 @@
                         <td>{{ i.aadhar_no }}</td>
                         <td>{{ i.apln_status }}</td>
                         <td>
-                            <button mat-mini-fab color = 'accent' routerLink="/forms" >
-                                <mat-icon>edit</mat-icon>
+                            <button mat-mini-fab color = "success" routerLink="/forms" >
+                                <mat-icon>thumb_up</mat-icon>
                             </button>
-                            <button mat-mini-fab color="warn" type="button" >
-                                <mat-icon>download</mat-icon>
+                            <button mat-mini-fab color="error" type="button" >
+                                <mat-icon>thumb_down</mat-icon>
                             </button>
                         </td>
                       </tr>

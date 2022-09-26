@@ -39,3 +39,9 @@ tbody
     overflow-x: auto;
     white-space: nowrap;
 }
+.mat-success{
+  color:green;
+}
+.mat-error{
+  color:red;
+}
