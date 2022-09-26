@@ -16,11 +16,13 @@ import { HttpClientModule} from "@angular/common/http";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubmittedComponent } from './submitted/submitted.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FirstPageComponent,  
+    FirstPageComponent,
+    SubmittedComponent,  
   ],
   imports: [
     BrowserModule,

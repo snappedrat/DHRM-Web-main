@@ -1,0 +1,26 @@
+
+  .submit{
+    height: 1000px;
+    background-size: 80% ;
+    background-size: cover;
+    background-image:url('src\assets\bg.png');
+    background-position:20% 20%;
+  }
+
+  .home{
+    height: 1000px;
+    background-image:url('src\assets\bg.png');
+    background-position:center;
+    background-attachment: fixed;
+    object-fit: cover;
+  }
+
+  div {
+    height: 200px;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -100px;
+}
