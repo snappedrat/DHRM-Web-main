@@ -43,9 +43,12 @@
             </div>
         </div>
         </li>
-     </ol>
-      <button type="submit" style="margin-top: 20px; text-align:center;"  class = "btn btn-primary btn-lg" [disabled]="fg.invalid" >Save</button>
-    </form> 
+     </ol><app-alert [type="'alert-success'"]>
+      <div class="alert alert-success">
+          <strong>Success!</strong> Your application has been submitted successf.
+       
+      <button type="submit" style="margin-top: 20px; text-align:center;"  class = "btn btn-primary btn-lg" routerlink="/alert" [disabled]="fg.invalid" >Save</button>
+      </div></form> 
     
     </div>
     

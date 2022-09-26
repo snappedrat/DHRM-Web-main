@@ -7,6 +7,7 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { TraineeApplicationComponent } from './home/rml-user/new-joiners/trainee-application/trainee-application.component';
 import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.component';
 import { SubmittedComponent } from './submitted/submitted.component';
+import { AlertComponent } from './src/spp/alert/alert.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'submitted',
     component: SubmittedComponent
   }
+
 ];
 
 @NgModule({

@@ -17,12 +17,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubmittedComponent } from './submitted/submitted.component';
+import { AlertComponent } from './src/spp/alert/alert.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FirstPageComponent,
-    SubmittedComponent,  
+    SubmittedComponent,
+    AlertComponent,  
   ],
   imports: [
     BrowserModule,
