@@ -48,10 +48,9 @@
             <p *ngIf="familyArray.controls[i].get('dependent_self')?.touched && familyArray.controls[i].get('dependent_self')?.errors?.required" class="text-danger">Enter Whether Depemdant or Self Sufficient</p>
          </div>                  <button (click)="delRow(i)" style="margin-left:90%;margin-top:24px;" class="btn btn-danger btn-sm">Remove</button>
 
-
         </div>
     </div>
     </li>
  </ol>
- <button type="submit" (click)="onSubmit()"  class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  [disabled]="fg.invalid" >Save</button>
+ <button type="submit" (click)="onSubmit()"  class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  >Save</button>
 </form>

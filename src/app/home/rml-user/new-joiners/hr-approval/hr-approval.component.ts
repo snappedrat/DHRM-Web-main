@@ -15,8 +15,8 @@ export class HrApprovalComponent implements OnInit {
   filterinfo: any
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({
-        status:new UntypedFormControl(' '),
-        fromdate: new UntypedFormControl(' '),
+        status:new UntypedFormControl(''),
+        fromdate: new UntypedFormControl(''),
         todate: new UntypedFormControl(' '),
   
       });
@@ -29,7 +29,7 @@ export class HrApprovalComponent implements OnInit {
   {
     console.log(this.form.value)
     this.http
-    .post('http://localhost:3000/filter', this.form.value)
+    .post('http://localhost:3000/filterforapproval', this.form.value)
     .subscribe({
       next: (response) =>{ console.log(response); this.filterinfo = response},
       error: (error) => console.log(error),

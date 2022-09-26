@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forms',
@@ -16,8 +17,9 @@ export class FormsComponent implements OnInit {
   famData: any
   otherData: any
   prevData: any
+  a: any
 
-  constructor(private formservice: PlantcodeService, private http: HttpClient ){
+  constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router ){
 
   }
 
@@ -47,12 +49,35 @@ export class FormsComponent implements OnInit {
     // this.formservice.sumbitlang()
     // console.log(this.formservice.lang) 
   }
+  ngOnInit(): void {
+    this.a = localStorage.getItem('ishr')
+}
 
+  mainalert(){
+    if(this.a == undefined){
+      this.alert()
+      this.router.navigate([''])
+    }
+    else{
+      this.alertforapproval()
+      this.router.navigate(['rml/new-joiners/forms'])
+    }
+  }
   alert()
   {
     window.alert("Your application has been submitted. \n Contact HR for more information")
   }
-
-  ngOnInit(): void {
+  alertforapproval()
+  {
+    window.alert("Trainee Form had been updated")
   }
+
+  update_status(){
+    this.http.post('http://localhost:3000/updatestatus','')
+    .subscribe({
+      next: (response) => console.log(response),
+      error: (error) => console.log(error),
+});
+  }
+
 }

@@ -11,9 +11,6 @@
                     type="number"
                     class="form-control"
                     placeholder="Account Number">
-            <div *ngIf="account.account.touched && account.account.invalid" class="alert alert-danger">
-                <div *ngIf="account.account.errors.required">Account Number is required</div>
-            </div>
         </div>
     </div>
         <div class = "col-sm-3">
@@ -25,9 +22,6 @@
                     type="number"
                     class="form-control"
                     placeholder="IFSC Number">
-            <div *ngIf="ifsc.ifsc.touched && ifsc.ifsc.invalid" class="alert alert-danger">
-                <div *ngIf="ifsc.ifsc.errors.required">IFSC Code is required</div>
-            </div>
         </div>
     </div>
         <div class = "col-sm-3">
@@ -37,12 +31,9 @@
                 <option>Choose</option>
                 <option *ngFor="let bm of Bank">{{bm}}</option>
             </select>
-            <div *ngIf="bankName.bankName.touched && bankName.bankName.invalid" class="alert alert-danger">
-                <div *ngIf="bankName.bankName.errors.required"> Bank Name is required</div>
-            </div>
         </div>
         </div>
-        <button class="btn btn-primary btn-sm" (click)="submit()" style ="margin-top: 20px; text-align:center;" type="submit" [disabled]="!form.valid">Save</button>
+        <button class="btn btn-primary btn-sm" (click)="submit()" style ="margin-top: 20px; text-align:center;" type="submit">Save</button>
         </div>
     </form>
 </div>

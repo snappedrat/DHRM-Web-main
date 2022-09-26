@@ -13,13 +13,6 @@ input{
 input:hover{
     border:2px solid grey;  
 }
-select{
-    border-radius:5px;
-    height: 34px;
-}
-select:hover{
-    border:2px solid grey;
-}
 
 .row{
     white-space: nowrap;

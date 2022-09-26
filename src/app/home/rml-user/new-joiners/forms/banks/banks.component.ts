@@ -28,9 +28,9 @@ export class BanksComponent {
     constructor(private fb: UntypedFormBuilder, private http: HttpClient, private cookie : CookieService, public plantcodeService: PlantcodeService) {
         this.form = fb.group({
             sno: new UntypedFormControl(' '),
-            account:['',Validators.required],
-            ifsc:['',Validators.required],
-            bankName:['',Validators.required],
+            account:[''],
+            ifsc:[''],
+            bankName:[''],
             mobilenumber: new UntypedFormControl(this.cookie.get('mobilenum'))
         })
     }

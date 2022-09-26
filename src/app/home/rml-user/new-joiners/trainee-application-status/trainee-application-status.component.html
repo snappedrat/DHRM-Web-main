@@ -102,12 +102,11 @@
                     <td>{{ i.aadhar_no }}</td>
                     <td>{{ i.apln_status }}</td>
                     <td>
-                        <button mat-mini-fab color = 'accent' routerLink="/forms" >
+                        <div *ngIf= "i.apln_status == 'PENDING'">
+                        <button mat-mini-fab color = 'primary' routerLink="/rml/new_joiners/forms" title="Edit the trainee" >
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" >
-                            <mat-icon>download</mat-icon>
-                        </button>
+                        </div>
                     </td>
                   </tr>
                 </tbody>

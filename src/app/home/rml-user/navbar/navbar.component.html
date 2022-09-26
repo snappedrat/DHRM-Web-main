@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container bg-primary">
+<mat-sidenav-container class="sidenav-container bg-primary"  (mousemove)="setlocal()">
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar style="background-color:  #023075; color: white; padding-left: 90px">MENU</mat-toolbar>
         <mat-nav-list style="background-color: #023075;">
@@ -150,7 +150,7 @@
       </button>
             <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
             <span style="color:white">DHRM</span>
-            <button class="btn btn-primary border border-secondary" (click)="delCookie()" onmousemove="setlocal()" id="logout" routerLink="/first" >
+            <button class="btn btn-primary border border-secondary" (click)="delCookie()" id="logout" routerLink="/first" >
                 <span class="glyphicon glyphicon-log-out"></span> 
               </button>
         </mat-toolbar>

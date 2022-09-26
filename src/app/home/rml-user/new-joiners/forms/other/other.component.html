@@ -6,10 +6,7 @@
             <select formControlName="known" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let rel of Relations">{{rel}}</option>
-              </select>
-              <div *ngIf="known.known.touched && known.known.invalid" class="alert alert-danger">  
-                <div *ngIf="known.known.errors.required"> field is required</div>   
-            </div>   
+              </select> 
     
         </div>  
         <div style = "width:fit-content" class="form-group">  
@@ -18,10 +15,6 @@
                 <option>Choose</option>
               <option *ngFor="let wk of Works">{{wk}}</option>
               </select>
-              <div *ngIf="work.work.touched && work.work.invalid" class="alert alert-danger">  
-                <div *ngIf="work.work.errors.required"> work field is required</div>   
-            </div>  
-           
         </div>  
         <div style="width:fit-content" class="form-group">  
             <label for="names"> Name</label>  
@@ -31,9 +24,7 @@
                 type="text"   
                 class="form-control"
                 placeholder="Name">  
-            <div *ngIf="names.names.touched && names.names.invalid" class="alert alert-danger">  
-                <div *ngIf="names.names.errors.required">Full Name is required</div>   
-            </div>  
+ 
         </div>
         <div style="width:fit-content" class="form-group">  
             <label for="place">Place</label>  
@@ -43,9 +34,7 @@
                 type="text"   
                 class="form-control"
                 placeholder="Place">  
-            <div *ngIf="place.place.touched && place.place.invalid" class="alert alert-danger">  
-                <div *ngIf="place.place.errors.required">Place is required</div>   
-            </div>  
+
         </div>
         <div style="width:fit-content" class="form-group">  
             <label for="com">Company/Agency Name</label>  
@@ -55,9 +44,7 @@
                 type="text"   
                 class="form-control"
                 placeholder="Company/Agency Name">  
-            <div *ngIf="com.com.touched && com.com.invalid" class="alert alert-danger">  
-                <div *ngIf="com.com.errors.required">Comapny/Agency name is required</div>   
-            </div>  
+
         </div>
         <div stytle="width:fit-content" class="form-group">  
             <label for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
@@ -67,9 +54,7 @@
                 type="text"   
                 class="form-control"
                 placeholder="Extra Curricular Activities (Sports/Hobbies)" (click)="sendData()">  
-            <div *ngIf="extra.extra.touched && extra.extra.invalid" class="alert alert-danger">  
-                <div *ngIf="extra.extra.errors.required"> Extra Curricular Activities (Sports/Hobbies) is required</div>   
-            </div>  
+ 
         </div>
-           <button (click)="submit()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit" [disabled]="!forms.valid">Save</button>
+           <button (click)="submit()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit">Save</button>
     </form></div>

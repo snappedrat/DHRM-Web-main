@@ -1,4 +1,4 @@
-<div class = "container" *ngIf = "this.var == 1">
+<div class = "container">
     <div  style = "margin-top: 40px;">   
       <form [formGroup]="form" (ngSubmit)="filter()">
       <div class = "row">
@@ -6,7 +6,7 @@
       <label for="Status" id="center"> Status: </label>
         <br>
           <select name="Status" id="Status" formControlName = "status">
-            <option value="pending">PENDING</option>
+            <option value="pending" selected>PENDING</option>
             <option value="submitted">SUBMITTED</option>
             <option value="waiting for approval">WAITING FOR APPROVAL</option>
             <option value="approved">APPROVED</option>
@@ -17,7 +17,7 @@
       <div class = "col-sm-3">
           <label for="fromdate" id="center"> From date:</label>
           <br>
-          <input type="date" id="fromdate" name="fromdate" formControlName = "fromdate">
+          <input type="date" value="2013-01-08" id="fromdate" name="fromdate" formControlName = "fromdate">
       </div>
       <div class = "col-sm-3">
           <label for="todate" id="center"> To date:</label>
@@ -48,7 +48,7 @@
                   </th>
                   <th
                           class="text-center"
-                          style="width: 800px"
+                          style="width: 500px"
                           style="background-color: darkblue"
                   >
                       Father Name
@@ -67,6 +67,13 @@
                   >
                       mobileNumber
                   </th>
+                  <th
+                  class="text-center"
+                  style="width: 500px"
+                  style="background-color: darkblue"
+                >
+                     ID NO
+                 </th>
                   <th
                           class="text-center"
                           style="width: 500px"
@@ -98,15 +105,18 @@
                         <td>{{ i.fathername }}</td>
                         <td>{{ i.birthdate }}</td>
                         <td>{{ i.mobile_no1 }}</td>
+                        <td>{{i.trainee_idno}}</td>
                         <td>{{ i.aadhar_no }}</td>
                         <td>{{ i.apln_status }}</td>
                         <td>
+                            <div *ngIf= "i.apln_status == 'APPOINTED'">
                             <button mat-mini-fab color = "success" routerLink="/forms" >
                                 <mat-icon>thumb_up</mat-icon>
                             </button>
                             <button mat-mini-fab color="error" type="button" >
                                 <mat-icon>thumb_down</mat-icon>
                             </button>
+                        </div>
                         </td>
                       </tr>
                     </tbody>

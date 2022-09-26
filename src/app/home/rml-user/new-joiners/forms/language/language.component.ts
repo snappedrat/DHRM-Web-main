@@ -11,6 +11,8 @@ import { leadingComment } from '@angular/compiler';
 })
 export class LanguageComponent implements OnInit {
 
+lang: any = ['tamil', 'english', 'marati', 'telugu', 'malayalam', 'hindi']
+
 languageList = [
   {
     'language': '',
@@ -46,14 +48,6 @@ languageList = [
   },
   {
   'language': '',
-    'speak': 0,
-    'read': 0,
-    'write': 0,
-    'mothertongue': 0,
-    'understand': 0
-  },
-  {
-    'language': '',
     'speak': 0,
     'read': 0,
     'write': 0,
