@@ -8,11 +8,9 @@
   }
 
   .home{
-    height: 1000px;
     background-image:url('src\assets\bg.png');
-    background-position:center;
-    background-attachment: fixed;
-    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   div {
