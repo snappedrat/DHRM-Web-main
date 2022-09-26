@@ -2,6 +2,7 @@
     <h3>Previous Employment <button (click)="AddRow()" class="btn btn-success btn-lg ml-5">Add Row</button></h3>
     
     <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+    
      <ol formArrayName="prev">
         <li *ngFor = "let p of prevArray.controls;let i = index" [formGroupName]="i">
             <hr>
