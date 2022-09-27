@@ -21,6 +21,7 @@ export class BasicComponent {
             mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             permanent:['',Validators.required],
             present: ['', Validators.required],
+            title:['',Validators.required],
             name:['',Validators.required],
             fname:['',Validators.required],
             bd:['',Validators.required],
@@ -45,6 +46,9 @@ export class BasicComponent {
         return this.form.controls;
     }
     get p(){
+        return this.form.controls;
+    }
+    get title(){
         return this.form.controls;
     }
     get name(){
