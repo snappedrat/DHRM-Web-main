@@ -24,6 +24,8 @@ export class BasicComponent {
             title:['',Validators.required],
             name:['',Validators.required],
             fname:['',Validators.required],
+            lname:['',Validators.required],
+            ftname:['',Validators.required],
             bd:['',Validators.required],
             height:['',Validators.required],
             weight:['',Validators.required],
@@ -55,6 +57,14 @@ export class BasicComponent {
         return this.form.controls;
     }
     get fname()
+    {
+        return this.form.controls;
+    }
+    get ftname()
+    {
+        return this.form.controls;
+    }
+    get lname()
     {
         return this.form.controls;
     }

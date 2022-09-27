@@ -9,7 +9,6 @@
                         formControlName="title"
                         id="title"
                         type="text"
-                        style="width:max-content"
                         class="form-control"
                         placeholder="Title ">
                 <div *ngIf="title.title.touched && title.title.invalid" class="alert alert-danger">
@@ -17,37 +16,49 @@
                 </div></div></div>
         <div  class="form-group">
             <div class = "col-md-2">
-            <label for="name">Full Name:</label>
+            <label for="name">First Name:</label>
             <input
-                    formControlName="name"
-                    id="name"
+                    formControlName="fname"
+                    id="fname"
                     type="text"
-                    style="width:max-content"
                     class="form-control"
-                    placeholder="Full Name">
-            <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
-                <div *ngIf="name.name.errors.required">Full Name is required</div>
+                    placeholder="First Name">
+            <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
+                <div *ngIf="fname.fname.errors.required">First Name is required</div>
             </div></div></div>
-            <div style="width: max-content" class="form-group">
-                <div class = "col-md">
-
-                <label for="fname">Father Name:</label>
+            <div  class="form-group">
+                <div class = "col-md-2">
+                <label for="name">Last Name:</label>
                 <input
-                        formControlName="fname"
-                        id="fname"
+                        formControlName="lname"
+                        id="lname"
+                        type="text"
+                        class="form-control"
+                        placeholder="Last Name">
+                <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert alert-danger">
+                    <div *ngIf="lname.lname.errors.required">Last Name is required</div>
+                </div></div></div></div>
+                        
+                
+                <div style="width: max-content" class="form-group">    
+                        <label for="fname">Father Name:</label>
+                <input
+                        formControlName="ftname"
+                        id="ftname"
                         type="text"
                         class="form-control"
                         placeholder="Father Name">
-                <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
-                    <div *ngIf="fname.fname.errors.required">Father Name is required</div>
+                <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
+                    <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
                 </div>
-            </div></div></div>
+            </div>
         <p>Aadhar Number:</p>
         <div class="row">
             <div class="col-md-2">
                 <input #txt1
                        formControlName = "aadhar1"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt1,txt2)">
             </div>
@@ -55,6 +66,7 @@
                 <input #txt2
                 formControlName = "aadhar2"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt2,txt3)">
             </div>
@@ -62,6 +74,7 @@
                 <input #txt3
                 formControlName = "aadhar3"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt3,txt4)" >
             </div>
@@ -69,11 +82,12 @@
                 <input #txt4
                 formControlName = "aadhar4"
                        maxlength=4
+                       style="width:max-content"
                        type="text" >
             </div>
         </div>
 
-        <div style="width:fit-content" class="form-group">
+        <div class="form-group">
             <label for="bd">Birth Date:</label>
             <input
                     formControlName="bd"
@@ -84,7 +98,7 @@
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>
         </div>
-        <div style = "width:fit-content" class="form-group">
+        <div  class="form-group">
             <label for="">Nationality:</label>
             <select formControlName="nation" class="form-control">
                 <option disabled>Select Nationality</option>
@@ -100,7 +114,7 @@
                 Permanent Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -125,7 +139,7 @@
                 Present Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="present" style="width:800px;" class="form-control" [value]="inputValue"></textarea>
+            <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
         </div>
         <div class ="row">
         <div class="form-group">

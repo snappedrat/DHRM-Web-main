@@ -1,5 +1,5 @@
 .btn{
-    border-radius: 0px;
+    
     margin-left:50%;
     width:max-content
 }
@@ -8,9 +8,11 @@ h3{
     font-weight:bold;
 }
 input{
-    border-radius:5px;
+    width: 300px;
+  
 }
 input:hover{
+    width:300px;
     border:0px solid grey;  
 }
 
