@@ -141,9 +141,8 @@
             <br>
             <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
         </div>
-        <div class ="row">
+       
         <div class="form-group">
-            <div class="col-sm">
             <label for="">Religion:</label>
             <select formControlName="reg" class="form-control">
                 <option disabled>Select Religion</option>
@@ -153,10 +152,10 @@
             <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert alert-danger">
                 <div *ngIf="reg.reg.errors.required">Religion is required</div>
             </div></div>
-        </div>
+
     
-        <div style="width:fit-content" class="form-group">
-            <div class="col-sm">
+        <div class="form-group">
+           
             <label for="">Marital Status:</label>
             <select formControlName="mar" class="form-control">
                 <option disabled>Select Marital Status</option>
@@ -165,11 +164,11 @@
             </select>
             <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert alert-danger">
                 <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
-            </div></div>
+            </div>
         </div>
     
-        <div style="width:fit-content" class="form-group">
-            <div class="col-sm">
+        <div  class="form-group">
+            
             <label for="">Gender:</label>
             <select formControlName="gender" class="form-control">
                 <option disabled>Select Gender</option>
@@ -178,9 +177,8 @@
             </select>
             <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert alert-danger">
                 <div *ngIf="gender.gender.errors.required">Gender is required</div>
-            </div></div>
-        </div></div>
-        <div>
+            </div>
+
             <label  for = "vacc" > Vaccinated ?</label>
             <select style = "width:fit-content" class="form-control">
                 <option> YES</option>
