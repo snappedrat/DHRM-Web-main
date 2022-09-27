@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -13,16 +13,21 @@ export class HrApprovalComponent implements OnInit {
   var: any = 0
   form: any
   filterinfo: any
+  uniqueId :any = {'mobile':''}
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({
-        status:new UntypedFormControl(''),
-        fromdate: new UntypedFormControl(''),
-        todate: new UntypedFormControl(' '),
-  
+        status:new UntypedFormControl(' '),
       });
+
      }
+
+
     ngOnInit(): void {
- 
+      
+    }
+
+    doit(event:any){
+      console.log(event)
     }
   
   filter()
@@ -34,6 +39,34 @@ export class HrApprovalComponent implements OnInit {
       next: (response) =>{ console.log(response); this.filterinfo = response},
       error: (error) => console.log(error),
     });
+  }
+
+  approved(data:any)
+  {
+      this.uniqueId.mobile = data
+
+      console.log(this.uniqueId);
+
+      this.http
+      .post('http://localhost:3000/approved', this.uniqueId)
+      .subscribe({
+        next: (response) =>{ console.log(response);},
+        error: (error) => console.log(error),
+      })
+  }
+
+  rejected(data:any)
+  {
+    this.uniqueId.mobile = data
+
+    console.log(this.uniqueId);
+
+    this.http
+    .post('http://localhost:3000/rejected', this.uniqueId)
+    .subscribe({
+      next: (response) =>{ console.log(response);},
+      error: (error) => console.log(error),
+    })
   }
   
     traineeinfo : any[] = [

@@ -8,22 +8,12 @@
           <select name="Status" id="Status" formControlName = "status">
             <option value="pending" selected>PENDING</option>
             <option value="submitted">SUBMITTED</option>
-            <option value="waiting for approval">WAITING FOR APPROVAL</option>
             <option value="approved">APPROVED</option>
             <option value="Rejected">REJECTED</option>
             <option value="appointed">APPOINTED</option>
           </select> 
       </div>
-      <div class = "col-sm-3">
-          <label for="fromdate" id="center"> From date:</label>
-          <br>
-          <input type="date" value="2013-01-08" id="fromdate" name="fromdate" formControlName = "fromdate">
-      </div>
-      <div class = "col-sm-3">
-          <label for="todate" id="center"> To date:</label>
-          <br>
-          <input type="date" id="todate" name="todate" formControlName = "todate">
-      </div>
+
     </div>
       <button class = "btn btn-primary btn-lg" (click)="filter()" >filter</button>
       <br><br>

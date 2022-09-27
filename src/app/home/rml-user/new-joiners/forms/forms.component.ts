@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { isThisSecond } from 'date-fns';
 
 @Component({
   selector: 'app-forms',
@@ -18,10 +19,18 @@ export class FormsComponent implements OnInit {
   otherData: any
   prevData: any
   a: any
-
-  constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router ){
-
+  uniqueKey: any
+  uniqueId :any = {'mobile':''}
+  ishr: any
+  ishrappr : any
+  
+  constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
   }
+
+  ngOnInit(): void {
+    this.getlocal()
+
+}
 
   allSave()
   {
@@ -32,7 +41,7 @@ export class FormsComponent implements OnInit {
     console.log(this.formservice.basic)
 
     // this.formservice.submitedu()
-    // console.log(this.formservice.edu)  
+    // console.log(this.formservice.edu)
 
     this.formservice.submitemer()
     console.log(this.formservice.emer)    
@@ -49,9 +58,7 @@ export class FormsComponent implements OnInit {
     // this.formservice.sumbitlang()
     // console.log(this.formservice.lang) 
   }
-  ngOnInit(): void {
-    this.a = localStorage.getItem('ishr')
-}
+
 
   mainalert(){
     if(this.a == undefined){
@@ -78,6 +85,43 @@ export class FormsComponent implements OnInit {
       next: (response) => console.log(response),
       error: (error) => console.log(error),
 });
+  }
+
+  approved(data:any)
+  {
+      this.uniqueId.mobile = data
+
+      console.log(this.uniqueId);
+
+      this.http
+      .post('http://localhost:3000/approved', this.uniqueId)
+      .subscribe({
+        next: (response) =>{ console.log(response);},
+        error: (error) => console.log(error),
+      })
+  }
+
+  rejected(data:any)
+  {
+    this.uniqueId.mobile = data
+
+    console.log(this.uniqueId);
+
+    this.http
+    .post('http://localhost:3000/rejected', this.uniqueId)
+    .subscribe({
+      next: (response) =>{ console.log(response);},
+      error: (error) => console.log(error),
+    })
+  }
+  
+  getlocal(){
+    this.ishr = localStorage.getItem('ishr')
+    this.ishrappr = localStorage.getItem('ishrappr')
+    console.log('====================================');
+    console.log(this.ishr);
+    console.log(this.ishrappr);
+    console.log('====================================');
   }
 
 }

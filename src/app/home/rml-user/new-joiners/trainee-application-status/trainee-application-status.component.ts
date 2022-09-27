@@ -33,15 +33,4 @@ filter()
   });
 }
 
-  traineeinfo : any[] = [
-{
-  date: "1001",
-  fullname: "hi",
-  fathername: "hello",
-  dob: "1001",
-  mobile  : "9876543217",
-  aadhar: "444666333342",
-  apln: "appointed"
-}
-  ]
 }

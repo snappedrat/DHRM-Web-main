@@ -6,10 +6,9 @@
   <div class = "col-sm-3 boxx">
   <label for="Status" id="center"> Status: </label>
     <br>
-      <select name="Status" id="Status" formControlName = "status">
+      <select name="Status" id="Status" formControlName = "status" class = "form-select h-30 w-100">
         <option value="pending">PENDING</option>
         <option value="submitted">SUBMITTED</option>
-        <option value="waiting for approval">WAITING FOR APPROVAL</option>
         <option value="approved">APPROVED</option>
         <option value="Rejected">REJECTED</option>
         <option value="appointed">APPOINTED</option>
@@ -73,7 +72,7 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Aaadhar number
+                  Aadhar number
               </th>
               <th
                       class="text-center"
@@ -102,11 +101,10 @@
                     <td>{{ i.aadhar_no }}</td>
                     <td>{{ i.apln_status }}</td>
                     <td>
-                        <div *ngIf= "i.apln_status == 'PENDING'">
-                        <button mat-mini-fab color = 'primary' routerLink="/rml/new_joiners/forms" title="Edit the trainee" >
+                        <button mat-mini-fab color = 'primary' [routerLink]="['/rml/new_joiners/forms', i.mobile_no1]" title="Edit the trainee" >
                             <mat-icon>edit</mat-icon>
                         </button>
-                        </div>
+
                     </td>
                   </tr>
                 </tbody>
