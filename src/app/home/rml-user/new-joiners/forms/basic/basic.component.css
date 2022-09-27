@@ -1,5 +1,5 @@
 .btn{
-    border-radius: 0px;
+    
     margin-left:50%;
     width:max-content
 }
@@ -8,12 +8,20 @@ h3{
     font-weight:bold;
 }
 input{
-    border-radius:5px;
+    width: 300px;
+  
 }
 input:hover{
-    border:0px solid grey;  
+    width:900px;
 }
-
+.select{
+    width: auto;
+    border-radius: 0px;
+}
+.select:hover{
+    width: 300px;
+    border-radius: 0px;
+}
 .row{
     white-space: nowrap;
 }

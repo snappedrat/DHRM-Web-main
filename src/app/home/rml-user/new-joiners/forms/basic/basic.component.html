@@ -1,40 +1,64 @@
 <div class="mx-5">
-    <h3><b> Basic Form</b></h3>
+    <h3><b> Basic Details</b></h3>
     <form [formGroup]="form" (ngSubmit)="submit()" >
         <div class="row">
+            <div  class="form-group">
+                <div class = "col-md-2">
+                <label for="name">Title:</label>
+                <input
+                        formControlName="title"
+                        id="title"
+                        type="text"
+                        class="form-control"
+                        placeholder="Title ">
+                <div *ngIf="title.title.touched && title.title.invalid" class="alert alert-danger">
+                    <div *ngIf="title.title.errors.required">Title is required</div>
+                </div></div></div>
         <div  class="form-group">
             <div class = "col-md-2">
-            <label for="name">Full Name:</label>
+            <label for="name">First Name:</label>
             <input
-                    formControlName="name"
-                    id="name"
+                    formControlName="fname"
+                    id="fname"
                     type="text"
-                    style="width:max-content"
                     class="form-control"
-                    placeholder="Full Name">
-            <div *ngIf="name.name.touched && name.name.invalid" class="alert alert-danger">
-                <div *ngIf="name.name.errors.required">Full Name is required</div>
+                    placeholder="First Name">
+            <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
+                <div *ngIf="fname.fname.errors.required">First Name is required</div>
             </div></div></div>
-            <div style="width: max-content" class="form-group">
-                <div class = "col-md">
-
-                <label for="fname">Father Name:</label>
+            <div  class="form-group">
+                <div class = "col-md-2">
+                <label for="name">Last Name:</label>
                 <input
-                        formControlName="fname"
-                        id="fname"
+                        formControlName="lname"
+                        id="lname"
+                        type="text"
+                        class="form-control"
+                        placeholder="Last Name">
+                <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert alert-danger">
+                    <div *ngIf="lname.lname.errors.required">Last Name is required</div>
+                </div></div></div></div>
+                        
+                
+                <div class="form-group">    
+                        <label for="fname">Father Name:</label>
+                <input
+                        formControlName="ftname"
+                        id="ftname"
                         type="text"
                         class="form-control"
                         placeholder="Father Name">
-                <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
-                    <div *ngIf="fname.fname.errors.required">Father Name is required</div>
+                <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
+                    <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
                 </div>
-            </div></div></div>
+            </div>
         <p>Aadhar Number:</p>
         <div class="row">
             <div class="col-md-2">
                 <input #txt1
                        formControlName = "aadhar1"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt1,txt2)">
             </div>
@@ -42,6 +66,7 @@
                 <input #txt2
                 formControlName = "aadhar2"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt2,txt3)">
             </div>
@@ -49,6 +74,7 @@
                 <input #txt3
                 formControlName = "aadhar3"
                        maxlength=4
+                       style="width:max-content"
                        type="text"
                        (keyup)="move(txt3,txt4)" >
             </div>
@@ -56,11 +82,12 @@
                 <input #txt4
                 formControlName = "aadhar4"
                        maxlength=4
+                       style="width:max-content"
                        type="text" >
             </div>
         </div>
 
-        <div style="width:fit-content" class="form-group">
+        <div class="form-group">
             <label for="bd">Birth Date:</label>
             <input
                     formControlName="bd"
@@ -71,7 +98,7 @@
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>
         </div>
-        <div style = "width:fit-content" class="form-group">
+        <div  class="form-group">
             <label for="">Nationality:</label>
             <select formControlName="nation" class="form-control">
                 <option disabled>Select Nationality</option>
@@ -87,7 +114,7 @@
                 Permanent Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" style="width:800px;" class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -112,11 +139,47 @@
                 Present Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="present" style="width:800px;" class="form-control" [value]="inputValue"></textarea>
+            <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
         </div>
-        <div class ="row">
+        <div class="row">
+            <div  class="form-group">
+                <div class = "col-md-2">
+                <label for="name">City:</label>
+                <input
+                        formControlName="city"
+                        id="city"
+                        type="text"
+                        class="form-control"
+                        placeholder="City">
+                <div *ngIf="city.city.touched && city.city.invalid" class="alert alert-danger">
+                    <div *ngIf="city.city.errors.required">City field is required</div>
+                </div></div></div>
+            <div  class="form-group">
+                    <div class = "col-md-2">
+                    <label for="name">Pincode:</label>
+                    <input
+                            formControlName="pc"
+                            id="pc"
+                            type="text"
+                            class="form-control"
+                            placeholder="Pincode">
+                    <div *ngIf="pc.pc.touched && pc.pc.invalid" class="alert alert-danger">
+                        <div *ngIf="pc.pc.errors.required">City field is required</div>
+                    </div></div></div>
+        </div>
         <div class="form-group">
-            <div class="col-sm">
+            <label for="">State:</label>
+            <select formControlName="st" class="form-control">
+                <option disabled>Select State</option>
+                <option>Choose State</option>
+                <option *ngFor="let st of State">{{st}}</option>
+            </select>
+            <div *ngIf="st.st.touched && st.st.invalid" class="alert alert-danger">
+                <div *ngIf="st.st.errors.required">Religion is required</div>
+            </div></div>
+
+       
+        <div class="form-group">
             <label for="">Religion:</label>
             <select formControlName="reg" class="form-control">
                 <option disabled>Select Religion</option>
@@ -126,10 +189,10 @@
             <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert alert-danger">
                 <div *ngIf="reg.reg.errors.required">Religion is required</div>
             </div></div>
-        </div>
+
     
-        <div style="width:fit-content" class="form-group">
-            <div class="col-sm">
+        <div class="form-group">
+           
             <label for="">Marital Status:</label>
             <select formControlName="mar" class="form-control">
                 <option disabled>Select Marital Status</option>
@@ -138,11 +201,23 @@
             </select>
             <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert alert-danger">
                 <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
-            </div></div>
+            </div>
         </div>
     
-        <div style="width:fit-content" class="form-group">
-            <div class="col-sm">
+
+        <div class="form-group">
+            <label for="">Blood Group:</label>
+            <select formControlName="BloodGroup" class="form-control">
+                <option disabled>Select BloodGroup</option>
+                <option>Choose BloodGroup</option>
+                <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
+            </select>
+            <div *ngIf="bg.bg.touched && bg.bg.invalid" class="alert alert-danger">
+                <div *ngIf="bg.bg.errors.required">BloodGroup is required</div>
+            </div></div>
+
+        <div  class="form-group">
+            
             <label for="">Gender:</label>
             <select formControlName="gender" class="form-control">
                 <option disabled>Select Gender</option>
@@ -151,71 +226,65 @@
             </select>
             <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert alert-danger">
                 <div *ngIf="gender.gender.errors.required">Gender is required</div>
-            </div></div>
-        </div></div>
-        <div>
+            </div>
+
             <label  for = "vacc" > Vaccinated ?</label>
-            <select style = "width:fit-content" class="form-control">
+            <select  class="form-control">
                 <option> YES</option>
                 <option>NO</option>
             </select>
         </div><br>
-        <div class="row">
+        
         
             <div class="form-group">
             
-                <div class="col-sm">
+            
             <label for="dd1">Dose1 Date</label>
             <input
                     formControlName="dd1"
                     id="dd1"
                     type="date"
-                  style="width:fit-content"
-                    class="form-control"></div>
+                    class="form-control">
         </div>
         
+       
         <div class="form-group">
-            
-            <div class="col-sm">
             <label for="dd2">Dose2 Date</label>
             <input
                     formControlName="dd2"
                     id="dd2"
                     type="date"
-                    style = "max-width:fit-content;"
                     class="form-control"></div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="form-group">
-            
-                <div class="col-sm">
-            <label for="height">Height:</label>
         
+       
+
+        <div class="form-group">
+         
+            <label for="height">Height:</label>
             <input
                     formControlName="height"
                     id="height"
                     type="number"
-                    style="width:fit-content"
                     class="form-control"
                     placeholder="height in cms">
-            </div></div>
-        <div class="form-group">
-                <div class="col-sm">
+            </div>
+            <div class="form-group">
+         
             <label for="weight">Weight:</label>
             <input
                     formControlName="weight"
                     id="weight"
                     type="number"
-                    style="width:fit-content"
                     class="form-control"
                     placeholder="weight in kgs">
-                </div></div>
-        <div class="form-group">
-                <div class="col-sm">
+                </div>
+           
+                
+                <div class="form-group">
+               
 
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" style = "width:fit-content" class="form-control" (click)="sendData()">
+            <select formControlName="pd" class="form-control" (click)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>
@@ -224,6 +293,39 @@
             </div>
         
 </div>
+<div class="form-group">    
+    <label for="fname">Birth Place:</label>
+<input
+    formControlName="bp"
+    id="bp"
+    type="text"
+    class="form-control"
+    placeholder="Birth Place">
+<div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert alert-danger">
+<div *ngIf="bp.bp.errors.required">Birth Place is required</div>
+</div>
+</div>
+<div class="form-group">    
+    <label for="idm1">Identification Mark 1:</label>
+<input
+    formControlName="idm1"
+    id="idm1"
+    type="text"
+
+    class="form-control"
+    placeholder="Identification Mark 1">
+    <div *ngIf="idm1.idm1.touched && idm1.idm1.invalid" class="alert alert-danger">
+        <div *ngIf="idm1.idm1.errors.required">Identification Mark is required</div>
+    </div>
+    <label for="idm2">Identification Mark 2:</label>
+    <input
+  formControlName="idm2"
+    id="idm2"
+    type="text"
+    class="form-control"
+    placeholder="Identification Mark 2">
+<div *ngIf="idm2.idm2.touched && idm2.idm2.invalid" class="alert alert-danger">
+    <div *ngIf="idm2.idm2.errors.required">Identification Mark is required</div>
 </div>
 </div>
         <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
