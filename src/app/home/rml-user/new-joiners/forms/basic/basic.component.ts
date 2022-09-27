@@ -12,8 +12,10 @@ import { PlantcodeService } from '../../plantcode.service';
 export class BasicComponent {
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
+    State: any =['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telengana','Tripura','Uttarakhand','Uttar Pradesh','West Bengal'];
     religion: any =['Hindu','christain','muslim'];
     marital: any =['Married','unmarried','widower'];
+    BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['Yes','No'];
     form: FormGroup = new FormGroup({});
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService) {
@@ -31,15 +33,22 @@ export class BasicComponent {
             weight:['',Validators.required],
             dd1:['',Validators.required],
             dd2:['',Validators.required],
+            bg:['',Validators.required],
             gender:['',Validators.required],
             aadhar1:['', Validators.required],
             aadhar2:['', Validators.required],
             aadhar3:['', Validators.required],
             aadhar4:['', Validators.required],
             nation:['',Validators.required],
+            city:['',Validators.required],
+            st:['',Validators.required],
+            pc:['',Validators.required],
             reg:['',Validators.required],
             mar:['',Validators.required],
             pd:['',Validators.required],
+            bp:['',Validators.required],
+            idm1:['',Validators.required],
+            idm2:['',Validators.required],
             mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
     }
@@ -88,11 +97,27 @@ export class BasicComponent {
     {
         return this.form.controls;
     }
+    get bg()
+    {
+        return this.form.controls;
+    }
     get gender()
     {
         return this.form.controls;
     }
     get Nation()
+    {
+        return this.form.controls;
+    }
+    get city()
+    {
+        return this.form.controls;
+    }
+    get pc()
+    {
+        return this.form.controls;
+    }
+    get st()
     {
         return this.form.controls;
     }
@@ -105,6 +130,18 @@ export class BasicComponent {
         return this.form.controls;
     }
     get pd()
+    {
+        return this.form.controls;
+    }
+    get bp()
+    {
+        return this.form.controls;
+    }
+    get idm1()
+    {
+        return this.form.controls;
+    }
+    get idm2()
     {
         return this.form.controls;
     }

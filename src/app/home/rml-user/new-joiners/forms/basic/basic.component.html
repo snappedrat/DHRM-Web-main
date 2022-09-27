@@ -40,7 +40,7 @@
                 </div></div></div></div>
                         
                 
-                <div style="width: max-content" class="form-group">    
+                <div class="form-group">    
                         <label for="fname">Father Name:</label>
                 <input
                         formControlName="ftname"
@@ -141,6 +141,43 @@
             <br>
             <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
         </div>
+        <div class="row">
+            <div  class="form-group">
+                <div class = "col-md-2">
+                <label for="name">City:</label>
+                <input
+                        formControlName="city"
+                        id="city"
+                        type="text"
+                        class="form-control"
+                        placeholder="City">
+                <div *ngIf="city.city.touched && city.city.invalid" class="alert alert-danger">
+                    <div *ngIf="city.city.errors.required">City field is required</div>
+                </div></div></div>
+            <div  class="form-group">
+                    <div class = "col-md-2">
+                    <label for="name">Pincode:</label>
+                    <input
+                            formControlName="pc"
+                            id="pc"
+                            type="text"
+                            class="form-control"
+                            placeholder="Pincode">
+                    <div *ngIf="pc.pc.touched && pc.pc.invalid" class="alert alert-danger">
+                        <div *ngIf="pc.pc.errors.required">City field is required</div>
+                    </div></div></div>
+        </div>
+        <div class="form-group">
+            <label for="">State:</label>
+            <select formControlName="st" class="form-control">
+                <option disabled>Select State</option>
+                <option>Choose State</option>
+                <option *ngFor="let st of State">{{st}}</option>
+            </select>
+            <div *ngIf="st.st.touched && st.st.invalid" class="alert alert-danger">
+                <div *ngIf="st.st.errors.required">Religion is required</div>
+            </div></div>
+
        
         <div class="form-group">
             <label for="">Religion:</label>
@@ -167,6 +204,18 @@
             </div>
         </div>
     
+
+        <div class="form-group">
+            <label for="">Blood Group:</label>
+            <select formControlName="BloodGroup" class="form-control">
+                <option disabled>Select BloodGroup</option>
+                <option>Choose BloodGroup</option>
+                <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
+            </select>
+            <div *ngIf="bg.bg.touched && bg.bg.invalid" class="alert alert-danger">
+                <div *ngIf="bg.bg.errors.required">BloodGroup is required</div>
+            </div></div>
+
         <div  class="form-group">
             
             <label for="">Gender:</label>
@@ -180,67 +229,62 @@
             </div>
 
             <label  for = "vacc" > Vaccinated ?</label>
-            <select style = "width:fit-content" class="form-control">
+            <select  class="form-control">
                 <option> YES</option>
                 <option>NO</option>
             </select>
         </div><br>
-        <div class="row">
+        
         
             <div class="form-group">
             
-                <div class="col-sm">
+            
             <label for="dd1">Dose1 Date</label>
             <input
                     formControlName="dd1"
                     id="dd1"
                     type="date"
-                  style="width:fit-content"
-                    class="form-control"></div>
+                    class="form-control">
         </div>
         
+       
         <div class="form-group">
-            
-            <div class="col-sm">
             <label for="dd2">Dose2 Date</label>
             <input
                     formControlName="dd2"
                     id="dd2"
                     type="date"
-                    style = "max-width:fit-content;"
                     class="form-control"></div>
-        </div>
-        </div>
-        <div class="row">
-        <div class="form-group">
-            
-                <div class="col-sm">
-            <label for="height">Height:</label>
         
+       
+
+        <div class="form-group">
+         
+            <label for="height">Height:</label>
             <input
                     formControlName="height"
                     id="height"
                     type="number"
-                    style="width:fit-content"
                     class="form-control"
                     placeholder="height in cms">
-            </div></div>
-        <div class="form-group">
-                <div class="col-sm">
+            </div>
+            <div class="form-group">
+         
             <label for="weight">Weight:</label>
             <input
                     formControlName="weight"
                     id="weight"
                     type="number"
-                    style="width:fit-content"
                     class="form-control"
                     placeholder="weight in kgs">
-                </div></div>
-        <div class="form-group">
-                <div class="col-sm">
+                </div>
+           
+                
+                <div class="form-group">
+               
 
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" style = "width:fit-content" class="form-control" (click)="sendData()">
+            <select formControlName="pd" class="form-control" (click)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>
@@ -249,6 +293,39 @@
             </div>
         
 </div>
+<div class="form-group">    
+    <label for="fname">Birth Place:</label>
+<input
+    formControlName="bp"
+    id="bp"
+    type="text"
+    class="form-control"
+    placeholder="Birth Place">
+<div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert alert-danger">
+<div *ngIf="bp.bp.errors.required">Birth Place is required</div>
+</div>
+</div>
+<div class="form-group">    
+    <label for="idm1">Identification Mark 1:</label>
+<input
+    formControlName="idm1"
+    id="idm1"
+    type="text"
+
+    class="form-control"
+    placeholder="Identification Mark 1">
+    <div *ngIf="idm1.idm1.touched && idm1.idm1.invalid" class="alert alert-danger">
+        <div *ngIf="idm1.idm1.errors.required">Identification Mark is required</div>
+    </div>
+    <label for="idm2">Identification Mark 2:</label>
+    <input
+  formControlName="idm2"
+    id="idm2"
+    type="text"
+    class="form-control"
+    placeholder="Identification Mark 2">
+<div *ngIf="idm2.idm2.touched && idm2.idm2.invalid" class="alert alert-danger">
+    <div *ngIf="idm2.idm2.errors.required">Identification Mark is required</div>
 </div>
 </div>
         <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>

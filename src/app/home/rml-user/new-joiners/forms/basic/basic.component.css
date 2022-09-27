@@ -12,10 +12,16 @@ input{
   
 }
 input:hover{
-    width:300px;
-    border:0px solid grey;  
+    width:900px;
 }
-
+.select{
+    width: auto;
+    border-radius: 0px;
+}
+.select:hover{
+    width: 300px;
+    border-radius: 0px;
+}
 .row{
     white-space: nowrap;
 }
