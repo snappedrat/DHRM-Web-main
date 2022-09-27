@@ -4,6 +4,8 @@ import { HrApprovalComponent } from './hr-approval/hr-approval.component';
 import { TraineeApplicationComponent } from './trainee-application/trainee-application.component';
 import { TraineeApplicationStatusComponent } from './trainee-application-status/trainee-application-status.component';
 import { FormsComponent } from './forms/forms.component';
+import { IdcardComponent } from './idcard/idcard.component';
+import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
 
 const routes: Routes = [
     {
@@ -13,14 +15,22 @@ const routes: Routes = [
     {
       path:'trainee-application',
       component: TraineeApplicationComponent
-    },
+    }, 
     {
-      path:'forms/:mobile_no1',
+      path:'forms/:mobile_no1/:apln_status',
       component: FormsComponent
     },
     {
       path:'trainee-application-status',
       component: TraineeApplicationStatusComponent
+    },
+    {
+      path:'idcard/:status',
+      component: IdcardComponent
+    },
+    {
+      path:'hr-view',
+      component: HrViewDataComponent
     }
   ];
   

@@ -1,1 +1,48 @@
-<p>idcard works!</p>
+<div class = "container-lg" (onmousemove)="printing()" *ngFor="let i of formvalues" >
+<div class="card">
+    <div class="center">
+    <h2 ><b> Rane(Madras)Limited</b></h2>
+    <h4>P3 R.S NO.77, Thirubuvanai street, Thirubuvanai, puduchery - 605107</h4>
+    </div>
+    <img class = "center" src="../assets/rane.png" alt="Avatar" style="width:20% "><br><br>
+    <div class="container">
+      <div > 
+        <b> 
+          ID no: 
+        </b>
+        <div class="spacing">{{i.trainee_idno}}</div>
+      </div>
+
+      <br>
+  
+      <div >
+        <b>
+          Name:</b> <div class="spacing">{{i.fullname}}</div></div><br>
+  
+      <div > <b> Father's name: </b><div class="spacing">{{i.fathername}}</div></div><br>
+      <div > <b> Department: </b><div class="spacing"> TRAINING</div></div><br>
+      <div > <b>Designation:</b><div class="spacing">TRAINEE </div></div><br><br>
+      <div class="left">
+        <img src="../assets/rane.png" alt="Avatar" style="width:30%" ></div><br><br>
+      <div class = 'left'> <b>authorised signature </b></div>
+
+      
+    </div>
+  </div>
+
+  <div class="card2"  >
+    <div class="container">
+        <br>
+    <div > <b>Address:</b></div><br>
+    <div class="left">4a/7a , kannan street, srinivasa nagar, new perungalathur, chennai - 600063 </div><br>
+    <br>    <br>    <br>    <br>    <br>    <br>    
+    <div > <b>Emergency contact</b></div><br>
+
+    <div > <b> Name</b><div class="spacing">{{i.emergency_name}}</div></div><br>
+    <div > <b>Relation:</b><div class="spacing"> {{i.emergency_rel}}</div></div><br>
+    <div > <b> Valid from:</b> <div class="spacing">09-09-09</div></div><br>
+    <div > <b> Valid to:</b><div class="spacing">08-08-08</div></div><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+  </div>
+</div>

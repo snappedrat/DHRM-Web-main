@@ -8,11 +8,8 @@ h3{
     font-weight:bold;
 }
 input{
-    width: 300px;
+    width: 900px;
   
-}
-input:hover{
-    width:900px;
 }
 .select{
     width: auto;

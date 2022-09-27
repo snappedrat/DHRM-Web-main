@@ -60,7 +60,6 @@ export class NavbarComponent implements OnInit{
       }
 
       setlocal(){
-
         localStorage.setItem('ishr', this.ishr[0]?.Is_HR)
         localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       }

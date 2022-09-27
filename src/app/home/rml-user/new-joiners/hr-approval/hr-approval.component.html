@@ -99,12 +99,9 @@
                         <td>{{ i.aadhar_no }}</td>
                         <td>{{ i.apln_status }}</td>
                         <td>
-                            <div *ngIf= "i.apln_status == 'APPOINTED'">
-                            <button mat-mini-fab color = "success" routerLink="/forms" >
-                                <mat-icon>thumb_up</mat-icon>
-                            </button>
-                            <button mat-mini-fab color="error" type="button" >
-                                <mat-icon>thumb_down</mat-icon>
+                            <div *ngIf= "i.apln_status == 'SUBMITTED'">
+                            <button mat-mini-fab color = "success" routerLink="/rml/new_joiners/hr-view" >
+                                <mat-icon>visibility</mat-icon>
                             </button>
                         </div>
                         </td>

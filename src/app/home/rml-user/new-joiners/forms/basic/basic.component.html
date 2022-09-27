@@ -256,8 +256,6 @@
                     type="date"
                     class="form-control"></div>
         
-       
-
         <div class="form-group">
          
             <label for="height">Height:</label>
@@ -314,9 +312,6 @@
 
     class="form-control"
     placeholder="Identification Mark 1">
-    <div *ngIf="idm1.idm1.touched && idm1.idm1.invalid" class="alert alert-danger">
-        <div *ngIf="idm1.idm1.errors.required">Identification Mark is required</div>
-    </div>
     <label for="idm2">Identification Mark 2:</label>
     <input
   formControlName="idm2"
@@ -324,9 +319,6 @@
     type="text"
     class="form-control"
     placeholder="Identification Mark 2">
-<div *ngIf="idm2.idm2.touched && idm2.idm2.invalid" class="alert alert-danger">
-    <div *ngIf="idm2.idm2.errors.required">Identification Mark is required</div>
-</div>
 </div>
         <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
     </form>

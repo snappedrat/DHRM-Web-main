@@ -29,7 +29,8 @@ import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { LanguageComponent } from './forms/language/language.component';
 import { TraineeApplicationStatusComponent } from './trainee-application-status/trainee-application-status.component';
 import { IdcardComponent } from './idcard/idcard.component';
-
+import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
+import { FamilyEditComponent } from './forms/family-edit/family-edit.component';
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -45,6 +46,8 @@ import { IdcardComponent } from './idcard/idcard.component';
         LanguageComponent,
         TraineeApplicationStatusComponent,
         IdcardComponent,
+        HrViewDataComponent,
+        FamilyEditComponent,
     ],
       imports: [
           CommonModule,

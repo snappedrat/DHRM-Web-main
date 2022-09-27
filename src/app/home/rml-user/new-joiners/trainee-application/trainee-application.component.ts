@@ -40,7 +40,7 @@ export class TraineeApplicationComponent implements OnInit{
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
       plant:['',Validators.required],
-      pass: ['']
+      pass: [this.Tvalue ]
    });
 }
 

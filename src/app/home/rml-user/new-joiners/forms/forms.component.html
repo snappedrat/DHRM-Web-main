@@ -33,16 +33,12 @@
 <app-other></app-other>
 <hr>
 <div class = "btn">
-<div>
-<button type="submit" style="margin-bottom:auto;"  (click)="mainalert()" class = "btn-primary btn-sm">SUBMIT</button>
+
+<button type="submit" style="margin-bottom:auto;"  (click)="mainalert()" (click)="submitted()" class = "btn-primary btn-sm">SUBMIT</button>
 
 <button class = "btn-secondary btn-sm " routerLink="/rml/new_joiners/trainee-application-status">Go back to list</button>
-</div>
-<div *ng>
-<button type="submit" style="margin-bottom:auto;" class = "btn-primary btn-sm">Approve</button>
 
-<button type="submit" style="margin-bottom:auto;" class = "btn-danger btn-sm">Reject</button>
-</div>
+<button class = "btn-info btn-sm "  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile]">PRINT ID CARD</button>
 </div>
 <br> 
 <br>

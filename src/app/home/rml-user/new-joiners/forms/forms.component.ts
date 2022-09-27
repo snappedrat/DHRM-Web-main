@@ -23,13 +23,17 @@ export class FormsComponent implements OnInit {
   uniqueId :any = {'mobile':''}
   ishr: any
   ishrappr : any
+  status: any = {'status': ''}
   
+
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
+
   }
 
   ngOnInit(): void {
-    this.getlocal()
-
+    this.getDataForID()
+    this.ishr = localStorage.getItem('ishr')
+    console.log(this.ishr)
 }
 
   allSave()
@@ -61,7 +65,7 @@ export class FormsComponent implements OnInit {
 
 
   mainalert(){
-    if(this.a == undefined){
+    if(this.ishr == undefined){
       this.alert()
       this.router.navigate([''])
     }
@@ -87,9 +91,23 @@ export class FormsComponent implements OnInit {
 });
   }
 
-  approved(data:any)
+  submitted()
   {
-      this.uniqueId.mobile = data
+      this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+
+      console.log(this.uniqueId);
+
+      this.http
+      .post('http://localhost:3000/submitted', this.uniqueId)
+      .subscribe({
+        next: (response) =>{ console.log(response);},
+        error: (error) => console.log(error),
+      })
+  }
+
+  approved()
+  {
+      this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
       console.log(this.uniqueId);
 
@@ -101,9 +119,9 @@ export class FormsComponent implements OnInit {
       })
   }
 
-  rejected(data:any)
+  rejected()
   {
-    this.uniqueId.mobile = data
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
     console.log(this.uniqueId);
 
@@ -114,14 +132,13 @@ export class FormsComponent implements OnInit {
       error: (error) => console.log(error),
     })
   }
-  
-  getlocal(){
-    this.ishr = localStorage.getItem('ishr')
-    this.ishrappr = localStorage.getItem('ishrappr')
-    console.log('====================================');
-    console.log(this.ishr);
-    console.log(this.ishrappr);
-    console.log('====================================');
+
+  getDataForID(){
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+    this.status.status = this.active.snapshot.paramMap.get('apln_status');
+    
+    console.log(this.status)
+
   }
 
 }

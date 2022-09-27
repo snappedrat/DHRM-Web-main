@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {UntypedFormGroup, FormControl, Validators, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 

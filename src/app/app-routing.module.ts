@@ -6,6 +6,7 @@ import {HomepageComponent} from "./home/homepage/homepage.component";
 import { FirstPageComponent } from './first-page/first-page.component';
 import { TraineeApplicationComponent } from './home/rml-user/new-joiners/trainee-application/trainee-application.component';
 import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.component';
+import { IdcardComponent } from './home/rml-user/new-joiners/idcard/idcard.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
     path:'forms',
     component: FormsComponent
   },
+  {
+    path:'idcard/:status/:mobile',
+    component: IdcardComponent
+  }
 ];
 
 @NgModule({
