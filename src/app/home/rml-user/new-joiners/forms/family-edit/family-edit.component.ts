@@ -12,10 +12,11 @@ import { leadingComment } from '@angular/compiler';
 export class FamilyEditComponent implements OnInit {
 
 relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter']
-dependent: any = ['Yes', 'No']
+dependent: any = ['Dependent', 'Self-Sufficient']
 
 familyData = [
   {
+    'sno':'1',
     'name': '',
     'relation': '',
     'age': '',
@@ -24,6 +25,7 @@ familyData = [
     'dependent': ''
   },
   {
+    'sno':'2',
     'name': '',
     'relation': '',
     'age': '',
@@ -32,6 +34,7 @@ familyData = [
     'dependent': ''
   },
   {
+    'sno':'3',
     'name': '',
     'relation': '',
     'age': '',
@@ -40,6 +43,7 @@ familyData = [
     'dependent': ''
   },
   {
+    'sno':'4',
     'name': '',
     'relation': '',
     'age': '',

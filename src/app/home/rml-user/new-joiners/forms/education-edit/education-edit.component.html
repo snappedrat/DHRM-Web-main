@@ -1,1 +1,40 @@
-<p>education-edit works!</p>
+
+<div class="mx-5">
+    <b> Educational Details:</b>
+    <table class = "table">
+        <thead>
+        <tr>
+        <th scope="col" >SNo:</th>
+        <th scope="col" >School/College Institute & Location</th>
+        <th scope="col">Exam Passed</th>
+        <th scope="col">Year of Passing</th>
+        <th scope="col">Department</th>
+        <th scope="col">Certificate Number</th>
+        <th scope="col">Certificate Date</th>
+        <th scope="col">Percentage</th>
+        </tr>
+        <tr *ngFor="let data of eduData">
+            <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
+        <td><input type="text" [(ngModel)]="data.school" ></td>
+        <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
+          {{i}}
+  </option> ></select></td>
+        <td><input type = "text" [(ngModel)]="data.year" ></td>
+        <td><input type = "text"[(ngModel)]="data.department" ></td>
+        <td><input type = "text"[(ngModel)]="data.certificatenumber" ></td>
+        <td><input type = "date"[(ngModel)]="data.certificatedate" ></td>
+               <td><input type = "text" [(ngModel)]="data.percentage" (click)="sendData()">
+       
+  </td>
+
+   
+ 
+ 
+        <tr>
+    </thead>    
+    </table>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+</div>
+
+
+ 

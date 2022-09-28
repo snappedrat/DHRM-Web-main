@@ -1,1 +1,32 @@
-<p>prev-edit works!</p>
+
+<div class="mx-5">
+    <p><b>Previous Details:</b></p>
+    <table class = "table">
+        <thead>
+        <tr>
+        <th scope="col" >SNo:</th>
+        <th scope="col" >Name of the Company</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Period From</th>
+        <th scope="col">Period To</th>
+        <th scope="col">Salary Last Drawn</th>
+        <th scope="col">Reason for Leaving</th>
+        </tr>
+        <tr *ngFor="let data of prevData">
+        <td><input type="text" style="width:25px" [(ngModel)]="data.sno" disabled></td>
+        <td><input type="text" [(ngModel)]="data.name" ></td>
+        <td><input type="text" [(ngModel)]="data.desig" ></td>
+        <td><input type = "date" [(ngModel)]="data.periodf"> </td>
+        <td><input type = "date" [(ngModel)]="data.periodt" ></td>
+        <td><input type = "text"[(ngModel)]="data.sal" ></td>
+        <td><input type = "text"[(ngModel)]="data.reason" ></td>
+              
+
+   
+ 
+ 
+        <tr>
+    </thead>    
+    </table>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+ </div> 
