@@ -29,7 +29,7 @@ const routes: Routes = [
       component: IdcardComponent
     },
     {
-      path:'hr-view',
+      path:'hr-view/:mobile/:status',
       component: HrViewDataComponent
     }
   ];
