@@ -1,1 +1,32 @@
-<p>family-edit works!</p>
+<div class="mx-5">
+    <table class = "table">
+        <thead>
+        <tr>
+ 
+        <th scope="col" style="width: 30%">Name</th>
+        <th scope="col">Relation</th>
+        <th scope="col">Age</th>
+        <th scope="col">Occupation</th>
+        <th scope="col">ContactNumber</th>
+        <th scope="col">Dependent/Self-Sufficientß</th>
+        </tr>
+        <tr *ngFor="let data of familyData">
+        <td><input type="text" [(ngModel)]="data.name" ></td>
+        <td><select type = "text" [(ngModel)]="data.relation" (click)="sendData()"><option *ngFor= "let i of relation">
+          {{i}}
+  </option> ></select></td>
+        <td><input type = "text" [(ngModel)]="data.age" ></td>
+        <td><input type = "text"[(ngModel)]="data.occupation" ></td>
+        <td><input type = "text"[(ngModel)]="data.contactnumber" ></td>
+               <td><select type = "text" [(ngModel)]="data.dependent" (click)="sendData()"><option *ngFor= "let i of dependent">
+          {{i}}
+  </option> ></select></td>
+
+   
+ 
+ 
+        <tr>
+    </thead>    
+    </table>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+ </div> 
