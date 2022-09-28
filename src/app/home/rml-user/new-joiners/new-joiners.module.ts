@@ -33,6 +33,7 @@ import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
 import { FamilyEditComponent } from './forms/family-edit/family-edit.component';
 import { EducationEditComponent } from './forms/education-edit/education-edit.component';
 import { PrevEditComponent } from './forms/prev-edit/prev-edit.component';
+import { ChooseFilesComponent } from './forms/choose-files/choose-files.component';
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -52,6 +53,7 @@ import { PrevEditComponent } from './forms/prev-edit/prev-edit.component';
         FamilyEditComponent,
         EducationEditComponent,
         PrevEditComponent,
+        ChooseFilesComponent,
     ],
       imports: [
           CommonModule,
