@@ -9,6 +9,7 @@ h3{
 }
 input{
     border-radius:0px;
+    border-color: black;
 }
 input:hover{
     border:2px solid grey;
@@ -16,7 +17,7 @@ input:hover{
 }
 select{
     border-radius:0px;
-
+    border-color: black;
     height: 34px;
 }
 select:hover{

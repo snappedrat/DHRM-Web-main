@@ -8,16 +8,20 @@ h3{
 }
 input{
     border-radius:0px;
+    border-color: black;
+
 }
 input:hover{
-    border:2px solid grey;
+    border:2px solid rgb(0, 0, 0);
 }
 select{
     border-radius:0px;
     height: 34px;
+    border-color: black;
+
 }
 select:hover{
-    border:2px solid grey;
+    border:2px solid rgb(0, 0, 0);
 }
 
 .row{
