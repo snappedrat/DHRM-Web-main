@@ -17,6 +17,10 @@ export class BasicComponent {
     marital: any =['Married','unmarried','widower'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['Yes','No'];
+    basic: any  = [{
+        "fullname" : "aameer" 
+    }]
+
     form: FormGroup = new FormGroup({});
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService) {
         this.form = fb.group({
@@ -51,7 +55,24 @@ export class BasicComponent {
             idm2:['',Validators.required],
             mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
-    }
+
+    this.form.controls['fname'].setValue(this.basic[0]?.firstname)
+    this.form.controls['lname'].setValue(this.basic[0]?.lastname)
+    this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
+    this.form.controls['present'].setValue(this.basic[0]?.present)
+    this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
+    this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
+    this.form.controls['height'].setValue(this.basic[0]?.height)
+    this.form.controls['weight'].setValue(this.basic[0]?.weight)
+    this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
+    this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
+    this.form.controls['gender'].setValue(this.basic[0]?.gender)
+    this.form.controls['nation'].setValue(this.basic[0]?.nationality)
+    this.form.controls['reg'].setValue(this.basic[0]?.religion)
+    this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
+    this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
+    this.form.controls['mobileNumber'].setValue(this.basic[0]?.)
+   }
 
     get f(){
         return this.form.controls;

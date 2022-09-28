@@ -16,11 +16,11 @@ lang: any = ['tamil', 'english', 'marati', 'telugu', 'malayalam', 'hindi']
 languageList = [
   {
     'language': '',
-    'speak': 0,
-    'read': 0,
-    'write': 0,
-    'mothertongue': 0,
-    'understand': 0
+    'speak': 1,
+    'read': 1,
+    'write': 1,
+    'mothertongue': 1,
+    'understand': 1
   },
   {
     'language': '',
