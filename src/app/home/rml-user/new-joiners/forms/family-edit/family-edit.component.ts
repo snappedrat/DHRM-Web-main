@@ -59,7 +59,7 @@ familyData = [
   }  
   submit(){
     console.log('family', this.familyData);
-      if(this,this.familyData.length == 0){
+      if(this.familyData.length == 0){
       console.log("good");
       }
       else{

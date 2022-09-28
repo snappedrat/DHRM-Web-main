@@ -24,7 +24,9 @@ export class HrApprovalComponent implements OnInit {
 
     ngOnInit(): void {
       
-    }
+      this.form.controls['status'].setValue('submitted')
+      this.filter()
+    } 
 
     doit(event:any){
       console.log(event)

@@ -50,4 +50,15 @@ export class HrViewDataComponent implements OnInit {
     window.alert("Application has been rejected")
     this.router.navigate(['rml/new_joiners/hr-approval'])
   }
+
+  getdata(){
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    this.http.
+  post('http://localhost:3000/getdata',this.uniqueId)
+  .subscribe({
+    next: (response) => console.log(response),
+    error: (error) => console.log(error),
+})
+}
+
 }
