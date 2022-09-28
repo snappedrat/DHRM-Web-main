@@ -31,6 +31,8 @@ import { TraineeApplicationStatusComponent } from './trainee-application-status/
 import { IdcardComponent } from './idcard/idcard.component';
 import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
 import { FamilyEditComponent } from './forms/family-edit/family-edit.component';
+import { EducationEditComponent } from './forms/education-edit/education-edit.component';
+import { PrevEditComponent } from './forms/prev-edit/prev-edit.component';
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -48,6 +50,8 @@ import { FamilyEditComponent } from './forms/family-edit/family-edit.component';
         IdcardComponent,
         HrViewDataComponent,
         FamilyEditComponent,
+        EducationEditComponent,
+        PrevEditComponent,
     ],
       imports: [
           CommonModule,
