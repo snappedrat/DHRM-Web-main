@@ -1,76 +1,99 @@
 <br>
 <div class = "container">
+<div *ngFor="let i of basic">
+    <div *ngFor="let i of basic" >
+    <h3><b><u>Basic Details :</u></b></h3>
+    <p><b> Full Name :</b> {{i.fullname}} </p>
+    <p><b> father Name :</b> {{i.fathername}} </p>
+    <p><b> aadhar Number :</b> {{i.aadhar_no}} </p>
+    <p><b> birth date :</b> {{i.birthdate}} </p>
+    <p><b> Nationality:</b> {{i.nationality}} </p>
+    <p><b> Permanent Address :</b> {{i.permanent_address}} </p>
+    <p><b> Present address:</b> {{i.permanent_address}} </p>
+    <p><b> pincode :</b> {{i.pincode}} </p>
+    <p><b> state :</b> {{i.state_name}} </p>
+    <p><b> religion :</b> {{i.religion}} </p>
+    <p><b> marital status :</b> {{i.marital_status}} </p>
+    <p><b> Blood Group :</b> {{i.blood_group}} </p>
+    <p><b> gender :</b> {{i.gender}} </p>
+    <p><b> dose 1 date :</b> {{i.does1_dt}} </p>
+    <p><b> dose 2 date:</b> {{i.dose2_dt}} </p>
+    <p><b> height :</b> {{i.height}} </p>
+    <p><b> Weight :</b> {{i.weight}} </p>
+    <p><b> Birth place :</b> {{i.birth_place}} </p>
+    </div><br><br>
+
     <div>
-    <h3><b>Basic Details :</b></h3>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    </div>
+    <h3><b><u>Bank Details :</u></b></h3>
+    <p><b> Account number :</b> {{i.bank_account_number}} </p>
+    <p><b> IFSC code :</b> {{i.ifsc_code}} </p>
+    <p><b> Bank Name :</b> {{i.bank_name}} </p>
+    </div><br><br>
+
     <div>
-    <h3><b>Basic Details :</b></h3>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    </div>
+    <h3><b><u>Emergency Details :</u></b></h3>
+    <p><b> Contact Name :</b> {{i.emergency_name}} </p>
+    <p><b> Contact Number :</b> 9884534707 </p>
+    <p><b> Relation :</b> {{i.emergency_rel}} </p>
+    </div><br><br>
+
     <div>
-    <h3><b>Basic Details :</b></h3>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    </div>
+        <h3><b><u>Language Details :</u></b></h3>
+        <p><b> Language Name :</b> {{i.lang1_name}} </p>
+        <p><b> speak :</b> {{i.lang1_speak}} </p>
+        <p><b> Write :</b> {{i.lang1_write}} </p>
+        <p><b> Read :</b> {{i.lang1_read}} </p>
+        <p><b> MotherTongue :</b> {{i.lang1_mothertongue}} </p>
+        <p><b> Understand :</b> {{i.lang1_understand}} </p>
+    </div><br><br>
+
     <div>
-    <h3><b>Basic Details :</b></h3>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
-    <p><b> First Name :</b> {{var1}} </p>
+        <h3><b><u>Other Details :</u></b></h3>
+        <p><b> any relations or friends employed in rane group  :</b> {{i.any_empl_rane}} </p>
+        <p><b> ever worked in any company/plant/office of Rane Group :</b> {{i.prev_rane_empl}} </p>
+        <p><b> Name :</b> {{i.existing_employee_name}} </p>
+        <p><b> Place :</b> {{i.prev_rane_exp}} </p>
+        <p><b> Company/Agency Name :</b> {{i.existing_empl_exp}} </p>
+        <p><b> Extra Curricular Activities (Sports/Hobbies) :</b> {{i.extra_curricular}} </p>
+    </div><br><br>
+</div>
+    <div *ngFor="let i of family">
+        <h3><b><u>Family Details :</u></b></h3>
+        <p><b> Name :</b> {{i.relation_name1}} </p>
+        <p><b>Relation :</b> {{i.relation_type1}} </p>
+        <p><b> Occupation :</b> {{i.occupation1}} </p>
+        <p><b> ContactNumber :</b> {{i.contact_number1}} </p>
+        <p><b> 	Dependent/Self-Sufficient :</b> {{i.dependent1}} </p>
+     </div>
+        <br><br>
+
+    <div *ngFor="let i of career">
+        <h3><b><u>Previous Employmeny Details :</u></b></h3>
+        <p><b> Name of the Company :</b> {{i.comapany_name1}} </p>
+        <p><b> 	Designation :</b> {{i.designation1}} </p>
+        <p><b> 	Period From :</b> {{i.period_from1}} </p>
+        <p><b>  Period To :</b> {{i.period_to1}} </p>
+        <p><b> Salary Last Drawn :</b> {{i.last_salary}} </p>
+        <p><b> 	Reason for Leaving :</b> {{i.leaving_reason1}} </p>
     </div>
-    <div>
-        <h3><b>Basic Details :</b></h3>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
+    <br><br>    
+
+    <div *ngFor="let i of education">
+        <h3><b><u>Education Details :</u></b></h3>
+        <p><b> School/College Institute & Location :</b> {{i.school_name1}} </p>
+        <p><b> Exam Passed :</b> {{i.exam_passed1}} </p>
+        <p><b> Year of Passing :</b> {{i.passing_yr1}} </p>
+        <p><b> Department:</b> {{i.subjects1}} </p>
+        <p><b> 	Certificate Number :</b> {{i.cert_number1}} </p>
+        <p><b> Certificate Date :</b> {{i.cert_date1}} </p>
+        <p><b> Percentage :</b> {{i.percentage1}} </p>
     </div>
-    <div>
-        <h3><b>Basic Details :</b></h3>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-    </div>
-    <div>
-        <h3><b>Basic Details :</b></h3>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-    </div>
-    <div>
-        <h3><b>Basic Details :</b></h3>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-        <p><b> First Name :</b> {{var1}} </p>
-    </div>
+    <br><br>
+    
+</div>
     <div style="float: right;">
     <b><button type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
         
     <button type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button></b>
     </div>
     <br><br>
-</div>

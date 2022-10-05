@@ -11,18 +11,20 @@ import { leadingComment } from '@angular/compiler';
 })
 export class EducationEditComponent implements OnInit {
 
+mobile: any
 Exampassed: any = ['Yes', 'No']
 
 eduData = [
   {
     'sno':'1',
-    'school': '',
+    'school': 'fooooo',
     'passed': '',
     'year': '',
     'department': '',
     'certificatenumber': '',
     'certificatedate': '',
-    'percentage': ''
+    'percentage': '',
+    'mobile': this.cookie.get('mobilenum')  
   },
   {
     'sno':'2',
@@ -56,12 +58,17 @@ eduData = [
   },
 ];
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { }
+  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { 
+    // this.mobile = this.cookie.get('mobilenum')
+    this.eduData[0].passed = 'Yes'
+
+  }
 
   ngOnInit(): void {
+    this.sendData()
   }  
   submit(){
-    console.log('family', this.eduData);
+    console.log('education', this.eduData);
       if(this,this.eduData.length == 0){
       console.log("good");
       }
@@ -71,7 +78,7 @@ eduData = [
 }
 
 sendData(){
-  this.plantcodeService.fam = this.eduData
+  this.plantcodeService.edu = this.eduData
 } 
 
 //     this.http.

@@ -24,6 +24,7 @@ export class FormsComponent implements OnInit {
   ishr: any
   ishrappr : any
   status: any = {'status': ''}
+  basic: any
   
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
@@ -32,6 +33,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataForID()
+    // this.getdatabasic()
     this.ishr = localStorage.getItem('ishr')
     console.log(this.ishr)
 }
@@ -44,23 +46,32 @@ export class FormsComponent implements OnInit {
     this.formservice.submitbasic()
     console.log(this.formservice.basic)
 
-    // this.formservice.submitedu()
-    // console.log(this.formservice.edu)
+    this.formservice.submitedu()
+    console.log(this.formservice.edu)
 
     this.formservice.submitemer()
     console.log(this.formservice.emer)    
 
-    // this.formservice.submitfamily()
-    // console.log(this.formservice.fam) 
+    this.formservice.submitfamily()
+    console.log(this.formservice.fam) 
 
     this.formservice.submitother()
     console.log(this.formservice.other) 
 
-    // this.formservice.submitprev()
-    // console.log(this.formservice.prev) 
+    this.formservice.submitprev()
+    console.log(this.formservice.prev) 
 
-    // this.formservice.sumbitlang()
-    // console.log(this.formservice.lang) 
+    this.formservice.sumbitlang()
+    console.log(this.formservice.lang) 
+
+    if(this.ishr == undefined){
+      this.alert()
+      this.router.navigate([''])
+    }
+    else{
+      this.alertforapproval()
+      this.router.navigate(['rml/new-joiners/forms'])
+    }
   }
 
 
@@ -136,9 +147,12 @@ export class FormsComponent implements OnInit {
   getDataForID(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.status.status = this.active.snapshot.paramMap.get('apln_status');
-    
+      
     console.log(this.status)
 
   }
+
+
+  
 
 }

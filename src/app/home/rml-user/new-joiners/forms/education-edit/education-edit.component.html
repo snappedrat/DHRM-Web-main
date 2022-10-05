@@ -13,16 +13,16 @@
         <th scope="col">Certificate Date</th>
         <th scope="col">Percentage</th>
         </tr>
-        <tr *ngFor="let data of eduData">
+        <tr *ngFor= "let data of eduData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" [(ngModel)]="data.school" ></td>
+        <td><input type="text" [(ngModel)]="data.school" (click)="sendData()"></td>
         <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>
-        <td><input type = "text" [(ngModel)]="data.year" ></td>
-        <td><input type = "text"[(ngModel)]="data.department" ></td>
-        <td><input type = "text"[(ngModel)]="data.certificatenumber" ></td>
-        <td><input type = "date"[(ngModel)]="data.certificatedate" ></td>
+        <td><input type = "text" [(ngModel)]="data.year" (click)="sendData()" ></td>
+        <td><input type = "text"[(ngModel)]="data.department" (click)="sendData()"></td>
+        <td><input type = "text"[(ngModel)]="data.certificatenumber" (click)="sendData()"></td>
+        <td><input type = "date"[(ngModel)]="data.certificatedate" (click)="sendData()" ></td>
                <td><input type = "text" [(ngModel)]="data.percentage" (click)="sendData()">
        
   </td>

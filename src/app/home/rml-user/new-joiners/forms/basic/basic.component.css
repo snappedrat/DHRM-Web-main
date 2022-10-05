@@ -1,9 +1,9 @@
 .btn{
     
     margin-left:50%;
-    width:max-content
-    
+    width:max-content 
 }
+
 h3{
     margin-top:20px;
     font-weight:bold;
@@ -17,14 +17,15 @@ input{
     width: 900px;
     border-radius: 0px;
     border-color: black;
-
 }
-.select:hover{
-    width: 300px;
-    border-radius: 0px;
-    border-color: black;
 
-}
 .row{
     white-space: nowrap;
+}
+
+.form-group{
+    width: 900px;
+}
+.alert {
+    width: 900px;
 }

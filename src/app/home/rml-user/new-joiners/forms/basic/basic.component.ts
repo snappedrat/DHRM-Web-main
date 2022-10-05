@@ -4,12 +4,13 @@ import {HttpClient} from "@angular/common/http";
 import { AnyNaptrRecord } from 'dns';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
     styleUrls: ['./basic.component.css']
 })
-export class BasicComponent {
+export class BasicComponent implements OnInit{
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
     State: any =['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telengana','Tripura','Uttarakhand','Uttar Pradesh','West Bengal'];
@@ -17,8 +18,16 @@ export class BasicComponent {
     marital: any =['Married','unmarried','widower'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['Yes','No'];
+    uniqueId :any = {'mobile':''}
+    basic: any = []
+
+    sample: any = {
+        "name" : "ahamed",
+        "father": "Nisar"
+    }
+
     form: FormGroup = new FormGroup({});
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
             mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             permanent:['',Validators.required],
@@ -51,6 +60,29 @@ export class BasicComponent {
             idm2:['',Validators.required],
             mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
+    }
+
+    ngOnInit(): void {
+
+        this.getdatabasic()
+
+        setTimeout(() => {
+            this.form.controls['fname'].setValue(this.basic[0]?.fullname)
+            this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
+            this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
+            this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
+            this.form.controls['present'].setValue(this.basic[0]?.present_address)
+            this.form.controls['nation'].setValue(this.basic[0]?.nationality)
+            this.form.controls['height'].setValue(this.basic[0]?.height)
+            this.form.controls['weight'].setValue(this.basic[0]?.weight)
+            this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
+            this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
+            this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
+            this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
+            this.form.controls['reg'].setValue(this.basic[0]?.religion)
+
+            this.sendData()
+        }, 1000);
     }
 
     get f(){
@@ -190,4 +222,18 @@ export class BasicComponent {
             totext.focus();
         }
     }
+
+    getdatabasic(){
+        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        console.log('====================================');
+        console.log(this.uniqueId);
+        console.log('====================================');
+        this.http.
+      post('http://localhost:3000/getdatabasic',this.uniqueId)
+      .subscribe({
+        next: (response) => {console.log("basic : ",response); this.basic = response} ,
+        error: (error) => console.log(error),
+      })
+      }
+
 }

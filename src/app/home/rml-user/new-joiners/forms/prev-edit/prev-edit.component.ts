@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
+import { send } from 'process';
 
 @Component({
   selector: 'app-prev-edit',
@@ -20,7 +21,8 @@ export class PrevEditComponent implements OnInit {
       'periodf': '',
       'periodt': '',
       'sal': '',
-      'reason': ''
+      'reason': '',
+      'mobile': this.cookie.get('mobilenum')
     },
     {
       'sno':'2',
@@ -55,7 +57,9 @@ export class PrevEditComponent implements OnInit {
     constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { }
   
     ngOnInit(): void {
+      this.sendData()
     }  
+
     submit(){
       console.log('family', this.prevData);
         if(this,this.prevData.length == 0){
@@ -67,7 +71,7 @@ export class PrevEditComponent implements OnInit {
   }
   
   sendData(){
-    this.plantcodeService.fam = this.prevData
+    this.plantcodeService.prev = this.prevData
   } 
   
   //     this.http.

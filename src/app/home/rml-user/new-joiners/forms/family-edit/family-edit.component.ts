@@ -14,6 +14,8 @@ export class FamilyEditComponent implements OnInit {
 relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter']
 dependent: any = ['Dependent', 'Self-Sufficient']
 
+mobile: any;
+
 familyData = [
   {
     'sno':'1',
@@ -22,7 +24,8 @@ familyData = [
     'age': '',
     'occupation': '',
     'contactnumber': '',
-    'dependent': ''
+    'dependent': '',
+    'mobile': this.cookie.get('mobilenum')
   },
   {
     'sno':'2',
@@ -53,9 +56,13 @@ familyData = [
   },
 ];
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { }
+  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) {
+    this.mobile = this.cookie.get('mobilenum')
+   }
 
   ngOnInit(): void {
+
+    this.sendData()
   }  
   submit(){
     console.log('family', this.familyData);

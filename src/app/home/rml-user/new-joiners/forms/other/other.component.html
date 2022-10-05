@@ -9,13 +9,6 @@
               </select> 
     
         </div>  
-        <div style = "width:fit-content" class="form-group">  
-            <label for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
-            <select formControlName="work" class="form-control">
-                <option>Choose</option>
-              <option *ngFor="let wk of Works">{{wk}}</option>
-              </select>
-        </div>  
         <div style="width:fit-content" class="form-group">  
             <label for="names"> Name</label>  
             <input   
@@ -27,17 +20,7 @@
  
         </div>
         <div style="width:fit-content" class="form-group">  
-            <label for="place">Place</label>  
-            <input   
-                formControlName="place"  
-                id="place"   
-                type="text"   
-                class="form-control"
-                placeholder="Place">  
-
-        </div>
-        <div style="width:fit-content" class="form-group">  
-            <label for="com">Company/Agency Name</label>  
+            <label for="com">Company/Agency Name of the Acquaintance</label>  
             <input   
                 formControlName="com"  
                 id="com"   
@@ -46,6 +29,25 @@
                 placeholder="Company/Agency Name">  
 
         </div>
+        <div style = "width:fit-content" class="form-group">  
+            <label for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
+            <select formControlName="work" class="form-control">
+                <option>Choose</option>
+              <option *ngFor="let wk of Works">{{wk}}</option>
+              </select>
+        </div>  
+
+        <div style="width:fit-content" class="form-group">  
+            <label for="place">Name of the company</label>  
+            <input   
+                formControlName="place"  
+                id="place"   
+                type="text"   
+                class="form-control"
+                placeholder="Place">  
+
+        </div>
+
         <div stytle="width:fit-content" class="form-group">  
             <label for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
             <input   
