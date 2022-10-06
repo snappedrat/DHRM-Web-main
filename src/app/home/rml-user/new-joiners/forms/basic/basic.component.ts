@@ -76,7 +76,6 @@ export class BasicComponent implements OnInit{
     this.form.controls['reg'].setValue(this.basic[0]?.religion)
     this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
     this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
-    this.form.controls['mobileNumber'].setValue(this.basic[0]?.)
    }
 
     ngOnInit(): void {
