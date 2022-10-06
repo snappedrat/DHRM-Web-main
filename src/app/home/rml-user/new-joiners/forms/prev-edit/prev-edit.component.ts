@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { send } from 'process';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-prev-edit',
@@ -22,7 +23,7 @@ export class PrevEditComponent implements OnInit {
       'periodt': '',
       'sal': '',
       'reason': '',
-      'mobile': this.cookie.get('mobilenum')
+      'mobile': this.active.snapshot.paramMap.get('mobile_no1')
     },
     {
       'sno':'2',
@@ -54,7 +55,7 @@ export class PrevEditComponent implements OnInit {
 
   ];
   
-    constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService ) { }
+    constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active: ActivatedRoute ) { }
   
     ngOnInit(): void {
       this.sendData()

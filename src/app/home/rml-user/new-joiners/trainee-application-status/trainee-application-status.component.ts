@@ -22,7 +22,7 @@ filterinfo: any
   ngOnInit(): void {
     this.form.controls['status'].setValue('pending')
     this.form.controls['fromdate'].setValue('2018-02-02')
-    this.form.controls['todate'].setValue('2022-10-02')
+    this.form.controls['todate'].setValue('2022-10-07')
     this.filter()
   }
 

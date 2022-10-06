@@ -60,23 +60,6 @@ export class BasicComponent implements OnInit{
             idm2:['',Validators.required],
             mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
         })
-
-    this.form.controls['fname'].setValue(this.basic[0]?.firstname)
-    this.form.controls['lname'].setValue(this.basic[0]?.lastname)
-    this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
-    this.form.controls['present'].setValue(this.basic[0]?.present)
-    this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
-    this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
-    this.form.controls['height'].setValue(this.basic[0]?.height)
-    this.form.controls['weight'].setValue(this.basic[0]?.weight)
-    this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
-    this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
-    this.form.controls['gender'].setValue(this.basic[0]?.gender)
-    this.form.controls['nation'].setValue(this.basic[0]?.nationality)
-    this.form.controls['reg'].setValue(this.basic[0]?.religion)
-    this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
-    this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
-    this.form.controls['mobileNumber'].setValue(this.basic[0]?.)
    }
 
     ngOnInit(): void {
@@ -85,6 +68,7 @@ export class BasicComponent implements OnInit{
 
         setTimeout(() => {
             this.form.controls['fname'].setValue(this.basic[0]?.fullname)
+            this.form.controls['lname'].setValue(this.basic[0]?.fullname)
             this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
             this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
             this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
@@ -97,6 +81,13 @@ export class BasicComponent implements OnInit{
             this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
             this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
             this.form.controls['reg'].setValue(this.basic[0]?.religion)
+            this.form.controls['st'].setValue(this.basic[0]?.state_name)
+            this.form.controls['pc'].setValue(this.basic[0]?.pincode)
+            this.form.controls['city'].setValue(this.basic[0]?.city)
+            this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
+            this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
+            this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
+
 
             this.sendData()
         }, 1000);

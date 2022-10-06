@@ -24,6 +24,10 @@ export class PlantcodeService {
   other : any;
   prev : any;
 
+  education:any = []
+  family:any = []
+  career:any = []
+
   constructor(private http : HttpClient)
   {
    }
@@ -109,4 +113,33 @@ sumbitlang(){
   })
 }
 
+getdataqualifn(uniqueId:any){
+  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.http.
+post('http://localhost:3000/getdataqualfn',uniqueId)
+.subscribe({
+  next: (response) => {console.log("basic",response); this.education = response} ,
+  error: (error) => console.log(error),
+})
+}
+
+getdatafamily(uniqueId:any){
+  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.http.
+post('http://localhost:3000/getdatafamily',uniqueId)
+.subscribe({
+  next: (response) => {console.log("basic",response); this.family = response} ,
+  error: (error) => console.log(error),
+})
+}
+
+getdatacareer(uniqueId:any){
+  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.http.
+post('http://localhost:3000/getdatacareer',uniqueId)
+.subscribe({
+  next: (response) => {console.log("basic",response); this.career = response} ,
+  error: (error) => console.log(error),
+})
+}
 }
