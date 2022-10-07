@@ -129,9 +129,189 @@
 </div>
 </div> -->
 
-<form> 
-	<input  class = 'form-control'  type = 'file' name = 'demo_image' (change)="onchange($event)" >	
-	<button (click)="onupload()">Upload</button>
-	<button *ngIf="file != null" > preview </button>
+	<!-- <form> 
+		<input  class = 'form-control'  type = 'file' name = 'demo_image' (change)="onChange($event)" >	
+		<button (click)="onUpload()">Upload</button>
+		<button *ngIf="file != null" > preview </button>
+	</form> -->
+<form>
+<h1>Employee related</h1>
+<table>
+    <tr>
+      <td>resume</td>
+      <td>
+        <div class="text-center"> 
+        <input class="form-control" type="file"   (change)="onResumeChange($event)"> 
+	</div> 
+		<td>
+        <button (click)="onResumeUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>
+		<button *ngIf="resume_file != null"  class="btn btn-success"> preview </button>
+	</td>
+    </tr>
+    <tr>
+      <td>marksheet</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"   (change)="onMarksheetChange($event)"> 
+	</div> 
+	<td>
+		<button (click)="onMarksheetUpload()"  class="btn btn-success"> Upload </button> 
+	</td>
+	<td>
+		<button *ngIf="marksheet_file != null" class="btn btn-success"> preview </button>
+        </td>
+    </tr> <tr>
+        <td>transfer certificate</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onTransfercertificateChange($event)"> 
+		</div> 
+		<td>
+		  <button (click)="onTransfercertificateUpload()"  class="btn btn-success"> Upload </button>
+		</td>
+		<td>
+		  <button *ngIf="transfercertificate_file != null" class="btn btn-success"> preview </button> 
+    	 </td>
+      </tr>
+      <tr>
+        <td>aadhar card</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
+		</div> 
+		<td>
+		  <button (click)="onAadharcardUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>
+		  <button *ngIf="aadharcard_file != null" class="btn btn-success"> preview </button>
+          </td>
+      </tr>
+      <tr>
+        <td>bank passbook</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
+		</div> 
+		<td>
+		  <button (click)="onBankpassbookUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td> 
+		  <button *ngIf="bankpassbook_file != null"class="btn btn-success" > preview </button>
+        </td>
+      </tr>
+      <tr>
+        <td>photo</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
+		</div> 
+		<td>
+		  <button (click)="onPhotoUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>
+		  <button *ngIf="photo_file != null" class="btn btn-success"> preview </button>
+    	</td>
+      </tr>
+      <tr>
+        <td>signature</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onSignatureChange($event)"> 
+		</div> 
+		<td>
+		  <button (click)="onSignatureUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>
+		  <button *ngIf="signature_file != null" class="btn btn-success"> preview </button>
+        </td>
+      </tr> <tr>
+       
+  </table>
 
+<br><br>
+
+<h1>RML related</h1>
+<table>
+    <tr>
+      <td>appointment order</td>
+      <td>
+        <div class="text-center"> 
+    	<input class="form-control" type="file"   (change)="onAppointmentorderChange($event)"> 
+	</div> 
+	<td>
+		<button (click)="onAppointmentorderUpload()"  class="btn btn-success"> Upload </button> 
+	</td>
+	<td> 
+		<button *ngIf="appointmentorder_file != null"class="btn btn-success" > preview </button>
+	 </td>
+    </tr>
+    <tr>
+      <td>declaration form</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"   (change)="onDeclarationChange($event)"> 
+	</div> 
+	<td>
+		<button (click)="onDeclarationUpload()"  class="btn btn-success"> Upload </button> 
+	</td>
+	<td> 
+		<button *ngIf="declaration_file != null"class="btn btn-success" > preview </button>
+     </td>
+    </tr> <tr>
+        <td>medical fitness</td>
+        <td><div class="text-center"> 
+
+          <input class="form-control" type="file"   (change)="onMedicalfitnessChange($event)"> 
+		</div> 
+		<td> 
+		  <button (click)="onMedicalfitnessUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td> 
+		  <button *ngIf="medicalfitness_file != null" class="btn btn-success"> preview </button>
+		 </td>
+      <tr>
+        <td>form A4</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onForma4Change($event)"> 
+		</div> 
+		<td> 
+		  <button (click)="onForma4Upload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>  
+		  <button *ngIf="formA4_file != null" class="btn btn-success"> preview </button>
+          </td>
+      </tr>
+      <tr>
+        <td>form 11</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onForm11Change($event)"> 
+		</div> 
+		<td> 
+		  <button (click)="onForm11Upload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>  
+		  <button *ngIf="form11_file != null"class="btn btn-success" > preview </button>
+        </td>
+      </tr>
+      <tr>
+        <td>form h2</td>
+        <td ><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
+		</div> 
+		<td> 
+		  <button (click)="onFormh2Upload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>  
+		  <button *ngIf="formh2_file != null" class="btn btn-success"> preview </button>
+        </td>
+      </tr>
+      <tr>
+        <td>NATX</td>
+        <td><div class="text-center"> 
+          <input class="form-control" type="file"   (change)="onNatxChange($event)"> 
+		</div> 
+		<td> 
+		  <button (click)="onNatxUpload()"  class="btn btn-success"> Upload </button> 
+		</td>
+		<td>  
+		  <button *ngIf="natx_file != null" class="btn btn-success" > preview </button>
+          </td>
+      </tr> <tr>
+       
+  </table>
 </form>
