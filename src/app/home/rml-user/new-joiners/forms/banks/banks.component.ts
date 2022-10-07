@@ -36,7 +36,7 @@ bank : any = []
             account:[''],
             ifsc:[''],
             bankName:[''],
-            mobilenumber: new UntypedFormControl(this.cookie.get('mobilenum'))
+            mobilenumber: new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
         })
     }
 

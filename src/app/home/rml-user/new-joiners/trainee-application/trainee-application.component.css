@@ -5,11 +5,11 @@
     border:1px solid green;
    }
    
-   img{
+   /* img{
        position:relative;
        margin-left:200px;
        margin-top:10px;
-   }
+   } */
 
    
    .background{
@@ -22,12 +22,12 @@
  .form-control{
      border-radius: 15px;
  }
- .btn{
+ /* .btn{
     margin-left: 200px;
     border-radius: 20px;
     width: 100px;
     height: 40px;
-}
+} */
 input{
     border-radius:100px;
 }
@@ -39,4 +39,8 @@ select{
 }
 select:hover{
     border:2px solid grey;
+}
+
+.container{
+    justify-content: center;
 }

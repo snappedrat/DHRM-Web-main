@@ -30,7 +30,7 @@ const routes: Routes = [
     component: TraineeApplicationComponent
   },
   {
-    path:'forms',
+    path:'forms/:mobile_no1',
     component: FormsComponent
   },
   {

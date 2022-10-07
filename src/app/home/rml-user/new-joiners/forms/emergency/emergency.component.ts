@@ -21,7 +21,7 @@ emer : any = []
       contactNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       contactName:['',Validators.required],
       relations:['',Validators.required],
-      mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
+      mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
 
     })  
   }  

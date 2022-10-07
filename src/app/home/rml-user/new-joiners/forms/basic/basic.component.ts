@@ -58,7 +58,7 @@ export class BasicComponent implements OnInit{
             bp:['',Validators.required],
             idm1:['',Validators.required],
             idm2:['',Validators.required],
-            mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
+            mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
         })
    }
 

@@ -25,7 +25,7 @@ export class OtherComponent implements OnInit {
       place:['',Validators.required],
       com:['',Validators.required],
       extra:['',Validators.required],
-      mobilenumber : new UntypedFormControl(this.cookie.get('mobilenum'))
+      mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
 
    })
 

@@ -17,7 +17,7 @@ export class TraineeApplicationComponent implements OnInit{
 
   mobilenum : any = ''
   setCookie(){
-    this.cookie.set("mobilenum", this.mobilenum)
+    // this.cookie.set("mobilenum", this.mobilenum)
 }
 
   items :any[] = [];
@@ -42,7 +42,7 @@ export class TraineeApplicationComponent implements OnInit{
       plant:['',Validators.required],
       pass: [this.Tvalue ]
    });
-  //  this.mobilenum = this.bankForms.mobileNumber
+   this.mobilenum = this.bankForms.controls['mobileNumber'].value
 
 }
 
@@ -55,11 +55,15 @@ ngOnInit(): void {
   this.getcompanycode()
 }
 
+dum(){
+  console.log('====================================');
+  console.log("kekuthasaaaaaa");
+  console.log('====================================');
+  console.log('mobile',this.mobilenum)
+}
+
 getplantcode(){
 
-    console.log('====================================');
-    console.log('service');
-    console.log('====================================');
     this.http.post('http://localhost:3000/plantcodelist', '')
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
@@ -83,6 +87,7 @@ sendFormData()
     next: (response) => this.errmsg=response,
     error: (error) => console.log(error),
   })
+
 }
 
 get company()

@@ -52,10 +52,11 @@
         <div class="form-group" style="margin-left:25px;">
           <input 
           (change)="updateInput($event)"
+          (click)="dum()"
           type="checkbox" 
           class="form-check-input">Show Password
         </div>
-            <button class="btn btn-primary" (click)="sendFormData()" (click)="setCookie()" type="submit" [routerLink]="['/forms',]" [disabled]="!bankForms.valid">Sign In</button>
+            <button class="btn btn-primary" (click)="sendFormData()" (click)="setCookie()" type="submit" [routerLink]="['/forms',mobilenum]" [disabled]="!bankForms.valid">Sign In</button>
                 </form>
           </div>
       </div>
