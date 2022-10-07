@@ -1,4 +1,4 @@
-<div style="margin-left: 50px">
+<!-- <div style="margin-left: 50px">
 <h1>Upload Document</h1>
 <div class="center" ><b>
     Employee Related</b>
@@ -127,4 +127,11 @@
 		<a > </a>
 	</p>
 </div>
-</div>
+</div> -->
+
+<form> 
+	<input  class = 'form-control'  type = 'file' name = 'demo_image' (change)="onchange($event)" >	
+	<button (click)="onupload()">Upload</button>
+	<button *ngIf="file != null" > preview </button>
+
+</form>

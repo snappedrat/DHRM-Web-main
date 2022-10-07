@@ -42,6 +42,8 @@ export class TraineeApplicationComponent implements OnInit{
       plant:['',Validators.required],
       pass: [this.Tvalue ]
    });
+  //  this.mobilenum = this.bankForms.mobileNumber
+
 }
 
 plantcode:any;

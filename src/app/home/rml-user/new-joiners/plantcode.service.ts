@@ -142,4 +142,20 @@ post('http://localhost:3000/getdatacareer',uniqueId)
   error: (error) => console.log(error),
 })
 }
+
+fileupload(file:any){
+  const formData = new FormData()
+  formData.append("file",file, file.name)
+
+    console.log('====================================');
+    console.log(formData);
+    console.log('====================================');
+    this.http.
+    post('http://localhost:3000/image', formData).subscribe({
+      next: (res)=> console.log(res),
+      error: (err)=>console.log(err)
+    })
+
+}
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlantcodeService } from '../../plantcode.service';
 
 @Component({
   selector: 'app-choose-files',
@@ -11,8 +12,9 @@ export class ChooseFilesComponent implements OnInit {
 	url: any;
 	msg = "";
 	ishr : any
+	file: File|null = null; 
 
-  constructor() {
+  constructor(private service: PlantcodeService) {
 	this.ishr = localStorage.getItem('ishr')
 	console.log(this.ishr)
    }
@@ -42,8 +44,14 @@ export class ChooseFilesComponent implements OnInit {
 		// 	this.msg = "";
 		// 	this.url = reader.result; 
 		// }
+	
 	}
 
+	onchange(event:any){
+			this.file = event.target.files[0]
+	}
 	
-
+	onupload(){
+		this.service.fileupload(this.file)
+	}
 }

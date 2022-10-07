@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-language',
@@ -24,7 +25,8 @@ languageList = [
     'read': 1,
     'write': 1,
     'mothertongue': 1,
-    'understand': 1
+    'understand': 1,
+    'mobile': this.active.snapshot.paramMap.get('mobile_no1')
   },
   {
     'language': '',
