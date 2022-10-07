@@ -21,11 +21,11 @@ details : any = []
 languageList = [
   {
     'language': '',
-    'speak': 1,
-    'read': 1,
-    'write': 1,
-    'mothertongue': 1,
-    'understand': 1,
+    'speak': 0,
+    'read': 0,
+    'write': 0,
+    'mothertongue': 0,
+    'understand': 0,
     'mobile': this.active.snapshot.paramMap.get('mobile_no1')
   },
   {
@@ -77,6 +77,7 @@ languageList = [
     this.getdatabasic()
 
     setTimeout(() => {
+
     this.languageList[0].language = this.details[0]?.lang1_name
     this.languageList[0].speak = this.details[0]?.lang1_speak
     this.languageList[0].read = this.details[0]?.lang1_read
