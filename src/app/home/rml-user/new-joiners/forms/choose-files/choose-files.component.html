@@ -134,20 +134,19 @@
 		<button (click)="onUpload()">Upload</button>
 		<button *ngIf="file != null" > preview </button>
 	</form> -->
-<form>
+<form >
 <h1>Employee related</h1>
-<table>
+<table [width]="1000">
     <tr>
       <td>resume</td>
-      <td>
+      <td >
         <div class="text-center"> 
-        <input class="form-control" type="file"   (change)="onResumeChange($event)"> 
+        <input class="form-control" type="file" (change)="onResumeChange($event)">
+
 	</div> 
-		<td>
-        <button (click)="onResumeUpload()"  class="btn btn-success"> Upload </button> 
-		</td>
-		<td>
-		<button *ngIf="resume_file != null"  class="btn btn-success"> preview </button>
+		<td >
+		<button (click)="onResumeUpload()"  class="btn btn-success" > Upload </button> 
+		<button *ngIf="resume_file != null"  class="btn btn-secondary" > preview </button>
 	</td>
     </tr>
     <tr>
@@ -159,7 +158,7 @@
 		<button (click)="onMarksheetUpload()"  class="btn btn-success"> Upload </button> 
 	</td>
 	<td>
-		<button *ngIf="marksheet_file != null" class="btn btn-success"> preview </button>
+		<button *ngIf="marksheet_file != null" class="btn-secondary "> preview </button>
         </td>
     </tr> <tr>
         <td>transfer certificate</td>
@@ -170,7 +169,7 @@
 		  <button (click)="onTransfercertificateUpload()"  class="btn btn-success"> Upload </button>
 		</td>
 		<td>
-		  <button *ngIf="transfercertificate_file != null" class="btn btn-success"> preview </button> 
+		  <button *ngIf="transfercertificate_file != null" class="btn-secondary "> preview </button> 
     	 </td>
       </tr>
       <tr>
@@ -182,7 +181,7 @@
 		  <button (click)="onAadharcardUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>
-		  <button *ngIf="aadharcard_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="aadharcard_file != null" class="btn-secondary "> preview </button>
           </td>
       </tr>
       <tr>
@@ -194,7 +193,7 @@
 		  <button (click)="onBankpassbookUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td> 
-		  <button *ngIf="bankpassbook_file != null"class="btn btn-success" > preview </button>
+		  <button *ngIf="bankpassbook_file != null"class="btn-secondary " > preview </button>
         </td>
       </tr>
       <tr>
@@ -206,7 +205,7 @@
 		  <button (click)="onPhotoUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>
-		  <button *ngIf="photo_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="photo_file != null" class="btn-secondary"> preview </button>
     	</td>
       </tr>
       <tr>
@@ -218,16 +217,15 @@
 		  <button (click)="onSignatureUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>
-		  <button *ngIf="signature_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="signature_file != null" class="btn-secondary "> preview </button>
         </td>
       </tr> <tr>
        
   </table>
-
 <br><br>
 
 <h1>RML related</h1>
-<table>
+<table [width]="1000">
     <tr>
       <td>appointment order</td>
       <td>
@@ -238,7 +236,7 @@
 		<button (click)="onAppointmentorderUpload()"  class="btn btn-success"> Upload </button> 
 	</td>
 	<td> 
-		<button *ngIf="appointmentorder_file != null"class="btn btn-success" > preview </button>
+		<button *ngIf="appointmentorder_file != null"class="btn-secondary " > preview </button>
 	 </td>
     </tr>
     <tr>
@@ -250,7 +248,7 @@
 		<button (click)="onDeclarationUpload()"  class="btn btn-success"> Upload </button> 
 	</td>
 	<td> 
-		<button *ngIf="declaration_file != null"class="btn btn-success" > preview </button>
+		<button *ngIf="declaration_file != null"class="btn-secondary" > preview </button>
      </td>
     </tr> <tr>
         <td>medical fitness</td>
@@ -262,7 +260,7 @@
 		  <button (click)="onMedicalfitnessUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td> 
-		  <button *ngIf="medicalfitness_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="medicalfitness_file != null" class="btn-secondary "> preview </button>
 		 </td>
       <tr>
         <td>form A4</td>
@@ -273,7 +271,7 @@
 		  <button (click)="onForma4Upload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>  
-		  <button *ngIf="formA4_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="formA4_file != null" class="btn-secondary "> preview </button>
           </td>
       </tr>
       <tr>
@@ -285,7 +283,7 @@
 		  <button (click)="onForm11Upload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>  
-		  <button *ngIf="form11_file != null"class="btn btn-success" > preview </button>
+		  <button *ngIf="form11_file != null"class="btn-secondary" > preview </button>
         </td>
       </tr>
       <tr>
@@ -297,7 +295,7 @@
 		  <button (click)="onFormh2Upload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>  
-		  <button *ngIf="formh2_file != null" class="btn btn-success"> preview </button>
+		  <button *ngIf="formh2_file != null" class="btn-secondary "> preview </button>
         </td>
       </tr>
       <tr>
@@ -309,7 +307,7 @@
 		  <button (click)="onNatxUpload()"  class="btn btn-success"> Upload </button> 
 		</td>
 		<td>  
-		  <button *ngIf="natx_file != null" class="btn btn-success" > preview </button>
+		  <button *ngIf="natx_file != null" class="btn-secondary " > preview </button>
           </td>
       </tr> <tr>
        
