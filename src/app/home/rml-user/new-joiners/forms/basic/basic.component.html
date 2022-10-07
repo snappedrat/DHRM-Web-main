@@ -281,31 +281,36 @@
         
 </div>
 <div class="form-group">    
-    <label for="fname">Birth Place:</label>
+    <label for="bp">Birth Place:</label>
 <input
+
     formControlName="bp"
     id="bp"
     type="text"
+    (click)="sendData()"
     class="form-control"
-    placeholder="Birth Place">
-<div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert alert-danger">
-<div *ngIf="bp.bp.errors.required">Birth Place is required</div>
+    placeholder="Birth Place"
+>
+<!-- <div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert alert-danger">
+<div *ngIf="bp.bp.errors.required">Birth Place is required</div> -->
 </div>
-</div>
+<!-- </div> -->
 <div class="form-group">    
     <label for="idm1">Identification Mark 1:</label>
 <input
     formControlName="idm1"
     id="idm1"
     type="text"
-
+    (click)="sendData()"
     class="form-control"
     placeholder="Identification Mark 1">
+
     <label for="idm2">Identification Mark 2:</label>
     <input
   formControlName="idm2"
     id="idm2"
     type="text"
+    (click)="sendData()"
     class="form-control"
     placeholder="Identification Mark 2">
 </div>

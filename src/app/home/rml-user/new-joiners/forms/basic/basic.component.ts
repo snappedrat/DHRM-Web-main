@@ -21,10 +21,10 @@ export class BasicComponent implements OnInit{
     uniqueId :any = {'mobile':''}
     basic: any = []
 
-    sample: any = {
-        "name" : "ahamed",
-        "father": "Nisar"
-    }
+    // sample: any = {
+    //     "name" : "ahamed",
+    //     "father": "Nisar"
+    // }
 
     form: FormGroup = new FormGroup({});
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
@@ -56,8 +56,8 @@ export class BasicComponent implements OnInit{
             mar:['',Validators.required],
             pd:['',Validators.required],
             bp:['',Validators.required],
-            idm1:['',Validators.required],
-            idm2:['',Validators.required],
+            idm1:[''],
+            idm2:[''],
             mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
         })
    }
@@ -220,6 +220,7 @@ export class BasicComponent implements OnInit{
     sendData(){
         console.log(this.form.value);
         this.plantcodeService.basic = this.form.value
+
     }
 
     move(fromtext:any,totext:any){
