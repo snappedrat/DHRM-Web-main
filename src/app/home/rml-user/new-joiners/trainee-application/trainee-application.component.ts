@@ -17,7 +17,7 @@ export class TraineeApplicationComponent implements OnInit{
 
   mobilenum : any = ''
   setCookie(){
-    // this.cookie.set("mobilenum", this.mobilenum)
+    this.cookie.set("mobilenum", this.mobilenum)
 }
 
   items :any[] = [];

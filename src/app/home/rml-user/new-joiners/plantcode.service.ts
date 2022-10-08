@@ -10,6 +10,7 @@ import { LanguageComponent } from './forms/language/language.component';
 import { OtherComponent } from './forms/other/other.component';
 import { PrevComponent } from './forms/prev/prev.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +28,16 @@ export class PlantcodeService {
   education:any = []
   family:any = []
   career:any = []
-
-  constructor(private http : HttpClient)
+  url = '14.99.10.243'
+  uniqueId: any
+  constructor(private http : HttpClient, private active : ActivatedRoute)
   {
    }
 
 submitbank(){
   console.log(this.bank)
   this.http
-  .post('http://localhost:3000/bankforms', this.bank)
+  .post(this.url+'/bankforms', this.bank)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -156,6 +158,19 @@ fileupload(file:any){
       error: (err)=>console.log(err)
     })
 
+}
+
+rejected(){
+  this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+
+  console.log(this.uniqueId);
+
+  this.http
+  .post('http://localhost:3000/rejected', this.uniqueId)
+  .subscribe({
+    next: (response) =>{ console.log(response);},
+    error: (error) => console.log(error),
+  })
 }
 
 }

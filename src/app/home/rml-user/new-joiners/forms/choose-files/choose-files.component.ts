@@ -30,8 +30,11 @@ export class ChooseFilesComponent implements OnInit {
 	formh2_file: File|null = null;
 	natx_file: File|null = null;
   constructor(private service: PlantcodeService) {
+
 	this.ishr = localStorage.getItem('ishr')
+	console.log('====================================');
 	console.log(this.ishr)
+	console.log('====================================');
    }
 
   ngOnInit(): void {
@@ -75,67 +78,89 @@ export class ChooseFilesComponent implements OnInit {
 			this.resume_file = event.target.files[0]
 	}
 	
-	onResumeUpload(){}
+	onResumeUpload(){
+		this.service.fileupload(this.resume_file)
+	}
 
 	onMarksheetChange(event:any){
 		this.marksheet_file = event.target.files[0]
 }
 
-onMarksheetUpload(){}
+onMarksheetUpload(){
+	this.service.fileupload(this.marksheet_file)
+}
 
 onTransfercertificateChange(event:any){
 	this.transfercertificate_file = event.target.files[0]
 }
 
-onTransfercertificateUpload(){}
+onTransfercertificateUpload(){
+	this.service.fileupload(this.transfercertificate_file)
+}
 
 onAadharcardChange(event:any){
 	this.aadharcard_file = event.target.files[0]
 }
 
-onAadharcardUpload(){}
+onAadharcardUpload(){
+	this.service.fileupload(this.aadharcard_file)
+}
 
 onBankpassbookChange(event:any){
 	this.bankpassbook_file = event.target.files[0]
 }
 
-onBankpassbookUpload(){}
+onBankpassbookUpload(){
+	this.service.fileupload(this.bankpassbook_file)
+}
 
 onPhotoChange(event:any){
 	this.photo_file = event.target.files[0]
 }
 
-onPhotoUpload(){}
+onPhotoUpload(){
+	this.service.fileupload(this.photo_file)
+}
 
 onSignatureChange(event:any){
 	this.signature_file = event.target.files[0]
 }
 
-onSignatureUpload(){}
+onSignatureUpload(){
+	this.service.fileupload(this.signature_file)
+}
 
 onAppointmentorderChange(event:any){
 	this.appointmentorder_file = event.target.files[0]
 }
 
-onAppointmentorderUpload(){}
+onAppointmentorderUpload(){
+	this.service.fileupload(this.appointmentorder_file)
+}
 
 onDeclarationChange(event:any){
 	this.declaration_file = event.target.files[0]
 }
 
-onDeclarationUpload(){}
+onDeclarationUpload(){
+	this.service.fileupload(this.declaration_file)
+}
 
 onMedicalfitnessChange(event:any){
 	this.medicalfitness_file = event.target.files[0]
 }
 
-onMedicalfitnessUpload(){}
+onMedicalfitnessUpload(){
+	this.service.fileupload(this.medicalfitness_file)
+
+}
 
 onForma4Change(event:any){
 	this.formA4_file = event.target.files[0]
 }
 
-onForma4Upload(){}
+onForma4Upload(){
+}
 
 onForm11Change(event:any){
 	this.form11_file = event.target.files[0]

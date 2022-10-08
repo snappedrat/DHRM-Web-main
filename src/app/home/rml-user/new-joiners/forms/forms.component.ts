@@ -132,16 +132,7 @@ export class FormsComponent implements OnInit {
 
   rejected()
   {
-    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-
-    console.log(this.uniqueId);
-
-    this.http
-    .post('http://localhost:3000/rejected', this.uniqueId)
-    .subscribe({
-      next: (response) =>{ console.log(response);},
-      error: (error) => console.log(error),
-    })
+    this.formservice.rejected()
   }
 
   getDataForID(){
