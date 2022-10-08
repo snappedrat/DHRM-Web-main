@@ -65,7 +65,7 @@ export class BasicComponent implements OnInit{
     ngOnInit(): void {
 
         this.getdatabasic()
-
+        
         setTimeout(() => {
             this.form.controls['fname'].setValue(this.basic[0]?.fullname)
             this.form.controls['lname'].setValue(this.basic[0]?.fullname)
