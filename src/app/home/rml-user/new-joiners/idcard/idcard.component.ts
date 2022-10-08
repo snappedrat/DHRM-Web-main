@@ -15,6 +15,7 @@ export class IdcardComponent implements OnInit {
   status: any = {'status': ''}
   formvalues: any
 
+  
 
   constructor(private active: ActivatedRoute, private http: HttpClient ) { }
 
@@ -39,7 +40,8 @@ export class IdcardComponent implements OnInit {
     .post('http://localhost:3000/getdataforid', this.uniqueId)
     .subscribe({
       next:(response)=>{console.log(response); this.formvalues = response},
-      error: (error) => console.log(error),
+      error: (error) => 
+      console.log(error),
     })
     
   }
