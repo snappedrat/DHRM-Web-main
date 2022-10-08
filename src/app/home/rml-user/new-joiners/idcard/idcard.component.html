@@ -1,5 +1,5 @@
 <div>
-  <div class="card">
+  <div class="card" *ngFor= "let i of formvalues" > 
       <table class="font">
           <div class="center">
               <div class="header"><b> Rane(Madras)Limited</b></div>
@@ -12,11 +12,11 @@
           </tr><br>
           <tr>
               <td><b>Name:</b></td>
-              <td>1234</td>
+              <td>{{i.fullname}}</td>
           </tr><br>
           <tr>
               <td><b>Father name:</b></td>
-              <td>1234</td>
+              <td>1234</td>              
           </tr><br>
           <tr>
               <td><b>Department:</b></td>

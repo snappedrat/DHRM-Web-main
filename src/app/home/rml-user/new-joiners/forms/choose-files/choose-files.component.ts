@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PlantcodeService } from '../../plantcode.service';
 
 @Component({
@@ -9,7 +10,26 @@ import { PlantcodeService } from '../../plantcode.service';
 export class ChooseFilesComponent implements OnInit {
 
 
-	url: any;
+	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1') }
+
+	url: any = 'http://localhost:3000/uploads/';
+
+	urlforResume: any = this.url+''
+	urlforMark: any
+	urlforTc: any
+	urlforaadhar: any
+	urlforbankpass: any
+	urlforphoto: any
+	urlforSign: any
+
+	url_appointmentorder_file: any
+	url_declaration_file: any
+	url_medicalfitness_file:any
+	url_formA4_file:any
+	url_form11_file:any
+	url_formh2_file: any
+	url_natx_file: any
+
 	msg = "";
 	ishr : any;
 
@@ -29,7 +49,8 @@ export class ChooseFilesComponent implements OnInit {
 	form11_file: File|null = null;
 	formh2_file: File|null = null;
 	natx_file: File|null = null;
-  constructor(private service: PlantcodeService) {
+	filenames: any;
+  constructor(private service: PlantcodeService, private active : ActivatedRoute) {
 
 	this.ishr = localStorage.getItem('ishr')
 	console.log('====================================');
@@ -38,41 +59,10 @@ export class ChooseFilesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+	this.getfiles()
   }
-
 	
-	//selectFile(event) { //Angular 8
-	selectFile(event: any) { //Angular 11, for stricter type
-		// if(!event.target.files[0] || event.target.files[0].length == 0) {
-		// 	this.msg = 'You must select an image';
-		// 	return;
-		// }
-		
-		// var mimeType = event.target.files[0].type;
-		
-		// if (mimeType.match(/image\/*/) == null) {
-		// 	this.msg = "Only images are supported";
-		// 	return;
-		// }
-		
-		// var reader = new FileReader();
-		// reader.readAsDataURL(event.target.files[0]);
-		
-		// reader.onload = (_event) => {
-		// 	this.msg = "";
-		// 	this.url = reader.result; 
-		// }
-	
-	}
-
-
-	onUpload(){
-
-	}
-	onChange(event:any){
-
-	}
-	
+//////////////////////////////////////////////////////////////////
 
 	onResumeChange(event:any){
 			this.resume_file = event.target.files[0]
@@ -129,6 +119,18 @@ onSignatureChange(event:any){
 onSignatureUpload(){
 	this.service.fileupload(this.signature_file)
 }
+
+getfiles(){
+	this.service.getfiles(this.uniqueId)
+	this.filenames = this.service.filenames
+	setTimeout(() => {
+		console.log('====================================');
+		console.log("filessssss", this.service.filenames);
+		console.log('====================================');
+	}, 1000);
+}
+
+//////////////////////////////////////////////////////////////////
 
 onAppointmentorderChange(event:any){
 	this.appointmentorder_file = event.target.files[0]

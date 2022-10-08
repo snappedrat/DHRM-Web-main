@@ -28,8 +28,9 @@ export class PlantcodeService {
   education:any = []
   family:any = []
   career:any = []
-  url = '14.99.10.243'
+  url = 'http://localhost:3000'
   uniqueId: any
+  filenames: any;
   constructor(private http : HttpClient, private active : ActivatedRoute)
   {
    }
@@ -145,13 +146,18 @@ post('http://localhost:3000/getdatacareer',uniqueId)
 })
 }
 
-fileupload(file:any){
+fileupload(file:any, ){
   const formData = new FormData()
-  formData.append("file",file, file.name)
+  formData.append("file",file, 'kekuthaaaaaaaaaaaa' +'.'+ file.name.split('.')[1] )
 
-    console.log('====================================');
-    console.log(formData);
-    console.log('====================================');
+    // file.name = 'kekeuthaaaa.jpg'
+    setTimeout(() => {
+      console.log('====================================');
+      console.log(file)
+      console.log(formData);
+      console.log('====================================');
+    }, 1000);
+
     this.http.
     post('http://localhost:3000/image', formData).subscribe({
       next: (res)=> console.log(res),
@@ -172,5 +178,16 @@ rejected(){
     error: (error) => console.log(error),
   })
 }
+
+getfiles(unique:any){
+  this.http.post(
+    'http://localhost:3000/getfiles', unique).subscribe({
+      next: (res)=> {console.log('filenames',res);this.filenames = res},
+      error: (err)=> console.log(err)
+
+    })
+}
+
+
 
 }
