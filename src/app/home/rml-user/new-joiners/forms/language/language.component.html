@@ -11,7 +11,7 @@
         <th scope="col">Understand</th>
         </tr>
         <tr *ngFor="let data of languageList">
-        <td ><input type="text" [(ngModel)]="data.language" checked="readonly" (click)="sendData()">
+        <td ><input type="text" [(ngModel)]="data.language" readonly (click)="sendData()">
         
         </td>
         <td><input type = "checkbox" [checked]="data.speak == 1" (click)="sendData()" (click)="changestatus($event, data, 'speak')"></td>
