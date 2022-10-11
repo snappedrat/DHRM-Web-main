@@ -72,8 +72,14 @@ familyData = [
     setTimeout(() => {
       this.family = this.plantcodeService.family
       console.log('====================================');
-      console.log(this.family);
       console.log('====================================');
+
+      if(this.family[0]?.age1 == undefined || this.family[0]?.age2 == undefined || this.family[0]?.age3 == undefined || this.family[0]?.age4 == undefined)
+      {
+        console.log("undefined values in family")
+      }
+      else{
+          
       this.familyData[0].name = this.family[0]?.relation_name1
       this.familyData[0].relation = this.family[0]?.relation_type1
       this.familyData[0].age = this.family[0]?.age1
@@ -101,6 +107,7 @@ familyData = [
       this.familyData[3].occupation = this.family[0]?.occupation4
       this.familyData[3].contactnumber = this.family[0]?.contact_number4
       this.familyData[3].dependent = this.family[0]?.dependent4
+      }
       this.sendData()
     }, 1000);
     this.sendData()

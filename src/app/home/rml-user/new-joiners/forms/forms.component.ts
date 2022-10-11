@@ -107,13 +107,15 @@ export class FormsComponent implements OnInit {
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
       console.log(this.uniqueId);
-
+      if(this.ishr)
+      {
       this.http
       .post('http://localhost:3000/submitted', this.uniqueId)
       .subscribe({
         next: (response) =>{ console.log(response);},
         error: (error) => console.log(error),
       })
+    }
   }
 
   approved()

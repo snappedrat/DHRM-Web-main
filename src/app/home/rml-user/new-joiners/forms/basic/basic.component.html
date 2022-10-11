@@ -11,31 +11,34 @@
                     id="fname"
                     type="text"
                     class="form-control"
+                    (click)="sendData()"
                     placeholder="First Name">
             <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
                 <div *ngIf="fname.fname.errors.required">First Name is required</div>
             </div></div></div>
             <div  class="form-group">
                 <div class = "col-md-2">
-                <label for="name">Last Name:</label>
+                <label for="lname">Last Name:</label>
                 <input
                         formControlName="lname"
                         id="lname"
                         type="text"
                         class="form-control"
-                        placeholder="Last Name">
+                        placeholder="Last Name"
+                        (click)="sendData()">
                 <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert alert-danger">
                     <div *ngIf="lname.lname.errors.required">Last Name is required</div>
                 </div></div></div></div>
                         
                 
                 <div class="form-group">    
-                        <label for="fname">Father Name:</label>
+                        <label for="ftname">Father Name:</label>
                 <input
                         formControlName="ftname"
                         id="ftname"
                         type="text"
                         class="form-control"
+                        (click)="sendData()"
                         placeholder="Father Name">
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
@@ -82,6 +85,7 @@
                     formControlName="bd"
                     id="bd"
                     type="date"
+                    (click)="sendData()"
                     class="form-control">
             <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
@@ -89,7 +93,7 @@
         </div>
         <div  class="form-group">
             <label for="">Nationality:</label>
-            <select formControlName="nation" class="form-control">
+            <select formControlName="nation" class="form-control" (click)="sendData()" >
                 <option disabled>Select Nationality</option>
                 <option>Choose Nationality</option>
                 <option *ngFor="let nat of nation">{{nat}}</option>
@@ -103,7 +107,7 @@
                 Permanent Address:
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" (click)="sendData()" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -183,7 +187,7 @@
         <div class="form-group">
            
             <label for="">Marital Status:</label>
-            <select formControlName="mar" class="form-control">
+            <select formControlName="mar" class="form-control" (click)="sendData()" >
                 <option disabled>Select Marital Status</option>
                 <option>Choose Marital Status</option>
                 <option *ngFor="let mr of marital">{{mr}}</option>
@@ -196,7 +200,7 @@
 
         <div class="form-group">
             <label for="">Blood Group:</label>
-            <select formControlName="bg" class="form-control">
+            <select formControlName="bg" class="form-control" (click)="sendData()">
                 <option disabled>Select BloodGroup</option>
                 <option>Choose BloodGroup</option>
                 <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
@@ -208,7 +212,7 @@
         <div  class="form-group">
             
             <label for="">Gender:</label>
-            <select formControlName="gender" class="form-control">
+            <select formControlName="gender" class="form-control" (click)="sendData()">
                 <option disabled>Select Gender</option>
                 <option>Choose Gender</option>
                 <option *ngFor="let gen of  Gender">{{gen}}</option>
@@ -218,14 +222,14 @@
             </div>
 
             <label  for = "vacc" > Vaccinated ?</label>
-            <select  class="form-control">
-                <option> YES</option>
-                <option>NO</option>
+            <select  class="form-control" formControlName= "vacc" (change)="hide_vacc($event)" >
+                <option value = 'yes' > YES</option>
+                <option value = 'no' >NO</option>
             </select>
         </div><br>
         
-        
-            <div class="form-group">
+        <div *ngIf= "vaccinated">
+        <div class="form-group">
             
             
             <label for="dd1">Dose1 Date</label>
@@ -243,7 +247,10 @@
                     formControlName="dd2"
                     id="dd2"
                     type="date"
-                    class="form-control"></div>
+                    class="form-control">
+        </div>
+    </div>
+
         
         <div class="form-group">
          
@@ -303,8 +310,10 @@
     type="text"
     (click)="sendData()"
     class="form-control"
-    placeholder="Identification Mark 1">
 
+    placeholder="Identification Mark 1">
+</div>
+<div class = 'form-group'>
     <label for="idm2">Identification Mark 2:</label>
     <input
   formControlName="idm2"

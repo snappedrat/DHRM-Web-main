@@ -16,11 +16,11 @@
                     {{i}}
             </option>
         </select></td>
-        <td><input type = "checkbox" [checked]="data.speak == 1" (click)="changestatus($event, data, 'speak')"></td>
-        <td><input type = "checkbox" [checked]="data.read == 1" (click)="changestatus($event, data,'read')"></td>
-        <td><input type = "checkbox" [checked]="data.write == 1" (click)="changestatus($event, data,'write')"></td>
-        <td><input type = "checkbox" [checked]="data.mothertongue == 1" (click)="changestatus($event, data,'mothertongue')"></td>
-        <td><input type = "checkbox" [checked]="data.understand == 1" (click)="changestatus($event, data,'understand')"></td>
+        <td><input type = "checkbox" [checked]="data.speak == 1" (click)="sendData()" (click)="changestatus($event, data, 'speak')"></td>
+        <td><input type = "checkbox" [checked]="data.read == 1" (click)="sendData()" (click)="changestatus($event, data,'read')"></td>
+        <td><input type = "checkbox" [checked]="data.write == 1" (click)="sendData()" (click)="changestatus($event, data,'write')"></td>
+        <td><input type = "checkbox" [checked]="data.mothertongue == 1" (click)="sendData()" (click)="changestatus($event, data,'mothertongue')"></td>
+        <td><input type = "checkbox" [checked]="data.understand == 1" (click)="sendData()" (click)="changestatus($event, data,'understand')"></td>
     </tr>
     
    
@@ -29,5 +29,5 @@
         <tr>
     </thead>    
     </table>
-    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()" (click)="sendData()" > Save</button>
 </div> 

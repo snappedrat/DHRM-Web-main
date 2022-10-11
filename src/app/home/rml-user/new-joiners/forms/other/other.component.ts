@@ -19,13 +19,13 @@ export class OtherComponent implements OnInit {
   forms: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private http: HttpClient, private cookie:CookieService , private plantcodeService : PlantcodeService, private active: ActivatedRoute) {
     this.forms = fb.group({ 
-      known:['',Validators.required],
-      work:['',Validators.required],
-      names:['',Validators.required],
-      place:['',Validators.required],
-      com:['',Validators.required],
-      extra:['',Validators.required],
-      mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
+      known:[''],
+      work:[''],
+      names:[''],
+      place:[''],
+      com:[''],
+      extra:[''],
+      mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')]
 
    })
 
@@ -36,13 +36,18 @@ ngOnInit(): void {
 
   this.getdatabasic()
   setTimeout(() => {
+
+    if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' ){
+        console.log("enter some values")
+  }
+  else{
     this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
     this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
     this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
     this.forms.controls['place'].setValue(this.other[0]?.prev_rane_exp)
     this.forms.controls['com'].setValue(this.other[0]?.existing_empl_company)
     this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
-
+  }
     this.sendData()
     
   }, 1000);
@@ -72,13 +77,14 @@ get extra()
   return this.forms.controls; 
 }
 submit(){
-  console.log(this.forms.value)
+  console.log(this.forms.controls['extra'].value)
   if(this.forms.value.length == 0){
       console.log("good");
     }
     else{
       this.plantcodeService.submitother()
     }
+
 }
 sendData(){
   this.plantcodeService.other = this.forms.value

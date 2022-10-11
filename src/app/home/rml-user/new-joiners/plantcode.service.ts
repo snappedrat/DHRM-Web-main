@@ -24,7 +24,9 @@ export class PlantcodeService {
   lang : any;
   other : any;
   prev : any;
+  idforfilename:any
 
+  basicdetails :any = []
   education:any = []
   family:any = []
   career:any = []
@@ -116,12 +118,22 @@ sumbitlang(){
   })
 }
 
+getdatabasic(uniqueId:any){
+
+  this.http.
+post('http://localhost:3000/getdatabasic',uniqueId)
+.subscribe({
+  next: (response) => {console.log("basic : ",response); this.basicdetails= response} ,
+  error: (error) => console.log(error),
+})
+}
+
 getdataqualifn(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
 post('http://localhost:3000/getdataqualfn',uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.education = response} ,
+  next: (response) => {console.log("qualifn",response); this.education = response} ,
   error: (error) => console.log(error),
 })
 }
@@ -131,7 +143,7 @@ getdatafamily(uniqueId:any){
   this.http.
 post('http://localhost:3000/getdatafamily',uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.family = response} ,
+  next: (response) => {console.log("family",response); this.family = response} ,
   error: (error) => console.log(error),
 })
 }
@@ -141,22 +153,18 @@ getdatacareer(uniqueId:any){
   this.http.
 post('http://localhost:3000/getdatacareer',uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.career = response} ,
+  next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),
 })
 }
 
-fileupload(file:any, ){
+fileupload(file:any,uniqueId:any, id_no :any, fileno:any){
   const formData = new FormData()
-  formData.append("file",file, 'kekuthaaaaaaaaaaaa' +'.'+ file.name.split('.')[1] )
+  var changedname = id_no
+  formData.append("file",file, changedname +'.'+ file.name.split('.')[1] )
+  formData.append("mobile",uniqueId)
 
-    // file.name = 'kekeuthaaaa.jpg'
-    setTimeout(() => {
-      console.log('====================================');
-      console.log(file)
-      console.log(formData);
-      console.log('====================================');
-    }, 1000);
+  formData.append("fileno",fileno)
 
     this.http.
     post('http://localhost:3000/image', formData).subscribe({
@@ -178,16 +186,5 @@ rejected(){
     error: (error) => console.log(error),
   })
 }
-
-getfiles(unique:any){
-  this.http.post(
-    'http://localhost:3000/getfiles', unique).subscribe({
-      next: (res)=> {console.log('filenames',res);this.filenames = res},
-      error: (err)=> console.log(err)
-
-    })
-}
-
-
 
 }

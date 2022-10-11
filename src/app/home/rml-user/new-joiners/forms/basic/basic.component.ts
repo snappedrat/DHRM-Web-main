@@ -20,16 +20,12 @@ export class BasicComponent implements OnInit{
     physical:any=['Yes','No'];
     uniqueId :any = {'mobile':''}
     basic: any = []
-
-    // sample: any = {
-    //     "name" : "ahamed",
-    //     "father": "Nisar"
-    // }
-
+    aadharsplitted :any = []
+    vaccinated :any = false
+    ishr:any = localStorage.getItem('ishr') 
     form: FormGroup = new FormGroup({});
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
-            mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
             permanent:['',Validators.required],
             present: ['', Validators.required],
             title:['',Validators.required],
@@ -38,8 +34,9 @@ export class BasicComponent implements OnInit{
             lname:['',Validators.required],
             ftname:['',Validators.required],
             bd:['',Validators.required],
-            height:['',Validators.required],
-            weight:['',Validators.required],
+            height:[''],
+            weight:[''],
+            vacc:[''],
             dd1:['',Validators.required],
             dd2:['',Validators.required],
             bg:['',Validators.required],
@@ -58,17 +55,17 @@ export class BasicComponent implements OnInit{
             bp:['',Validators.required],
             idm1:[''],
             idm2:[''],
-            mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
-        })
+            mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')]
+    })
    }
 
     ngOnInit(): void {
 
         this.getdatabasic()
-        
+        this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
-            this.form.controls['fname'].setValue(this.basic[0]?.fullname)
-            this.form.controls['lname'].setValue(this.basic[0]?.fullname)
+            this.form.controls['fname'].setValue(this.basic[0]?.first_name)
+            this.form.controls['lname'].setValue(this.basic[0]?.last_name)
             this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
             this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
             this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
@@ -76,6 +73,13 @@ export class BasicComponent implements OnInit{
             this.form.controls['nation'].setValue(this.basic[0]?.nationality)
             this.form.controls['height'].setValue(this.basic[0]?.height)
             this.form.controls['weight'].setValue(this.basic[0]?.weight)
+
+            this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
+            this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
+            this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
+            this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
+            this.form.controls['aadhar4'].setValue(this.aadharsplitted[3])
+
             this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
             this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
             this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
@@ -85,12 +89,21 @@ export class BasicComponent implements OnInit{
             this.form.controls['pc'].setValue(this.basic[0]?.pincode)
             this.form.controls['city'].setValue(this.basic[0]?.city)
             this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
+            this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
+            this.form.controls['gender'].setValue(this.basic[0]?.gender)
             this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
             this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
 
 
             this.sendData()
         }, 1000);
+    }
+
+    hide_vacc(event:any){
+        if(event.target.value == 'yes')
+            this.vaccinated = true
+        if(event.target.value == 'no')
+            this.vaccinated = false
     }
 
     get f(){
@@ -215,6 +228,7 @@ export class BasicComponent implements OnInit{
     }
     submit(){
             this.plantcodeService.submitbasic()
+            this.sendData()
 
     }
     sendData(){
