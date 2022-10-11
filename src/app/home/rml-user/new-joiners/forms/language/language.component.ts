@@ -13,7 +13,7 @@ import { threadId } from 'worker_threads';
 })
 export class LanguageComponent implements OnInit {
 
-lang: any = ['Tamil', 'English', 'Marati', 'Telugu', 'Malayalam', 'Hindi']
+  
 
 uniqueId :any = {'mobile':''}
 details : any = []

@@ -11,11 +11,9 @@
         <th scope="col">Understand</th>
         </tr>
         <tr *ngFor="let data of languageList">
-        <td ><select type="text" [(ngModel)]="data.language" checked="readonly" (click)="sendData()">
-            <option *ngFor= "let i of lang">
-                    {{i}}
-            </option>
-        </select></td>
+        <td ><input type="text" [(ngModel)]="data.language" checked="readonly" (click)="sendData()">
+        
+        </td>
         <td><input type = "checkbox" [checked]="data.speak == 1" (click)="sendData()" (click)="changestatus($event, data, 'speak')"></td>
         <td><input type = "checkbox" [checked]="data.read == 1" (click)="sendData()" (click)="changestatus($event, data,'read')"></td>
         <td><input type = "checkbox" [checked]="data.write == 1" (click)="sendData()" (click)="changestatus($event, data,'write')"></td>
