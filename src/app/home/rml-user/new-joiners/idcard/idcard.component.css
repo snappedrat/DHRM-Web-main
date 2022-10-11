@@ -3,7 +3,7 @@
   width: 300px;
   height: 500px;
   float: left;
-  font-size:5px;
+  font-size:2px;
 }
 .card2 {
 
@@ -12,6 +12,11 @@
   height: 500px;
   float: left;
   font-size:5px;
+}
+
+.left{
+  text-align: right;
+  float: right;
 }
 
 .container {
@@ -39,8 +44,10 @@
   float: right;
 }
 
-.font{
-  font-size: 18px;
+.font
+{
+  font-size: 15px;
+  
 }
 .font2{
   font-size: 15px;

@@ -75,10 +75,6 @@ eduData = [
     setTimeout(() => {
       this.education = this.plantcodeService.education
 
-      // console.log('====================================');
-      // console.log(this.education);
-      // console.log('====================================');
-
       this.eduData[0].school = this.education[0]?.school_name1
       this.eduData[0].passed = this.education[0]?.exam_passed1
       this.eduData[0].year = this.education[0]?.passing_yr1
@@ -110,6 +106,24 @@ eduData = [
       this.eduData[3].certificatenumber = this.education[0]?.cert_number4
       this.eduData[3].certificatedate = this.education[0]?.cer_date4
       this.eduData[3].percentage = this.education[0]?.percentage4
+
+      for(var i = 0;i<=3;i++)
+      {
+        if(this.eduData[i].school == 'undefined')
+        this.eduData[i].school = ''
+        if(this.eduData[i].passed == 'undefined')
+        this.eduData[i].passed = ''
+        if(this.eduData[i].year == 'undefined')
+        this.eduData[i].year = ''
+        if(this.eduData[i].department == 'undefined')
+        this.eduData[i].department = ''
+          if(this.eduData[i].certificatenumber == 'undefined')
+          this.eduData[i].certificatenumber = ''
+          if(this.eduData[i].certificatedate == 'undefined')
+          this.eduData[i].certificatedate = ''
+          if(this.eduData[i].percentage == 'undefined')
+          this.eduData[i].percentage = ''
+      }
 
     }, 1000);
     this.sendData()

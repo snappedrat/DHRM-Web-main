@@ -1,30 +1,30 @@
-<div>
-  <div class="card" *ngFor= "let i of formvalues" > 
+<div *ngFor= "let i of formvalues" class="container">
+  <div class="card"> 
       <table class="font">
           <div class="center">
-              <div class="header"><b> Rane(Madras)Limited</b></div>
+              <div class="header"><b> Rane(Madras)Limited</b></div><br>
               <div class="font2">P3 R.S NO.77, Thirubuvanai street, Thirubuvanai, puduchery - 605107</div>
           </div>
           <img class = "center" src="../assets/rane.png" alt="Avatar" style="width:20% ">
           <tr class="font">
               <td><b>Id no.</b></td>
-              <td>1234</td>
+              <td>{{i.trainee_idno}}</td>
           </tr><br>
           <tr>
               <td><b>Name:</b></td>
-              <td>{{i.fullname}}</td>
+              <td class = "left" >{{i.fullname}}</td>
           </tr><br>
           <tr>
               <td><b>Father name:</b></td>
-              <td>1234</td>              
+              <td>{{i.fathername}}</td>              
           </tr><br>
           <tr>
               <td><b>Department:</b></td>
-              <td>1234</td>
+              <td>Training</td>
           </tr><br>
           <tr>
               <td><b>Designation:</b></td>
-              <td>1234</td>
+              <td>DOJO Trainee</td>
           </tr><br>
           <div class="left">
               <img src="../assets/rane.png" alt="Avatar" style="width:30%" ></div><br>
@@ -32,28 +32,30 @@
           </div>
       </table>
   </div>
-  <div class="card2">
+  <div class="card">
       <div class="container">
           <table class="font">
-              <div > <b>Address:</b></div>
-              <div class="left">4a/7a , kannan street, srinivasa nagar, new perungalathur, chennai - 600063 </div>
+            <div class="center">
+              <div class="header" > <b>Address:</b></div><br>
+              <div class="font2" >{{i.permanent_address}}</div>
+              </div>
               <tr><td></td></tr><br><br><br>
-              <tr>
+              <tr class="font">
                   <td><b>Emergency contact</b></td>
                   <td></td><br><br>
               </tr>
-              <tr> 
+              <tr > 
                   <td><b> Name:</b></td>
-                  <td>1234</td><br><br>
+                  <td class = "left" >{{i.emergency_name}}</td><br><br>
               <tr > 
                   <td><b>Relation:</b></td>
-                  <td>1234</td><br><br>
+                  <td class = "left" >{{i.emergency_rel}}</td><br><br>
               <tr>
                   <td><b> Valid from:</b></td>
-                  <td>1234</td><br><br>
+                  <td class = "left" >{{from_date}}</td><br><br>
               <tr> 
                   <td><b> Valid to:</b></td>
-                  <td>1234</td><br><br>
+                  <td class = "left" >{{to_date}}</td><br><br>
           </table>
     </div>
   </div>

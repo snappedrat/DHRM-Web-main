@@ -62,7 +62,6 @@ export class ChooseFilesComponent implements OnInit {
 
   ngOnInit(): void {
 	this.getfiles()
-	this.getFilesForhr()
 
   }
 
@@ -73,35 +72,36 @@ export class ChooseFilesComponent implements OnInit {
 		this.filenames = this.service.basicdetails
 		console.log("this.filenames : ",this.filenames)
 		
-	}, 500);
+	}, 1000);
 }
 
-getFilesForhr(){
-	this.service.getdatabasic(this.uniqueId)
+// getFilesForhr(){
+// 	this.service.getdatabasic(this.uniqueId)
 
-	setTimeout(() => {
-		this.filenames = this.service.basicdetails
-		console.log("this.filenames : ",this.filenames)
-		if(this.filenames[0]?.other_files1 == 'undefined' || this.filenames[0]?.other_files2 == 'undefined' || this.filenames[0]?.other_files3 == 'undefined' || this.filenames[0]?.other_files4 == 'undefined' || this.filenames[0]?.other_files5 == 'undefined' || this.filenames[0]?.other_files6 == 'undefined' || this.filenames[0]?.other_files7 == 'undefined')
-		{
-			console.log('undefined values')
-		}
-		// else
-		// {
-		// this.urlforResume = this.url+this.filenames[0]?.other_files1
-		// this.urlforMark = this.url+this.filenames[0]?.other_files2
-		// this.urlforTc = this.url+this.filenames[0]?.other_files3
-		// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
-		// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
-		// this.urlforphoto = this.url+this.filenames[0]?.other_files6
-		// this.urlforSign = this.url+this.filenames[0]?.other_files7
-		// }
-	}, 500);
-}
+	// setTimeout(() => {
+	// 	this.filenames = this.service.basicdetails
+	// 	console.log("this.filenames : ",this.filenames)
+	// 	if(this.filenames[0]?.other_files1 == 'undefined' || this.filenames[0]?.other_files2 == 'undefined' || this.filenames[0]?.other_files3 == 'undefined' || this.filenames[0]?.other_files4 == 'undefined' || this.filenames[0]?.other_files5 == 'undefined' || this.filenames[0]?.other_files6 == 'undefined' || this.filenames[0]?.other_files7 == 'undefined')
+	// 	{
+	// 		console.log('undefined values')
+	// 	}
+	// 	// else
+	// 	// {
+	// 	// this.urlforResume = this.url+this.filenames[0]?.other_files1
+	// 	// this.urlforMark = this.url+this.filenames[0]?.other_files2
+	// 	// this.urlforTc = this.url+this.filenames[0]?.other_files3
+	// 	// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
+	// 	// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
+	// 	// this.urlforphoto = this.url+this.filenames[0]?.other_files6
+	// 	// this.urlforSign = this.url+this.filenames[0]?.other_files7
+	// 	// }
+	// }, 500);
+// }
 
 ////////////////////////////////////////////////////////////////////////////
 
 	onResumeChange(event:any){
+
 			this.resume_file = event.target.files[0]
 
 				this.service.fileupload(this.resume_file,this.uniqueId.mobile, this.filenames[0]?.apln_slno+'_resume','1' )
@@ -109,7 +109,7 @@ getFilesForhr(){
 				this.filenames = this.service.basicdetails
 				this.urlforResume = this.url+this.filenames[0]?.other_files1
 				console.log('====================================');
-				console.log(this.urlforResume);
+				console.log(this.filenames[0]?.other_files1);
 				console.log('====================================');
 
 	}

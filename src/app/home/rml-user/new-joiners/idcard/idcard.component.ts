@@ -8,16 +8,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./idcard.component.css']
 })
 
-
 export class IdcardComponent implements OnInit {
 
   uniqueId :any = {'mobile':''}
   status: any = {'status': ''}
   formvalues: any
-
-  
-
-  constructor(private active: ActivatedRoute, private http: HttpClient ) { }
+  date:any = new Date()
+  from_date:any = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+ this.date.getDate();
+  ddate : any = +this.from_date.split('-')[2] + +10
+  to_date :any = this.from_date.split('-')[0]+'-'+this.from_date.split('-')[1]+'-'+this.ddate
+    constructor(private active: ActivatedRoute, private http: HttpClient ) { }
 
   ngOnInit(): void {
     this.getDataForID()

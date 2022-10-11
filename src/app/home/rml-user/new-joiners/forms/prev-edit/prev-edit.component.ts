@@ -96,6 +96,21 @@ export class PrevEditComponent implements OnInit {
         this.prevData[3].sal = this.career[0]?.last_salary4
         this.prevData[3].reason = this.career[0]?.leaving_reason4
 
+        for(var i = 0; i<=3; i++){
+          if(this.prevData[i].name == 'null')
+            this.prevData[i].name = ''
+            if(this.prevData[i].desig == 'null')
+            this.prevData[i].desig = ''
+            if(this.prevData[i].periodf == 'null')
+            this.prevData[i].periodf = ''
+            if(this.prevData[i].periodt  == 'null')
+            this.prevData[i].periodt  = ''
+            if(this.prevData[i].sal == 'null')
+            this.prevData[i].sal = ''
+            if(this.prevData[i].reason == 'null')
+            this.prevData[i].reason = ''
+        }
+
       }, 1000);
 
       this.sendData()
