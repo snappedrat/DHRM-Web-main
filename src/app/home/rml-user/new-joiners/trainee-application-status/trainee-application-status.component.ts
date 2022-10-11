@@ -21,8 +21,10 @@ filterinfo: any
    }
   ngOnInit(): void {
     this.form.controls['status'].setValue('pending')
-    this.form.controls['fromdate'].setValue('2018-02-02')
-    this.form.controls['todate'].setValue('2022-10-07')
+    this.form.controls['fromdate'].setValue('2015-01-01')
+    var date = new Date()
+    var to_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+    this.form.controls['todate'].setValue(to_date)
     this.filter()
   }
 

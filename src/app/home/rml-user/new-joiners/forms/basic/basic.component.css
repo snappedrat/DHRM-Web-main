@@ -29,3 +29,7 @@ input{
 .alert {
     width: 900px;
 }
+
+.mx-5{
+    background-color: rgb(255, 255, 255);
+}

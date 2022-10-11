@@ -31,6 +31,7 @@ select:hover{
 .container{
     display: inline-block;
     margin-left: 4%;
+
   }
 
 .text{
@@ -52,4 +53,15 @@ select:hover{
     }
 .h1{
     margin-left: 10px;
+}
+
+hr {
+    position: relative;
+    top: 20px;
+    border: none;
+    height: 2px;
+    background: #007bff;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px
 }

@@ -43,6 +43,7 @@ export class TraineeApplicationComponent implements OnInit{
       pass: [this.Tvalue ]
    });
    this.mobilenum = this.bankForms.controls['mobileNumber'].value
+   this.bankForms.get('pass')?.disable();
 
 }
 
