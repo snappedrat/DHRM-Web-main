@@ -20,7 +20,7 @@ details : any = []
 
 languageList = [
   {
-    'language': '',
+    'language': 'TAMIL',
     'speak': 0,
     'read': 0,
     'write': 0,
@@ -29,7 +29,7 @@ languageList = [
     'mobile': this.active.snapshot.paramMap.get('mobile_no1')
   },
   {
-    'language': '',
+    'language': 'ENGLISH',
     'speak': 0,
     'read': 0,
     'write': 0,
@@ -37,7 +37,7 @@ languageList = [
     'understand': 0
   },
   {
-    'language': '',
+    'language': 'HINDI',
     'speak': 0,
     'read': 0,
     'write': 0,
@@ -45,7 +45,7 @@ languageList = [
     'understand': 0
   },
   {
-    'language': '',
+    'language':'MALAYALAM',
     'speak': 0,
     'read': 0,
     'write': 0,
@@ -53,7 +53,7 @@ languageList = [
     'understand': 0
   },
   {
-  'language': '',
+  'language': 'KANNADA',
     'speak': 0,
     'read': 0,
     'write': 0,
@@ -61,7 +61,7 @@ languageList = [
     'understand': 0
   },
   {
-    'language': '',
+    'language': 'TELUGU',
     'speak': 0,
     'read': 0,
     'write': 0,

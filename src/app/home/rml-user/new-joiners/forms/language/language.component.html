@@ -11,7 +11,7 @@
         <th scope="col">Understand</th>
         </tr>
         <tr *ngFor="let data of languageList">
-        <td ><select type="text" [(ngModel)]="data.language" (click)="sendData()">
+        <td ><select type="text" [(ngModel)]="data.language" checked="readonly" (click)="sendData()">
             <option *ngFor= "let i of lang">
                     {{i}}
             </option>
