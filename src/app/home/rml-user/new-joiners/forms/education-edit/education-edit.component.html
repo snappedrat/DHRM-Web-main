@@ -19,7 +19,7 @@
         <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>
-        <td><input type = "text" [(ngModel)]="data.year" (click)="sendData()" ></td>
+        <td><input type = "date" [(ngModel)]="data.year" (click)="sendData()" ></td>
         <td><input type = "text"[(ngModel)]="data.department" (click)="sendData()"></td>
         <td><input type = "text"[(ngModel)]="data.certificatenumber" (click)="sendData()"></td>
         <td><input type = "date"[(ngModel)]="data.certificatedate" (click)="sendData()" ></td>
