@@ -16,6 +16,7 @@ filterinfo: any
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),
       todate: new UntypedFormControl(' '),
+      plantcode: [localStorage.getItem('plantcode')]
 
     });
    }
@@ -26,6 +27,10 @@ filterinfo: any
     var to_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
     this.form.controls['todate'].setValue(to_date)
     this.filter()
+        window.onbeforeunload = function(){
+        localStorage.clear()
+
+      }
   }
 
 filter()

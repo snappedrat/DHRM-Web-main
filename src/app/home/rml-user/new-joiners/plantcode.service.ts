@@ -33,6 +33,9 @@ export class PlantcodeService {
   url = 'http://localhost:3000'
   uniqueId: any
   filenames: any;
+  ishr:any = []
+  ishrappr:any = []
+
   constructor(private http : HttpClient, private active : ActivatedRoute)
   {
    }
@@ -185,6 +188,29 @@ rejected(){
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
   })
+}
+
+getHr(uniqueid: any)
+{
+  this.http.post('http://localhost:3000/gethr',uniqueid)
+  .subscribe({
+    next: (response) => {console.log(response); this.ishr = response;},
+    error: (error) => console.log(error),
+});
+setTimeout(() => {
+  localStorage.setItem('ishr', this.ishr[0]?.Is_HR)
+}, 1000);
+
+
+  this.http.post('http://localhost:3000/gethrappr',uniqueid)
+      .subscribe({
+        next: (response) => {console.log(response); this.ishrappr = response},
+        error: (error) => console.log(error),
+  });
+setTimeout(() => {
+  localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
+  localStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
+}, 1000);
 }
 
 }

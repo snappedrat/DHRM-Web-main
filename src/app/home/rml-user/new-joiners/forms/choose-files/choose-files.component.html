@@ -135,7 +135,7 @@
 		<button *ngIf="file != null" > preview </button>
 	</form> -->
 <form >
-<div *ngIf="ishr==undefined" >
+<div *ngIf="ishr=='undefined' " class = "mx-5" >
 <h1>Employee related</h1>
 <table [width]="1000">
     <tr>
@@ -217,7 +217,7 @@
 </div>
 
 
-<div *ngIf= "ishr" class="container" >
+<div *ngIf= "ishr" class="mx-5" >
 <h1>Employee related</h1>
 <table [width]="1000">
     <tr>

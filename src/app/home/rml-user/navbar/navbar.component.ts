@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
+import { PlantcodeService } from '../new-joiners/plantcode.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -15,12 +17,13 @@ import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, Untyp
 
 export class NavbarComponent implements OnInit{
 
-  
-
-  ishrappr :any = []
+  ishrappr :any
   form: FormGroup = new FormGroup({});
-  ishr: any  = []
+  ishr: any 
   a : any
+  username :any = {
+    "username": localStorage.getItem('user_name')
+  }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -28,7 +31,7 @@ export class NavbarComponent implements OnInit{
       shareReplay()
     );
 
-  constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient) {
+  constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
         username : new UntypedFormControl(localStorage.getItem('user_name'))
     })
@@ -39,28 +42,26 @@ export class NavbarComponent implements OnInit{
         this.cookie.delete('Password')
       }
 
-      ngOnInit(): void {
-        console.log(this.form.value)
+      ngOnInit(): void 
+      {
         this.getHr()
       }
 
-      getHr(){
-        this.http.post('http://localhost:3000/gethr',this.form.value)
-        .subscribe({
-          next: (response) => {console.log(response); this.ishr = response},
-          error: (error) => console.log(error),
-    });
-    localStorage.setItem('ishr', this.ishr[0]?.Is_HR)
-        this.http.post('http://localhost:3000/gethrappr',this.form.value)
-            .subscribe({
-              next: (response) => {console.log(response); this.ishrappr = response},
-              error: (error) => console.log(error),
-        });
-    localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
-      }
+getHr()
+{
+  console.log(this.username)
+  console.log(this.active.snapshot.paramMap.get('username'))
+  this.service.getHr(this.username)
+  setTimeout(() => {
+    
+  this.ishr = localStorage.getItem('ishr')
+  this.ishrappr = localStorage.getItem('ishrappr')
+  console.log('====================================');
+  console.log(this.ishr,this.ishrappr);
+  console.log('====================================');  
+  }, 1000);
 
-      setlocal(){
-        localStorage.setItem('ishr', this.ishr[0]?.Is_HR)
-        localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
-      }
+
+}
+
 }
