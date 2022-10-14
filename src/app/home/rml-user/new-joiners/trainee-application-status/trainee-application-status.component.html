@@ -27,6 +27,26 @@
 </div>
   <button class = "btn btn-primary btn-lg" (click)="filter()" >Search</button>
   <br><br>
+
+
+
+  <div class = "row">
+  <div >
+  <label for="Status" id="center"> Search: </label>
+  <br>
+    <select id="Search" formControlName = "status">
+      <option value="name" >Name</option>
+      <option value="father name">Father name</option>
+      <option value="moblie number">mobile number</option>
+      <option value="aadhar number">aadhar number</option>
+    </select>
+    <input name="searchfor"><button   >🔍</button> 
+  </div>
+
+
+
+  </div>
+  <br><br>
     <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
