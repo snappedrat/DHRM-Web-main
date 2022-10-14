@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EducationEditComponent implements OnInit {
 
 mobile: any
-Exampassed: any = ['Yes', 'No']
+Exampassed: any = ['HSC','SSLC','BOARD','DIPLOMA','ITI','BE','BTECH','ARTS&SCIENCE']
 education:any = []
 
 mobile_no1 = {
