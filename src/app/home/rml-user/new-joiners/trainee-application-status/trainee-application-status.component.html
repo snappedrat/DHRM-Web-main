@@ -27,22 +27,21 @@
 </div>
   <button class = "btn btn-primary btn-lg" (click)="filter()" >Search</button>
   <br><br>
+</form>
 
-
-
-  <div class = "row">
+<div class = "row">
   <div >
   <label for="Status" id="center"> Search: </label>
   <br>
-    <select id="Search" formControlName = "status">
+    <select id="Search" [(ngModel)] = "colname" >
       <option value="name" >Name</option>
       <option value="father name">Father name</option>
       <option value="moblie number">mobile number</option>
       <option value="aadhar number">aadhar number</option>
     </select>
-    <input name="searchfor"><button   >🔍</button> 
+    <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="dummy()"  >🔍</button> 
+    
   </div>
-
 
 
   </div>
@@ -131,4 +130,5 @@
             </table>
           </table>
         </div>
-        
+
+      </div>

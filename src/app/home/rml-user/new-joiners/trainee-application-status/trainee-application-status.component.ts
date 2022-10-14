@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { PlantcodeService } from '../plantcode.service';
 
 @Component({
   selector: 'app-trainee-application-status',
@@ -11,7 +13,10 @@ export class TraineeApplicationStatusComponent implements OnInit {
 
 form: any
 filterinfo: any
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
+colname :any
+colvalue :any
+
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : PlantcodeService) {
     this.form = this.fb.group({
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),
@@ -26,22 +31,34 @@ filterinfo: any
     var date = new Date()
     var to_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
     this.form.controls['todate'].setValue(to_date)
-    this.filter()
-        window.onbeforeunload = function(){
-        localStorage.clear()
+      this.filter()
 
-      }
+
   }
+
+  dummy(){
+    console.log(this.colname, this.colvalue)
+
+
+  }
+
+// filter()
+// {
+//   console.log(this.form.value)
+//   this.http
+//   .post('http://localhost:3000/filter', this.form.value)
+//   .subscribe({
+//     next: (response) =>{ console.log(response); this.filterinfo = response},
+//     error: (error) => console.log(error),
+//   });
+// }
+
 
 filter()
 {
-  console.log(this.form.value)
-  this.http
-  .post('http://localhost:3000/filter', this.form.value)
-  .subscribe({
-    next: (response) =>{ console.log(response); this.filterinfo = response},
-    error: (error) => console.log(error),
-  });
+  this.service.filter(this.form.value)
+  this.filterinfo = this.service.filterinfo
+  console.log(this.filterinfo)
 }
 
 }

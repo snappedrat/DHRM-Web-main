@@ -25,6 +25,7 @@ export class PlantcodeService {
   other : any;
   prev : any;
   idforfilename:any
+  filterinfo:any
 
   basicdetails :any = []
   education:any = []
@@ -211,6 +212,16 @@ setTimeout(() => {
   localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
   localStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
 }, 1000);
+}
+
+filter(formvalue:any)
+{
+  this.http
+  .post('http://localhost:3000/filter', formvalue)
+  .subscribe({
+    next: (response) =>{ console.log(response); this.filterinfo = response},
+    error: (error) => console.log(error),
+  });
 }
 
 }
