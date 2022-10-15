@@ -66,9 +66,8 @@ export class LoginComponent implements OnInit {
     }
 
 
-
     goPlaces() {
-        this.router.navigate(['../rml/masters']);
+        this.router.navigate(['../rml']);
     }
 
     //     this.http

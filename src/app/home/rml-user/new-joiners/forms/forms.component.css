@@ -59,9 +59,9 @@ hr {
     position: relative;
     top: 20px;
     border: none;
-    height: 2px;
+    height: 3px;
     background: #007bff;
     margin-bottom: 50px;
-    margin-left: 50px;
-    margin-right: 50px
+    margin-left: 90px;
+    margin-right: 90px
 }

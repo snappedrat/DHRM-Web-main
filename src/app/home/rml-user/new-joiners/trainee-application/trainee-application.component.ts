@@ -54,6 +54,7 @@ errmsg: any;
 ngOnInit(): void {
   this.getplantcode()
   this.getcompanycode()
+
 }
 
 dum(){

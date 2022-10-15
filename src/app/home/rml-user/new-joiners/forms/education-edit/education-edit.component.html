@@ -1,10 +1,10 @@
 
 <div class="mx-5">
-    <b> Educational Details:</b>
+   <p><b> Educational Details</b></p>
     <table class = "table">
         <thead>
         <tr>
-        <th scope="col" >SNo:</th>
+        <th scope="col" >SNo</th>
         <th scope="col" >School/College Institute & Location</th>
         <th scope="col">Exam Passed</th>
         <th scope="col">Year of Passing</th>
@@ -15,7 +15,7 @@
         </tr>
         <tr *ngFor= "let data of eduData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" [(ngModel)]="data.school" (click)="sendData()"></td>
+        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (click)="sendData()"></td>
         <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>

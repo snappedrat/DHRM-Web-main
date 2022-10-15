@@ -31,7 +31,6 @@
           <div class="form-group">  
             <label for="mobileNumber">Mobile Number</label>  
             <input   
-                [disabled] = true
                 formControlName="mobileNumber"  
                 id="mobileNumber"   
                 name = "mobilenumber"
@@ -40,7 +39,8 @@
                 maxlength="10" 
                 pattern="\d{10}"
                 [(ngModel)]="mobilenum"
-                (blur)="getPasswors()">  
+                (blur)="getPasswors()"
+              >  
             <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  
                 <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  

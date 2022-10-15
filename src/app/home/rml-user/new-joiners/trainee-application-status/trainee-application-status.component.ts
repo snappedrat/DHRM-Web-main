@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { PlantcodeService } from '../plantcode.service';
 
 @Component({
   selector: 'app-trainee-application-status',
@@ -11,15 +13,20 @@ export class TraineeApplicationStatusComponent implements OnInit {
 
 form: any
 filterinfo: any
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
+colname :any
+colvalue :any
+
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : PlantcodeService) {
     this.form = this.fb.group({
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),
       todate: new UntypedFormControl(' '),
+      plantcode: [localStorage.getItem('plantcode')]
 
     });
    }
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.form.controls['status'].setValue('pending')
     this.form.controls['fromdate'].setValue('2015-01-01')
     var date = new Date()
@@ -28,15 +35,32 @@ filterinfo: any
     this.filter()
   }
 
+  dummy()
+  {
+    console.log(this.colname, this.colvalue)
+  }
+
+// filter()
+// {
+//   console.log(this.form.value)
+//   this.http
+//   .post('http://localhost:3000/filter', this.form.value)
+//   .subscribe({
+//     next: (response) =>{ console.log(response); this.filterinfo = response},
+//     error: (error) => console.log(error),
+//   });
+// }
+
+
 filter()
 {
-  console.log(this.form.value)
-  this.http
-  .post('http://localhost:3000/filter', this.form.value)
-  .subscribe({
-    next: (response) =>{ console.log(response); this.filterinfo = response},
-    error: (error) => console.log(error),
-  });
+  console.log("kekuthaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
+  this.service.filter(this.form.value)
+  setTimeout(() => {
+    this.filterinfo = this.service.filterinfo
+  }, 1000);
+  console.log(this.filterinfo)
 }
 
 }

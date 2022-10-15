@@ -25,17 +25,22 @@ export class FormsComponent implements OnInit {
   ishrappr : any
   status: any = {'status': ''}
   basic: any
-  
+  submit:any
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
-
   }
 
   ngOnInit(): void {
     this.getDataForID()
     // this.getdatabasic()
     this.ishr = localStorage.getItem('ishr')
-    console.log(this.ishr)
+
+    if(this.ishr == 'undefined')
+    this.submit = 'SUBMIT'
+      else
+    this.submit = 'SEND FOR APPROVAL'
+
+    
 }
 
   allSave()
@@ -82,12 +87,12 @@ export class FormsComponent implements OnInit {
     }
     else{
       this.alertforapproval()
-      this.router.navigate(['rml/new-joiners/forms'])
+      this.router.navigate(['rml/new-joiners/trainee_application_status'])
     }
   }
   alert()
   {
-    window.alert("Your application has been submitted. \n Contact HR for more information")
+    window.alert("Your application  has been submitted. \n Contact HR for more information")
   }
   alertforapproval()
   {

@@ -17,6 +17,7 @@ export class HrApprovalComponent implements OnInit {
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({
         status:new UntypedFormControl(' '),
+        plantcode: [localStorage.getItem('plantcode')]
       });
 
      }

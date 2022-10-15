@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
 
   ngOnInit(): void {
-        localStorage.clear()
+
+    // window.onbeforeunload = function(){
+    //   localStorage.clear()
+    // }
   }
 
   title = 'project';
