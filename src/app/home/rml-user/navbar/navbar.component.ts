@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit{
       {
         this.cookie.delete('User_Name')
         this.cookie.delete('Password')
+        localStorage.clear()
       }
 
       ngOnInit(): void 

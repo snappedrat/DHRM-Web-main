@@ -36,6 +36,7 @@ export class PlantcodeService {
   filenames: any;
   ishr:any = []
   ishrappr:any = []
+  banknames: any = []
 
   constructor(private http : HttpClient, private active : ActivatedRoute)
   {
@@ -222,6 +223,15 @@ filter(formvalue:any)
     next: (response) =>{ console.log(response); this.filterinfo = response},
     error: (error) => console.log(error),
   });
+}
+
+getbanknames()
+{
+    this.http
+    .get('http://localhost:3000/getbanknames').subscribe({
+      next : (response)=>{console.log("banknames===========================", response), this.banknames = response},
+      error : (err)=> console.log(err)
+    })
 }
 
 }

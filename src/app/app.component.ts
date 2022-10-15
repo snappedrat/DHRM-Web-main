@@ -9,9 +9,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
 
-    // window.onbeforeunload = function(){
-    //   localStorage.clear()
-    // }
+    window.onunload = function(){
+      localStorage.clear()
+    }
+
+
   }
 
   title = 'project';

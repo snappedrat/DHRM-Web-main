@@ -27,6 +27,7 @@ export class BanksComponent implements OnInit{
 
 uniqueId :any = {'mobile':''}
 bank : any = []
+banknames :any = []
 
     form: UntypedFormGroup;
     sno: any;
@@ -41,8 +42,13 @@ bank : any = []
     }
 
     ngOnInit(): void {
+        this.plantcodeService.getbanknames()
         this.getdatabasic()
         setTimeout(() => {
+            this.bank = this.plantcodeService.basicdetails
+            this.banknames = this.plantcodeService.banknames
+            console.log("......................................................................",this.bank[0]?.bank_name)
+
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
             this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
@@ -74,13 +80,9 @@ bank : any = []
 
     getdatabasic(){
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        console.log(this.uniqueId)
+        this.plantcodeService.getdatabasic(this.uniqueId)
 
-        this.http.
-      post('http://localhost:3000/getdatabasic',this.uniqueId)
-      .subscribe({
-        next: (response) => {console.log("bank : ",response); this.bank = response} ,
-        error: (error) => console.log(error),
-      })
-      }
+    }
     
 }

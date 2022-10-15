@@ -29,6 +29,9 @@ emer : any = []
   ngOnInit(): void {
       this.getdatabasic()
       setTimeout(() => {
+
+        this.emer = this.plantcodeService.basicdetails
+
         this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
         this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
         this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
@@ -63,13 +66,13 @@ sendData(){
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-
-  this.http.
-post('http://localhost:3000/getdatabasic',this.uniqueId)
-.subscribe({
-  next: (response) => {console.log("bank : ",response); this.emer = response} ,
-  error: (error) => console.log(error),
-})
+  this.plantcodeService.getdatabasic(this.uniqueId)
+//   this.http.
+// post('http://localhost:3000/getdatabasic',this.uniqueId)
+// .subscribe({
+//   next: (response) => {console.log("bank : ",response); this.emer = response} ,
+//   error: (error) => console.log(error),
+// })
 }
 
 
