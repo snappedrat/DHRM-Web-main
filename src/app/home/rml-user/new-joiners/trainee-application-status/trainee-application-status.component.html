@@ -31,6 +31,13 @@
 
 <div class = "row search" >
 
+
+
+  <div class = "row">
+  <div >
+  <label  for="Status" id="center"> Search: </label>
+  <br>
+    <select  id="Search" formControlName = "status">
   <label for="Status" id="center"> Search: </label>&nbsp;
   <br>
     <select id="Search" [(ngModel)] = "colname" >
@@ -38,7 +45,12 @@
       <option value="father name">Father name</option>
       <option value="moblie number">mobile number</option>
       <option value="aadhar number">aadhar number</option>
+
+    </select>
+    <input name="searchfor"><button>🔍</button> 
+
     </select>&nbsp;<br>
+  </div>
     <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="dummy()"  >🔍</button>
   </div>
   <br><br>
