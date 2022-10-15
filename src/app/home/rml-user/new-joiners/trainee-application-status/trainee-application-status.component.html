@@ -29,21 +29,17 @@
   <br><br>
 </form>
 
-<div class = "row">
-  <div >
-  <label for="Status" id="center"> Search: </label>
+<div class = "row search" >
+
+  <label for="Status" id="center"> Search: </label>&nbsp;
   <br>
     <select id="Search" [(ngModel)] = "colname" >
       <option value="name" >Name</option>
       <option value="father name">Father name</option>
       <option value="moblie number">mobile number</option>
       <option value="aadhar number">aadhar number</option>
-    </select>
+    </select>&nbsp;
     <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="dummy()"  >🔍</button> 
-    
-  </div>
-
-
   </div>
   <br><br>
     <div class = "table-wrapper">

@@ -25,21 +25,19 @@ colvalue :any
 
     });
    }
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     this.form.controls['status'].setValue('pending')
     this.form.controls['fromdate'].setValue('2015-01-01')
     var date = new Date()
     var to_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
     this.form.controls['todate'].setValue(to_date)
-      this.filter()
-
-
+    this.filter()
   }
 
-  dummy(){
+  dummy()
+  {
     console.log(this.colname, this.colvalue)
-
-
   }
 
 // filter()
@@ -56,8 +54,12 @@ colvalue :any
 
 filter()
 {
+  console.log("kekuthaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
   this.service.filter(this.form.value)
-  this.filterinfo = this.service.filterinfo
+  setTimeout(() => {
+    this.filterinfo = this.service.filterinfo
+  }, 1000);
   console.log(this.filterinfo)
 }
 
