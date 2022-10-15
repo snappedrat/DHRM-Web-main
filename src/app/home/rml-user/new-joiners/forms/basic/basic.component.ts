@@ -60,7 +60,7 @@ export class BasicComponent implements OnInit{
    }
 
     ngOnInit(): void {
-
+            this.setbdvalidation();
         this.getdatabasic()
         this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
@@ -225,6 +225,11 @@ export class BasicComponent implements OnInit{
             this.check=false;
             this.noEntry=false;
         }
+    }
+    setbdvalidation(){
+    const now = new Date();
+    const birthday = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+    console.log(this.setbdvalidation)
     }
     submit(){
             this.plantcodeService.submitbasic()

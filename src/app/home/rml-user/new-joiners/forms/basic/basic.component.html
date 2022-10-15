@@ -81,12 +81,13 @@
 
         <div class="form-group">
             <label for="bd">Birth Date:</label>
-            <input
-                    formControlName="bd"
-                    id="bd"
-                    type="date"
-                    (click)="sendData()"
-                    class="form-control">
+                <input
+                type="
+                 mbsc-datepicker "formControlName="bd"
+                    controls="['calendar']"
+                    max="birthday"/>
+               
+                    
             <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>
