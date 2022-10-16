@@ -26,13 +26,14 @@ export class FormsComponent implements OnInit {
   status: any = {'status': ''}
   basic: any
   submit:any
+  apln_no:any = ''
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
   }
 
   ngOnInit(): void {
     this.getDataForID()
-    // this.getdatabasic()
+
     this.ishr = localStorage.getItem('ishr')
 
     if(this.ishr == 'undefined')
@@ -69,7 +70,12 @@ export class FormsComponent implements OnInit {
     this.formservice.sumbitlang()
     console.log(this.formservice.lang) 
 
-    if(this.ishr == undefined){
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
+    this.formservice.getdatabasic(this.uniqueId)
+    
+    this.apln_no = this.formservice.basicdetails[0]?.apln_slno
+
+    if(this.ishr == 'undefined'){
       this.alert()
       this.router.navigate([''])
     }
@@ -81,30 +87,34 @@ export class FormsComponent implements OnInit {
 
 
   mainalert(){
-    if(this.ishr == undefined){
+    if(this.ishr == 'undefined'){
       this.alert()
       this.router.navigate([''])
     }
-    else{
+    else if(this.ishr == 'true'){
       this.alertforapproval()
       this.router.navigate(['rml/new-joiners/trainee_application_status'])
     }
   }
+
+  
+
   alert()
   {
-    window.alert("Your application  has been submitted. \n Contact HR for more information")
+    window.alert("Your application "+this.apln_no+"has been submitted. \n Contact HR for more information")
   }
   alertforapproval()
   {
-    window.alert("Trainee Form had been updated")
+    window.alert("Trainee Form"+this.apln_no+" had been updated")
   }
 
-  update_status(){
+  update_status()
+  {
     this.http.post('http://localhost:3000/updatestatus','')
     .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
-});
+    });
   }
 
   submitted()

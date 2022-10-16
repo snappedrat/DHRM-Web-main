@@ -15,7 +15,7 @@
         </tr>
         <tr *ngFor= "let data of eduData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (click)="sendData()"></td>
+        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (click)="sendData()" ></td>
         <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>
@@ -26,14 +26,11 @@
                <td><input type = "text" [(ngModel)]="data.percentage" (click)="sendData()">
        
   </td>
-
-   
- 
- 
         <tr>
     </thead>    
     </table>
-    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+    <input type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">
+
 </div>
 
 

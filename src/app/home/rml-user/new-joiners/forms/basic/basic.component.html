@@ -86,7 +86,8 @@
                     id="bd"
                     type="date"
                     (click)="sendData()"
-                    class="form-control">
+                    (change)="validate($event)"
+                    class="form-control"><div *ngIf="flag" class = "alert alert-danger">invalid</div>
             <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>

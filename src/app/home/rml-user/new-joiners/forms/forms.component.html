@@ -43,7 +43,7 @@
 
 <button type="submit" style="margin-bottom:auto;" (click)="submitted()" (click)="allSave()" class = "btn-primary btn-sm">{{submit}}</button>
 
-<button class = "btn-secondary btn-sm " routerLink="/rml/new_joiners/trainee-application-status">Go back to list</button>
+<button *ngIf="ishr == 'true' "  class = "btn-secondary btn-sm "  routerLink="/rml/new_joiners/trainee-application-status"> Go back to list</button>
 
 <button class = "btn-info btn-sm "  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile]">PRINT ID CARD</button>
 </div>

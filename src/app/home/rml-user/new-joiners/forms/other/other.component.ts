@@ -36,7 +36,7 @@ ngOnInit(): void {
 
   this.getdatabasic()
   setTimeout(() => {
-
+    this.other = this.plantcodeService.basicdetails
     if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' ){
         console.log("enter some values")
   }
@@ -92,13 +92,14 @@ sendData(){
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+  this.plantcodeService.getdatabasic(this.uniqueId)
 
-  this.http.
-post('http://localhost:3000/getdatabasic',this.uniqueId)
-.subscribe({
-  next: (response) => {console.log("bank : ",response); this.other = response} ,
-  error: (error) => console.log(error),
-})
+//   this.http.
+// post('http://localhost:3000/getdatabasic',this.uniqueId)
+// .subscribe({
+//   next: (response) => {console.log("bank : ",response); this.other = response} ,
+//   error: (error) => console.log(error),
+// })
 }
 
 }

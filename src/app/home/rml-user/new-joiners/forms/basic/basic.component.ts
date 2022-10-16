@@ -24,6 +24,8 @@ export class BasicComponent implements OnInit{
     vaccinated :any = false
     ishr:any = localStorage.getItem('ishr') 
     form: FormGroup = new FormGroup({});
+    flag : any = 0
+
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
             permanent:['',Validators.required],
@@ -60,10 +62,13 @@ export class BasicComponent implements OnInit{
    }
 
     ngOnInit(): void {
-
+            this.setbdvalidation();
         this.getdatabasic()
         this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
+
+            this.basic = this.plantcodeService.basicdetails
+
             this.form.controls['fname'].setValue(this.basic[0]?.first_name)
             this.form.controls['lname'].setValue(this.basic[0]?.last_name)
             this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
@@ -132,6 +137,7 @@ export class BasicComponent implements OnInit{
     }
     get bd()
     {
+
         return this.form.controls;
     }
     get height()
@@ -198,6 +204,17 @@ export class BasicComponent implements OnInit{
     {
         return this.form.controls;
     }
+
+    validate(event:any){
+     var date = new Date()
+    var year = date.getFullYear()
+    console.log(year - event.target.value.split('-')[0])
+    if(year - event.target.value.split('-')[0] <=18)
+        this.flag = 1
+    else
+        this.flag = 0
+    }
+
     public inputValue:string ="";
     public check:boolean;
     public noEntry:boolean = true;
@@ -226,6 +243,11 @@ export class BasicComponent implements OnInit{
             this.noEntry=false;
         }
     }
+    setbdvalidation(){
+    const now = new Date();
+    const birthday = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+    console.log(this.setbdvalidation)
+    }
     submit(){
             this.plantcodeService.submitbasic()
             this.sendData()
@@ -248,15 +270,18 @@ export class BasicComponent implements OnInit{
 
     getdatabasic(){
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-        console.log('====================================');
-        console.log(this.uniqueId);
-        console.log('====================================');
-        this.http.
-      post('http://localhost:3000/getdatabasic',this.uniqueId)
-      .subscribe({
-        next: (response) => {console.log("basic : ",response); this.basic = response} ,
-        error: (error) => console.log(error),
-      })
+
+        this.plantcodeService.getdatabasic(this.uniqueId)
+
+    //     console.log('====================================');
+    //     console.log(this.uniqueId);
+    //     console.log('====================================');
+    //     this.http.
+    //   post('http://localhost:3000/getdatabasic',this.uniqueId)
+    //   .subscribe({
+    //     next: (response) => {console.log("basic : ",response); this.basic = response} ,
+    //     error: (error) => console.log(error),
+    //   })
       }
 
 }
