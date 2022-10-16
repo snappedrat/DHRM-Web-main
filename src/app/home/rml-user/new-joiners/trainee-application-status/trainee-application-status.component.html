@@ -27,37 +27,17 @@
 </div>
   <button class = "btn btn-primary btn-lg" (click)="filter()" >Search</button>
   <br><br>
-</form>
 
 <div class = "row search" >
 
-<<<<<<< HEAD
-
-  <div class = "row">
-  <div >
-  <label  for="Status" id="center"> Search: </label>
+  <label  for="Status" id="center"> Search: </label>&nbsp;
   <br>
-    <select  id="Search" formControlName = "status">
-=======
-  <label for="Status" id="center"> Search: </label>&nbsp;
-  <br>
-    <select id="Search" [(ngModel)] = "colname" >
->>>>>>> 2f0038d5b52f048a754ff908c2279638c1534a96
-      <option value="name" >Name</option>
-      <option value="father name">Father name</option>
-      <option value="moblie number">mobile number</option>
-      <option value="aadhar number">aadhar number</option>
-<<<<<<< HEAD
-    </select>
-    <input name="searchfor"><button>🔍</button> 
-  </div>
-
-
-
-=======
+    <select  id="Search" [(ngModel)] = "colname" >
+      <option value="first_name" >Name</option>
+      <option value="mobile_no1">mobile number</option>
+      <option value="aadhar_no">aadhar number</option>
     </select>&nbsp;<br>
-    <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="dummy()"  >🔍</button>
->>>>>>> 2f0038d5b52f048a754ff908c2279638c1534a96
+    <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="searchfilter()" >🔍</button>
   </div>
   <br><br>
     <div class = "table-wrapper">
@@ -143,6 +123,4 @@
                 </tbody>
             </table>
           </table>
-        </div>
-
-      </div>
+        
