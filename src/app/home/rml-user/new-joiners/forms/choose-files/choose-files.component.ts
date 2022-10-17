@@ -12,7 +12,7 @@ import { FormsModule,FormGroup,Validators, FormControl, FormBuilder, UntypedForm
 })
 export class ChooseFilesComponent implements OnInit {
 
-
+	
 	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1') }
 
 	url: any = 'http://localhost:3000/';
