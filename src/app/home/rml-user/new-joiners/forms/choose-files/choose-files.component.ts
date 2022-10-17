@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
+import { PlantcodeService } from '../../plantcode.service';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-choose-files',
   templateUrl: './choose-files.component.html',
