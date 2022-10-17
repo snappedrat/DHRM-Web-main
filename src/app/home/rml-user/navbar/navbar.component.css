@@ -46,7 +46,11 @@
   width: 35px !important;
 }
 #logout{
-  width:50px;
-  height:30px;
+  width:60px;
+  height:40px;
   margin-left:90%;
+}
+.glyphicon {
+  font-size: 20px;
+  color: black;
 }
