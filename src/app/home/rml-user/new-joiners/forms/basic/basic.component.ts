@@ -59,6 +59,9 @@ export class BasicComponent implements OnInit{
             idm2:[''],
             mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')]
     })
+    // this.form.controls['st'].disable()
+    // this.form.controls['city'].disable()
+
    }
 
     ngOnInit(): void {
@@ -90,9 +93,12 @@ export class BasicComponent implements OnInit{
             this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
             this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
             this.form.controls['reg'].setValue(this.basic[0]?.religion)
-            this.form.controls['st'].setValue(this.basic[0]?.state_name)
+
             this.form.controls['pc'].setValue(this.basic[0]?.pincode)
+
             this.form.controls['city'].setValue(this.basic[0]?.city)
+            this.form.controls['st'].setValue(this.basic[0]?.state_name)
+
             this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
             this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
             this.form.controls['gender'].setValue(this.basic[0]?.gender)
@@ -102,6 +108,25 @@ export class BasicComponent implements OnInit{
 
             this.sendData()
         }, 1000);
+    }
+
+    setcity_state(event:any)
+    {
+        console.log(event.target.value)
+        var pincode = {
+            "pincode": event.target.value
+        }
+        this.plantcodeService.getpincode(pincode)
+        setTimeout(() => {
+            console.log(this.plantcodeService.pincodes)
+            // console.log(this.plantcodeService.pincodes[0]?.statename)
+
+        }, 500);
+    }
+
+    setstate(){
+        this.form.controls['st'].setValue(this.plantcodeService.pincodes[0]?.statename)
+        this.form.controls['city'].setValue(this.plantcodeService.pincodes[0]?.dvisionname)
     }
 
     hide_vacc(event:any){
@@ -208,7 +233,7 @@ export class BasicComponent implements OnInit{
     validate(event:any){
      var date = new Date()
     var year = date.getFullYear()
-    console.log(year - event.target.value.split('-')[0])
+
     if(year - event.target.value.split('-')[0] <=18)
         this.flag = 1
     else

@@ -19,7 +19,7 @@
             <label for="bankName">Bank Name</label>
             <select formControlName="bankName" class="form-control" (click)="sendData()">
                 <option>Choose</option>
-                <option *ngFor="let bm of banknames">{{bm.bank_name}}</option>
+                <option *ngFor="let bm of banks">{{bm}}</option>
             </select>
         </div>
         </div>

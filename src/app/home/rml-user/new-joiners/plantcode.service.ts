@@ -4,11 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BanksComponent } from './forms/banks/banks.component';
 import { BasicComponent } from './forms/basic/basic.component';
-import { EducationalComponent } from './forms/educational/educational.component';
-import { FamilyDetailComponent } from './forms/family-detail/family-detail.component';
 import { LanguageComponent } from './forms/language/language.component';
 import { OtherComponent } from './forms/other/other.component';
-import { PrevComponent } from './forms/prev/prev.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { ActivatedRoute } from '@angular/router';
 
@@ -37,6 +34,7 @@ export class PlantcodeService {
   ishr:any = []
   ishrappr:any = []
   banknames: any = []
+  pincodes :any
 
   constructor(private http : HttpClient, private active : ActivatedRoute)
   {
@@ -212,7 +210,8 @@ setTimeout(() => {
 setTimeout(() => {
   localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
   localStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
-}, 1000);
+  localStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
+}, 500);
 }
 
 filter(formvalue:any)
@@ -230,6 +229,15 @@ getbanknames()
     this.http
     .get('http://localhost:3000/getbanknames').subscribe({
       next : (response)=>{console.log("banknames===========================", response), this.banknames = response},
+      error : (err)=> console.log(err)
+    })
+}
+
+getpincode(pincode:any)
+{
+      this.http
+    .post('http://localhost:3000/getpincode',pincode).subscribe({
+      next : (response)=>{console.log("pincode : ", response), this.pincodes = response},
       error : (err)=> console.log(err)
     })
 }

@@ -149,8 +149,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
             <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
-            <span style="color:white">DHRM</span>
-            <button class="btn btn-primary border border-secondary" (click)="delCookie()"  id="logout" routerLink="/first" >
+            &nbsp;<span style="color:rgb(255, 255, 255)">DHRM</span>
+            <div class = "username" >&nbsp;{{showname}} - {{showid}}</div>
+            <button class="btn btn-primary border border-primary" (click)="delCookie()"  id="logout" routerLink="/first" >
+
                 <span class="glyphicon glyphicon-log-out"></span> 
               </button>
         </mat-toolbar>

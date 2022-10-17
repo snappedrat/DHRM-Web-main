@@ -9,9 +9,9 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
 
-    window.onunload = function(){
-      localStorage.clear()
-    }
+    // window.onunload = function(){
+    //   localStorage.clear()
+    // }
 
 
   }

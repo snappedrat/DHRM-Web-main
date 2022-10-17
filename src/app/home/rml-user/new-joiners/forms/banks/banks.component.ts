@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./banks.component.css']
 })
 export class BanksComponent implements OnInit{
-    Bank:any=['AXIS Bank','HDFC Bank','CANARA Bank','Punjab National Bank','Bank of Baroda',
+    Bank:any=['AXIS BANK','HDFC Bank','CANARA Bank','Punjab National Bank','Bank of Baroda',
 'Bank of India',
 'Bank of Maharashtra',
 'Canara Bank',
@@ -28,6 +28,8 @@ export class BanksComponent implements OnInit{
 uniqueId :any = {'mobile':''}
 bank : any = []
 banknames :any = []
+banks:any = []
+temp: string = 'hellllllllllll             '
 
     form: UntypedFormGroup;
     sno: any;
@@ -45,13 +47,22 @@ banknames :any = []
         this.plantcodeService.getbanknames()
         this.getdatabasic()
         setTimeout(() => {
+            for(var i = 0; i<this.plantcodeService.banknames.length - 1; i++){
+                this.banks[i] = this.plantcodeService.banknames[i]?.bank_name
+    
+                this.temp = this.banks[i]
+                this.banks[i] = this.temp.trim()
+            }
+            console.log(this.Bank)
+            console.log(this.banks)
+
             this.bank = this.plantcodeService.basicdetails
-            this.banknames = this.plantcodeService.banknames
-            console.log("......................................................................",this.bank[0]?.bank_name)
+            
+            console.log("..............................-",this.bank[0]?.bank_name.trim(),"-.")
 
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
-            this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
+            this.form.controls['bankName'].setValue(this.bank[0]?.bank_name.trim())
             this.sendData()
         }, 1000);
     }

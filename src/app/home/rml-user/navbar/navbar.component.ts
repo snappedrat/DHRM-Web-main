@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit{
   username :any = {
     "username": localStorage.getItem('user_name')
   }
+  showname:any = ''
+  showid : any = ''
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -57,6 +59,9 @@ getHr()
     
   this.ishr = localStorage.getItem('ishr')
   this.ishrappr = localStorage.getItem('ishrappr')
+  this.showid = localStorage.getItem('user_name')
+  this.showname = localStorage.getItem('emp_name')
+
   console.log('====================================');
   console.log(this.ishr,this.ishrappr);
   console.log('====================================');  

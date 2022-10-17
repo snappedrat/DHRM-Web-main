@@ -7,6 +7,7 @@
   <label for="Status" id="center"> Status: </label>
     <br>
       <select name="Status" id="Status" formControlName = "status" class = "form-select h-30 w-100">
+        <option value="incomplete">NEW INCOMPLETE</option>
         <option value="pending">PENDING</option>
         <option value="submitted">SUBMITTED</option>
         <option value="approved">APPROVED</option>
@@ -31,13 +32,6 @@
 
 <div class = "row search" >
 
-
-
-  <div class = "row">
-  <div >
-  <label  for="Status" id="center"> Search: </label>
-  <br>
-    <select  id="Search" formControlName = "status">
   <label for="Status" id="center"> Search: </label>&nbsp;
   <br>
     <select id="Search" [(ngModel)] = "colname" >
@@ -45,12 +39,8 @@
       <option value="father name">Father name</option>
       <option value="moblie number">mobile number</option>
       <option value="aadhar number">aadhar number</option>
-
-    </select>
-    <input name="searchfor"><button>🔍</button> 
-
     </select>&nbsp;<br>
-  </div>
+
     <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="dummy()"  >🔍</button>
   </div>
   <br><br>

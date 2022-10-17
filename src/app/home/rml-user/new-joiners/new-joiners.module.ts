@@ -20,11 +20,8 @@ import { TraineeApplicationComponent } from './trainee-application/trainee-appli
 import { FormsComponent } from './forms/forms.component';
 import { BasicComponent } from './forms/basic/basic.component';
 import { BanksComponent } from './forms/banks/banks.component';
-import { EducationalComponent } from './forms/educational/educational.component';
-import { PrevComponent } from './forms/prev/prev.component';
 import { OtherComponent } from './forms/other/other.component';
 import { FormsModule } from '@angular/forms';
-import { FamilyDetailComponent } from './forms/family-detail/family-detail.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { LanguageComponent } from './forms/language/language.component';
 import { TraineeApplicationStatusComponent } from './trainee-application-status/trainee-application-status.component';
@@ -41,10 +38,9 @@ import { ChooseFilesComponent } from './forms/choose-files/choose-files.componen
         FormsComponent,
         BasicComponent,
         BanksComponent,
-        EducationalComponent,
-        PrevComponent,
+
         OtherComponent,
-        FamilyDetailComponent,
+
         EmergencyComponent,
         LanguageComponent,
         TraineeApplicationStatusComponent,
