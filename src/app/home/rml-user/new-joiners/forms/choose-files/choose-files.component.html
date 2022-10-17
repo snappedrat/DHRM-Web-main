@@ -1,4 +1,4 @@
-<form >
+<form formGroupName="Form" >
 <div *ngIf= "ishr == 'undefined' " class = "mx-5" >
 <h1>Employee related</h1>
 <h3>Upload the files in any one of the following formats:</h3>
@@ -10,7 +10,9 @@
       <td >
         <div class="text-center"> 
     	<input class="form-control" formcontrolname="resume" id = "resume" type="file" accept=".pdf,.jpeg,.word,.jpg"    (change)="onResumeChange($event)">
-
+      <div *ngIf="resume.resume.touched && resume.resume.invalid" class="alert alert-danger">
+        <div *ngIf="resume.fname.errors.required">First Name is required</div>
+    </div>
 	</div> 
 	<td >
 		<a *ngIf= "resume_file != null" [href]= 'urlforResume' target = "_blank" class="btn btn-secondary" > preview </a>

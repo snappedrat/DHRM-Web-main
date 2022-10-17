@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../../plantcode.service';
-import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule,FormGroup,Validators, FormControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-choose-files',
@@ -34,6 +35,7 @@ export class ChooseFilesComponent implements OnInit {
 
 	msg = "";
 	ishr : any;
+	
 
 	file: File|null = null;
 	resume_file: File|null = null; 
@@ -52,19 +54,28 @@ export class ChooseFilesComponent implements OnInit {
 	formh2_file: File|null = null;
 	natx_file: File|null = null;
 	filenames: any = []
+	form: any
 
-  constructor(private service: PlantcodeService, private active : ActivatedRoute) {
+	
+  constructor(private service: PlantcodeService, private active : ActivatedRoute, private callval:FormBuilder, private callval1: UntypedFormGroup,private callval2: UntypedFormBuilder, private callval4:UntypedFormControl) {
 	this.ishr = localStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
 	console.log('====================================');
-   }
+
+	this.form = callval.group({
+		resume:['',Validators.required],})
+	
+  }
 
   ngOnInit(): void {
 	this.getfiles()
+	
 
   }
-
+  get resume(){
+	return this.form.controls;
+}
   getfiles(){
 	this.service.getdatabasic(this.uniqueId)
 
@@ -259,6 +270,11 @@ onFormh2Upload(){}
 
 onNatxChange(event:any){
 	this.natx_file = event.target.files[0]
+}
+
+Submit()
+{
+
 }
 
 onNatxUpload(){}
