@@ -15,6 +15,7 @@ form: any
 filterinfo: any
 colname :any
 colvalue :any
+  searchfilterinfo: any;
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : PlantcodeService) {
     this.form = this.fb.group({
@@ -35,10 +36,6 @@ colvalue :any
     this.filter()
   }
 
-  dummy()
-  {
-    console.log(this.colname, this.colvalue)
-  }
 
 // filter()
 // {
@@ -54,13 +51,22 @@ colvalue :any
 
 filter()
 {
-  console.log("kekuthaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
   this.service.filter(this.form.value)
   setTimeout(() => {
     this.filterinfo = this.service.filterinfo
   }, 1000);
   console.log(this.filterinfo)
+}
+
+searchfilter()
+{
+  this.service.searchfilter(this.colname,this.colvalue)
+  console.log("filter working")
+  setTimeout(() => {
+    this.searchfilterinfo = this.service.searchfilterinfo
+  }, 1000);
+  console.log(this.searchfilter)
+
 }
 
 }

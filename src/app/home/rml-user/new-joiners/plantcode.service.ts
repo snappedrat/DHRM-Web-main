@@ -23,6 +23,7 @@ export class PlantcodeService {
   prev : any;
   idforfilename:any
   filterinfo:any
+  searchfilterinfo:any
 
   basicdetails :any = []
   education:any = []
@@ -224,6 +225,16 @@ filter(formvalue:any)
   });
 }
 
+searchfilter(formvalue:any,input:any)
+{
+  var forms={"value":formvalue,"input":input}
+  this.http
+  .post('http://localhost:3000/searchfilter', forms)
+  .subscribe({
+    next: (response) =>{ console.log(response); this.searchfilterinfo= response},
+    error: (error) => console.log(error),
+  });
+}
 getbanknames()
 {
     this.http

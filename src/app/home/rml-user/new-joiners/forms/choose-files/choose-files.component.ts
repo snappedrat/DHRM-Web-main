@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../../plantcode.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-choose-files',
@@ -53,7 +54,6 @@ export class ChooseFilesComponent implements OnInit {
 	filenames: any = []
 
   constructor(private service: PlantcodeService, private active : ActivatedRoute) {
-
 	this.ishr = localStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
@@ -203,6 +203,7 @@ onSignatureChange(event:any){
 onSignatureUpload(){
 	// this.service.fileupload(this.signature_file)
 }
+
 
 
 
