@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../plantcode.service';
+import { Router, RouterLinkActive } from '@angular/router';
+import { sub } from 'date-fns';
 
 
 @Component({
@@ -35,7 +37,7 @@ export class TraineeApplicationComponent implements OnInit{
       }
   }
  bankForms: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService,private plantcodeService: PlantcodeService ) {
+  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService,private plantcodeService: PlantcodeService, private router : Router ) {
     this.bankForms = fb.group({ 
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
@@ -49,7 +51,7 @@ export class TraineeApplicationComponent implements OnInit{
 
 plantcode:any;
 companycode : any;
-errmsg: any;
+errmsg: any = '';  
 
 ngOnInit(): void {
   this.getplantcode()
@@ -85,12 +87,31 @@ getcompanycode(){
 
 sendFormData()
 {
+  var res: any = '';
   this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
   .subscribe({
-    next: (response) => this.errmsg=response,
+    next: (response) => res=response,
     error: (error) => console.log(error),
   })
+    if(this.errmsg == 'incomplete' || 'newform')
+    {
+      // this.router.navigate(['/forms',this.mobilenum])
+    }
+    else
+    {
+      window.alert('already exists')
+    }
+  return res;
+}
 
+sub(){
+  console.log(this.errmsg)
+}
+
+total(){
+  this.sendFormData().then((err:any)=>{
+    console.log(err)
+  })
 }
 
 get company()
