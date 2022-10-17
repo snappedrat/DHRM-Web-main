@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../../plantcode.service';
-import { HttpClient } from '@angular/common/http';
-import { FormsModule,FormGroup,Validators, FormControl, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-choose-files',
@@ -57,14 +56,13 @@ export class ChooseFilesComponent implements OnInit {
 	form: any
 
 	
-  constructor(private service: PlantcodeService, private active : ActivatedRoute, private callval:FormBuilder, private callval1: UntypedFormGroup,private callval2: UntypedFormBuilder, private callval4:UntypedFormControl) {
+  constructor(private service: PlantcodeService, private active : ActivatedRoute) {
 	this.ishr = localStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
 	console.log('====================================');
 
-	this.form = callval.group({
-		resume:['',Validators.required],})
+
 	
   }
 
@@ -272,10 +270,6 @@ onNatxChange(event:any){
 	this.natx_file = event.target.files[0]
 }
 
-Submit()
-{
-
-}
 
 onNatxUpload(){}
 

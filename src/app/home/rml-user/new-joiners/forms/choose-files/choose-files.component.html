@@ -1,4 +1,4 @@
-<form formGroupName="Form" >
+<form>
 <div *ngIf= "ishr == 'undefined' " class = "mx-5" >
 <h1>Employee related</h1>
 <h3>Upload the files in any one of the following formats:</h3>
@@ -9,10 +9,8 @@
       <td>Resume(not more than 3mb)</td>
       <td >
         <div class="text-center"> 
-    	<input class="form-control" formcontrolname="resume" id = "resume" type="file" accept=".pdf,.jpeg,.word,.jpg"    (change)="onResumeChange($event)">
-      <div *ngIf="resume.resume.touched && resume.resume.invalid" class="alert alert-danger">
-        <div *ngIf="resume.fname.errors.required">First Name is required</div>
-    </div>
+    	<input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
+     
 	</div> 
 	<td >
 		<a *ngIf= "resume_file != null" [href]= 'urlforResume' target = "_blank" class="btn btn-secondary" > preview </a>
@@ -22,7 +20,7 @@
     <tr>
       <td>Marksheet</td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onMarksheetChange($event)"> 
+        <input class="form-control" type="file"  (change)="onMarksheetChange($event)"> 
 	</div> 
 
 	<td>
@@ -32,7 +30,7 @@
 	<tr>
         <td>Transfer Certificate</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onTransfercertificateChange($event)"> 
+          <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
 		</div> 
 
 		<td>
@@ -42,7 +40,7 @@
       <tr>
         <td>Aadhar Card</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onAadharcardChange($event)"> 
+          <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
 		</div> 
 
 		<td>
@@ -52,7 +50,7 @@
       <tr>
         <td>Bank Passbook</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onBankpassbookChange($event)"> 
+          <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
 		</div> 
 
 		<td> 
@@ -62,7 +60,7 @@
       <tr>
         <td>Photo</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onPhotoChange($event)"> 
+          <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
 		</div> 
 
 		<td>
@@ -72,7 +70,7 @@
       <tr>
         <td>Signature</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onSignatureChange($event)"> 
+          <input class="form-control" type="file"    (change)="onSignatureChange($event)"> 
 		</div> 
 
 		<td>
@@ -92,7 +90,7 @@
       <td>Resume</td>
       <td >
         <div class="text-center"> 
-    	<input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"  (change)="onResumeChange($event)">
+    	<input class="form-control" type="file"  (change)="onResumeChange($event)">
 
 	</div> 
 	<td >
@@ -104,7 +102,7 @@
     <tr>
       <td>Marksheet</td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onMarksheetChange($event)"> 
+        <input class="form-control" type="file"   (change)="onMarksheetChange($event)"> 
 	</div> 
 
 	<td>
@@ -114,7 +112,7 @@
 	<tr>
         <td>Transfer Certificate</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onTransfercertificateChange($event)"> 
+          <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
 		</div> 
 
 		<td>
@@ -124,7 +122,7 @@
       <tr>
         <td>Aadhar card</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onAadharcardChange($event)"> 
+          <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
 		</div> 
 
 		<td>
@@ -134,7 +132,7 @@
       <tr>
         <td>Bank Passbook</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onBankpassbookChange($event)"> 
+          <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
 		</div> 
 
 		<td> 
@@ -144,7 +142,7 @@
       <tr>
         <td>Photo</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onPhotoChange($event)"> 
+          <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
 		</div> 
 
 		<td>
@@ -154,7 +152,7 @@
       <tr>
         <td>Signature</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onSignatureChange($event)"> 
+          <input class="form-control" type="file"   (change)="onSignatureChange($event)"> 
 		</div> 
 
 		<td>
@@ -171,7 +169,7 @@
       <td>appointment order</td>
       <td>
         <div class="text-center"> 
-    	<input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"   (change)="onAppointmentorderChange($event)"> 
+    	<input class="form-control" type="file"    (change)="onAppointmentorderChange($event)"> 
 	</div> 
 
 	<td> 
@@ -181,7 +179,7 @@
     <tr>
       <td>declaration form</td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onDeclarationChange($event)"> 
+        <input class="form-control" type="file"   (change)="onDeclarationChange($event)"> 
 	</div> 
 
 	<td> 
@@ -191,7 +189,7 @@
         <td>medical fitness</td>
         <td><div class="text-center"> 
 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onMedicalfitnessChange($event)"> 
+          <input class="form-control" type="file"   (change)="onMedicalfitnessChange($event)"> 
 		</div> 
 
 		<td> 
@@ -200,7 +198,7 @@
       <tr>
         <td>form A4</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onForma4Change($event)"> 
+          <input class="form-control" type="file"    (change)="onForma4Change($event)"> 
 		</div> 
 
 		<td>  
@@ -210,7 +208,7 @@
       <tr>
         <td>form 11</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onForm11Change($event)"> 
+          <input class="form-control" type="file"  (change)="onForm11Change($event)"> 
 		</div> 
 
 		<td>  
@@ -220,7 +218,7 @@
       <tr>
         <td>form h2</td>
         <td ><div class="text-center"> 
-          <input class="form-control" type="file" accept=".pdf,.jpeg,.word,.jpg"   (change)="onFormh2Change($event)"> 
+          <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
 		</div> 
 
 		<td>  
@@ -230,7 +228,7 @@
       <tr>
         <td>NATX</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  accept=".pdf,.jpeg,.word,.jpg"  (change)="onNatxChange($event)"> 
+          <input class="form-control" type="file"    (change)="onNatxChange($event)"> 
 		</div> 
 
 		<td>  
