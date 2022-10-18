@@ -1,7 +1,11 @@
 .box{
     border-radius: 20px;
-    height: 200px;
-    width: 300px;
+    height: 230px;
+    width: 250px;
+    padding: auto;
+    text-align: center;
+    align-items: center;
+    align-content: center
   }
   .btn{
     border-radius: 20px;
@@ -13,7 +17,9 @@
   }
   
   .picture{
-    border-radius: 20px;
+    border-radius: 10px;
+    width: 250px;
+    border-image-width: auto;
   }
   .text{
     margin: 10px;

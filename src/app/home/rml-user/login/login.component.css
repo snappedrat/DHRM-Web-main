@@ -14,6 +14,7 @@ img{
 
 .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
+    border-radius: 3px;
 }
 
 .example-right-align {
@@ -32,4 +33,8 @@ input.example-right-align {
     width:50px;
     height:30px;
     margin-left:90%;
+}
+.btn{
+    margin-left: 43%;
+    text-align:center;
 }
