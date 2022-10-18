@@ -5,7 +5,7 @@
           <div class="table col-sm-6 shadow round pb-3">
             <img src="../../assets/rane.png">
             <h1 class="heading text-center pt-3 text-secondary">Trainee New Application</h1>
-              <form [formGroup]="bankForms" (ngSubmit)="submit()"> 
+              <form [formGroup]="bankForms" (ngSubmit)="sendFormData()">
             <div class="form-group">  
                 <label for="company">Company Name</label>  
                 <select formControlName="company" class="form-control">
@@ -56,7 +56,7 @@
           type="checkbox" 
           class="form-check-input">Show Password
         </div>
-            <button class="btn btn-primary" (click)="total()" (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Sign In</button>
+            <button class="btn btn-primary" (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Sign In</button>
                 </form>
           </div>
       </div>

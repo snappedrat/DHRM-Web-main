@@ -178,6 +178,34 @@ fileupload(file:any,uniqueId:any, id_no :any, fileno:any){
 
 }
 
+submitted(uniqueId: any){
+  this.http
+  .post('http://localhost:3000/submitted',uniqueId)
+  .subscribe({
+    next: (response) =>{ console.log(response);},
+    error: (error) => console.log(error),
+  })
+}
+
+pending(uniqueId: any){
+  this.http
+  .post('http://localhost:3000/pending',uniqueId)
+  .subscribe({
+    next: (response) =>{ console.log(response);},
+    error: (error) => console.log(error),
+  })
+}
+
+approved(uniqueId:any){
+
+  this.http
+  .post('http://localhost:3000/approved', this.uniqueId)
+  .subscribe({
+    next: (response) =>{ console.log(response);},
+    error: (error) => console.log(error),
+  })
+}
+
 rejected(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 

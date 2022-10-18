@@ -40,7 +40,6 @@ export class FormsComponent implements OnInit {
     this.submit = 'SUBMIT'
       else
     this.submit = 'SEND FOR APPROVAL'
-
     
 }
 
@@ -74,26 +73,23 @@ export class FormsComponent implements OnInit {
     this.formservice.getdatabasic(this.uniqueId)
     
     this.apln_no = this.formservice.basicdetails[0]?.apln_slno
-
-    if(this.ishr == 'undefined'){
-      this.alert()
-      this.router.navigate([''])
-    }
-    else{
-      this.alertforapproval()
-      this.router.navigate(['rml/new-joiners/forms'])
-    }
+    console.log("ishr :", this.ishr, "ishrappr :", this.ishrappr)
+    this.mainalert()
+    this.submitted()
   }
 
 
   mainalert(){
+
+    this.ishr = localStorage.getItem('ishr')
+
     if(this.ishr == 'undefined'){
       this.alert()
       this.router.navigate([''])
     }
     else if(this.ishr == 'true'){
       this.alertforapproval()
-      this.router.navigate(['rml/new-joiners/trainee_application_status'])
+      this.router.navigate(['rml/new_joiners/trainee-application-status'])
     }
   }
 
@@ -101,36 +97,28 @@ export class FormsComponent implements OnInit {
 
   alert()
   {
-    window.alert("Your application "+this.apln_no+"has been submitted. \n Contact HR for more information")
+    window.alert("Your application "+this.apln_no+" has been submitted. \n Contact HR for more information")
   }
   alertforapproval()
   {
-    window.alert("Trainee Form"+this.apln_no+" had been updated")
-  }
-
-  update_status()
-  {
-    this.http.post('http://localhost:3000/updatestatus','')
-    .subscribe({
-      next: (response) => console.log(response),
-      error: (error) => console.log(error),
-    });
+    window.alert("Trainee Form "+this.apln_no+" had been updated")
   }
 
   submitted()
   {
+      this.ishr = localStorage.getItem('ishr')
+
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
       console.log(this.uniqueId);
-      if(this.ishr)
+      if(this.ishr == 'true' )
       {
-      this.http
-      .post('http://localhost:3000/submitted', this.uniqueId)
-      .subscribe({
-        next: (response) =>{ console.log(response);},
-        error: (error) => console.log(error),
-      })
+        this.formservice.submitted(this.uniqueId)
     }
+      else if(this.ishr == 'undefined')
+      {
+        this.formservice.pending(this.uniqueId)
+      }
   }
 
   approved()
@@ -139,12 +127,7 @@ export class FormsComponent implements OnInit {
 
       console.log(this.uniqueId);
 
-      this.http
-      .post('http://localhost:3000/approved', this.uniqueId)
-      .subscribe({
-        next: (response) =>{ console.log(response);},
-        error: (error) => console.log(error),
-      })
+      this.formservice.approved(this.uniqueId)
   }
 
   rejected()

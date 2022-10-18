@@ -62,9 +62,9 @@ searchfilter()
 {
   this.service.searchfilter(this.colname,this.colvalue)
   console.log("filter working")
-  setTimeout(() => {
+  // setTimeout(() => {
     this.searchfilterinfo = this.service.searchfilterinfo
-  }, 1000);
+  // }, 100);
   console.log(this.searchfilter)
 
 }

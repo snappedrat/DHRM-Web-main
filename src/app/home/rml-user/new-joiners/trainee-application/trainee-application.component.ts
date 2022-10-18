@@ -87,30 +87,18 @@ getcompanycode(){
 
 sendFormData()
 {
-  var res: any = '';
+  console.log("kekuthulaaaaaaaaaaa")
+
   this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
   .subscribe({
-    next: (response) => res=response,
+    next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
+    if(this.errmsg.status == 'newform')
+    {  console.log("newform");this.router.navigate(['/forms',this.mobilenum])}
+  else if(this.errmsg.status == 'incomplete')
+    { this.router.navigate(['/forms',this.mobilenum])  }
+  else if(this.errmsg.status == 'registered')
+    {window.alert("YOU have already registered")}},
     error: (error) => console.log(error),
-  })
-    if(this.errmsg == 'incomplete' || 'newform')
-    {
-      // this.router.navigate(['/forms',this.mobilenum])
-    }
-    else
-    {
-      window.alert('already exists')
-    }
-  return res;
-}
-
-sub(){
-  console.log(this.errmsg)
-}
-
-total(){
-  this.sendFormData().then((err:any)=>{
-    console.log(err)
   })
 }
 
