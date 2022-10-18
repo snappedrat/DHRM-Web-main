@@ -2,15 +2,16 @@
 .sidenav{
   width: 250px;
 }
+/* 
+.mat-toolbar.mat-primary {
+ background: green !important;
+ color: #fff;
+} */
 
-/*.mat-toolbar.mat-primary {*/
-/*  !*background: green !important;*!*/
-/*  color: #fff;*/
-/*}*/
-
-#bt{
+/* bt{
   padding-right: 10px;
-}
+  background-color: ;
+} */
 @media (max-width: 767px) {
   .show
   {
@@ -49,12 +50,15 @@
   width:60px;
   height:40px;
   margin-left:1%;
+  border:0px
+  
 }
 
 .username{
-  margin-left:75%;
+  margin-left:65%;
+  color:white;
 }
 .glyphicon {
   font-size: 20px;
-  color: black;
+  color:white;
 }
