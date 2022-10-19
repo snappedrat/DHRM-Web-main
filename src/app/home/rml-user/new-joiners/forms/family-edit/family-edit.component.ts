@@ -61,6 +61,7 @@ familyData = [
     'dependent': ''
   },
 ];
+  flag: any = true;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
     this.mobile = this.active.snapshot.paramMap.get('mobile_no1')
@@ -113,12 +114,17 @@ familyData = [
     this.sendData()
   }  
   submit(){
-    console.log('family', this.familyData);
-      if(this.familyData.length == 0){
-      console.log("good");
-      }
-      else{
+
+    if(this.familyData[0].age == '' || this.familyData[0].contactnumber == '' || this.familyData[0].name == '' || this.familyData[0].occupation == '' || this.familyData[0].relation == '')
+    {
+
+        this.flag = true
+    }
+    else
+    {
+      console.log('family', this.familyData);
       this.plantcodeService.submitfamily()
+      
     }
 }
 
@@ -126,4 +132,23 @@ sendData(){
   this.plantcodeService.fam = this.familyData
 } 
 
+public valid(){
+  if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
+    this.flag = false
+}
+
+valids(event :any){
+  if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
+  {
+    console.log("good to go")
+    this.flag = false
+  }
+  else
+  {
+    console.log(event.target.value.length)
+    if(event.target.value.length == 0)
+      this.flag = true
+
+  }
+}
 }

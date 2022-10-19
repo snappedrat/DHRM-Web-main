@@ -15,6 +15,7 @@ export class EducationEditComponent implements OnInit {
 mobile: any
 Exampassed: any = ['HSC','SSLC','BOARD','DIPLOMA','ITI','BE','BTECH','ARTS&SCIENCE']
 education:any = []
+flag: any = true
 
 mobile_no1 = {
   "mobile" : this.active.snapshot.paramMap.get('mobile_no1')
@@ -109,19 +110,19 @@ eduData = [
 
       for(var i = 0;i<=3;i++)
       {
-        if(this.eduData[i].school == 'undefined')
+        if(this.eduData[i].school == undefined || 'undefined')
         this.eduData[i].school = ''
-        if(this.eduData[i].passed == 'undefined')
+        if(this.eduData[i].passed == undefined || 'undefined')
         this.eduData[i].passed = ''
-        if(this.eduData[i].year == 'undefined')
+        if(this.eduData[i].year == undefined || 'undefined')
         this.eduData[i].year = ''
-        if(this.eduData[i].department == 'undefined')
+        if(this.eduData[i].department == undefined || 'undefined')
         this.eduData[i].department = ''
-          if(this.eduData[i].certificatenumber == 'undefined')
+          if(this.eduData[i].certificatenumber == undefined || 'undefined')
           this.eduData[i].certificatenumber = ''
-          if(this.eduData[i].certificatedate == 'undefined')
+          if(this.eduData[i].certificatedate == undefined || 'undefined')
           this.eduData[i].certificatedate = ''
-          if(this.eduData[i].percentage == 'undefined')
+          if(this.eduData[i].percentage == undefined || 'undefined')
           this.eduData[i].percentage = ''
       }
 
@@ -129,14 +130,21 @@ eduData = [
     this.sendData()
   }  
   submit(){
-    console.log('education', this.eduData);
-      if(this,this.eduData.length == 0){
+    if(this.eduData[0].school == '' || this.eduData[0].percentage == '' || this.eduData[0].year == '' || this.eduData[0].passed == '' || this.eduData[0].department == '' || this.eduData[0].certificatenumber == '' || this.eduData[0].certificatedate == '')
+    {
+
+        this.flag = true
+    }
+    else
+    {
+      console.log('education', this.eduData);
+
       console.log("good");
-      }
-      else{
+
       this.plantcodeService.submitedu()
     }
-}
+
+    }
 
 sendData(){
   this.plantcodeService.edu = this.eduData
@@ -149,4 +157,26 @@ sendData(){
 //       error: (error) => console.log(error),
 //   })
 // }
+
+public valid(){
+  if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+    this.flag = false
+}
+
+valids(event :any){
+  console.log(this.eduData)
+  if(this.eduData[0].year != '' && this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+  {
+    console.log("good to go")
+    this.flag = false
+  }
+  else
+  {
+    console.log(event.target.value.length)
+    if(event.target.value.length == 0)
+      this.flag = true
+  }
+
+
+}
 }

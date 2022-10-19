@@ -17,6 +17,7 @@ export class LanguageComponent implements OnInit {
 
 uniqueId :any = {'mobile':''}
 details : any = []
+flag: any = true
 
 languageList = [
   {
@@ -206,6 +207,26 @@ post('http://localhost:3000/getdatabasic',this.uniqueId)
   error: (error) => console.log(error),
 })
 }
+
+// public valid(){
+//   if(this.languageList[0].language != '' && this.languageList[0].write != '' && this.languageList[0].read != '' && this.languageList[0].speak != '' && this.languageList[0].understand != '')
+//     this.flag = false
+// }
+
+// valids(event :any){
+//   if(this.languageList[0].language != '' && this.languageList[0].write != '' && this.languageList[0].read != '' && this.languageList[0].speak != '' && this.languageList[0].understand != '')
+//   {
+//     console.log("good to go")
+//     this.flag = false
+//   }
+//   else
+//   {
+//     console.log(event.target.value.length)
+//     if(event.target.value.length == 0)
+//       this.flag = true
+
+//   }
+// }
 
 
 }

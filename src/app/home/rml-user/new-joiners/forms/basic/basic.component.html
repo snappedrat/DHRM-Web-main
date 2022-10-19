@@ -87,7 +87,7 @@
                     type="date"
                     (click)="sendData()"
                     (change)="validate($event)"
-                    class="form-control"><div *ngIf="flag" class = "alert alert-danger">Invalid Birth Date</div>
+                    class="form-control"><div *ngIf="flag"  class = "alert alert-danger">Invalid Birth Date</div>
             <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
                 <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
             </div>
@@ -337,6 +337,6 @@
     class="form-control"
     placeholder="Identification Mark 2">
 </div>
-        <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" type="submit">Save</button>
+        <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
     </form>
 </div>

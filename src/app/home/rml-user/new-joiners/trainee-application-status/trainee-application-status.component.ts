@@ -3,6 +3,8 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PlantcodeService } from '../plantcode.service';
+import { ifError } from 'assert';
+import { id } from 'date-fns/locale';
 
 @Component({
   selector: 'app-trainee-application-status',
@@ -60,13 +62,23 @@ filter()
 
 searchfilter()
 {
-  this.service.searchfilter(this.colname,this.colvalue)
-  console.log("filter working")
-  // setTimeout(() => {
-    this.searchfilterinfo = this.service.searchfilterinfo
-  // }, 100);
-  console.log(this.searchfilter)
+  // this.service.searchfilter(this.colname,this.colvalue)
+  // console.log("filter working")
+  // // setTimeout(() => {
+  //   this.searchfilterinfo = this.service.searchfilterinfo
+  // // }, 100);
+  // console.log(this.searchfilter)
 
+console.log(",,,,,,,,,,,,,",this.colname,",,,,,,,,,,,,,,,", this.colvalue)
+for(var i = 0; i< this.filterinfo.length; i++)
+{
+if(this.colname ='first_name')
+{
+  if(this.filterinfo[i]?.first_name == this.colvalue)
+      console.log(this.filterinfo[i])
+  
+}
+}
 }
 
 }

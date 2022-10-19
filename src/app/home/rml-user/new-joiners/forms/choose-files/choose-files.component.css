@@ -9,3 +9,8 @@
 .left{
     padding: 0 15px;
 }
+
+.btn{
+    border-radius: 0px;
+    margin-left:50%;
+}

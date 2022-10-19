@@ -14,12 +14,12 @@
         </tr>
         <tr *ngFor="let data of prevData">
         <td><input type="text" style="width:25px" [(ngModel)]="data.sno" disabled></td>
-        <td><input type="text" [(ngModel)]="data.name" ></td>
-        <td><input type="text" [(ngModel)]="data.desig" ></td>
-        <td><input type = "date" [(ngModel)]="data.periodf"> </td>
-        <td><input type = "date" [(ngModel)]="data.periodt" ></td>
-        <td><input type = "text"[(ngModel)]="data.sal" ></td>
-        <td><input type = "text"[(ngModel)]="data.reason" ></td>
+        <td><input type="text" [(ngModel)]="data.name" (change)="valids($event)" ></td>
+        <td><input type="text" [(ngModel)]="data.desig" (change)="valids($event)" ></td>
+        <td><input type = "date" [(ngModel)]="data.periodf" (change)="valids($event)"> </td>
+        <td><input type = "date" [(ngModel)]="data.periodt" (change)="valids($event)" ></td>
+        <td><input type = "number" [(ngModel)]="data.sal" (change)="valids($event)"></td>
+        <td><input type = "text"[(ngModel)]="data.reason" (change)="valids($event)" (change)="valid()" ></td>
               
 
    
@@ -28,5 +28,5 @@
         <tr>
     </thead>    
     </table>
-    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">Save</button>
+    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"(click)="submit()" [disabled]="flag" >Save</button>
  </div> 

@@ -42,11 +42,9 @@ export class TraineeApplicationComponent implements OnInit{
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
       plant:['',Validators.required],
-      pass: [this.Tvalue ]
+      pass: [this.Tvalue]
    });
    this.mobilenum = this.bankForms.controls['mobileNumber'].value
-   this.bankForms.get('pass')?.disable();
-
 }
 
 plantcode:any;
@@ -57,6 +55,8 @@ ngOnInit(): void {
   this.getplantcode()
   this.getcompanycode()
   this.plantcodeService.getHr('newuser')
+  console.log("nnnnnnnnnnn",this.bankForms.value)
+
 
 }
 

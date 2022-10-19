@@ -15,21 +15,21 @@
         </tr>
         <tr *ngFor= "let data of eduData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (click)="sendData()" ></td>
-        <td><select type = "text" [(ngModel)]="data.passed" (click)="sendData()"><option *ngFor= "let i of Exampassed">
+        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (change)="valids($event)" (click)="sendData()" ></td>
+        <td><select type = "text" [(ngModel)]="data.passed" (change)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>
-        <td><input type = "date" [(ngModel)]="data.year" (click)="sendData()" ></td>
-        <td><input type = "text"[(ngModel)]="data.department" (click)="sendData()"></td>
-        <td><input type = "text"[(ngModel)]="data.certificatenumber" (click)="sendData()"></td>
-        <td><input type = "date"[(ngModel)]="data.certificatedate" (click)="sendData()" ></td>
-               <td><input type = "text" [(ngModel)]="data.percentage" (click)="sendData()">
+        <td><input type = "date" [(ngModel)]="data.year" (change)="valids($event)" (click)="sendData()" ></td>
+        <td><input type = "text"[(ngModel)]="data.department" (change)="valids($event)" (click)="sendData()"></td>
+        <td><input type = "text"[(ngModel)]="data.certificatenumber" (change)="valids($event)" (click)="sendData()"></td>
+        <td><input type = "date"[(ngModel)]="data.certificatedate" (change)="valids($event)" (click)="sendData()" ></td>
+               <td><input type = "number" [(ngModel)]="data.percentage" (change)="valids($event)"  (change)="valid()">
        
   </td>
         <tr>
     </thead>    
     </table>
-    <input type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()">
+    <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()" [disabled]="flag" >
 
 </div>
 

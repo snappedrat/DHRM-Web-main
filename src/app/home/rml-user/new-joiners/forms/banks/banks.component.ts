@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
@@ -36,9 +36,9 @@ temp: string = 'hellllllllllll             '
     constructor(private fb: UntypedFormBuilder, private http: HttpClient, private cookie : CookieService, public plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
             sno: new UntypedFormControl(' '),
-            account:[''],
-            ifsc:[''],
-            bankName:[''],
+            account:['', Validators.required],
+            ifsc:['', Validators.required],
+            bankName:['', Validators.required],
             mobilenumber: new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
         })
     }
@@ -53,8 +53,6 @@ temp: string = 'hellllllllllll             '
                 this.temp = this.banks[i]
                 this.banks[i] = this.temp.trim()
             }
-            console.log(this.Bank)
-            console.log(this.banks)
 
             this.bank = this.plantcodeService.basicdetails
             
@@ -82,7 +80,7 @@ temp: string = 'hellllllllllll             '
     
 
     submit(){
-        console.log(this.form.value);
+        console.log("values",this.form.value);
         this.plantcodeService.submitbank()
     }
     sendData(){

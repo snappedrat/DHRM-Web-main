@@ -10,10 +10,10 @@
       <td >
         <div class="text-center"> 
     	<input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
-     
 	</div> 
-	<td >
-		<a *ngIf= "resume_file != null" [href]= 'urlforResume' target = "_blank" class="btn btn-secondary" > preview </a>
+  </td>
+	<td>
+		<a  [href]= 'urlforResume' target = "_blank" download = "resume.png"> {{resume_file_name}} </a>
 	</td>
 
     </tr>
@@ -24,7 +24,7 @@
 	</div> 
 
 	<td>
-		<a *ngIf="marksheet_file != null" [href]= 'urlforMark' target = "_blank" class="btn btn-secondary "> preview </a>
+		<a [href]= 'urlforMark' target = "_blank">{{marksheet_file_name}}  </a>
         </td>
     </tr> 
 	<tr>
@@ -33,8 +33,8 @@
           <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
 		</div> 
 
-		<td>
-			<a *ngIf="transfercertificate_file != null" [href]= 'urlforTc' target = "_blank" class="btn btn-secondary "> preview </a>
+		<td  >
+			<a [href]= 'urlforTc' target = "_blank"> {{transfercertificate_file_name}} </a>
 		</td>
       </tr>
       <tr>
@@ -44,7 +44,7 @@
 		</div> 
 
 		<td>
-			<a *ngIf="aadharcard_file != null" [href]= 'urlforaadhar' target = "_blank" class="btn btn-secondary "> preview </a>
+			<a [href]= 'urlforaadhar' target = "_blank">{{aadharcard_file_name}}</a>
           </td>
       </tr>
       <tr>
@@ -54,17 +54,17 @@
 		</div> 
 
 		<td> 
-			<a *ngIf="bankpassbook_file != null" [href]= 'urlforbankpass' target = "_blank" class="btn btn-secondary "> preview </a>
+			<a [href]= 'urlforbankpass' target = "_blank"> {{bankpassbook_file_name}} </a>
         </td>
       </tr>
       <tr>
         <td>Photo</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
+          <input class="form-control" type="file"   (change)="onPhotoChange($event)" (change)="valid()"> 
 		</div> 
 
 		<td>
-			<a *ngIf="photo_file != null" [href]= 'urlforphoto' target = "_blank" class="btn btn-secondary "> preview </a>
+			<a [href]= 'urlforphoto' target = "_blank"> {{photo_file_name}} </a>
     	</td>
       </tr>
       <tr>
@@ -74,168 +74,178 @@
 		</div> 
 
 		<td>
-			<a *ngIf="signature_file != null" [href]= 'urlforSign' target = "_blank" class="btn btn-secondary "> preview </a>
+			<a [href]= 'urlforSign' target = "_blank" > {{signature_file_name}} </a>
         </td>
       </tr> <tr>
        
   </table>
-<br><br>
+  <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)="generate_link()">
+  <br><br>
 </div>
-
-
+</form>
+<form>
 <div *ngIf= "ishr == 'true' " class="mx-5" >
-<h1>Employee related</h1>
-<table [width]="1000">
-    <tr>
-      <td>Resume</td>
-      <td >
-        <div class="text-center"> 
-    	<input class="form-control" type="file"  (change)="onResumeChange($event)">
-
-	</div> 
-	<td >
-		<!-- <button *ngIf="resume_file != null" class="btn btn-secondary" > preview </button> -->
-		<a [href]= 'urlforResume' target = "_blank" class="btn btn-secondary" > preview </a>
-	</td>
-
-    </tr>
-    <tr>
-      <td>Marksheet</td>
-      <td><div class="text-center"> 
-        <input class="form-control" type="file"   (change)="onMarksheetChange($event)"> 
-	</div> 
-
-	<td>
-		<a [href]= 'urlforMark' target = "_blank" class="btn btn-secondary "> preview </a>
-        </td>
-    </tr> 
-	<tr>
-        <td>Transfer Certificate</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
-		</div> 
-
-		<td>
-			<a [href]= 'urlforTc' target = "_blank" class="btn btn-secondary "> preview </a>
-		</td>
-      </tr>
+    <h1>Employee related</h1>
+    <h3>Upload the files in any one of the following formats:</h3>
+    <h4><ol>Png Jpeg Jpg Word
+    </ol></h4>
+    <table [width]="1000">
+        <tr>
+          <td>Resume(not more than 3mb)</td>
+          <td >
+            <div class="text-center"> 
+          <input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
+      </div> 
+      </td>
+      <td>
+        <a  [href]= 'urlforResume' target = "_blank" download = "resume.png"> {{resume_file_name}} </a>
+      </td>
+    
+        </tr>
+        <tr>
+          <td>Marksheet</td>
+          <td><div class="text-center"> 
+            <input class="form-control" type="file"  (change)="onMarksheetChange($event)"> 
+      </div> 
+    
+      <td>
+        <a [href]= 'urlforMark' target = "_blank">{{marksheet_file_name}}  </a>
+            </td>
+        </tr> 
       <tr>
-        <td>Aadhar card</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
-		</div> 
-
-		<td>
-			<a [href]= 'urlforaadhar' target = "_blank" class="btn btn-secondary "> preview </a>
+            <td>Transfer Certificate</td>
+            <td><div class="text-center"> 
+              <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
+        </div> 
+    
+        <td  >
+          <a [href]= 'urlforTc' target = "_blank"> {{transfercertificate_file_name}} </a>
+        </td>
+          </tr>
+          <tr>
+            <td>Aadhar Card</td>
+            <td><div class="text-center"> 
+              <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
+        </div> 
+    
+        <td>
+          <a [href]= 'urlforaadhar' target = "_blank">{{aadharcard_file_name}}</a>
+              </td>
+          </tr>
+          <tr>
+            <td>Bank Passbook</td>
+            <td><div class="text-center"> 
+              <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
+        </div> 
+    
+        <td> 
+          <a [href]= 'urlforbankpass' target = "_blank"> {{bankpassbook_file_name}} </a>
+            </td>
+          </tr>
+          <tr>
+            <td>Photo</td>
+            <td><div class="text-center"> 
+              <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
+        </div> 
+    
+        <td>
+          <a [href]= 'urlforphoto' target = "_blank"> {{photo_file_name}} </a>
           </td>
-      </tr>
-      <tr>
-        <td>Bank Passbook</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
-		</div> 
+          </tr>
+          <tr>
+            <td>Signature</td>
+            <td><div class="text-center"> 
+              <input class="form-control" type="file"    (change)="onSignatureChange($event)"  (change)="valid()"> 
+        </div> 
+    
+        <td>
+          <a [href]= 'urlforSign' target = "_blank" > {{signature_file_name}} </a>
+            </td>
+          </tr> <tr>
+           
+      </table>
+      <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]="flagged" (click)="generate_link()">
+      <br><br>
 
-		<td> 
-			<a [href]= 'urlforbankpass' target = "_blank" class="btn btn-secondary "> preview </a>
-        </td>
-      </tr>
-      <tr>
-        <td>Photo</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
-		</div> 
+<!-- /////////////////////////////////////////////////////////////////////////////// -->
 
-		<td>
-			<a [href]= 'urlforphoto' target = "_blank" class="btn btn-secondary "> preview </a>
-    	</td>
-      </tr>
-      <tr>
-        <td>Signature</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onSignatureChange($event)"> 
-		</div> 
-
-		<td>
-			<a [href]= 'urlforSign' target = "_blank" class="btn btn-secondary "> preview </a>
-        </td>
-      </tr> <tr>
-       
-  </table>
-<br><br>
 
 <h1>RML related</h1>
 <table [width]="1000">
-    <tr>
-      <td>appointment order</td>
-      <td>
-        <div class="text-center"> 
-    	<input class="form-control" type="file"    (change)="onAppointmentorderChange($event)"> 
-	</div> 
+  <tr>
+    <td>appointment order( < 300KB)</td>
+    <td >
+      <div class="text-center"> 
+    <input class="form-control" formcontrolname="appointment" id = "appoinment" type="file"   (change)="onAppointmentorderChange($event)">
+</div> 
+</td>
+<td>
+  <a  [href]= 'url_appointmentorder_file' target = "_blank"> {{appointmentorder_file_name}} </a>
+</td>
 
-	<td> 
-		<button *ngIf="appointmentorder_file != null"class="btn-secondary " > preview </button>
-	 </td>
+  </tr>
+  <tr>
+    <td>declaration file</td>
+    <td><div class="text-center"> 
+      <input class="form-control" type="file"  (change)="onDeclarationChange($event)"> 
+</div> 
+
+<td>
+  <a [href]= 'url_declaration_file' target = "_blank">{{declaration_file_name}}  </a>
+      </td>
+  </tr> 
+<tr>
+      <td>medicalfitness file</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"  (change)="onMedicalfitnessChange($event)"> 
+  </div> 
+
+  <td  >
+    <a [href]= 'url_medicalfitness_file' target = "_blank"> {{medicalfitness_file_name}} </a>
+  </td>
     </tr>
     <tr>
-      <td>declaration form</td>
+      <td>formA4 file</td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file"   (change)="onDeclarationChange($event)"> 
-	</div> 
+        <input class="form-control" type="file"   (change)="onForma4Change($event)"> 
+  </div> 
 
-	<td> 
-		<button *ngIf="declaration_file != null"class="btn-secondary" > preview </button>
-     </td>
+  <td>
+    <a [href]= 'url_formA4_file' target = "_blank">{{formA4_file_name}}</a>
+        </td>
+    </tr>
+    <tr>
+      <td>form11 file</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"   (change)="onForm11Change($event)"> 
+  </div> 
+
+  <td> 
+    <a [href]= 'url_form11_file' target = "_blank"> {{form11_file_name}} </a>
+      </td>
+    </tr>
+    <tr>
+      <td>formh2 file</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
+  </div> 
+
+  <td>
+    <a [href]= 'url_formh2_file' target = "_blank"> {{formh2_file_name}} </a>
+    </td>
+    </tr>
+    <tr>
+      <td>natx file</td>
+      <td><div class="text-center"> 
+        <input class="form-control" type="file"    (change)="onNatxChange($event)"> 
+  </div> 
+
+  <td>
+    <a [href]= 'url_natx_file' target = "_blank" > {{natx_file_name}} </a>
+      </td>
     </tr> <tr>
-        <td>medical fitness</td>
-        <td><div class="text-center"> 
-
-          <input class="form-control" type="file"   (change)="onMedicalfitnessChange($event)"> 
-		</div> 
-
-		<td> 
-		  <button *ngIf="medicalfitness_file != null" class="btn-secondary "> preview </button>
-		 </td>
-      <tr>
-        <td>form A4</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"    (change)="onForma4Change($event)"> 
-		</div> 
-
-		<td>  
-		  <button *ngIf="formA4_file != null" class="btn-secondary "> preview </button>
-          </td>
-      </tr>
-      <tr>
-        <td>form 11</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"  (change)="onForm11Change($event)"> 
-		</div> 
-
-		<td>  
-		  <button *ngIf="form11_file != null"class="btn-secondary" > preview </button>
-        </td>
-      </tr>
-      <tr>
-        <td>form h2</td>
-        <td ><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
-		</div> 
-
-		<td>  
-		  <button *ngIf="formh2_file != null" class="btn-secondary "> preview </button>
-        </td>
-      </tr>
-      <tr>
-        <td>NATX</td>
-        <td><div class="text-center"> 
-          <input class="form-control" type="file"    (change)="onNatxChange($event)"> 
-		</div> 
-
-		<td>  
-		  <button *ngIf="natx_file != null" class="btn-secondary " > preview </button>
-          </td>
-      </tr> <tr>
-       
-  </table>
+     
+</table>
+  <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]="flagged_for_rml" (click)="generate_link_rml()">  
 </div>
 </form>

@@ -35,6 +35,7 @@ emer : any = []
         this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
         this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
         this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
+
         this.sendData()
       }, 1000);
       this.sendData()

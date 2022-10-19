@@ -59,6 +59,7 @@ export class PrevEditComponent implements OnInit {
     }
 
   ];
+  flag: any = true;
   
     constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active: ActivatedRoute ) { }
   
@@ -97,17 +98,17 @@ export class PrevEditComponent implements OnInit {
         this.prevData[3].reason = this.career[0]?.leaving_reason4
 
         for(var i = 0; i<=3; i++){
-          if(this.prevData[i].name == 'null')
+          if(this.prevData[i].name == 'null' || 'undefined' || undefined)
             this.prevData[i].name = ''
-            if(this.prevData[i].desig == 'null')
+            if(this.prevData[i].desig == 'null' || 'undefined' || undefined)
             this.prevData[i].desig = ''
-            if(this.prevData[i].periodf == 'null')
+            if(this.prevData[i].periodf == 'null' || 'undefined' || undefined)
             this.prevData[i].periodf = ''
-            if(this.prevData[i].periodt  == 'null')
+            if(this.prevData[i].periodt  == 'null' || 'undefined' || undefined)
             this.prevData[i].periodt  = ''
-            if(this.prevData[i].sal == 'null')
+            if(this.prevData[i].sal == 'null' || 'undefined' || undefined)
             this.prevData[i].sal = ''
-            if(this.prevData[i].reason == 'null')
+            if(this.prevData[i].reason == 'null' || 'undefined' || undefined)
             this.prevData[i].reason = ''
         }
 
@@ -116,21 +117,51 @@ export class PrevEditComponent implements OnInit {
       this.sendData()
     }  
 
-    submit()
-    {
-      console.log('family', this.prevData);
-        if(this,this.prevData.length == 0){
+    submit()   
+     {
+      
+    console.log(this.prevData)
+
+      if(this.prevData[0].desig == '' || this.prevData[0].name == '' || this.prevData[0].periodf == '' || this.prevData[0].periodt == ''|| this.prevData[0].reason == '' || this.prevData[0].sal == '')
+      {
+        this.flag = true
+      }
+      else
+      {
+        console.log('family', this.prevData);
+
         console.log("good");
-        }
-        else{
+
         this.plantcodeService.submitprev()
       }
-  }
+
+      }
   
   sendData(){
     this.plantcodeService.prev = this.prevData
   } 
 
+  public valid(){
+    if(this.prevData[0].desig != '' && this.prevData[0].name != '' && this.prevData[0].periodf != '' && this.prevData[0].periodt != '' && this.prevData[0].reason != ''  && this.prevData[0].sal != ''  && this.prevData[0].sno != '')
+      this.flag = false
+  }
+  
+  valids(event :any){
+
+    if(this.prevData[0].desig != '' && this.prevData[0].name != '' && this.prevData[0].periodf != '' && this.prevData[0].periodt != '' && this.prevData[0].reason != ''  && this.prevData[0].sal != ''  && this.prevData[0].sno != '')
+    {
+      console.log("good to go")
+      this.flag = false
+    }
+    else
+    {
+      console.log(event.target.value.length)
+      if(event.target.value.length == 0)
+        this.flag = true
+    }
+  
+  
+  }
 
   
   //     this.http.
