@@ -24,7 +24,7 @@ colvalue :any
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),
       todate: new UntypedFormControl(' '),
-      plantcode: [localStorage.getItem('plantcode')]
+      plantcode: [sessionStorage.getItem('plantcode')]
 
     });
    }

@@ -5,6 +5,8 @@ import { AnyNaptrRecord } from 'dns';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
+import { threadId } from 'worker_threads';
+import { isThisSecond } from 'date-fns';
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
@@ -22,14 +24,16 @@ export class BasicComponent implements OnInit{
     basic: any = []
     aadharsplitted :any = []
     vaccinated :any = false
-    ishr:any = localStorage.getItem('ishr') 
+    ishr:any = sessionStorage.getItem('ishr') 
     form: FormGroup = new FormGroup({});
     flag : any = 0
+    flag_to_readonly: any = false
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
             permanent:['',Validators.required],
             present: [''],
+            title: ['',Validators.required],
             fname:['',Validators.required],
             lname:['',Validators.required],
             ftname:['',Validators.required],
@@ -63,13 +67,15 @@ export class BasicComponent implements OnInit{
    }
 
     ngOnInit(): void {
-            this.setbdvalidation();
+        this.disable_for_hr();
+        this.setbdvalidation();
         this.getdatabasic()
         this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
 
             this.basic = this.plantcodeService.basicdetails
 
+            this.form.controls['title'].setValue(this.basic[0]?.title)
             this.form.controls['fname'].setValue(this.basic[0]?.first_name)
             this.form.controls['lname'].setValue(this.basic[0]?.last_name)
             this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
@@ -106,6 +112,14 @@ export class BasicComponent implements OnInit{
 
             this.sendData()
         }, 1000);
+    }
+
+    disable_for_hr()
+    {
+        if(this.ishr == 'true')
+        {
+            this.flag_to_readonly = true
+        }
     }
 
     setcity_state(event:any)
@@ -228,8 +242,9 @@ export class BasicComponent implements OnInit{
         return this.form.controls;
     }
 
-    validate(event:any){
-     var date = new Date()
+    validate(event:any)
+    {
+    var date = new Date()
     var year = date.getFullYear()
 
     if(year - event.target.value.split('-')[0] <=18)
@@ -241,7 +256,9 @@ export class BasicComponent implements OnInit{
     public inputValue:string ="";
     public check:boolean;
     public noEntry:boolean = true;
-    public getValue(event:any):void{
+
+    public getValue(event:any):void
+    {
         if(event.target.checked)
         {
 
@@ -266,12 +283,15 @@ export class BasicComponent implements OnInit{
             this.noEntry=false;
         }
     }
-    setbdvalidation(){
+    setbdvalidation()
+    {
     const now = new Date();
     const birthday = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
     console.log(this.setbdvalidation)
     }
-    submit(){
+
+    submit()
+    {
             this.plantcodeService.submitbasic()
             this.sendData()
 

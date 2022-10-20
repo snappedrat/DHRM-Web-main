@@ -17,14 +17,68 @@ export class HrViewDataComponent implements OnInit {
   career: any
   education: any
   family: any
+  url:any = "http://localhost:3000/"
 
-  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router) { }
+	urlforResume: any 
+	urlforMark: any
+	urlforTc: any
+	urlforaadhar: any
+	urlforbankpass: any
+	urlforphoto: any
+	urlforSign: any
+
+  url_appointmentorder_file: any
+	url_declaration_file: any
+	url_medicalfitness_file:any
+	url_formA4_file:any
+	url_form11_file:any
+	url_formh2_file: any
+	url_natx_file: any
+
+  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router) {
+
+   }
 
   ngOnInit(): void {
     this.getdatabasic()
     this.getdataqualifn()
     this.getdatacareer()
     this.getdatafamily()
+  
+
+    console.log("......................................................................................")
+    setTimeout(() => {
+
+      if(this.basic[0]?.any_empl_rane == 'Y')
+      this.basic[0].any_empl_rane = 'Yes'
+      else if(this.basic[0]?.any_empl_rane == 'N')
+      this.basic[0].any_empl_rane = 'No'
+  
+      if(this.basic[0]?.prev_rane_empl == 'Y')
+      this.basic[0].prev_rane_empl = 'Yes'
+      else if(this.basic[0]?.prev_rane_empl == 'N')
+      this.basic[0].prev_rane_empl = 'No'
+    
+      this.url_appointmentorder_file = this.url+this.basic[0].other_files8
+      this.url_declaration_file = this.url+this.basic[0].other_files9
+      this.url_medicalfitness_file = this.url+this.basic[0].other_files10 
+      this.url_formA4_file = this.url+this.basic[0].other_files11
+      this.url_form11_file = this.url+this.basic[0].other_files12 
+      this.url_formh2_file = this.url+this.basic[0].other_files13
+      this.url_natx_file = this.url+this.basic[0].other_files14
+
+      this.urlforResume = this.url+this.basic[0].other_files1
+      this.urlforMark = this.url+this.basic[0].other_files2
+      this.urlforTc = this.url+this.basic[0].other_files3
+      this.urlforaadhar = this.url+this.basic[0].other_files4 
+      this.urlforbankpass = this.url+this.basic[0].other_files5
+      this.urlforphoto = this.url+this.basic[0].other_files6
+      this.urlforSign = this.url+this.basic[0].other_files7
+
+
+      console.log(this.urlforResume)
+
+    }, 1000);
 
   }
 
@@ -77,7 +131,7 @@ getdataqualifn(){
   this.http.
 post('http://localhost:3000/getdataqualfn',this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.education = response} ,
+  next: (response) => {console.log("qual",response); this.education = response} ,
   error: (error) => console.log(error),
 })
 }
@@ -88,7 +142,7 @@ getdatafamily(){
   this.http.
 post('http://localhost:3000/getdatafamily',this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.family = response} ,
+  next: (response) => {console.log("fam",response); this.family = response} ,
   error: (error) => console.log(error),
 })
 }
@@ -98,7 +152,7 @@ getdatacareer(){
   this.http.
 post('http://localhost:3000/getdatacareer',this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.career = response} ,
+  next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),
 })
 }

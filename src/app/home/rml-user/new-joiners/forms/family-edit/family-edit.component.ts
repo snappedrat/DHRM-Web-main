@@ -68,15 +68,29 @@ familyData = [
    }
 
   ngOnInit(): void {
-
+    // console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",this.familyData)
     this.plantcodeService.getdatafamily(this.mobile_no1)
     setTimeout(() => {
       this.family = this.plantcodeService.family
-      console.log('====================================');
-      console.log('====================================');
 
       for(var i= 0; i<4 ;i++)
       {
+
+                
+        if(this.family[i]?.relation_name == 'undefined')
+           this.family[i].relation_name = ''
+        if(this.family[i].relation_type == 'undefined')
+           this.family[i].relation_type = ''
+        if(this.family[i].age == 'undefined')
+           this.family[i].age = ''
+        if(this.family[i].occupation  == 'undefined' )
+           this.family[i].occupation  = ''
+        if(this.family[i].contact_number ==  'undefined' )
+           this.family[i].contact_number = ''
+        if(this.family[i].dependent == 'undefined')
+           this.family[i].dependent = ''
+
+
         if(this.family[i]?.relation_name != null)
           this.flag = false
         this.familyData[i].name = this.family[i]?.relation_name
@@ -89,7 +103,6 @@ familyData = [
         else
          this.family[i].dependent = 'Self-Sufficient'
         this.familyData[i].dependent = this.family[i]?.dependent
-        
       }
           
       // this.familyData[0].name = this.family[0]?.relation_name1
@@ -149,8 +162,9 @@ public valid(){
 }
 
 valids(event :any){
-  if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
+  if((this.familyData[0].age != undefined) && (this.familyData[0].contactnumber != ''||undefined) && (this.familyData[0].name != undefined) && (this.familyData[0].occupation != undefined) && (this.familyData[0].relation != undefined))
   {
+    console.log(this.familyData)
     console.log("good to go")
     this.flag = false
   }
@@ -159,7 +173,6 @@ valids(event :any){
     console.log(event.target.value.length)
     if(event.target.value.length == 0)
       this.flag = true
-
   }
 }
 }

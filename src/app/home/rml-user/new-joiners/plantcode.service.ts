@@ -227,7 +227,7 @@ getHr(uniqueid: any)
     error: (error) => console.log(error),
 });
 setTimeout(() => {
-  localStorage.setItem('ishr', this.ishr[0]?.Is_HR)
+  sessionStorage.setItem('ishr', this.ishr[0]?.Is_HR)
 }, 1000);
 
 
@@ -237,9 +237,9 @@ setTimeout(() => {
         error: (error) => console.log(error),
   });
 setTimeout(() => {
-  localStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
-  localStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
-  localStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
+  sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
+  sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
+  sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
 }, 500);
 }
 

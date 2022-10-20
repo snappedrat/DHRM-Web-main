@@ -76,54 +76,19 @@ eduData = [
     setTimeout(() => {
       this.education = this.plantcodeService.education
 
-      this.eduData[0].school = this.education[0]?.school_name1
-      this.eduData[0].passed = this.education[0]?.exam_passed1
-      this.eduData[0].year = this.education[0]?.passing_yr1
-      this.eduData[0].department = this.education[0]?.subjects1
-      this.eduData[0].certificatenumber = this.education[0]?.cert_number1
-      this.eduData[0].certificatedate = this.education[0]?.cer_date1
-      this.eduData[0].percentage = this.education[0]?.percentage1
-
-      this.eduData[1].school = this.education[0]?.school_name2
-      this.eduData[1].passed = this.education[0]?.exam_passed2
-      this.eduData[1].year = this.education[0]?.passing_yr2
-      this.eduData[1].department = this.education[0]?.subjects2
-      this.eduData[1].certificatenumber = this.education[0]?.cert_number2
-      this.eduData[1].certificatedate = this.education[0]?.cer_date2
-      this.eduData[1].percentage = this.education[0]?.percentage2
-
-      this.eduData[2].school = this.education[0]?.school_name3
-      this.eduData[2].passed = this.education[0]?.exam_passed3
-      this.eduData[2].year = this.education[0]?.passing_yr3
-      this.eduData[2].department = this.education[0]?.subjects3
-      this.eduData[2].certificatenumber = this.education[0]?.cert_number3
-      this.eduData[2].certificatedate = this.education[0]?.cer_date3
-      this.eduData[2].percentage = this.education[0]?.percentage3
-
-      this.eduData[3].school = this.education[0]?.school_name4
-      this.eduData[3].passed = this.education[0]?.exam_passed4
-      this.eduData[3].year = this.education[0]?.passing_yr4
-      this.eduData[3].department = this.education[0]?.subjects4
-      this.eduData[3].certificatenumber = this.education[0]?.cert_number4
-      this.eduData[3].certificatedate = this.education[0]?.cer_date4
-      this.eduData[3].percentage = this.education[0]?.percentage4
-
-      for(var i = 0;i<=3;i++)
+      for(var i= 0; i<4 ;i++)
       {
-        if(this.eduData[i].school == undefined || 'undefined')
-        this.eduData[i].school = ''
-        if(this.eduData[i].passed == undefined || 'undefined')
-        this.eduData[i].passed = ''
-        if(this.eduData[i].year == undefined || 'undefined')
-        this.eduData[i].year = ''
-        if(this.eduData[i].department == undefined || 'undefined')
-        this.eduData[i].department = ''
-          if(this.eduData[i].certificatenumber == undefined || 'undefined')
-          this.eduData[i].certificatenumber = ''
-          if(this.eduData[i].certificatedate == undefined || 'undefined')
-          this.eduData[i].certificatedate = ''
-          if(this.eduData[i].percentage == undefined || 'undefined')
-          this.eduData[i].percentage = ''
+        if(this.education[i]?.school_name != null)
+          this.flag = false
+        this.eduData[i].school = this.education[i]?.school_name
+        this.eduData[i].passed = this.education[i]?.exam_passed
+        this.eduData[i].year = this.education[i]?.passing_yr
+        this.eduData[i].department = this.education[i]?.subjects
+        this.eduData[i].certificatenumber = this.education[i]?.cert_number
+
+        this.eduData[i].certificatedate = this.education[i]?.cert_date
+        this.eduData[i].percentage = this.education[i]?.percentage
+
       }
 
     }, 1000);
@@ -149,14 +114,6 @@ eduData = [
 sendData(){
   this.plantcodeService.edu = this.eduData
 } 
-
-//     this.http.
-//     post('http://localhost:3000/lang', this.languageList)
-//     .subscribe({
-//       next: (response) => console.log(response),
-//       error: (error) => console.log(error),
-//   })
-// }
 
 public valid(){
   if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')

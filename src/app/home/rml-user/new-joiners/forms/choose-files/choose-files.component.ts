@@ -80,7 +80,7 @@ export class ChooseFilesComponent implements OnInit {
 	flagged_for_rml: any = true;
 	
   constructor(private service: PlantcodeService, private active : ActivatedRoute, private http: HttpClient) {
-	this.ishr = localStorage.getItem('ishr')
+	this.ishr = sessionStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
 	console.log('====================================');
@@ -95,9 +95,9 @@ export class ChooseFilesComponent implements OnInit {
 	this.service.getdatabasic(this.uniqueId)
 	setTimeout(() => {
 		this.rollno = this.service.basicdetails[0]?.apln_slno
-	}, 500);
+	}, 1000);
 
-	if(localStorage.getItem('ishr') == 'true')
+	if(sessionStorage.getItem('ishr') == 'true')
 	{
 		this.generate_link()
 		this.generate_link_rml()

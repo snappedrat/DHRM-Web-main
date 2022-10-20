@@ -1,101 +1,4 @@
 
-<!-- 
-<br><br>
-<br>
-
-<div class = "container">
-<div *ngFor="let i of basic">
-    <div *ngFor="let i of basic" >
-    <h3><b><u>Basic Details :</u></b></h3>
-    <p><b> Full Name :</b> {{i.fullname}} </p>
-    <p><b> father Name :</b> {{i.fathername}} </p>
-    <p><b> aadhar Number :</b> {{i.aadhar_no}} </p>
-    <p><b> birth date :</b> {{i.birthdate}} </p>
-    <p><b> Nationality:</b> {{i.nationality}} </p>
-    <p><b> Permanent Address :</b> {{i.permanent_address}} </p>
-    <p><b> Present address:</b> {{i.permanent_address}} </p>
-    <p><b> pincode :</b> {{i.pincode}} </p>
-    <p><b> state :</b> {{i.state_name}} </p>
-    <p><b> religion :</b> {{i.religion}} </p>
-    <p><b> marital status :</b> {{i.marital_status}} </p>
-    <p><b> Blood Group :</b> {{i.blood_group}} </p>
-    <p><b> gender :</b> {{i.gender}} </p>
-    <p><b> dose 1 date :</b> {{i.does1_dt}} </p>
-    <p><b> dose 2 date:</b> {{i.dose2_dt}} </p>
-    <p><b> height :</b> {{i.height}} </p>
-    <p><b> Weight :</b> {{i.weight}} </p>
-    <p><b> Birth place :</b> {{i.birth_place}} </p>
-    </div><br><br>
-
-    <div>
-    <h3><b><u>Bank Details :</u></b></h3>
-    <p><b> Account number :</b> {{i.bank_account_number}} </p>
-    <p><b> IFSC code :</b> {{i.ifsc_code}} </p>
-    <p><b> Bank Name :</b> {{i.bank_name}} </p>
-    </div><br><br>
-
-    <div>
-    <h3><b><u>Emergency Details :</u></b></h3>
-    <p><b> Contact Name :</b> {{i.emergency_name}} </p>
-    <p><b> Contact Number :</b> 9884534707 </p>
-    <p><b> Relation :</b> {{i.emergency_rel}} </p>
-    </div><br><br>
-
-    <div>
-        <h3><b><u>Language Details :</u></b></h3>
-        <p><b> Language Name :</b> {{i.lang1_name}} </p>
-        <p><b> speak :</b> {{i.lang1_speak}} </p>
-        <p><b> Write :</b> {{i.lang1_write}} </p>
-        <p><b> Read :</b> {{i.lang1_read}} </p>
-        <p><b> MotherTongue :</b> {{i.lang1_mothertongue}} </p>
-        <p><b> Understand :</b> {{i.lang1_understand}} </p>
-    </div><br><br>
-
-    <div>
-        <h3><b><u>Other Details :</u></b></h3>
-        <p><b> any relations or friends employed in rane group  :</b> {{i.any_empl_rane}} </p>
-        <p><b> ever worked in any company/plant/office of Rane Group :</b> {{i.prev_rane_empl}} </p>
-        <p><b> Name :</b> {{i.existing_employee_name}} </p>
-        <p><b> Place :</b> {{i.prev_rane_exp}} </p>
-        <p><b> Company/Agency Name :</b> {{i.existing_empl_exp}} </p>
-        <p><b> Extra Curricular Activities (Sports/Hobbies) :</b> {{i.extra_curricular}} </p>
-    </div><br><br>
-</div>
-    <div *ngFor="let i of family">
-        <h3><b><u>Family Details :</u></b></h3>
-        <p><b> Name :</b> {{i.relation_name1}} </p>
-        <p><b>Relation :</b> {{i.relation_type1}} </p>
-        <p><b> Occupation :</b> {{i.occupation1}} </p>
-        <p><b> ContactNumber :</b> {{i.contact_number1}} </p>
-        <p><b> 	Dependent/Self-Sufficient :</b> {{i.dependent1}} </p>
-     </div>
-        <br><br>
-
-    <div *ngFor="let i of career">
-        <h3><b><u>Previous Employmeny Details :</u></b></h3>
-        <p><b> Name of the Company :</b> {{i.comapany_name1}} </p>
-        <p><b> 	Designation :</b> {{i.designation1}} </p>
-        <p><b> 	Period From :</b> {{i.period_from1}} </p>
-        <p><b>  Period To :</b> {{i.period_to1}} </p>
-        <p><b> Salary Last Drawn :</b> {{i.last_salary}} </p>
-        <p><b> 	Reason for Leaving :</b> {{i.leaving_reason1}} </p>
-    </div>
-    <br><br>    
-
-    <div *ngFor="let i of education">
-        <h3><b><u>Education Details :</u></b></h3>
-        <p><b> School/College Institute & Location :</b> {{i.school_name1}} </p>
-        <p><b> Exam Passed :</b> {{i.exam_passed1}} </p>
-        <p><b> Year of Passing :</b> {{i.passing_yr1}} </p>
-        <p><b> Department:</b> {{i.subjects1}} </p>
-        <p><b> 	Certificate Number :</b> {{i.cert_number1}} </p>
-        <p><b> Certificate Date :</b> {{i.cert_date1}} </p>
-        <p><b> Percentage :</b> {{i.percentage1}} </p>
-    </div>
-    <br><br>
-</div> -->
-
-
 <h3><b><u>Basic Details :</u></b></h3>
 <div class="container">
     <div *ngFor="let i of basic" >
@@ -224,40 +127,7 @@
 <br>
 <br>
 <br> 
-<h3><b><u>Language Details</u></b></h3>
-<div class="container">
-    <div *ngFor="let i of basic" >
-    <table>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Language name</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_name}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Speak</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_speak}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Read</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_read}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Mother Tounge</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_mothertongue}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Understand</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_read}}</td>
-        </tr>
-    
-    
-    </table>
-    </div>
-</div>
 
-
-<br>
-<br>
-<br> 
 <h3><b><u>Other Details</u></b></h3>
 <div class="container">
     <div *ngFor="let i of basic" >
@@ -267,20 +137,20 @@
             <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.any_empl_rane}}</td>
         </tr>
         <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Acquaintance Name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_empl_name}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Place</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_empl_company}}</td>
+        </tr>
+        <tr>
             <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Ever worked in any company/plant/office in RANE group</b></td>
             <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.prev_rane_empl}}</td>
         </tr>
         <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Name</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_employee_name}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Place</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Company/Agency Name Previously worked</b></td>
             <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.prev_rane_exp}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Company/Agency Name</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_empl_exp}}</td>
         </tr>
         <tr>
             <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Extra curricular activities (sports/hobbies)</b></td>
@@ -295,75 +165,424 @@
 <br>
 <br>
 <br>
+
+<h3><b><u>Language Details</u></b></h3>
+<div><table class="table1">
+        <thead class = "color">
+        <tr>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Language Name
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Speak
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Read
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Write
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Mother Tongue
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+                Understand
+            </th>
+        </tr>
+        </thead>
+        <tbody class = "table-row" *ngFor = "let i of basic">
+
+        <tr>
+        <td>{{i.lang1_name}}</td>
+        <td>{{i.lang1_speak}}</td>
+        <td>{{i.lang1_read}}</td>
+        <td>{{i.lang1_write}}</td>
+        <td>{{i.lang1_mothertounge}}</td>
+        <td>{{i.lang1_understand}}</td>
+        </tr>
+        <tr>
+        <td>{{i.lang2_name}}</td>
+        <td>{{i.lang2_speak}}</td>
+        <td>{{i.lang2_read}}</td>
+        <td>{{i.lang2_write}}</td>
+        <td>{{i.lang2_mothertounge}}</td>
+        <td>{{i.lang2_understand}}</td>
+        </tr>
+        <tr>
+        <td>{{i.lang3_name}}</td>
+        <td>{{i.lang3_speak}}</td>
+        <td>{{i.lang3_read}}</td>
+        <td>{{i.lang3_write}}</td>
+        <td>{{i.lang3_mothertounge}}</td>
+        <td>{{i.lang3_understand}}</td>
+        </tr>
+        <tr>
+        <td>{{i.lang4_name}}</td>
+        <td>{{i.lang4_speak}}</td>
+        <td>{{i.lang4_read}}</td>
+        <td>{{i.lang4_write}}</td>
+        <td>{{i.lang4_mothertounge}}</td>
+        <td>{{i.lang4_understand}}</td>
+        </tr>
+        <tr>
+        <td>{{i.lang5_name}}</td>
+        <td>{{i.lang5_speak}}</td>
+        <td>{{i.lang5_read}}</td>
+        <td>{{i.lang5_write}}</td>
+        <td>{{i.lang5_mothertounge}}</td>
+        <td>{{i.lang5_understand}}</td>
+        </tr>
+        <tr>
+        <td>{{i.lang6_name}}</td>
+        <td>{{i.lang6_speak}}</td>
+        <td>{{i.lang6_read}}</td>
+        <td>{{i.lang6_write}}</td>
+        <td>{{i.lang6_mothertounge}}</td>
+        <td>{{i.lang6_understand}}</td>
+        </tr>
+    </tbody>
+</table></div>
+<br>
+<br>
+<br> 
+
 <h3><b><u>Previous Employment Details</u></b></h3>
-<div class="container">
-    <div *ngFor="let i of career" >
-    <table>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Name of company</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.comapany_name1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Designation</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.designation1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Period from</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.period_from1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Period to</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.period_to1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Salary Last Drawn</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.last_salary}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Reason for leaving</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.leaving_reason1}}</td>
-        </tr>
+
+    <table class = "table1">
+        <thead class = "color">
+            <tr>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                Name of company
+                </th>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                Designation 
+                </th>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                Period from
+                </th>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                Period to
+                </th>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                Salary Last Drawn
+                </th>
+                <th
+                        class="text-center"
+                        style="width: 200px"
+                        style="background-color: darkblue"
+                >
+                    Reason for leaving
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let i of career">
+                    <td>{{i.company_name}}</td>
+                    <td>{{i.designation}}</td>
+                    <td>{{i.period_from}}</td>
+                    <td>{{i.period_to}}</td>
+                    <td>{{i.last_salary}}</td>
+                    <td>{{i.leaving_reason}}</td>
+                </tr>
+
+            </tbody>
     </table>
-    </div>
-</div>
+
 <br>
 <br>
 <br>
 <h3><b><u>Education Details</u></b></h3>
-<div class="container">
-    <div *ngFor="let i of education" >
-    <table>
+<table class = "table1">
+    <thead class = "color">
         <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>School/College Institution & Location</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.school_name1}}</td>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Name of School/Institution
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Exam passed 
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Year of Passing
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Department
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Certificate Number
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+             Certificate Date
+            </th>
+           <th
+            class="text-center"
+            style="width: 200px"
+            style="background-color: darkblue"
+            >
+             Percentage
+            </th>
         </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let i of education">
+                <td>{{i.school_name}}</td>
+                <td>{{i.exam_passed}}</td>
+                <td>{{i.passing_yr}}</td>
+                <td>{{i.subjects}}</td>
+                <td>{{i.cert_number}}</td>
+                <td>{{i.cert_date}}</td>
+                <td>{{i.percentage}}%</td>
+            </tr>
+
+        </tbody>
+</table>
+
+<br>
+<br>
+<br>
+<h3><b><u>Family Details</u></b></h3>
+<table class = "table1">
+    <thead class = "color">
         <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Exam Passed</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.exam_passed1}}</td>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Relation name
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Relation type
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            age
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            occupation
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Dependent?
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+             contact Number
+            </th>
         </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let i of family">
+                <td>{{i.relation_name}}</td>
+                <td>{{i.relation_type}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.occupation}}</td>
+                <td>{{i.dependent}}</td>
+                <td>{{i.contact_number}}</td>
+            </tr>
+
+        </tbody>
+</table>
+
+<br>
+<br>
+<br>
+<h3><b><u>Employee related Files</u></b></h3>
+<table class = "table1">
+    <thead class = "color">
         <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Year of passing</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.passing_yr1}}</td>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            File name
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Open File 
+            </th>
+
         </tr>
+        </thead>
+        <tbody class = "table-row"  *ngFor = "let i of basic">
+            <tr>
+                <td>Resume</td>
+                <td><a [href] = 'urlforResume' target="_blank"> {{i.other_files1}}</a></td>
+            </tr>
+            <tr>
+                <td>marksheet</td>
+                <td><a [href] = 'urlforMark' target="_blank"> {{i.other_files2}}</a></td>
+            </tr>
+            <tr>
+                <td>transfer certificate</td>
+                <td><a [href] = 'urlforTc' target="_blank"> {{i.other_files3}}</a></td>
+            </tr>
+            <tr>
+                <td>aadharcard</td>
+                <td><a [href] = 'urlforaadhar' target="_blank"> {{i.other_files4}}</a></td>
+            </tr>
+            <tr>
+                <td>bank pass book</td>
+                <td><a [href] = 'urlforbankpass' target="_blank"> {{i.other_files5}}</a></td>
+            </tr>
+            <tr>
+                <td>photo file</td>
+                <td><a [href] = 'urlforphoto'  target="_blank"> {{i.other_files6}}</a></td>
+            </tr>
+            <tr>
+                <td>signature</td>
+                <td><a [href] = 'urlforSign' target="_blank"> {{i.other_files7}}</a></td>
+            </tr>
+        </tbody>
+</table>
+<br>
+<br>
+<br>
+<h3><b><u>RML related Files</u></b></h3>
+<table class = "table1">
+    <thead class = "color">
         <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Department</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.subjects1}}</td>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            File name
+            </th>
+            <th
+                    class="text-center"
+                    style="width: 200px"
+                    style="background-color: darkblue"
+            >
+            Open File 
+            </th>
+
         </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Certificate Number</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.cert_number1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Certificate Date</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.cert_date1}}</td>
-        </tr>
-        <tr>
-            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Percentage</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.percentage1}}</td>
-        </tr>
-    </table>
-    </div>
-</div>
+        </thead>
+        <tbody class = "table-row"  *ngFor = "let i of basic">
+            <tr>
+                <td>appointmentorder_file</td>
+                <td><a [href] = 'url_appointmentorder_file' target="_blank"> {{i.other_files8}}</a></td>
+            </tr>
+            <tr>
+                <td>declaration_file</td>
+                <td><a [href] = 'url_declaration_file' target="_blank"> {{i.other_files9}}</a></td>
+            </tr>
+            <tr>
+                <td>medicalfitness_file</td>
+                <td><a [href] = 'url_medicalfitness_file' target="_blank"> {{i.other_files10}}</a></td>
+            </tr>
+            <tr>
+                <td>formA4_file</td>
+                <td><a [href] = 'url_formA4_file' target="_blank"> {{i.other_files11}}</a></td>
+            </tr>
+            <tr>
+                <td>form11_file</td>
+                <td><a [href] = 'url_form11_file' target="_blank"> {{i.other_files12}}</a></td>
+            </tr>
+            <tr>
+                <td>formh2_file</td>
+                <td><a [href] = 'url_formh2_file'  target="_blank"> {{i.other_files13}}</a></td>
+            </tr>
+            <tr>
+                <td>natx_file</td>
+                <td><a [href] = 'url_natx_file' target="_blank"> {{i.other_files14}}</a></td>
+            </tr>
+        </tbody>
+</table>
+<br>
+<br>
+<br>
+
+
 
 <div style="float: right;">
     <b><button type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>

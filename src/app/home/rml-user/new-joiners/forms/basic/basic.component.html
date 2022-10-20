@@ -2,6 +2,18 @@
     <h3><b> Basic Details</b></h3>
     <form [formGroup]="form" (ngSubmit)="submit()"  >
         <div class="row">
+        <div  class="form-group">
+            <div class = "col-md-2">
+            <label for="title">Title:</label>
+            <input
+                    formControlName="title"
+                    id="title"
+                    type="text"
+                    class="form-control"
+                    (click)="sendData()"
+                    [readonly] = "flag_to_readonly"
+                    placeholder="Title">
+            </div></div>
 
         <div  class="form-group">
             <div class = "col-md-2">
@@ -12,6 +24,7 @@
                     type="text"
                     class="form-control"
                     (click)="sendData()"
+                    [readonly] = "flag_to_readonly"
                     placeholder="First Name">
             <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
                 <div *ngIf="fname.fname.errors.required">First Name is required</div>
@@ -25,6 +38,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Last Name"
+                        [readonly] = "flag_to_readonly"
                         (click)="sendData()">
                 <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert alert-danger">
                     <div *ngIf="lname.lname.errors.required">Last Name is required</div>
@@ -39,6 +53,7 @@
                         type="text"
                         class="form-control"
                         (click)="sendData()"
+                        [readonly] = "flag_to_readonly"
                         placeholder="Father Name">
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
@@ -49,6 +64,7 @@
             <div class="col-md-2">
                 <input #txt1
                        formControlName = "aadhar1"
+                       [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:max-content"
                        type="text"
@@ -57,6 +73,7 @@
             <div class="col-md-2">
                 <input #txt2
                 formControlName = "aadhar2"
+                [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:max-content"
                        type="text"
@@ -65,6 +82,7 @@
             <div class="col-md-2">
                 <input #txt3
                 formControlName = "aadhar3"
+                [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:max-content"
                        type="text"
@@ -73,6 +91,7 @@
             <div class="col-md-2">
                 <input #txt4
                 formControlName = "aadhar4"
+                [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:max-content"
                        type="text" >
@@ -83,6 +102,7 @@
             <label for="bd">Birth Date:</label>
             <input
                     formControlName="bd"
+                    [readonly] = "flag_to_readonly"
                     id="bd"
                     type="date"
                     (click)="sendData()"

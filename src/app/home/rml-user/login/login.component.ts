@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     setLocal(){
-        localStorage.setItem('user_name', this.exform.value.User_Name)
+        sessionStorage.setItem('user_name', this.exform.value.User_Name)
         console.log(this.exform.value.User_Name)
     }
 
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
                 next: (response) => {
                     console.log(response);
                     if(response.token) {
-                        localStorage.setItem('token', response.token)
+                        sessionStorage.setItem('token', response.token)
                     }
                     if(response.message == "Success") {
                         this.goPlaces();

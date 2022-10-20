@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit{
   ishr: any 
   a : any
   username :any = {
-    "username": localStorage.getItem('user_name')
+    "username": sessionStorage.getItem('user_name')
   }
   showname:any = ''
   showid : any = ''
@@ -35,14 +35,14 @@ export class NavbarComponent implements OnInit{
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
-        username : new UntypedFormControl(localStorage.getItem('user_name'))
+        username : new UntypedFormControl(sessionStorage.getItem('user_name'))
     })
   }
       delCookie()
       {
         this.cookie.delete('User_Name')
         this.cookie.delete('Password')
-        localStorage.clear()
+        sessionStorage.clear()
       }
 
       ngOnInit(): void 
@@ -57,10 +57,10 @@ getHr()
   this.service.getHr(this.username)
   setTimeout(() => {
     
-  this.ishr = localStorage.getItem('ishr')
-  this.ishrappr = localStorage.getItem('ishrappr')
-  this.showid = localStorage.getItem('user_name')
-  this.showname = localStorage.getItem('emp_name')
+  this.ishr = sessionStorage.getItem('ishr')
+  this.ishrappr = sessionStorage.getItem('ishrappr')
+  this.showid = sessionStorage.getItem('user_name')
+  this.showname = sessionStorage.getItem('emp_name')
 
   console.log('====================================');
   console.log(this.ishr,this.ishrappr);

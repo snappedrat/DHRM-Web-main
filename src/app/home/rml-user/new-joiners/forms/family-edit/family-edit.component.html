@@ -14,7 +14,7 @@
         <tr *ngFor="let data of familyData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
         <td><input type="text" [(ngModel)]="data.name" (change)="valids($event)"  ></td>
-        <td><select type = "text" [(ngModel)]="data.relation" (click)="sendData()" (change)="valids($event)" ><option *ngFor= "let i of relation">
+        <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (change)="valids($event)" ><option *ngFor= "let i of relation">
           {{i}}
   </option> ></select></td>
         <td><input type = "number" [(ngModel)]="data.age" (change)="valids($event)" ></td>

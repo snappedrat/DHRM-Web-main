@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./other.component.css']
 })
 export class OtherComponent implements OnInit {
-  Works:any=['Y','N'];
-  Relations:any=['Y','N'];
+  Works:any=['Yes','No'];
+  Relations:any=['Yes','No'];
   uniqueId :any = {'mobile':''}
   other : any = []
 
@@ -41,6 +41,16 @@ ngOnInit(): void {
         console.log("enter some values")
   }
   else{
+    if(this.other[0]?.any_empl_rane == 'Y')
+    this.other[0].any_empl_rane = 'Yes'
+    else if(this.other[0]?.any_empl_rane == 'N')
+    this.other[0].any_empl_rane = 'No'
+
+    if(this.other[0]?.prev_rane_empl == 'Y')
+    this.other[0].prev_rane_empl = 'Yes'
+    else if(this.other[0]?.prev_rane_empl == 'N')
+    this.other[0].prev_rane_empl = 'No'
+
     this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
     this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
     this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
@@ -77,7 +87,7 @@ get extra()
   return this.forms.controls; 
 }
 submit(){
-  console.log(this.forms.controls['extra'].value)
+  console.log("here ir is  :  ",this.forms.value)
   if(this.forms.value.length == 0){
       console.log("good");
     }

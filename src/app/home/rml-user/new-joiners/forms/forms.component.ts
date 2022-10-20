@@ -34,7 +34,7 @@ export class FormsComponent implements OnInit {
   ngOnInit(): void {
     this.getDataForID()
 
-    this.ishr = localStorage.getItem('ishr')
+    this.ishr = sessionStorage.getItem('ishr')
 
     if(this.ishr == 'undefined')
     this.submit = 'SUBMIT'
@@ -81,7 +81,7 @@ export class FormsComponent implements OnInit {
 
   mainalert(){
 
-    this.ishr = localStorage.getItem('ishr')
+    this.ishr = sessionStorage.getItem('ishr')
 
     if(this.ishr == 'undefined'){
       this.alert()
@@ -106,7 +106,7 @@ export class FormsComponent implements OnInit {
 
   submitted()
   {
-      this.ishr = localStorage.getItem('ishr')
+      this.ishr = sessionStorage.getItem('ishr')
 
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 

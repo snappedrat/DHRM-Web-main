@@ -12,7 +12,7 @@ export class AuthService {
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
   constructor(private apiService: ApiService) {
-    const token = localStorage.getItem(this.TOKEN_NAME);
+    const token = sessionStorage.getItem(this.TOKEN_NAME);
     this._isLoggedIn$.next(!!token);
   }
 
@@ -20,7 +20,7 @@ export class AuthService {
     return this.apiService.login(User_Name, Password).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);
-        localStorage.setItem('profanis_auth', response.token);
+        sessionStorage.setItem('profanis_auth', response.token);
       })
     );
   }
