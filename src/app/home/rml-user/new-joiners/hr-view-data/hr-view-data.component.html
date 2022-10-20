@@ -1,4 +1,8 @@
+
+<!-- 
+<br><br>
 <br>
+
 <div class = "container">
 <div *ngFor="let i of basic">
     <div *ngFor="let i of basic" >
@@ -89,11 +93,280 @@
         <p><b> Percentage :</b> {{i.percentage1}} </p>
     </div>
     <br><br>
-    
+</div> -->
+
+
+<h3><b><u>Basic Details :</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of basic" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Fullname</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.fullname}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Fathername</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.fathername}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Aadhar number</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.aadhar_no}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Birth date</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.birthdate}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Nationality</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.nationality}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Permanent Address</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.permanent_address}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Present Address</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.present_address}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Pincode</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.pincode}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>State</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.state_name}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Religion</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.religion}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Martial Status</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.marital_status}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Blood group</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.blood_group}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Gender</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.gender}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Dose1 date</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.does1_dt}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Dose2 date</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.dose2_dt}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Height</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.height}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Weight</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.weight}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Birth place</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.birth_place}}</td>
+        </tr>
+    </table>
+    </div>
+
 </div>
-    <div style="float: right;">
+<br>
+<br>
+<br> 
+<h3><b><u>Bank Details :</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of basic" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Account number</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.bank_account_number}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>IFSC code</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.ifsc_code}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Bank name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.bank_name}}</td>
+        </tr>
+    </table>
+    </div>
+</div>
+<br>
+<br>
+<br> 
+<h3><b><u>Emergency details:</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of basic" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Contact name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.emergency_name}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Contact number</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.mobile_no2}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Relation</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.emergency_rel}}</td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+<br>
+<br>
+<br> 
+<h3><b><u>Language Details</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of basic" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Language name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_name}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Speak</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_speak}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Read</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_read}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Mother Tounge</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_mothertongue}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Understand</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.lang1_read}}</td>
+        </tr>
+    
+    
+    </table>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br> 
+<h3><b><u>Other Details</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of basic" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Any relations or friends employed in RANE group</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.any_empl_rane}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Ever worked in any company/plant/office in RANE group</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.prev_rane_empl}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_employee_name}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Place</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.prev_rane_exp}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Company/Agency Name</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.existing_empl_exp}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Extra curricular activities (sports/hobbies)</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.extra_curricular}}</td>
+        </tr>
+    
+    
+    </table>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<h3><b><u>Previous Employment Details</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of career" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Name of company</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.comapany_name1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Designation</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.designation1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Period from</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.period_from1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Period to</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.period_to1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Salary Last Drawn</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.last_salary}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Reason for leaving</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.leaving_reason1}}</td>
+        </tr>
+    </table>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h3><b><u>Education Details</u></b></h3>
+<div class="container">
+    <div *ngFor="let i of education" >
+    <table>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>School/College Institution & Location</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.school_name1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Exam Passed</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.exam_passed1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Year of passing</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.passing_yr1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Department</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.subjects1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Certificate Number</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.cert_number1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Certificate Date</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.cert_date1}}</td>
+        </tr>
+        <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Percentage</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.percentage1}}</td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+<div style="float: right;">
     <b><button type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
         
     <button type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button></b>
     </div>
-    <br><br>
