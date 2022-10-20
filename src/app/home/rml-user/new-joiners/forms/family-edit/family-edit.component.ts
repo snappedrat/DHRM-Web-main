@@ -75,40 +75,51 @@ familyData = [
       console.log('====================================');
       console.log('====================================');
 
-      if(this.family[0]?.age1 == undefined || this.family[0]?.age2 == undefined || this.family[0]?.age3 == undefined || this.family[0]?.age4 == undefined)
+      for(var i= 0; i<4 ;i++)
       {
-        console.log("undefined values in family")
+        if(this.family[i]?.relation_name != null)
+          this.flag = false
+        this.familyData[i].name = this.family[i]?.relation_name
+        this.familyData[i].relation = this.family[i]?.relation_type
+        this.familyData[i].age = this.family[i]?.age
+        this.familyData[i].occupation = this.family[i]?.occupation
+        this.familyData[i].contactnumber = this.family[i]?.contact_number
+        if(this.family[i].dependent == 0)
+          this.family[i].dependent = 'Dependent'
+        else
+         this.family[i].dependent = 'Self-Sufficient'
+        this.familyData[i].dependent = this.family[i]?.dependent
+        
       }
-      else{
           
-      this.familyData[0].name = this.family[0]?.relation_name1
-      this.familyData[0].relation = this.family[0]?.relation_type1
-      this.familyData[0].age = this.family[0]?.age1
-      this.familyData[0].occupation = this.family[0]?.occupation1
-      this.familyData[0].contactnumber = this.family[0]?.contact_number1
-      this.familyData[0].dependent = this.family[0]?.dependent1
+      // this.familyData[0].name = this.family[0]?.relation_name1
+      // this.familyData[0].relation = this.family[0]?.relation_type1
+      // this.familyData[0].age = this.family[0]?.age1
+      // this.familyData[0].occupation = this.family[0]?.occupation1
+      // this.familyData[0].contactnumber = this.family[0]?.contact_number1
+      // this.familyData[0].dependent = this.family[0]?.dependent1
       
-      this.familyData[1].name = this.family[0]?.relation_name2
-      this.familyData[1].relation = this.family[0]?.relation_type2
-      this.familyData[1].age = this.family[0]?.age2
-      this.familyData[1].occupation = this.family[0]?.occupation2
-      this.familyData[1].contactnumber = this.family[0]?.contact_number2
-      this.familyData[1].dependent = this.family[0]?.dependent2
+      // this.familyData[1].name = this.family[0]?.relation_name2
+      // this.familyData[1].relation = this.family[0]?.relation_type2
+      // this.familyData[1].age = this.family[0]?.age2
+      // this.familyData[1].occupation = this.family[0]?.occupation2
+      // this.familyData[1].contactnumber = this.family[0]?.contact_number2
+      // this.familyData[1].dependent = this.family[0]?.dependent2
 
-      this.familyData[2].name = this.family[0]?.relation_name3
-      this.familyData[2].relation = this.family[0]?.relation_type3
-      this.familyData[2].age = this.family[0]?.age3
-      this.familyData[2].occupation = this.family[0]?.occupation3
-      this.familyData[2].contactnumber = this.family[0]?.contact_number3
-      this.familyData[2].dependent = this.family[0]?.dependent3
+      // this.familyData[2].name = this.family[0]?.relation_name3
+      // this.familyData[2].relation = this.family[0]?.relation_type3
+      // this.familyData[2].age = this.family[0]?.age3
+      // this.familyData[2].occupation = this.family[0]?.occupation3
+      // this.familyData[2].contactnumber = this.family[0]?.contact_number3
+      // this.familyData[2].dependent = this.family[0]?.dependent3
 
-      this.familyData[3].name = this.family[0]?.relation_name4
-      this.familyData[3].relation = this.family[0]?.relation_type4
-      this.familyData[3].age = this.family[0]?.age4
-      this.familyData[3].occupation = this.family[0]?.occupation4
-      this.familyData[3].contactnumber = this.family[0]?.contact_number4
-      this.familyData[3].dependent = this.family[0]?.dependent4
-      }
+      // this.familyData[3].name = this.family[0]?.relation_name4
+      // this.familyData[3].relation = this.family[0]?.relation_type4
+      // this.familyData[3].age = this.family[0]?.age4
+      // this.familyData[3].occupation = this.family[0]?.occupation4
+      // this.familyData[3].contactnumber = this.family[0]?.contact_number4
+      // this.familyData[3].dependent = this.family[0]?.dependent4
+
       this.sendData()
     }, 1000);
     this.sendData()
