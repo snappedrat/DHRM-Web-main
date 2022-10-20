@@ -64,13 +64,13 @@
 		</div> 
 
 		<td>
-			<a [href]= 'urlforphoto' target = "_blank"> {{photo_file_name}} </a>
+			<a [href]= 'urlforphoto' target = "_blank" (change)="valid()"> {{photo_file_name}} </a>
     	</td>
       </tr>
       <tr>
         <td>Signature</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"    (change)="onSignatureChange($event)"> 
+          <input class="form-control" type="file" (change)="valid()"   (change)="onSignatureChange($event)"> 
 		</div> 
 
 		<td>

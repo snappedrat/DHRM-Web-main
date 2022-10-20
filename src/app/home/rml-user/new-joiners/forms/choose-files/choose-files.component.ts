@@ -173,15 +173,20 @@ generate_link_rml(){
 
 valid()
 {
-		if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
-		this.flagged = false
+		setTimeout(() => {
+			if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
+			this.flagged = false
+		}, 50);
+
 }
 
 valid_for_rml()
 {
+		setTimeout(() => {
+			if(this.appointmentorder_file != null && this.declaration_file != null && this.medicalfitness_file != null && this.formA4_file != null && this.form11_file != null && this.natx_file != null && this.natx_file != null)
+			this.flagged_for_rml = false
+		}, 50);
 
-		if(this.appointmentorder_file != null && this.declaration_file != null && this.medicalfitness_file != null && this.formA4_file != null && this.form11_file != null && this.natx_file != null && this.natx_file != null)
-		this.flagged_for_rml = false
 }
 
 // getFilesForhr(){
@@ -210,6 +215,8 @@ valid_for_rml()
 ////////////////////////////////////////////////////////////////////////////
 
 onResumeChange(event:any){
+
+			console.log(this.resume_file != null)
 			this.resume_file = event.target.files[0]
 			this.service.fileupload(this.resume_file,this.uniqueId.mobile, this.rollno +'_resume','1' )
 
