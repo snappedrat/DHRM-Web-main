@@ -1,7 +1,7 @@
 .box{
     border-radius: 20px;
-    height: 230px;
-    width: 250px;
+    height: 200px;
+    width: 300px;
     padding: auto;
     text-align: center;
     align-items: center;
@@ -18,7 +18,7 @@
   
   .picture{
     border-radius: 10px;
-    width: 250px;
+    width: 300px;
     border-image-width: auto;
   }
   .text{
