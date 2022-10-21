@@ -1,63 +1,64 @@
 <div *ngFor= "let i of formvalues" class="container">
   <div class="card"> 
       <table class="font">
-          <div class="center">
-              <div class="header"><b> Rane(Madras)Limited</b></div><br>
-              <div class="font2">P3 R.S NO.77, Thirubuvanai street, Thirubuvanai, puduchery - 605107</div>
-          </div>
-          <img class = "center" src="../assets/rane.png" alt="Avatar" style="width:20% ">
+          <div class="center"><div class="mx-3"><br>
+              <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
+              <div class="font2" ><p><input type="textarea" name="company_address" readonly style="height:80px;width:350px;"></p></div>
+          </div></div>
+          <img class = "img" src="../assets/rane.png" alt="Avatar" ><br><br><br>
+          <div class="mx-5">
           <tr class="font">
-              <td><b> Temp Id no.</b></td>
-              <td>{{i.trainee_idno}}</td>
+              <td><p><b> Temp Id no.</b></p></td>
+              <td >&emsp;{{i.trainee_idno}}</td>
           </tr><br>
           <tr>
               <td><b>Name:</b></td>
-              <td class = "left" >{{i.fullname}}</td>
+              <td >&emsp;{{i.fullname}}</td>
           </tr><br>
           <tr>
               <td><b>Father name:</b></td>
-              <td>{{i.fathername}}</td>              
+              <td>&emsp;{{i.fathername}}</td>              
           </tr><br>
           <tr>
               <td><b>Department:</b></td>
-              <td>Training</td>
+              <td  >&emsp;Training</td>
           </tr><br>
           <tr>
               <td><b>Designation:</b></td>
-              <td>DOJO Trainee</td>
-          </tr><br>
-          <div class="left">
-              <img src="../assets/rane.png" alt="Avatar" style="width:30%" ></div><br>
-              <div class="left"><b>authorised signature </b>
-          </div>
-      </table>
+              <td>&emsp;DOJO Trainee</td>
+          </tr><br></div>
+          <div class="sign">
+              <img src="../assets/rane.png" alt="Avatar"></div>
+              <div class="sign1"><b>authorised signature </b>
+          
+          </div></table>
   </div>
   <div class="card">
-      <div class="container">
-          <table class="font">
+      <div class="container2">
+        <div class="col-sm-8">
+         <table class="font">
             <div class="center">
               <div class="header" > <b>Address:</b></div><br>
-              <div class="font2" >{{i.permanent_address}}</div>
+              <div class="font2"><input type="textarea" name="employee_address" readonly style="width: 350px;height:150px;">{{i.permanent_address}}</div>
               </div>
               <tr><td></td></tr><br><br><br>
               <tr class="font">
                   <td><b>Emergency contact</b></td>
-                  <td></td><br><br>
+                  <td></td><br><br><br><br>
               </tr>
-              <tr > 
-                  <td><b> Name:</b></td>
-                  <td class = "left" >{{i.emergency_name}}</td><br><br>
+              <tr > <div class="md">
+                  <td><b>Name:</b></td>
+                  <td>&emsp;{{i.emergency_name}}</td><br><br>
               <tr > 
                   <td><b>Relation:</b></td>
-                  <td class = "left" >{{i.emergency_rel}}</td><br><br>
-              <tr>
+                  <td >&emsp;{{i.emergency_rel}}</td><br><br>
+              <tr></div><div class="md">
                   <td><b> Valid from:</b></td>
-                  <td class = "left" >{{from_date}}</td><br><br>
+                  <td>&emsp;{{from_date}}</td><br><br>
               <tr> 
                   <td><b> Valid to:</b></td>
-                  <td class = "left" >{{to_date}}</td><br><br>
+                  <td>&emsp;{{to_date}}</td><br><br></div>
           </table>
-    </div>
   </div>
-  </div>
+  </div></div></div>
   

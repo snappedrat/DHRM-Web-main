@@ -1,31 +1,41 @@
 .card {
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.4);
-  width: 300px;
-  height: 500px;
+  box-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  height: 700px;
   float: left;
   font-size:2px;
 }
 .card2 {
 
-  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4);
-  width: 300px;
-  height: 500px;
+  box-shadow: 0 14px 14px 0 rgba(0,0,0,0.4);
+  width: 400px;
+  height: 700px;
   float: left;
-  font-size:5px;
+  font-size:15px;
 }
 
 .left{
   text-align: right;
   float: right;
+  padding-left: 0px;
 }
 
 .container {
   font-size:15px;
-  padding: 2px 16px;
+  padding-top: 100px;
+  padding-left: 10%;
+
+}
+.container2 {
+  font-size:15px;
+  padding-top: 100px;
+  padding-right: -100px;
+  align-items: center;
+
+
 }
 .shift{
   margin-left:100px;
-
 }
 
 
@@ -33,20 +43,23 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 100%;
 }
 
 .spacing{
   float: right;
+  padding: 100px;
 }
 
-.left{
-  float: right;
+.left1{
+  text-align:right;
+  padding-right:0%
 }
 
 .font
 {
   font-size: 15px;
+  
   
 }
 .font2{
@@ -54,4 +67,26 @@
 }
 .header{
   font-size: 25px;
+}
+.img{
+  margin-left: 35%;
+  height: 180px;
+  width: 35%;
+}
+.sign{
+  margin-left: 60%;
+  width: 70%;
+
+}
+.sign1{
+  margin-left:50%;
+  font-size: large;
+}
+.textarea{
+  text-align:left;
+  border-radius: 2px;
+  border-color: white;
+}
+.space{
+  word-spacing: 20px;
 }
