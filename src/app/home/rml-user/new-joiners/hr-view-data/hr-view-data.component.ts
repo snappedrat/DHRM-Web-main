@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { threadId } from 'worker_threads';
+import { PlantcodeService } from '../plantcode.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class HrViewDataComponent implements OnInit {
 	url_formh2_file: any
 	url_natx_file: any
 
-  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router) {
+  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : PlantcodeService) {
 
    }
 
@@ -85,16 +86,9 @@ export class HrViewDataComponent implements OnInit {
   approved()
   {
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+      this.service.approved(this.uniqueId)
 
-      console.log(this.uniqueId);
-
-      this.http
-      .post('http://localhost:3000/approved', this.uniqueId)
-      .subscribe({
-        next: (response) =>{ console.log(response);},
-        error: (error) => console.log(error),
-      })
-      window.alert("Application has been approved")
+       window.alert("Application has been approved")
       this.router.navigate(['rml/new_joiners/hr-approval'])
 
   }
@@ -102,15 +96,8 @@ export class HrViewDataComponent implements OnInit {
   rejected()
   {
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    this.service.rejected(this.uniqueId)
 
-    console.log(this.uniqueId);
-
-    this.http
-    .post('http://localhost:3000/rejected', this.uniqueId)
-    .subscribe({
-      next: (response) =>{ console.log(response);},
-      error: (error) => console.log(error),
-    })
     window.alert("Application has been rejected")
     this.router.navigate(['rml/new_joiners/hr-approval'])
   }

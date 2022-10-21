@@ -30,3 +30,6 @@ select:hover{
 .row{
     white-space: nowrap;
 }
+.star-color{
+    color: red;
+}

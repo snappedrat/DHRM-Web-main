@@ -43,34 +43,6 @@ export class HrApprovalComponent implements OnInit {
       error: (error) => console.log(error),
     });
   }
-
-  approved(data:any)
-  {
-      this.uniqueId.mobile = data
-
-      console.log(this.uniqueId);
-
-      this.http
-      .post('http://localhost:3000/approved', this.uniqueId)
-      .subscribe({
-        next: (response) =>{ console.log(response);},
-        error: (error) => console.log(error),
-      })
-  }
-
-  rejected(data:any)
-  {
-    this.uniqueId.mobile = data
-
-    console.log(this.uniqueId);
-
-    this.http
-    .post('http://localhost:3000/rejected', this.uniqueId)
-    .subscribe({
-      next: (response) =>{ console.log(response);},
-      error: (error) => console.log(error),
-    })
-  }
   
     traineeinfo : any[] = [
   {

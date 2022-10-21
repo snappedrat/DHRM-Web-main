@@ -121,20 +121,6 @@ export class FormsComponent implements OnInit {
       }
   }
 
-  approved()
-  {
-      this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-
-      console.log(this.uniqueId);
-
-      this.formservice.approved(this.uniqueId)
-  }
-
-  rejected()
-  {
-    this.formservice.rejected()
-  }
-
   getDataForID(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.status.status = this.active.snapshot.paramMap.get('apln_status');

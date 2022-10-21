@@ -78,6 +78,22 @@ eduData = [
 
       for(var i= 0; i<4 ;i++)
       {
+        if(this.education[i].school_name == 'undefined')
+           this.education[i].school_name = ''
+        if(this.education[i].exam_passed == 'undefined')
+           this.education[i].exam_passed = ''
+        if(this.education[i].passing_yr == 'undefined')
+           this.education[i].passing_yr = ''
+        if(this.education[i].subjects == 'undefined')
+           this.education[i].subjects = ''
+        if(this.education[i].cert_number == 'undefined')
+           this.education[i].cert_number = ''
+        if(this.education[i].cert_date == 'undefined')
+           this.education[i].cert_date = ''
+        if(this.education[i].percentage == 'undefined')
+           this.education[i].percentage = ''
+        
+
         if(this.education[i]?.school_name != null)
           this.flag = false
         this.eduData[i].school = this.education[i]?.school_name

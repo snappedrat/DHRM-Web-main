@@ -74,6 +74,8 @@ export class ChooseFilesComponent implements OnInit {
 	filenames: any = []
 	form: any
 	flag:any = false
+	size:any
+	flag_for_size:any = false
 
 	flagged:any = true
 	rollno:any
@@ -218,12 +220,26 @@ onResumeChange(event:any){
 
 			console.log(this.resume_file != null)
 			this.resume_file = event.target.files[0]
-			this.service.fileupload(this.resume_file,this.uniqueId.mobile, this.rollno +'_resume','1' )
+			this.size = this.resume_file?.size
+			if(this.size > 20000)
+			{
+				this.flag_for_size = true
+				window.alert("File too big") 
+			}
+			else
+				this.service.fileupload(this.resume_file,this.uniqueId.mobile, this.rollno +'_resume','1' )
 
 	}
 
 onMarksheetChange(event:any){
 		this.marksheet_file = event.target.files[0]
+		this.size = this.marksheet_file?.size
+		if(this.size > 10000)
+		{
+			this.flag_for_size = true
+			window.alert("File too big") 
+		}
+		else
 		this.service.fileupload(this.marksheet_file,this.uniqueId.mobile,  this.rollno+'_marksheet','2' )
 
 }
@@ -231,6 +247,14 @@ onMarksheetChange(event:any){
 
 onTransfercertificateChange(event:any){
 	this.transfercertificate_file = event.target.files[0]
+	this.size = this.transfercertificate_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.transfercertificate_file,this.uniqueId.mobile,  this.rollno+'_tc','3' )
 
 	// this.urlforTc = this.url+this.filenames[0]?.other_files3
@@ -240,6 +264,14 @@ onTransfercertificateChange(event:any){
 
 onAadharcardChange(event:any){
 	this.aadharcard_file = event.target.files[0]
+	this.size = this.aadharcard_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.aadharcard_file,this.uniqueId.mobile,  this.rollno+'_aadhar','4' )
 
 	// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
@@ -248,6 +280,14 @@ onAadharcardChange(event:any){
 
 onBankpassbookChange(event:any){
 	this.bankpassbook_file = event.target.files[0]
+	this.size = this.bankpassbook_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.bankpassbook_file,this.uniqueId.mobile,  this.rollno+'_passbook','5' )
 
 	// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
@@ -257,6 +297,14 @@ onBankpassbookChange(event:any){
 
 onPhotoChange(event:any){
 	this.photo_file = event.target.files[0]
+	this.size = this.photo_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.photo_file,this.uniqueId.mobile,  this.rollno+'_photo','6' )
 
 	// this.urlforphoto = this.url+this.filenames[0]?.other_files6
@@ -265,6 +313,14 @@ onPhotoChange(event:any){
 
 onSignatureChange(event:any){
 	this.signature_file = event.target.files[0]
+	this.size = this.signature_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.signature_file,this.uniqueId.mobile,  this.rollno+'_sign','7' )
 
 	// this.urlforSign = this.url+this.filenames[0]?.other_files7
@@ -277,42 +333,98 @@ onSignatureChange(event:any){
 
 onAppointmentorderChange(event:any){
 	this.appointmentorder_file = event.target.files[0]
+	this.size = this.appointmentorder_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.appointmentorder_file,this.uniqueId.mobile,  this.rollno+'_appointmentorder_file','8' )
 
 }
 
 onDeclarationChange(event:any){
 	this.declaration_file = event.target.files[0]
+	this.size = this.declaration_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.declaration_file,this.uniqueId.mobile,  this.rollno+'_declaration_file','9' )
 
 }
 
 onMedicalfitnessChange(event:any){
 	this.medicalfitness_file = event.target.files[0]
+	this.size = this.medicalfitness_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.medicalfitness_file,this.uniqueId.mobile,  this.rollno+'_medicalfitness_file','10' )
 
 }
 
 onForma4Change(event:any){
 	this.formA4_file = event.target.files[0]
+	this.size = this.formA4_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.formA4_file,this.uniqueId.mobile,  this.rollno+'_formA4_file','11' )
 
 }
 
 onForm11Change(event:any){
 	this.form11_file = event.target.files[0]
+	this.size = this.form11_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.form11_file,this.uniqueId.mobile,  this.rollno+'_form11_file','12' )
 
 }
 
 onFormh2Change(event:any){
 	this.formh2_file = event.target.files[0]
+	this.size = this.formh2_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.formh2_file,this.uniqueId.mobile,  this.rollno+'_formh2_file','13' )
 
 }
 
 onNatxChange(event:any){
 	this.natx_file = event.target.files[0]
+	this.size = this.natx_file?.size
+
+	if(this.size > 10000)
+	{
+		this.flag_for_size = true
+		window.alert("File too big") 
+	}
+	else
 	this.service.fileupload(this.natx_file,this.uniqueId.mobile,  this.rollno+'_natx_file','14' )
 
 }

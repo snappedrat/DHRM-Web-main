@@ -4,7 +4,7 @@
         <div class="row">
         <div class="col-sm-3">
         <div class="form-group">  
-            <label for="name">Contact Name</label>  
+            <label for="name">Contact Name:<span class = "star-color">*</span></label>  
             <input   
                 formControlName="contactName"  
                 id="name"  
@@ -18,7 +18,7 @@
     </div>
       <div class="col-sm-3">
         <div class="form-group">  
-            <label for="mobileNumber">Contact Number</label>  
+            <label for="mobileNumber">Contact Number:<span class = "star-color">*</span></label>  
             <input   
                 formControlName="contactNumber"  
                 id="contactNumber"   
@@ -35,7 +35,7 @@
     </div>
     <div class="col-sm-3">
    
-        <label class="form-label">Relation:</label>
+        <label class="form-label">Relation:<span class = "star-color">*</span></label>
         <select formControlName="relations" class="form-control" (click)="sendData()">
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>

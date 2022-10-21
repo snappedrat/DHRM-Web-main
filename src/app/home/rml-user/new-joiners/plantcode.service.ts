@@ -199,20 +199,20 @@ pending(uniqueId: any){
 approved(uniqueId:any){
 
   this.http
-  .post('http://localhost:3000/approved', this.uniqueId)
+  .post('http://localhost:3000/approved', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
   })
 }
 
-rejected(){
+rejected(uniqueId:any){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
   console.log(this.uniqueId);
 
   this.http
-  .post('http://localhost:3000/rejected', this.uniqueId)
+  .post('http://localhost:3000/rejected', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -226,21 +226,22 @@ getHr(uniqueid: any)
     next: (response) => {console.log(response); this.ishr = response;},
     error: (error) => console.log(error),
 });
+
 setTimeout(() => {
   sessionStorage.setItem('ishr', this.ishr[0]?.Is_HR)
 }, 1000);
-
 
   this.http.post('http://localhost:3000/gethrappr',uniqueid)
       .subscribe({
         next: (response) => {console.log(response); this.ishrappr = response},
         error: (error) => console.log(error),
   });
+
 setTimeout(() => {
   sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
   sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
   sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
-}, 500);
+}, 1000);
 }
 
 filter(formvalue:any)
@@ -253,11 +254,10 @@ filter(formvalue:any)
   });
 }
 
-searchfilter(formvalue:any,input:any)
+searchfilter(form:any)
 {
-  var forms={"value":formvalue,"input":input}
   this.http
-  .post('http://localhost:3000/searchfilter', forms)
+  .post('http://localhost:3000/searchfilter', form)
   .subscribe({
     next: (response) =>{ console.log(response); this.searchfilterinfo= response},
     error: (error) => console.log(error),

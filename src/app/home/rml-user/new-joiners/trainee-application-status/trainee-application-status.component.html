@@ -1,7 +1,7 @@
 <div class = "container">
 <div  style = "margin-top: 40px;">
 
-  <form [formGroup]="form" (ngSubmit)="filter()">
+  <form [formGroup]="form">
   <div class = "row">
   <div class = "col-sm-3 boxx">
   <label for="Status" id="center"> Status: </label>
@@ -27,22 +27,23 @@
   </div>
 </div>
   <button class = "btn btn-primary btn-lg" (click)="filter()" >Search</button>
-</form>
+
   <br><br>
 
 <div class = "row search" >
 
   <label for="Status" id="center"> Search: </label>&nbsp;
   <br>
-    <select id="Search" [(ngModel)] = "colname" >
-      <option value="name" >Name</option>
-      <option value="father_name">Father name</option>
+    <select id="Search" formControlName = "colname" >
+      <option value="fullname" >Name</option>
+      <option value="fathername">Father name</option>
       <option value="moblie_no1">mobile number</option>
       <option value="aadhar_no">aadhar number</option>
     </select>&nbsp;<br>
 
-    <input name="searchfor" [(ngModel)] = "colvalue" ><button (click)="searchfilter()"  >🔍</button>
+    <input name="searchfor" formControlName = "colvalue" ><button (click)="searchfilter()"  >🔍</button>
   </div>
+</form>
 
   <br><br>
     <div class = "table-wrapper">
@@ -112,7 +113,7 @@
               <tbody>
                 <tr *ngFor="let i of filterinfo">
                     <td>{{ i.created_dt.split('T')[0] }}</td>
-                    <td>{{ i.first_name }}</td>
+                    <td>{{ i.fullname }}</td>
                     <td>{{ i.fathername }}</td>
                     <td>{{ i.birthdate }}</td>
                     <td>{{ i.mobile_no1 }}</td>

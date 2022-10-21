@@ -33,3 +33,7 @@ input{
 .mx-5{
     background-color: rgb(255, 255, 255);
 }
+
+.star-color{
+    color: red;
+}

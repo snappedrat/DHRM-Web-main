@@ -5,7 +5,7 @@
     <div class="row">
     <div class = "col-sm-3">
         <div class="form-group" >
-            <label for="account">Account Number</label>
+            <label for="account">Account Number:<span class = "star-color">*</span></label>
             <input
                     formControlName="account"
                     id="account"
@@ -16,7 +16,7 @@
     </div>
     <div class = "col-sm-3">
         <div class="form-group">
-            <label for="bankName">Bank Name</label>
+            <label for="bankName">Bank Name:<span class = "star-color">*</span></label>
             <select formControlName="bankName" class="form-control" (click)="sendData()">
                 <option>Choose</option>
                 <option *ngFor="let bm of Bank">{{bm}}</option>
@@ -25,7 +25,7 @@
         </div>
         <div class = "col-sm-3">
         <div class="form-group">
-            <label for="ifsc">IFSC Code</label>
+            <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label>
             <input
                     formControlName="ifsc"
                     id="ifsc"

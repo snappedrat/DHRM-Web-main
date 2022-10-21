@@ -1,10 +1,11 @@
 <div class="mx-5">
+    <h3>(<span class = "star-color">*</span> fields are required)</h3>
     <h3><b> Basic Details</b></h3>
     <form [formGroup]="form" (ngSubmit)="submit()"  >
         <div class="row">
         <div  class="form-group">
             <div class = "col-md-2">
-            <label for="title">Title:</label>
+            <label for="title">Title:<span class = "star-color">*</span></label>
             <input
                     formControlName="title"
                     id="title"
@@ -17,7 +18,7 @@
 
         <div  class="form-group">
             <div class = "col-md-2">
-            <label for="fname">First Name:</label>
+            <label for="fname">First Name:<span class = "star-color">*</span></label>
             <input
                     formControlName="fname"
                     id="fname"
@@ -31,7 +32,7 @@
             </div></div></div>
             <div  class="form-group">
                 <div class = "col-md-2">
-                <label for="lname">Last Name:</label>
+                <label for="lname">Last Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="lname"
                         id="lname"
@@ -46,7 +47,7 @@
                         
                 
                 <div class="form-group">    
-                        <label for="ftname">Father Name:</label>
+                        <label for="ftname">Father Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="ftname"
                         id="ftname"
@@ -59,7 +60,7 @@
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
                 </div>
             </div>
-        <p>Aadhar Number:</p>
+        <p>Aadhar Number:<span class = "star-color">*</span></p>
         <div class="row">
             <div class="col-md-2">
                 <input #txt1
@@ -99,7 +100,7 @@
         </div>
 
         <div class="form-group">
-            <label for="bd">Birth Date:</label>
+            <label for="bd">Birth Date:<span class = "star-color">*</span></label>
             <input
                     formControlName="bd"
                     [readonly] = "flag_to_readonly"
@@ -113,7 +114,7 @@
             </div>
         </div>
         <div  class="form-group">
-            <label for="">Nationality:</label>
+            <label for="">Nationality:<span class = "star-color">*</span></label>
             <select formControlName="nation" class="form-control" (click)="sendData()" >
                 <option disabled>Select Nationality</option>
                 <option>Choose Nationality</option>
@@ -125,7 +126,7 @@
         </div>
         <div class="form-group">
             <label for="">
-                Permanent Address:
+                Permanent Address:<span class = "star-color">*</span>
             </label>
             <br>
             <textarea type="text"  formControlName="permanent" (click)="sendData()" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
@@ -150,7 +151,7 @@
         </div>
         <div class="form-group">
             <label for="present">
-                Present Address:
+                Present Address:<span class = "star-color">*</span>
             </label>
             <br>
             <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
@@ -158,7 +159,7 @@
         <div class="row">
             <div  class="form-group">
                 <div class = "col-md-2">
-                <label for="name">Pincode:</label>
+                <label for="name">Pincode:<span class = "star-color">*</span></label>
                 <input
                         formControlName="pc"
                         id="pc"
@@ -173,7 +174,7 @@
 
             <div  class="form-group">
                 <div class = "col-md-2">
-                <label for="name">City:</label>
+                <label for="name">City:<span class = "star-color">*</span></label>
                 <input
                         formControlName="city"
                         id="city"
@@ -188,7 +189,7 @@
 
         </div>
         <div class="form-group">
-            <label for="">State:</label>
+            <label for="">State:<span class = "star-color">*</span></label>
             <!-- <select formControlName="st" class="form-control">
                 <option disabled>Select State</option>
                 <option>Choose State</option>
@@ -207,7 +208,7 @@
 
        
         <div class="form-group">
-            <label for="">Religion:</label>
+            <label for="">Religion:<span class = "star-color">*</span></label>
             <select formControlName="reg" class="form-control">
                 <option disabled>Select Religion</option>
                 <option>Choose religion</option>
@@ -220,7 +221,7 @@
     
         <div class="form-group">
            
-            <label for="">Marital Status:</label>
+            <label for="">Marital Status:<span class = "star-color">*</span></label>
             <select formControlName="mar" class="form-control" (click)="sendData()" >
                 <option disabled>Select Marital Status</option>
                 <option>Choose Marital Status</option>
@@ -233,7 +234,7 @@
     
 
         <div class="form-group">
-            <label for="">Blood Group:</label>
+            <label for="">Blood Group:<span class = "star-color">*</span></label>
             <select formControlName="bg" class="form-control" (click)="sendData()">
                 <option disabled>Select BloodGroup</option>
                 <option>Choose BloodGroup</option>
@@ -245,7 +246,7 @@
 
         <div  class="form-group">
             
-            <label for="">Gender:</label>
+            <label for="">Gender:<span class = "star-color">*</span></label>
             <select formControlName="gender" class="form-control" (click)="sendData()">
                 <option disabled>Select Gender</option>
                 <option>Choose Gender</option>
@@ -322,7 +323,7 @@
         
 </div>
 <div class="form-group">    
-    <label for="bp">Birth Place:</label>
+    <label for="bp">Birth Place:<span class = "star-color">*</span></label>
 <input
 
     formControlName="bp"
