@@ -179,6 +179,7 @@ fileupload(file:any,uniqueId:any, id_no :any, fileno:any){
 }
 
 submitted(uniqueId: any){
+  console.log("----------------------------", uniqueId)
   this.http
   .post('http://localhost:3000/submitted',uniqueId)
   .subscribe({
