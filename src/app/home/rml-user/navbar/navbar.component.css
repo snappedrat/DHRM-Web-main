@@ -49,13 +49,13 @@
 #logout{
   width:60px;
   height:40px;
-  margin-left:1%;
+  margin-left:auto;
   border:0px
   
 }
 
 .username{
-  margin-left:65%;
+
   color:white;
 }
 .glyphicon {

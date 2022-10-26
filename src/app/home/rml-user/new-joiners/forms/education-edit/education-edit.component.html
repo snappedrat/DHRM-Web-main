@@ -1,5 +1,6 @@
+<div style='overflow-x:auto'>
+    <div class="mx-5">
 
-<div class="mx-5">
    <p><b> Educational Details</b></p>
     <table class = "table">
         <thead>
@@ -15,7 +16,7 @@
         </tr>
         <tr *ngFor= "let data of eduData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" placeholder="Schoolname,city" [(ngModel)]="data.school" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type="text" placeholder="Schoolname,city"  [(ngModel)]="data.school" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><select type = "text" [(ngModel)]="data.passed" (change)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
@@ -33,5 +34,4 @@
 
 </div>
 
-
- 
+        </div>

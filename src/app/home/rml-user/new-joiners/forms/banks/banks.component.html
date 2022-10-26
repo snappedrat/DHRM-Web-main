@@ -1,9 +1,11 @@
-<div class="mx-5">
-
+<div class="container pt-5">
+    <div class="row justify-content-md-center pt-5">
+        <div class="table col-sm-20 shadow round pb-4">
+            <div class="mx-5">
     <h3>Bank Details</h3>
     <form [formGroup]="form">
     <div class="row">
-    <div class = "col-sm-3">
+    <div class = "col-sm-10">
         <div class="form-group" >
             <label for="account">Account Number:<span class = "star-color">*</span></label>
             <input
@@ -14,7 +16,7 @@
                     placeholder="Account Number">
         </div>
     </div>
-    <div class = "col-sm-3">
+    <div class = "col-sm-10">
         <div class="form-group">
             <label for="bankName">Bank Name:<span class = "star-color">*</span></label>
             <select formControlName="bankName" class="form-control" (click)="sendData()">
@@ -23,7 +25,7 @@
             </select>
         </div>
         </div>
-        <div class = "col-sm-3">
+        <div class = "col-sm-10">
         <div class="form-group">
             <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label>
             <input
@@ -37,4 +39,4 @@
         <button class="btn btn-primary btn-sm" (click)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
         </div>
     </form>
-</div>
+</div></div></div></div>
