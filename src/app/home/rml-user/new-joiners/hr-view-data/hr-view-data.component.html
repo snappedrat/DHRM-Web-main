@@ -56,8 +56,12 @@
             <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.gender}}</td>
         </tr>
         <tr>
+            <td style="line-height: 30px; width: 300px; border: 1px ;"><b>vaccinated</b></td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">: {{i.is_vaccinated}}</td>
+        </tr>
+        <tr>
             <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Dose1 date</b></td>
-            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.does1_dt}}</td>
+            <td style="line-height: 30px; width: 300px; border: 1px ;">:    {{i.dose1_dt}}</td>
         </tr>
         <tr>
             <td style="line-height: 30px; width: 300px; border: 1px ;"><b>Dose2 date</b></td>
@@ -218,51 +222,51 @@
 
         <tr>
         <td>{{i.lang1_name}}</td>
-        <td>{{i.lang1_speak}}</td>
-        <td>{{i.lang1_read}}</td>
-        <td>{{i.lang1_write}}</td>
-        <td>{{i.lang1_mothertounge}}</td>
-        <td>{{i.lang1_understand}}</td>
+        <td>{{i.lang1_speak == 1 ? tick: ex }}</td>
+        <td>{{i.lang1_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang1_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang1_mothertounge == 1 ? tick: ex}}</td>
+        <td>{{i.lang1_understand == 1 ? tick: ex}}</td>
         </tr>
         <tr>
-        <td>{{i.lang2_name}}</td>
-        <td>{{i.lang2_speak}}</td>
-        <td>{{i.lang2_read}}</td>
-        <td>{{i.lang2_write}}</td>
-        <td>{{i.lang2_mothertounge}}</td>
-        <td>{{i.lang2_understand}}</td>
+        <td>{{i.lang2_name }}</td>
+        <td>{{i.lang2_speak == 1 ? tick: ex}}</td>
+        <td>{{i.lang2_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang2_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang2_mothertounge== 1 ? tick: ex}}</td>
+        <td>{{i.lang2_understand== 1 ? tick: ex}}</td>
         </tr>
         <tr>
         <td>{{i.lang3_name}}</td>
-        <td>{{i.lang3_speak}}</td>
-        <td>{{i.lang3_read}}</td>
-        <td>{{i.lang3_write}}</td>
-        <td>{{i.lang3_mothertounge}}</td>
-        <td>{{i.lang3_understand}}</td>
+        <td>{{i.lang3_speak== 1 ? tick: ex}}</td>
+        <td>{{i.lang3_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang3_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang3_mothertounge== 1 ? tick: ex}}</td>
+        <td>{{i.lang3_understand== 1 ? tick: ex}}</td>
         </tr>
         <tr>
         <td>{{i.lang4_name}}</td>
-        <td>{{i.lang4_speak}}</td>
-        <td>{{i.lang4_read}}</td>
-        <td>{{i.lang4_write}}</td>
-        <td>{{i.lang4_mothertounge}}</td>
-        <td>{{i.lang4_understand}}</td>
+        <td>{{i.lang4_speak== 1 ? tick: ex}}</td>
+        <td>{{i.lang4_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang4_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang4_mothertounge== 1 ? tick: ex}}</td>
+        <td>{{i.lang4_understand== 1 ? tick: ex}}</td>
         </tr>
         <tr>
         <td>{{i.lang5_name}}</td>
-        <td>{{i.lang5_speak}}</td>
-        <td>{{i.lang5_read}}</td>
-        <td>{{i.lang5_write}}</td>
-        <td>{{i.lang5_mothertounge}}</td>
-        <td>{{i.lang5_understand}}</td>
+        <td>{{i.lang5_speak== 1 ? tick: ex}}</td>
+        <td>{{i.lang5_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang5_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang5_mothertounge== 1 ? tick: ex}}</td>
+        <td>{{i.lang5_understand== 1 ? tick: ex}}</td>
         </tr>
         <tr>
         <td>{{i.lang6_name}}</td>
-        <td>{{i.lang6_speak}}</td>
-        <td>{{i.lang6_read}}</td>
-        <td>{{i.lang6_write}}</td>
-        <td>{{i.lang6_mothertounge}}</td>
-        <td>{{i.lang6_understand}}</td>
+        <td>{{i.lang6_speak== 1 ? tick: ex}}</td>
+        <td>{{i.lang6_read== 1 ? tick: ex}}</td>
+        <td>{{i.lang6_write== 1 ? tick: ex}}</td>
+        <td>{{i.lang6_mothertounge== 1 ? tick: ex}}</td>
+        <td>{{i.lang6_understand== 1 ? tick: ex}}</td>
         </tr>
     </tbody>
 </table></div>
@@ -584,7 +588,7 @@
 
 
 
-<div style="float: right;">
+<div style="float: right;" *ngIf = 'flag'>
     <b><button type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
         
     <button type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button></b>

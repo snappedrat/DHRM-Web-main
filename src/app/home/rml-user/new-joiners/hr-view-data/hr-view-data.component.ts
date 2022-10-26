@@ -19,6 +19,7 @@ export class HrViewDataComponent implements OnInit {
   education: any
   family: any
   url:any = "http://localhost:3000/"
+  flag: any = false
 
 	urlforResume: any 
 	urlforMark: any
@@ -27,6 +28,8 @@ export class HrViewDataComponent implements OnInit {
 	urlforbankpass: any
 	urlforphoto: any
 	urlforSign: any
+  tick :any = '✔️'
+  ex:any = 'X '
 
   url_appointmentorder_file: any
 	url_declaration_file: any
@@ -49,6 +52,10 @@ export class HrViewDataComponent implements OnInit {
 
     console.log("......................................................................................")
     setTimeout(() => {
+
+      console.log(this.basic[0]?.apln_status )
+      if(this.basic[0]?.apln_status == 'SUBMITTED')
+        this.flag = true
 
       if(this.basic[0]?.any_empl_rane == 'Y')
       this.basic[0].any_empl_rane = 'Yes'

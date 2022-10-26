@@ -27,6 +27,8 @@ export class FormsComponent implements OnInit {
   basic: any
   submit:any
   apln_no:any = ''
+  flag:any = false
+  apln_status :any = ''
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
   }
@@ -38,8 +40,21 @@ export class FormsComponent implements OnInit {
 
     if(this.ishr == 'undefined')
     this.submit = 'SUBMIT'
-      else
+    else
     this.submit = 'SEND FOR APPROVAL'
+
+    setTimeout(() => {
+      console.log("......................",this.formservice.basicdetails[0]?.apln_status);
+      
+      this.apln_status = this.formservice.basicdetails[0]?.apln_status
+      console.log(this.apln_status != 'PENDING');
+      
+      if(this.apln_status == 'NEW INCOMPLETE' || this.apln_status == 'PENDING')
+        this.flag = true
+      else
+        this.flag = false
+
+    }, 1000);
     
 }
 
@@ -69,13 +84,20 @@ export class FormsComponent implements OnInit {
     this.formservice.sumbitlang()
     console.log(this.formservice.lang) 
 
+    
+
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
     this.formservice.getdatabasic(this.uniqueId)
     
     this.apln_no = this.formservice.basicdetails[0]?.apln_slno
     console.log("ishr :", this.ishr, "ishrappr :", this.ishrappr)
-    this.mainalert()
+  
     this.submitted()
+
+    setTimeout(() => {
+      this.mainalert()
+    }, 1000);
+
   }
 
 

@@ -176,8 +176,18 @@ generate_link_rml(){
 valid()
 {
 		setTimeout(() => {
-			if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
-			this.flagged = false
+			if(this.ishr == 'undefined')
+			{	
+				if(this.resume_file != null && this.marksheet_file != null &&this.photo_file != null && this.signature_file != null)
+				this.flagged = false
+			}
+			else if(this.ishr == 'true')
+			{
+				if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
+				this.flagged = false
+			}
+
+
 		}, 50);
 
 }
@@ -221,7 +231,8 @@ onResumeChange(event:any){
 			console.log(this.resume_file != null)
 			this.resume_file = event.target.files[0]
 			this.size = this.resume_file?.size
-			if(this.size > 20000)
+			
+			if(this.size > 200000)
 			{
 				this.flag_for_size = true
 				window.alert("File too big") 
@@ -234,7 +245,7 @@ onResumeChange(event:any){
 onMarksheetChange(event:any){
 		this.marksheet_file = event.target.files[0]
 		this.size = this.marksheet_file?.size
-		if(this.size > 10000)
+		if(this.size > 1000000)
 		{
 			this.flag_for_size = true
 			window.alert("File too big") 
@@ -249,7 +260,7 @@ onTransfercertificateChange(event:any){
 	this.transfercertificate_file = event.target.files[0]
 	this.size = this.transfercertificate_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -266,7 +277,7 @@ onAadharcardChange(event:any){
 	this.aadharcard_file = event.target.files[0]
 	this.size = this.aadharcard_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -282,7 +293,7 @@ onBankpassbookChange(event:any){
 	this.bankpassbook_file = event.target.files[0]
 	this.size = this.bankpassbook_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -299,7 +310,7 @@ onPhotoChange(event:any){
 	this.photo_file = event.target.files[0]
 	this.size = this.photo_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -315,7 +326,7 @@ onSignatureChange(event:any){
 	this.signature_file = event.target.files[0]
 	this.size = this.signature_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -335,7 +346,7 @@ onAppointmentorderChange(event:any){
 	this.appointmentorder_file = event.target.files[0]
 	this.size = this.appointmentorder_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -349,7 +360,7 @@ onDeclarationChange(event:any){
 	this.declaration_file = event.target.files[0]
 	this.size = this.declaration_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -363,7 +374,7 @@ onMedicalfitnessChange(event:any){
 	this.medicalfitness_file = event.target.files[0]
 	this.size = this.medicalfitness_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -377,7 +388,7 @@ onForma4Change(event:any){
 	this.formA4_file = event.target.files[0]
 	this.size = this.formA4_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -391,7 +402,7 @@ onForm11Change(event:any){
 	this.form11_file = event.target.files[0]
 	this.size = this.form11_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -405,7 +416,7 @@ onFormh2Change(event:any){
 	this.formh2_file = event.target.files[0]
 	this.size = this.formh2_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 
@@ -419,7 +430,7 @@ onNatxChange(event:any){
 	this.natx_file = event.target.files[0]
 	this.size = this.natx_file?.size
 
-	if(this.size > 10000)
+	if(this.size > 100000)
 	{
 		this.flag_for_size = true
 		window.alert("File too big") 

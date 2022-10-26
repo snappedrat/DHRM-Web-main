@@ -1,7 +1,7 @@
 <div class="mx-5">
 
     <h3>Bank Details</h3>
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form">
     <div class="row">
     <div class = "col-sm-3">
         <div class="form-group" >
@@ -34,7 +34,7 @@
                     placeholder="IFSC Number">
         </div>
     </div>
-        <button class="btn btn-primary btn-sm" (click)="sendData()" (click)="submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
+        <button class="btn btn-primary btn-sm" (click)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
         </div>
     </form>
 </div>

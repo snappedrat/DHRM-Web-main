@@ -4,6 +4,8 @@ import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} fr
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
+import { id } from 'date-fns/locale';
+import { bankForm } from '../../../masters/bank/bank.component';
 
 
 @Component({
@@ -29,7 +31,9 @@ uniqueId :any = {'mobile':''}
 bank : any = []
 banknames :any = []
 banks:any = []
-temp: string = 'hellllllllllll             '
+temp: string = 'hellllllllllll'
+
+flagger : any = false
 
     form: UntypedFormGroup;
     sno: any;
@@ -55,14 +59,13 @@ temp: string = 'hellllllllllll             '
             }
 
             this.bank = this.plantcodeService.basicdetails
-            
-            console.log("..............................-",this.bank[0]?.bank_name.trim(),"-.")
 
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
             this.form.controls['bankName'].setValue(this.bank[0]?.bank_name.trim())
             this.sendData()
         }, 1000);
+
     }
 
     get account()
@@ -78,9 +81,8 @@ temp: string = 'hellllllllllll             '
         return this.form.controls;
     }
     
-
     submit(){
-        console.log("values",this.form.value);
+        console.log("values : ",this.form.value);
         this.plantcodeService.submitbank()
     }
     sendData(){

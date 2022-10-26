@@ -42,9 +42,10 @@ export class TraineeApplicationComponent implements OnInit{
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
       plant:['',Validators.required],
-      pass: [this.Tvalue]
+      pass: ['']
    });
    this.mobilenum = this.bankForms.controls['mobileNumber'].value
+   
 }
 
 plantcode:any;
@@ -57,14 +58,6 @@ ngOnInit(): void {
   this.plantcodeService.getHr('newuser')
   console.log("nnnnnnnnnnn",this.bankForms.value)
 
-
-}
-
-dum(){
-  console.log('====================================');
-  console.log("kekuthasaaaaaa");
-  console.log('====================================');
-  console.log('mobile',this.mobilenum)
 }
 
 getplantcode(){
@@ -97,7 +90,7 @@ sendFormData()
   else if(this.errmsg.status == 'incomplete')
     { this.router.navigate(['/forms',this.mobilenum])  }
   else if(this.errmsg.status == 'registered')
-    {window.alert("YOU have already registered")}},
+    {window.alert("YOU have already registered");console.log(this.bankForms.value)}},
     error: (error) => console.log(error),
   })
 }
@@ -118,6 +111,7 @@ submit(){
   console.log(this.bankForms.value);  
 }
 getPasswors(){
+  this.bankForms.controls['pass'].setValue( this.bankForms.controls['mobileNumber'].value.substr(-4))
  this.Tvalue = this.bankForms.controls['mobileNumber'].value.substr(-4) ;
 }
 }
