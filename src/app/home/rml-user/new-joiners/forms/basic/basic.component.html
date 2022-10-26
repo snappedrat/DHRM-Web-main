@@ -1,10 +1,14 @@
-<div class="mx-5">
+
+    <div class="container pt-5">
+        <div class="row justify-content-md-left pt-5">
+            <div class="table col-sm-20 shadow round pb-4">
+                <div class="mx-5">
+            <h3><b> Basic Details</b></h3>
     <h3>(<span class = "star-color">*</span> fields are required)</h3>
-    <h3><b> Basic Details</b></h3>
     <form [formGroup]="form" (ngSubmit)="submit()"  >
         <div class="row">
+            <div class = "col-sm-3">
         <div  class="form-group">
-            <div class = "col-md-2">
             <label for="title">Title:<span class = "star-color">*</span></label>
             <input
                     formControlName="title"
@@ -16,8 +20,8 @@
                     placeholder="Title">
             </div></div>
 
+            <div class="col-sm-3">
         <div  class="form-group">
-            <div class = "col-md-2">
             <label for="fname">First Name:<span class = "star-color">*</span></label>
             <input
                     formControlName="fname"
@@ -30,8 +34,8 @@
             <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
                 <div *ngIf="fname.fname.errors.required">First Name is required</div>
             </div></div></div>
+            <div class="col-sm-3">
             <div  class="form-group">
-                <div class = "col-md-2">
                 <label for="lname">Last Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="lname"
@@ -45,9 +49,9 @@
                     <div *ngIf="lname.lname.errors.required">Last Name is required</div>
                 </div></div></div></div>
                         
-                
-                <div class="form-group">    
-                        <label for="ftname">Father Name:<span class = "star-color">*</span></label>
+                <div class = "col-sm-3">
+                <div class="form-group"> 
+                <label for="ftname">Father Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="ftname"
                         id="ftname"
@@ -59,10 +63,10 @@
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
                 </div>
-            </div>
+            </div></div>
         <p>Aadhar Number:<span class = "star-color">*</span></p>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-lg-10">
                 <input #txt1
                        formControlName = "aadhar1"
                        [readonly] = "flag_to_readonly"
@@ -71,7 +75,7 @@
                        type="text"
                        (keyup)="move(txt1,txt2)">
             </div>
-            <div class="col-md-2">
+            <div class="col-lg-10">
                 <input #txt2
                 formControlName = "aadhar2"
                 [readonly] = "flag_to_readonly"
@@ -80,7 +84,7 @@
                        type="text"
                        (keyup)="move(txt2,txt3)">
             </div>
-            <div class="col-md-2">
+            <div class="col-lg-10">
                 <input #txt3
                 formControlName = "aadhar3"
                 [readonly] = "flag_to_readonly"
@@ -89,7 +93,7 @@
                        type="text"
                        (keyup)="move(txt3,txt4)" >
             </div>
-            <div class="col-md-2">
+            <div class="col-lg-10">
                 <input #txt4
                 formControlName = "aadhar4"
                 [readonly] = "flag_to_readonly"
@@ -129,7 +133,7 @@
                 Permanent Address:<span class = "star-color">*</span>
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" (click)="sendData()" style="width:1000px;" class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" (click)="sendData()"  class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -154,11 +158,11 @@
                 Present Address:<span class = "star-color">*</span>
             </label>
             <br>
-            <textarea type="text"  formControlName="present" style="width:1000px;" class="form-control" [value]="inputValue"></textarea>
+            <textarea type="text"  formControlName="present" class="form-control" [value]="inputValue"></textarea>
         </div>
         <div class="row">
             <div  class="form-group">
-                <div class = "col-md-2">
+                <div class = "col-lg-10">
                 <label for="name">Pincode:<span class = "star-color">*</span></label>
                 <input
                         formControlName="pc"
@@ -173,7 +177,7 @@
                 </div></div></div>
 
             <div  class="form-group">
-                <div class = "col-md-2">
+                <div class = "col-lg-10">
                 <label for="name">City:<span class = "star-color">*</span></label>
                 <input
                         formControlName="city"
@@ -360,4 +364,4 @@
 </div>
         <button class="btn btn-primary btn-sm" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
     </form>
-</div>
+</div></div></div>

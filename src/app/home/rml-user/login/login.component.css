@@ -5,7 +5,7 @@ img{
     margin-top:10px;
 }
 .bd{
-    height: 1000px;
+    height: 1000px;background-position: fixed;
     background-size: 100% ;
     background-size: cover;
     background-image:url('src\assets\bg.png');

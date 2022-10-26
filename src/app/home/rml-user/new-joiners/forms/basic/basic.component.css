@@ -9,12 +9,13 @@ h3{
     font-weight:bold;
 }
 input{
-    width: 900px;
+ 
     border-color: black;
 
 }
 .select{
-    width: 900px;
+ 
+ 
     border-radius: 0px;
     border-color: black;
 }
@@ -24,10 +25,12 @@ input{
 }
 
 .form-group{
-    width: 900px;
+
+  border-radius: 0px;
 }
 .alert {
-    width: 900px;
+  
+ border-radius: 0px;
 }
 
 .mx-5{
@@ -36,4 +39,14 @@ input{
 
 .star-color{
     color: red;
+}
+.container{
+    justify-content: left;
+}
+.background{
+    position: absolute;
+    margin: auto;
+}
+.table{
+  border-radius: 10px;
 }
