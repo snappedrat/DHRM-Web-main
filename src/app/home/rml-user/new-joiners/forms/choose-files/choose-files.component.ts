@@ -3,11 +3,25 @@ import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../../plantcode.service';
 import {HttpClient} from "@angular/common/http";
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+  } from '@angular/animations';
+  import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-choose-files',
   templateUrl: './choose-files.component.html',
-  styleUrls: ['./choose-files.component.css']
+  styleUrls: ['./choose-files.component.css'],
+  animations: [
+	trigger('slowAnimate', [
+	  transition(':enter', [style({opacity: '0'}), animate(500)]),
+	  transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+	])
+  ]
 })
 export class ChooseFilesComponent implements OnInit {
 
@@ -80,17 +94,15 @@ export class ChooseFilesComponent implements OnInit {
 	flagged:any = true
 	rollno:any
 	flagged_for_rml: any = true;
+	state: boolean= false;
+	state_: boolean= false;
+
 	
   constructor(private service: PlantcodeService, private active : ActivatedRoute, private http: HttpClient) {
 	this.ishr = sessionStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
 	console.log('====================================');
-	if(this.ishr == 'true')
-  	{
-		this.flagged = false
-		this.flagged_for_rml = false
-  	}
   }
 
   ngOnInit(): void {
@@ -98,13 +110,12 @@ export class ChooseFilesComponent implements OnInit {
 	setTimeout(() => {
 		this.rollno = this.service.basicdetails[0]?.apln_slno
 	}, 1000);
-
-	if(sessionStorage.getItem('ishr') == 'true')
-	{
+	
+	// if(sessionStorage.getItem('ishr') == 'true')
+	// {
 		this.generate_link()
 		this.generate_link_rml()
-	}
-
+	// }
   }
 
 getfiles(){
@@ -119,6 +130,7 @@ getfiles(){
 
 generate_link(){
 	this.getfiles()
+
 
 	setTimeout(() => {
 		this.resume_file_name = this.filenames[0]?.other_files1
@@ -142,7 +154,21 @@ generate_link(){
 		this.signature_file_name = this.filenames[0]?.other_files7
 		this.urlforSign = this.url+this.filenames[0]?.other_files7
 
+		if(this.ishr == 'undefined'){
+			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null)
+			this.flagged = false
+		}
+		else if(this.ishr == 'true')
+		{
+			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null && this.signature_file_name != null && this.transfercertificate_file_name !=null && this.bankpassbook_file_name !=null)
+				this.flagged = false
+		}
+		this.state = true
+		setTimeout(() => {
+			this.state = false
+		}, 2000);
 	}, 1050);
+
 }
 
 generate_link_rml(){
@@ -168,7 +194,10 @@ generate_link_rml(){
 
 		this.natx_file_name = this.filenames[0]?.other_files14
 		this.url_natx_file = this.url+this.filenames[0]?.other_files14
-
+		this.state_ = true
+		setTimeout(() => {
+			this.state_ = false
+		}, 2000);
 	}, 1050);
 }
 
@@ -178,11 +207,12 @@ valid()
 		setTimeout(() => {
 			if(this.ishr == 'undefined')
 			{	
-				if(this.resume_file != null && this.marksheet_file != null &&this.photo_file != null && this.signature_file != null)
+				if(this.resume_file != null && this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
 				this.flagged = false
 			}
 			else if(this.ishr == 'true')
 			{
+				console.log(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
 				if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
 				this.flagged = false
 			}
@@ -192,14 +222,6 @@ valid()
 
 }
 
-valid_for_rml()
-{
-		setTimeout(() => {
-			if(this.appointmentorder_file != null && this.declaration_file != null && this.medicalfitness_file != null && this.formA4_file != null && this.form11_file != null && this.natx_file != null && this.natx_file != null)
-			this.flagged_for_rml = false
-		}, 50);
-
-}
 
 // getFilesForhr(){
 // 	this.service.getdatabasic(this.uniqueId)
@@ -232,7 +254,7 @@ onResumeChange(event:any){
 			this.resume_file = event.target.files[0]
 			this.size = this.resume_file?.size
 			
-			if(this.size > 200000)
+			if(this.size > 2000000)
 			{
 				this.flag_for_size = true
 				window.alert("File too big") 

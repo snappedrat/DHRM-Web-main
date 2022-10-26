@@ -4,11 +4,26 @@ import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
+
 
 @Component({
   selector: 'app-emergency',
   templateUrl: './emergency.component.html',
-  styleUrls: ['./emergency.component.css']
+  styleUrls: ['./emergency.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
 })
 export class EmergencyComponent implements OnInit  {
 relations :any = ['Father','Mother','Sister','Brother'];
@@ -16,6 +31,7 @@ uniqueId :any = {'mobile':''}
 emer : any = []
 
  form: FormGroup = new FormGroup({});  
+  state: boolean;
    constructor(private fb: FormBuilder, private http: HttpClient,private cookie:CookieService, private plantcodeService : PlantcodeService, private active : ActivatedRoute) {
     this.form = fb.group({
       contactNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
@@ -59,6 +75,10 @@ submit(){
     }
     else{
       this.plantcodeService.submitemer()
+      this.state = true
+      setTimeout(() => {
+          this.state = false
+      }, 2000);
     }
 }
 sendData(){

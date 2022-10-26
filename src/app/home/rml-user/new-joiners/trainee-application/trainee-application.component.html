@@ -8,7 +8,7 @@
               <form [formGroup]="bankForms" (ngSubmit)="sendFormData()">
             <div class="form-group">  
                 <label for="company">Company Name</label>  
-                <select formControlName="company" class="form-control">
+                <select formControlName="company" class="form-control" (change) = "getplantcode($event)" >
                     <option>Choose</option>
                     <option *ngFor="let c of companycode"> {{c.company_name}} </option>
                 </select>

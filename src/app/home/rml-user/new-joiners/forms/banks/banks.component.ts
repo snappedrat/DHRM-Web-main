@@ -6,12 +6,26 @@ import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
 import { id } from 'date-fns/locale';
 import { bankForm } from '../../../masters/bank/bank.component';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+  } from '@angular/animations';
+  import { Timestamp } from 'rxjs';
 
 
 @Component({
     selector: 'app-banks',
     templateUrl: './banks.component.html',
-    styleUrls: ['./banks.component.css']
+    styleUrls: ['./banks.component.css'],
+    animations: [
+        trigger('slowAnimate', [
+          transition(':enter', [style({opacity: '0'}), animate(500)]),
+          transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+        ])
+      ]
 })
 export class BanksComponent implements OnInit{
     Bank:any=['AXIS BANK','HDFC Bank','CANARA Bank','Punjab National Bank','Bank of Baroda',
@@ -37,6 +51,7 @@ flagger : any = false
 
     form: UntypedFormGroup;
     sno: any;
+    state: boolean;
     constructor(private fb: UntypedFormBuilder, private http: HttpClient, private cookie : CookieService, public plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
             sno: new UntypedFormControl(' '),
@@ -84,6 +99,10 @@ flagger : any = false
     submit(){
         console.log("values : ",this.form.value);
         this.plantcodeService.submitbank()
+        this.state = true
+        setTimeout(() => {
+            this.state = false
+        }, 2000);
     }
     sendData(){
         this.plantcodeService.bank = this.form.value

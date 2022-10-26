@@ -2,9 +2,8 @@
 <form>
 <div *ngIf= "ishr == 'undefined' " class = "mx-5" >
 <h1>Employee related</h1>
-<h3>Upload the files in any one of the following formats:</h3>
-<h4><ol>Png Jpeg Jpg Word
-</ol></h4>
+<h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx)</h3>
+
 <table [width]="1000">
     <tr>
       <td>Resume(not more than 3mb):<span class = "star-color">*</span></td>
@@ -13,7 +12,7 @@
     	<input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
 	</div> 
   </td>
-	<td  *ngIf = "flag_for_size">
+	<td>
 		<a  [href]= 'urlforResume' target = "_blank" download = "resume.png"> {{resume_file_name}} </a>
 	</td>
 
@@ -29,7 +28,7 @@
         </td>
     </tr> 
 	<tr>
-        <td>Transfer Certificate:<span class = "star-color">*</span></td>
+        <td>Transfer Certificate:</td>
         <td><div class="text-center"> 
           <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
 		</div> 
@@ -49,7 +48,7 @@
           </td>
       </tr>
       <tr>
-        <td>Bank Passbook:<span class = "star-color">*</span></td>
+        <td>Bank Passbook:</td>
         <td><div class="text-center"> 
           <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
 		</div> 
@@ -69,7 +68,7 @@
     	</td>
       </tr>
       <tr>
-        <td>Signature:<span class = "star-color">*</span></td>
+        <td>Signature:</td>
         <td><div class="text-center"> 
           <input class="form-control" type="file" (change)="valid()"   (change)="onSignatureChange($event)"> 
 		</div> 
@@ -81,6 +80,8 @@
        
   </table>
   <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)="generate_link()">
+  <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
+
   <br><br>
 </div>
 </form>
@@ -88,14 +89,13 @@
 <div *ngIf= "ishr == 'true' " class="mx-5" >
     <h1>Employee related</h1>
     <h3>Upload the files in any one of the following formats:</h3>
-    <h4><ol>Png Jpeg Jpg Word
-    </ol></h4>
+
     <table [width]="1000">
         <tr>
           <td>Resume(not more than 3mb):<span class = "star-color">*</span></td>
           <td >
             <div class="text-center"> 
-          <input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
+          <input class="form-control" formcontrolname="resume" id = "resume" type="file"  (change)="valid()"    (change)="onResumeChange($event)">
       </div> 
       </td>
       <td>
@@ -106,7 +106,7 @@
         <tr>
           <td>Marksheet:<span class = "star-color">*</span></td>
           <td><div class="text-center"> 
-            <input class="form-control" type="file"  (change)="onMarksheetChange($event)"> 
+            <input class="form-control" type="file"  (change)="valid()"  (change)="onMarksheetChange($event)"> 
       </div> 
     
       <td>
@@ -116,7 +116,7 @@
       <tr>
             <td>Transfer Certificate:<span class = "star-color">*</span></td>
             <td><div class="text-center"> 
-              <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
+              <input class="form-control" type="file"  (change)="valid()"  (change)="onTransfercertificateChange($event)"> 
         </div> 
     
         <td  >
@@ -126,7 +126,7 @@
           <tr>
             <td>Aadhar Card:<span class = "star-color">*</span></td>
             <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
+              <input class="form-control" type="file"   (change)="valid()"  (change)="onAadharcardChange($event)"> 
         </div> 
     
         <td>
@@ -136,7 +136,7 @@
           <tr>
             <td>Bank Passbook:<span class = "star-color">*</span></td>
             <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
+              <input class="form-control" type="file"   (change)="valid()"  (change)="onBankpassbookChange($event)"> 
         </div> 
     
         <td> 
@@ -146,7 +146,7 @@
           <tr>
             <td>Photo:<span class = "star-color">*</span></td>
             <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="onPhotoChange($event)"> 
+              <input class="form-control" type="file"  (change)="valid()"   (change)="onPhotoChange($event)"> 
         </div> 
     
         <td>
@@ -156,7 +156,7 @@
           <tr>
             <td>Signature:<span class = "star-color">*</span></td>
             <td><div class="text-center"> 
-              <input class="form-control" type="file"    (change)="onSignatureChange($event)"  (change)="valid()"> 
+              <input class="form-control" type="file"   (change)="valid()"   (change)="onSignatureChange($event)"  (change)="valid()"> 
         </div> 
     
         <td>
@@ -166,6 +166,9 @@
            
       </table>
       <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]="flagged" (click)="generate_link()">
+      <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
+
+
       <br><br>
 
 <!-- /////////////////////////////////////////////////////////////////////////////// -->
@@ -247,7 +250,9 @@
     </tr> <tr>
      
 </table>
-  <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]="flagged_for_rml" (click)="generate_link_rml()">  
+  <input type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()">  
+  <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
+
 </div>
 </form>
 </div>

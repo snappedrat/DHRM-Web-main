@@ -4,11 +4,25 @@ import {HttpClient} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-other',
   templateUrl: './other.component.html',
-  styleUrls: ['./other.component.css']
+  styleUrls: ['./other.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
 })
 export class OtherComponent implements OnInit {
   Works:any=['Yes','No'];
@@ -17,6 +31,7 @@ export class OtherComponent implements OnInit {
   other : any = []
 
   forms: FormGroup = new FormGroup({});
+  state: boolean;
   constructor(private fb: FormBuilder, private http: HttpClient, private cookie:CookieService , private plantcodeService : PlantcodeService, private active: ActivatedRoute) {
     this.forms = fb.group({ 
       known:[''],
@@ -93,6 +108,10 @@ submit(){
     }
     else{
       this.plantcodeService.submitother()
+      this.state = true
+      setTimeout(() => {
+          this.state = false
+      }, 2000);
     }
 
 }

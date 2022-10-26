@@ -208,8 +208,6 @@ approved(uniqueId:any){
 }
 
 rejected(uniqueId:any){
-  this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-
   console.log(this.uniqueId);
 
   this.http

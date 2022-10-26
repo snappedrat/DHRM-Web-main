@@ -53,16 +53,18 @@ companycode : any;
 errmsg: any = '';  
 
 ngOnInit(): void {
-  this.getplantcode()
+
   this.getcompanycode()
   this.plantcodeService.getHr('newuser')
   console.log("nnnnnnnnnnn",this.bankForms.value)
 
 }
 
-getplantcode(){
-
-    this.http.post('http://localhost:3000/plantcodelist', '')
+getplantcode(event:any){
+    console.log(event.target.value);
+    
+    var company = {'company_name': event.target.value}
+    this.http.post('http://localhost:3000/plantcodelist',company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
       error: (error) => console.log(error),

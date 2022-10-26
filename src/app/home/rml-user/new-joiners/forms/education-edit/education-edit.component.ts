@@ -4,11 +4,27 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-education-edit',
   templateUrl: './education-edit.component.html',
-  styleUrls: ['./education-edit.component.css']
+  styleUrls: ['./education-edit.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
 })
 export class EducationEditComponent implements OnInit {
 
@@ -16,6 +32,7 @@ mobile: any
 Exampassed: any = ['HSC','SSLC','BOARD','DIPLOMA','ITI','BE','BTECH','ARTS&SCIENCE']
 education:any = []
 flag: any = true
+
 
 mobile_no1 = {
   "mobile" : this.active.snapshot.paramMap.get('mobile_no1')
@@ -64,6 +81,7 @@ eduData = [
     'percentage': ''
   },
 ];
+  state: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) { 
     // this.mobile = this.cookie.get('mobilenum')
@@ -123,6 +141,10 @@ eduData = [
       console.log("good");
 
       this.plantcodeService.submitedu()
+      this.state = true
+      setTimeout(() => {
+          this.state = false
+      }, 2000);
     }
 
     }

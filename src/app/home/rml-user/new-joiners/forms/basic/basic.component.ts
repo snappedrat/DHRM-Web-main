@@ -7,12 +7,29 @@ import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { isThisSecond } from 'date-fns';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+  } from '@angular/animations';
+  import { Timestamp } from 'rxjs';
+
+  
 @Component({
     selector: 'app-basic',
     templateUrl: './basic.component.html',
-    styleUrls: ['./basic.component.css']
+    styleUrls: ['./basic.component.css'],
+    animations: [
+        trigger('slowAnimate', [
+          transition(':enter', [style({opacity: '0'}), animate(500)]),
+          transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+        ])
+      ]
 })
 export class BasicComponent implements OnInit{
+    Title : any = ['Mr', 'Miss', 'Mrs']
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
     State: any =['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telengana','Tripura','Uttarakhand','Uttar Pradesh','West Bengal'];
@@ -28,6 +45,9 @@ export class BasicComponent implements OnInit{
     form: FormGroup = new FormGroup({});
     flag : any = 0
     flag_to_readonly: any = false
+    state :any = false
+    aadhar :any 
+    flag_aadhar:any = 0
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
@@ -70,6 +90,7 @@ export class BasicComponent implements OnInit{
         this.disable_for_hr();
         this.setbdvalidation();
         this.getdatabasic()
+        this.getaadhar()
         this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
 
@@ -112,6 +133,30 @@ export class BasicComponent implements OnInit{
 
             this.sendData()
         }, 1000);
+    }
+
+    getaadhar(){
+        this.http
+        .get('http://localhost:3000/getaadhar')
+        .subscribe({
+          next: (response) =>{ console.log(response); this.aadhar = response},
+          error: (error) => console.log(error),
+        })
+    }
+
+    check_aadhar()
+    {
+        var total = this.form.controls['aadhar1'].value+this.form.controls['aadhar2'].value+this.form.controls['aadhar3'].value+this.form.controls['aadhar4'].value
+        for(var i = 0 ; i< this.aadhar.length;i++)
+        {
+            if(this.aadhar[i].aadhar_no == total)
+            {
+                this.flag_aadhar = 1
+                break
+            }
+            else
+                this.flag_aadhar = 0
+        }        
     }
 
     disable_for_hr()
@@ -294,6 +339,10 @@ export class BasicComponent implements OnInit{
     {
             this.plantcodeService.submitbasic()
             this.sendData()
+            this.state = true
+            setTimeout(() => {
+                this.state = false
+            }, 2000);
 
     }
     sendData(){

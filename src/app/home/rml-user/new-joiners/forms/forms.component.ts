@@ -49,14 +49,19 @@ export class FormsComponent implements OnInit {
       this.apln_status = this.formservice.basicdetails[0]?.apln_status
       console.log(this.apln_status != 'PENDING');
       
-      if(this.apln_status == 'NEW INCOMPLETE' || this.apln_status == 'PENDING')
+      if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL'))
+      {
         this.flag = true
+      }
       else
         this.flag = false
+
 
     }, 1000);
     
 }
+
+
 
   allSave()
   {

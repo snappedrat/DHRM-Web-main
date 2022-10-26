@@ -5,11 +5,26 @@ import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { send } from 'process';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
+
 
 @Component({
   selector: 'app-prev-edit',
   templateUrl: './prev-edit.component.html',
-  styleUrls: ['./prev-edit.component.css']
+  styleUrls: ['./prev-edit.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
 })
 export class PrevEditComponent implements OnInit {
  
@@ -60,6 +75,7 @@ export class PrevEditComponent implements OnInit {
 
   ];
   flag: any = true;
+  state: boolean;
   
     constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active: ActivatedRoute ) { }
   
@@ -138,18 +154,14 @@ export class PrevEditComponent implements OnInit {
       
     console.log(this.prevData)
 
-      if(this.prevData[0].desig == '' || this.prevData[0].name == '' || this.prevData[0].periodf == '' || this.prevData[0].periodt == ''|| this.prevData[0].reason == '' || this.prevData[0].sal == '')
-      {
-        this.flag = true
-      }
-      else
-      {
         console.log('family', this.prevData);
 
-        console.log("good");
-
         this.plantcodeService.submitprev()
-      }
+
+        this.state = true
+        setTimeout(() => {
+            this.state = false
+        }, 2000);
 
       }
   

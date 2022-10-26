@@ -5,11 +5,25 @@ import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-language',
   templateUrl: './language.component.html',
-  styleUrls: ['./language.component.css']
+  styleUrls: ['./language.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
 })
 export class LanguageComponent implements OnInit {
 
@@ -70,6 +84,7 @@ languageList = [
     'understand': 0
   }
 ];
+  state: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService , private active : ActivatedRoute) { }
 
@@ -190,6 +205,10 @@ languageList = [
       }
       else{
       this.plantcodeService.sumbitlang()
+      this.state = true
+      setTimeout(() => {
+          this.state = false
+      }, 2000);
     }
 }
 

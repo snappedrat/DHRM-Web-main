@@ -4,11 +4,28 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import { Timestamp } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-familyedit',
   templateUrl: './family-edit.component.html',
-  styleUrls: ['./family-edit.component.css']
+  styleUrls: ['./family-edit.component.css'],
+  animations: [
+    trigger('slowAnimate', [
+      transition(':enter', [style({opacity: '0'}), animate(500)]),
+      transition(':leave', [style({opacity: '1'}), animate(500, style({opacity: '0'}))]),
+    ])
+  ]
+  
 })
 export class FamilyEditComponent implements OnInit {
 
@@ -62,6 +79,7 @@ familyData = [
   },
 ];
   flag: any = true;
+  state: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
     this.mobile = this.active.snapshot.paramMap.get('mobile_no1')
@@ -148,6 +166,10 @@ familyData = [
     {
       console.log('family', this.familyData);
       this.plantcodeService.submitfamily()
+      this.state = true
+      setTimeout(() => {
+          this.state = false
+      }, 2000);
       
     }
 }
