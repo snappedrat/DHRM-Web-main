@@ -129,9 +129,13 @@ familyData = [
       
       this.sendData()
 
-      if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
-      this.flag = false
-      this.emit.emit(this.message)
+      if((this.familyData[0].age != '' && undefined) && (this.familyData[0].contactnumber != ''&& undefined) && (this.familyData[0].name != ''&& undefined) && (this.familyData[0].occupation != ''&& undefined) && (this.familyData[0].relation != ''&& undefined))
+      {
+        console.log(this.familyData)
+        this.flag = false
+        this.emit.emit(this.message)
+      }
+      
     }, 1000);
     this.sendData()
   }  
@@ -159,13 +163,15 @@ sendData(){
 } 
 
 public valid(){
-  if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
+  if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  {
     this.flag = false
     this.emit.emit(this.message)
+  }
 }
 
 valids(event :any){
-  if((this.familyData[0].age != undefined) && (this.familyData[0].contactnumber != ''||undefined) && (this.familyData[0].name != undefined) && (this.familyData[0].occupation != undefined) && (this.familyData[0].relation != undefined))
+  if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
     console.log(this.familyData)
     console.log("good to go")
@@ -174,10 +180,13 @@ valids(event :any){
   }
   else
   {
-    console.log(event.target.value.length)
+    console.log("woooooooooooooooooooo",event.target.value.length)
     if(event.target.value.length == 0)
+    {
       this.flag = true
       this.emit.emit(this.message_bad)
+    }
+
   }
 }
 }

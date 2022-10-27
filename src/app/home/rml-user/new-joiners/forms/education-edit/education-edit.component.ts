@@ -129,7 +129,7 @@ eduData = [
 
       }
 
-      if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+      if((this.eduData[0].school != ''&&this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
       {
         this.flag = false
         this.emit.emit(this.message)
@@ -163,7 +163,7 @@ sendData(){
 } 
 
 public valid(){
-  if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+  if((this.eduData[0].school != ''&&this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
   {
     this.flag = false
     this.emit.emit(this.message)
@@ -172,7 +172,7 @@ public valid(){
 
 valids(event:any){
   console.log(this.eduData)
-  if(this.eduData[0].year != '' && this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+  if((this.eduData[0].school != ''&&this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
   {
     console.log("good to go")
     this.flag = false
