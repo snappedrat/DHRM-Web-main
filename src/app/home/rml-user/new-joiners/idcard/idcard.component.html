@@ -9,30 +9,23 @@
           </div></div>
           <img class = "img" [src]= this.url alt="Avatar" ><br><br><br>
           <div class="mx-5">
-          <tr class="font">
-              <td><p><b> Temp Id no:</b></p></td>
-              <td >&emsp;{{i.trainee_idno}}</td>
-          </tr><br>
-          <tr>
-              <td><b>Name:</b></td>
-              <td>&emsp;{{i.fullname}}</td>
-          </tr><br>
-          <tr>
-              <td><b>Father name:</b></td>
-              <td>&emsp;{{i.fathername}}</td>              
-          </tr><br>
-          <tr>
-              <td><b>Department:</b></td>
-              <td  >&emsp;Training</td>
-          </tr><br>
-          <tr>
-              <td><b>Designation:</b></td>
-              <td>&emsp;DOJO Trainee</td>
-          </tr><br></div>
+            <tr class="font">
+            <tr > <div class="md">
+                <td style="line-height: 20px; width: 500px; border: 1px ;"><b>Name</b></td>
+                <td style="line-height: 20px; width: 400px; border: 1px ;">:{{i.fullname}}</td><br>
+            <tr > 
+                <td style="line-height: 20px; width: 400px; border: 1px ;"><b>Father's Name</b></td><br>
+                <td style="line-height: 20px; width: 400px; border: 1px ;">:{{i.fathername}}</td><br><br>
+            <tr>
+                <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Department</b></td><br>
+                <td style="line-height: 20px; width: 400px; border: 1px ;">:Dojo Training</td><br><br>
+            <tr>
+                <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Designation</b></td><br>
+                <td style="line-height: 20px; width: 400px; border: 1px ;">:Trainee</td><br><br></div><br>
           <div class="sign">
               <img src="../assets/rane.png" alt="Avatar"></div>
               <div class="sign1"><b>authorised signature </b>
-          
+              </div>
           </div></table>
   </div>
 
@@ -42,25 +35,25 @@
          <table class="font">
             <div class="center">
               <div class="header" > <b>Address:</b></div><br>
-              <div class="font2"><textarea type="text" formControlName="permanent" readonly style="width: 350px;height:130px;"></textarea></div>
+              <div class="font2"><textarea type="text" formControlName="permanent" readonly style="width: 350px;height:120px;"></textarea></div>
               </div>
               <tr><td></td></tr><br><br><br>
               <tr class="font">
-                  <u><td><b>Emergency contact</b></td></u>
+                  <u><td ><b>Emergency contact</b></td></u>
                   <td></td><br><br><br><br>
               </tr>
               <tr > <div class="md">
-                  <td><b>Name:</b></td>
-                  <td>&emsp;{{i.emergency_name}}</td><br>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;"><b>Name</b></td>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{i.emergency_name}}</td><br>
               <tr > 
-                  <td><b>Relation:</b></td>
-                  <td >&emsp;{{i.emergency_rel}}</td><br><br>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;"><b>Relation</b></td>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{i.emergency_rel}}</td><br><br>
               <tr></div><div class="md">
-                  <td><b> Valid from:</b></td>
-                  <td>&emsp;{{from_date}}</td><br>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Valid from</b></td>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{from_date}}</td><br>
               <tr> 
-                  <td><b> Valid to:</b></td>
-                  <td>&emsp;{{to_date}}</td><br><br></div>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Valid to</b></td>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{to_date}}</td><br><br></div>
           </table>
   </div>
 
