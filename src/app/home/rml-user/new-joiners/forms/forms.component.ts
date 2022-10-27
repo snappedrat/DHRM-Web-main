@@ -3,6 +3,7 @@ import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { isThisSecond } from 'date-fns';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-forms',
@@ -27,15 +28,27 @@ export class FormsComponent implements OnInit {
   basic: any
   submit:any
   apln_no:any = ''
-  flag:any = false
+  flag:any = true
   apln_status :any = ''
+  flag_submit_all: any = this.formservice.flag_submit_all;
+  message: any = true
+  message_from_basic: any 
+  message_from_bank: any 
+  message_from_edu: any 
+  message_from_choose: any 
+  message_from_prev: any 
+  message_from_emer: any 
+  message_from_fam: any 
+  message_from_lang: any 
+  message_from_other:any
+
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
   }
 
   ngOnInit(): void {
     this.getDataForID()
-
+    
     this.ishr = sessionStorage.getItem('ishr')
 
     if(this.ishr == 'undefined')
@@ -51,18 +64,71 @@ export class FormsComponent implements OnInit {
       
       if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL'))
       {
+        console.log("hahahahaahahahahaa bye bye")
         this.flag = true
       }
       else
+      {
+        console.log(" bye bye")
         this.flag = false
-
-
-    }, 1000);
-    
+      }
+   }, 1000);
 }
 
+  eventchanger_basic(data:any)
+  {
+    console.log(data)
 
+    this.message_from_basic = data.basic
 
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false&& this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false )
+      this.message = false
+  }
+  eventchanger_bank(data:any)
+  {
+    console.log(data)
+
+    this.message_from_bank = data.bank
+
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+  }
+  eventchanger_edu(data:any)
+  {
+    console.log(data)
+
+    this.message_from_edu = data.edu
+
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+  }
+
+  eventchanger_choose(data:any)
+  {
+    console.log(data)
+
+    this.message_from_choose = data.choose
+
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+  }
+  eventchanger_fam(data:any)
+  {
+    console.log(data)
+    this.message_from_fam = data.fam
+
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+  }
+  eventchanger_emer(data:any)
+  {
+    console.log(data)
+    this.message_from_emer = data.emer
+
+    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+  }
+  
   allSave()
   {
     this.formservice.submitbank()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import { AnyNaptrRecord } from 'dns';
@@ -29,6 +29,10 @@ import {
       ]
 })
 export class BasicComponent implements OnInit{
+
+    @Output() emit = new EventEmitter<any>()
+    message = {'basic':false}
+
     Title : any = ['Mr', 'Miss', 'Mrs']
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
@@ -130,6 +134,8 @@ export class BasicComponent implements OnInit{
             this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
             this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
 
+            if(this.form.valid)
+                this.emit.emit(this.message)
 
             this.sendData()
         }, 1000);
@@ -159,11 +165,17 @@ export class BasicComponent implements OnInit{
         }        
     }
 
+    emitData(){
+        if(this.form.valid)
+            this.emit.emit(this.message) 
+    }
+
     disable_for_hr()
     {
         if(this.ishr == 'true')
         {
             this.flag_to_readonly = true
+            this.form.controls['title'].disable()
         }
     }
 

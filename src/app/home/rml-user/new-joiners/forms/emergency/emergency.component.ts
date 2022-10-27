@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -26,9 +26,13 @@ import { Timestamp } from 'rxjs';
   ]
 })
 export class EmergencyComponent implements OnInit  {
+  @Output() emit = new EventEmitter<any>()
+  message = {'emer': false}
+
 relations :any = ['Father','Mother','Sister','Brother'];
 uniqueId :any = {'mobile':''}
 emer : any = []
+
 
  form: FormGroup = new FormGroup({});  
   state: boolean;
@@ -53,6 +57,9 @@ emer : any = []
         this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
 
         this.sendData()
+
+        if(this.form.valid)
+          this.emit.emit(this.message)
       }, 1000);
       this.sendData()
   }
@@ -84,6 +91,12 @@ submit(){
 sendData(){
     this.plantcodeService.emer = this.form.value
 } 
+
+emitData()
+{
+  if(this.form.valid)
+    this.emit.emit(this.message)
+}
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');

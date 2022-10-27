@@ -36,11 +36,11 @@
     <div class="col-sm-3">
    
         <label class="form-label">Relation:<span class = "star-color">*</span></label>
-        <select formControlName="relations" class="form-control" (click)="sendData()">
+        <select formControlName="relations" class="form-control" (click)= "emitData()" (click)="sendData()">
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
           </select>
-          <div *ngIf="r.relations.touched && r.relations.invalid" class="alert alert-danger">  
+          <div *ngIf="r.relations.touched && r.relations.invalid"class="alert alert-danger">  
             <div *ngIf="r.relations.errors.required">Relation is required</div>   
         </div>  
     </div>

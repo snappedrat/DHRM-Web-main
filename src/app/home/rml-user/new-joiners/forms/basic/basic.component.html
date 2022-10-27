@@ -18,7 +18,7 @@
                     (click)="sendData()"
                     [disabled]= 'flag_to_readonly'
                     placeholder="Title">
-                    <option disabled>Select Title</option>
+                    <option value ="">Select Title</option>
                     <option *ngFor="let i of Title">{{i}}</option>
                 </select>
             </div></div>
@@ -218,7 +218,7 @@
         <div class="form-group">
             <label for="">Religion:<span class = "star-color">*</span></label>
             <select formControlName="reg" class="form-control">
-                <option disabled>Select Religion</option>
+                <option value ="">Select Religion</option>
                 <option *ngFor="let rg of religion">{{rg}}</option>
             </select>
             <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert alert-danger">
@@ -230,7 +230,7 @@
            
             <label for="">Marital Status:<span class = "star-color">*</span></label>
             <select formControlName="mar" class="form-control" (click)="sendData()" >
-                <option disabled>Select Marital Status</option>
+                <option value ="">Select Marital Status</option>
 
                 <option *ngFor="let mr of marital">{{mr}}</option>
             </select>
@@ -243,7 +243,7 @@
         <div class="form-group">
             <label for="">Blood Group:<span class = "star-color">*</span></label>
             <select formControlName="bg" class="form-control" (click)="sendData()">
-                <option disabled>Select BloodGroup</option>
+                <option value ="">Select BloodGroup</option>
 
                 <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
             </select>
@@ -255,7 +255,7 @@
             
             <label for="">Gender:<span class = "star-color">*</span></label>
             <select formControlName="gender" class="form-control" (click)="sendData()">
-                <option disabled>Select Gender</option>
+                <option value ="">Select Gender</option>
 
                 <option *ngFor="let gen of  Gender">{{gen}}</option>
             </select>
@@ -320,7 +320,7 @@
                
 
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" class="form-control" (click)="sendData()">
+            <select formControlName="pd" class="form-control" (click) = "emitData()" (click)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>

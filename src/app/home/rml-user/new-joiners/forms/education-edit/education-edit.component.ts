@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
@@ -27,6 +27,9 @@ import { Timestamp } from 'rxjs';
   ]
 })
 export class EducationEditComponent implements OnInit {
+  @Output() emit = new EventEmitter<any>()
+  message = {'edu':false}
+  message_bad = {'edu':true}
 
 mobile: any
 Exampassed: any = ['HSC','SSLC','BOARD','DIPLOMA','ITI','BE','BTECH','ARTS&SCIENCE']
@@ -94,24 +97,25 @@ eduData = [
     setTimeout(() => {
       this.education = this.plantcodeService.education
 
+
+
       for(var i= 0; i<4 ;i++)
       {
-        if(this.education[i].school_name == 'undefined')
+        if(this.education[i]?.school_name == 'undefined')
            this.education[i].school_name = ''
-        if(this.education[i].exam_passed == 'undefined')
+        if(this.education[i]?.exam_passed == 'undefined')
            this.education[i].exam_passed = ''
-        if(this.education[i].passing_yr == 'undefined')
+        if(this.education[i]?.passing_yr == 'undefined')
            this.education[i].passing_yr = ''
-        if(this.education[i].subjects == 'undefined')
+        if(this.education[i]?.subjects == 'undefined')
            this.education[i].subjects = ''
-        if(this.education[i].cert_number == 'undefined')
+        if(this.education[i]?.cert_number == 'undefined')
            this.education[i].cert_number = ''
-        if(this.education[i].cert_date == 'undefined')
+        if(this.education[i]?.cert_date == 'undefined')
            this.education[i].cert_date = ''
-        if(this.education[i].percentage == 'undefined')
+        if(this.education[i]?.percentage == 'undefined')
            this.education[i].percentage = ''
         
-
         if(this.education[i]?.school_name != null)
           this.flag = false
         this.eduData[i].school = this.education[i]?.school_name
@@ -125,13 +129,18 @@ eduData = [
 
       }
 
+      if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+      {
+        this.flag = false
+        this.emit.emit(this.message)
+      }
+
     }, 1000);
     this.sendData()
   }  
   submit(){
     if(this.eduData[0].school == '' || this.eduData[0].percentage == '' || this.eduData[0].year == '' || this.eduData[0].passed == '' || this.eduData[0].department == '' || this.eduData[0].certificatenumber == '' || this.eduData[0].certificatedate == '')
     {
-
         this.flag = true
     }
     else
@@ -155,23 +164,35 @@ sendData(){
 
 public valid(){
   if(this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].year != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
+  {
     this.flag = false
+    this.emit.emit(this.message)
+  }
 }
 
-valids(event :any){
+valids(event:any){
   console.log(this.eduData)
   if(this.eduData[0].year != '' && this.eduData[0].school != '' && this.eduData[0].percentage != '' && this.eduData[0].passed != '' && this.eduData[0].department != ''  && this.eduData[0].certificatenumber != ''  && this.eduData[0].certificatedate != '')
   {
     console.log("good to go")
     this.flag = false
+    this.emit.emit(this.message)
   }
   else
   {
     console.log(event.target.value.length)
     if(event.target.value.length == 0)
+    {
       this.flag = true
+      this.emit.emit(this.message_bad)
+
+    }
+
+    
   }
-
-
+}
+emitData()
+{
+  this.emit.emit(this.message)
 }
 }

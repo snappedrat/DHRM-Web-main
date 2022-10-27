@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
@@ -28,6 +28,9 @@ import { Timestamp } from 'rxjs';
   
 })
 export class FamilyEditComponent implements OnInit {
+  @Output() emit = new EventEmitter<any>()
+  message = {'fam':false}
+  message_bad = {'fam':true}
 
 relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter']
 dependent: any = ['Dependent', 'Self-Sufficient']
@@ -97,15 +100,15 @@ familyData = [
                 
         if(this.family[i]?.relation_name == 'undefined')
            this.family[i].relation_name = ''
-        if(this.family[i].relation_type == 'undefined')
+        if(this.family[i]?.relation_type == 'undefined')
            this.family[i].relation_type = ''
-        if(this.family[i].age == 'undefined')
+        if(this.family[i]?.age == 'undefined')
            this.family[i].age = ''
-        if(this.family[i].occupation  == 'undefined' )
+        if(this.family[i]?.occupation  == 'undefined' )
            this.family[i].occupation  = ''
-        if(this.family[i].contact_number ==  'undefined' )
+        if(this.family[i]?.contact_number ==  'undefined' )
            this.family[i].contact_number = ''
-        if(this.family[i].dependent == 'undefined')
+        if(this.family[i]?.dependent == 'undefined')
            this.family[i].dependent = ''
 
 
@@ -116,42 +119,19 @@ familyData = [
         this.familyData[i].age = this.family[i]?.age
         this.familyData[i].occupation = this.family[i]?.occupation
         this.familyData[i].contactnumber = this.family[i]?.contact_number
-        if(this.family[i].dependent == 0)
-          this.family[i].dependent = 'Dependent'
-        else
-         this.family[i].dependent = 'Self-Sufficient'
         this.familyData[i].dependent = this.family[i]?.dependent
+
+        if(this.familyData[i].dependent == '0')
+          this.familyData[i].dependent = 'Self-Sufficient'
+        else
+        this.familyData[i].dependent = 'Dependent'
       }
-          
-      // this.familyData[0].name = this.family[0]?.relation_name1
-      // this.familyData[0].relation = this.family[0]?.relation_type1
-      // this.familyData[0].age = this.family[0]?.age1
-      // this.familyData[0].occupation = this.family[0]?.occupation1
-      // this.familyData[0].contactnumber = this.family[0]?.contact_number1
-      // this.familyData[0].dependent = this.family[0]?.dependent1
       
-      // this.familyData[1].name = this.family[0]?.relation_name2
-      // this.familyData[1].relation = this.family[0]?.relation_type2
-      // this.familyData[1].age = this.family[0]?.age2
-      // this.familyData[1].occupation = this.family[0]?.occupation2
-      // this.familyData[1].contactnumber = this.family[0]?.contact_number2
-      // this.familyData[1].dependent = this.family[0]?.dependent2
-
-      // this.familyData[2].name = this.family[0]?.relation_name3
-      // this.familyData[2].relation = this.family[0]?.relation_type3
-      // this.familyData[2].age = this.family[0]?.age3
-      // this.familyData[2].occupation = this.family[0]?.occupation3
-      // this.familyData[2].contactnumber = this.family[0]?.contact_number3
-      // this.familyData[2].dependent = this.family[0]?.dependent3
-
-      // this.familyData[3].name = this.family[0]?.relation_name4
-      // this.familyData[3].relation = this.family[0]?.relation_type4
-      // this.familyData[3].age = this.family[0]?.age4
-      // this.familyData[3].occupation = this.family[0]?.occupation4
-      // this.familyData[3].contactnumber = this.family[0]?.contact_number4
-      // this.familyData[3].dependent = this.family[0]?.dependent4
-
       this.sendData()
+
+      if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
+      this.flag = false
+      this.emit.emit(this.message)
     }, 1000);
     this.sendData()
   }  
@@ -181,6 +161,7 @@ sendData(){
 public valid(){
   if(this.familyData[0].age != '' && this.familyData[0].contactnumber != '' && this.familyData[0].name != '' && this.familyData[0].occupation != '' && this.familyData[0].relation != '')
     this.flag = false
+    this.emit.emit(this.message)
 }
 
 valids(event :any){
@@ -189,12 +170,14 @@ valids(event :any){
     console.log(this.familyData)
     console.log("good to go")
     this.flag = false
+    this.emit.emit(this.message)
   }
   else
   {
     console.log(event.target.value.length)
     if(event.target.value.length == 0)
       this.flag = true
+      this.emit.emit(this.message_bad)
   }
 }
 }

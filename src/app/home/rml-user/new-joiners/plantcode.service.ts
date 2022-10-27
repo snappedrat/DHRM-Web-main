@@ -36,10 +36,16 @@ export class PlantcodeService {
   ishrappr:any = []
   banknames: any = []
   pincodes :any
+  flag_submit_all: any = true
 
   constructor(private http : HttpClient, private active : ActivatedRoute)
   {
    }
+
+validate_All()
+{
+  this.flag_submit_all = false
+}
 
 submitbank(){
   console.log(this.bank)

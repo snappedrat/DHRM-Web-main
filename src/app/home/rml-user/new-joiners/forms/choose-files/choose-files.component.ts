@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../../plantcode.service';
@@ -24,7 +24,8 @@ import {
   ]
 })
 export class ChooseFilesComponent implements OnInit {
-
+	@Output() emit = new EventEmitter<any>()
+	message = {'choose':false}
 	
 	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1') }
 
@@ -156,12 +157,20 @@ generate_link(){
 
 		if(this.ishr == 'undefined'){
 			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null)
-			this.flagged = false
+			{
+				this.flagged = false
+				this.emit.emit(this.message)	
+			}
+
 		}
 		else if(this.ishr == 'true')
 		{
 			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null && this.signature_file_name != null && this.transfercertificate_file_name !=null && this.bankpassbook_file_name !=null)
+			{
 				this.flagged = false
+				this.emit.emit(this.message)
+			}
+
 		}
 		this.state = true
 		setTimeout(() => {
@@ -208,13 +217,20 @@ valid()
 			if(this.ishr == 'undefined')
 			{	
 				if(this.resume_file != null && this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
-				this.flagged = false
+				{
+					this.flagged = false
+					this.emit.emit(this.message)
+				}
 			}
 			else if(this.ishr == 'true')
 			{
 				console.log(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
-				if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file != null && this.aadharcard_file != null && this.bankpassbook_file != null && this.photo_file != null && this.signature_file != null)
-				this.flagged = false
+				if(this.resume_file != null && this.marksheet_file != null && this.transfercertificate_file_name != '' && this.aadharcard_file != null && this.bankpassbook_file_name != '' && this.photo_file != null && this.signature_file_name != '')
+				{
+					this.flagged = false
+					this.emit.emit(this.message)
+				}
+
 			}
 
 

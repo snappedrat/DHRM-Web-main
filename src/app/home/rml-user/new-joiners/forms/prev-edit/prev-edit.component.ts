@@ -95,15 +95,15 @@ export class PrevEditComponent implements OnInit {
         
         if(this.career[i]?.company_name == 'undefined')
            this.career[i].company_name = ''
-        if(this.career[i].designation == 'undefined')
+        if(this.career[i]?.designation == 'undefined')
            this.career[i].designation = ''
-        if(this.career[i].period_from == 'undefined')
+        if(this.career[i]?.period_from == 'undefined')
            this.career[i].period_from = ''
-        if(this.career[i].period_to  == 'undefined' )
+        if(this.career[i]?.period_to  == 'undefined' )
            this.career[i].period_to  = ''
-        if(this.career[i].last_salary ==  'undefined' )
+        if(this.career[i]?.last_salary ==  'undefined' )
            this.career[i].last_salary = ''
-        if(this.career[i].leaving_reason == 'undefined')
+        if(this.career[i]?.leaving_reason == 'undefined')
            this.career[i].leaving_reason = ''
 
         this.prevData[i].name =    this.career[i]?.company_name

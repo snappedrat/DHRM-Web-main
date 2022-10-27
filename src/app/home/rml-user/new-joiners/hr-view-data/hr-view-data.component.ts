@@ -29,7 +29,7 @@ export class HrViewDataComponent implements OnInit {
 	urlforphoto: any
 	urlforSign: any
   tick :any = '✔️'
-  ex:any = 'X '
+  ex:any = ''
 
   url_appointmentorder_file: any
 	url_declaration_file: any

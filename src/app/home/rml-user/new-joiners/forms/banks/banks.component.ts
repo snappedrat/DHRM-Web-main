@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,6 +14,7 @@ import {
     transition,
   } from '@angular/animations';
   import { Timestamp } from 'rxjs';
+import { outputAst } from '@angular/compiler';
 
 
 @Component({
@@ -28,6 +29,10 @@ import {
       ]
 })
 export class BanksComponent implements OnInit{
+
+    @Output() emit = new EventEmitter<any> ();
+    message : any = {'bank':false};
+
     Bank:any=['AXIS BANK','HDFC Bank','CANARA Bank','Punjab National Bank','Bank of Baroda',
 'Bank of India',
 'Bank of Maharashtra',
@@ -79,7 +84,11 @@ flagger : any = false
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
             this.form.controls['bankName'].setValue(this.bank[0]?.bank_name.trim())
             this.sendData()
+
+            if(this.form.valid)
+                this.emit.emit(this.message)
         }, 1000);
+
 
     }
 
@@ -114,5 +123,11 @@ flagger : any = false
         this.plantcodeService.getdatabasic(this.uniqueId)
 
     }
-    
+
+    emitData()
+    {
+        if(this.form.valid)
+        this.emit.emit(this.message)
+    }
+
 }

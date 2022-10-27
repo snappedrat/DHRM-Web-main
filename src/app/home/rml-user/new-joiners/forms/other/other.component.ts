@@ -66,6 +66,9 @@ ngOnInit(): void {
     else if(this.other[0]?.prev_rane_empl == 'N')
     this.other[0].prev_rane_empl = 'No'
 
+
+    console.log("t-there",this.other[0]?.any_empl_rane, this.other[0]?.prev_rane_empl )
+
     this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
     this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
     this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
