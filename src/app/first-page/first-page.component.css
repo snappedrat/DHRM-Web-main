@@ -12,10 +12,12 @@
     margin: 10px;
   }
   .container{
-    display: inline-block;
-    margin-left: 8%;
-    align-items: center;
-    box-shadow: 2px;
+    display:grid;
+    margin-left: 10%;
+   align-items: center;
+    box-shadow: 20px;
+    box-sizing: content-box;
+
   }
   
   .picture{
@@ -65,6 +67,15 @@
   #shift2{
     margin-left: 280px;
   }
+  @media screen and (min-width: 600px) and (max-width: 900px) {
+    .home{
+      background: #333;
+    }
+  }
+  /* @media screen and (max-width:600px) {
+    .homecontent h1{
+       font-size: 40px;
+    }} */
   
   /* .home img{
       width: 100%;
