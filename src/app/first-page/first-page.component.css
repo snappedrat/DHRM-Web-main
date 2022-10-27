@@ -12,11 +12,14 @@
     margin: 10px;
   }
   .container{
-    display:grid;
-    margin-left: 10%;
+    display:inline-block;
+    margin-left: 8%;
+    margin-top: auto;
+    margin-bottom: 90%;
    align-items: center;
     box-shadow: 20px;
-    box-sizing: content-box;
+    
+   
 
   }
   
@@ -31,11 +34,11 @@
   }
   .center {
     display: block;
-    margin-left: 60%;
+    margin-left: 80%;
     margin-right: auto;
     margin-bottom: 50px;
-    width: 150px;
-    margin-top: 100px;
+    width: 100px;
+    margin-top: 10px;
   }
   b{
     padding: 40.5rem;
