@@ -13,7 +13,9 @@
   }
   .container{
     display: inline-block;
-    margin-left: 4%;
+    margin-left: 8%;
+    align-items: center;
+    box-shadow: 2px;
   }
   
   .picture{
@@ -56,9 +58,12 @@
     border-color: black;
     text-align:center;
   }
-  #shift{
-    margin-left:100px;
+  #shift1{
+    margin-left:150px;
 
+  }
+  #shift2{
+    margin-left: 280px;
   }
   
   /* .home img{
@@ -92,8 +97,8 @@
       margin-top: 10px;
       padding: 10%;
   }
-  
-  @media screen and (max-width:600px) {
+  /*  */
+  /* @media screen and (max-width:600px) {
       .homecontent h1{
          font-size: 40px;
       }
@@ -102,7 +107,7 @@
           height: 100%;
           margin-bottom: 5%;
       }
-  } */
+  }  */
   
   /* .row{
   
