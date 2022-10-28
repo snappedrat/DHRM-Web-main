@@ -46,7 +46,7 @@
 
 <button *ngIf="ishr == 'true' "  class = "btn btn-secondary btn-sm "  routerLink="/rml/new_joiners/trainee-application-status"> Go back to list</button>
 
-<button class = "btn btn-info btn-sm "  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile]">PRINT ID CARD</button>
+<button class = "btn btn-info btn-lg"  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile]">PRINT ID CARD</button>
 
 </div>
 <br> 
