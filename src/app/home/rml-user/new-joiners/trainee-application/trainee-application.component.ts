@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../plantcode.service';
 import { Router, RouterLinkActive } from '@angular/router';
-import { sub } from 'date-fns';
-
 
 @Component({
   selector: 'app-trainee-application',
@@ -64,7 +62,7 @@ getplantcode(event:any){
     console.log(event.target.value);
     
     var company = {'company_name': event.target.value}
-    this.http.post('http://localhost:3000/plantcodelist',company)
+    this.http.post(' http://localhost:3000/plantcodelist',company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
       error: (error) => console.log(error),
@@ -73,7 +71,7 @@ getplantcode(event:any){
 
 getcompanycode(){
 
-  this.http.post('http://localhost:3000/companycodelist', '')
+  this.http.post(' http://localhost:3000/companycodelist', '')
   .subscribe({
     next: (response) =>{ console.log(response); this.companycode = response },
     error: (error) => console.log(error),
@@ -84,7 +82,7 @@ sendFormData()
 {
   console.log("kekuthulaaaaaaaaaaa")
 
-  this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
+  this.http.post(' http://localhost:3000/traineeformdata', this.bankForms.value)
   .subscribe({
     next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
     if(this.errmsg.status == 'newform')

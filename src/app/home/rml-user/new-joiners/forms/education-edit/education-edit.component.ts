@@ -128,17 +128,19 @@ eduData = [
         this.eduData[i].percentage = this.education[i]?.percentage
 
       }
+      this.sendData()
 
       if((this.eduData[0].school != ''&&this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
       {
         this.flag = false
         this.emit.emit(this.message)
       }
+      this.sendData()
 
     }, 1000);
-    this.sendData()
   }  
   submit(){
+    this.sendData()
     if(this.eduData[0].school == '' || this.eduData[0].percentage == '' || this.eduData[0].year == '' || this.eduData[0].passed == '' || this.eduData[0].department == '' || this.eduData[0].certificatenumber == '' || this.eduData[0].certificatedate == '')
     {
         this.flag = true

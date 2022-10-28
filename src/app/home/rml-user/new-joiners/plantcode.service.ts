@@ -29,7 +29,7 @@ export class PlantcodeService {
   education:any = []
   family:any = []
   career:any = []
-  url = 'http://localhost:3000'
+  url = ' http://localhost:3000'
   uniqueId: any
   filenames: any;
   ishr:any = []
@@ -60,7 +60,7 @@ submitbank(){
 submitbasic(){
   console.log(this.basic)
   this.http
-  .post('http://localhost:3000/basicforms', this.basic)
+  .post(' http://localhost:3000/basicforms', this.basic)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -70,7 +70,7 @@ submitbasic(){
 submitedu(){
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/edu', this.edu)
+  .post(' http://localhost:3000/edu', this.edu)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -82,7 +82,7 @@ submitemer(){
   
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/emergency', this.emer)
+  .post(' http://localhost:3000/emergency', this.emer)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -92,7 +92,7 @@ submitemer(){
 submitfamily(){
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/family', this.fam)
+  .post(' http://localhost:3000/family', this.fam)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -102,7 +102,7 @@ submitfamily(){
 submitother(){
   console.log(this.other)
   this.http
-  .post('http://localhost:3000/others', this.other)
+  .post(' http://localhost:3000/others', this.other)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -112,7 +112,7 @@ submitother(){
 submitprev(){
   console.log(this.prev)
   this.http
-  .post('http://localhost:3000/prev', this.prev)
+  .post(' http://localhost:3000/prev', this.prev)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -121,7 +121,7 @@ submitprev(){
 
 sumbitlang(){
         this.http.
-    post('http://localhost:3000/lang', this.lang)
+    post(' http://localhost:3000/lang', this.lang)
     .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -131,7 +131,7 @@ sumbitlang(){
 getdatabasic(uniqueId:any){
 
   this.http.
-post('http://localhost:3000/getdatabasic',uniqueId)
+post(' http://localhost:3000/getdatabasic',uniqueId)
 .subscribe({
   next: (response) => {console.log("basic : ",response); this.basicdetails= response} ,
   error: (error) => console.log(error),
@@ -141,7 +141,7 @@ post('http://localhost:3000/getdatabasic',uniqueId)
 getdataqualifn(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdataqualfn',uniqueId)
+post(' http://localhost:3000/getdataqualfn',uniqueId)
 .subscribe({
   next: (response) => {console.log("qualifn",response); this.education = response} ,
   error: (error) => console.log(error),
@@ -151,7 +151,7 @@ post('http://localhost:3000/getdataqualfn',uniqueId)
 getdatafamily(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdatafamily',uniqueId)
+post(' http://localhost:3000/getdatafamily',uniqueId)
 .subscribe({
   next: (response) => {console.log("family",response); this.family = response} ,
   error: (error) => console.log(error),
@@ -161,7 +161,7 @@ post('http://localhost:3000/getdatafamily',uniqueId)
 getdatacareer(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdatacareer',uniqueId)
+post(' http://localhost:3000/getdatacareer',uniqueId)
 .subscribe({
   next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),
@@ -177,7 +177,7 @@ fileupload(file:any,uniqueId:any, id_no :any, fileno:any){
   formData.append("fileno",fileno)
 
     this.http.
-    post('http://localhost:3000/image', formData).subscribe({
+    post(' http://localhost:3000/image', formData).subscribe({
       next: (res)=> console.log(res),
       error: (err)=>console.log(err)
     })
@@ -187,7 +187,7 @@ fileupload(file:any,uniqueId:any, id_no :any, fileno:any){
 submitted(uniqueId: any){
   console.log("----------------------------", uniqueId)
   this.http
-  .post('http://localhost:3000/submitted',uniqueId)
+  .post(' http://localhost:3000/submitted',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -196,7 +196,7 @@ submitted(uniqueId: any){
 
 pending(uniqueId: any){
   this.http
-  .post('http://localhost:3000/pending',uniqueId)
+  .post(' http://localhost:3000/pending',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -206,7 +206,7 @@ pending(uniqueId: any){
 approved(uniqueId:any){
 
   this.http
-  .post('http://localhost:3000/approved', uniqueId)
+  .post(' http://localhost:3000/approved', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -217,7 +217,7 @@ rejected(uniqueId:any){
   console.log(this.uniqueId);
 
   this.http
-  .post('http://localhost:3000/rejected', uniqueId)
+  .post(' http://localhost:3000/rejected', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -226,7 +226,7 @@ rejected(uniqueId:any){
 
 getHr(uniqueid: any)
 {
-  this.http.post('http://localhost:3000/gethr',uniqueid)
+  this.http.post(' http://localhost:3000/gethr',uniqueid)
   .subscribe({
     next: (response) => {console.log(response); this.ishr = response;},
     error: (error) => console.log(error),
@@ -236,7 +236,7 @@ setTimeout(() => {
   sessionStorage.setItem('ishr', this.ishr[0]?.Is_HR)
 }, 1000);
 
-  this.http.post('http://localhost:3000/gethrappr',uniqueid)
+  this.http.post(' http://localhost:3000/gethrappr',uniqueid)
       .subscribe({
         next: (response) => {console.log(response); this.ishrappr = response},
         error: (error) => console.log(error),
@@ -252,7 +252,7 @@ setTimeout(() => {
 filter(formvalue:any)
 {
   this.http
-  .post('http://localhost:3000/filter', formvalue)
+  .post(' http://localhost:3000/filter', formvalue)
   .subscribe({
     next: (response) =>{ console.log(response); this.filterinfo = response},
     error: (error) => console.log(error),
@@ -262,7 +262,7 @@ filter(formvalue:any)
 searchfilter(form:any)
 {
   this.http
-  .post('http://localhost:3000/searchfilter', form)
+  .post(' http://localhost:3000/searchfilter', form)
   .subscribe({
     next: (response) =>{ console.log(response); this.searchfilterinfo= response},
     error: (error) => console.log(error),
@@ -271,7 +271,7 @@ searchfilter(form:any)
 getbanknames()
 {
     this.http
-    .get('http://localhost:3000/getbanknames').subscribe({
+    .get(' http://localhost:3000/getbanknames').subscribe({
       next : (response)=>{console.log("banknames===========================", response), this.banknames = response},
       error : (err)=> console.log(err)
     })
@@ -280,7 +280,7 @@ getbanknames()
 getpincode(pincode:any)
 {
       this.http
-    .post('http://localhost:3000/getpincode',pincode).subscribe({
+    .post(' http://localhost:3000/getpincode',pincode).subscribe({
       next : (response)=>{console.log("pincode : ", response), this.pincodes = response},
       error : (err)=> console.log(err)
     })

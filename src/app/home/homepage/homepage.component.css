@@ -1,50 +1,32 @@
-.box{
-  border-radius: 20px;
-  height: 200px;
-  width: 300px;
-}
+
 .btn{
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 10px;
 }
 .container{
-  display: inline-block;
-  margin-left: 4%;
+  background-color: rgb(92, 85, 85);
 }
 
 .picture{
-  border-radius: 20px;
+  border-radius: 5px;
 }
 .text{
   margin: 10px;
   font-size: 22px;
 }
-.center {
-  display: block;
-  margin-left: 60%;
-  margin-right: auto;
-  margin-bottom: 50px;
-  width: 120px;
-  margin-top: 100px;
-}
+
 b{
   padding: 40.5rem;
 }
-.row{
-  border-radius: 15px;
-  width:1400px;
-  height: 100%;
-}
+
 
 .home{
-  height: 1000px;
-  background-size: 100% ;
-  background-size: cover;
-  background-image:url('src\assets\background.jpg');
-  background-position:50% 50%;
+  /* height: fit-content; */
+  /* background-size: auto;
+  background-image:url('src\assets\bg.png'); */
 }
 h3{
-  color: whitesmoke;
+  color: rgb(0, 0, 0);
   border-color: black;
 }
 

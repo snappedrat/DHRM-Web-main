@@ -105,7 +105,7 @@ export class CompanyComponent implements OnInit {
     formData.append('Name', this.form.get('Name')!.value);
     formData.append('active_status', this.form.get('active_status')!.value);
     this.http
-        .post('http://localhost:3000/user',this.form.value)
+        .post(' http://localhost:3000/user',this.form.value)
         .subscribe({
           next: (response) => this.errmsg=response,
           error: (error) => console.log(error),
@@ -129,7 +129,7 @@ export class CompanyComponent implements OnInit {
     var formData: any = new FormData();
     console.log(this.form.value)
     this.http
-        .get('http://localhost:3000/usershow',this.form.value)
+        .get(' http://localhost:3000/usershow',this.form.value)
         .subscribe({
           next: (response) =>{ console.log(response); this.master=response},
           error: (error) => console.log(error),
@@ -205,7 +205,7 @@ export class CompanyComponent implements OnInit {
     console.log(object)
 
     this.http
-        .post('http://localhost:3000/useredit',object)
+        .post(' http://localhost:3000/useredit',object)
         .subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error),
@@ -216,7 +216,7 @@ export class CompanyComponent implements OnInit {
   removeUser(user: any) {
     console.log(user);
     this.http
-        .post('http://localhost:3000/userdel',{"user":user})
+        .post(' http://localhost:3000/userdel',{"user":user})
         .subscribe({
           next: (response) =>{ console.log(response)},
           error: (error) => console.log(error),

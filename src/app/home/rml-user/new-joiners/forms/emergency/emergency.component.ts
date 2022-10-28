@@ -102,7 +102,7 @@ getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
   this.plantcodeService.getdatabasic(this.uniqueId)
 //   this.http.
-// post('http://localhost:3000/getdatabasic',this.uniqueId)
+// post(' http://localhost:3000/getdatabasic',this.uniqueId)
 // .subscribe({
 //   next: (response) => {console.log("bank : ",response); this.emer = response} ,
 //   error: (error) => console.log(error),

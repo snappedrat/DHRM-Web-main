@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { isThisSecond } from 'date-fns';
 import { threadId } from 'worker_threads';
 
 @Component({
@@ -62,7 +61,7 @@ export class FormsComponent implements OnInit {
       this.apln_status = this.formservice.basicdetails[0]?.apln_status
       console.log(this.apln_status != 'PENDING');
       
-      if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL'))
+      if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL') || (this.apln_status == 'REJECTED' && this.submit == 'SEND FOR APPROVAL'))
       {
         console.log("hahahahaahahahahaa bye bye")
         this.flag = true
@@ -83,6 +82,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false&& this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false )
       this.message = false
+    else
+      this.message = true
   }
   eventchanger_bank(data:any)
   {
@@ -92,6 +93,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
+    else
+      this.message = true
   }
   eventchanger_edu(data:any)
   {
@@ -101,6 +104,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
+    else
+      this.message = true
   }
 
   eventchanger_choose(data:any)
@@ -111,6 +116,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
+    else
+      this.message = true
   }
   eventchanger_fam(data:any)
   {
@@ -119,6 +126,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
+    else
+      this.message = true
   }
   eventchanger_emer(data:any)
   {
@@ -127,6 +136,8 @@ export class FormsComponent implements OnInit {
 
     if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
+    else
+      this.message = true
   }
   
   allSave()

@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
-import { isThisSecond } from 'date-fns';
+
 import {
     trigger,
     state,
@@ -76,7 +76,7 @@ export class BasicComponent implements OnInit{
             nation:['',Validators.required],
             city:[''],
             st:[''],
-            pc:['',Validators.required],
+            pc:['',[Validators.required,Validators.maxLength(6)]],
             reg:['',Validators.required],
             mar:['',Validators.required],
             pd:['',Validators.required],
@@ -92,10 +92,9 @@ export class BasicComponent implements OnInit{
 
     ngOnInit(): void {
         this.disable_for_hr();
-        this.setbdvalidation();
         this.getdatabasic()
         this.getaadhar()
-        this.form.controls['vacc'].setValue('no')
+        this.form.controls['vacc'].setValue('yes')
         setTimeout(() => {
 
             this.basic = this.plantcodeService.basicdetails
@@ -143,7 +142,7 @@ export class BasicComponent implements OnInit{
 
     getaadhar(){
         this.http
-        .get('http://localhost:3000/getaadhar')
+        .get(' http://localhost:3000/getaadhar')
         .subscribe({
           next: (response) =>{ console.log(response); this.aadhar = response},
           error: (error) => console.log(error),
@@ -340,12 +339,6 @@ export class BasicComponent implements OnInit{
             this.noEntry=false;
         }
     }
-    setbdvalidation()
-    {
-    const now = new Date();
-    const birthday = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
-    console.log(this.setbdvalidation)
-    }
 
     submit()
     {
@@ -360,6 +353,11 @@ export class BasicComponent implements OnInit{
     sendData(){
         console.log(this.form.value);
         this.plantcodeService.basic = this.form.value
+        if(this.form.valid)
+            this.emit.emit(this.message)
+        else
+            this.emit.emit({'basic':true})
+
 
     }
 
@@ -381,7 +379,7 @@ export class BasicComponent implements OnInit{
     //     console.log(this.uniqueId);
     //     console.log('====================================');
     //     this.http.
-    //   post('http://localhost:3000/getdatabasic',this.uniqueId)
+    //   post(' http://localhost:3000/getdatabasic',this.uniqueId)
     //   .subscribe({
     //     next: (response) => {console.log("basic : ",response); this.basic = response} ,
     //     error: (error) => console.log(error),

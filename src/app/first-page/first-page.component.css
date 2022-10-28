@@ -12,21 +12,18 @@
     margin: 10px;
   }
   .container{
-    display:inline-block;
-    margin-left: 8%;
-    margin-top: auto;
-    margin-bottom: 90%;
-   align-items: center;
-    box-shadow: 20px;
-    
-   
-
+    display: inline-block;
+    margin-left: 3%;
+    align-items: center;
+    box-shadow: 2px;
+    margin-right: 3%;
   }
   
   .picture{
     border-radius: 10px;
     width: 300px;
     border-image-width: auto;
+    float: right;
   }
   .text{
     margin: 10px;
@@ -34,10 +31,9 @@
   }
   .center {
     display: block;
-    margin-left: 80%;
-    margin-right: auto;
+    margin-right: 80%;
     margin-bottom: 50px;
-    width: 100px;
+    width: 150px;
     margin-top: 10px;
   }
   b{
@@ -50,8 +46,8 @@
   }
   
   .home{
-    height: 1000px;
-    background-size: 80% ;
+    height: 745px;
+    background-size: 78%;
     background-size: cover;
     background-image:url('src\assets\bg.png');
     background-position:fit;
@@ -70,15 +66,6 @@
   #shift2{
     margin-left: 280px;
   }
-  @media screen and (min-width: 600px) and (max-width: 900px) {
-    .home{
-      background: #333;
-    }
-  }
-  /* @media screen and (max-width:600px) {
-    .homecontent h1{
-       font-size: 40px;
-    }} */
   
   /* .home img{
       width: 100%;

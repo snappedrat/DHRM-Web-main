@@ -193,7 +193,7 @@ export class PrevEditComponent implements OnInit {
 
   
   //     this.http.
-  //     post('http://localhost:3000/lang', this.languageList)
+  //     post(' http://localhost:3000/lang', this.languageList)
   //     .subscribe({
   //       next: (response) => console.log(response),
   //       error: (error) => console.log(error),

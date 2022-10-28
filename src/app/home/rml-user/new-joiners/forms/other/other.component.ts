@@ -68,13 +68,18 @@ ngOnInit(): void {
 
 
     console.log("t-there",this.other[0]?.any_empl_rane, this.other[0]?.prev_rane_empl )
-
-    this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
-    this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
-    this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
-    this.forms.controls['place'].setValue(this.other[0]?.prev_rane_exp)
-    this.forms.controls['com'].setValue(this.other[0]?.existing_empl_company)
-    this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
+    if(this.other[0]?.any_empl_rane != 'null')
+      this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
+    if(this.other[0]?.prev_rane_empl != 'null')
+      this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
+    if(this.other[0]?.existing_empl_name != 'null')
+      this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
+    if(this.other[0]?.prev_rane_exp != 'null')
+      this.forms.controls['place'].setValue(this.other[0]?.prev_rane_exp)
+    if(this.other[0]?.existing_empl_company != 'null')
+      this.forms.controls['com'].setValue(this.other[0]?.existing_empl_company)
+    if(this.other[0]?.extra_curricular != 'null')
+      this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
   }
     this.sendData()
     
@@ -127,7 +132,7 @@ getdatabasic(){
   this.plantcodeService.getdatabasic(this.uniqueId)
 
 //   this.http.
-// post('http://localhost:3000/getdatabasic',this.uniqueId)
+// post(' http://localhost:3000/getdatabasic',this.uniqueId)
 // .subscribe({
 //   next: (response) => {console.log("bank : ",response); this.other = response} ,
 //   error: (error) => console.log(error),

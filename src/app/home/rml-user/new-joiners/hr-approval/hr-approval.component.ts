@@ -37,7 +37,7 @@ export class HrApprovalComponent implements OnInit {
   {
     console.log(this.form.value)
     this.http
-    .post('http://localhost:3000/filterforapproval', this.form.value)
+    .post(' http://localhost:3000/filterforapproval', this.form.value)
     .subscribe({
       next: (response) =>{ console.log(response); this.filterinfo = response},
       error: (error) => console.log(error),

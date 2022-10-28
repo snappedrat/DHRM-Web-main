@@ -18,7 +18,7 @@ export class HrViewDataComponent implements OnInit {
   career: any
   education: any
   family: any
-  url:any = "http://localhost:3000/"
+  url:any = " http://localhost:3000/"
   flag: any = false
 
 	urlforResume: any 
@@ -30,6 +30,7 @@ export class HrViewDataComponent implements OnInit {
 	urlforSign: any
   tick :any = '✔️'
   ex:any = ''
+  is_vaccinated: any
 
   url_appointmentorder_file: any
 	url_declaration_file: any
@@ -67,6 +68,12 @@ export class HrViewDataComponent implements OnInit {
       else if(this.basic[0]?.prev_rane_empl == 'N')
       this.basic[0].prev_rane_empl = 'No'
     
+      if(this.basic[0].dose1_dt.includes('-'))
+        this.is_vaccinated = 'YES'
+      else
+      this.is_vaccinated = 'NO'
+
+
       this.url_appointmentorder_file = this.url+this.basic[0].other_files8
       this.url_declaration_file = this.url+this.basic[0].other_files9
       this.url_medicalfitness_file = this.url+this.basic[0].other_files10 
@@ -113,7 +120,7 @@ export class HrViewDataComponent implements OnInit {
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdatabasic',this.uniqueId)
+post(' http://localhost:3000/getdatabasic',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("basic",response); this.basic = response} ,
   error: (error) => console.log(error),
@@ -123,7 +130,7 @@ post('http://localhost:3000/getdatabasic',this.uniqueId)
 getdataqualifn(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdataqualfn',this.uniqueId)
+post(' http://localhost:3000/getdataqualfn',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("qual",response); this.education = response} ,
   error: (error) => console.log(error),
@@ -134,7 +141,7 @@ post('http://localhost:3000/getdataqualfn',this.uniqueId)
 getdatafamily(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdatafamily',this.uniqueId)
+post(' http://localhost:3000/getdatafamily',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("fam",response); this.family = response} ,
   error: (error) => console.log(error),
@@ -144,7 +151,7 @@ post('http://localhost:3000/getdatafamily',this.uniqueId)
 getdatacareer(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.http.
-post('http://localhost:3000/getdatacareer',this.uniqueId)
+post(' http://localhost:3000/getdatacareer',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),

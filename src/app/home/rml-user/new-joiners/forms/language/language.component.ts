@@ -170,6 +170,10 @@ languageList = [
       else if(item=='mothertongue')
       {
         data.mothertongue=1;
+        if(data.mothertongue == 1)
+          for(var i = 0 ; i<=5; i++)
+            this.languageList[i].mothertongue = 0
+        data.mothertongue = 1
       }
       else if(item=='understand')
       {
@@ -200,7 +204,7 @@ languageList = [
   }  
   submit(){
     console.log('language', this.languageList);
-      if(this,this.languageList.length == 0){
+      if(this.languageList.length == 0){
       console.log("good");
       }
       else{
@@ -220,7 +224,7 @@ getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
 
   this.http.
-post('http://localhost:3000/getdatabasic',this.uniqueId)
+post(' http://localhost:3000/getdatabasic',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("lang : ",response); this.details = response} ,
   error: (error) => console.log(error),

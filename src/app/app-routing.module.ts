@@ -14,6 +14,10 @@ const routes: Routes = [
     component:FirstPageComponent,
   },
   {
+    path: 'homepage',
+    component: HomepageComponent,
+  },
+  {
     path:"home",
     loadChildren:() => import('./home/home.module').then(m => m.HomeModule)
   },

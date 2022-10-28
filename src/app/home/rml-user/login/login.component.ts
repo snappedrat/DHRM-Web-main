@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
     }
 
     //     this.http
-    //         .post('http://localhost:3000/logins',this.exform.value)
+    //         .post(' http://localhost:3000/logins',this.exform.value)
     //         .subscribe({
 
     //             next: (response) =>{

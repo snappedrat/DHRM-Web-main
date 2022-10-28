@@ -129,7 +129,7 @@ familyData = [
       
       this.sendData()
 
-      if((this.familyData[0].age != '' && undefined) && (this.familyData[0].contactnumber != ''&& undefined) && (this.familyData[0].name != ''&& undefined) && (this.familyData[0].occupation != ''&& undefined) && (this.familyData[0].relation != ''&& undefined))
+      if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
       {
         console.log(this.familyData)
         this.flag = false

@@ -18,9 +18,9 @@
         <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (change)="valids($event)" ><option *ngFor= "let i of relation">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "tel" maxlength=2 [(ngModel)]="data.age" (change)="valids($event)" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "tel" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (change)="valids($event)" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "text"[(ngModel)]="data.occupation" (change)="valids($event)" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "tel" maxlength=10 [(ngModel)]="data.contactnumber" (change)="valids($event)"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "tel" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event)"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
                <td><select type = "text" [(ngModel)]="data.dependent" (change)="valids($event)" (change)="valid()" (click)="sendData()"><option *ngFor= "let i of dependent">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
@@ -31,10 +31,10 @@
         <tr>
     </thead>    
     </table>
-    <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]=flag (click)="submit()">Save</button>
-    <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
 </div></div>
 
+<button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]=flag (click)="submit()">Save</button>
+<span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
  

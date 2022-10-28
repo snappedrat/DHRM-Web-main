@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PlantcodeService } from '../plantcode.service';
 import { ifError } from 'assert';
-import { id } from 'date-fns/locale';
 
 @Component({
   selector: 'app-trainee-application-status',

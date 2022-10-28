@@ -91,7 +91,7 @@ export class DeptComponent implements OnInit {
     formData.append('active_status', this.form.get('active_status')!.value);
     formData.append('creted_by', this.form.get('creted_by')!.value);
     this.http
-      .post('http://localhost:3000/dept',this.form.value)
+      .post(' http://localhost:3000/dept',this.form.value)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error),
@@ -114,7 +114,7 @@ export class DeptComponent implements OnInit {
   getUsers(): User[]{
     var formData: any = new FormData();
     this.http
-      .get('http://localhost:3000/deptshow',this.form.value)
+      .get(' http://localhost:3000/deptshow',this.form.value)
       .subscribe({
         next: (response) =>{ console.log(response); this.master=response},
         error: (error) => console.log(error),
@@ -176,7 +176,7 @@ export class DeptComponent implements OnInit {
     var json = JSON.stringify(object);
     console.warn(json)
     this.http
-      .post('http://localhost:3000/deptedit',object)
+      .post(' http://localhost:3000/deptedit',object)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error),
@@ -187,7 +187,7 @@ export class DeptComponent implements OnInit {
   removeUser(user: any){
     console.log(user);
     this.http
-      .post('http://localhost:3000/deptdel',{"user":user})
+      .post(' http://localhost:3000/deptdel',{"user":user})
       .subscribe({
         next: (response) =>{ console.log(response)},
         error: (error) => console.log(error),

@@ -94,7 +94,7 @@ export class BankComponent implements OnInit {
     formData.append('bank_name', this.form.get('bank_name')!.value);
     formData.append('active_status', this.form.get('active_status')!.value);
     this.http
-        .post('http://localhost:3000/bank',this.form.value)
+        .post(' http://localhost:3000/bank',this.form.value)
         .subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error),
@@ -111,7 +111,7 @@ export class BankComponent implements OnInit {
   getUsers(): User[]{
     var formData: any = new FormData();
     this.http
-        .get('http://localhost:3000/bankshow',this.form.value)
+        .get(' http://localhost:3000/bankshow',this.form.value)
         .subscribe({
           next: (response) =>{ console.log(response); this.master=response},
           error: (error) => console.log(error),

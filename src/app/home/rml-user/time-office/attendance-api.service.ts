@@ -15,6 +15,6 @@ export class AttendanceApiService {
    year = this.date.getFullYear();
    month = this.date.getMonth();
     sample(year: any, month: any){
-      return this.http.post('http://localhost:3000/logins', year, month);
+      return this.http.post(' http://localhost:3000/logins', year, month);
   }
 }
