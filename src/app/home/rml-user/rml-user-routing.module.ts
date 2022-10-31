@@ -25,6 +25,10 @@ const routes: Routes = [
         path:'login',
         loadChildren:() => import('./login/login.module').then(m => m.LoginModule)
       },
+      {
+        path: 'training_dojo',
+        loadChildren:() => import('./training-dojo/training-dojo.module').then(m => m.TrainingDojoModule)
+      }
       ]
   }
 

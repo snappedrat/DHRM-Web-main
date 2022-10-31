@@ -7,6 +7,7 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { TraineeApplicationComponent } from './home/rml-user/new-joiners/trainee-application/trainee-application.component';
 import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.component';
 import { IdcardComponent } from './home/rml-user/new-joiners/idcard/idcard.component';
+import { TraineeLoginComponent } from './home/rml-user/training-dojo/trainee-login/trainee-login.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:'idcard/:status/:mobile/:company',
     component: IdcardComponent
+  },
+  {
+    path: 'trainee-login',
+    component: TraineeLoginComponent
   }
 ];
 
