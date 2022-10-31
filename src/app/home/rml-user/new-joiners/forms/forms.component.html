@@ -1,10 +1,7 @@
 <!-- <div class = 'container'> -->
     <div style="overflow-x:none">
     <div class="textblock"><div class="mx-5"><h1><b><u>Trainee Application</u></b></h1></div></div>
-    <img src="../../assets/rane.png" class= "img">
-   
-    <br>
-<br>
+    <img *ngIf = "ishr == 'undefined' " src="../../assets/rane.png" class= "img">
 <app-basic (emit) = "eventchanger_basic($event)"></app-basic>
 <hr >
 <br> 
@@ -42,11 +39,11 @@
 <hr>
 <div class = "btn1">
 
-<button *ngIf= 'flag' type="submit" style="margin-bottom:auto;" [disabled] = 'message' (click)="allSave()" class = "btn btn-primary btn-sm">{{submit}}</button>
+<button *ngIf= 'flag' type="submit" style="margin-bottom:auto;" [disabled] = 'message' (click)="allSave()" class = "btn btn-primary btn-sm"><span style="font-size: 14px;">{{submit}}</span></button>
 
-<button *ngIf="ishr == 'true' "  class = "btn btn-secondary btn-sm "  routerLink="/rml/new_joiners/trainee-application-status"> Go back to list</button>
+<button *ngIf="ishr == 'true' "  class = "btn btn-secondary btn-sm "  routerLink="/rml/new_joiners/trainee-application-status"><span style="font-size:14px"> Go back to list</span></button>
 
-<button class = "btn btn-info btn-lg"  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile]">PRINT ID CARD</button>
+<button class = "btn btn-info btn-sm "  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile, this.uniqueId.company]"><span style="font-size: 14px;">PRINT ID CARD</span></button>
 
 </div>
 <br> 

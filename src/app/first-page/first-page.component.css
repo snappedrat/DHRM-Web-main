@@ -32,7 +32,7 @@
   .center {
     display: block;
     margin-right: 80%;
-    margin-bottom: 50px;
+    margin-bottom: 5px;
     width: 150px;
     margin-top: 10px;
   }
@@ -46,8 +46,8 @@
   }
   
   .home{
-    height: 745px;
-    background-size: 78%;
+    height: 800px;
+    background-size: 80%;
     background-size: cover;
     background-image:url('src\assets\bg.png');
     background-position:fit;

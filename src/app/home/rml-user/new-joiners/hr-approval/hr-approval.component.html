@@ -102,7 +102,7 @@
                         <td>{{ i.apln_status }}</td>
                         <td>
                             <div *ngIf= "i.apln_status == 'SUBMITTED'">
-                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status ]" >
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status,i.company_name ]" >
                                 <mat-icon>visibility</mat-icon>
                             </button>
                         </div>

@@ -4,7 +4,7 @@
       <table class="font">
           <div class="center"><div class="mx-3"><br>
               <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
-              <div class="font2" ><p><textarea formControlName="company_address" readonly style="height:80px;width:350px;"></textarea></p></div>
+              <div class="font2 comp_addr" ><p><textarea formControlName="company_address" readonly style="height:80px;width:350px;"></textarea></p></div>
               <div class = "name"><p><b>TEMP IDENTITY CARD</b></p></div>
           </div></div>
           <img class = "img" [src]= this.url alt="Avatar" ><br><br><br>
@@ -33,14 +33,13 @@
       <div class="container2">
         <div class="col-sm-8">
          <table class="font">
+              <div  style="font-size: 25px;" > <b>Address:</b></div><br>
 
-              <div class="header" > <b>Address:</b></div><br>
+              <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width: 350px;height:150px;font-size: 15px;"></textarea>
 
-              <div class="font2"><textarea type="text" formControlName="permanent" readonly style="width: 350px;height:120px;"></textarea></div>
-             
               <tr><td></td></tr><br><br><br>
               <tr class="font">
-                  <u><td ><b>Emergency contact</b></td></u>
+                  <u><td style="font-size: 25px;" ><b>Emergency contact</b></td></u>
                   <td></td><br><br><br><br>
               </tr>
               <tr > <div class="md">
@@ -51,10 +50,10 @@
                   <td style="line-height: 20px; width: 400px; border: 1px ;">:{{i.emergency_rel}}</td><br><br>
               <tr></div><div class="md">
                   <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Valid from</b></td>
-                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{from_date}}</td><br>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{frommdate}}</td><br>
               <tr> 
                   <td style="line-height: 20px; width: 400px; border: 1px ;"><b> Valid to</b></td>
-                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{to_date}}</td><br><br></div>
+                  <td style="line-height: 20px; width: 400px; border: 1px ;">:{{toodate}}</td><br><br></div>
           </table>
   </div>
 

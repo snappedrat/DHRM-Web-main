@@ -38,7 +38,9 @@ flag: any = true
 
 
 mobile_no1 = {
-  "mobile" : this.active.snapshot.paramMap.get('mobile_no1')
+  "mobile" : this.active.snapshot.paramMap.get('mobile_no1'),
+  'company':  this.active.snapshot.paramMap.get('company')
+
 }
 
 eduData = [

@@ -12,6 +12,7 @@ import {
   transition,
 } from '@angular/animations';
 import { Timestamp } from 'rxjs';
+import { threadId } from 'worker_threads';
 
 
 
@@ -35,10 +36,13 @@ export class FamilyEditComponent implements OnInit {
 relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter']
 dependent: any = ['Dependent', 'Self-Sufficient']
 mobile: any
+mobile_validate : any = false
 family : any = []
 mobile_no1:any =
   {
-    "mobile" : this.active.snapshot.paramMap.get('mobile_no1')
+    "mobile" : this.active.snapshot.paramMap.get('mobile_no1'),
+    'company':  this.active.snapshot.paramMap.get('company')
+
   }
 
 
@@ -170,13 +174,31 @@ public valid(){
   }
 }
 
-valids(event :any){
+valids(event :any, item:any){
   if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
-    console.log(this.familyData)
-    console.log("good to go")
-    this.flag = false
-    this.emit.emit(this.message)
+    if(item == 'mobile')
+      {
+        if(event.target.value.length == 10)
+        {
+          this.flag = false
+          this.mobile_validate = false
+        }
+        else
+        {
+          this.flag = true
+          this.mobile_validate = true
+
+        }
+      }
+    else
+    {
+      console.log(this.familyData)
+      console.log("good to go")
+      this.flag = false
+      this.emit.emit(this.message)
+    }
+
   }
   else
   {

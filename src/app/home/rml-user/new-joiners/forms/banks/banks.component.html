@@ -36,7 +36,7 @@
                     placeholder="IFSC Number">
         </div>
     </div>
-        <button class="btn btn-primary btn-lg" (click)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit">Save</button>
+        <button class="btn btn-primary btn-sm" (click)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
         </div>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 

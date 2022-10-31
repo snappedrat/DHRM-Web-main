@@ -17,19 +17,16 @@ const routes: Routes = [
       component: TraineeApplicationComponent
     }, 
     {
-      path:'forms/:mobile_no1/:apln_status',
+      path:'forms/:mobile_no1/:apln_status/:company',
       component: FormsComponent
     },
     {
       path:'trainee-application-status',
       component: TraineeApplicationStatusComponent
     },
+
     {
-      path:'idcard/:status',
-      component: IdcardComponent
-    },
-    {
-      path:'hr-view/:mobile/:status',
+      path:'hr-view/:mobile/:status/:company',
       component: HrViewDataComponent
     }
   ];

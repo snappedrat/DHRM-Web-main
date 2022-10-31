@@ -100,6 +100,7 @@ export class HrViewDataComponent implements OnInit {
   approved()
   {
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+      this.uniqueId.company = this.active.snapshot.paramMap.get('company')
       this.service.approved(this.uniqueId)
 
        window.alert("Application has been approved")
@@ -110,6 +111,8 @@ export class HrViewDataComponent implements OnInit {
   rejected()
   {
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
     this.service.rejected(this.uniqueId)
 
     window.alert("Application has been rejected")
@@ -119,6 +122,8 @@ export class HrViewDataComponent implements OnInit {
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
   this.http.
 post(' http://localhost:3000/getdatabasic',this.uniqueId)
 .subscribe({
@@ -129,6 +134,8 @@ post(' http://localhost:3000/getdatabasic',this.uniqueId)
 
 getdataqualifn(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
   this.http.
 post(' http://localhost:3000/getdataqualfn',this.uniqueId)
 .subscribe({
@@ -140,6 +147,8 @@ post(' http://localhost:3000/getdataqualfn',this.uniqueId)
 
 getdatafamily(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
   this.http.
 post(' http://localhost:3000/getdatafamily',this.uniqueId)
 .subscribe({
@@ -150,6 +159,8 @@ post(' http://localhost:3000/getdatafamily',this.uniqueId)
 
 getdatacareer(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
   this.http.
 post(' http://localhost:3000/getdatacareer',this.uniqueId)
 .subscribe({

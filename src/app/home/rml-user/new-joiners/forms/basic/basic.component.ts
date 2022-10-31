@@ -40,7 +40,7 @@ export class BasicComponent implements OnInit{
     religion: any =['Hindu','christain','muslim'];
     marital: any =['Married','unmarried','widower'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
-    physical:any=['Yes','No'];
+    physical:any=['No', 'Yes'];
     uniqueId :any = {'mobile':''}
     basic: any = []
     aadharsplitted :any = []
@@ -83,7 +83,8 @@ export class BasicComponent implements OnInit{
             bp:['',Validators.required],
             idm1:[''],
             idm2:[''],
-            mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')]
+            mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')],
+            company: [this.active.snapshot.paramMap.get('company')]
     })
     // this.form.controls['st'].disable()
     // this.form.controls['city'].disable()
@@ -94,10 +95,14 @@ export class BasicComponent implements OnInit{
         this.disable_for_hr();
         this.getdatabasic()
         this.getaadhar()
-        this.form.controls['vacc'].setValue('yes')
+        
+        this.form.controls['vacc'].setValue('no')
         setTimeout(() => {
 
             this.basic = this.plantcodeService.basicdetails
+
+            if(this.basic[0]?.title ==null)
+                this.form.controls['pd'].setValue('No')
 
             this.form.controls['title'].setValue(this.basic[0]?.title)
             this.form.controls['fname'].setValue(this.basic[0]?.first_name)
@@ -180,16 +185,21 @@ export class BasicComponent implements OnInit{
 
     setcity_state(event:any)
     {
-        console.log(event.target.value)
-        var pincode = {
-            "pincode": event.target.value
-        }
-        this.plantcodeService.getpincode(pincode)
-        setTimeout(() => {
-            console.log(this.plantcodeService.pincodes)
-            // console.log(this.plantcodeService.pincodes[0]?.statename)
+        console.log(event.target.value.length)
+        if(event.target.value.length == 6)
+        {
+            var pincode = {
+                "pincode": event.target.value
+            }
+            this.plantcodeService.getpincode(pincode)
+            setTimeout(() => {
+                // this.form.controls['st'].setValue(this.plantcodeService.pincodes[0]?.statename)
+                // this.form.controls['city'].setValue(this.plantcodeService.pincodes[0]?.dvisionname)
+            }, 500);
 
-        }, 500);
+
+        }
+
     }
 
     setstate(){
@@ -372,6 +382,7 @@ export class BasicComponent implements OnInit{
 
     getdatabasic(){
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
         this.plantcodeService.getdatabasic(this.uniqueId)
 

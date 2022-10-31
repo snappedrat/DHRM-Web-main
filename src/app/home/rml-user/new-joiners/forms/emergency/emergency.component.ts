@@ -41,7 +41,9 @@ emer : any = []
       contactNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       contactName:['',Validators.required],
       relations:['',Validators.required],
-      mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
+      mobilenumber : new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1')),
+      company: [this.active.snapshot.paramMap.get('company')]
+
 
     })  
   }  
@@ -100,6 +102,8 @@ emitData()
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+
   this.plantcodeService.getdatabasic(this.uniqueId)
 //   this.http.
 // post(' http://localhost:3000/getdatabasic',this.uniqueId)

@@ -222,6 +222,7 @@ sendData(){
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
   this.http.
 post(' http://localhost:3000/getdatabasic',this.uniqueId)

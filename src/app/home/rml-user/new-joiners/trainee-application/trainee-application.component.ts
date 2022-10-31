@@ -16,6 +16,7 @@ import { Router, RouterLinkActive } from '@angular/router';
 export class TraineeApplicationComponent implements OnInit{
 
   mobilenum : any = ''
+  companyname:any = ''
   setCookie(){
     this.cookie.set("mobilenum", this.mobilenum)
 }
@@ -43,7 +44,7 @@ export class TraineeApplicationComponent implements OnInit{
       pass: ['']
    });
    this.mobilenum = this.bankForms.controls['mobileNumber'].value
-   
+   this.companyname = this.bankForms.controls['company'].value
 }
 
 plantcode:any;
@@ -54,7 +55,6 @@ ngOnInit(): void {
 
   this.getcompanycode()
   this.plantcodeService.getHr('newuser')
-  console.log("nnnnnnnnnnn",this.bankForms.value)
 
 }
 
@@ -81,14 +81,15 @@ getcompanycode(){
 sendFormData()
 {
   console.log("kekuthulaaaaaaaaaaa")
+  this.companyname = this.bankForms.controls['company'].value
 
   this.http.post(' http://localhost:3000/traineeformdata', this.bankForms.value)
   .subscribe({
     next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
     if(this.errmsg.status == 'newform')
-    {  console.log("newform");this.router.navigate(['/forms',this.mobilenum])}
+    {  console.log("newform");this.router.navigate(['/forms',this.mobilenum,this.companyname])}
   else if(this.errmsg.status == 'incomplete')
-    { this.router.navigate(['/forms',this.mobilenum])  }
+    { this.router.navigate(['/forms',this.mobilenum,this.companyname])  }
   else if(this.errmsg.status == 'registered')
     {window.alert("YOU have already registered");console.log(this.bankForms.value)}},
     error: (error) => console.log(error),

@@ -129,7 +129,7 @@ sumbitlang(){
 }
 
 getdatabasic(uniqueId:any){
-
+  console.log("amaaaaaaaaaaaaaaaaaaaa",uniqueId)
   this.http.
 post(' http://localhost:3000/getdatabasic',uniqueId)
 .subscribe({
@@ -226,27 +226,25 @@ rejected(uniqueId:any){
 
 getHr(uniqueid: any)
 {
-  this.http.post(' http://localhost:3000/gethr',uniqueid)
-  .subscribe({
-    next: (response) => {console.log(response); this.ishr = response;},
-    error: (error) => console.log(error),
-});
-
-setTimeout(() => {
-  sessionStorage.setItem('ishr', this.ishr[0]?.Is_HR)
-}, 1000);
 
   this.http.post(' http://localhost:3000/gethrappr',uniqueid)
       .subscribe({
-        next: (response) => {console.log(response); this.ishrappr = response},
+        next: (response) => {console.log(response); this.ishrappr = response; this.setitems()},
         error: (error) => console.log(error),
   });
 
-setTimeout(() => {
+}
+
+setitems()
+{
+  console.log("hr details",this.ishrappr)
+  sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
   sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
   sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
   sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
-}, 1000);
+  sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
+  sessionStorage.setItem('plant_name', this.ishrappr[0]?.plant_name)
+
 }
 
 filter(formvalue:any)

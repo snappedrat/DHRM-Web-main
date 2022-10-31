@@ -4,7 +4,6 @@ import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} fr
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
-import { id } from 'date-fns/locale';
 import { bankForm } from '../../../masters/bank/bank.component';
 import {
     trigger,
@@ -46,7 +45,7 @@ export class BanksComponent implements OnInit{
 'UCO Bank',
 'Union Bank of India'];
 
-uniqueId :any = {'mobile':''}
+uniqueId :any = {'mobile':'', 'company': ''}
 bank : any = []
 banknames :any = []
 banks:any = []
@@ -63,7 +62,8 @@ flagger : any = false
             account:['', Validators.required],
             ifsc:['', Validators.required],
             bankName:['', Validators.required],
-            mobilenumber: new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1'))
+            mobilenumber: new UntypedFormControl(this.active.snapshot.paramMap.get('mobile_no1')),
+            company : [this.active.snapshot.paramMap.get('company')]
         })
     }
 
@@ -71,12 +71,12 @@ flagger : any = false
         this.plantcodeService.getbanknames()
         this.getdatabasic()
         setTimeout(() => {
-            for(var i = 0; i<this.plantcodeService.banknames.length - 1; i++){
-                this.banks[i] = this.plantcodeService.banknames[i]?.bank_name
+            // for(var i = 0; i<this.plantcodeService.banknames.length - 1; i++){
+            //     this.banks[i] = this.plantcodeService.banknames[i]?.bank_name
     
-                this.temp = this.banks[i]
-                this.banks[i] = this.temp.trim()
-            }
+            //     this.temp = this.banks[i]
+            //     this.banks[i] = this.temp.trim()
+            // }
 
             this.bank = this.plantcodeService.basicdetails
 
@@ -119,6 +119,8 @@ flagger : any = false
 
     getdatabasic(){
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+
         console.log(this.uniqueId)
         this.plantcodeService.getdatabasic(this.uniqueId)
 

@@ -40,7 +40,9 @@ export class OtherComponent implements OnInit {
       place:[''],
       com:[''],
       extra:[''],
-      mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')]
+      mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')],
+      company: [this.active.snapshot.paramMap.get('company')]
+
 
    })
 
@@ -129,6 +131,8 @@ sendData(){
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+  this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+
   this.plantcodeService.getdatabasic(this.uniqueId)
 
 //   this.http.

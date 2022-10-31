@@ -149,8 +149,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
             <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
-            &nbsp;<span style="color:rgb(255, 255, 255)">DHRM</span>
-            <div class = "username" >&nbsp;{{showname}} - {{showid}}</div>
+            <!-- &nbsp;<span style="color:rgb(255, 255, 255)">DHRM</span> -->
+
+            &nbsp;<div *ngIf = 'showid' class = "username" >&nbsp;{{showname}}({{showid}}) - {{showdept}} - {{showplant}}</div>
             <button class="btn btn-primary border border-primary" (click)="delCookie()"  id="logout" routerLink="/first" >
 <span class="glyphicon glyphicon-home"></span> 
               </button>

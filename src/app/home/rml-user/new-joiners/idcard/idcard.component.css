@@ -70,7 +70,7 @@ textarea{
 
 .font2{
   font-size: 15px;
-  width: max-content;
+  width: 50%;
 }
 .header{
   text-align: center;
@@ -90,8 +90,14 @@ textarea{
   margin-left:65%;
   font-size: large;
 }
-.textarea{
+.company_addr{
   text-align:center;
+  border-radius: 2px;
+  border-color: white;
+}
+.home_addr{
+  align-self: left;
+  text-align:left;
   border-radius: 2px;
   border-color: white;
 }

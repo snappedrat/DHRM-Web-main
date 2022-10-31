@@ -32,6 +32,8 @@ export class NavbarComponent implements OnInit{
       map(result => result.matches),
       shareReplay()
     );
+  showdept: string | null;
+  showplant: string | null;
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
@@ -61,10 +63,9 @@ getHr()
   this.ishrappr = sessionStorage.getItem('ishrappr')
   this.showid = sessionStorage.getItem('user_name')
   this.showname = sessionStorage.getItem('emp_name')
-
-  console.log('====================================');
-  console.log(this.ishr,this.ishrappr);
-  console.log('====================================');  
+  this.showdept = sessionStorage.getItem('dept_name')
+  this.showplant = sessionStorage.getItem('plant_name')
+  
   }, 1000);
 
 

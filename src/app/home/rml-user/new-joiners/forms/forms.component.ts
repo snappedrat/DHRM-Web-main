@@ -20,7 +20,7 @@ export class FormsComponent implements OnInit {
   prevData: any
   a: any
   uniqueKey: any
-  uniqueId :any = {'mobile':''}
+  uniqueId :any = {'mobile':'','company':this.active.snapshot.paramMap.get('company')}
   ishr: any
   ishrappr : any
   status: any = {'status': ''}
@@ -47,6 +47,7 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataForID()
+    console.log("........9854689675897............",this.active.snapshot.paramMap.get('company'));
     
     this.ishr = sessionStorage.getItem('ishr')
 
@@ -56,7 +57,6 @@ export class FormsComponent implements OnInit {
     this.submit = 'SEND FOR APPROVAL'
 
     setTimeout(() => {
-      console.log("......................",this.formservice.basicdetails[0]?.apln_status);
       
       this.apln_status = this.formservice.basicdetails[0]?.apln_status
       console.log(this.apln_status != 'PENDING');

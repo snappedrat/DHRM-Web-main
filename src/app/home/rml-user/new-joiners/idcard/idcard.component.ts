@@ -14,15 +14,14 @@ export class IdcardComponent implements OnInit {
   uniqueId :any = {'mobile':''}
   status: any = {'status': ''}
   formvalues: any
-  date:any = new Date()
   address:any  = 'hello'
   form:any
   url: any = ' http://localhost:3000/'
-
-
-  from_date:any = this.date.getFullYear()+"-"+(this.date.getMonth()+1)+"-"+ this.date.getDate();
-  ddate : any = +this.from_date.split('-')[2] + +10
-  to_date :any = this.from_date.split('-')[0]+'-'+this.from_date.split('-')[1]+'-'+this.ddate
+  fromdate:any = new Date()
+  frommdate:any
+  toodate:any
+  todate = new Date(this.fromdate.getTime() + (10000 * 60 * 60 * 24));
+  // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
     constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder ) { 
         this.form = fb.group(
@@ -31,6 +30,10 @@ export class IdcardComponent implements OnInit {
             company_address : []
           }
         )
+      this.frommdate = this.fromdate.getDate()+'-'+this.fromdate.getMonth()+'-'+this.fromdate.getFullYear()
+    this.toodate = this.todate.getDate()+'-'+this.todate.getMonth()+'-'+this.todate.getFullYear()
+
+    console.log(this.toodate)
 
     }
 
@@ -66,7 +69,7 @@ export class IdcardComponent implements OnInit {
     setTimeout(() => {
       this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
       this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
-      // this.url = ' http://localhost:3000/uploads/14301_resume.png'
+
       this.url = this.url + this.formvalues[0]?.other_files7
       console.log(this.url)
     }, 500);

@@ -34,11 +34,11 @@ const routes: Routes = [
     component: TraineeApplicationComponent
   },
   {
-    path:'forms/:mobile_no1',
+    path:'forms/:mobile_no1/:company',
     component: FormsComponent
   },
   {
-    path:'idcard/:status/:mobile',
+    path:'idcard/:status/:mobile/:company',
     component: IdcardComponent
   }
 ];
