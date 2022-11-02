@@ -1,8 +1,9 @@
 <div style='overflow-x:auto'>
 <form>
-<div *ngIf= "ishr == 'undefined' " class = "mx-5" >
+<div class = "mx-5" >
 <h1>Employee related</h1>
 <h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx) (file size : 200kb)</h3>
+<b><h3>(<span class = "star-color">*</span> fields are required)</h3></b>
 
 <table [width]="1000">
     <tr>
@@ -79,105 +80,20 @@
       </tr> <tr>
        
   </table>
-  <button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
+  <button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)= "func()" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
   <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
 
   <br><br>
 </div>
 </form>
-<form>
-<div *ngIf= "ishr == 'true' " class="mx-5" >
-    <h1>Employee related</h1>
-    <h3>Upload the files in any one of the following formats:</h3>
-
-    <table [width]="1000">
-        <tr>
-          <td>Resume(not more than 2mb):<span class = "star-color">*</span></td>
-          <td >
-            <div class="text-center"> 
-          <input class="form-control" formcontrolname="resume" id = "resume" type="file"  (change)="valid()"    (change)="onResumeChange($event)">
-      </div> 
-      </td>
-      <td>
-        <a  [href]= 'urlforResume' target = "_blank" download = "resume.png"> {{resume_file_name}} </a>
-      </td>
-    
-        </tr>
-        <tr>
-          <td>Marksheet:<span class = "star-color">*</span></td>
-          <td><div class="text-center"> 
-            <input class="form-control" type="file"  (change)="valid()"  (change)="onMarksheetChange($event)"> 
-      </div> 
-    
-      <td>
-        <a [href]= 'urlforMark' target = "_blank">{{marksheet_file_name}}  </a>
-            </td>
-        </tr> 
-      <tr>
-            <td>Transfer Certificate:<span class = "star-color">*</span></td>
-            <td><div class="text-center"> 
-              <input class="form-control" type="file"  (change)="valid()"  (change)="onTransfercertificateChange($event)"> 
-        </div> 
-    
-        <td  >
-          <a [href]= 'urlforTc' target = "_blank"> {{transfercertificate_file_name}} </a>
-        </td>
-          </tr>
-          <tr>
-            <td>Aadhar Card:<span class = "star-color">*</span></td>
-            <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="valid()"  (change)="onAadharcardChange($event)"> 
-        </div> 
-    
-        <td>
-          <a [href]= 'urlforaadhar' target = "_blank">{{aadharcard_file_name}}</a>
-              </td>
-          </tr>
-          <tr>
-            <td>Bank Passbook:<span class = "star-color">*</span></td>
-            <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="valid()"  (change)="onBankpassbookChange($event)"> 
-        </div> 
-    
-        <td> 
-          <a [href]= 'urlforbankpass' target = "_blank"> {{bankpassbook_file_name}} </a>
-            </td>
-          </tr>
-          <tr>
-            <td>Photo:<span class = "star-color">*</span></td>
-            <td><div class="text-center"> 
-              <input class="form-control" type="file" accept="image/*" (change)="valid()"   (change)="onPhotoChange($event)"> 
-        </div> 
-    
-        <td>
-          <a [href]= 'urlforphoto' target = "_blank"> {{photo_file_name}} </a>
-          </td>
-          </tr>
-          <tr>
-            <td>Signature:<span class = "star-color">*</span></td>
-            <td><div class="text-center"> 
-              <input class="form-control" type="file"   (change)="valid()"   (change)="onSignatureChange($event)"  (change)="valid()"> 
-        </div> 
-    
-        <td>
-          <a [href]= 'urlforSign' target = "_blank" > {{signature_file_name}} </a>
-            </td>
-          </tr> <tr>
-           
-      </table>
-      <button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]="flagged" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
-      <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
-
-
-      <br><br>
 
 <!-- /////////////////////////////////////////////////////////////////////////////// -->
-
-
+<form>
+<div *ngIf= "ishr == 'true' " class="mx-5" >
 <h1>RML related</h1>
 <table [width]="1000">
   <tr>
-    <td>appointment order( < 300KB):<span class = "star-color">*</span></td>
+    <td>appointment order( < 300KB):</td>
     <td >
       <div class="text-center"> 
     <input class="form-control" formcontrolname="appointment" id = "appoinment" type="file"   (change)="onAppointmentorderChange($event)">
@@ -189,7 +105,7 @@
 
   </tr>
   <tr>
-    <td>declaration file:<span class = "star-color">*</span></td>
+    <td>declaration file:</td>
     <td><div class="text-center"> 
       <input class="form-control" type="file"  (change)="onDeclarationChange($event)"> 
 </div> 
@@ -199,7 +115,7 @@
       </td>
   </tr> 
 <tr>
-      <td>medicalfitness file:<span class = "star-color">*</span></td>
+      <td>medicalfitness file:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"  (change)="onMedicalfitnessChange($event)"> 
   </div> 
@@ -209,7 +125,7 @@
   </td>
     </tr>
     <tr>
-      <td>formA4 file:<span class = "star-color">*</span></td>
+      <td>formA4 file:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onForma4Change($event)"> 
   </div> 
@@ -219,7 +135,7 @@
         </td>
     </tr>
     <tr>
-      <td>form11 file:<span class = "star-color">*</span></td>
+      <td>form11 file:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onForm11Change($event)"> 
   </div> 
@@ -229,7 +145,7 @@
       </td>
     </tr>
     <tr>
-      <td>formh2 file:<span class = "star-color">*</span></td>
+      <td>formh2 file:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
   </div> 
@@ -239,7 +155,7 @@
     </td>
     </tr>
     <tr>
-      <td>natx file:<span class = "star-color">*</span></td>
+      <td>natx file:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"    (change)="onNatxChange($event)"> 
   </div> 

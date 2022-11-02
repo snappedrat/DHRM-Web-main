@@ -25,7 +25,7 @@ export class FormsComponent implements OnInit {
   ishrappr : any
   status: any = {'status': ''}
   basic: any
-  submit:any
+  submit:any = 'SUBMIT'
   apln_no:any = ''
   flag:any = true
   apln_status :any = ''
@@ -56,19 +56,21 @@ export class FormsComponent implements OnInit {
     else
     this.submit = 'SEND FOR APPROVAL'
 
+
     this.formservice.getdatabasic(this.uniqueId)
     .subscribe({
       next: (response) => {console.log("basic : ",response); this.basicdetails= response;this.apln_no = this.basicdetails[0]?.apln_slno;
       this.apln_status = this.basicdetails[0]?.apln_status
-      
+
+      if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+        this.submit = 'SUBMIT'
+
       if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL') || (this.apln_status == 'REJECTED' && this.submit == 'SEND FOR APPROVAL'))
       {
-        console.log("hahahahaahahahahaa bye bye")
         this.flag = true
       }
       else
       {
-        console.log(" bye bye")
         this.flag = false
       }} ,
       error: (error) => console.log(error),
@@ -200,7 +202,7 @@ export class FormsComponent implements OnInit {
       this.alert()
       this.router.navigate([''])
     }
-    else if(this.ishr == 'true'){
+    else if(this.ishr == 'true' ){
       this.alertforapproval()
       this.router.navigate(['rml/new_joiners/trainee-application-status'])
     }
@@ -222,12 +224,21 @@ export class FormsComponent implements OnInit {
       this.ishr = sessionStorage.getItem('ishr')
 
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+      this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
       console.log(this.uniqueId);
-      if(this.ishr == 'true' )
+      if(this.ishr == 'true' && this.apln_status == 'PENDING'  )
       {
         this.formservice.submitted(this.uniqueId)
-    }
+      }
+      else if(this.ishr == 'true' &&this.apln_status == 'REJECTED' )
+      {
+        this.formservice.submitted(this.uniqueId)
+      }
+      else if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+      {
+        this.formservice.pending(this.uniqueId)
+      }
       else if(this.ishr == 'undefined')
       {
         this.formservice.pending(this.uniqueId)

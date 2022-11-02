@@ -149,7 +149,6 @@ familyData = [
 
     if(this.familyData[0].age == '' || this.familyData[0].contactnumber == '' || this.familyData[0].name == '' || this.familyData[0].occupation == '' || this.familyData[0].relation == '')
     {
-
         this.flag = true
     }
     else
@@ -179,8 +178,9 @@ public valid(){
 valids(event :any, item:any){
   if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
-    if(item == 'mobile')
+    if(item == 'ContactNumber')
       {
+        console.log(event.length)
         if(event.target.value.length == 10)
         {
           this.flag = false
@@ -204,8 +204,7 @@ valids(event :any, item:any){
   }
   else
   {
-    console.log("woooooooooooooooooooo",event.target.value.length)
-    if(event.target.value.length == 0)
+    if(event == null || event.length == 0)
     {
       this.flag = true
       this.emit.emit(this.message_bad)

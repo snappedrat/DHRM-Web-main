@@ -81,6 +81,8 @@
       border-radius: 30px;
   }
   
+
+  
   .homecontent{
       position: absolute;
       top: 50%;
@@ -115,3 +117,6 @@
       width: auto;
       height: 800px;
   } */
+button{
+  border-color: rgb(232, 229, 229)
+}

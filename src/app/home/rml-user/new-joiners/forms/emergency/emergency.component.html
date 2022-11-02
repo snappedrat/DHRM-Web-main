@@ -1,5 +1,7 @@
 <div class="mx-5">
     <h3><b>Emergency Details</b></h3>  
+    <h3>(<span class = "star-color">*</span> fields are required)</h3>
+
       <form [formGroup]="form">
         <div class="row">
         <div class="col-sm-3">
@@ -36,7 +38,7 @@
     <div class="col-sm-3">
    
         <label class="form-label">Relation:<span class = "star-color">*</span></label>
-        <select formControlName="relations" class="form-control" (click)= "emitData()" (click)="sendData()">
+        <select formControlName="relations" class="form-control" (ngModelChange)= "emitData()" (ngModelChange)="sendData()">
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
           </select>

@@ -114,13 +114,9 @@ export class ChooseFilesComponent implements OnInit {
 		this.rollno = this.basicDetails[0]?.apln_slno
 	}
 	})
-
-	
-	// if(sessionStorage.getItem('ishr') == 'true')
-	// {
 		this.generate_link()
 		this.generate_link_rml()
-	// }
+
   }
 
 getfiles(){
@@ -135,60 +131,64 @@ getfiles(){
 }
 
 generate_link(){
-	this.getfiles()
+
+	this.service.getdatabasic(this.uniqueId)
+	.subscribe({
+		next: (response)=>{console.log('filenames : ', response);
+	this.basicDetails = response;
+	this.filenames = this.basicDetails;
+	this.resume_file_name = this.filenames[0]?.other_files1
+	this.urlforResume = this.url+this.filenames[0]?.other_files1
+
+	this.marksheet_file_name = this.filenames[0]?.other_files2
+	this.urlforMark = this.url+this.filenames[0]?.other_files2
+	
+	this.transfercertificate_file_name = this.filenames[0]?.other_files3
+	this.urlforTc = this.url+this.filenames[0]?.other_files3
+
+	this.aadharcard_file_name = this.filenames[0]?.other_files4
+	this.urlforaadhar = this.url+this.filenames[0]?.other_files4
+
+	this.bankpassbook_file_name = this.filenames[0]?.other_files5
+	this.urlforbankpass = this.url+this.filenames[0]?.other_files5
+
+	this.photo_file_name = this.filenames[0]?.other_files6
+	this.urlforphoto = this.url+this.filenames[0]?.other_files6
+
+	this.signature_file_name = this.filenames[0]?.other_files7
+	this.urlforSign = this.url+this.filenames[0]?.other_files7
 
 
-	setTimeout(() => {
-		this.resume_file_name = this.filenames[0]?.other_files1
-		this.urlforResume = this.url+this.filenames[0]?.other_files1
+	if(this.photo_file_name != null && this.aadharcard_file_name != null && this.marksheet_file_name != null)
+	{
+			this.flagged = false
+			this.emit.emit(this.message)	
+	}
 
-		this.marksheet_file_name = this.filenames[0]?.other_files2
-		this.urlforMark = this.url+this.filenames[0]?.other_files2
-		
-		this.transfercertificate_file_name = this.filenames[0]?.other_files3
-		this.urlforTc = this.url+this.filenames[0]?.other_files3
+},
+		error:(err)=>{console.error(err)}
+	})
 
-		this.aadharcard_file_name = this.filenames[0]?.other_files4
-		this.urlforaadhar = this.url+this.filenames[0]?.other_files4
-
-		this.bankpassbook_file_name = this.filenames[0]?.other_files5
-		this.urlforbankpass = this.url+this.filenames[0]?.other_files5
-
-		this.photo_file_name = this.filenames[0]?.other_files6
-		this.urlforphoto = this.url+this.filenames[0]?.other_files6
-
-		this.signature_file_name = this.filenames[0]?.other_files7
-		this.urlforSign = this.url+this.filenames[0]?.other_files7
-
-		if(this.ishr == 'undefined'){
-			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null)
-			{
-				this.flagged = false
-				this.emit.emit(this.message)	
-			}
-
-		}
-		else if(this.ishr == 'true')
-		{
-			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.resume_file_name != null && this.marksheet_file_name != null && this.signature_file_name != null && this.transfercertificate_file_name !=null && this.bankpassbook_file_name !=null)
-			{
-				this.flagged = false
-				this.emit.emit(this.message)
-			}
-
-		}
-		this.state = true
-		setTimeout(() => {
-			this.state = false
-		}, 2000);
-	}, 1050);
 
 }
 
-generate_link_rml(){
-	this.getfiles()
+func()
+{
+	this.state_ = true
 	setTimeout(() => {
-		this.appointmentorder_file_name = this.filenames[0]?.other_files8
+		this.state_ = false
+	}, 2000);
+}
+
+generate_link_rml(){
+
+	this.service.getdatabasic(this.uniqueId)
+	.subscribe({
+		next: (response)=>{console.log('filenames : ', response);
+	this.basicDetails = response;
+	this.filenames = this.basicDetails;
+
+	this.appointmentorder_file_name = this.filenames[0]?.other_files8
 		this.url_appointmentorder_file = this.url+this.filenames[0]?.other_files8
 
 		this.declaration_file_name = this.filenames[0]?.other_files9
@@ -208,92 +208,62 @@ generate_link_rml(){
 
 		this.natx_file_name = this.filenames[0]?.other_files14
 		this.url_natx_file = this.url+this.filenames[0]?.other_files14
+		
 		this.state_ = true
 		setTimeout(() => {
 			this.state_ = false
-		}, 2000);
-	}, 1050);
+		}, 2000);},
+		error:(err)=>{console.error(err)}
+	})
+
 }
 
 
 valid()
 {
 		setTimeout(() => {
-			if(this.ishr == 'undefined')
-			{	
+	
 				if(this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
 				{
+					console.log("oeirherogerhgirueheriuerheriuhreiuh-940934504395348095")
 					this.flagged = false
 					this.emit.emit(this.message)
 				}
-			}
-			else if(this.ishr == 'true')
-			{
-				console.log(this.resume_file_name != null && this.marksheet_file_name != null && this.transfercertificate_file != null && this.aadharcard_file_name != null && this.bankpassbook_file != null && this.photo_file_name != null && this.signature_file != null)
-				if(this.resume_file != null && this.marksheet_file_name != null && this.transfercertificate_file != null && this.aadharcard_file_name != null && this.bankpassbook_file != null && this.photo_file_name != null && this.signature_file != null)
-				{
-					this.flagged = false
-					this.emit.emit(this.message)
-				}
-				else
-					this.emit.emit({"choose":true})
-
-			}
-
-
 		}, 50);
 
 }
 
-
-// getFilesForhr(){
-// 	this.service.getdatabasic(this.uniqueId)
-
-	// setTimeout(() => {
-	// 	this.filenames = this.service.basicdetails
-	// 	console.log("this.filenames : ",this.filenames)
-	// 	if(this.filenames[0]?.other_files1 == 'undefined' || this.filenames[0]?.other_files2 == 'undefined' || this.filenames[0]?.other_files3 == 'undefined' || this.filenames[0]?.other_files4 == 'undefined' || this.filenames[0]?.other_files5 == 'undefined' || this.filenames[0]?.other_files6 == 'undefined' || this.filenames[0]?.other_files7 == 'undefined')
-	// 	{
-	// 		console.log('undefined values')
-	// 	}
-	// 	// else
-	// 	// {
-	// 	// this.urlforResume = this.url+this.filenames[0]?.other_files1
-	// 	// this.urlforMark = this.url+this.filenames[0]?.other_files2
-	// 	// this.urlforTc = this.url+this.filenames[0]?.other_files3
-	// 	// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
-	// 	// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
-	// 	// this.urlforphoto = this.url+this.filenames[0]?.other_files6
-	// 	// this.urlforSign = this.url+this.filenames[0]?.other_files7
-	// 	// }
-	// }, 500);
-// }
-
 ////////////////////////////////////////////////////////////////////////////
 
+checking(event:any)
+{
+	this.resume_file = event.target.files[0]
+	if(this.resume_file_name != null)
+		this.resume_file_name = ''
 
+if(this.resume_file!=null)
+	this.resume_file= null
+}
 
 onResumeChange(event:any){
-
-			this.resume_file = event.target.files[0]
-			this.size = this.resume_file?.size
-
-			var file_local = this.resume_file?.name.split('.')
-			var new_ = file_local?.pop()
-			console.log(new_)
-			if(this.size > 2000000)
-			{
-				this.flag_for_size = true
-				window.alert("File size should be less than 2MB")
-			}
-			else
-			{
-				if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
-					window.alert("File is not of metioned type")
+				this.resume_file = event.target.files[0]
+				this.size = this.resume_file?.size
+	
+				var file_local = this.resume_file?.name.split('.')
+				var new_ = file_local?.pop()
+				console.log(new_)
+				if(this.size > 2000000)
+				{
+					this.flag_for_size = true
+					window.alert("File size should be less than 2MB")
+				}
 				else
-					this.service.fileupload(this.resume_file,this.uniqueId.mobile,this.uniqueId.company, this.rollno +'_resume','1' )
-			}
-
+				{
+					if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+						window.alert("File is not of metioned type")
+					else
+						this.service.fileupload(this.resume_file,this.uniqueId.mobile,this.uniqueId.company, this.rollno +'_resume','1' )
+				}
 	}
 
 onMarksheetChange(event:any){

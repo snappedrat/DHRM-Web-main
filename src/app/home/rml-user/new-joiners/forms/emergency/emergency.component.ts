@@ -50,9 +50,7 @@ emer : any = []
 
   ngOnInit(): void {
       this.getdatabasic()
-      // (() => {
 
-      // }, 1000);
       this.sendData()
   }
 
@@ -103,6 +101,7 @@ submit(){
 }
 sendData(){
     this.plantcodeService.emer = this.form.value
+    this.emitData()
 } 
 
 emitData()

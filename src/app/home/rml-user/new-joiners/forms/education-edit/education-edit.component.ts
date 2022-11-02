@@ -183,8 +183,7 @@ valids(event:any){
   }
   else
   {
-    console.log(event.target.value.length)
-    if(event.target.value.length == 0)
+    if(event == null || event?.length == 0)
     {
       this.flag = true
       this.emit.emit(this.message_bad)

@@ -36,7 +36,6 @@ export class BasicComponent implements OnInit{
     Title : any = ['Mr', 'Miss', 'Mrs']
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
-    State: any =['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telengana','Tripura','Uttarakhand','Uttar Pradesh','West Bengal'];
     religion: any =['Hindu','christain','muslim'];
     marital: any =['Married','unmarried','widower'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
@@ -58,6 +57,7 @@ export class BasicComponent implements OnInit{
     aadhar1:any
     pincodes:any
     pincode_ng:any
+    apln_status: any;
 
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
@@ -93,20 +93,15 @@ export class BasicComponent implements OnInit{
             mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')],
             company: [this.active.snapshot.paramMap.get('company')]
     })
-    // this.form.controls['st'].disable()
-    // this.form.controls['city'].disable()
 
    }
 
     ngOnInit(): void {
-        this.disable_for_hr();
         this.getdatabasic()
         this.getaadhar()
         
         this.form.controls['vacc'].setValue('no')
-         // setTimeout(() => {
 
-       // }, 1000);//
     }
 
     getdatabasic(){
@@ -116,6 +111,9 @@ export class BasicComponent implements OnInit{
         this.plantcodeService.getdatabasic(this.uniqueId)
       .subscribe({
         next: (response) => {console.log("basic : ",response); this.basic = response;
+
+        this.apln_status = this.basic[0]?.apln_status 
+        this.disable_for_hr()
 
         if(this.basic[0]?.title ==null)
             this.form.controls['pd'].setValue('No')
@@ -178,10 +176,15 @@ export class BasicComponent implements OnInit{
         {
             if(event.length == 4 )
             {
-                var total = this.form.controls['aadhar1'].value+this.form.controls['aadhar2'].value+this.form.controls['aadhar3'].value+this.form.controls['aadhar4'].value
+                var mobile = this.active.snapshot.paramMap.get('mobile_no1')
+                var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value+this.form.controls['aadhar4']?.value
                 for(var i = 0 ; i< this.aadhar.length;i++)
                 {
-                    if(this.aadhar[i].aadhar_no == total)
+                    if(this.aadhar[i].aadhar_no == total && mobile == this.aadhar[i].mobile_no1)
+                    {
+                        this.aadhar_invalid = true
+                    }
+                    else if(this.aadhar[i].aadhar_no == total && mobile != this.aadhar[i].mobile_no1)
                     {
                         this.aadhar_invalid = false
                         this.form.controls['aadhar4'].setErrors({'incorrect':true})
@@ -190,6 +193,7 @@ export class BasicComponent implements OnInit{
                     }
                     else
                         this.aadhar_invalid = true
+
                 }        
             }
         }
@@ -205,7 +209,15 @@ export class BasicComponent implements OnInit{
 
     disable_for_hr()
     {
-        if(this.ishr == 'true')
+        if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+        {
+            this.flag_to_readonly = false
+        }
+        else if(this.ishr == 'undefined' && this.apln_status == 'NEW INCOMPLETE')
+        {
+            this.flag_to_readonly = false
+        }
+        else
         {
             this.flag_to_readonly = true
             this.form.controls['title'].disable()
@@ -385,15 +397,13 @@ export class BasicComponent implements OnInit{
             }, 2000);
 
     }
+
     sendData(){
-        console.log(this.form.valid);
         this.plantcodeService.basic = this.form.value
         if(this.form.valid)
             this.emit.emit(this.message)
         else
             this.emit.emit({'basic':true})
-
-
     }
 
     move(fromtext:any,totext:any){

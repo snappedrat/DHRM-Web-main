@@ -4,6 +4,27 @@
             <div class="table col-sm-20 shadow round pb-4">
                 <div class="mx-5">
             <h3><b> Basic Details</b></h3>
+            <div>
+            <table style="border-color: black; border: 1">
+                <tbody>
+                    <tr >
+                        <td>Company Name</td>
+                        <td>:</td>
+                        <td>{{this.basic[0]?.company_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Plant Name</td>
+                        <td>:</td>
+                        <td>{{this.basic[0]?.plant_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number</td>
+                        <td>:</td>
+                        <td>{{this.basic[0]?.mobile_no1}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
     <h3>(<span class = "star-color">*</span> fields are required)</h3>
     <form [formGroup]="form" >
         <div class="row">
@@ -15,7 +36,7 @@
                     id="title"
                     type="text"
                     class="form-control"
-                    (click)="sendData()"
+                    (ngModelChange)="sendData()"
                     [disabled]= 'flag_to_readonly'
                     placeholder="Title">
                     <option value ="">Select Title</option>
@@ -31,7 +52,7 @@
                     id="fname"
                     type="text"
                     class="form-control"
-                    (click)="sendData()"
+                    (ngModelChange)="sendData()"
                     [readonly] = "flag_to_readonly"
                     placeholder="First Name">
             <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert alert-danger">
@@ -47,7 +68,7 @@
                         class="form-control"
                         placeholder="Last Name"
                         [readonly] = "flag_to_readonly"
-                        (click)="sendData()">
+                        (ngModelChange)="sendData()">
                 <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert alert-danger">
                     <div *ngIf="lname.lname.errors.required">Last Name is required</div>
                 </div></div></div>
@@ -60,7 +81,7 @@
                         id="ftname"
                         type="text"
                         class="form-control"
-                        (click)="sendData()"
+                        (ngModelChange)="sendData()"
                         [readonly] = "flag_to_readonly"
                         placeholder="Father Name">
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert alert-danger">
@@ -76,6 +97,7 @@
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar1'
+                       (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text"
                        (keyup)="move(txt1,txt2)">
@@ -87,6 +109,7 @@
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar2'
+                       (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text"
                        (keyup)="move(txt2,txt3)">
@@ -98,6 +121,7 @@
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar3'
+                       (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text"
                        (keyup)="move(txt3,txt4)" >
@@ -109,6 +133,7 @@
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar4'
+                       (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text" >
             </div>
@@ -123,7 +148,7 @@
                     id="bd"
                     type="date"
                     max="2100-12-12"
-                    (click)="sendData()"
+                    (ngModelChange)="sendData()"
                     (change)="validate($event)"
                     class="form-control"><div *ngIf="flag"  class = "alert alert-danger">Invalid Birth Date</div>
             <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert alert-danger">
@@ -132,7 +157,7 @@
         </div>
         <div  class="form-group">
             <label for="">Nationality:<span class = "star-color">*</span></label>
-            <select formControlName="nation" class="form-control" (click)="sendData()" >
+            <select formControlName="nation" class="form-control" (ngModelChange)="sendData()" >
                 <option disabled>Select Nationality</option>
                 <option *ngFor="let nat of nation">{{nat}}</option>
             </select>
@@ -145,7 +170,7 @@
                 Permanent Address:<span class = "star-color">*</span>
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" (click)="sendData()"  class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" (ngModelChange)="sendData()"  class="form-control" (mouseout)="getVal('')"></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -153,7 +178,7 @@
         <p>Is permanent address same as present address</p>
         <div class="form-group" style="margin-left:20px;">
             <input
-                    (change)="getValue($event)"
+                    (ngModelChange)="getValue($event)"
                     type="radio"
                     name="address"
                     class="form-check-input" checked>YES
@@ -183,6 +208,7 @@
                         maxlength="6"
                         class="form-control"
                         placeholder="Pincode"
+                        (ngModelChange)="sendData()"
                         [(ngModel)] = 'pincode_ng'
                         (ngModelChange)="setcity_state($event)"
                         >
@@ -226,7 +252,7 @@
        
         <div class="form-group">
             <label for="">Religion:<span class = "star-color">*</span></label>
-            <select formControlName="reg" class="form-control">
+            <select (ngModelChange)="sendData()" formControlName="reg" class="form-control">
                 <option value ="">Select Religion</option>
                 <option *ngFor="let rg of religion">{{rg}}</option>
             </select>
@@ -238,7 +264,7 @@
         <div class="form-group">
            
             <label for="">Marital Status:<span class = "star-color">*</span></label>
-            <select formControlName="mar" class="form-control" (click)="sendData()" >
+            <select formControlName="mar" class="form-control" (ngModelChange)="sendData()" >
                 <option value ="">Select Marital Status</option>
 
                 <option *ngFor="let mr of marital">{{mr}}</option>
@@ -251,7 +277,7 @@
 
         <div class="form-group">
             <label for="">Blood Group:<span class = "star-color">*</span></label>
-            <select formControlName="bg" class="form-control" (click)="sendData()">
+            <select formControlName="bg" class="form-control" (ngModelChange)="sendData()">
                 <option value ="">Select BloodGroup</option>
 
                 <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
@@ -263,7 +289,7 @@
         <div  class="form-group">
             
             <label for="">Gender:<span class = "star-color">*</span></label>
-            <select formControlName="gender" class="form-control" (click)="sendData()">
+            <select formControlName="gender" class="form-control" (ngModelChange)="sendData()">
                 <option value ="">Select Gender</option>
 
                 <option *ngFor="let gen of  Gender">{{gen}}</option>
@@ -281,8 +307,7 @@
         
         <div *ngIf= "vaccinated">
         <div class="form-group">
-            
-            
+                
             <label for="dd1">Dose1 Date</label>
             <input
                     formControlName="dd1"
@@ -331,7 +356,7 @@
                
 
             <label for="">Physical Disability:</label>
-            <select formControlName="pd" class="form-control" (click) = "emitData()" (change)="sendData()">
+            <select formControlName="pd" class="form-control" (click) = "emitData()" (ngModelChange)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
             </select>
@@ -345,9 +370,8 @@
 <input
 
     formControlName="bp"
-    id="bp"
     type="text"
-    (change)="sendData()"
+    (ngModelChange)="sendData()"
     class="form-control"
     placeholder="Birth Place"
 >

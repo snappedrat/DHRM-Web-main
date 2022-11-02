@@ -160,7 +160,11 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
 
   const formData = new FormData()
   var changedname = id_no
-  formData.append("file",file, changedname +'.'+ file.name.split('.')[1] )
+  var name = file.name
+  name = name.split('.')
+  var len = name.length
+
+  formData.append("file",file, changedname +'.'+ file.name.split('.')[len-1] )
   formData.append("mobile",uniqueId)
   formData.append("company", company)
 

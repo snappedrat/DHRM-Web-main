@@ -1,6 +1,8 @@
 <div style='overflow-x:auto'>
 <div class="mx-5">
     <p><b> Family Details</b></p>
+    <b><h3>(<span class = "star-color">*</span> fields are required)</h3></b>
+
     <table class = "table">
         <thead>
         <tr>
@@ -14,14 +16,14 @@
         </tr>
         <tr *ngFor="let data of familyData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" [(ngModel)]="data.name" (change)="valids($event, 'name')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (change)="valids($event, data)" ><option *ngFor= "let i of relation">
+        <td><input type="text" [(ngModel)]="data.name" (ngModelChange)="valids($event, 'name')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (ngModelChange)="valids($event, data)" ><option *ngFor= "let i of relation">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "tel" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (change)="valids($event, 'age')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "text"[(ngModel)]="data.occupation" (change)="valids($event, 'occ')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "number" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event, 'mobile')"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-               <td><select type = "text" [(ngModel)]="data.dependent" (change)="valids($event, 'dependent')" (change)="valid()" (click)="sendData()"><option *ngFor= "let i of dependent">
+        <td><input type = "tel" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (ngModelChange)="valids($event, 'age')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "text"[(ngModel)]="data.occupation" (ngModelChange)="valids($event, 'occ')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "number" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event, 'ContactNumber')"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+               <td><select type = "text" [(ngModel)]="data.dependent" (ngModelChange)="valids($event, 'dependent')" (ngModelChange)="valid()" (click)="sendData()"><option *ngFor= "let i of dependent">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
 
