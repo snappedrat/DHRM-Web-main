@@ -10,7 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   login(User_Name: string, Password: string) {
-    return this.http.post('http://localhost:3000/logins', { User_Name, Password });
+    return this.http.post(' http://localhost:3000/logins', { User_Name, Password });
   }
 
 //   14.99.10.243 
