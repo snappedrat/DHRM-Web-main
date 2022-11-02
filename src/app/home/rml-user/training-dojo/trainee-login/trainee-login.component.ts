@@ -61,7 +61,7 @@ TraineeLogin()
       {
         console.log('ulla vanten')
         sessionStorage.setItem('user_token', this.message.token)
-        this.router.navigate(['/rml/training_dojo/training-modules'])
+        this.router.navigate(['/trainee-test'])
       }
       else if(this.message.status == 'wrong_user')
         alert('Username is incorrect')

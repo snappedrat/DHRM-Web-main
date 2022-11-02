@@ -16,6 +16,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { TrainingDojoRoutingModule } from './training-dojo-routing.module';
 import { TrainingModulesComponent } from './training-modules/training-modules.component';
@@ -24,6 +25,7 @@ import { TestEvaluationComponent } from './test-evaluation/test-evaluation.compo
 import { TestResultSummaryComponent } from './test-result-summary/test-result-summary.component';
 import { TraineeScoreCardComponent } from './trainee-score-card/trainee-score-card.component';
 import { TraineeLoginComponent } from './trainee-login/trainee-login.component';
+import { TraineeTestComponent } from './trainee-test/trainee-test.component';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { TraineeLoginComponent } from './trainee-login/trainee-login.component';
     TestEvaluationComponent,
     TestResultSummaryComponent,
     TraineeScoreCardComponent,
-    TraineeLoginComponent
+    TraineeLoginComponent,
+    TraineeTestComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +56,8 @@ import { TraineeLoginComponent } from './trainee-login/trainee-login.component';
     MatStepperModule,
     MatIconModule,
     NgxMatTimepickerModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule
   ]
 })
 export class TrainingDojoModule { }
