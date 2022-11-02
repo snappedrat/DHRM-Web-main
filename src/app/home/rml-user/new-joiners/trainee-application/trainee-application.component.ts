@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../plantcode.service';
 import { Router, RouterLinkActive } from '@angular/router';
+import { format } from 'path';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-trainee-application',
@@ -17,6 +19,8 @@ export class TraineeApplicationComponent implements OnInit{
 
   mobilenum : any = ''
   companyname:any = ''
+  plantname:any
+  isHrappr: any;
   setCookie(){
     this.cookie.set("mobilenum", this.mobilenum)
 }
@@ -41,7 +45,7 @@ export class TraineeApplicationComponent implements OnInit{
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
       plant:['',Validators.required],
-      pass: ['']
+      pass: ['', Validators.required]
    });
    this.mobilenum = this.bankForms.controls['mobileNumber'].value
    this.companyname = this.bankForms.controls['company'].value
@@ -55,14 +59,18 @@ ngOnInit(): void {
 
   this.getcompanycode()
   this.plantcodeService.getHr('newuser')
-
+  .subscribe({
+    next: (response)=>{console.log("hr",response); this.isHrappr = response
+    sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
+    sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)}
+  })
 }
 
 getplantcode(event:any){
     console.log(event.target.value);
-    
+    this.bankForms.controls['plant'].setValue('')
     var company = {'company_name': event.target.value}
-    this.http.post(' http://localhost:3000/plantcodelist',company)
+    this.http.post('http://localhost:3000/plantcodelist',company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
       error: (error) => console.log(error),
@@ -71,7 +79,7 @@ getplantcode(event:any){
 
 getcompanycode(){
 
-  this.http.post(' http://localhost:3000/companycodelist', '')
+  this.http.post('http://localhost:3000/companycodelist', '')
   .subscribe({
     next: (response) =>{ console.log(response); this.companycode = response },
     error: (error) => console.log(error),
@@ -80,20 +88,27 @@ getcompanycode(){
 
 sendFormData()
 {
-  console.log("kekuthulaaaaaaaaaaa")
-  this.companyname = this.bankForms.controls['company'].value
+  if(this.bankForms.invalid)
+  {
+    window.alert('mandatory feilds are not yet filled')
+  }
+  else{
 
-  this.http.post(' http://localhost:3000/traineeformdata', this.bankForms.value)
-  .subscribe({
-    next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
-    if(this.errmsg.status == 'newform')
-    {  console.log("newform");this.router.navigate(['/forms',this.mobilenum,this.companyname])}
-  else if(this.errmsg.status == 'incomplete')
-    { this.router.navigate(['/forms',this.mobilenum,this.companyname])  }
-  else if(this.errmsg.status == 'registered')
-    {window.alert("YOU have already registered");console.log(this.bankForms.value)}},
-    error: (error) => console.log(error),
-  })
+    console.log("kekuthulaaaaaaaaaaa")
+    this.companyname = this.bankForms.controls['company'].value
+  
+    this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
+    .subscribe({
+      next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
+      if(this.errmsg.status == 'newform')
+      {  console.log("newform");this.router.navigate(['/forms',this.mobilenum,this.companyname])}
+    else if(this.errmsg.status == 'incomplete')
+      { this.router.navigate(['/forms',this.mobilenum,this.companyname])  }
+    else if(this.errmsg.status == 'registered')
+      {window.alert("Your application has already been registered. kindly contact HR department");console.log(this.bankForms.value)}},
+      error: (error) => console.log(error),
+    })
+  }
 }
 
 get company()

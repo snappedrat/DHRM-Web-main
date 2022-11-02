@@ -69,26 +69,28 @@ flagger : any = false
 
     ngOnInit(): void {
         this.plantcodeService.getbanknames()
-        this.getdatabasic()
-        setTimeout(() => {
-            // for(var i = 0; i<this.plantcodeService.banknames.length - 1; i++){
-            //     this.banks[i] = this.plantcodeService.banknames[i]?.bank_name
-    
-            //     this.temp = this.banks[i]
-            //     this.banks[i] = this.temp.trim()
-            // }
+        .subscribe({
+            next : (response)=>{console.log("banknames", response), this.banknames = response},
+            error : (err)=> console.log(err)
+          })
 
-            this.bank = this.plantcodeService.basicdetails
+        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
+        console.log(this.uniqueId)
+        this.plantcodeService.getdatabasic(this.uniqueId)
+        .subscribe({
+            next: (response) => {console.log("banking : ",response); this.bank = response;
+            console.log("after u", this.bank)
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
-            this.form.controls['bankName'].setValue(this.bank[0]?.bank_name.trim())
+            this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
             this.sendData()
-
             if(this.form.valid)
                 this.emit.emit(this.message)
-        }, 1000);
-
+            } ,
+            error: (error) => console.log(error),
+          })  
 
     }
 
@@ -115,21 +117,15 @@ flagger : any = false
     }
     sendData(){
         this.plantcodeService.bank = this.form.value
-    }
-
-    getdatabasic(){
-        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-
-        console.log(this.uniqueId)
-        this.plantcodeService.getdatabasic(this.uniqueId)
-
+        this.emitData()
     }
 
     emitData()
     {
         if(this.form.valid)
         this.emit.emit(this.message)
+        else
+        this.emit.emit({"bank":true})
     }
 
 }

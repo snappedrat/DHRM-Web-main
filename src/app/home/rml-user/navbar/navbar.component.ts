@@ -55,20 +55,34 @@ export class NavbarComponent implements OnInit{
 getHr()
 {
   console.log(this.username)
-  console.log(this.active.snapshot.paramMap.get('username'))
   this.service.getHr(this.username)
-  setTimeout(() => {
-    
+  .subscribe({
+    next: (response) => {console.log(response); this.ishrappr = response;;
+      console.log("hr details",this.ishrappr)
+      sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
+      sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
+      sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
+      sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
+      sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
+      sessionStorage.setItem('plant_name', this.ishrappr[0]?.plant_name)
+      this.getitems()
+  },
+    error: (error) => console.log(error),
+});
+
+}
+
+getitems()
+{
   this.ishr = sessionStorage.getItem('ishr')
   this.ishrappr = sessionStorage.getItem('ishrappr')
   this.showid = sessionStorage.getItem('user_name')
   this.showname = sessionStorage.getItem('emp_name')
   this.showdept = sessionStorage.getItem('dept_name')
   this.showplant = sessionStorage.getItem('plant_name')
-  
-  }, 1000);
-
 
 }
 
 }
+
+

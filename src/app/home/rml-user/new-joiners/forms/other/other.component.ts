@@ -52,40 +52,8 @@ ngOnInit(): void {
 
 
   this.getdatabasic()
-  setTimeout(() => {
-    this.other = this.plantcodeService.basicdetails
-    if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' ){
-        console.log("enter some values")
-  }
-  else{
-    if(this.other[0]?.any_empl_rane == 'Y')
-    this.other[0].any_empl_rane = 'Yes'
-    else if(this.other[0]?.any_empl_rane == 'N')
-    this.other[0].any_empl_rane = 'No'
 
-    if(this.other[0]?.prev_rane_empl == 'Y')
-    this.other[0].prev_rane_empl = 'Yes'
-    else if(this.other[0]?.prev_rane_empl == 'N')
-    this.other[0].prev_rane_empl = 'No'
-
-
-    console.log("t-there",this.other[0]?.any_empl_rane, this.other[0]?.prev_rane_empl )
-    if(this.other[0]?.any_empl_rane != 'null')
-      this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
-    if(this.other[0]?.prev_rane_empl != 'null')
-      this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
-    if(this.other[0]?.existing_empl_name != 'null')
-      this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
-    if(this.other[0]?.prev_rane_exp != 'null')
-      this.forms.controls['place'].setValue(this.other[0]?.prev_rane_exp)
-    if(this.other[0]?.existing_empl_company != 'null')
-      this.forms.controls['com'].setValue(this.other[0]?.existing_empl_company)
-    if(this.other[0]?.extra_curricular != 'null')
-      this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
-  }
-    this.sendData()
-    
-  }, 1000);
+  this.sendData()
 }
 get known()
 {
@@ -135,12 +103,42 @@ getdatabasic(){
 
   this.plantcodeService.getdatabasic(this.uniqueId)
 
-//   this.http.
-// post(' http://localhost:3000/getdatabasic',this.uniqueId)
-// .subscribe({
-//   next: (response) => {console.log("bank : ",response); this.other = response} ,
-//   error: (error) => console.log(error),
-// })
+.subscribe({
+  next: (response) => {console.log("other : ",response); this.other = response;
+
+    if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' ){
+        console.log("enter some values")
+  }
+  else{
+    if(this.other[0]?.any_empl_rane == 'Y')
+    this.other[0].any_empl_rane = 'Yes'
+    else if(this.other[0]?.any_empl_rane == 'N')
+    this.other[0].any_empl_rane = 'No'
+
+    if(this.other[0]?.prev_rane_empl == 'Y')
+    this.other[0].prev_rane_empl = 'Yes'
+    else if(this.other[0]?.prev_rane_empl == 'N')
+    this.other[0].prev_rane_empl = 'No'
+
+
+    console.log("t-there",this.other[0]?.any_empl_rane, this.other[0]?.prev_rane_empl )
+    if(this.other[0]?.any_empl_rane != 'null')
+      this.forms.controls['known'].setValue(this.other[0]?.any_empl_rane)
+    if(this.other[0]?.prev_rane_empl != 'null')
+      this.forms.controls['work'].setValue(this.other[0]?.prev_rane_empl)
+    if(this.other[0]?.existing_empl_name != 'null')
+      this.forms.controls['names'].setValue(this.other[0]?.existing_empl_name)
+    if(this.other[0]?.prev_rane_exp != 'null')
+      this.forms.controls['place'].setValue(this.other[0]?.prev_rane_exp)
+    if(this.other[0]?.existing_empl_company != 'null')
+      this.forms.controls['com'].setValue(this.other[0]?.existing_empl_company)
+    if(this.other[0]?.extra_curricular != 'null')
+      this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
+  }
+    this.sendData()
+  } ,
+  error: (error) => console.log(error),
+})
 }
 
 }

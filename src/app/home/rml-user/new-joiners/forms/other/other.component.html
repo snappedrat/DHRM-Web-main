@@ -4,7 +4,7 @@
     <form [formGroup]="forms">
         <div  style = "width:fit-content" class="form-group">  
             <label for="known">Do you have any relations or friends employed in any group of rane group of Companies or office</label>  
-            <select formControlName="known" class="form-control">
+            <select (click)="sendData()" formControlName="known" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let rel of Relations">{{rel}}</option>
               </select> 
@@ -13,6 +13,7 @@
         <div style="width:fit-content" class="form-group">  
             <label for="names"> Name</label>  
             <input   
+            (click)="sendData()"
                 formControlName="names"  
                 id="names"   
                 type="text"   
@@ -23,6 +24,7 @@
         <div style="width:fit-content" class="form-group">  
             <label for="com">Company/Agency Name of the Acquaintance</label>  
             <input   
+            (click)="sendData()"
                 formControlName="com"  
                 id="com"   
                 type="text"   
@@ -32,7 +34,7 @@
         </div>
         <div style = "width:fit-content" class="form-group">  
             <label for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
-            <select formControlName="work" class="form-control">
+            <select (click)="sendData()" formControlName="work" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let wk of Works">{{wk}}</option>
               </select>
@@ -42,6 +44,7 @@
             <label for="place">Name of the company</label>  
             <input   
                 formControlName="place"  
+                (click)="sendData()"
                 id="place"   
                 type="text"   
                 class="form-control"
@@ -53,6 +56,7 @@
             <label for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
             <input   
                 formControlName="extra"  
+                (click)="sendData()"
                 id="extra"   
                 type="text"   
                 class="form-control"

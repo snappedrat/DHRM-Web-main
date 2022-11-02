@@ -1,6 +1,8 @@
 .btn{
     border-radius: 0px;
     margin-left:50%;
+    width:90px 
+
 }
 h3{
     margin-top:20px;
@@ -26,4 +28,7 @@ select:hover{
 
 .row{
     white-space: nowrap;
+}
+.form-control{
+    font-size: 14px;
 }

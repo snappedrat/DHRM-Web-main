@@ -13,7 +13,10 @@ export class ApiService {
     return this.http.post('http://localhost:3000/logins', { User_Name, Password });
   }
 
-  traineeLogin(formvalue:any){
-    return this.http.post('http://localhost:3000/traineelogin',formvalue)
-    }
+//   14.99.10.243 
+//   getProducts(): Observable<ProductModel[]> {
+//     return this.http.get<ProductModel[]>('products', {
+//       headers: {},
+//     });
+//   }
 }

@@ -1,7 +1,7 @@
 .btn{
     border-radius: 0px;
     margin-left:50%;
-    width:max-content
+    width:90px 
 }
 h3{
     margin-top:20px;
@@ -30,4 +30,7 @@ select:hover{
 }
 .star-color{
     color: red;
+}
+.form-control{
+    font-size: 14px;
 }

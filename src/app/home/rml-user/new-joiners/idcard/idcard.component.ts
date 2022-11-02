@@ -16,7 +16,7 @@ export class IdcardComponent implements OnInit {
   formvalues: any
   address:any  = 'hello'
   form:any
-  url: any = ' http://localhost:3000/'
+  url: any = 'http://localhost:3000/'
   fromdate:any = new Date()
   frommdate:any
   toodate:any
@@ -41,7 +41,7 @@ export class IdcardComponent implements OnInit {
     this.getDataForID()
     setTimeout(() => {
       this.printing()
-    }, 1000);
+    }, 1500);
 
   }
 
@@ -54,24 +54,28 @@ export class IdcardComponent implements OnInit {
   
   getDataForID(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+
     this.status.status = this.active.snapshot.paramMap.get('status');
     
     console.log(this.status)
 
     this.http
-    .post(' http://localhost:3000/getdataforid', this.uniqueId)
+    .post('http://localhost:3000/getdataforid', this.uniqueId)
     .subscribe({
-      next:(response)=>{console.log(response); this.formvalues = response},
+      next:(response)=>{console.log(response); this.formvalues = response
+        this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
+        this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
+
+        this.url = this.url + this.formvalues[0]?.other_files6
+        console.log("url",this.url)
+      },
       error: (error) => 
       console.log(error),
     })
 
     setTimeout(() => {
-      this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
-      this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
-      this.url = this.url + this.formvalues[0]?.other_files7
-      console.log(this.url)
     }, 500);
     
   }

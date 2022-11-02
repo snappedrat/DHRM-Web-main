@@ -40,6 +40,7 @@ export class FormsComponent implements OnInit {
   message_from_fam: any 
   message_from_lang: any 
   message_from_other:any
+  basicdetails: any;
 
 
   constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
@@ -47,7 +48,6 @@ export class FormsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataForID()
-    console.log("........9854689675897............",this.active.snapshot.paramMap.get('company'));
     
     this.ishr = sessionStorage.getItem('ishr')
 
@@ -56,10 +56,10 @@ export class FormsComponent implements OnInit {
     else
     this.submit = 'SEND FOR APPROVAL'
 
-    setTimeout(() => {
-      
-      this.apln_status = this.formservice.basicdetails[0]?.apln_status
-      console.log(this.apln_status != 'PENDING');
+    this.formservice.getdatabasic(this.uniqueId)
+    .subscribe({
+      next: (response) => {console.log("basic : ",response); this.basicdetails= response;this.apln_no = this.basicdetails[0]?.apln_slno;
+      this.apln_status = this.basicdetails[0]?.apln_status
       
       if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL') || (this.apln_status == 'REJECTED' && this.submit == 'SEND FOR APPROVAL'))
       {
@@ -70,8 +70,14 @@ export class FormsComponent implements OnInit {
       {
         console.log(" bye bye")
         this.flag = false
-      }
-   }, 1000);
+      }} ,
+      error: (error) => console.log(error),
+    })
+
+    setTimeout(() => {
+      
+
+   }, 2000);
 }
 
   eventchanger_basic(data:any)
@@ -142,6 +148,10 @@ export class FormsComponent implements OnInit {
   
   allSave()
   {
+    if(this.message_from_bank == true && this.message_from_basic == true && this.message_from_edu == true && this.message_from_fam == true && this.message_from_emer == true &&this.message_from_choose == true)
+    this.message = true
+  else
+  {
     this.formservice.submitbank()
     console.log(this.formservice.bank)
 
@@ -166,12 +176,11 @@ export class FormsComponent implements OnInit {
     this.formservice.sumbitlang()
     console.log(this.formservice.lang) 
 
-    
-
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
-    this.formservice.getdatabasic(this.uniqueId)
+    this.uniqueId.company = this.active.snapshot.paramMap.get('company')
+
+
     
-    this.apln_no = this.formservice.basicdetails[0]?.apln_slno
     console.log("ishr :", this.ishr, "ishrappr :", this.ishrappr)
   
     this.submitted()
@@ -179,7 +188,7 @@ export class FormsComponent implements OnInit {
     setTimeout(() => {
       this.mainalert()
     }, 1000);
-
+  }
   }
 
 

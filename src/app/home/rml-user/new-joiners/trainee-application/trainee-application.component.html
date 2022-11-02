@@ -9,7 +9,7 @@
             <div class="form-group">  
                 <label for="company">Company Name</label>  
                 <select formControlName="company" class="form-control" (change) = "getplantcode($event)" >
-                    <option>Choose</option>
+                    <option value="">Choose</option>
                     <option *ngFor="let c of companycode"> {{c.company_name}} </option>
                 </select>
                   <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
@@ -18,10 +18,10 @@
                 <br>
             </div>  
             <div class="form-group">  
-              <label for="plant">Plant Code</label>  
-              <select formControlName="plant" class="form-control">
-                  <option>Choose</option>
-                <option *ngFor="let pl of plantcode">{{pl.plant_name}}</option>
+              <label for="plant">Plant Name</label>  
+              <select [(ngModel)]="plantname"  formControlName="plant" class="form-control">
+                  <option value="">Choose</option>
+                <option  *ngFor="let pl of plantcode">{{pl.plant_name}}</option>
                 </select>
                 <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert alert-danger">  
                   <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   
@@ -52,6 +52,7 @@
         </div>
         <div class="form-group" style="margin-left:25px;">
           <input 
+          
           (change)="updateInput($event)"
           type="checkbox" 
           class="form-check-input">Show Password

@@ -1,7 +1,7 @@
 .btn{
     
     margin-left:50%;
-    width:max-content 
+    width:90px 
 }
 
 h3{
@@ -19,6 +19,7 @@ input{
     border-radius: 0px;
     border-color: black;
 }
+
 
 .row{
     white-space: nowrap;
@@ -49,4 +50,7 @@ input{
 }
 .table{
   border-radius: 10px;
+}
+.form-control{
+    font-size: 14px;
 }

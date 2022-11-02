@@ -16,8 +16,8 @@
         <td><input type="text" style="width:25px" [(ngModel)]="data.sno" disabled></td>
         <td><input type="text" [(ngModel)]="data.name" (change)="valids($event)" ></td>
         <td><input type="text" [(ngModel)]="data.desig" (change)="valids($event)" ></td>
-        <td><input type = "date" [(ngModel)]="data.periodf" (change)="valids($event)"></td>
-        <td><input type = "date" [(ngModel)]="data.periodt" (change)="valids($event)" ></td>
+        <td><input type = "date" [(ngModel)]="data.periodf" max="2100-12-12" (change)="valids($event)"></td>
+        <td><input type = "date" [(ngModel)]="data.periodt" max="2100-12-12" (change)="valids($event)" ></td>
         <td><input type = "number" [(ngModel)]="data.sal" (change)="valids($event)"></td>
         <td><input type = "text"[(ngModel)]="data.reason" (change)="valids($event)" (change)="valid()" ></td>
               

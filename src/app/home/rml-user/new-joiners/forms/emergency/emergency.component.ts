@@ -50,20 +50,31 @@ emer : any = []
 
   ngOnInit(): void {
       this.getdatabasic()
-      setTimeout(() => {
+      // (() => {
 
-        this.emer = this.plantcodeService.basicdetails
-
-        this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
-        this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
-        this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
-
-        this.sendData()
-
-        if(this.form.valid)
-          this.emit.emit(this.message)
-      }, 1000);
+      // }, 1000);
       this.sendData()
+  }
+
+  getdatabasic(){
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+    this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+  
+    this.plantcodeService.getdatabasic(this.uniqueId)
+  
+    .subscribe({
+      next: (response) => {console.log("emer : ",response); this.emer = response;
+
+      this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
+      this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
+      this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
+
+      this.sendData()
+
+      if(this.form.valid)
+        this.emit.emit(this.message)} ,
+      error: (error) => console.log(error),
+    })
   }
 
   get f(){  
@@ -99,19 +110,5 @@ emitData()
   if(this.form.valid)
     this.emit.emit(this.message)
 }
-
-getdatabasic(){
-  this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-  this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-
-  this.plantcodeService.getdatabasic(this.uniqueId)
-//   this.http.
-// post(' http://localhost:3000/getdatabasic',this.uniqueId)
-// .subscribe({
-//   next: (response) => {console.log("bank : ",response); this.emer = response} ,
-//   error: (error) => console.log(error),
-// })
-}
-
 
 }

@@ -20,10 +20,10 @@
         <td><select type = "text" [(ngModel)]="data.passed" (change)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "date" [(ngModel)]="data.year" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "date" [(ngModel)]="data.year" max="2100-12-12" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "text"[(ngModel)]="data.department" (change)="valids($event)" (click)="sendData()"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "text"[(ngModel)]="data.certificatenumber" (change)="valids($event)" (click)="sendData()"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "date"[(ngModel)]="data.certificatedate" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "date"[(ngModel)]="data.certificatedate" max="2100-12-12" (change)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
                <td><input type = "number" [(ngModel)]="data.percentage" (change)="valids($event)"  (change)="valid()" (click) = "emitData()">
                 <span *ngIf = "data.sno == '1' " class = "star-color">*</span>
   </td>

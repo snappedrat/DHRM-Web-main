@@ -30,7 +30,7 @@ export class ChooseFilesComponent implements OnInit {
 	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
 						'company': this.active.snapshot.paramMap.get('company')}
 
-	url: any = ' http://localhost:3000/';
+	url: any = 'http://localhost:3000/';
 
 	urlforResume: any 
 	urlforMark: any
@@ -98,6 +98,7 @@ export class ChooseFilesComponent implements OnInit {
 	flagged_for_rml: any = true;
 	state: boolean= false;
 	state_: boolean= false;
+	basicDetails: any;
 	
   constructor(private service: PlantcodeService, private active : ActivatedRoute, private http: HttpClient) {
 	this.ishr = sessionStorage.getItem('ishr')
@@ -108,9 +109,12 @@ export class ChooseFilesComponent implements OnInit {
 
   ngOnInit(): void {
 	this.service.getdatabasic(this.uniqueId)
-	setTimeout(() => {
-		this.rollno = this.service.basicdetails[0]?.apln_slno
-	}, 1000);
+	.subscribe({
+		next: (response) => {console.log("apln no", response); this.basicDetails = response;
+		this.rollno = this.basicDetails[0]?.apln_slno
+	}
+	})
+
 	
 	// if(sessionStorage.getItem('ishr') == 'true')
 	// {
@@ -121,12 +125,13 @@ export class ChooseFilesComponent implements OnInit {
 
 getfiles(){
 	this.service.getdatabasic(this.uniqueId)
+	.subscribe({
+		next: (response)=>{console.log('filenames : ', response);
+	this.basicDetails = response;
+	this.filenames = this.basicDetails},
+		error:(err)=>{console.error(err)}
+	})
 
-	setTimeout(() => {
-		this.filenames = this.service.basicdetails
-		console.log("this.filenames : ",this.filenames)
-		
-	}, 1000);
 }
 
 generate_link(){
@@ -216,7 +221,7 @@ valid()
 		setTimeout(() => {
 			if(this.ishr == 'undefined')
 			{	
-				if(this.resume_file != null && this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
+				if(this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
 				{
 					this.flagged = false
 					this.emit.emit(this.message)
@@ -225,11 +230,13 @@ valid()
 			else if(this.ishr == 'true')
 			{
 				console.log(this.resume_file_name != null && this.marksheet_file_name != null && this.transfercertificate_file != null && this.aadharcard_file_name != null && this.bankpassbook_file != null && this.photo_file_name != null && this.signature_file != null)
-				if(this.resume_file_name != null && this.marksheet_file_name != null && this.transfercertificate_file != null && this.aadharcard_file_name != null && this.bankpassbook_file != null && this.photo_file_name != null && this.signature_file != null)
+				if(this.resume_file != null && this.marksheet_file_name != null && this.transfercertificate_file != null && this.aadharcard_file_name != null && this.bankpassbook_file != null && this.photo_file_name != null && this.signature_file != null)
 				{
 					this.flagged = false
 					this.emit.emit(this.message)
 				}
+				else
+					this.emit.emit({"choose":true})
 
 			}
 
@@ -264,6 +271,8 @@ valid()
 
 ////////////////////////////////////////////////////////////////////////////
 
+
+
 onResumeChange(event:any){
 
 			this.resume_file = event.target.files[0]
@@ -282,7 +291,7 @@ onResumeChange(event:any){
 				if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 					window.alert("File is not of metioned type")
 				else
-					this.service.fileupload(this.resume_file,this.uniqueId.mobile, this.rollno +'_resume','1' )
+					this.service.fileupload(this.resume_file,this.uniqueId.mobile,this.uniqueId.company, this.rollno +'_resume','1' )
 			}
 
 	}
@@ -304,7 +313,7 @@ onMarksheetChange(event:any){
 			if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 				window.alert("File is not of metioned type")
 			else
-				this.service.fileupload(this.marksheet_file,this.uniqueId.mobile,  this.rollno+'_marksheet','2' )
+				this.service.fileupload(this.marksheet_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_marksheet','2' )
 		}
 }
 
@@ -325,7 +334,7 @@ onTransfercertificateChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.transfercertificate_file,this.uniqueId.mobile,  this.rollno+'_tc','3' )
+			this.service.fileupload(this.transfercertificate_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_tc','3' )
 	}
 	// this.urlforTc = this.url+this.filenames[0]?.other_files3
 
@@ -349,7 +358,7 @@ onAadharcardChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.aadharcard_file,this.uniqueId.mobile,  this.rollno+'_aadhar','4' )
+			this.service.fileupload(this.aadharcard_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_aadhar','4' )
 	}
 	// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
 
@@ -372,7 +381,7 @@ onBankpassbookChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.bankpassbook_file,this.uniqueId.mobile,  this.rollno+'_passbook','5' )
+			this.service.fileupload(this.bankpassbook_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_passbook','5' )
 	}
 	// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
 
@@ -396,7 +405,7 @@ onPhotoChange(event:any){
 		if(new_ != 'png'&& new_ != 'jpg' && new_!='jpeg')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.photo_file,this.uniqueId.mobile,  this.rollno+'_photo','6' )
+			this.service.fileupload(this.photo_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_photo','6' )
 	}
 	// this.urlforphoto = this.url+this.filenames[0]?.other_files6
 
@@ -419,7 +428,7 @@ onSignatureChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 	else
-	this.service.fileupload(this.signature_file,this.uniqueId.mobile,  this.rollno+'_sign','7' )
+	this.service.fileupload(this.signature_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_sign','7' )
 	}
 	// this.urlforSign = this.url+this.filenames[0]?.other_files7
 
@@ -446,7 +455,7 @@ onAppointmentorderChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.appointmentorder_file,this.uniqueId.mobile,  this.rollno+'_appointmentorder_file','8' )
+			this.service.fileupload(this.appointmentorder_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_appointmentorder_file','8' )
 	}
 }
 
@@ -467,7 +476,7 @@ onDeclarationChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.declaration_file,this.uniqueId.mobile,  this.rollno+'_declaration_file','9' )
+			this.service.fileupload(this.declaration_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_declaration_file','9' )
 	}	
 }
 
@@ -488,7 +497,7 @@ onMedicalfitnessChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.medicalfitness_file,this.uniqueId.mobile,  this.rollno+'_medicalfitness_file','10' )
+			this.service.fileupload(this.medicalfitness_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_medicalfitness_file','10' )
 	}
 }
 
@@ -509,7 +518,7 @@ onForma4Change(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.formA4_file,this.uniqueId.mobile,  this.rollno+'_formA4_file','11' )
+			this.service.fileupload(this.formA4_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_formA4_file','11' )
 	}
 }
 
@@ -530,7 +539,7 @@ onForm11Change(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.form11_file,this.uniqueId.mobile,  this.rollno+'_form11_file','12' )
+			this.service.fileupload(this.form11_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_form11_file','12' )
 	}
 }
 
@@ -551,7 +560,7 @@ onFormh2Change(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.formh2_file,this.uniqueId.mobile,  this.rollno+'_formh2_file','13' )
+			this.service.fileupload(this.formh2_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_formh2_file','13' )
 	}
 }
 
@@ -572,7 +581,7 @@ onNatxChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 			window.alert("File is not of metioned type")
 		else
-			this.service.fileupload(this.natx_file,this.uniqueId.mobile,  this.rollno+'_natx_file','14' )
+			this.service.fileupload(this.natx_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_natx_file','14' )
 	}
 }
 

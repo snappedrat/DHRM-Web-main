@@ -44,7 +44,9 @@ export class PrevEditComponent implements OnInit {
       'periodt': '',
       'sal': '',
       'reason': '',
-      'mobile': this.active.snapshot.paramMap.get('mobile_no1')
+      'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
+      'company':  this.active.snapshot.paramMap.get('company')
+
     },
     {
       'sno':'2',
@@ -83,11 +85,8 @@ export class PrevEditComponent implements OnInit {
     ngOnInit(): void {
       
       this.plantcodeService.getdatacareer(this.mobile_no1)
-      setTimeout(() => {
-
-        this.career = this.plantcodeService.career
-        console.log("mmmmmmmmmmmmmmmmmmmmmmmmm",this.plantcodeService.career)
-
+      .subscribe({
+        next : (response)=>{console.log("career", response); this.career = response;
         for(var i = 0; i<4; i++)
         {
           if(this.career[i]?.company_name != null)
@@ -116,7 +115,11 @@ export class PrevEditComponent implements OnInit {
 
         }
 
+}
+      })
+      setTimeout(() => {
 
+        
         // this.prevData[0].name = this.career[0]?.company_name1
         // this.prevData[0].desig = this.career[0]?.designation1
         // this.prevData[0].periodf = this.career[0]?.period_from1
@@ -194,7 +197,7 @@ export class PrevEditComponent implements OnInit {
 
   
   //     this.http.
-  //     post(' http://localhost:3000/lang', this.languageList)
+  //     post('http://localhost:3000/lang', this.languageList)
   //     .subscribe({
   //       next: (response) => console.log(response),
   //       error: (error) => console.log(error),

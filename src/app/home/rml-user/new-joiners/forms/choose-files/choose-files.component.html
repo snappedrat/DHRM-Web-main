@@ -2,14 +2,14 @@
 <form>
 <div *ngIf= "ishr == 'undefined' " class = "mx-5" >
 <h1>Employee related</h1>
-<h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx)</h3>
+<h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx) (file size : 200kb)</h3>
 
 <table [width]="1000">
     <tr>
-      <td>Resume(not more than 3mb):<span class = "star-color">*</span></td>
+      <td>Resume</td>
       <td >
         <div class="text-center"> 
-    	<input class="form-control" formcontrolname="resume" id = "resume" type="file"   (change)="onResumeChange($event)">
+    	<input class="form-control" formcontrolname="resume" id = "resume" type="file" (change)="valid()"  (change)="onResumeChange($event)">
 	</div> 
   </td>
 	<td>
@@ -20,7 +20,7 @@
     <tr>
       <td>Marksheet:<span class = "star-color">*</span></td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file"  (change)="onMarksheetChange($event)"> 
+        <input class="form-control" type="file" (change)="valid()"  (change)="onMarksheetChange($event)"> 
 	</div> 
 
 	<td>
@@ -30,7 +30,7 @@
 	<tr>
         <td>Transfer Certificate:</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"  (change)="onTransfercertificateChange($event)"> 
+          <input class="form-control" type="file" (change)="valid()" (change)="onTransfercertificateChange($event)"> 
 		</div> 
 
 		<td  >
@@ -40,7 +40,7 @@
       <tr>
         <td>Aadhar Card:<span class = "star-color">*</span></td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onAadharcardChange($event)"> 
+          <input class="form-control" type="file" (change)="valid()"  (change)="onAadharcardChange($event)"> 
 		</div> 
 
 		<td>
@@ -50,7 +50,7 @@
       <tr>
         <td>Bank Passbook:</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file"   (change)="onBankpassbookChange($event)"> 
+          <input class="form-control" type="file" (change)="valid()"  (change)="onBankpassbookChange($event)"> 
 		</div> 
 
 		<td> 

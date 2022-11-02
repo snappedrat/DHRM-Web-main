@@ -8,7 +8,7 @@
     <div class = "col-sm-10">
         <div class="form-group" >
             <label for="account">Account Number:<span class = "star-color">*</span></label>
-            <input
+            <input  (change)="sendData()"
                     formControlName="account"
                     id="account"
                     type="text"
@@ -19,7 +19,7 @@
     <div class = "col-sm-10">
         <div class="form-group">
             <label for="bankName">Bank Name:<span class = "star-color">*</span></label>
-            <select formControlName="bankName" class="form-control" (click)="sendData()">
+            <select formControlName="bankName" class="form-control" (change)="sendData()">
                 <option>Choose</option>
                 <option *ngFor="let bm of Bank">{{bm}}</option>
             </select>
@@ -28,7 +28,7 @@
         <div class = "col-sm-10">
         <div class="form-group">
             <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label>
-            <input  (click) = "emitData()"
+            <input  (change) = "sendData()"
                     formControlName="ifsc"
                     id="ifsc"
                     type="text"
@@ -36,7 +36,7 @@
                     placeholder="IFSC Number">
         </div>
     </div>
-        <button class="btn btn-primary btn-sm" (click)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
+        <button class="btn btn-primary btn-sm" (change)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
         </div>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 

@@ -18,7 +18,7 @@ export class HrViewDataComponent implements OnInit {
   career: any
   education: any
   family: any
-  url:any = " http://localhost:3000/"
+  url:any = "http://localhost:3000/"
   flag: any = false
 
 	urlforResume: any 
@@ -125,7 +125,7 @@ getdatabasic(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post(' http://localhost:3000/getdatabasic',this.uniqueId)
+post('http://localhost:3000/getdatabasic',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("basic",response); this.basic = response} ,
   error: (error) => console.log(error),
@@ -137,7 +137,7 @@ getdataqualifn(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post(' http://localhost:3000/getdataqualfn',this.uniqueId)
+post('http://localhost:3000/getdataqualfn',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("qual",response); this.education = response} ,
   error: (error) => console.log(error),
@@ -150,7 +150,7 @@ getdatafamily(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post(' http://localhost:3000/getdatafamily',this.uniqueId)
+post('http://localhost:3000/getdatafamily',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("fam",response); this.family = response} ,
   error: (error) => console.log(error),
@@ -162,7 +162,7 @@ getdatacareer(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post(' http://localhost:3000/getdatacareer',this.uniqueId)
+post('http://localhost:3000/getdatacareer',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),

@@ -51,7 +51,14 @@ export class BasicComponent implements OnInit{
     flag_to_readonly: any = false
     state :any = false
     aadhar :any 
-    flag_aadhar:any = 0
+    aadhar_invalid:any = true
+    aadhar4:any
+    aadhar3:any
+    aadhar2:any
+    aadhar1:any
+    pincodes:any
+    pincode_ng:any
+
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
@@ -76,7 +83,7 @@ export class BasicComponent implements OnInit{
             nation:['',Validators.required],
             city:[''],
             st:[''],
-            pc:['',[Validators.required,Validators.maxLength(6)]],
+            pc:['',[Validators.required,Validators.maxLength(6), Validators.pattern('[0-9][0-9][0-9][0-9][0-9][0-9]')]],
             reg:['',Validators.required],
             mar:['',Validators.required],
             pd:['',Validators.required],
@@ -97,81 +104,103 @@ export class BasicComponent implements OnInit{
         this.getaadhar()
         
         this.form.controls['vacc'].setValue('no')
-        setTimeout(() => {
+         // setTimeout(() => {
 
-            this.basic = this.plantcodeService.basicdetails
-
-            if(this.basic[0]?.title ==null)
-                this.form.controls['pd'].setValue('No')
-
-            this.form.controls['title'].setValue(this.basic[0]?.title)
-            this.form.controls['fname'].setValue(this.basic[0]?.first_name)
-            this.form.controls['lname'].setValue(this.basic[0]?.last_name)
-            this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
-            this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
-            this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
-            this.form.controls['present'].setValue(this.basic[0]?.present_address)
-            this.form.controls['nation'].setValue(this.basic[0]?.nationality)
-            this.form.controls['height'].setValue(this.basic[0]?.height)
-            this.form.controls['weight'].setValue(this.basic[0]?.weight)
-
-            this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
-            this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
-            this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
-            this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
-            this.form.controls['aadhar4'].setValue(this.aadharsplitted[3])
-
-            this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
-            this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
-            this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
-            this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
-            this.form.controls['reg'].setValue(this.basic[0]?.religion)
-
-            this.form.controls['pc'].setValue(this.basic[0]?.pincode)
-
-            this.form.controls['city'].setValue(this.basic[0]?.city)
-            this.form.controls['st'].setValue(this.basic[0]?.state_name)
-
-            this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
-            this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
-            this.form.controls['gender'].setValue(this.basic[0]?.gender)
-            this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
-            this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
-
-            if(this.form.valid)
-                this.emit.emit(this.message)
-
-            this.sendData()
-        }, 1000);
+       // }, 1000);//
     }
+
+    getdatabasic(){
+        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+
+        this.plantcodeService.getdatabasic(this.uniqueId)
+      .subscribe({
+        next: (response) => {console.log("basic : ",response); this.basic = response;
+
+        if(this.basic[0]?.title ==null)
+            this.form.controls['pd'].setValue('No')
+
+        this.form.controls['title'].setValue(this.basic[0]?.title)
+        this.form.controls['fname'].setValue(this.basic[0]?.first_name)
+        this.form.controls['lname'].setValue(this.basic[0]?.last_name)
+        this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
+        this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
+        this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
+        this.form.controls['present'].setValue(this.basic[0]?.present_address)
+        this.form.controls['nation'].setValue(this.basic[0]?.nationality)
+        this.form.controls['height'].setValue(this.basic[0]?.height)
+        this.form.controls['weight'].setValue(this.basic[0]?.weight)
+
+        this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
+        this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
+        this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
+        this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
+        this.form.controls['aadhar4'].setValue(this.aadharsplitted[3])
+
+        this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
+        this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
+        this.form.controls['dd1'].setValue(this.basic[0]?.dose1_dt)
+        this.form.controls['dd2'].setValue(this.basic[0]?.dose2_dt)
+        this.form.controls['reg'].setValue(this.basic[0]?.religion)
+
+        this.form.controls['pc'].setValue(this.basic[0]?.pincode)
+
+        this.form.controls['city'].setValue(this.basic[0]?.city)
+        this.form.controls['st'].setValue(this.basic[0]?.state_name)
+
+        this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
+        this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
+        this.form.controls['gender'].setValue(this.basic[0]?.gender)
+        this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
+        this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
+
+        if(this.form.valid)
+            this.emit.emit(this.message)
+
+        this.sendData()
+        } ,
+        error: (error) => console.log(error),
+      })
+      }
 
     getaadhar(){
         this.http
-        .get(' http://localhost:3000/getaadhar')
+        .get('http://localhost:3000/getaadhar')
         .subscribe({
           next: (response) =>{ console.log(response); this.aadhar = response},
           error: (error) => console.log(error),
         })
     }
 
-    check_aadhar()
+    check_aadhar(event:any)
     {
-        var total = this.form.controls['aadhar1'].value+this.form.controls['aadhar2'].value+this.form.controls['aadhar3'].value+this.form.controls['aadhar4'].value
-        for(var i = 0 ; i< this.aadhar.length;i++)
+        if(this.ishr == 'undefined')
         {
-            if(this.aadhar[i].aadhar_no == total)
+            if(event.length == 4 )
             {
-                this.flag_aadhar = 1
-                break
+                var total = this.form.controls['aadhar1'].value+this.form.controls['aadhar2'].value+this.form.controls['aadhar3'].value+this.form.controls['aadhar4'].value
+                for(var i = 0 ; i< this.aadhar.length;i++)
+                {
+                    if(this.aadhar[i].aadhar_no == total)
+                    {
+                        this.aadhar_invalid = false
+                        this.form.controls['aadhar4'].setErrors({'incorrect':true})
+                        console.log("aadhar check",this.form.controls['aadhar4'].valid)
+                        break
+                    }
+                    else
+                        this.aadhar_invalid = true
+                }        
             }
-            else
-                this.flag_aadhar = 0
-        }        
+        }
+
     }
 
     emitData(){
         if(this.form.valid)
             this.emit.emit(this.message) 
+        else
+            this.emit.emit({"basic":true})
     }
 
     disable_for_hr()
@@ -185,26 +214,22 @@ export class BasicComponent implements OnInit{
 
     setcity_state(event:any)
     {
-        console.log(event.target.value.length)
-        if(event.target.value.length == 6)
+        console.log(event.length)
+        if(event.length == 6)
         {
+            console.log(event.length)
             var pincode = {
-                "pincode": event.target.value
+                "pincode": event
             }
             this.plantcodeService.getpincode(pincode)
-            setTimeout(() => {
-                // this.form.controls['st'].setValue(this.plantcodeService.pincodes[0]?.statename)
-                // this.form.controls['city'].setValue(this.plantcodeService.pincodes[0]?.dvisionname)
-            }, 500);
-
-
+            .subscribe({
+                next : (response)=>{console.log("pincode : ", response), this.pincodes = response;
+                this.form.controls['st'].setValue(this.pincodes[0]?.statename)
+                this.form.controls['city'].setValue(this.pincodes[0]?.dvisionname)},
+                error : (err)=> console.log(err)
+              })
         }
 
-    }
-
-    setstate(){
-        this.form.controls['st'].setValue(this.plantcodeService.pincodes[0]?.statename)
-        this.form.controls['city'].setValue(this.plantcodeService.pincodes[0]?.dvisionname)
     }
 
     hide_vacc(event:any){
@@ -361,7 +386,7 @@ export class BasicComponent implements OnInit{
 
     }
     sendData(){
-        console.log(this.form.value);
+        console.log(this.form.valid);
         this.plantcodeService.basic = this.form.value
         if(this.form.valid)
             this.emit.emit(this.message)
@@ -380,21 +405,6 @@ export class BasicComponent implements OnInit{
         }
     }
 
-    getdatabasic(){
-        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-        this.plantcodeService.getdatabasic(this.uniqueId)
-
-    //     console.log('====================================');
-    //     console.log(this.uniqueId);
-    //     console.log('====================================');
-    //     this.http.
-    //   post(' http://localhost:3000/getdatabasic',this.uniqueId)
-    //   .subscribe({
-    //     next: (response) => {console.log("basic : ",response); this.basic = response} ,
-    //     error: (error) => console.log(error),
-    //   })
-      }
 
 }

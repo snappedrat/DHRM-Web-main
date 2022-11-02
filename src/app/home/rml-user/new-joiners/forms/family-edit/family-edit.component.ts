@@ -55,7 +55,8 @@ familyData = [
     'occupation': '',
     'contactnumber': '',
     'dependent': '',
-    'mobile': this.active.snapshot.paramMap.get('mobile_no1')
+    'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
+    'company':  this.active.snapshot.paramMap.get('company')
   },
   {
     'sno':'2',
@@ -92,12 +93,11 @@ familyData = [
     this.mobile = this.active.snapshot.paramMap.get('mobile_no1')
    }
 
-  ngOnInit(): void {
-    // console.log(";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",this.familyData)
-    this.plantcodeService.getdatafamily(this.mobile_no1)
-    setTimeout(() => {
-      this.family = this.plantcodeService.family
 
+  ngOnInit(): void {
+    this.plantcodeService.getdatafamily(this.mobile_no1)
+    .subscribe({
+      next: (response) => {console.log("family",response); this.family = response;
       for(var i= 0; i<4 ;i++)
       {
 
@@ -139,8 +139,10 @@ familyData = [
         this.flag = false
         this.emit.emit(this.message)
       }
-      
-    }, 1000);
+     } ,
+      error: (error) => console.log(error),
+    })
+    
     this.sendData()
   }  
   submit(){

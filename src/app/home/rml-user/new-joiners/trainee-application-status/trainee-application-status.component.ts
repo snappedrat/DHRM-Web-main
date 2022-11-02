@@ -43,23 +43,20 @@ colvalue :any
 filter()
 {
   this.service.filter(this.form.value)
-  setTimeout(() => {
-    this.filterinfo = this.service.filterinfo
-    console.log("filterinfo old:",this.filterinfo)
-  }, 1000);
+  .subscribe({
+    next: (response) =>{ console.log(response); this.filterinfo = response},
+    error: (error) => console.log(error),
+  });
 
 }
 
 searchfilter()
 {
   this.service.searchfilter(this.form.value)
-
-  setTimeout(() => {
-    console.log("filter working")
-    this.filterinfo = this.service.searchfilterinfo
-    console.log("filterinfo: ",this.filterinfo)
-  }, 1000);
-
+  .subscribe({
+    next: (response) =>{ console.log(response); this.searchfilterinfo= response; this.filterinfo = this.searchfilterinfo},
+    error: (error) => console.log(error),
+  });
 
 }
 

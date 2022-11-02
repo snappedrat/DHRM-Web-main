@@ -206,7 +206,7 @@ export class PlantComponent implements OnInit {
     formData.append('payroll', this.form.get('payroll')!.value);
 
     this.http
-        .post(' http://localhost:3000/plant',this.form.value)
+        .post('http://localhost:3000/plant',this.form.value)
         .subscribe({
           next: (response) => this.errmsg=response,
           error: (error) => console.log(error),
@@ -229,7 +229,7 @@ export class PlantComponent implements OnInit {
   getUsers(): User[]{
     var formData: any = new FormData();
     this.http
-        .get(' http://localhost:3000/plantshow',this.form.value)
+        .get('http://localhost:3000/plantshow',this.form.value)
         .subscribe({
           next: (response) =>{ console.log(response); this.master=response},
           error: (error) => console.log(error),
@@ -320,7 +320,7 @@ export class PlantComponent implements OnInit {
     console.log(object)
 
     this.http
-        .post(' http://localhost:3000/plantedit',object)
+        .post('http://localhost:3000/plantedit',object)
         .subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error),
@@ -331,7 +331,7 @@ export class PlantComponent implements OnInit {
   removeUser(user: any) {
     console.log(user);
     this.http
-        .post(' http://localhost:3000/plantdel',{"user":user})
+        .post('http://localhost:3000/plantdel',{"user":user})
         .subscribe({
           next: (response) =>{ console.log(response)},
           error: (error) => console.log(error),

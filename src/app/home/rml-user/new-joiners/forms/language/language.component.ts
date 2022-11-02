@@ -41,7 +41,9 @@ languageList = [
     'write': 0,
     'mothertongue': 0,
     'understand': 0,
-    'mobile': this.active.snapshot.paramMap.get('mobile_no1')
+    'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
+    'company':  this.active.snapshot.paramMap.get('company')
+
   },
   {
     'language': 'ENGLISH',
@@ -91,45 +93,51 @@ languageList = [
   ngOnInit(): void {
 
     this.getdatabasic()
+    this.sendData()
+  }
 
-    setTimeout(() => {
-
+  getdatabasic(){
+    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
+    this.uniqueId.company = this.active.snapshot.paramMap.get('company');
+    this.plantcodeService.getdatabasic(this.uniqueId)
+    .subscribe({
+    next: (response) => {console.log("lang : ",response); this.details = response;
     this.languageList[0].speak = this.details[0]?.lang1_speak
     this.languageList[0].read = this.details[0]?.lang1_read
     this.languageList[0].write = this.details[0]?.lang1_write
     this.languageList[0].mothertongue = this.details[0]?.lang1_mothertounge
     this.languageList[0].understand = this.details[0]?.lang1_understand
-
+  
     this.languageList[1].speak = this.details[0]?.lang2_speak
     this.languageList[1].read = this.details[0]?.lang2_read
     this.languageList[1].write = this.details[0]?.lang2_write
     this.languageList[1].mothertongue = this.details[0]?.lang2_mothertounge
     this.languageList[1].understand = this.details[0]?.lang2_understand
-
+  
     this.languageList[2].speak = this.details[0]?.lang3_speak
     this.languageList[2].read = this.details[0]?.lang3_read
     this.languageList[2].write = this.details[0]?.lang3_write
     this.languageList[2].mothertongue = this.details[0]?.lang3_mothertounge
     this.languageList[2].understand = this.details[0]?.lang3_understand
-
+  
     this.languageList[3].speak = this.details[0]?.lang4_speak
     this.languageList[3].read = this.details[0]?.lang4_read
     this.languageList[3].write = this.details[0]?.lang4_write
     this.languageList[3].mothertongue = this.details[0]?.lang4_mothertounge
     this.languageList[3].understand = this.details[0]?.lang4_understand
-
+  
     this.languageList[4].speak = this.details[0]?.lang5_speak
     this.languageList[4].read = this.details[0]?.lang5_read
     this.languageList[4].write = this.details[0]?.lang5_write
     this.languageList[4].mothertongue = this.details[0]?.lang5_mothertounge
     this.languageList[4].understand = this.details[0]?.lang5_understand
-
+  
     this.languageList[5].speak = this.details[0]?.lang6_speak
     this.languageList[5].read = this.details[0]?.lang6_read
     this.languageList[5].write = this.details[0]?.lang6_write
     this.languageList[5].mothertongue = this.details[0]?.lang6_mothertounge
     this.languageList[5].understand = this.details[0]?.lang6_understand
-
+  
       for(var i = 0;i<=5;i++)
       {
         if(this.languageList[5].speak == null)
@@ -144,12 +152,14 @@ languageList = [
           this.languageList[i].understand = 0
       
       }
-
+  
       this.sendData()
-      console.log(this.details[0]?.lang1_name)
-    }, 1000);
-
+      console.log(this.details[0]?.lang1_name)} ,
+    error: (error) => console.log(error),
+  })
   }
+  
+
   changestatus(event: any, data: any,item: any){
 
     console.log('test', event.target.checked);
@@ -220,17 +230,6 @@ sendData(){
   this.plantcodeService.lang = this.languageList
 } 
 
-getdatabasic(){
-  this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-  this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-
-  this.http.
-post(' http://localhost:3000/getdatabasic',this.uniqueId)
-.subscribe({
-  next: (response) => {console.log("lang : ",response); this.details = response} ,
-  error: (error) => console.log(error),
-})
-}
 
 // public valid(){
 //   if(this.languageList[0].language != '' && this.languageList[0].write != '' && this.languageList[0].read != '' && this.languageList[0].speak != '' && this.languageList[0].understand != '')

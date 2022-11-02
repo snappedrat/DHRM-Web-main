@@ -53,7 +53,9 @@ eduData = [
     'certificatenumber': '',
     'certificatedate': '',
     'percentage': '',
-    'mobile': this.active.snapshot.paramMap.get('mobile_no1') 
+    'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
+    'company':  this.active.snapshot.paramMap.get('company')
+
   },
   {
     'sno':'2',
@@ -96,11 +98,8 @@ eduData = [
 
   ngOnInit(): void {
     this.plantcodeService.getdataqualifn(this.mobile_no1)
-    setTimeout(() => {
-      this.education = this.plantcodeService.education
-
-
-
+    .subscribe({
+      next: (response) => {console.log("qualifn",response); this.education = response;
       for(var i= 0; i<4 ;i++)
       {
         if(this.education[i]?.school_name == 'undefined')
@@ -137,9 +136,9 @@ eduData = [
         this.flag = false
         this.emit.emit(this.message)
       }
-      this.sendData()
-
-    }, 1000);
+      this.sendData()} ,
+      error: (error) => console.log(error),
+    })
   }  
   submit(){
     this.sendData()

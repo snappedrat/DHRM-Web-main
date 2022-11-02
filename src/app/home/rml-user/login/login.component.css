@@ -38,3 +38,6 @@ input.example-right-align {
     margin-left: 43%;
     text-align:center;
 }
+.form-group{
+    font-size: 14px;
+}
