@@ -48,6 +48,7 @@ ngOnInit(): void {
 
 TraineeLogin()
 {
+  var username = this.form.controls['username'].value
   if(this.form.invalid)
   {
     window.alert('please enter correct user name and password')
@@ -61,7 +62,7 @@ TraineeLogin()
       {
         console.log('ulla vanten')
         sessionStorage.setItem('user_token', this.message.token)
-        this.router.navigate(['/trainee-test'])
+        this.router.navigate(['/trainee-test', username])
       }
       else if(this.message.status == 'wrong_user')
         alert('Username is incorrect')

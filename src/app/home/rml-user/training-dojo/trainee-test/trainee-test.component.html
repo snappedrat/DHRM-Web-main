@@ -10,9 +10,9 @@
     <form [formGroup] = "form">
     <div class = "row">
         <div class="col-sm-3">
-        <select formControlName="modules" class="form-control">
+        <select (change)="getQuestions()"  formControlName="module" class="form-control">
             <option value="">Select your module</option>
-            <option *ngFor= "let i of modules">{{i}}</option>
+            <option *ngFor= "let i of modules">{{i.module_name}}</option>
         </select>
         </div>
         <div class="col-sm-3">
@@ -35,13 +35,11 @@
                         <td style="width: 90%;">Questions</td>
                     </tr>
                 </thead>
-                <tbody *ngFor = "let a of modules;let i = index ">
+                <tbody *ngFor = "let a of questions;let i = index; ">
                     <tr>
-                        <td>{{i+1}}
-
-                        </td>
-                        <td>{{a}}<br>
-                        <select formControlName = "answers">
+                        <td>{{i+1}}</td>
+                        <td>{{a.question}}<br>
+                        <select (change) = 'load_answers($event, i, a.correct_answer)' formControlName = "answers">
                             <option value="">Choose your answer</option>
                             <option *ngFor = "let choice of choices">{{choice}}</option>
                         </select>

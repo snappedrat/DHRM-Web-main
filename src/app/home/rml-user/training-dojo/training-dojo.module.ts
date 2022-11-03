@@ -26,6 +26,7 @@ import { TestResultSummaryComponent } from './test-result-summary/test-result-su
 import { TraineeScoreCardComponent } from './trainee-score-card/trainee-score-card.component';
 import { TraineeLoginComponent } from './trainee-login/trainee-login.component';
 import { TraineeTestComponent } from './trainee-test/trainee-test.component';
+import { TraineeAnswerComponent } from './trainee-answer/trainee-answer.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TraineeTestComponent } from './trainee-test/trainee-test.component';
     TestResultSummaryComponent,
     TraineeScoreCardComponent,
     TraineeLoginComponent,
-    TraineeTestComponent
+    TraineeTestComponent,
+    TraineeAnswerComponent
   ],
   imports: [
     CommonModule,

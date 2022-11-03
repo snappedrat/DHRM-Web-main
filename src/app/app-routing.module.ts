@@ -47,7 +47,7 @@ const routes: Routes = [
     component: TraineeLoginComponent
   },
   {
-    path: 'trainee-test',
+    path: 'trainee-test/:username',
     component: TraineeTestComponent
   }
   
