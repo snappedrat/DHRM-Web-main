@@ -26,7 +26,7 @@
     <br><br>
     <div class="body">
         <body>
-            <p>{{qualified}}</p>
+            <p style="white-space: pre;">{{qualified}}</p>
         <form [formGroup]="formtest" (ngSubmit)= "submit()">
             <table class="table" style="width: 100%;">
                 <thead>
@@ -38,8 +38,8 @@
                 <tbody *ngFor = "let a of questions;let i = index; ">
                     <tr>
                         <td>{{i+1}}</td>
-                        <td>{{a.question}}<br>
-                        <select (change) = 'load_answers($event, i, a.correct_answer)' formControlName = "answers">
+                        <td  style="white-space: pre;" >{{a.question}}<br><br>
+                        <select class="form-control" (change) = 'load_answers($event, i, a.correct_answer)' formControlName = "answers">
                             <option value="">Choose your answer</option>
                             <option *ngFor = "let choice of choices">{{choice}}</option>
                         </select>

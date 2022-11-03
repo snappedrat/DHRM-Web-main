@@ -14,6 +14,7 @@ export class HrApprovalComponent implements OnInit {
   form: any
   filterinfo: any
   uniqueId :any = {'mobile':''}
+  
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({
         status:new UntypedFormControl(' '),

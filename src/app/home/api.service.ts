@@ -18,12 +18,17 @@ export class ApiService {
   {
     return this.http.post('http://localhost:3000/traineelogin',formvalue)
   }
-  getModules()
+  getModules(username:any)
   {
-    return this.http.get('http://localhost:3000/getModules')
+    return this.http.post('http://localhost:3000/getModules', username)
   }
   getQuestions(formvalue:any)
   {
     return this.http.post('http://localhost:3000/getQuestions',formvalue)
+  }
+  getTest(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/getTest',formvalue)
+
   }
 }
