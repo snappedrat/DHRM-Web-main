@@ -17,6 +17,7 @@ export class TraineeLoginComponent implements OnInit {
 
   public inputType:string ='password';
   message : any;
+  loading = false
 
   public updateInput(event:any):void
   {
@@ -48,6 +49,7 @@ ngOnInit(): void {
 
 TraineeLogin()
 {
+  this.loading = true
   var username = this.form.controls['username'].value
   if(this.form.invalid)
   {
@@ -60,17 +62,27 @@ TraineeLogin()
       next : (response)=>{console.log(response); this.message = response;console.log(this.message)
       if(this.message.status == 'success')
       {
-        console.log('ulla vanten')
         sessionStorage.setItem('user_token', this.message.token)
         this.router.navigate(['/trainee-test', username])
       }
       else if(this.message.status == 'wrong_user')
+      {
+        this.loading = false
         alert('Username is incorrect')
+
+      }
       else if(this.message.status == 'wrong_pass')
+      {
+        this.loading = false
         alert('Password is incorrect')
+
+      }
       else if(this.message.status == 'wrong_apln')
+      {
+        this.loading = false
         alert("you still haven't registered ")
- },
+      }
+    },
       error: (err)=>console.error(err)
     })
   }

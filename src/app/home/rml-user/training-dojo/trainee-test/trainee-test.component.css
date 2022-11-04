@@ -6,7 +6,6 @@ mat-toolbar
 .container-fluid
 {
     background: rgb(255, 255, 255);
-    box-shadow: rgb(255, 255, 255);
 }
 .example-spacer {
     flex: 1 1 auto;

@@ -29,6 +29,9 @@ export class ApiService {
   getTest(formvalue:any)
   {
     return this.http.post('http://localhost:3000/getTest',formvalue)
-
+  }
+  Qualified(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/Qualified',formvalue)
   }
 }

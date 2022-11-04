@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router
+} from '@angular/router';
+import { threadId } from 'worker_threads';
+import { truncate } from 'fs';
 
 @Component({
   selector: 'app-trainee-test',
@@ -13,6 +23,7 @@ export class TraineeTestComponent implements OnInit {
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
 
+  loading:any = false
   modules :any
   questions:any
   answers:any = {}
@@ -24,7 +35,9 @@ export class TraineeTestComponent implements OnInit {
 
   choices = ['A','B','C','D']
 
-  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute) {
+  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
+
+
     this.form = fb.group({
       module: [''],
       test:[''],
@@ -37,7 +50,6 @@ export class TraineeTestComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.form.value);
-    
     this.service.getModules(this.username)
     .subscribe({
       next: (response)=>{console.log(response); this.modules = response},
@@ -45,20 +57,62 @@ export class TraineeTestComponent implements OnInit {
     })
   }
 
-getQuestions()
+Qualified(event:any)
 {
-  this.service.getTest(this.form.value)
+  this.loading = true
+
+    this.service.getTest(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+        this.form.controls['test'].setValue(response.test)
+  }})
+
+  this.service.Qualified(this.form.value)
   .subscribe({
-    next: (response:any)=>{console.log(response);
-      this.form.controls['test'].setValue(response.test)
+    next: (response:any)=>{console.log(response)
+
+      if(response.message == 'passed' || response.message == 'failed')
+      {
+        this.qualified = 'you have already written the exam'
+        this.getQuestions(false)
+      }
+      else if(response.message == 'not qualified')
+      {
+        this.qualified = 'you are not qualified' 
+        this.getQuestions(false)
+      }
+      else if(response.message == 'qualified')
+      {
+        this.qualified = 'you are qualifed'
+        this.getQuestions(true)
+      }     
+      else if(response.message == 'post-test')
+      {
+        this.qualified = 'you are qualifed'
+        this.getQuestions(true)
+      }
+      
+    },
+    error : (error) =>{console.log(error)}
+  })
+  
+
 }
-  })
 
+getQuestions(message:any)
+{
+  if(message == true)
+  {
+    this.service.getQuestions(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);this.questions = response;
+        this.loading = false}
+    })
+  }
+  else
+    this.loading = false
+    this.questions = []
 
-  this.service.getQuestions(this.form.value)
-  .subscribe({
-    next: (response:any)=>{console.log(response);this.questions = response;}
-  })
 }
 
 submit()
