@@ -34,4 +34,12 @@ export class ApiService {
   {
     return this.http.post('http://localhost:3000/Qualified',formvalue)
   }
+  pretest(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/pretest',formvalue)
+  }
+  posttest(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/posttest',formvalue)
+  }
 }

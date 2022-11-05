@@ -29,7 +29,7 @@
         <img src="../../assets/1488.gif" >
     </div>
     
-    <div [ngStyle] = "{'word-break': 'break-all'}" *ngIf = "!loading" class="body form-group" style="word-break: break-all;">
+    <div *ngIf = "!loading" class="body form-group">
         <body>
             <b><p style="white-space: pre;">{{qualified}}</p></b>
         <form [formGroup]="formtest" (ngSubmit)= "submit()">
@@ -44,7 +44,7 @@
                     <tr>
                         <td>{{i+1}}</td>
                         <td  style="white-space: pre;" >{{a.question}}<br><br>
-                        <select class="form-control-md" (change) = 'load_answers($event, i, a.correct_answer)' formControlName = "answers">
+                        <select class="form-control-md" (change) = 'load_answers($event, i+1 ,a.qslno,  a.correct_answer)' formControlName = "answers">
                             <option value="">Choose your answer</option>
                             <option *ngFor = "let choice of choices">{{choice}}</option>
                         </select>
