@@ -8,7 +8,8 @@
         <div class="form-group">  
             <label for="name">Contact Name:<span class = "star-color">*</span></label>  
             <input   
-                formControlName="contactName"  
+                formControlName="contactName"
+                (ngModelChange)= "emitData()" (ngModelChange)="sendData()"  
                 id="name"  
                 type="text"   
                 class="form-control"
@@ -23,6 +24,7 @@
             <label for="mobileNumber">Contact Number:<span class = "star-color">*</span></label>  
             <input   
                 formControlName="contactNumber"  
+                (ngModelChange)= "emitData()" (ngModelChange)="sendData()"
                 id="contactNumber"   
                 type="text"   
                 class="form-control"
