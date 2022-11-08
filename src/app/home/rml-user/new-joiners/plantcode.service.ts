@@ -129,7 +129,6 @@ sumbitlang(){
 }
 
 getdatabasic(uniqueId:any){
-  console.log("amaaaaaaaaaaaaaaaaaaaa",uniqueId)
   return this.http.
 post('http://localhost:3000/getdatabasic',uniqueId)
 

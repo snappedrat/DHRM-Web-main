@@ -13,6 +13,7 @@ import {
 import { threadId } from 'worker_threads';
 import { truncate } from 'fs';
 import { isThisSecond } from 'date-fns';
+import { eventNames } from 'process';
 
 @Component({
   selector: 'app-trainee-test',
@@ -24,6 +25,7 @@ export class TraineeTestComponent implements OnInit {
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
   ind :any
+  count:any = new Set()
   loading:any = false
   modules :any
   questions:any
@@ -43,6 +45,8 @@ export class TraineeTestComponent implements OnInit {
   username = {'username': this.active.snapshot.paramMap.get('username')}
 
   choices = ['A','B','C','D']
+  flag: boolean = true
+  offline: string = ''
 
   constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
 
@@ -78,34 +82,37 @@ Qualified(event:any)
 
   this.answers[0].module = this.form.controls['module'].value
   this.ind = event.target.value.split('.')[0]
-
   this.answers[0].priorityval = this.modules[this.ind-1].priorityval
-
-console.log(this.modules[this.ind-1].pass_criteria)
+  var category = this.modules[this.ind-1].category
 
   this.service.Qualified(this.form.value)
   .subscribe({
     next: (response:any)=>{console.log(response)
 
-      if(response.message == 'passed' || response.message == 'failed')
+      if(response.message == 'passed')
       {
         this.qualified = 'you have already written the exam'
-        this.getQuestions(true)
+        this.getQuestions(false,category)
+      }
+      else if(response.message == 'failed')
+      {
+        this.qualified = 'you have already written the exam once'
+        this.getQuestions(true,category)
       }
       else if(response.message == 'not qualified')
       {
         this.qualified = 'you are not qualified' 
-        this.getQuestions(false)
+        this.getQuestions(false,category)
       }
       else if(response.message == 'qualified')
       {
         this.qualified = 'you are qualifed'
-        this.getQuestions(true)
+        this.getQuestions(true,category)
       }     
       else if(response.message == 'post-test')
       {
         this.qualified = 'you are qualifed'
-        this.getQuestions(true)
+        this.getQuestions(true,category)
       }
       
     },
@@ -113,22 +120,31 @@ console.log(this.modules[this.ind-1].pass_criteria)
     }
   })
   
-
 }
 
-getQuestions(message:any)
+getQuestions(message:any, category:any)
 {
-  if(message == true)
+  if(message == true && category == 'ONLINE')
   {
+    this.offline = ''
     this.service.getQuestions(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);this.questions = response;
-        this.loading = false}
+        this.loading = false
+      this.flag = false}
     })
   }
+  else if(message == true && category == 'OFFLINE')
+  {
+    this.offline = 'THIS IS AN OFFLINE EXAM. CONTACT YOUR TRAINER'
+    this.loading = false
+  }
   else
+  {
     this.loading = false
     this.questions = []
+    this.offline = ''
+  }
 
 }
 
@@ -139,31 +155,47 @@ submit()
   this.answers[0].percent = ((this.mark) / (this.modules[this.ind-1].total_marks)) * 100
 
   console.log("all asnwers", this.answers)
-  if(this.form.controls['test'].value == 'pre-test')
+  console.log(this.count.size == this.questions.length)
+
+  if(this.count.size == this.questions.length)
   {
-    this.service.pretest(this.answers)
-    .subscribe({
-      next : (response)=> console.log(response)
-    })
+    if(this.form.controls['test'].value == 'pre-test')
+    {
+      this.service.pretest(this.answers)
+      .subscribe({
+        next : (response:any)=> {console.log(response)
+          if(response.message == 'success')
+            location.reload()}    
+      })
+    }
+    else if(this.form.controls['test'].value == 'post-test')
+    {
+      this.service.posttest(this.answers)
+      .subscribe({
+        next : (response:any)=> {console.log(response)
+          if(response.message == 'success')
+          location.reload()}
+      })
+    }
   }
-  else if(this.form.controls['test'].value == 'post-test')
-  {
-    this.service.posttest(this.answers)
-    .subscribe({
-      next : (response)=> console.log(response)
-    })
-  }
+  else
+    alert('Please answer all the questions above.')
 }
 
 load_answers(event:any, i:any,qslno :any, correct_answer:any)
 {
-  console.log(i , ':', event.target.value , ':', correct_answer)
+  this.count.add(i)
+  console.log(this.count)
+
+  console.log(event.target.value ,':', correct_answer)
+
   if(correct_answer == event.target.value)
     this.mark = this.mark + 1
+
   else if(correct_answer != event.target.value && this.answers[i]?.score == 1)
     this.mark = this.mark -1
+  
   var temp_obj = {'slno' : qslno, 'result': event.target.value, 'score' :  correct_answer == event.target.value ? this.score[1]: this.score[0] }
-
   this.answers[i] = temp_obj
 }
 }

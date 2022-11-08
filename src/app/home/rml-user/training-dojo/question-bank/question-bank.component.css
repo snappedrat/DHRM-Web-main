@@ -1,0 +1,20 @@
+
+table.table-bordered{
+    border:1px solid rgb(200,200,200);
+    margin-top:20px;
+  }
+table.table-bordered > thead > tr > td{
+    border:1px solid rgb(200,200,200);
+    text-align: center;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid rgb(200,200,200);
+}
+.class
+{
+    background-color: black;
+}
+.class2
+{
+    background-color: gray;
+}

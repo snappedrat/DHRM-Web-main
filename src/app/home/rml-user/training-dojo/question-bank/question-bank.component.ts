@@ -10,6 +10,7 @@ import {
   NavigationStart,
   Router
 } from '@angular/router';
+
 import { threadId } from 'worker_threads';
 import { truncate } from 'fs';
 
@@ -26,10 +27,13 @@ export class QuestionBankComponent implements OnInit {
   loading:any = false
   modules :any
   
+  height :any
+  answer = new Set()
+  questions: any = []
+  child:any = {}
 
-  username = {'username': this.active.snapshot.paramMap.get('username')}
-
-
+  username = {'username': sessionStorage.getItem('plantcode')}
+  sno :any= -1
 
   constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
 
@@ -41,7 +45,8 @@ export class QuestionBankComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.form.value);
+  this.answer.add(0)
+
     this.service.getModules(this.username)
     .subscribe({
       next: (response)=>{console.log(response); this.modules = response},
@@ -53,7 +58,57 @@ export class QuestionBankComponent implements OnInit {
   submit(){
     console.log("values : ",this.form.value);
   }
-    
+
+  scroll(e:any, i:any)
+  {
+    var a = e.target.scrollHeight
+    this.height = a;
+  }
+
+  style(i:any)
+  {
+      return this.height >= 44? {'height':this.height + 'px'} :{'height': '44px'}
+
+  }
+
+  addrow(i:any)
+  {
+    this.answer.add(i+1)
+  }
+
+  class(i:any)
+  {
+    return 'class' + (i+1)
+  }
+  question(event:any, i:any)
+  {
+    this.questions.push({})
+    this.child.sno = i
+    this.child.question = event.target.value
+    console.log(this.questions.filter((e:any) => e.sno == i))
+    if(this.questions.filter((e:any) => e.sno == i))
+    {
+      // this.questions[i].question = event.target.value
+    }
+    else if(this.questions.filter((e:any) => e.sno != i))
+      this.questions.push(this.child)
+
+  }
+  answers(event:any, i:any)
+  {
+    this.child.answers = event.target.value
+  }
+  file(event:any, i:any)
+  {
+    this.child.files = event.target.value
+    this.questions.push(this.child)
+
+  }
+  show()
+  {
+    this.questions.push(this.child)
+    console.log(this.questions)
+  } 
   }
 
 

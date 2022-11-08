@@ -1,25 +1,37 @@
-<div class = "pt-5 pl-5">
-    <form [formGroup] = "form">
-    <div class = "row">
+<div class="container pt-5">
+    <div [formGroup]="form" class="row">
         <div class="col-sm-3">
-            Module<br>
-        <select  formControlName="module" class="form-control">
-            <option value="">Select your module1
-            </option>  
-            <option value="">Select your module1
-            </option>           
-                </select>
-            </div>
-            <div class="row">
-                <div class="col-sm">
-            <button class="btn btn-primary btn-md"  style ="margin-top: 20px; text-align:center;" ><span style="font-size: 14px;">Save</span></button>
-            </div>
-        
-
-<div>
-    <button class="btn btn-danger btn-md"  style ="margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Clear</span></button>
-</div></div></div>
-    </form>
-</div>
+            <select style="font-size:14px" formControlName="module" class="form-control">
+                <option value="" disabled>Select your module</option>            
+                <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <button (click) = show() >save</button>&nbsp;
+            <button>clear</button>
+        </div>
+    </div>
     <br><br>
-   
+    <div>
+         <table class="table-bordered table-responsive table1">
+            <thead style="background-color: rgb(218, 218, 218);height: 30px;">
+                <tr>
+                    <td>S.NO</td>
+                    <td>Question</td>
+                    <td>Correct Answer</td>
+                    <td>Image File</td>
+                    <td>File</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let i of answer; let a = index">
+                    <td style="background-color: rgb(218, 218, 218);">{{a+1}}</td>
+                    <td><textarea name ="question" style="overflow: hidden;resize:none;outline: none;border-color: white;width: 700px;" (change)="question($event, i)" [ngClass]="class(i)" (click) = "addrow(i)" (keyup) = scroll($event,i) [ngStyle]="style(a)" type = 'text' class="form-group"></textarea></td>
+                    <td><textarea name ="answer" style="overflow: hidden;resize:none;outline: none;border-color: white;" (change)="answers($event,i)" [ngClass]="class(i)" [ngStyle]="style(i)" class="form-group"></textarea></td>
+                    <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white;" [ngClass]="class(i)" [ngStyle]="style(i)" class="form-group" disabled></textarea></td>
+                    <td><textarea name ="file" style="overflow: hidden;resize:none;outline: none;border-color: white;" (change)="file($event,i)" [ngClass]="class(i)" [ngStyle]="style(i)" class="form-group"></textarea></td>
+                </tr>
+            </tbody>
+         </table>
+    </div>
+</div>
