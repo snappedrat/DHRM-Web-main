@@ -166,12 +166,11 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
   formData.append("file",file, changedname +'.'+ file.name.split('.')[len-1] )
   formData.append("mobile",uniqueId)
   formData.append("company", company)
-
   formData.append("fileno",fileno)
 
     this.http.
     post('http://localhost:3000/image', formData).subscribe({
-      next: (res)=> console.log(res),
+      next: (res)=> {console.log(res);},
       error: (err)=>console.log(err)
     })
 

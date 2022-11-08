@@ -23,11 +23,14 @@ export class QuestionBankComponent implements OnInit {
 
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
-
+  flag :any = true
   loading:any = false
   modules :any
+  filename :any =[]
+  url = 'http://localhost:3000/uploads/'
   
-  height :any
+  sheight :any 
+  height:any
   answer = new Set()
   questions: any = []
   child:any = {}
@@ -40,7 +43,8 @@ export class QuestionBankComponent implements OnInit {
 
     this.form = fb.group({
       module: [''],
-      username: [this.active.snapshot.paramMap.get('username')]
+      username : [sessionStorage.getItem('user_name')],
+      plantcode : [sessionStorage.getItem('plantcode')]
     })
    }
 
@@ -55,59 +59,90 @@ export class QuestionBankComponent implements OnInit {
   }
 
 
-  submit(){
-    console.log("values : ",this.form.value);
+  submit()
+  {
+    this.flag = false
+    this.questions[0] = this.form.value
   }
+
 
   scroll(e:any, i:any)
   {
     var a = e.target.scrollHeight
-    this.height = a;
+    var b = e.target.style.height
+    console.log(a);
+    
+    console.log(b)
+    this.sheight = a;
+    this.height = b
+
   }
 
   style(i:any)
   {
-      return this.height >= 44? {'height':this.height + 'px'} :{'height': '44px'}
-
+      return this.sheight >= (this.height-2)? {'height':this.sheight + 'px'} :{'height': this.height+'px'}
   }
 
   addrow(i:any)
   {
-    this.answer.add(i+1)
+    if(this.form.controls['module'].value == '')
+    {
+      alert('please select a module')
+    }
+    else
+    {
+      this.answer.add(i+1)
+      if(this.questions[i+1]?.question == undefined)
+        this.questions.push({})
+    }
+
   }
 
   class(i:any)
   {
     return 'class' + (i+1)
   }
-  question(event:any, i:any)
-  {
-    this.questions.push({})
-    this.child.sno = i
-    this.child.question = event.target.value
-    console.log(this.questions.filter((e:any) => e.sno == i))
-    if(this.questions.filter((e:any) => e.sno == i))
-    {
-      // this.questions[i].question = event.target.value
-    }
-    else if(this.questions.filter((e:any) => e.sno != i))
-      this.questions.push(this.child)
 
+  question(event:any, i:any)
+  {    
+    
+    this.questions[i+1].question = event.target.value
   }
   answers(event:any, i:any)
   {
-    this.child.answers = event.target.value
+    this.questions[i+1].answer = event.target.value
   }
+
   file(event:any, i:any)
   {
-    this.child.files = event.target.value
-    this.questions.push(this.child)
+    var exten = event.target.files[0].name.split('.')
+    exten = exten.pop()
+    var formData = new FormData()
+
+    formData.append("file", event.target.files[0], (i+1) + '_picture.'+exten )
+
+    this.questions[i+1].file = (i+1) + '_picture.'+exten
+
+    this.service.questionbankupload(formData)
+    .subscribe({
+      next:(res) => {console.log(res)
+      this.filename[i] = this.url + this.questions[i+1].file},
+      error:(err)=> {console.log(err)}
+    })
 
   }
+
   show()
   {
-    this.questions.push(this.child)
     console.log(this.questions)
+    console.log(this.form.value)
+
+    this.service.questionbank(this.questions)
+    .subscribe({
+      next:(res) => {console.log(res);},
+      error:(err)=>{console.log(err)}
+    })
+
   } 
   }
 

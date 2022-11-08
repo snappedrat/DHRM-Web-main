@@ -42,4 +42,12 @@ export class ApiService {
   {
     return this.http.post('http://localhost:3000/posttest',formvalue)
   }
+  questionbank(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/questionbank',formvalue)
+  }
+  questionbankupload(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/questionbankupload',formvalue)
+  }
 }
