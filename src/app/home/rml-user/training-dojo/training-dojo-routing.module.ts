@@ -33,10 +33,7 @@ const routes: Routes = [
     path: 'trainee-answer',
     component: TraineeAnswerComponent
   },
-  {
-    path: 'trainee-offline-test',
-    component: TraineeOfflineTestComponent
-  }
+  
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
