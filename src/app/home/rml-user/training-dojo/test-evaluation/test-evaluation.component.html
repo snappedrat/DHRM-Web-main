@@ -2,46 +2,108 @@
 <div class="container-fluid px-2 pt-2" style="font-size: 14px;">
                 <div class="header"><p><b>Trainee ID:</b></p></div>
                 <div style='overflow-x:auto'>
-                    
-                        <table class = "table" style="font-size:14px">
-                            <thead>
-                            <tr>
-                            <th scope="col" style="width:300px">Module Attended</th>
-                            <th scope="col" >Minimum pass percent</th>
-                            <th scope="col">Post-Training Score</th>
-                            <th scope="col">Post-Training Score1</th>
-                            <th scope="col" >Pre-Training percent</th>
-                            <th scope="col" >Post-Training percent</th>
-                            <th scope="col" >Post-Training percent1</th>
-                            <th scope="col" >Pre-Training P/F</th>
-                            <th scope="col" >Post-Training P/F</th>
-                            <th scope="col" >Post-Training1 P/F</th>
-                    </tr>
-                       
-                    <tr>
-                            <td scope="col">Induction Training</td>
-                            <td scope="col" >80</td>
-                            <td scope="col">5.00</td>
-                            <td scope="col">10.00 </td>
-                            <td scope="col">0.00</td>
-                            <td scope="col">50.00</td>
-                            <td scope="col">100.00</td>
-                            <td scope="col">Fail</td>
-                            <td scope="col">Pass</td>
-                            <td scope="col"></td>
-                    </tr>
-                       
-                     
-                     
-                     
-                            <tr>
-                        </thead>    
-                        </table>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-success btn-sm" style = "margin-top: 20px; text-align:center;" ><span style="font-size: 14px;">Back to List </span></button>
-                    
-                     
-                <br>
-                <br>
-</div>
+                        <br><br>
+                        <div class = "table-wrapper">
+                        <table class="table table-bordered table-striped table-hover">
+                          <table id="table">
+                                <div style="overflow-x:auto;">
+                              <thead>
+                              <tr>
+                                  <th
+                                          class="text-center"
+                                          style="width: 1000px"
+                                          style="background-color: darkblue"
+                                          
+                              
+                                  >
+                                     Module Attended
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                        
+                                  >
+                                      Minimum pass percent
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 800px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Post-Training Score
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Post-Training Score1
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Pre-training percent
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Post-training percent
+                                  </th>
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Post-training percent1
+                                  </th>
+                        
+                                  <th
+                                          class="text-center"
+                                          style="width: 500px"
+                                          style="background-color: darkblue"
+                                          >
+                                      Pre-Training P/F
+                                  </th>
+                                  <th
+                                  class="text-center"
+                                  style="width: 500px"
+                                  style="background-color: darkblue"
+                                  >
+                              Post-Training P/F
+                          </th>
+                          <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                          >
+                      Post-Training1 P/F
+                  </th>
+                                  </tr>
+                                  </thead>
+                                  <tbody *ngFor="let i of dummy">
+                                    <tr>
+                                        <td [width]="600">{{i.module_attended}}</td>
+                                        <td [width]="100">{{i.minpassp}}</td>
+                                        <td [width]="100">{{i.pts}}</td>
+                                        <td [width]="100">{{i.pts1}}</td>
+                                        <td [width]="100">{{i.ptp}}</td>
+                                        <td [width]="100">{{i.ptpt}}</td>
+                                        <td [width]="100">{{i.ptp1}}</td>
+                                        <td [width]="100">{{i.prepf}}</td>
+                                        <td [width]="100">{{i.postpf}}</td>
+                                        <td [width]="100">{{i.post1pf}}</td>
+                                
+                                    </tr>
+                                    </tbody></div>
+                                </table>
+                              </table>
+                            
+                
+                
+                
+                </div></div>
