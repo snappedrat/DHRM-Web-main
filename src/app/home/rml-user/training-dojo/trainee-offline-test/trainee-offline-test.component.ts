@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class TraineeOfflineTestComponent implements OnInit {
 
   constructor() { }
+ 
+
 
   ngOnInit(): void {
   }
