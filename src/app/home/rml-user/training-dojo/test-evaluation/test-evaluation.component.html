@@ -1,28 +1,53 @@
 <div class="titlebox" ><p><b> Trainee Offline Test Page</b></p></div>
 <div class="container-fluid px-2 pt-2" style="font-size: 14px;">
     <div class="mx-5">
+    <form [formGroup] = "form">
                 <div class="header"><p><b>Trainee ID:</b></p></div>
                 
                         <br><br>
                         
 
-                        <div class ="dropdown">Trainee
-                        <select style="font-size:14px" formControlName="module" class="form-control">
+                        <div class ="dropdown">Trainee:
+                        <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
                             
-                            <option value="">Select one</option>            
+                            <option value="" disabled>Select one</option>  
+                            <option *ngFor = "let i of trainee">{{i.fullname}} - {{i.trainee_idno}}</option>          
 
-                        </select></div>
-<br>
-                        <div class ="dropdown1">Exam type
-                            <select style="font-size:14px"  placeholder = "Select Exam Type"formControlName="module" class="form-control">
+                        </select>
+                        </div>
+                        <br>
+                        <div class ="dropdown1">Exam type:
+                            <select  style="font-size:14px"  placeholder = "Select Exam Type" class="form-control" formControlName = "test">
                                 
-                                <option value="">Select Exam Type</option>            
+                                <option value="" disabled>Select Exam Type</option>     
+                                <option value="pre-test">Pre-test</option>            
+                                <option value="post-test">Post-test</option>            
+       
+                            </select>
+                        </div><br>
+                        <div>Module :
+                            <select style="font-size:14px"placeholder = "Select Module" class="form-control" formControlName = "module">
+                                
+                                <option value="" disabled>Select Module</option>  
+                                <option *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</option>          
     
-                            </select></div>
+                            </select>
+                        </div>
+                        <br>
+                        <div>
+                            <p> Exam Paper: </p>
+                            <input type="file" (change) = "offline_upload($event)" [disabled] = "form.invalid">
+                        </div>
                         
                         <br>
-                        <div class = "scorebox">Score<br>
-                            <input type="text" value="" id="score">
+                        <div class = "scorebox">Score:<br>
+                            <input type="number" value="" id="score" formControlName = "score">
                         </div>
-
+                        <br>
+                        <div>
+                            <button class="btn btn-primary" (click)="offline_page()" [disabled] = 'form.invalid' >Upload</button>
+                        </div>
+</form>
+</div>
+</div>
                         

@@ -13,6 +13,7 @@ import {
 
 import { threadId } from 'worker_threads';
 import { truncate } from 'fs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-trainee-test',
@@ -37,6 +38,7 @@ export class QuestionBankComponent implements OnInit {
 
   username = {'username': sessionStorage.getItem('plantcode')}
   sno :any= -1
+  offline_flag: boolean = true;
 
   constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
 
@@ -59,10 +61,20 @@ export class QuestionBankComponent implements OnInit {
   }
 
 
-  submit()
+  submit(event:any)
   {
     this.flag = false
     this.questions[0] = this.form.value
+    var i = event.target.value.split('.')[0]-1
+    if(this.modules[i].category == 'OFFLINE')
+    {
+      this.offline_flag = false
+    }
+    else
+    {
+      this.offline_flag = true
+    }
+
   }
 
 

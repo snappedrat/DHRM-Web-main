@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-test-evaluation',
@@ -7,59 +9,96 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestEvaluationComponent implements OnInit {
 
-  constructor() { }
+  trainee:any
+  modules :any
+  form :any
+
+  trainee_id :any = ''
+
+  constructor(private service : ApiService, private fb : UntypedFormBuilder) {
+    this.form = this.fb.group({
+      trainee: ['',Validators.required],
+      test : ['',Validators.required],
+      module : ['',Validators.required],
+      file :[''],
+      score :[''],
+      pf: [''],
+      percent: [''],
+      priorityval:['']
+
+    })
+   }
 
 
   ngOnInit(): void {
+
+    this.service.getTrainee()
+    .subscribe(
+      {
+        next: (response)=>{console.log('trainee : ', response) , this.trainee = response},
+        error: (error)=> console.log(error)
+      }
+    )
+
+    
+    this.service.getOfflineModules()
+    .subscribe(
+      {
+        next: (response)=>{console.log('trainee : ', response) , this.modules = response},
+        error: (error)=> console.log(error)
+      }
+    )
+
   }
-  dummy :any = [
+
+  offline_page()
+  {
+    if(this.form.controls['score'].value == '')
     {
-      module_attended:'Induction Training',
-      minpassp:"80.00",
-      pts:"5.00",
-      pts1:"10.00",
-      ptp:"0.00",
-      ptpt:"50.00",
-      ptp1:"100.00",
-      prepf:"Fail",
-      postpf:"Pass",
-      post1pf:"pass"
-    },
+      alert("please enter mark for the paper")
+    }
+    else
     {
-      module_attended:'safety',
-      minpassp:"80.00",
-      pts:"5.00",
-      pts1:"10.00",
-      ptp:"0.00",
-      ptpt:"50.00",
-      ptp1:"100.00",
-      prepf:"Fail",
-      postpf:"Pass",
-      post1pf:"pass"
-    },
+      var i = this.form.controls['module'].value.split('.')[0]-1
+      this.form.controls['pf'].setValue(this.modules[i].pass_criteria < this.form.controls['score'].value ? 'p' : 'f')
+      this.form.controls['priorityval'].setValue(this.modules[i].priorityval)
+      this.form.controls['percent'].setValue(((this.form.controls['score'].value) / (this.modules[i].total_marks)) * 100)
+      console.log(this.form.value)
+  
+      this.service.offlineUpload(this.form.value)
+      .subscribe({
+        next: (res) =>{console.log(res)},
+        error: (err) => console.log(err) 
+      })
+    }
+
+  }
+
+  store_trainee(event:any)
+  {
+    this.trainee_id = event.target.value.split('-')[1]
+  }
+
+  offline_upload(event:any)
+  {
+    if(this.form.invalid)
+      alert('select the above requirements')
+    else
     {
-      module_attended:'SS',
-      minpassp:"80.00",
-      pts:"5.00",
-      pts1:"10.00",
-      ptp:"0.00",
-      ptpt:"50.00",
-      ptp1:"100.00",
-      prepf:"Fail",
-      postpf:"Pass",
-      post1pf:"pass"
-    },
-    {
-      module_attended:'Fundamental',
-      minpassp:"80.00",
-      pts:"5.00",
-      pts1:"10.00",
-      ptp:"0.00",
-      ptpt:"50.00",
-      ptp1:"100.00",
-      prepf:"Fail",
-      postpf:"Pass",
-      post1pf:"pass"
-    },
-  ]
+      var exten = event.target.files[0].name.split('.')
+      exten = exten.pop()
+      var formData = new FormData()
+  
+      formData.append("file", event.target.files[0], this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten )
+    
+      this.service.questionbankupload(formData)
+      .subscribe({
+        next:(res) => {console.log(res)
+        this.form.controls['file'].setValue(this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten)},
+        error:(err)=> {console.log(err)}
+      })
+    }
+
+
+  }
 }

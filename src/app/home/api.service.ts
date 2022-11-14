@@ -50,4 +50,19 @@ export class ApiService {
   {
     return this.http.post('http://localhost:3000/questionbankupload',formvalue)
   }
+  getTrainee()
+  {
+    var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
+    return this.http.post('http://localhost:3000/getTrainee', plantcode)
+  }
+  getOfflineModules()
+  {
+      var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
+      return this.http.post('http://localhost:3000/getOfflineModule', plantcode)
+  }
+
+  offlineUpload(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/offlineUpload', formvalue)
+  }
 }
