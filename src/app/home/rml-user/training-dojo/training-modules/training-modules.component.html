@@ -1,10 +1,58 @@
-<div>
-    <br><div class="button">
-    <button mat-fab color="primary"  style="float: right" aria-label="Example icon button with a delete icon">
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Add new Modules</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+        </div>
+        <div class="modal-content container">
+            <br>
+            <form [formGroup] = "form">
+                <div class="row">
+                    <div class="col">
+                        <label>Module Name: </label><br>
+                        <input type = "text" formControlName = "module_name">
+                    </div>
+                    <div class="col">
+                        <label>Total Marks: </label><br>
+                        <input type = "text" formControlName = "total_marks">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <label>Pass Mark: </label><br>
+                        <input type = "text" formControlName = "pass_criteria">
+                    </div>
+                    <div class="col">
+                        <label>Pass percent: </label><br>
+                        <input type = "text" formControlName = "pass_percent">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <label>category: </label><br>
+                        <input type = "text" formControlName = "category">
+                    </div>
+                    <div class="col">
+                        <label>Priority value: </label><br>
+                        <input type = "text" formControlName = "priorityval">
+                    </div>
+                </div><br>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
+<br>
+<div class="button">
+    <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
         <mat-icon>person_add</mat-icon>
     </button></div>
     <div class = "button1">
-    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon">
+    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
         <mat-icon>download</mat-icon>
     </button></div>
 <br><br><br>
@@ -62,14 +110,6 @@
               >
                   Priority value
               </th>
-
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-                      >
-                  Plant Code
-              </th>
               <th
                       class="text-center"
                       style="width: 500px"
@@ -79,21 +119,20 @@
               </th>
             </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Anj</td>
-                    <td>75</td>
-                    <td>100</td>
-                    <td>100</td>
-                    <td>dummy</td>
-                    <td>1234</td>
-                    <td>02344</td>
+            <tbody >
+                <tr *ngFor = "let i of dummy; let a = index">
+                    <td>{{a+1}}</td>
+                    <td>{{i.module_name}}</td>
+                    <td>{{i.total_marks}}</td>
+                    <td>{{i.pass_criteria}}</td>
+                    <td>{{i.pass_percent}}</td>
+                    <td>{{i.category}}</td>
+                    <td>{{i.priorityval}}</td>
                     <td>
-                        <button mat-mini-fab color = 'accent'>
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button">
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
@@ -102,4 +141,5 @@
         </table>
     </table>
 </div>
-</div>
+
+

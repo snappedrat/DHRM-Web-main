@@ -65,4 +65,16 @@ export class ApiService {
   {
     return this.http.post('http://localhost:3000/offlineUpload', formvalue)
   }
+  addmodule(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/addmodule', formvalue)
+  }
+  updatemodule(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/updatemodule', formvalue)
+  }
+  deletemodule(formvalue:any)
+  {
+    return this.http.post('http://localhost:3000/deletemodule', formvalue)
+  }
 }

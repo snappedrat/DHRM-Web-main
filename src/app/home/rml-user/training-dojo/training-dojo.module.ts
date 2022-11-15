@@ -29,6 +29,9 @@ import { TraineeTestComponent } from './trainee-test/trainee-test.component';
 import { TraineeAnswerComponent } from './trainee-answer/trainee-answer.component';
 import { TraineeOfflineTestComponent } from './trainee-offline-test/trainee-offline-test.component';
 
+// import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,7 @@ import { TraineeOfflineTestComponent } from './trainee-offline-test/trainee-offl
     TraineeLoginComponent,
     TraineeTestComponent,
     TraineeAnswerComponent,
-    TraineeOfflineTestComponent
+    TraineeOfflineTestComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +64,9 @@ import { TraineeOfflineTestComponent } from './trainee-offline-test/trainee-offl
     MatIconModule,
     NgxMatTimepickerModule,
     FormsModule,
-    MatToolbarModule
-  ]
+    MatToolbarModule,
+    NgbModule,
+  ],
+
 })
 export class TrainingDojoModule { }

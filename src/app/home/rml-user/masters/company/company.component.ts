@@ -58,6 +58,8 @@ export class CompanyComponent implements OnInit {
   router: Router;
   isExpanded = true;
   status: boolean = false;
+  object:any = {};
+
   clickEvent(){
     this.status = !this.status;
   }
@@ -196,16 +198,14 @@ export class CompanyComponent implements OnInit {
     formData.append('modified_by', this.form2.get('modified_by')!.value);
     formData.append('sno', formData.get('sno'));
 
-    var object = {};
-
-    formData.forEach((value: any, key:any) => object[key] = value);
-    var json = JSON.stringify(object);
+    formData.forEach((value: any, key:any) => this.object[key] = value);
+    var json = JSON.stringify(this.object);
     console.warn(json)
 
-    console.log(object)
+    console.log(this.object)
 
     this.http
-        .post('http://localhost:3000/useredit',object)
+        .post('http://localhost:3000/useredit',this.object)
         .subscribe({
           next: (response) => console.log(response),
           error: (error) => console.log(error),
