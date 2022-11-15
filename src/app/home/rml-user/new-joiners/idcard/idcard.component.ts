@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UntypedFormBuilder } from '@angular/forms';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-idcard',
@@ -16,7 +17,7 @@ export class IdcardComponent implements OnInit {
   formvalues: any
   address:any  = 'hello'
   form:any
-  url: any = 'http://localhost:3000/'
+  url: any = environment.path
   fromdate:any = new Date()
   frommdate:any
   toodate:any
@@ -61,7 +62,7 @@ export class IdcardComponent implements OnInit {
     console.log(this.status)
 
     this.http
-    .post('http://localhost:3000/getdataforid', this.uniqueId)
+    .post(this.url+'/getdataforid', this.uniqueId)
     .subscribe({
       next:(response)=>{console.log(response); this.formvalues = response
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)

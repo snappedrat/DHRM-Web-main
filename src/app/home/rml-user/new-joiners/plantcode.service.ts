@@ -8,6 +8,7 @@ import { LanguageComponent } from './forms/language/language.component';
 import { OtherComponent } from './forms/other/other.component';
 import { EmergencyComponent } from './forms/emergency/emergency.component';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class PlantcodeService {
   education:any = []
   family:any = []
   career:any = []
-  url = 'http://localhost:3000'
+  url = environment.path
   uniqueId: any
   filenames: any;
   ishr:any = []
@@ -60,7 +61,7 @@ submitbank(){
 submitbasic(){
   console.log(this.basic)
   this.http
-  .post('http://localhost:3000/basicforms', this.basic)
+  .post(this.url+'/basicforms', this.basic)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -70,7 +71,7 @@ submitbasic(){
 submitedu(){
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/edu', this.edu)
+  .post(this.url+'/edu', this.edu)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -82,7 +83,7 @@ submitemer(){
   
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/emergency', this.emer)
+  .post(this.url+'/emergency', this.emer)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -92,7 +93,7 @@ submitemer(){
 submitfamily(){
   console.log(this.edu)
   this.http
-  .post('http://localhost:3000/family', this.fam)
+  .post(this.url+'/family', this.fam)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -102,7 +103,7 @@ submitfamily(){
 submitother(){
   console.log(this.other)
   this.http
-  .post('http://localhost:3000/others', this.other)
+  .post(this.url+'/others', this.other)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -112,7 +113,7 @@ submitother(){
 submitprev(){
   console.log(this.prev)
   this.http
-  .post('http://localhost:3000/prev', this.prev)
+  .post(this.url+'/prev', this.prev)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -121,7 +122,7 @@ submitprev(){
 
 sumbitlang(){
         this.http.
-    post('http://localhost:3000/lang', this.lang)
+    post(this.url+'/lang', this.lang)
     .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -130,28 +131,28 @@ sumbitlang(){
 
 getdatabasic(uniqueId:any){
   return this.http.
-post('http://localhost:3000/getdatabasic',uniqueId)
+post(this.url+'/getdatabasic',uniqueId)
 
 }
 
 getdataqualifn(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   return this.http.
-post('http://localhost:3000/getdataqualfn',uniqueId)
+post(this.url+'/getdataqualfn',uniqueId)
 
 }
 
 getdatafamily(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   return this.http.
-post('http://localhost:3000/getdatafamily',uniqueId)
+post(this.url+'/getdatafamily',uniqueId)
 
 }
 
 getdatacareer(uniqueId:any){
   // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   return this.http.
-post('http://localhost:3000/getdatacareer',uniqueId)
+post(this.url+'/getdatacareer',uniqueId)
 
 }
 
@@ -169,7 +170,7 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
   formData.append("fileno",fileno)
 
     this.http.
-    post('http://localhost:3000/image', formData).subscribe({
+    post(this.url+'/image', formData).subscribe({
       next: (res)=> {console.log(res);},
       error: (err)=>console.log(err)
     })
@@ -179,7 +180,7 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
 submitted(uniqueId: any){
   console.log("----------------------------", uniqueId)
   this.http
-  .post('http://localhost:3000/submitted',uniqueId)
+  .post(this.url+'/submitted',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -188,7 +189,7 @@ submitted(uniqueId: any){
 
 pending(uniqueId: any){
   this.http
-  .post('http://localhost:3000/pending',uniqueId)
+  .post(this.url+'/pending',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -198,7 +199,7 @@ pending(uniqueId: any){
 approved(uniqueId:any){
 
   this.http
-  .post('http://localhost:3000/approved', uniqueId)
+  .post(this.url+'/approved', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -209,7 +210,7 @@ rejected(uniqueId:any){
   console.log(this.uniqueId);
 
   this.http
-  .post('http://localhost:3000/rejected', uniqueId)
+  .post(this.url+'/rejected', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -219,33 +220,33 @@ rejected(uniqueId:any){
 getHr(uniqueid: any)
 {
 
-  return this.http.post('http://localhost:3000/gethrappr',uniqueid)
+  return this.http.post(this.url+'/gethrappr',uniqueid)
 
 }
 
 filter(formvalue:any)
 {
   return this.http
-  .post('http://localhost:3000/filter', formvalue)
+  .post(this.url+'/filter', formvalue)
 
 }
 
 searchfilter(form:any)
 {
   return this.http
-  .post('http://localhost:3000/searchfilter', form)
+  .post(this.url+'/searchfilter', form)
 
 }
 getbanknames()
 {
     return this.http
-    .get('http://localhost:3000/getbanknames')
+    .get(this.url+'/getbanknames')
 }
 
 getpincode(pincode:any)
 {
     return  this.http
-    .post('http://localhost:3000/getpincode',pincode)
+    .post(this.url+'/getpincode',pincode)
 }
 
 }

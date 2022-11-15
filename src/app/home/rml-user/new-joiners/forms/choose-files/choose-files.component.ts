@@ -11,7 +11,7 @@ import {
     transition,
   } from '@angular/animations';
   import { Timestamp } from 'rxjs';
-
+  import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-choose-files',
   templateUrl: './choose-files.component.html',
@@ -30,7 +30,7 @@ export class ChooseFilesComponent implements OnInit {
 	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
 						'company': this.active.snapshot.paramMap.get('company')}
 
-	url: any = 'http://localhost:3000/';
+	url: any = environment.path
 
 	urlforResume: any 
 	urlforMark: any

@@ -6,6 +6,7 @@ import { PlantcodeService } from '../plantcode.service';
 import { Router, RouterLinkActive } from '@angular/router';
 import { format } from 'path';
 import { threadId } from 'worker_threads';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-trainee-application',
@@ -21,6 +22,8 @@ export class TraineeApplicationComponent implements OnInit{
   companyname:any = ''
   plantname:any
   isHrappr: any;
+  url = environment.path
+
   setCookie(){
     this.cookie.set("mobilenum", this.mobilenum)
 }
@@ -70,7 +73,7 @@ getplantcode(event:any){
     console.log(event.target.value);
     this.bankForms.controls['plant'].setValue('')
     var company = {'company_name': event.target.value}
-    this.http.post('http://localhost:3000/plantcodelist',company)
+    this.http.post(this.url+'/plantcodelist',company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
       error: (error) => console.log(error),
@@ -79,7 +82,7 @@ getplantcode(event:any){
 
 getcompanycode(){
 
-  this.http.post('http://localhost:3000/companycodelist', '')
+  this.http.post(this.url+'/companycodelist', '')
   .subscribe({
     next: (response) =>{ console.log(response); this.companycode = response },
     error: (error) => console.log(error),
@@ -97,7 +100,7 @@ sendFormData()
     console.log("kekuthulaaaaaaaaaaa")
     this.companyname = this.bankForms.controls['company'].value
   
-    this.http.post('http://localhost:3000/traineeformdata', this.bankForms.value)
+    this.http.post(this.url+'/traineeformdata', this.bankForms.value)
     .subscribe({
       next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
       if(this.errmsg.status == 'newform')

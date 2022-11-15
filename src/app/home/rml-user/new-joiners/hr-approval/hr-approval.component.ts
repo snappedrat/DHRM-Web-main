@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class HrApprovalComponent implements OnInit {
   form: any
   filterinfo: any
   uniqueId :any = {'mobile':''}
+  url = environment.path
   
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({
@@ -38,7 +40,7 @@ export class HrApprovalComponent implements OnInit {
   {
     console.log(this.form.value)
     this.http
-    .post('http://localhost:3000/filterforapproval', this.form.value)
+    .post(this.url+'/filterforapproval', this.form.value)
     .subscribe({
       next: (response) =>{ console.log(response); this.filterinfo = response},
       error: (error) => console.log(error),

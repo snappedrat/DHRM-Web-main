@@ -70,23 +70,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['../rml']);
     }
 
-    //     this.http
-    //         .post('http://localhost:3000/logins',this.exform.value)
-    //         .subscribe({
-
-    //             next: (response) =>{
-    //                 console.log("Came in");
-    //                 console.log((response[0].message));
-    //                 if(response[0].message == "Success") {
-    //                     this.goPlaces();
-    //                 } else if (response[0].message == "User") {
-    //                     alert("Username does not exist");
-    //                 } else {
-    //                     alert("Please Enter the correct Password");
-    //                 }
-    //             },
-    //              error: (error) => console.log(error),
-    //         });
     // }
 
 

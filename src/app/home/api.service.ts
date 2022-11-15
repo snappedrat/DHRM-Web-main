@@ -2,79 +2,83 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 // import { ProductModel } from './models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
+
+url:any = environment.path
+
   constructor(private http: HttpClient) {}
 
   login(User_Name: string, Password: string) {
-    return this.http.post('http://localhost:3000/logins', { User_Name, Password });
+    return this.http.post(this.url+'/logins', { User_Name, Password });
   }
 
   traineeLogin(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/traineelogin',formvalue)
+    return this.http.post(this.url+'/traineelogin',formvalue)
   }
   getModules(username:any)
   {
-    return this.http.post('http://localhost:3000/getModules', username)
+    return this.http.post(this.url+'/getModules', username)
   }
   getQuestions(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/getQuestions',formvalue)
+    return this.http.post(this.url+'/getQuestions',formvalue)
   }
   getTest(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/getTest',formvalue)
+    return this.http.post(this.url+'/getTest',formvalue)
   }
   Qualified(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/Qualified',formvalue)
+    return this.http.post(this.url+'/Qualified',formvalue)
   }
   pretest(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/pretest',formvalue)
+    return this.http.post(this.url+'/pretest',formvalue)
   }
   posttest(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/posttest',formvalue)
+    return this.http.post(this.url+'/posttest',formvalue)
   }
   questionbank(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/questionbank',formvalue)
+    return this.http.post(this.url+'/questionbank',formvalue)
   }
   questionbankupload(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/questionbankupload',formvalue)
+    return this.http.post(this.url+'/questionbankupload',formvalue)
   }
   getTrainee()
   {
     var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
-    return this.http.post('http://localhost:3000/getTrainee', plantcode)
+    return this.http.post(this.url+'/getTrainee', plantcode)
   }
   getOfflineModules()
   {
       var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
-      return this.http.post('http://localhost:3000/getOfflineModule', plantcode)
+      return this.http.post(this.url+'/getOfflineModule', plantcode)
   }
 
   offlineUpload(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/offlineUpload', formvalue)
+    return this.http.post(this.url+'/offlineUpload', formvalue)
   }
   addmodule(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/addmodule', formvalue)
+    return this.http.post(this.url+'/addmodule', formvalue)
   }
   updatemodule(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/updatemodule', formvalue)
+    return this.http.post(this.url+'/updatemodule', formvalue)
   }
   deletemodule(formvalue:any)
   {
-    return this.http.post('http://localhost:3000/deletemodule', formvalue)
+    return this.http.post(this.url+'/deletemodule', formvalue)
   }
 }

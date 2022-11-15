@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
+import { environment } from 'src/environments/environment.prod';
 
 import {
     trigger,
@@ -58,6 +59,7 @@ export class BasicComponent implements OnInit{
     pincodes:any
     pincode_ng:any
     apln_status: any;
+    url = environment.path
 
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
@@ -163,7 +165,7 @@ export class BasicComponent implements OnInit{
 
     getaadhar(){
         this.http
-        .get('http://localhost:3000/getaadhar')
+        .get(this.url+'/getaadhar')
         .subscribe({
           next: (response) =>{ console.log(response); this.aadhar = response},
           error: (error) => console.log(error),

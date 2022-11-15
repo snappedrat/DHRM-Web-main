@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
 
-  path: 'localhost:3000'
+  path: 'http://localhost:3000'
 };

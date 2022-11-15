@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../plantcode.service';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class HrViewDataComponent implements OnInit {
   career: any
   education: any
   family: any
-  url:any = "http://localhost:3000/"
+  url:any = environment.path
   flag: any = false
 
 	urlforResume: any 
@@ -125,7 +126,7 @@ getdatabasic(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post('http://localhost:3000/getdatabasic',this.uniqueId)
+post(this.url+'/getdatabasic',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("basic",response); this.basic = response} ,
   error: (error) => console.log(error),
@@ -137,7 +138,7 @@ getdataqualifn(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post('http://localhost:3000/getdataqualfn',this.uniqueId)
+post(this.url+'/getdataqualfn',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("qual",response); this.education = response} ,
   error: (error) => console.log(error),
@@ -150,7 +151,7 @@ getdatafamily(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post('http://localhost:3000/getdatafamily',this.uniqueId)
+post(this.url+'/getdatafamily',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("fam",response); this.family = response} ,
   error: (error) => console.log(error),
@@ -162,7 +163,7 @@ getdatacareer(){
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
   this.http.
-post('http://localhost:3000/getdatacareer',this.uniqueId)
+post(this.url+'/getdatacareer',this.uniqueId)
 .subscribe({
   next: (response) => {console.log("career",response); this.career = response} ,
   error: (error) => console.log(error),

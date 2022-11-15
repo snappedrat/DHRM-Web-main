@@ -9,6 +9,7 @@ import * as XLSX from "xlsx";
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 
 // import { FormControl, FormGroup, Validators } from "@angular/forms";
 
@@ -22,6 +23,8 @@ export class TrainingModulesComponent implements OnInit {
   closeResult: string;
 
   form:any
+
+  sample : any = environment.path
 
   dummy: any = [
     {
