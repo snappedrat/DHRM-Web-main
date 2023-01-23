@@ -13,7 +13,7 @@ li{
 }
 
 .cal-day-weekend {
-    background-color: rgb(112, 103, 103);
+    background-color: rgb(155, 149, 149);
   }
 
   .cal-month-view .bg-dg {
@@ -21,28 +21,28 @@ li{
   }
 
   .cal-month-view .bg-green {
-    background-color: greenyellow !important;
+    background-color: rgb(170, 214, 102) !important;
   }
 
   .cal-month-view .bg-red {
-    background-color: rgb(250, 154, 154) !important;
+    background-color: rgb(218, 45, 45) !important;
   }
 
   .cal-month-view .bg-purple {
-    background-color: purple !important;
+    background-color: rgb(100, 65, 100) !important;
   }
 
   
   .cal-month-view .bg-magenta {
-    background-color: magenta !important;
+    background-color: rgb(241, 118, 241) !important;
   }
   
   .cal-month-view .bg-blue {
-    background-color: blue !important;
+    background-color: rgb(111, 111, 230) !important;
   }
   
   .cal-month-view .bg-orange {
-    background-color: orange !important;
+    background-color: rgb(228, 184, 103) !important;
   }
 .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
     color: black !important; 
