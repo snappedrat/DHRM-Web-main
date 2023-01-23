@@ -35,6 +35,6 @@
          </table>
     </div>
     <div>
-        <p><b>This module is offline module. You can't upload questions for this module.</b> </p>
+        <p *ngIf = '!offline_flag' ><b>This module is offline module. You can't upload questions for this module.</b> </p>
     </div>
 </div>

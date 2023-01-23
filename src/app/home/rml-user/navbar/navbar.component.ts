@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit{
   ishrappr :any
   form: FormGroup = new FormGroup({});
   ishr: any 
+  istrainer:any
+  istrainee:any
   a : any
   username :any = {
     "username": sessionStorage.getItem('user_name')
@@ -61,6 +63,8 @@ getHr()
       console.log("hr details",this.ishrappr)
       sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
+      sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
+      sessionStorage.setItem('istrainee', this.ishrappr[0]?.Is_Trainee)
       sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
       sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
       sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
@@ -76,6 +80,8 @@ getitems()
 {
   this.ishr = sessionStorage.getItem('ishr')
   this.ishrappr = sessionStorage.getItem('ishrappr')
+  this.istrainer = sessionStorage.getItem('istrainer')
+  this.istrainee = sessionStorage.getItem('istrainee')
   this.showid = sessionStorage.getItem('user_name')
   this.showname = sessionStorage.getItem('emp_name')
   this.showdept = sessionStorage.getItem('dept_name')

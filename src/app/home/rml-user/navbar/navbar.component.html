@@ -65,6 +65,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
             </div>
+            <div *ngIf = "istrainer == 'true' ">
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -81,11 +82,13 @@
                         <mat-icon class="icon-pad">how_to_vote</mat-icon>Test Evaluation</a>
                     <a mat-list-item routerLink="/rml/training_dojo/test-result-summary" style="color: white">
                         <mat-icon class="icon-pad">cloud_done</mat-icon>Test Result Summary</a>
+                    <div *ngIf = "istrainee == 'true' " >
                     <a mat-list-item routerLink="/rml/training_dojo/trainee-score-card" style="color: white">
                         <mat-icon class="icon-pad">score</mat-icon>Trainee Score Card</a>
-                        
+                    </div>
                 </mat-nav-list>
             </mat-expansion-panel>
+        </div>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">

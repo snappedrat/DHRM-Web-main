@@ -153,7 +153,7 @@ submit()
   this.answers[0].curr_total = this.mark
   this.answers[0].pf = this.modules[this.ind-1].pass_criteria <= this.mark ? 'p' : 'f'
   this.answers[0].percent = ((this.mark) / (this.modules[this.ind-1].total_marks)) * 100
-
+  this.answers[0].min_percent = this.modules[this.ind-1].pass_percent
   console.log("all asnwers", this.answers)
   console.log(this.count.size == this.questions.length)
 

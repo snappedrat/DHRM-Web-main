@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route } from '@angular/router';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-trainee-score-card',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TraineeScoreCardComponent implements OnInit {
 
-  constructor() { }
+  idno :any
+  data:any 
+  constructor(private active: ActivatedRoute, private service : ApiService) { }
 
   ngOnInit(): void {
+
+    this.idno = this.active.snapshot.paramMap.get('trainee_idno')
+
+    this.service.traineeScorecard({'trainee_idno': this.idno})
+    .subscribe({
+      next: (response)=>{console.log('score', response); this.data = response},
+      error: (err)=>{console.log(err)}
+    })
+
+
   }
   dummy :any = [
     {

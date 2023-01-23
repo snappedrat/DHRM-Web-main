@@ -81,7 +81,7 @@ export class BasicComponent implements OnInit{
             aadhar1:['', Validators.required],
             aadhar2:['', Validators.required],
             aadhar3:['', Validators.required],
-            aadhar4:['', Validators.required],
+
             nation:['',Validators.required],
             city:[''],
             st:[''],
@@ -135,7 +135,6 @@ export class BasicComponent implements OnInit{
         this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
         this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
         this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
-        this.form.controls['aadhar4'].setValue(this.aadharsplitted[3])
 
         this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
         this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
@@ -179,7 +178,7 @@ export class BasicComponent implements OnInit{
             if(event.length == 4 )
             {
                 var mobile = this.active.snapshot.paramMap.get('mobile_no1')
-                var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value+this.form.controls['aadhar4']?.value
+                var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value
                 for(var i = 0 ; i< this.aadhar.length;i++)
                 {
                     if(this.aadhar[i].aadhar_no == total && mobile == this.aadhar[i].mobile_no1)
@@ -189,8 +188,8 @@ export class BasicComponent implements OnInit{
                     else if(this.aadhar[i].aadhar_no == total && mobile != this.aadhar[i].mobile_no1)
                     {
                         this.aadhar_invalid = false
-                        this.form.controls['aadhar4'].setErrors({'incorrect':true})
-                        console.log("aadhar check",this.form.controls['aadhar4'].valid)
+                        this.form.controls['aadhar3'].setErrors({'incorrect':true})
+                        console.log("aadhar check",this.form.controls['aadhar3'].valid)
                         break
                     }
                     else

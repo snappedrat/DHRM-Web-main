@@ -1,36 +1,18 @@
-<div class="container pt-3 px-3"  >
-<div class="row">
-<div class="col-sm-5">
-<mat-form-field appearance="fill">
-  <mat-label>Enter a date range</mat-label>
-  <mat-date-range-input [rangePicker]="picker">
-    <input  [(ngModel)] = "data.start" matStartDate placeholder="Start date">
-  </mat-date-range-input>
-  <mat-hint >DD/MM/YYYY</mat-hint>
-
-  <mat-date-range-input [rangePicker]="picker">
-    <input  [(ngModel)] = "data.end" matEndDate placeholder="End date">
-  </mat-date-range-input>
-  <mat-hint >DD/MM/YYYY</mat-hint>
-
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-date-range-picker #picker></mat-date-range-picker>
-</mat-form-field>
+<div class="px-3 pt-3">
+<div class="row row-cols-6">
+<div class="col">
+    <input type="date" style="width:200px;" class="form-control" [(ngModel)] = "date.start">
 </div>
-<div class="col-sm-6">
-<div class="button">
-<button mat-raised-button (click)="save()" class="btn-success" >Search</button>
-</div></div>
+<div class="col">
+    <input type="date" style="width: 200px;" class="form-control" [(ngModel)] = "date.end">
+</div>
+<div class="col">
+<button (click)="save()" class="btn-success" >Search</button>
 &nbsp;
-<div class="button1">
-<button mat-raised-button class="btn-warning" (click)="refresh()">Reload</button>
+<button class="btn-warning" (click)="refresh()">Reload</button>
 </div>
 </div>
 </div>
-
-
-
-
 
 <br><br>
 <div class = "table-wrapper">
@@ -83,13 +65,6 @@
           >
               post-training score
           </th>
-          <th
-                  class="text-center"
-                  style="width: 500px"
-                  style="background-color: darkblue"
-          >
-              post-training score 1
-          </th>
 
           <th
                   class="text-center"
@@ -100,16 +75,15 @@
           </th>
           </tr>
           </thead>
-          <tbody *ngFor="let i of dummy">
+          <tbody *ngFor="let i of data; let a = index">
             <tr>
-                <td>{{1}}</td>
-                <td>{{2}}</td>
-                <td>{{3}}</td>
-                <td>{{4}}</td>
-                <td>{{5}}</td>
-                <td>{{6}}</td>
-                <td>{{7}}</td>
-                <td>{{8}}</td>
+                <td>{{a+1}}</td>
+                <td><a [routerLink]="['/rml/training_dojo/trainee-score-card', i.trainee_idno]">{{i.fullname}}</a></td>
+                <td>{{i.trainee_idno}}</td>
+                <td>{{i.submission_date.split('T')[0]}}</td>
+                <td>{{i.sum1}}</td>
+                <td>{{i.sum2}}</td>
+                <td>P</td>
             </tr>
             </tbody>
         </table>

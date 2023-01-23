@@ -53,7 +53,7 @@ export class TestEvaluationComponent implements OnInit {
 
   offline_page()
   {
-    if(this.form.controls['score'].value == '')
+    if(this.form.controls['score'].value == '' || this.form.controls['score'].value == null)
     {
       alert("please enter mark for the paper")
     }

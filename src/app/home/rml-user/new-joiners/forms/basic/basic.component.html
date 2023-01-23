@@ -123,20 +123,9 @@
                        [(ngModel)] = 'aadhar3'
                        (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
-                       type="text"
-                       (keyup)="move(txt3,txt4)" >
-            </div>
-            <div class = "col-sm-2">
-                <input #txt4
-                formControlName = "aadhar4"
-                [readonly] = "flag_to_readonly"
-                       maxlength=4
-                       style="width:100px"
-                       [(ngModel)] = 'aadhar4'
-                       (ngModelChange)="sendData()"
-                       (ngModelChange) = "check_aadhar($event)"
                        type="text" >
             </div>
+
         </div>
         <div *ngIf="!aadhar_invalid"  class = "alert alert-danger">Aadhar Already Exists</div>
 <br>

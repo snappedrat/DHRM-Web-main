@@ -108,7 +108,18 @@ export class TrainingModulesComponent implements OnInit {
 
   editSave()
   {
-    this.dummy[this.form.controls['sno'].value] = this.form.value
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
     this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
@@ -131,6 +142,11 @@ exportexcel(): void
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   XLSX.writeFile(wb, 'trg_modules.xlsx');
+}
+
+reset()
+{
+  this.form.reset()
 }
 
 }

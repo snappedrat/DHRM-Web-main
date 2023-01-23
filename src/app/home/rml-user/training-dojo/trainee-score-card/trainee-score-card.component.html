@@ -1,6 +1,6 @@
 <div class="titlebox" ><p><b> Test Results for Trainee</b></p></div>
 <div class="container-fluid px-2 pt-2" style="font-size: 14px;">
-                <div class="header"><p><b>Trainee ID:</b></p></div>
+                <div class="header"><p><b>Trainee ID: {{idno}}</b></p></div>
                 <div style='overflow-x:auto'>
                         <br><br>
                         <div class = "table-wrapper">
@@ -26,19 +26,19 @@
                                   >
                                       Minimum pass percent
                                   </th>
+                                    <th
+                                          class="text-center"
+                                          style="width: 800px"
+                                          style="background-color: darkblue"
+                                  >
+                                      Pre-Training Score
+                                  </th>
                                   <th
                                           class="text-center"
                                           style="width: 800px"
                                           style="background-color: darkblue"
                                   >
                                       Post-Training Score
-                                  </th>
-                                  <th
-                                          class="text-center"
-                                          style="width: 500px"
-                                          style="background-color: darkblue"
-                                  >
-                                      Post-Training Score1
                                   </th>
                                   <th
                                           class="text-center"
@@ -58,14 +58,6 @@
                                           class="text-center"
                                           style="width: 500px"
                                           style="background-color: darkblue"
-                                  >
-                                      Post-training percent1
-                                  </th>
-                        
-                                  <th
-                                          class="text-center"
-                                          style="width: 500px"
-                                          style="background-color: darkblue"
                                           >
                                       Pre-Training P/F
                                   </th>
@@ -76,27 +68,19 @@
                                   >
                               Post-Training P/F
                           </th>
-                          <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                          >
-                      Post-Training1 P/F
-                  </th>
                                   </tr>
                                   </thead>
-                                  <tbody *ngFor="let i of dummy">
+                                  <tbody *ngFor="let i of data">
                                     <tr>
-                                        <td [width]="600">{{i.module_attended}}</td>
-                                        <td [width]="100">{{i.minpassp}}</td>
-                                        <td [width]="100">{{i.pts}}</td>
-                                        <td [width]="100">{{i.pts1}}</td>
-                                        <td [width]="100">{{i.ptp}}</td>
-                                        <td [width]="100">{{i.ptpt}}</td>
-                                        <td [width]="100">{{i.ptp1}}</td>
-                                        <td [width]="100">{{i.prepf}}</td>
-                                        <td [width]="100">{{i.postpf}}</td>
-                                        <td [width]="100">{{i.post1pf}}</td>
+                                        <td [width]="600"><a [routerLink]= "['/rml/training_dojo/trainee-answer',idno, i.module_name]" >{{i.module_name}}</a></td>
+                                        <td [width]="100">{{i.pass_percent}}</td>
+                                        <td [width]="100">{{i.pretraining_score}}</td>
+                                        <td [width]="100">{{i.posttraining_score}}</td>
+                                        <td [width]="100">{{i.pretraining_percent}}</td>
+                                        <td [width]="100">{{i.posttraining_percent}}</td>
+                                        <td [width]="100">{{i.pretraining_pf}}</td>
+                                        <td [width]="100">{{i.pretraining_pf}}</td>
+
                                 
                                     </tr>
                                     </tbody></div>

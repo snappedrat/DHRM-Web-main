@@ -2,7 +2,7 @@
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title">Add new Modules</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
         <div class="modal-content container">
             <br>
@@ -10,31 +10,34 @@
                 <div class="row">
                     <div class="col">
                         <label>Module Name: </label><br>
-                        <input type = "text" formControlName = "module_name">
+                        <input class="form-control"  type = "text" formControlName = "module_name">
                     </div>
                     <div class="col">
                         <label>Total Marks: </label><br>
-                        <input type = "text" formControlName = "total_marks">
+                        <input class="form-control"  type = "number" formControlName = "total_marks">
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="col">
                         <label>Pass Mark: </label><br>
-                        <input type = "text" formControlName = "pass_criteria">
+                        <input class="form-control"  type = "number" formControlName = "pass_criteria">
                     </div>
                     <div class="col">
                         <label>Pass percent: </label><br>
-                        <input type = "text" formControlName = "pass_percent">
+                        <input class="form-control"  type = "number" formControlName = "pass_percent">
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="col">
                         <label>category: </label><br>
-                        <input type = "text" formControlName = "category">
+                        <select class="form-control" formControlName = "category">
+                            <option value="ONLINE">ONLINE</option>
+                            <option value="OFFLINE">OFFLINE</option>
+                        </select>
                     </div>
                     <div class="col">
                         <label>Priority value: </label><br>
-                        <input type = "text" formControlName = "priorityval">
+                        <input class="form-control"  type = "number" formControlName = "priorityval">
                     </div>
                 </div><br>
 
@@ -43,11 +46,10 @@
         <div class="modal-footer">
             <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
             <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
 <br>
-<p>{{sample}}</p>
 <div class="button">
     <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
         <mat-icon>person_add</mat-icon>

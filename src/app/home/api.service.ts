@@ -81,4 +81,16 @@ url:any = environment.path
   {
     return this.http.post(this.url+'/deletemodule', formvalue)
   }
+  testSummary(formvalue:any)
+  {
+    return this.http.post(this.url+'/testSummary', formvalue)
+  }
+  traineeScorecard(formvalue:any)
+  {
+    return this.http.post(this.url+'/traineeScorecard', formvalue)
+  }
+  traineeAnswers(formvalue:any)
+  {
+    return this.http.post(this.url+'/traineeAnswers', formvalue)
+  }
 }

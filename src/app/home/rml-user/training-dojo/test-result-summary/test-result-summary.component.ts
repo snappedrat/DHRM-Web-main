@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-test-result-summary',
@@ -8,59 +9,36 @@ import { DateAdapter } from '@angular/material/core';
 })
 export class TestResultSummaryComponent implements OnInit { 
 
-data :any = {
-  "start": '',
-  "end": ''
+date :any = {
+  "start": '01-01-2020',
+  "end": '01-01-2023',
+  "plantcode": sessionStorage.getItem('plantcode') 
 }
 
-dummy :any = [
-  {
-    '1':1,
-    '2':2,
-    '3':3,
-    '4':4,
-    '5':5,
-    '6':6,
-    '7':7,
-    '8':8
-  },
-  {
-
-    '1':1,
-    '2':2,
-    '3':3,
-    '4':4,
-    '5':5,
-    '6':6,
-    '7':7,
-    '8':8
-  },
-  {
-
-    '1':1,
-    '2':2,
-    '3':3,
-    '4':4,
-    '5':5,
-    '6':6,
-    '7':7,
-    '8':8
-  }
-]
+data: any
 
 form:any
 
-  constructor(private dateAdapter: DateAdapter<Date>) {
+  constructor(private dateAdapter: DateAdapter<Date>, private service : ApiService) {
     this.dateAdapter.setLocale('en-GB');
    }
 
   ngOnInit(): void {
+    this.service.testSummary(this.date).
+    subscribe({
+      next: (response)=>{console.log(response); this.data = response } 
+    })
   }
+  
   refresh(){
     window.location.reload();
   }
   save()
   {
-    console.log(this.data)
+    this.service.testSummary(this.date).
+    subscribe({
+      next: (response)=>{console.log(response); this.data = response } 
+    })
   }
+
 }

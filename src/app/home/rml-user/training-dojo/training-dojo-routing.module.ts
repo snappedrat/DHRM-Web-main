@@ -22,7 +22,7 @@ const routes: Routes = [
     component: TestResultSummaryComponent
   },
   {
-    path: 'trainee-score-card',
+    path: 'trainee-score-card/:trainee_idno',
     component: TraineeScoreCardComponent
   },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
     component: TrainingModulesComponent
   },
   {
-    path: 'trainee-answer',
+    path: 'trainee-answer/:trainee_idno/:module_name',
     component: TraineeAnswerComponent
   },
   
