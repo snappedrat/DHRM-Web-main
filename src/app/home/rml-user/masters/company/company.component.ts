@@ -46,7 +46,7 @@ export class CompanyComponent implements OnInit {
       'modified_by': '12/1/2022', 
     }
   ]
-  editing_flag: any;
+  editing_flag: any ;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
@@ -132,7 +132,7 @@ export class CompanyComponent implements OnInit {
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.companydel(this.dummy[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
