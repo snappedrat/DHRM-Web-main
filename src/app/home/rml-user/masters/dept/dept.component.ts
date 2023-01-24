@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef  } from '@angular/core';
+import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef,ViewEncapsulation  } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable,Subject } from 'rxjs';
@@ -11,197 +11,156 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSidenav } from '@angular/material/sidenav';
 import {ServiceService} from "../service.service";
 import{User} from "../user/user";
+// import { MatSidenav } from "@angular/material/sidenav";
+// import { MatTableModule } from "@angular/material/table";
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 
 const material = [
   MatSidenav,
   MatTableModule
 ];
 
-export interface department_roster{
-  PlantCode: string;
-  DepartmentName: string;
-  SAPCode: string;
-  ActiveStatus: string;
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-const DUMMY_DATA: department_roster[] = [
-  {PlantCode: 'PL1', DepartmentName: 'Dept1', SAPCode: '1212', ActiveStatus: 'Yes', CreatedOn: '01/01/01', CreatedBy: 'Mang1', ModifiedOn: '01/01/01', ModifiedBy: 'Mang2'},
-  {PlantCode: 'PL1', DepartmentName: 'Dept1', SAPCode: '1212', ActiveStatus: 'Yes', CreatedOn: '01/01/01', CreatedBy: 'Mang1', ModifiedOn: '01/01/01', ModifiedBy: 'Mang2'},
-  {PlantCode: 'PL1', DepartmentName: 'Dept1', SAPCode: '1212', ActiveStatus: 'Yes', CreatedOn: '01/01/01', CreatedBy: 'Mang1', ModifiedOn: '01/01/01', ModifiedBy: 'Mang2'},
-];
+
 
 @Component({
   selector: 'app-dept',
   templateUrl: './dept.component.html',
-  styleUrls: ['./dept.component.css']
+  styleUrls: ['./dept.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DeptComponent implements OnInit {
-  @ViewChild('sidenav',{static: false}) sidenav!: MatSidenav;
-  form: UntypedFormGroup;
-  form1:UntypedFormGroup;
-  displayedColumns: string[] = ['PlantCode', 'DepartmentName', 'SAPCode', 'ActiveStatus', 'CreatedOn', 'CreatedBy', 'ModifiedOn', 'ModifiedBy'];
-  dataSource = DUMMY_DATA;
-  showAdd!:boolean;
-  showEdit!:boolean;
-  users!: User[];
-  userForm!: boolean;
-  isNewUser!: boolean;
-  newUser: any = {};
-  editUserForm!: boolean;
-  editedUser: any = {};
-  master:any;
-  sno:any;
-  router!:Router;
-  plant_code: any=['1000','1001','2000','2001','3000','3001']
-  isExpanded = true;
-  status: boolean = false;
-  clickEvent(){
-    this.status = !this.status;
-  }
-  constructor(private ServiceService: ServiceService,public fb: UntypedFormBuilder, private http: HttpClient) {
+  closeResult: string;
+
+  form:any
+
+  sample : any = environment.path
+
+  dummy: any = [
+    {
+      'plant_code':1220,
+      'department_name' : 'ABCD',
+      'sap_code': 800,
+      'active_status': 1,
+      'created_on' :'12/2/2022',
+      'created_by': '12/1/2022',
+      'modified_on': '12/1/2022',
+      'modified_by': '12/1/2022', 
+    }
+  ]
+  editing_flag: any;
+
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      dept_name:      new UntypedFormControl(' '),
-      plant_code:     new UntypedFormControl(' '),
-      sap_code:       new UntypedFormControl(' '),
-      active_status:  new UntypedFormControl(' '),
-      creted_by: new UntypedFormControl(' '),
-    });
+      plant_code :[''],
+      department_name : [''],
+      sap_code: [''],
+      active_status: [''],
+      created_on: [''],
+      created_by: [''],
+      modified_on: [''],
+      modified_by: [''],
+      plantcode: [sessionStorage.getItem('plantcode')]
+     
+    })
+   }
 
-    this.form1 = this.fb.group({
-      sno:         new UntypedFormControl(' '),
-      plant_code:  new UntypedFormControl(' '),
-      sap_code:    new UntypedFormControl(' '),
-      active_status:      new UntypedFormControl(' '),
-      modified_on: new UntypedFormControl(' '),
-    });
+  ngOnInit(): void {
+    var username = {'username': sessionStorage.getItem('plantcode')}
+    this.service.getModules(username).
+    subscribe({
+      next: (response)=>{this.dummy = response}
+    })
   }
 
-  title = 'EXAMPLE MASTER';
-  fileName='DEPARTMENT MASTERS.xlsx';
-  loginUser()
+  open(content:any)
   {
-    console.log(this.form.get('active_status')!.value);
-    var formData: any = new FormData();
-    formData.append('dept_name', this.form.get('dept_name')!.value);
-    formData.append('plant_code', this.form.get('plant_code')!.value);
-    formData.append('sap_code', this.form.get('sap_code')!.value);
-    formData.append('active_status', this.form.get('active_status')!.value);
-    formData.append('creted_by', this.form.get('creted_by')!.value);
-    this.http
-      .post('http://localhost:3000/dept',this.form.value)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error),
-      });
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  exportexcel(): void
+  save()
   {
-    let element = document.getElementById('table');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, this.fileName);
-  }
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
 
-  ngOnInit() {
-    this.users = this.getUsers();
   }
-
-  getUsers(): User[]{
-    var formData: any = new FormData();
-    this.http
-      .get('http://localhost:3000/deptshow',this.form.value)
-      .subscribe({
-        next: (response) =>{ console.log(response); this.master=response},
-        error: (error) => console.log(error),
-      });
-    return this.ServiceService.getUsersFromData();
-  }
-
-  showEditUserForm(user: any) {
-    this.showEdit = true;
-    this.sno=user;
-    console.log(this.sno);
-    if (!user) {
-      this.userForm = false;
-      return;
-    }
-    this.editUserForm = true;
-    this.editedUser = user;
-  }
-
-  showAddUserForm() {
-    // resets form if edited user
-    this.showAdd = true;
-    if (this.users) {
-      this.newUser = {};
-    }
-    this.userForm = true;
-    this.isNewUser = true;
-  }
-
-  hide()
+/////////////////////////////////////////////////////edit functions
+  opentoedit(content:any)
   {
-    this.showAdd = false;
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  hides()
+  edit(a:any)
   {
-    this.showEdit = false;
+    this.editing_flag = true
+    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
+    this.form.controls['department_name'].setValue(this.dummy[a].dept_name)
+    this.form.controls['sap_code'].setValue(this.dummy[a].sap_code)
+    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+    
+
+
+
   }
 
-  saveUser(user: User) {
-    if (this.isNewUser) {
-      this.ServiceService.addUser(user);
-    }
-    this.userForm = false;
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
   }
+/////////////////////////////////////////////////////edit functions
 
-  updateUser() {
-    var formData: any = new FormData();
-    console.log(this.sno);
-    formData.set('sno', this.sno);
-    console.log( formData.get('sno'));
-    formData.append('plant_code', this.form1.get('plant_code')!.value);
-    formData.append('sap_code', this.form1.get('sap_code')!.value);
-    formData.append('active_status', this.form1.get('active_status')!.value);
-    formData.append('modified_on', this.form1.get('modified_on')!.value);
-    formData.append('sno', formData.get('sno'));
-    var object:any;
-    formData.forEach((value: any, key: string | number) => object[key] = value);
-    var json = JSON.stringify(object);
-    console.warn(json)
-    this.http
-      .post('http://localhost:3000/deptedit',object)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error),
-      });
-    return this.ServiceService.updateUser(this.editedUser);
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
   }
+  })
+}
 
-  removeUser(user: any){
-    console.log(user);
-    this.http
-      .post('http://localhost:3000/deptdel',{"user":user})
-      .subscribe({
-        next: (response) =>{ console.log(response)},
-        error: (error) => console.log(error),
-      });
-    this.ServiceService.deleteUser(user);
-  }
+exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'department.xlsx');
+}
 
-  cancelEdits() {
-    this.editedUser = {};
-    this.editUserForm = false;
-  }
+reset()
+{
+  this.form.reset()
+}
 
-  cancelNewUser() {
-    this.newUser = {};
-    this.userForm = false;
-  }
 }

@@ -1,300 +1,161 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mt-4">
-      <div class="div-c">
-        <h1 class="text-center" style="color: #2A2550">
-          Department Master
-        </h1>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
-      </div>
-      <mat-divider style="padding-bottom: 10px"></mat-divider>
-      <div class="options">
-        <button mat-fab color="primary" (click)="showAddUserForm()" aria-label="Example icon button with a delete icon"
-          style="margin-right: 5px">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <button mat-fab (click)="exportexcel()" aria-label="Example icon button with a delete icon">
-          <mat-icon>download</mat-icon>
-        </button>
-      </div>
 
-      <!--
-      <table id="table">
-        <table class="table table-bordered table-striped table-hover">
-          <thead>
-          <tr>
-            <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+    <ng-template #content let-modal>
+      <div class="modal-header">
+          <h4 class="modal-title">Add User</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+      </div>
+      <div class="modal-content">
+          <br>
+          <form [formGroup] = "form">
+              <div class="row">
+                  <div class="col">
+                      <label>Plant Code: </label><br>
+                      <input class="form-control"  type = "number" formControlName = "plant_code">
+                  </div>
+                  <div class="col">
+                      <label>Department Name: </label><br>
+                      <input class="form-control"  type = "text" formControlName = "department_name">
+                  </div>
+              </div><br>
+              <div class="row">
+                  <div class="col">
+                      <label>SAP Code: </label><br>
+                      <input class="form-control"  type = "number" formControlName = "sap_code">
+                  </div>
+                  <div class="col">
+                    <label>Active Status</label>
+                    <br>
+                    <input type="radio" id="active" formControlName="active_status" value="active">
+                    <label for="active">Active</label><br>
+                    <input type="radio" id="inactive" formcontrolname="active_status" value="inactive">
+                    <label for="inactive">Inactive</label><br>
+                        
+                    
+    
+                  </div>
+              </div>
+
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+          <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+          <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+      </div>
+</ng-template>
+
+<div>
+  <h1 class="title" >Department Master</h1>
+</div>
+<div class="button">
+  <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
+      <mat-icon>person_add</mat-icon>
+  </button></div>
+  <div class = "button1">
+  <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
+      <mat-icon>download</mat-icon>
+  </button></div>
+<br><br><br>
+<div class = "table-wrapper">
+  <table class="table table-bordered table-striped table-hover">
+    <table id="table">
+        <thead>
+        <tr>
+          <th
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              PLANT CODE
+               SNo
+            <th
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
+            >
+               Plant Code
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              DEPT NAME
+                Department Name
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 800px"
+                    style="background-color: darkblue"
             >
-              SAP CODE
+                SAP Code
             </th>
             <th
-              class="text-center"
-              style="width: 550px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              ACTIVE STATUS
+                Active Status 
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              Created On
+                Created On
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              Created By
+                Created By
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
             >
-              Modified On
+                Modified On
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
-            >
-              Modified By
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
+                    >
+                    Modified By
             </th>
             <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
-            >
-              &nbsp;
+                    class="text-center"
+                    style="width: 500px"
+                    style="background-color: darkblue"
+                    >
+                Action
             </th>
-            <link rel="preconnect" href="https://fonts.googleapis.com"/>
-            <link
-              rel="preconnect"
-              href="https://fonts.gstatic.com"
-              crossorigin
-            />
-            <link
-              href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,400&display=swap"
-              rel="stylesheet"
-            />
           </tr>
           </thead>
-          <tbody>
-          <tr *ngFor="let user of master">
-            <td>{{ user.plant_code }}</td>
-            <td>{{ user.dept_name }}</td>
-            <td>{{ user.sap_code }}</td>
-            <td>{{ user.active_status }}</td>
-            <td>{{ user.created_on }}</td>
-            <td>{{ user.creted_by }}</td>
-            <td>{{ user.modified_on }}</td>
-            <td>{{ user.modified_by }}</td>
-            <td>
-              <button mat-raised-button color="accent" (click)="showEditUserForm(user.sno)">
-                Edit
-              </button>
-              <button mat-raised-button color="warn" type="button" (click)="removeUser(user.sno)">Delete</button>
-            </td>
-          </tr>
+          <tbody >
+              <tr *ngFor = "let i of dummy; let a = index">
+                 <td>{{a+1}}</td>
+                  <td>{{i.plant_code}}</td>
+                  <td>{{i.department_name}}</td>
+                  <td>{{i.sap_code}}</td>
+                  <td>{{i.active_status}}</td>
+                  <td>{{i.created_on}}</td>
+                  <td>{{i.created_by}}</td>
+                  <td>{{i.modified_on}}</td>
+                  <td>{{i.modified_by}}</td>
+
+                  <td>
+                      <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                          <mat-icon>edit</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  </td>
+              </tr>
           </tbody>
-        </table>
       </table>
-      -->
-
-      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="PlantCode">
-          <mat-header-cell *matHeaderCellDef> Plant Code </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.PlantCode}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="DepartmentName">
-          <mat-header-cell *matHeaderCellDef> Department Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.DepartmentName}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="SAPCode">
-          <mat-header-cell *matHeaderCellDef> SAP Code </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.SAPCode}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ActiveStatus">
-          <mat-header-cell *matHeaderCellDef> Active Status </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.ActiveStatus}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="CreatedOn">
-          <mat-header-cell *matHeaderCellDef> Created On </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.CreatedOn}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="CreatedBy">
-          <mat-header-cell *matHeaderCellDef> Created By </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.CreatedBy}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ModifiedOn">
-          <mat-header-cell *matHeaderCellDef> Modified On </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.ModifiedOn}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ModifiedBy">
-          <mat-header-cell *matHeaderCellDef> Modified By </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.ModifiedBy}} </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
-      <div [style.display]="showAdd ? 'block' : 'none'" class="modal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="mt-4">
-              <form *ngIf="userForm">
-                <div class="container pt-5">
-                  <div class="row">
-                    <div class="col">
-                      <h2 class="first">
-                        <div-v>
-                          <h1>Department Master</h1>
-                          <hr />
-                        </div-v>
-                      </h2>
-                      <form [formGroup]="form" (ngSubmit)="loginUser()">
-                        <div class="form-group">
-                          <label class="col-form-label">Plant Code</label><br />
-                          <select style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                            placeholder="Plant Code" formControlName="plant_code">
-                            <option>Choose<br /><br /></option>
-                            <option *ngFor="let pl of plant_code">
-                              {{ pl }}
-                            </option>
-                          </select>
-                          <br />
-                          <br />
-                        </div>
-                        <div class="form-group">
-                          <label class="col-form-label">Dept Name</label><br />
-                          <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                            placeholder="dept_name" formControlName="dept_name" />
-                          <br />
-                          <br />
-                        </div>
-                        <div class="form-group">
-                          <label class="col-form-label">SAP CODE</label><br />
-                          <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                            placeholder="sap_code" formControlName="sap_code" />
-                          <br />
-                          <br />
-                        </div>
-                        <div class="form-group">
-                          <label class="col-form-label">Status</label><br />
-                          <input type="radio" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                            formControlName="active_status" value="0" /> Active
-                          <input type="radio" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                            formControlName="active_status" value="1" /> Inactive
-                          <br />
-                          <br />
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" style="position: relative; right: 320px"
-                            class="btn btn-info btn-sm mr-2" (click)="loginUser()">
-                            <b>Submit</b>
-                          </button>
-                          <button type="button" style="position: relative; left: 10px" class="btn btn-info btn-sm mr-2"
-                            data-dismiss="modal" (click)="hide()">
-                            <b>Close</b>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div [style.display]="showEdit ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div>
-              <form [formGroup]="form1" action="updateUser()">
-                <h2 style="font-family: ariel">Department Masters</h2>
-                <hr />
-                <br />
-                <div class="form-group">
-                  <label class="col-form-label">Plant Code</label><br />
-                  <select style="border-radius: 10px; box-shadow: 100px" class="inputtext" placeholder="Plant Code"
-                    formControlName="plant_code">
-                    <option>Choose<br /><br /></option>
-                    <option *ngFor="let pl of plant_code">{{ pl }}</option>
-                  </select>
-                  <br />
-                  <br />
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label">Dept Name</label><br />
-                  <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                    placeholder="dept_name" formControlName="dept_name" ngdisabled />
-                  <br />
-                  <br />
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label">SAP CODE</label><br />
-                  <input type="text" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                    placeholder="sap_code" formControlName="sap_code" />
-                  <br />
-                  <br />
-                </div>
-                <div class="form-group">
-                  <label class="col-form-label">ACTIVE Status</label><br />
-                  <input type="radio" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                    formControlName="active_status" value="0" /> Active
-                  <input type="radio" style="border-radius: 10px; box-shadow: 100px" class="inputtext"
-                    formControlName="active_status" value="1" /> Inactive
-                  <br />
-                  <br />
-                </div>
-                <div class="modal-footer">
-                  <button type="button" style="position: relative; right: 320px" class="btn btn-info btn-sm mr-2"
-                    (click)="updateUser()">
-                    <b>Submit</b>
-                  </button>
-                  <button type="button" style="position: relative; left: 10px" class="btn btn-info btn-sm mr-2"
-                    data-dismiss="modal" (click)="hides()">
-                    <b>Close</b>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  </table>
 </div>
+
+

@@ -7,6 +7,7 @@ import {
   TemplateRef,
   NgModule,
   Inject,
+  ViewEncapsulation,
 } from "@angular/core";
 import {
   UntypedFormGroup,
@@ -22,7 +23,10 @@ import { User } from "../user/user";
 import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";
-import { Directive, Input } from "@angular/core";
+
+
+
+
 
 import {
   MatDialog,
@@ -31,182 +35,161 @@ import {
 } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Directive, Input } from "@angular/core";import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 
-const material = [MatSidenav, MatTableModule];
-
-export interface master_roster {
-  EmployeeName: string;
-  Department: string;
-  Designation: string;
-  MailId: string;
-  MobileNo: string;
-  UserName: string;
-  ActiveStatus: string;
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-
-const DUMMY_DATA: master_roster[] = [
-  {
-    EmployeeName: "Vignesh",
-    Department: "Department",
-    Designation: "Designation",
-    MailId: "Vignesh@gmail.com",
-    MobileNo: "9876543210",
-    UserName: "vicky007",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    EmployeeName: "Vignesh",
-    Department: "Department",
-    Designation: "Designation",
-    MailId: "Vignesh@gmail.com",
-    MobileNo: "9876543210",
-    UserName: "vicky007",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    EmployeeName: "Vignesh",
-    Department: "Department",
-    Designation: "Designation",
-    MailId: "Vignesh@gmail.com",
-    MobileNo: "9876543210",
-    UserName: "vicky007",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    EmployeeName: "Vignesh",
-    Department: "Department",
-    Designation: "Designation",
-    MailId: "Vignesh@gmail.com",
-    MobileNo: "9876543210",
-    UserName: "vicky007",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    EmployeeName: "Vignesh",
-    Department: "Department",
-    Designation: "Designation",
-    MailId: "Vignesh@gmail.com",
-    MobileNo: "9876543210",
-    UserName: "vicky007",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
+const material = [
+  MatSidenav,
+  MatTableModule
 ];
 
+
+ 
+
 @Component({
-  selector: "app-employee",
-  templateUrl: "./employee.component.html",
-  styleUrls: ["./employee.component.css"],
+  selector: 'app-dept',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
+
 export class EmployeeComponent implements OnInit {
-  displayedColumns: string[] = [
-    "EmployeeName",
-    "Department",
-    "Designation",
-    "MailId",
-    "MobileNo",
-    "UserName",
-    "ActiveStatus",
-    "CreatedOn",
-    "CreatedBy",
-    "ModifiedOn",
-    "ModifiedBy",
-    "Actions",
-  ];
-  dataSource = DUMMY_DATA;
-  constructor(
-    private ServiceService: ServiceService,
-    public fb: UntypedFormBuilder,
-    private http: HttpClient,
-    private httpClient: HttpClient,
-    public dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) {}
-  title = "EXAMPLE MASTER";
-  fileName = "COMPANY MASTERS.xlsx";
+  closeResult: string;
 
-  exportexcel(): void {
-    let element = document.getElementById("table");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, this.fileName);
-  }
+ form:any
 
-  ngOnInit() {}
+  sample : any = environment.path
 
-  openDialog(): void {
-    var data = null;
-    const dialogRef = this.dialog.open(employeeForm, {
-      minWidth: "40%",
-      maxWidth: "40%",
-      data: data,
-    });
+  dummy: any = [
+    {
+      'employee_name':'AIDUA',
+      'department' : 'ABCD',
+      'mail_id':'abc123@gmail.com',
+      'mobile_no':'99876543210',
+      'user_name':'aameerk',
+      'active_status': 1,
+      'created_on' :'12/2/2022',
+      'created_by': '12/1/2022',
+      'modified_on': '12/1/2022',
+      'modified_by': '12/1/2022', 
+    }
+  ]
+  editing_flag: any;
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      //this.animal = result;
-    });
-  }
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    this.form = this.fb.group({
+      employee_name :[''],
+      department : [''],
+      mail_id: [''],
+      mobile_no: [''],
+      user_name: [''],
+      active_status: [''],
+      created_on: [''],
+      created_by: [''],
+      modified_on: [''],
+      modified_by: [''],
+      plantcode: [sessionStorage.getItem('plantcode')]
+     
+    })
+   }
+
+  
+
+  exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'designation.xlsx');
 }
 
-@Component({
-  selector: "employee-form",
-  templateUrl: "employee-form.html",
-})
-export class employeeForm {
-  employeeForm: FormGroup;
-  loading = false;
-  constructor(
-    public dialogRef: MatDialogRef<employeeForm>,
-    @Inject(MAT_DIALOG_DATA) public data: master_roster,
-    private _snackBar: MatSnackBar,
-    private httpClient: HttpClient
-  ) {
-    this.employeeForm = new FormGroup({
-      Emp_Name: new FormControl("", Validators.required),
-      Department: new FormControl("", Validators.required),
-      Designation: new FormControl("", Validators.required),
-      Mail_Id: new FormControl("", Validators.required),
-      Mobile_No: new FormControl("", Validators.required),
-      User_Name: new FormControl("", Validators.required),
-      Password: new FormControl("", Validators.required),
-      ConfirmPassword: new FormControl("", Validators.required),
-    });
-    // if (this.data != null) {
-    //   this.plantForm.patchValue({
-    //     plant_code: this.data.plant_code,
-    //     plant_name: this.data.plant_name,
-    //     address: this.data.address,
-    //   });
-    //   this.plant_id = this.data.plant_id;
-    // }
+ngOnInit(): void {
+  var username = {'username': sessionStorage.getItem('plantcode')}
+  this.service.getModules(username).
+  subscribe({
+    next: (response)=>{this.dummy = response}
+  })
+}
+
+
+   open(content:any)
+  {
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
+  }
+  opentoedit(content:any)
+  {
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+   
+edit(a:any)
+  {
+    this.editing_flag = true
+    this.form.controls['employee_name'].setValue(this.dummy[a].plant_code)
+    this.form.controls['department'].setValue(this.dummy[a].dept_name)
+    this.form.controls['designation'].setValue(this.dummy[a].designation)
+    this.form.controls['mail_id'].setValue(this.dummy[a].mail_id)
+    this.form.controls['mobile_no'].setValue(this.dummy[a].mobile_no)
+    this.form.controls['user_name'].setValue(this.dummy[a].user_name)
+    this.form.controls['password'].setValue(this.dummy[a].password)
   }
+  save()
+  {
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
+
+  }
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
+  }
+/////////////////////////////////////////////////////edit functions
+
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
+  }
+  })
+}
+
+
+
+
+  reset()
+{
+  this.form.reset()
+}
 }

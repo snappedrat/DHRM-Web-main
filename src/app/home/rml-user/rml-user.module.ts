@@ -13,15 +13,15 @@ import { DeptComponent } from "./masters/dept/dept.component";
 import { MatTableModule } from "@angular/material/table";
 import { MatDividerModule } from "@angular/material/divider";
 import { PlantComponent } from './masters/plant/plant.component';
-import { LineComponent, lineForm } from './masters/line/line.component';
-import { DesignationComponent, designationForm } from './masters/designation/designation.component';
+import { LineComponent } from './masters/line/line.component';
+import { DesignationComponent } from './masters/designation/designation.component';
 import { TraineecategoryComponent, TraineeCategoryForm } from './masters/traineecategory/traineecategory.component';
 import { UserComponent, userForm } from './masters/user/user.component';
 import { BankComponent, bankForm } from './masters/bank/bank.component';
 import {LoginModule} from "./login/login.module";
 import { OperationsComponent, operationsForm } from './masters/operations/operations.component';
 import { PincodeComponent, pincodeForm } from './masters/pincode/pincode.component';
-import { EmployeeComponent, employeeForm } from './masters/employee/employee.component';
+import { EmployeeComponent} from './masters/employee/employee.component';
 import { ShiftComponent, shiftForm } from './masters/shift/shift.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -33,9 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DeptComponent,
     PlantComponent,
     LineComponent,
-    lineForm,
     DesignationComponent,
-    designationForm,
     TraineecategoryComponent,
     TraineeCategoryForm,
     UserComponent,
@@ -47,7 +45,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PincodeComponent,
     pincodeForm,
     EmployeeComponent,
-    employeeForm,
     ShiftComponent,
     shiftForm,
   ],

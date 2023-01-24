@@ -1,17 +1,11 @@
-.btn{
-  border-radius: 20px;
+.btn {
+  float: right;
+
 }
-.btn1{
-  color: white;
+.boxx{
+  box-sizing: 100%;
 }
-body {
-  overflow-x: hidden;
-}
-.div-c{
-  padding-top: 10px;
-  text-align: center;
-  font-family: 'Kanit', sans-serif;
-}
+
 th{
   color: white;
   font-family: 'Montserrat', sans-serif;
@@ -19,25 +13,69 @@ th{
 td{
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
-  font-size: large;
-}
-@media (max-width: 767px) {
-  .show
-  {
-    margin-left: -15rem!important;
-  }
-  .hide
-  {
-    margin-left: -0!important;
-  }
+  font-size: medium;
 }
 th { background: #c5c5c5;}
-table {
-  border-collapse: collapse;
-  width: 100%;
+table 
+{
+border-collapse: collapse;
+width: 100%;
 }
-td, th { border: 1px solid #cdcdcd; padding: 2px;}
+td, th { border: 1px solid #cdcdcd; padding: 8px;}
+.form-group
+{
+background-color: lightgrey;
+}
 
-.options{
-  justify-content: end; display: flex; padding-right: 10px; margin-bottom: 10px
+tbody
+{
+text-align: center;
+
+}
+
+.table-wrapper
+{
+  display: block;
+}
+.search{
+margin-left: 0px;
+}
+.button{
+
+  padding-right:50px;
+}
+.button1{
+
+padding-right:50px;
+}
+
+
+
+.dark-modal .modal-content {
+background-color: #292b2c;
+color: white;
+}
+.dark-modal .close {
+color: white;
+}
+.light-blue-backdrop {
+background-color: #5cb3fd;
+}
+
+
+.modal-backdrop {
+z-index: 1040 !important;
+}
+.modal-content {
+margin: 2px auto;
+z-index: 1100 !important;
+}
+.title{
+  font-size: 50px;
+  font-style:normal;
+  text-decoration: underline;
+  text-underline-position: below;
+  color:rgb(0, 0, 139);
+  font-weight:bolder;
+  text-align:center;
 }

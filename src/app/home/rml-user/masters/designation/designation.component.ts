@@ -22,7 +22,10 @@ import { User } from "../user/user";
 import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";
-import { Directive, Input } from "@angular/core";
+
+
+
+
 
 import {
   MatDialog,
@@ -31,149 +34,150 @@ import {
 } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Directive, Input } from "@angular/core";import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 
-const material = [MatSidenav, MatTableModule];
-
-export interface master_roster {
-  DesignationName: string;
-  PlantName: string;
-  ActiveStatus: string;
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-
-const DUMMY_DATA: master_roster[] = [
-  {
-    DesignationName: "Comp1",
-    PlantName: "Plant 1",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    DesignationName: "Comp1",
-    PlantName: "Plant 1",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    DesignationName: "Comp1",
-    PlantName: "Plant 1",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    DesignationName: "Comp1",
-    PlantName: "Plant 1",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    DesignationName: "Comp1",
-    PlantName: "Plant 1",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
+const material = [
+  MatSidenav,
+  MatTableModule
 ];
 
+
+ 
+
 @Component({
-  selector: "app-designation",
-  templateUrl: "./designation.component.html",
-  styleUrls: ["./designation.component.css"],
+  selector: 'app-dept',
+  templateUrl: './designation.component.html',
+  styleUrls: ['./designation.component.css']
 })
+
 export class DesignationComponent implements OnInit {
-  displayedColumns: string[] = [
-    "DesignationName",
-    "PlantName",
-    "ActiveStatus",
-    "CreatedOn",
-    "CreatedBy",
-    "ModifiedOn",
-    "ModifiedBy",
-    "Actions",
-  ];
-  dataSource = DUMMY_DATA;
-  constructor(
-    private ServiceService: ServiceService,
-    public fb: UntypedFormBuilder,
-    private http: HttpClient,
-    private httpClient: HttpClient,
-    public dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) {}
+  closeResult: string;
 
-  title = "EXAMPLE MASTER";
-  fileName = "COMPANY MASTERS.xlsx";
+  form:any
 
-  exportexcel(): void {
-    let element = document.getElementById("table");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, this.fileName);
-  }
+  sample : any = environment.path
 
-  ngOnInit(): void {}
+  dummy: any = [
+    {
+      'designation_name':'AIDUA',
+      'plant_name' : 'ABCD',
+      'active_status': 1,
+      'created_on' :'12/2/2022',
+      'created_by': '12/1/2022',
+      'modified_on': '12/1/2022',
+      'modified_by': '12/1/2022', 
+    }
+  ]
+  editing_flag: any;
 
-  openDialog(): void {
-    var data = null;
-    const dialogRef = this.dialog.open(designationForm, {
-      minWidth: "40%",
-      maxWidth: "40%",
-      data: data,
-    });
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    this.form = this.fb.group({
+      department_name :[''],
+      plant_name : [''],
+      active_status: [''],
+      created_on: [''],
+      created_by: [''],
+      modified_on: [''],
+      modified_by: [''],
+      plantcode: [sessionStorage.getItem('plantcode')]
+     
+    })
+   }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      //this.animal = result;
-    });
-  }
+  
+
+  exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'designation.xlsx');
 }
 
-@Component({
-  selector: "designation-form",
-  templateUrl: "designation-form.html",
-})
-export class designationForm {
-  designationForm: FormGroup;
-  loading = false;
-  constructor(
-    public dialogRef: MatDialogRef<designationForm>,
-    @Inject(MAT_DIALOG_DATA) public data: master_roster,
-    private _snackBar: MatSnackBar,
-    private httpClient: HttpClient
-  ) {
-    this.designationForm = new FormGroup({
-      desig_name: new FormControl("", Validators.required),
-      plant_code: new FormControl("", Validators.required),
-    });
-    // if (this.data != null) {
-    //   this.designationForm.patchValue({
-    //     designation_code: this.data.designation_code,
-    //     designation_name: this.data.designation_name,
-    //     address: this.data.address,
-    //   });
-    //   this.designation_id = this.data.designation_id;
-    // }
+ngOnInit(): void {
+  var username = {'username': sessionStorage.getItem('plantcode')}
+  this.service.getModules(username).
+  subscribe({
+    next: (response)=>{this.dummy = response}
+  })
+}
+
+
+   open(content:any)
+  {
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
+  }
+  opentoedit(content:any)
+  {
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+   
+edit(a:any)
+  {
+    this.editing_flag = true
+    this.form.controls['designation_name'].setValue(this.dummy[a].plant_code)
+    this.form.controls['plant_name'].setValue(this.dummy[a].dept_name)
+
   }
+  save()
+  {
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
+
+  }
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
+  }
+/////////////////////////////////////////////////////edit functions
+
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
+  }
+  })
+}
+
+
+
+
+  reset()
+{
+  this.form.reset()
+}
 }
