@@ -40,22 +40,18 @@ export class TraineecategoryComponent implements OnInit {
 
   dummy: any = [
     {
-      'full_name':'Sankarapandi',
-      'father_name':'Muthupandi',
-      'dob' : '09/09/2002',
-      'nationality': 'Indian',
-      'active_status': 1,
+      'categorynm':'Trainee',
+      'insap':1992,
+      'emp_subgroup': 'T'
     }
   ]
   editing_flag: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      full_name:[''],
-      father_name : [''],
-      dob: [''],
-      nationality: [''],
-      active_status: [''],
+      categorynm:[''],
+      insap: [''],
+      emp_subgroup: [''],
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })
@@ -104,10 +100,10 @@ export class TraineecategoryComponent implements OnInit {
   edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['full_name'].setValue(this.dummy[a].full_name)
-    this.form.controls['dob'].setValue(this.dummy[a].dob)
-    this.form.controls['father_name'].setValue(this.dummy[a].father_name)
-    this.form.controls['nationality'].setValue(this.dummy[a].nationality)
+    this.form.controls['categorynm'].setValue(this.dummy[a].categorynm)
+    this.form.controls['insap'].setValue(this.dummy[a].insap)
+    this.form.controls['emp_subgroup'].setValue(this.dummy[a].emp_subgroup)
+
     
 
 
