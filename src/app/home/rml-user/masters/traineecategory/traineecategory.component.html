@@ -9,20 +9,16 @@
             <form [formGroup] = "form">
                 <div class="row">
                     <div class="col">
-                        <label>Full Name: </label><br>
+                        <label>Category Name: </label><br>
                         <input class="form-control"  type = "number" formControlName = "full_name">
                     </div>
                     <div class="col">
-                        <label>Father Name: </label><br>
+                        <label>Insap: </label><br>
                         <input class="form-control"  type = "text" formControlName = "father_name">
                     </div>
                     <div class="col">
-                        <label>Date Of Birth: </label><br>
-                        <input class="form-control"  type = "Date" formControlName = "dob">
-                    </div>
-                    <div class="col">
-                        <label>Nationality</label><br>
-                        <input class="form-control"  type = "text" formControlName = "nationality">
+                        <label>Employee Subgroup: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "dob">
                     </div>
                 </div><br>
                
@@ -65,35 +61,21 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                Full Name
+                Category Name
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Father Name
+                 InSap
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Date Of Birth
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Nationality
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Active Status 
+                  Employee Subgroup
               </th>
               
               <th
@@ -108,11 +90,10 @@
             <tbody >
                 <tr *ngFor = "let i of dummy; let a = index">
                    <td>{{a+1}}</td>
-                    <td>{{i.full_name}}</td>
-                    <td>{{i.father_name}}</td>
-                    <td>{{i.dob}}</td>
-                    <td>{{i.nationality}}</td>
-                    <td>{{i.active_status}}</td>
+                    <td>{{i.categorynm}}</td>
+                    <td>{{i.insap}}</td>
+                    <td>{{i.emp_subgroup}}</td>
+                   
                    
   
                     <td>
