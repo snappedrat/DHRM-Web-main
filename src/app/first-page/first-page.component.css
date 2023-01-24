@@ -6,6 +6,7 @@
     text-align: center;
     align-items: center;
     align-content: center
+    
   }
   .btn{
     border-radius: 20px;
@@ -16,7 +17,7 @@
     margin-left: 10%;
     margin-top:5%;
     align-items: center;
-    box-shadow: 2px;
+    box-shadow: 5px;
     margin-right: 3%;
   }
   
@@ -67,6 +68,13 @@
   }
   #shift2{
     margin-left: 280px;
+    
+  }
+  .title1{
+    color:rgb(0, 0, 139);
+    text-decoration: solid;
+    font-size: larger;
+    font-weight:900;
   }
   
   /* .home img{
