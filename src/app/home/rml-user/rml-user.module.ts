@@ -22,7 +22,7 @@ import {LoginModule} from "./login/login.module";
 import { OperationsComponent } from './masters/operations/operations.component';
 import { PincodeComponent} from './masters/pincode/pincode.component';
 import { EmployeeComponent} from './masters/employee/employee.component';
-import { ShiftComponent, shiftForm } from './masters/shift/shift.component';
+import { ShiftComponent} from './masters/shift/shift.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -42,7 +42,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PincodeComponent,
     EmployeeComponent,
     ShiftComponent,
-    shiftForm,
+
   ],
   imports: [
     CommonModule,

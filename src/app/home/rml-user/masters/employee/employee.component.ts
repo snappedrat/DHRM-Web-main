@@ -65,6 +65,7 @@ export class EmployeeComponent implements OnInit {
     {
       'employee_name':'AIDUA',
       'department' : 'ABCD',
+      'designation' : 'ABCD',
       'mail_id':'abc123@gmail.com',
       'mobile_no':'99876543210',
       'user_name':'aameerk',
@@ -81,6 +82,7 @@ export class EmployeeComponent implements OnInit {
     this.form = this.fb.group({
       employee_name :[''],
       department : [''],
+      designation : [''],
       mail_id: [''],
       mobile_no: [''],
       user_name: [''],
