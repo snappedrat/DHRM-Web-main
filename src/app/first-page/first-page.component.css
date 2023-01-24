@@ -53,6 +53,8 @@
     background-position:fit;
     overflow-x:none;
     overflow-y: none;
+    scroll-behavior: none;
+    background-position: fixed;
   }
   h3{
     color: black;
