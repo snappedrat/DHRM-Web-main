@@ -101,7 +101,7 @@ Qualified(event:any)
       }
       else if(response.message == 'not qualified')
       {
-        this.qualified = 'you are not qualified' 
+        this.qualified = 'Previous module not completed' 
         this.getQuestions(false,category)
       }
       else if(response.message == 'qualified')

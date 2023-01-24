@@ -97,7 +97,6 @@ sendFormData()
   }
   else{
 
-    console.log("kekuthulaaaaaaaaaaa")
     this.companyname = this.bankForms.controls['company'].value
   
     this.http.post(this.url+'/traineeformdata', this.bankForms.value)
