@@ -73,8 +73,6 @@ z-index: 1100 !important;
 .title{
   font-size: 30px;
   font-style: normal;
-  text-decoration: underline;
-  text-underline-position: below;
   color:rgb(0, 0, 139);
   font-weight:bolder;
   text-align:center;

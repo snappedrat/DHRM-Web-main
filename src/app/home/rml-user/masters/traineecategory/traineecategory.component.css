@@ -1,0 +1,84 @@
+.modal-content{
+    flex: content;
+}
+.btn {
+    float: right;
+  
+  }
+  .boxx{
+    box-sizing: 100%;
+  }
+  
+  th{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
+  td{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: medium;
+  }
+  th { background: #c5c5c5;}
+  table 
+  {
+  border-collapse: collapse;
+  width: 100%;
+  }
+  td, th { border: 1px solid #cdcdcd; padding: 8px;}
+  .form-group
+  {
+  background-color: lightgrey;
+  }
+  
+  tbody
+  {
+  text-align: center;
+  
+  }
+  
+  .table-wrapper
+  {
+    display: block;
+  }
+  .search{
+  margin-left: 0px;
+  }
+  .button{
+  
+    padding-right:50px;
+  }
+  .button1{
+  
+  padding-right:50px;
+  }
+  
+  
+  
+  .dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+  }
+  .dark-modal .close {
+  color: white;
+  }
+  .light-blue-backdrop {
+  background-color: #5cb3fd;
+  }
+  
+  
+  .modal-backdrop {
+  z-index: 1040 !important;
+  }
+  .modal-content {
+  margin: 2px auto;
+  z-index: 1100 !important;
+  }
+  .title{
+    font-size: 30px;
+    font-style: normal;
+
+    color:rgb(0, 0, 139);
+    font-weight:bolder;
+    text-align:center;
+  }
+  

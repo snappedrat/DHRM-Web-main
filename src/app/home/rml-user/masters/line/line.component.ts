@@ -65,10 +65,7 @@ export class LineComponent implements OnInit {
     {
       'plant_code':'AIDUA',
       'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
+      
     }
   ]
   editing_flag: any;
@@ -77,10 +74,6 @@ export class LineComponent implements OnInit {
     this.form = this.fb.group({
       plant_code: [''],
       active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
-      modified_by: [''],
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })

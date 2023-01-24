@@ -7,7 +7,6 @@ import { LineComponent } from './line/line.component';
 import { DesignationComponent } from './designation/designation.component';
 import { TraineecategoryComponent } from './traineecategory/traineecategory.component';
 import { UserComponent } from './user/user.component';
-import { BankComponent } from './bank/bank.component';
 import { OperationsComponent } from './operations/operations.component';
 import { PincodeComponent } from './pincode/pincode.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -41,10 +40,6 @@ const routes: Routes = [
   {
     path: "user",
     component: UserComponent
-  },
-  {
-    path: "bank",
-    component: BankComponent
   },
   {
     path: "operations",

@@ -41,6 +41,7 @@
   <br>
   <div>
     <h1 class="title" >Line Master</h1>
+    <hr style="border-block-color: orange" />
   </div>
   <div class="button">
     <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
@@ -80,34 +81,6 @@
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
-              >
-                  Created On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Created By
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Modified On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-                      >
-                      Modified By
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
                       >
                   Action
               </th>
@@ -118,11 +91,6 @@
                    <td>{{a+1}}</td>
                     <td>{{i.plant_code}}</td>   
                     <td>{{i.active_status}}</td>
-                    <td>{{i.created_on}}</td>
-                    <td>{{i.created_by}}</td>
-                    <td>{{i.modified_on}}</td>
-                    <td>{{i.modified_by}}</td>
-  
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>

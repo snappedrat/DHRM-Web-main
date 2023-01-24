@@ -15,14 +15,14 @@ import { MatDividerModule } from "@angular/material/divider";
 import { PlantComponent } from './masters/plant/plant.component';
 import { LineComponent } from './masters/line/line.component';
 import { DesignationComponent } from './masters/designation/designation.component';
-import { TraineecategoryComponent, TraineeCategoryForm } from './masters/traineecategory/traineecategory.component';
+import { TraineecategoryComponent} from './masters/traineecategory/traineecategory.component';
 import { UserComponent, userForm } from './masters/user/user.component';
-import { BankComponent, bankForm } from './masters/bank/bank.component';
+import { BankComponent } from './masters/bank/bank.component';
 import {LoginModule} from "./login/login.module";
-import { OperationsComponent, operationsForm } from './masters/operations/operations.component';
-import { PincodeComponent, pincodeForm } from './masters/pincode/pincode.component';
+import { OperationsComponent } from './masters/operations/operations.component';
+import { PincodeComponent} from './masters/pincode/pincode.component';
 import { EmployeeComponent} from './masters/employee/employee.component';
-import { ShiftComponent, shiftForm } from './masters/shift/shift.component';
+import { ShiftComponent} from './masters/shift/shift.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -35,18 +35,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LineComponent,
     DesignationComponent,
     TraineecategoryComponent,
-    TraineeCategoryForm,
     UserComponent,
     userForm,
     BankComponent,
-    bankForm,
     OperationsComponent,
-    operationsForm,
     PincodeComponent,
-    pincodeForm,
     EmployeeComponent,
     ShiftComponent,
-    shiftForm,
+
   ],
   imports: [
     CommonModule,
