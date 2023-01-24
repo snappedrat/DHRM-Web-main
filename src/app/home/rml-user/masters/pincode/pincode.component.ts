@@ -1,246 +1,190 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  Injectable,
-  ViewContainerRef,
-  TemplateRef,
-  NgModule,
-  Inject,
-} from "@angular/core";
-import {
-  UntypedFormGroup,
-  UntypedFormControl,
-  UntypedFormBuilder,
-} from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import * as XLSX from "xlsx";
-import { MatSidenav } from "@angular/material/sidenav";
-import { ServiceService } from "../service.service";
-import { User } from "../user/user";
-import { MatTableModule } from "@angular/material/table";
-import { Observable, Subject } from "rxjs";
-import { Options } from "selenium-webdriver";
-import { Directive, Input } from "@angular/core";
+import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef,ViewEncapsulation  } from '@angular/core';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable,Subject } from 'rxjs';
+import {Router} from '@angular/router';
+import { Options } from 'selenium-webdriver';
+import { Directive, Input } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import * as XLSX from 'xlsx';
+import { MatTableModule } from '@angular/material/table';
+import { MatSidenav } from '@angular/material/sidenav';
+import {ServiceService} from "../service.service";
+import{User} from "../user/user";
+// import { MatSidenav } from "@angular/material/sidenav";
+// import { MatTableModule } from "@angular/material/table";
 
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 
-const material = [MatSidenav, MatTableModule];
-
-export interface master_roster {
-  Pincode: string;
-  Dvisionname: string;
-  Regionname: string;
-  Circlename: string;
-  Taluk: string;
-  Districtname: string;
-  Statename: string;
-  RblZone: string;
-  RmlZone: string;
-  RapZone: string;
-  RevlZone: string;
-  RtssLZone: string;
-  Statecode: string;
-  ActiveStatus: string;
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-
-const DUMMY_DATA: master_roster[] = [
-  {
-    Pincode: "600006",
-    Dvisionname: "Nungambakkam Division",
-    Regionname: "Chennai",
-    Circlename: "Chennai",
-    Taluk: "Chennai",
-    Districtname: "Chennai",
-    Statename: "Tamil Nadu",
-    RblZone: "RBL BANK LIMITED",
-    RmlZone: "RML ZONE",
-    RapZone: "RAP ZONE",
-    RevlZone: "REVL ZONE",
-    RtssLZone: "RTSSL Zone",
-    Statecode: "StateCode",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    Pincode: "600006",
-    Dvisionname: "Nungambakkam Division",
-    Regionname: "Chennai",
-    Circlename: "Chennai",
-    Taluk: "Chennai",
-    Districtname: "Chennai",
-    Statename: "Tamil Nadu",
-    RblZone: "RBL BANK LIMITED",
-    RmlZone: "RML ZONE",
-    RapZone: "RAP ZONE",
-    RevlZone: "REVL ZONE",
-    RtssLZone: "RTSSL Zone",
-    Statecode: "StateCode",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    Pincode: "600006",
-    Dvisionname: "Nungambakkam Division",
-    Regionname: "Chennai",
-    Circlename: "Chennai",
-    Taluk: "Chennai",
-    Districtname: "Chennai",
-    Statename: "Tamil Nadu",
-    RblZone: "RBL BANK LIMITED",
-    RmlZone: "RML ZONE",
-    RapZone: "RAP ZONE",
-    RevlZone: "REVL ZONE",
-    RtssLZone: "RTSSL Zone",
-    Statecode: "StateCode",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
-  {
-    Pincode: "600006",
-    Dvisionname: "Nungambakkam Division",
-    Regionname: "Chennai",
-    Circlename: "Chennai",
-    Taluk: "Chennai",
-    Districtname: "Chennai",
-    Statename: "Tamil Nadu",
-    RblZone: "RBL BANK LIMITED",
-    RmlZone: "RML ZONE",
-    RapZone: "RAP ZONE",
-    RevlZone: "REVL ZONE",
-    RtssLZone: "RTSSL Zone",
-    Statecode: "StateCode",
-    ActiveStatus: "Yes",
-    CreatedOn: "01/01/01",
-    CreatedBy: "Mang1",
-    ModifiedOn: "01/01/01",
-    ModifiedBy: "Mang2",
-  },
+const material = [
+  MatSidenav,
+  MatTableModule
 ];
 
+
+
 @Component({
-  selector: "app-pincode",
-  templateUrl: "./pincode.component.html",
-  styleUrls: ["./pincode.component.css"],
+  selector: 'app-pincode',
+  templateUrl: './pincode.component.html',
+  styleUrls: ['./pincode.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PincodeComponent implements OnInit {
-  displayedColumns: string[] = [
-    "Pincode",
-    "Dvisionname",
-    "Regionname",
-    "Circlename",
-    "Taluk",
-    "Districtname",
-    "Statename",
-    "RblZone",
-    "RmlZone",
-    "RapZone",
-    "RevlZone",
-    "RtssLZone",
-    "Statecode",
-    "ActiveStatus",
-    "CreatedOn",
-    "CreatedBy",
-    "ModifiedOn",
-    "ModifiedBy",
-    "Actions",
-  ];
-  dataSource = DUMMY_DATA;
-  constructor(
-    private ServiceService: ServiceService,
-    public fb: UntypedFormBuilder,
-    private http: HttpClient,
-    private httpClient: HttpClient,
-    public dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) {}
-  title = "EXAMPLE MASTER";
-  fileName = "COMPANY MASTERS.xlsx";
+  closeResult: string;
 
-  exportexcel(): void {
-    let element = document.getElementById("table");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, this.fileName);
+  form:any
+
+  sample : any = environment.path
+
+  dummy: any = [
+    {
+      'pincode':600019,
+      'division_name' : 'ABCD',
+      'region_name': 300,
+      'circle_name': 500,
+      'taluk': 1,
+      'district_name': 1,
+      'state_name': 1,
+      'rbl_zone': 1,
+      'rml_zone': 1,
+      'rap_zone': 1,
+      'revl_zone': 1,
+      'rtssl_zone': 1,
+      'state_code': 1,
+    }
+  ]
+  editing_flag: any;
+
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    this.form = this.fb.group({
+      pincode:[''],
+      division_name :[''],
+      region_name: [''],
+      circle_name: [''],
+      taluk: [''],
+      district_name: [''],
+      state_name: [''],
+      rbl_zone: [''],
+      rml_zone: [''],
+      rap_zone: [''],
+      revl_zone: [''],
+      rtssl_zone: [''],
+      state_code: [''],
+      plantcode: [sessionStorage.getItem('plantcode')]
+     
+    })
+   }
+
+  ngOnInit(): void {
+    var username = {'username': sessionStorage.getItem('plantcode')}
+    this.service.getModules(username).
+    subscribe({
+      next: (response)=>{this.dummy = response}
+    })
   }
 
-  ngOnInit() {}
-
-  openDialog(): void {
-    var data = null;
-    const dialogRef = this.dialog.open(pincodeForm, {
-      minWidth: "40%",
-      maxWidth: "40%",
-      data: data,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      //this.animal = result;
-    });
+  open(content:any)
+  {
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
+
+  save()
+  {
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
+
+  }
+/////////////////////////////////////////////////////edit functions
+  opentoedit(content:any)
+  {
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
+  }
+
+  edit(a:any)
+  {
+    this.editing_flag = true
+    this.form.controls['pincode'].setValue(this.dummy[a].pincode)
+    this.form.controls['division_name'].setValue(this.dummy[a].division_name)
+    this.form.controls['region_name'].setValue(this.dummy[a].region_name)
+    this.form.controls['circle_name'].setValue(this.dummy[a].circle_name)
+    this.form.controls['taluk'].setValue(this.dummy[a].taluk)
+    this.form.controls['district_name'].setValue(this.dummy[a].district_name)
+    this.form.controls['state_name'].setValue(this.dummy[a].state_name)
+    this.form.controls['rbl_zone'].setValue(this.dummy[a].rbl_zone)
+    this.form.controls['rml_zone'].setValue(this.dummy[a].rml_zone)
+    this.form.controls['rap_zone'].setValue(this.dummy[a].rap_zone)
+    this.form.controls['revl_zone'].setValue(this.dummy[a].revl_zone)
+    this.form.controls['rtssl_zone'].setValue(this.dummy[a].rtssl_zone)
+    this.form.controls['state_code'].setValue(this.dummy[a].state_code)
+
+
+
+
+
+
+
+
+
+  }
+
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
+  }
+/////////////////////////////////////////////////////edit functions
+
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
+  }
+  })
 }
 
-@Component({
-  selector: "pincode-form",
-  templateUrl: "pincode-form.html",
-})
-export class pincodeForm {
-  pincodeForm: FormGroup;
-  loading = false;
-  constructor(
-    public dialogRef: MatDialogRef<pincodeForm>,
-    @Inject(MAT_DIALOG_DATA) public data: master_roster,
-    private _snackBar: MatSnackBar,
-    private httpClient: HttpClient
-  ) {
-    this.pincodeForm = new FormGroup({
-      pincode: new FormControl("", Validators.required),
-      dvisionname: new FormControl("", Validators.required),
-      regionname: new FormControl("", Validators.required),
-      circlename: new FormControl("", Validators.required),
-      taluk: new FormControl("", Validators.required),
-      districtname: new FormControl("", Validators.required),
-      statename: new FormControl("", Validators.required),
-      rbl_zone: new FormControl("", Validators.required),
-      rml_zone: new FormControl("", Validators.required),
-      rap_zone: new FormControl("", Validators.required),
-      revl_zone: new FormControl("", Validators.required),
-      rtssL_zone: new FormControl("", Validators.required),
-      statecode: new FormControl("", Validators.required),
-    });
-    // if (this.data != null) {
-    //   this.plantForm.patchValue({
-    //     plant_code: this.data.plant_code,
-    //     plant_name: this.data.plant_name,
-    //     address: this.data.address,
-    //   });
-    //   this.plant_id = this.data.plant_id;
-    // }
-  }
+exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'department.xlsx');
+}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+reset()
+{
+  this.form.reset()
+}
+
 }

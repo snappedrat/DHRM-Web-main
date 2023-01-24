@@ -1,190 +1,152 @@
-import {Component, OnInit, ViewChild, Injectable, ViewContainerRef, TemplateRef, NgModule, Inject,} from "@angular/core";
-import {UntypedFormGroup, UntypedFormControl, UntypedFormBuilder,} from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import * as XLSX from "xlsx";
-import { MatSidenav } from "@angular/material/sidenav";
-import { ServiceService } from "../service.service";
-import { User } from "../user/user";
-import { MatTableModule } from "@angular/material/table";
-import { Observable, Subject } from "rxjs";
-import { Options } from "selenium-webdriver";
-import { Directive, Input } from "@angular/core";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,} from "@angular/material/dialog";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-const material = [MatSidenav, MatTableModule];
-export interface master_roster {
-  BankName: string;
-  ActiveStatus: string;
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-const DUMMY_DATA: master_roster[] = [
+import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import {Router} from '@angular/router';
+import * as XLSX from 'xlsx';
+import { MatSidenav } from '@angular/material/sidenav';
+import {ServiceService} from "../service.service";
+import {User} from "../user/user";
+import { MatTableModule } from '@angular/material/table';
+import { Observable,Subject } from 'rxjs';
+import { Options } from 'selenium-webdriver';
+import { Directive, Input } from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
+
+const material = [
+  MatSidenav,
+  MatTableModule
 ];
+
 @Component({
-  selector: "app-bank",
-  templateUrl: "./bank.component.html",
-  styleUrls: ["./bank.component.css"],
+  selector: 'app-bank',
+  templateUrl: './bank.component.html',
+  styleUrls: ['./bank.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BankComponent implements OnInit {
-  displayedColumns: string[] = [
-    "BankName",
-    "ActiveStatus",
-    "CreatedOn",
-    "CreatedBy",
-    "ModifiedOn",
-    "ModifiedBy",
-    "Actions",
-  ];
-  dataSource = DUMMY_DATA;
-  form: UntypedFormGroup;
-  form1:UntypedFormGroup;
-  showAdd:boolean;
-  showEdit:boolean;
-  users: User[];
-  userForm: boolean;
-  isNewUser: boolean;
-  newUser: any = {};
-  editUserForm: boolean;
-  editedUser: any = {};
-  master:any;
-  sno:any;
-  router:Router;
-  bank_name: any=['AXIS BANK','ICICI BANK','KOTAK BANK','STATE BANK OF INDIA','TMB BANK','INDUSLAND BANK']
-  isExpanded = true;
-  status: boolean = false;
-  clickEvent(){
-    this.status = !this.status;
-  }
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-  constructor(
-    private ServiceService: ServiceService,
-    public fb: UntypedFormBuilder,
-    private http: HttpClient,
-    private httpClient: HttpClient,
-    public dialog: MatDialog,
-    private _snackBar: MatSnackBar
-  ) {
+  closeResult: string;
+
+  form:any
+
+  sample : any = environment.path
+
+  dummy: any = [
+    {
+      'SNo':1220,
+      'bank_name': 'adda',
+      'active_status': 1,
+    }
+  ]
+  editing_flag: any;
+
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      bank_name:        new UntypedFormControl(' '),
-      active_status:    new UntypedFormControl(' '),
-    });
+      sno:[''],
+      bank_name :[''],
+      company_name : [''],
+      active_status: [''],
+      companycode: [sessionStorage.getItem('companycode')]
+     
+    })
+   }
 
-
+  ngOnInit(): void {
+    var username = {'username': sessionStorage.getItem('plantcode')}
+    this.service.getModules(username).
+    subscribe({
+      next: (response)=>{this.dummy = response}
+    })
   }
-  title = "EXAMPLE MASTER";
-  fileName = "COMPANY MASTERS.xlsx";
 
-  exportexcel(): void {
-    let element = document.getElementById("table");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, this.fileName);
-  }
-  loginUser()
+  open(content:any)
   {
-    console.log(this.form.get('bank_name')!.value);
-    var formData: any = new FormData();
-    formData.append('bank_name', this.form.get('bank_name')!.value);
-    formData.append('active_status', this.form.get('active_status')!.value);
-    this.http
-        .post('http://localhost:3000/bank',this.form.value)
-        .subscribe({
-          next: (response) => console.log(response),
-          error: (error) => console.log(error),
-        });
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
-  hide()
+
+  save()
   {
-    this.showAdd = false;
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
+
+  }
+/////////////////////////////////////////////////////edit functions
+  opentoedit(content:any)
+  {
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  ngOnInit() {
-    this.users = this.getUsers();
-  }
-  getUsers(): User[]{
-    var formData: any = new FormData();
-    this.http
-        .get('http://localhost:3000/bankshow',this.form.value)
-        .subscribe({
-          next: (response) =>{ console.log(response); this.master=response},
-          error: (error) => console.log(error),
-        });
-    return this.ServiceService.getUsersFromData();
-  }
-  showAddUserForm() {
-    // resets form if edited user
-    this.showAdd = true;
-    if (this.users) {
-      this.newUser = {};
-    }
-    this.userForm = true;
-    this.isNewUser = true;
-  }
-  showEditUserForm(user: any) {
-    this.showEdit = true;
-    this.sno=user;
-    console.log(this.sno);
-    if (!user) {
-      this.userForm = false;
-      return;
-    }
-    this.editUserForm = true;
-    this.editedUser = user;
-  }
-  openDialog(): void {
-    var data = null;
-    const dialogRef = this.dialog.open(bankForm, {
-      minWidth: "40%",
-      maxWidth: "40%",
-      data: data,
-    });
+  edit(a:any)
+  {
+    this.editing_flag = true
+    this.form.controls['bank_name'].setValue(this.dummy[a].bank_name)
+    this.form.controls['active_status'].setValue(this.dummy[a].active_staus)
+    
+    
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      //this.animal = result;
-    });
+
+
   }
+
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
+  }
+/////////////////////////////////////////////////////edit functions
+
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
+  }
+  })
 }
 
-@Component({
-  selector: "bank-form",
-  templateUrl: "bank-form.html",
-})
-export class bankForm {
-  bankForm: FormGroup;
-  loading = false;
-  form1:UntypedFormGroup;
-  constructor(
-    public dialogRef: MatDialogRef<bankForm>,
-    public fb:UntypedFormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: master_roster,
-    private _snackBar: MatSnackBar,
-    private httpClient: HttpClient
-  ) {
-    this.form1 = this.fb.group({
-      sno:              new UntypedFormControl(' '),
-      bank_name:        new UntypedFormControl(' '),
-      active_status:    new UntypedFormControl(' '),
-      modified_on:      new UntypedFormControl(' '),
-    });
-    // if (this.data != null) {
-    //   this.plantForm.patchValue({
-    //     plant_code: this.data.plant_code,
-    //     plant_name: this.data.plant_name,
-    //     address: this.data.address,
-    //   });
-    //   this.plant_id = this.data.plant_id;
-    // }
-  }
+exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'bank_details.xlsx');
+}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+reset()
+{
+  this.form.reset()
+}
+
 }

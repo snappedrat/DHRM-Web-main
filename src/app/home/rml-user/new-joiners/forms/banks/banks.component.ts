@@ -4,7 +4,6 @@ import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} fr
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../plantcode.service';
 import { ActivatedRoute } from '@angular/router';
-import { bankForm } from '../../../masters/bank/bank.component';
 import {
     trigger,
     state,

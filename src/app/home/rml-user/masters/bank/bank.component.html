@@ -1,136 +1,111 @@
-<div class="container" xmlns="http://www.w3.org/1999/html">
-    <div class="row">
-        <div class="col-md-12 mt-4">
-            <div>
-                <h1 class="text-center" style="color: darkblue">Bank Details Master</h1>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-                <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet" />
-            </div>
-            <hr style="border-block-color: orange" />
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Add Bank Details</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
-        <div class="col-md-12 mt-4">
-            <button mat-fab color="primary" (click)="showAddUserForm()" style="float: right" aria-label="Example icon button with a delete icon">
-                <mat-icon>person_add</mat-icon>
-            </button>
-            <button mat-fab style="float: right" aria-label="Example icon button with a delete icon">
-                <mat-icon>download</mat-icon>
-            </button>
-        </div>
-        <div class="col-md-12 mt-4">
-            <mat-table [dataSource]="master" class="mat-elevation-z8">
-
-                <ng-container matColumnDef="BankName">
-                    <mat-header-cell *matHeaderCellDef> BankName </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.bank_name}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="ActiveStatus">
-                    <mat-header-cell *matHeaderCellDef> ActiveStatus </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.active_status}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="CreatedOn">
-                    <mat-header-cell *matHeaderCellDef> CreatedOn </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.created_on}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="CreatedBy">
-                    <mat-header-cell *matHeaderCellDef> CreatedBy </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.created_by}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="ModifiedOn">
-                    <mat-header-cell *matHeaderCellDef> ModifiedOn </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.modified_on}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="ModifiedBy">
-                    <mat-header-cell *matHeaderCellDef> ModifiedBy </mat-header-cell>
-                    <mat-cell *matCellDef="let user"> {{user.modified_by}} </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="Actions">
-                    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-                    <mat-cell *matCellDef="let user">
-                        <mat-icon> <button type="button" class="btn btn-info btn-sm mr-2" (click)="showEditUserForm(user.sno)">edit</button></mat-icon>
-                        <mat-icon>delete</mat-icon>
-                    </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-        </div>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="mt-4">
-                    <form *ngIf="userForm">
-                        <div class="container pt-5">
-                            <div class="row">
-                                <div class="col">
-                                    <h2 class="first">
-                                        <b>BANK MASTER</b>
-                                        <hr />
-                                    </h2>
-                                    <form [formGroup]="form" (ngSubmit)="loginUser()">
-                                        <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start start">
-                                            <div fxFlex="50%">
-                                                <mat-form-field appearance="outline" fxFlex="100%">
-                                                    <mat-label>Bank Name</mat-label>
-                                                    <select matInput placeholder="" class="w-100" required formControlName="bank_name">
-                                                        <option>Choose</option>
-                                                        <option *ngFor="let pl of bank_name">{{pl}}</option>
-                                                    </select>
-                                                    <mat-error>Bank Name is required</mat-error>
-                                                </mat-form-field>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-form-label">ACTIVE Status</label><br />
-                                            <input
-                                                    type="radio"
-                                                    style="border-radius: 10px; box-shadow: 100px"
-                                                    class="inputtext"
-                                                    formControlName="active_status"
-                                                    value="0"
-                                            /> Active
-                                            <input
-                                                    type="radio"
-                                                    style="border-radius: 10px; box-shadow: 100px"
-                                                    class="inputtext"
-                                                    formControlName="active_status"
-                                                    value="1"
-                                            /> Inactive
-                                            <br />
-                                            <br />
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button
-                                                    type="button"
-                                                    style="position: relative; right: 320px"
-                                                    class="btn btn-info btn-sm mr-2"
-                                                    (click)="loginUser()"
-                                            >
-                                                <b>Submit</b>
-                                            </button>
-                                            <button
-                                                    type="button"
-                                                    style="position: relative; left: 10px"
-                                                    class="btn btn-info btn-sm mr-2"
-                                                    data-dismiss="modal"
-                                                    (click)="hide()"
-                                            >
-                                                <b>Close</b>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+        <div class="modal-content container">
+            <br>
+            <form [formGroup] = "form">
+                <div class = "row">
+                    <div class="col">
+                        <label>Banks Name: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "department_name">
+                    </div>
+                </div><br>
+               
+                    <div class="col">
+                      <label>Active Status</label>
+                      <br>
+                      <input type="radio" id="active" formControlName="active_status" value="active">
+                      <label for="active">Active</label><br>
+                      <input type="radio" id="inactive" formcontrolname="active_status" value="inactive">
+                      <label for="inactive">Inactive</label><br>
+                          
+                      
+      
+                
                 </div>
-            </div>
+  
+            </form>
         </div>
-    </div>
-</div>
+        <div class="modal-footer">
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </ng-template>
+  <br>
+  <div>
+    <h1 class="title" >Bank Details Master</h1>
+    <hr style="border-block-color: orange" />
+  </div>
+  <div class="button">
+    <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
+        <mat-icon>person_add</mat-icon>
+    </button></div>
+    <div class = "button1">
+    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
+        <mat-icon>download</mat-icon>
+    </button></div>
+  <br><br><br>
+  <div class = "table-wrapper">
+    <table class="table table-bordered table-striped table-hover">
+      <table id="table">
+          <thead>
+          <tr>
+            <th
+            class="text-center"
+            style="width: 500px"
+            style="background-color: darkblue"
+    >
+       SNo
+              
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                Bank Name
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 800px"
+                      style="background-color: darkblue"
+              >
+
+                  Active Status 
+              </th>
+             
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+                      >
+                  Action
+              </th>
+            </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor = "let i of dummy; let a = index">
+                    <td>{{a+1}}</td>
+                    <td>{{i.bank_name}}</td>
+                    <td>{{i.active_status}}</td>
+  
+                    <td>
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </table>
+  </div>
+  
+  
+  
