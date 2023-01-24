@@ -10,21 +10,20 @@
                 <div class="row">
                     <div class="col">
                         <label>Company Code: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "plant_code">
+                        <input class="form-control"  type = "number" formControlName = "company_code">
                     </div>
                     <div class="col">
                         <label>Company Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
+                        <input class="form-control"  type = "text" formControlName = "company_name">
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="col">
                       <label>Active Status</label>
                       <br>
-                      <input type="radio" id="active" formControlName="active_status" value="active">
-                      <label for="active">Active</label><br>
-                      <input type="radio" id="inactive" formcontrolname="active_status" value="inactive">
-                      <label for="inactive">Inactive</label><br>
+                      <input type="radio" name = 'status' formControlName="active_status" value="active">Active<br>
+
+                      <input type="radio" name = 'status' formcontrolname="active_status" value="inactive">Inactive
                           
                       
       
@@ -127,10 +126,10 @@
                     <td>{{a+1}}</td>
                     <td>{{i.company_code}}</td>
                     <td>{{i.company_name}}</td>
-                    <td>{{i.active_status}}</td>
-                    <td>{{i.created_on}}</td>
+                    <td>{{i.status}}</td>
+                    <td>{{i.created_on.split('T')[0]}}</td>
                     <td>{{i.created_by}}</td>
-                    <td>{{i.modified_on}}</td>
+                    <td>{{i.modified_on.split('T')[0]}}</td>
                     <td>{{i.modified_by}}</td>
   
                     <td>

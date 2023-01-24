@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule } from '@angular/core';
+import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -11,374 +11,148 @@ import { Observable,Subject } from 'rxjs';
 import { Options } from 'selenium-webdriver';
 import { Directive, Input } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from "src/app/home/api.service";
+import { environment } from "src/environments/environment.prod";
 import { CookieService } from 'ngx-cookie-service';
 
 const material = [MatSidenav, MatTableModule];
-
-export interface master_roster {
-  plant_code: string;
-  plant_name: string;
-  pl: string;
-  address: string;
-  location: string;
-  plant_sign: string;
-  personal: string;
-  payroll: string;
-
-  CreatedOn: string;
-  CreatedBy: string;
-  ModifiedOn: string;
-  ModifiedBy: string;
-}
-
-const DUMMY_DATA: master_roster[] = [
-  // {
-  //   PlantCode: "Comp1",
-  //   PlantName: "Plant 1",
-  //   Location: "Locaiton",
-  //   Address: "Chennai",
-  //   ActiveStatus: "Yes",
-  //   CreatedOn: "01/01/01",
-  //   CreatedBy: "Mang1",
-  //   ModifiedOn: "01/01/01",
-  //   ModifiedBy: "Mang2",
-  // },
-  // {
-  //   PlantCode: "Comp1",
-  //   PlantName: "Plant 1",
-  //   Location: "Locaiton",
-  //   Address: "Chennai",
-  //   ActiveStatus: "Yes",
-  //   CreatedOn: "01/01/01",
-  //   CreatedBy: "Mang1",
-  //   ModifiedOn: "01/01/01",
-  //   ModifiedBy: "Mang2",
-  // },
-  // {
-  //   PlantCode: "Comp1",
-  //   PlantName: "Plant 1",
-  //   Location: "Locaiton",
-  //   Address: "Chennai",
-  //   ActiveStatus: "Yes",
-  //   CreatedOn: "01/01/01",
-  //   CreatedBy: "Mang1",
-  //   ModifiedOn: "01/01/01",
-  //   ModifiedBy: "Mang2",
-  // },
-  // {
-  //   PlantCode: "Comp1",
-  //   PlantName: "Plant 1",
-  //   Location: "Locaiton",
-  //   Address: "Chennai",
-  //   ActiveStatus: "Yes",
-  //   CreatedOn: "01/01/01",
-  //   CreatedBy: "Mang1",
-  //   ModifiedOn: "01/01/01",
-  //   ModifiedBy: "Mang2",
-  // },
-  // {
-  //   PlantCode: "Comp1",
-  //   PlantName: "Plant 1",
-  //   Location: "Locaiton",
-  //   Address: "Chennai",
-  //   ActiveStatus: "Yes",
-  //   CreatedOn: "01/01/01",
-  //   CreatedBy: "Mang1",
-  //   ModifiedOn: "01/01/01",
-  //   ModifiedBy: "Mang2",
-  // },
-];
 
 @Component({
   selector: "app-plant",
   templateUrl: "./plant.component.html",
   styleUrls: ["./plant.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
 export class PlantComponent implements OnInit {
-  displayedColumns: string[] = [
-    "PlantCode",
-    "PlantName",
-    "pl",
-    "location",
-    "address",
-    "personalArea",
-    "payrollArea",
+  closeResult: string;
 
-    "CreatedOn",
-    "CreatedBy",
-    "ModifiedOn",
-    "ModifiedBy",
-    "Actions",
-  ];
-  dataSource = DUMMY_DATA;
+  form:any
 
-  form: UntypedFormGroup;
-  form1:UntypedFormGroup;
-  form2:UntypedFormGroup;
-  cd=12334;
-  showAdd!:boolean;
-  showEdit!:boolean;
-  users: User[];
-  userForm: boolean;
-  isNewUser: boolean;
-  newUser: any = {};
-  editUserForm: boolean;
-  editedUser: any = {};
-  code:any;
-  name:any;
-  master:any;
-  sno:any;
-  errmsg:any;
-  plant_code:any;
-  plant_name:any;
-  pl:any;
-  location:any;
-  address:any;
-  plant_sign:any;
-  personal:any;
-  payroll:any;
-  router: Router;
-  isExpanded = true;
-  status: boolean = false;
-  clickEvent(){
-    this.status = !this.status;
-  }
+  sample : any = environment.path
 
-  created_byy = this.cookie.get('User_Name');
+  dummy: any = [
+    {
+      'SNo':1220,
+      'company_code': '12000',
+      'company_name': 'adda',
+      'active_status': 1,
+      'created_on' :'12/2/2022',
+      'created_by': '12/1/2022',
+      'modified_on': '12/1/2022',
+      'modified_by': '12/1/2022', 
+    }
+  ]
+  editing_flag: any;
 
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-
-  constructor(private cookie: CookieService, private ServiceService: ServiceService,public fb: UntypedFormBuilder, private http: HttpClient) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
+      sno:[''],
+      company_code :[''],
+      company_name : [''],
+      sap_code: [''],
+      active_status: [''],
+      created_on: [''],
+      created_by: [''],
+      modified_on: [''],
+      modified_by: [''],
+      companycode: [sessionStorage.getItem('companycode')]
+     
+    })
+   }
 
-      Code:new UntypedFormControl(' '),
-      Name: new UntypedFormControl(' '),
-      pl: new UntypedFormControl(' '),
-      
-      address: new UntypedFormControl(' '),
-      location: new UntypedFormControl(' '),
-      plant_sign: new UntypedFormControl(' '),
-      personal: new UntypedFormControl(' '),
-      payroll: new UntypedFormControl(' '),
-
-      created_by: new UntypedFormControl(this.created_byy)
-
-    });
-    this.form1 = this.fb.group({
-      sno:new UntypedFormControl(' '),
-      Name: new UntypedFormControl(' '),
-      active_status: new UntypedFormControl(' '),
-      modified_on: new UntypedFormControl(' '),
-      modified_by: new UntypedFormControl(' '),
-    });
-    this.form2 = this.fb.group({
-      Code:new UntypedFormControl(' '),
-      Name: new UntypedFormControl(' '),
-      pl: new UntypedFormControl(' '),
-
-      address: new UntypedFormControl(' '),
-      location: new UntypedFormControl(' '),
-      plant_sign: new UntypedFormControl(' '),
-      personal: new UntypedFormControl(' '),
-      payroll: new UntypedFormControl(' '),
-
-      modified_on: new UntypedFormControl(' '),
-      modified_by: new UntypedFormControl(this.created_byy)
-    });
- 
+  ngOnInit(): void {
+    var username = {'username': sessionStorage.getItem('plantcode')}
+    this.service.getModules(username).
+    subscribe({
+      next: (response)=>{this.dummy = response}
+    })
   }
-  title = "EXAMPLE MASTER";
-  fileName = "PLANT MASTERS.xlsx";
 
-  loginUser()
+  open(content:any)
   {
-
-    var formData: any = new FormData();
-    formData.append('Code', this.form.get('Code')!.value);
-    formData.append('Name', this.form.get('Name')!.value);
-    formData.append('pl', this.form.get('pl')!.value);
-    formData.append('address', this.form.get('address')!.value);
-    formData.append('location', this.form.get('location')!.value);
-    formData.append('plant_sign', this.form.get('plant_sign')!.value);
-    formData.append('personal', this.form.get('personal')!.value);
-    formData.append('payroll', this.form.get('payroll')!.value);
-
-    this.http
-        .post('http://localhost:3000/plant',this.form.value)
-        .subscribe({
-          next: (response) => this.errmsg=response,
-          error: (error) => console.log(error),
-        })
-
+    this.editing_flag = false
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  exportexcel(): void {
-    let element = document.getElementById("table");
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
-    XLSX.writeFile(wb, this.fileName);
-  }
-
-  ngOnInit() {
-    this.users = this.getUsers();
-  }
-
-  getUsers(): User[]{
-    var formData: any = new FormData();
-    this.http
-        .get('http://localhost:3000/plantshow',this.form.value)
-        .subscribe({
-          next: (response) =>{ console.log(response); this.master=response},
-          error: (error) => console.log(error),
-        });
-    return this.ServiceService.getUsersFromData();
-  }
-
-  showEditUserForm(user: any,plant_code:any,plant_name:any,pl:any,address:any,location:any,plant_sign:any,personal:any,payroll:any) {
-    this.showEdit = true;
-    this.plant_code=plant_code;
-    this.plant_name=plant_name;
-    this.pl=pl;
-    this.address=address;
-    this.location=location;
-    this.plant_sign=plant_sign;
-    this.personal=personal;
-    this.payroll=payroll;
-
-    console.log(this.sno);
-    console.log(this.plant_code);
-    console.log(this.plant_name);
-    if (!user) {
-      this.userForm = false;
-      return;
-    }
-    this.editUserForm = true;
-    this.editedUser = user;
-    this.code=plant_code;
-    this.name=plant_name;
-    this.pl=pl;
-    this.address=address;
-    this.location=location;
-    this.plant_sign=plant_sign;
-    this.personal=personal;
-    this.payroll=payroll;
-    
-
-  }
-
-  showAddUserForm() {
-    // resets form if edited user
-    this.showAdd = true;
-    if (this.users) {
-      this.newUser = {};
-    }
-    this.userForm = true;
-    this.isNewUser = true;
-  }
-
-  hide()
+  save()
   {
-    this.showAdd = false;
-  }
+    this.service.addmodule(this.form.value)
+    .subscribe({
+      next : (response:any)=>{console.log(response);
+      if(response.message == 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy.push(this.form.value)
+        this.form.reset()
+        console.log(this.form.value)
+      }}
+    })    
 
-  hides()
+  }
+/////////////////////////////////////////////////////edit functions
+  opentoedit(content:any)
   {
-    this.showEdit = false;
+    console.log("opening")
+    this.modalService.open(content, {centered: true})
   }
 
-  saveUser(user: User) {
-    if (this.isNewUser) {
-      // add a new user
-      this.ServiceService.addUser(user);
-    }
-    this.userForm = false;
+  edit(a:any)
+  {
+    this.editing_flag = true
+    this.form.controls['company_code'].setValue(this.dummy[a].plant_code)
+    this.form.controls['company_name'].setValue(this.dummy[a].dept_name)
+    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+
   }
 
-  updateUser(user: any,plant_code:any,plant_name:any,pl:any,address:any,location:any,plant_sign:any,personal:any,payroll:any) {
-    var formData: any = new FormData();
-    console.log(this.sno);
-    formData.set('sno', this.sno);
-    console.log( formData.get('sno'));
-    formData.append('Name', this.form2.get('Name')!.value);
-    formData.append('pl', this.form.get('pl')!.value);
-    formData.append('address', this.form.get('address')!.value);
-    formData.append('location', this.form.get('location')!.value);
-    formData.append('plant_sign', this.form.get('plant_sign')!.value);
-    formData.append('personal', this.form.get('personal')!.value);
-    formData.append('payroll', this.form.get('payroll')!.value);
-    formData.append('sno', formData.get('sno'));
-
-    var object = {};
-
-    formData.forEach((value: any, key:any) => object[key] = value);
-    var json = JSON.stringify(object);
-    console.warn(json)
-
-    console.log(object)
-
-    this.http
-        .post('http://localhost:3000/plantedit',object)
-        .subscribe({
-          next: (response) => console.log(response),
-          error: (error) => console.log(error),
-        });
-    return this.ServiceService.updateUser(this.editedUser);
+  editSave()
+  {
+    this.service.updatemodule(this.form.value)
+    .subscribe({
+      next: (response:any)=>{console.log(response);
+      if(response.message== 'already')
+      {
+        alert('Module with same priority value already exists')
+      }
+    else
+      {
+        this.dummy[this.form.controls['sno'].value] = this.form.value
+      }}
+    })
+    this.form.reset();
   }
+/////////////////////////////////////////////////////edit functions
 
-  removeUser(user: any) {
-    console.log(user);
-    this.http
-        .post('http://localhost:3000/plantdel',{"user":user})
-        .subscribe({
-          next: (response) =>{ console.log(response)},
-          error: (error) => console.log(error),
-        });
-    this.ServiceService.deleteUser(user);
+delete(a:any)
+{
+  this.service.deletemodule(this.dummy[a])
+  .subscribe({
+    next: (response:any) =>{console.log(response); 
+    if(response.message == 'success')
+      this.dummy.splice(a,1)
   }
-
-  cancelEdits() {
-    this.editedUser = {};
-    this.editUserForm = false;
-  }
-  
-  cancelNewUser() {
-    this.newUser = {};
-    this.userForm = false;
-  }
+  })
 }
 
-// @Component({
-//   selector: "plant-form",
-//   templateUrl: "plant-form.html",
-// })
-// export class plantForm {
-//   plantForm: FormGroup;
-//   loading = false;
-//   constructor(
-//     public dialogRef: MatDialogRef<plantForm>,
-//     @Inject(MAT_DIALOG_DATA) public data: master_roster,
-//     private _snackBar: MatSnackBar,
-//     private httpClient: HttpClient
-//   ) {
-//     this.plantForm = new FormGroup({
-//       plant_code: new FormControl("", Validators.required),
-//       plant_name: new FormControl("", Validators.required),
-//       address: new FormControl("", Validators.required),
-//     });
-//     // if (this.data != null) {
-//     //   this.plantForm.patchValue({
-//     //     plant_code: this.data.plant_code,
-//     //     plant_name: this.data.plant_name,
-//     //     address: this.data.address,
-//     //   });
-//     //   this.plant_id = this.data.plant_id;
-//     // }
-//   }
+exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'master_company.xlsx');
+}
 
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-// }
+reset()
+{
+  this.form.reset()
+}
+
+}
+
+

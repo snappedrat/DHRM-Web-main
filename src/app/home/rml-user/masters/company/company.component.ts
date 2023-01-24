@@ -53,20 +53,16 @@ export class CompanyComponent implements OnInit {
       sno:[''],
       company_code :[''],
       company_name : [''],
-      sap_code: [''],
       active_status: [''],
       created_on: [''],
       created_by: [''],
       modified_on: [''],
-      modified_by: [''],
-      companycode: [sessionStorage.getItem('companycode')]
-     
+      modified_by: [''],     
     })
    }
 
   ngOnInit(): void {
-    var username = {'username': sessionStorage.getItem('plantcode')}
-    this.service.getModules(username).
+    this.service.companyshow().
     subscribe({
       next: (response)=>{this.dummy = response}
     })
@@ -81,7 +77,8 @@ export class CompanyComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
+    this.form.controls['created_by'].setValue(sessionStorage.getItem('emp_name'))
+    this.service.companyadd(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
@@ -97,7 +94,9 @@ export class CompanyComponent implements OnInit {
     })    
 
   }
+
 /////////////////////////////////////////////////////edit functions
+
   opentoedit(content:any)
   {
     console.log("opening")
@@ -107,13 +106,9 @@ export class CompanyComponent implements OnInit {
   edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['company_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['company_name'].setValue(this.dummy[a].dept_name)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
-    
-    
-
-
+    this.form.controls['company_code'].setValue(this.dummy[a].company_code)
+    this.form.controls['company_name'].setValue(this.dummy[a].company_name)
+    this.form.controls['active_status'].setValue(this.dummy[a].active_status)
 
   }
 

@@ -14,7 +14,25 @@ url:any = environment.path
 
   constructor(private http: HttpClient) {}
 
-  login(User_Name: string, Password: string) {
+  companyshow()
+  {
+    return this.http.get(this.url+'/companyshow')
+  }
+  companyadd(form:any)
+  {
+    return this.http.post(this.url+'/companyadd', form)
+  }
+  companyedit(form:any)
+  {
+    return this.http.post(this.url+'/companyedit', form)
+  }
+  companydel(form:any)
+  {
+    return this.http.post(this.url+'/companydel', form)
+  }
+
+  login(User_Name: string, Password: string) 
+  {
     return this.http.post(this.url+'/logins', { User_Name, Password });
   }
 
