@@ -13,7 +13,8 @@
   }
   .container{
     display: inline-block;
-    margin-left: 3%;
+    margin-left: 10%;
+    margin-top:5%;
     align-items: center;
     box-shadow: 2px;
     margin-right: 3%;
@@ -49,7 +50,6 @@
     height: 800px;
     background-size: 80%;
     background-size: cover;
-    background-image:url('src\assets\bg.png');
     background-position:fit;
     overflow-x:none;
     overflow-y: none;
