@@ -44,7 +44,7 @@ export class ShiftComponent implements OnInit {
       'plant_code' : 1220,
       'start_time': 12.00,
       'end_time': 4.00,
-      'active_status': 1,
+    
     }
   ]
   editing_flag: any;
@@ -55,7 +55,7 @@ export class ShiftComponent implements OnInit {
      plant_code : [''],
       start_time: [''],
       end_time: [''],
-      active_status: [''],
+      
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })

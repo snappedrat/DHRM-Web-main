@@ -44,7 +44,7 @@ export class OperationsComponent implements OnInit {
       'operation_description' : 'ABCD',
       'line_code': 300,
       'skills_level': 500,
-      'active_status': 1,
+   
     }
   ]
   editing_flag: any;
@@ -55,7 +55,7 @@ export class OperationsComponent implements OnInit {
       operation_description : [''],
       line_code: [''],
       skills_level: [''],
-      active_status: [''],
+     
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })

@@ -64,7 +64,7 @@ export class LineComponent implements OnInit {
   dummy: any = [
     {
       'plant_code':'AIDUA',
-      'active_status': 1,
+    
       
     }
   ]
@@ -73,7 +73,7 @@ export class LineComponent implements OnInit {
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
       plant_code: [''],
-      active_status: [''],
+    
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })
