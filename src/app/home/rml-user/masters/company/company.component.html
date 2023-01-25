@@ -21,11 +21,9 @@
                     <div class="col">
                       <label>Active Status</label>
                       <br>
-                      <input type="radio" name = 'status' formControlName="active_status" value="Active">Active<br>
+                      <input type="radio" name = 'status' formControlName="status" value="Active">Active<br>
 
-                      <input type="radio" name = 'status' formcontrolname="active_status" value="Inactive">Inactive
-                          
-                      
+                      <input type="radio" name = 'status' formcontrolname="status" value="Inactive">Inactive
       
                     </div>
                 </div>
@@ -34,7 +32,7 @@
         </div>
         <div class="modal-footer">
             <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >update</button>
             <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
@@ -128,9 +126,9 @@
                     <td>{{i.company_code}}</td>
                     <td>{{i.company_name}}</td>
                     <td>{{i.status}}</td>
-                    <td>{{i.created_on.split('T')[0]}}</td>
+                    <td>{{i.created_on?.split('T')[0]}}</td>
                     <td>{{i.created_by}}</td>
-                    <td>{{i.modified_on.split('T')[0]}}</td>
+                    <td  >{{i.modified_on?.split('T')[0]}}</td>
                     <td>{{i.modified_by}}</td>
   
                     <td>
