@@ -62,7 +62,7 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                 PLant Desc
+                 Plant Desc
               <th
                       class="text-center"
                       style="width: 500px"
@@ -84,7 +84,6 @@
                 <tr *ngFor = "let i of dummy; let a = index">
                    <td>{{a+1}}</td>
                     <td>{{i.plant_code}}</td>   
-                    <td>{{i.active_status}}</td>
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>

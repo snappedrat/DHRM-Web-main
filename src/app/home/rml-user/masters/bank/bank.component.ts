@@ -38,7 +38,7 @@ export class BankComponent implements OnInit {
     {
       'SNo':1220,
       'bank_name': 'adda',
-      'active_status': 1,
+      'bank_code': 1,
     }
   ]
   editing_flag: any;
@@ -47,8 +47,7 @@ export class BankComponent implements OnInit {
     this.form = this.fb.group({
       sno:[''],
       bank_name :[''],
-      company_name : [''],
-      active_status: [''],
+      bank_code: [''],
       companycode: [sessionStorage.getItem('companycode')]
      
     })

@@ -9,23 +9,19 @@
             <form [formGroup] = "form">
                 <div class = "row">
                     <div class="col">
-                        <label>Banks Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
+                        <label>Bank Name: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "bank_name">
                     </div>
-                </div><br>
-               
-                    <div class="col">
-                      <label>Active Status</label>
-                      <br>
-                      <input type="radio" id="active" formControlName="active_status" value="active">
-                      <label for="active">Active</label><br>
-                      <input type="radio" id="inactive" formcontrolname="active_status" value="inactive">
-                      <label for="inactive">Inactive</label><br>
+                <br>
+               <div class="col">
+              <label>Bank Code</label>
+               <input type="text" class="form-control" formControlName="bank_code" >
+               </div><br> <br>
                           
                       
       
                 
-                </div>
+                </div><br>
   
             </form>
         </div>
@@ -75,7 +71,7 @@
                       style="background-color: darkblue"
               >
 
-                  Active Status 
+                  Bank Code
               </th>
              
               <th
@@ -91,7 +87,7 @@
                 <tr *ngFor = "let i of dummy; let a = index">
                     <td>{{a+1}}</td>
                     <td>{{i.bank_name}}</td>
-                    <td>{{i.active_status}}</td>
+                    <td>{{i.bank_code}}</td>
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
