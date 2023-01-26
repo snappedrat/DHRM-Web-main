@@ -35,25 +35,19 @@ export class CompanyComponent implements OnInit {
   sample : any = environment.path
 
   dummy: any = [
-    {
-      'SNo':1220,
-      'company_code': '12000',
-      'company_name': 'adda',
-      'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
-    }
+
   ]
-  editing_flag: any ;
+  editing_flag: any;
+  year:any = new Date().getFullYear();
+  month:any = new Date().getMonth();
+  day:any = new Date().getDate();
+
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      sno:[''],
       company_code :[''],
       company_name : [''],
-      active_status: [''],
+      status: [''],
       created_on: [''],
       created_by: [''],
       modified_on: [''],
@@ -108,8 +102,9 @@ export class CompanyComponent implements OnInit {
     this.editing_flag = true
     this.form.controls['company_code'].setValue(this.dummy[a].company_code)
     this.form.controls['company_name'].setValue(this.dummy[a].company_name)
-    this.form.controls['active_status'].setValue(this.dummy[a].active_status)
+    this.form.controls['status'].setValue(this.dummy[a].status)
 
+    console.log(this.editing_flag)
   }
 
   editSave()
