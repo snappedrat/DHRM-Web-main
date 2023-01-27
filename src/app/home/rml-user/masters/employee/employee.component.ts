@@ -23,6 +23,7 @@ import { User } from "../user/user";
 import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";
+import { PlantcodeService } from "../../new-joiners/plantcode.service";
 
 
 
@@ -64,33 +65,29 @@ export class EmployeeComponent implements OnInit {
   dummy: any = [
     {
       'employee_name':'AIDUA',
-      'department' : 'ABCD',
-      'designation' : 'ABCD',
+      'plant_code':[''],
+      'department' : [''],
+      'designation' : ['fkms,sfnk,shf'],
+      'line':[''],
       'mail_id':'abc123@gmail.com',
       'mobile_no':'99876543210',
       'user_name':'aameerk',
       'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
     }
   ]
   editing_flag: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService) {
     this.form = this.fb.group({
       employee_name :[''],
+      plant_code:[''],
       department : [''],
       designation : [''],
+      line:[''],
       mail_id: [''],
       mobile_no: [''],
       user_name: [''],
       active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
-      modified_by: [''],
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })
@@ -158,6 +155,9 @@ edit(a:any)
     })    
 
   }
+  sendData(){
+    this.plantcodeService.fam = this.dummy
+  } 
   editSave()
   {
     this.service.updatemodule(this.form.value)
@@ -194,4 +194,5 @@ delete(a:any)
 {
   this.form.reset()
 }
+
 }

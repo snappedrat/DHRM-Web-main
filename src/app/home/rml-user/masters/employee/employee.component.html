@@ -1,50 +1,68 @@
 
     <ng-template #content let-modal>
         <div class="modal-header">
-            <h4 class="modal-title">Add Designation</h4>
+            <h4 class="modal-title">Add Employee
+            </h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
-        <div class="modal-content container">
+        <div class="modal-content-lg container ">
             <br>
             <form [formGroup] = "form">
                 <div class="row">
                     <div class="col">
                         <label>Employee Name: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "plant_code">
-                    </div>
+                        <input class="form-control"  type = "text" formControlName = "employee_name">
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Plant Code: </label><br>
+                            <input class="form-control"  type = "number" formControlName = "plant_code">
+                        </div></div><br>
                     <div class="row">
                     <div class="col">
                         <label>Department: </label><br>
                         <input class="form-control"  type = "text" formControlName = "department_name">
-                    </div></div>
+                    </div></div><br>
                     <div class="row">
                         <div class="col">
+                            <label>Line: </label><br>
+                            <input class="form-control"  type = "text" formControlName = "line">
+                        </div></div><br>
+                    <div class="row">
+                        <div class="col">
+                            <div *ngFor="let data of dummy">
+                            
                             <label>Designation: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "department_name">
-                        </div></div>
+                            <td><select type = "text" (ngModel)="data.designation"  (click)="sendData()"><option *ngFor= "let i of dummy">
+                                {{i}}                        </option></select></div></div><br>
                         <div class="row">
                             <div class="col">
                                 <label>Mail ID: </label><br>
-                                <input class="form-control"  type = "text" formControlName = "department_name">
-                            </div></div>
+                                <input class="form-control"  type = "text" formControlName = "mail_id">
+                            </div></div><br>
                             <div class="row">
                                 <div class="col">
                                     <label>Mobile No: </label><br>
-                                    <input class="form-control"  type = "text" formControlName = "department_name">
-                                </div></div>
+                                    <input class="form-control"  type = "text" formControlName = "mobile_no">
+                                </div></div><br>
                                 <div class="row">
                                     <div class="col">
                                         <label>User Name: </label><br>
-                                        <input class="form-control"  type = "text" formControlName = "department_name">
-                                    </div></div>
+                                        <input class="form-control"  type = "text" formControlName = "user_name">
+                                    </div></div><br>
                                     <div class="row">
                                         <div class="col">
                                             <label>Password: </label><br>
-                                            <input class="form-control"  type = "text" required formControlName = "department_name">
+                                            <input class="form-control"  type = "text" required formControlName = "password">
                                             <mat-error>Password is required.</mat-error>
-                                        </div></div>
+                                        </div></div><br>
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>Del Status: </label><br>
+                                                <input class="form-control"  type = "checkbox" required formControlName = "del_status">
+                                            </div></div><br>
                 </div><br>
-               
+                </div>
   
             </form>
         </div>
@@ -78,7 +96,7 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                 SNo
+                 Gen ID
               <th
                       class="text-center"
                       style="width: 500px"
@@ -112,46 +130,12 @@
                       style="background-color: darkblue"
               >
                   Mobile NO
-                  <th
-                  class="text-center"
-                  style="width: 500px"
-                  style="background-color: darkblue"
-          >
-              User Name
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
                 Active Status
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Created On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Created By
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Modified On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-                      >
-                      Modified By
-              </th>
               <th
                       class="text-center"
                       style="width: 500px"
@@ -163,7 +147,7 @@
             </thead>
             <tbody >
                 <tr *ngFor = "let i of dummy; let a = index">
-                   <td>{{a+1}}</td>
+                   <td>{{i.gen_id}}</td>
                     <td>{{i.employee_name}}</td>
                     <td>{{i.department}}</td>
                     <td>{{i.designation}}</td>
@@ -171,10 +155,6 @@
                     <td>{{i.mobile_no}}</td>
                     <td>{{i.user_name}}</td>
                     <td>{{i.active_status}}</td>
-                    <td>{{i.created_on}}</td>
-                    <td>{{i.created_by}}</td>
-                    <td>{{i.modified_on}}</td>
-                    <td>{{i.modified_by}}</td>
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
