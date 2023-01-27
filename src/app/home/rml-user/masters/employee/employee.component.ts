@@ -59,6 +59,12 @@ export class EmployeeComponent implements OnInit {
   closeResult: string;
 
  form:any
+ plantcode:any;
+
+ all_details:any
+ desig:any
+ dept:any
+ line:any
 
   sample : any = environment.path
 
@@ -79,6 +85,7 @@ export class EmployeeComponent implements OnInit {
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService) {
     this.form = this.fb.group({
+      gen_id: [''],
       employee_name :[''],
       plant_code:[''],
       department : [''],
@@ -87,9 +94,7 @@ export class EmployeeComponent implements OnInit {
       mail_id: [''],
       mobile_no: [''],
       user_name: [''],
-      active_status: [''],
-      plantcode: [sessionStorage.getItem('plantcode')]
-     
+      password: [ ''],     
     })
    }
 
@@ -104,7 +109,9 @@ export class EmployeeComponent implements OnInit {
   XLSX.writeFile(wb, 'designation.xlsx');
 }
 
+
 ngOnInit(): void {
+  this.getplantcode()
   var username = {'username': sessionStorage.getItem('plantcode')}
   this.service.getModules(username).
   subscribe({
@@ -112,6 +119,29 @@ ngOnInit(): void {
   })
 }
 
+getplantcode(){
+  var company = {'company_name': sessionStorage.getItem('companycode')}
+  this.service.plantcodelist(company)
+  .subscribe({
+    next: (response) =>{ console.log(response); this.plantcode = response },
+    error: (error) => console.log(error),
+  });
+}
+
+getall(event:any)
+{
+  var plantcode = {plantcode: event.target.value}
+    this.service.line_dept_design(plantcode)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.all_details = response;
+        this.desig= this.all_details[0]
+        this.dept= this.all_details[1]
+        this.line= this.all_details[2]
+
+      },
+      error: (error) => console.log(error),
+    });
+}
 
    open(content:any)
   {

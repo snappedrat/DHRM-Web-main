@@ -35,27 +35,21 @@ export class BankComponent implements OnInit {
   sample : any = environment.path
 
   dummy: any = [
-    {
-      'SNo':1220,
-      'bank_name': 'adda',
-      'bank_code': 1,
-    }
+
   ]
   editing_flag: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      sno:[''],
+      Slno:[''],
       bank_name :[''],
       bank_code: [''],
-      companycode: [sessionStorage.getItem('companycode')]
      
     })
    }
 
   ngOnInit(): void {
-    var username = {'username': sessionStorage.getItem('plantcode')}
-    this.service.getModules(username).
+    this.service.getbank().
     subscribe({
       next: (response)=>{this.dummy = response}
     })
@@ -63,6 +57,7 @@ export class BankComponent implements OnInit {
 
   open(content:any)
   {
+    this.form.reset();
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -70,18 +65,19 @@ export class BankComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
+    this.form.controls['Slno'].setValue(this.dummy.length+1)
+    this.service.addbank(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('bank already exists')
       }
     else
       {
         this.dummy.push(this.form.value)
+
         this.form.reset()
-        console.log(this.form.value)
       }}
     })    
 
@@ -96,36 +92,25 @@ export class BankComponent implements OnInit {
   edit(a:any)
   {
     this.editing_flag = true
+    this.form.controls['Slno'].setValue(a)
     this.form.controls['bank_name'].setValue(this.dummy[a].bank_name)
-    this.form.controls['active_status'].setValue(this.dummy[a].active_staus)
-    
-    
-
-
-
+    this.form.controls['bank_code'].setValue(this.dummy[a].bank_code)
   }
 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updatebank(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('Module with same priority value already exists')
+        this.dummy[this.form.controls['Slno'].value] = this.form.value
       }
-    else
-      {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
-      }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletebank(this.dummy[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

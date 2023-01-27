@@ -139,8 +139,6 @@ export class CompanyComponent implements OnInit {
         this.form.controls['created_on'].setValue(this.dummy[this.form.controls['sno'].value].created_on)    
         this.form.controls['created_by'].setValue(this.dummy[this.form.controls['sno'].value].created_by)
 
-        console.log( 'ggg', this.dummy[this.form.controls['sno'].value])
-        console.log( 'ggg', this.form.value)
         this.dummy[this.form.controls['sno'].value] = this.form.value
       }}
     })
