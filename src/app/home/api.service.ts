@@ -49,8 +49,34 @@ url:any = environment.path
     return this.http.post(this.url+'/addplant', form)
   }
 
+  getbank()
+  {
+    return this.http.post(this.url+'/getbank', '')
+  }
+  deletebank(form:any)
+  {
+    return this.http.post(this.url+'/deletebank', form)
+  }
+  updatebank(form:any)
+  {
+    return this.http.post(this.url+'/updatebank', form)
+  }
+  addbank(form:any)
+  {
+    return this.http.post(this.url+'/addbank', form)
+  }
+
   ////////////////////////////////////////////////////////////////////////masters
 
+  plantcodelist(form:any)
+  {
+    return this.http.post(this.url+'/getplant',form)
+  }
+
+  line_dept_design(form:any)
+  {
+    return this.http.post(this.url+'/getall',form)
+  }
 
   login(User_Name: string, Password: string) 
   {

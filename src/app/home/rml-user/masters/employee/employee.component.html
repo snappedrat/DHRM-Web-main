@@ -21,22 +21,22 @@
                 <div class="row">
                         <div class="col">
                             <label>Plant Code: </label><br>
-                            <input class="form-control"  type = "number" formControlName = "plant_code">
+                            <select class = "form-control" (change)="getall($event)" ><option *ngFor= "let i of plantcode">{{i.plant_name}}</option></select>
                         </div>
-                    <div class="col">
-                        <label>Department: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
-                    </div>
+                        <div class="col">                            
+                            <label>Line: </label><br>
+                            <select class = "form-control" ><option *ngFor= "let i of line">{{i.line_name}}</option></select>
+                        </div>
                 </div><br>
                 
                 <div class="row">
-                        <div class="col">
-                            <label>Line: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "line">
-                        </div>
+                    <div class="col">                            
+                        <label>Department: </label><br>
+                        <select class = "form-control" ><option *ngFor= "let i of dept">{{i.dept_name}}</option></select>
+                    </div>
                         <div class="col">                            
                             <label>Designation: </label><br>
-                            <select><option *ngFor= "let i of dummy">{{i}}</option></select>
+                            <select class = "form-control"><option *ngFor= "let i of desig">{{i.desig_name}}</option></select>
                         </div>
                     </div><br>
                 <div class="row">
