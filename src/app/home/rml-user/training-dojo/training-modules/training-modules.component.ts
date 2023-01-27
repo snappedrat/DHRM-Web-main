@@ -57,6 +57,7 @@ export class TrainingModulesComponent implements OnInit {
 
   open(content:any)
   {
+    this.form.reset()
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -114,7 +115,6 @@ export class TrainingModulesComponent implements OnInit {
         this.dummy[this.form.controls['sno'].value] = this.form.value
       }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 

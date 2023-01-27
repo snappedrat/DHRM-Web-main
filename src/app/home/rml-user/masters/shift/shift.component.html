@@ -24,6 +24,10 @@
                         <label>End Time: </label><br>
                         <input class="form-control"  type = "text" formControlName = "end_time">
                     </div>
+                    <div class="col">
+                        <label>Shift Group: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "end_time">
+                    </div>
                 </div><br>
                
   
@@ -89,7 +93,13 @@
               >
                   End Time
               </th>
-              
+            <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  Shift group
+              </th>
              
               <th
                       class="text-center"
@@ -103,11 +113,12 @@
             <tbody >
                 <tr *ngFor = "let i of dummy; let a = index">
                    <td>{{a+1}}</td>
-                    <td>{{i.shift_name}}</td>
+                    <td>{{i.shift_desc}}</td>
                     <td>{{i.plant_code}}</td>
-                    <td>{{i.start_time}}</td>
-                    <td>{{i.end_time}}</td>
-                   
+                    <td>{{i.act_tm_from}}</td>
+                    <td>{{i.act_tm_to}}</td>
+                    <td>{{i.shift_group}}</td>
+
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">

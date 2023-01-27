@@ -15,6 +15,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
 import { CookieService } from 'ngx-cookie-service';
+import { threadId } from 'worker_threads';
 
 const material = [MatSidenav, MatTableModule];
 
@@ -28,42 +29,32 @@ export class PlantComponent implements OnInit {
   closeResult: string;
 
   form:any
+  file:any
+  new:any
 
   sample : any = environment.path
 
-  dummy: any = [
-    {
-      'SNo':1220,
-      'company_code': '12000',
-      'company_name': 'adda',
-      'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
-    }
-  ]
+  dummy: any = []
   editing_flag: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
       sno:[''],
-      company_code :[''],
-      company_name : [''],
-      sap_code: [''],
-      active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
-      modified_by: [''],
-      companycode: [sessionStorage.getItem('companycode')]
+      plant_code :[''],
+      plant_name : [''],
+      pl : [''], 
+      addr : [''],
+      locatn : [''],
+      plant_sign : [''],
+      personal_area : [''],
+      payroll_area:[''],
+      company_code:['']
      
     })
    }
 
   ngOnInit(): void {
-    var username = {'username': sessionStorage.getItem('plantcode')}
-    this.service.getModules(username).
+    this.service.getplant().
     subscribe({
       next: (response)=>{this.dummy = response}
     })
@@ -71,6 +62,7 @@ export class PlantComponent implements OnInit {
 
   open(content:any)
   {
+    this.form.reset();
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -78,18 +70,22 @@ export class PlantComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
+    
+    this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_'+'_sign.'+this.new)
+    console.log(this.form.controls['plant_sign'].value)
+
+    this.service.addplant(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('plant with code value already exists')
       }
     else
       {
+        console.log(this.form.value)
         this.dummy.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
       }}
     })    
 
@@ -104,15 +100,23 @@ export class PlantComponent implements OnInit {
   edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['company_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['company_name'].setValue(this.dummy[a].dept_name)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+
+    this.form.controls['sno'].setValue(a)
+
+    this.form.controls['company_code'].setValue(this.dummy[a].company_code)
+    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
+    this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
+    this.form.controls['pl'].setValue(this.dummy[a].pl)
+    this.form.controls['addr'].setValue(this.dummy[a].addr)
+    this.form.controls['locatn'].setValue(this.dummy[a].locatn)
+    this.form.controls['personal_area'].setValue(this.dummy[a].personal_area)
+    this.form.controls['payroll_area'].setValue(this.dummy[a].payroll_area)
 
   }
 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updateplant(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message== 'already')
@@ -124,13 +128,12 @@ export class PlantComponent implements OnInit {
         this.dummy[this.form.controls['sno'].value] = this.form.value
       }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deleteplant(this.dummy[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
@@ -151,6 +154,14 @@ exportexcel(): void
 reset()
 {
   this.form.reset()
+}
+
+upload(event:any)
+{
+  this.file = event.target.files[0]
+
+	var file_local = this.file?.name.split('.')
+	this.new = file_local?.pop()
 }
 
 }

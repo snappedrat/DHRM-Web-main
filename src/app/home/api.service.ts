@@ -14,6 +14,7 @@ url:any = environment.path
 
   constructor(private http: HttpClient) {}
 
+////////////////////////////////////////////////////////////////////////masters
   companyshow()
   {
     return this.http.get(this.url+'/companyshow')
@@ -30,6 +31,26 @@ url:any = environment.path
   {
     return this.http.post(this.url+'/companydel', form)
   }
+
+  getplant()
+  {
+    return this.http.post(this.url+'/getplant', '')
+  }
+  deleteplant(form:any)
+  {
+    return this.http.post(this.url+'/deleteplant', form)
+  }
+  updateplant(form:any)
+  {
+    return this.http.post(this.url+'/updateplant', form)
+  }
+  addplant(form:any)
+  {
+    return this.http.post(this.url+'/addplant', form)
+  }
+
+  ////////////////////////////////////////////////////////////////////////masters
+
 
   login(User_Name: string, Password: string) 
   {

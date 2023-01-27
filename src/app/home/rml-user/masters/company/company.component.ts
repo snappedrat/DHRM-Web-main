@@ -34,20 +34,20 @@ export class CompanyComponent implements OnInit {
 
   sample : any = environment.path
 
+  year:any 
+  month:any
+  day:any
+  date:any
   dummy: any = [
 
   ]
   editing_flag: any;
-  year:any = new Date().getFullYear();
-  month:any = new Date().getMonth();
-  day:any = new Date().getDate();
-
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
+      sno : [''],
       company_code :[''],
       company_name : [''],
-      status: [''],
       created_on: [''],
       created_by: [''],
       modified_on: [''],
@@ -69,15 +69,27 @@ export class CompanyComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
+  date_format()
+  {
+    this.year = new Date().getFullYear();
+    this.month = new Date().getMonth()+1;
+    this.day = new Date().getDate();  
+    this.date = this.year+'-'+this.month+'-'+this.day
+  }
+
   save()
   {
+    this.date_format()
+    this.form.controls['created_on'].setValue(this.date)
+    console.log(this.month)
+
     this.form.controls['created_by'].setValue(sessionStorage.getItem('emp_name'))
     this.service.companyadd(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('company with same code value already exists')
       }
     else
       {
@@ -99,29 +111,40 @@ export class CompanyComponent implements OnInit {
 
   edit(a:any)
   {
+    console.log("-----------", a)
+
     this.editing_flag = true
+    this.form.controls['sno'].setValue(a)
     this.form.controls['company_code'].setValue(this.dummy[a].company_code)
     this.form.controls['company_name'].setValue(this.dummy[a].company_name)
-    this.form.controls['status'].setValue(this.dummy[a].status)
-
     console.log(this.editing_flag)
   }
 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    
+    this.date_format()
+    this.form.controls['modified_on'].setValue(this.date)
+    this.form.controls['modified_by'].setValue(sessionStorage.getItem('emp_name'))
+
+    this.service.companyedit(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message== 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('company with same code already exists')
       }
     else
       {
+        this.form.controls['created_on'].setValue(this.dummy[this.form.controls['sno'].value].created_on)    
+        this.form.controls['created_by'].setValue(this.dummy[this.form.controls['sno'].value].created_by)
+
+        console.log( 'ggg', this.dummy[this.form.controls['sno'].value])
+        console.log( 'ggg', this.form.value)
         this.dummy[this.form.controls['sno'].value] = this.form.value
       }}
     })
-    this.form.reset();
+    // this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
