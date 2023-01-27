@@ -90,7 +90,7 @@ export class DeptComponent implements OnInit {
   save()
   {
     console.log(this.form.value)
-    this.form.controls['dept_slno'].setValue(this.dummy.length+1)
+    this.form.controls['dept_slno'].setValue(this.department.length+1)
     this.service.adddepartment(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
@@ -119,10 +119,10 @@ export class DeptComponent implements OnInit {
     this.temp_a = a
     this.editing_flag = true
     this.form.controls['slno'].setValue(slno)
-    this.form.controls['names'].setValue(this.dummy[a].plant_name)
-    this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
-    this.form.controls['dept_name'].setValue(this.dummy[a].dept_name)
-    this.form.controls['sap_code'].setValue(this.dummy[a].sap_code)
+    this.form.controls['names'].setValue(this.department[a].plant_name)
+    this.form.controls['plant_name'].setValue(this.department[a].plant_name)
+    this.form.controls['dept_name'].setValue(this.department[a].dept_name)
+    this.form.controls['sap_code'].setValue(this.department[a].sap_code)
   }
 
   editSave()

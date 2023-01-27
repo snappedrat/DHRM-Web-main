@@ -8,7 +8,6 @@ import {
   NgModule,
   Inject,
   ViewEncapsulation
-  ViewEncapsulation
 } from "@angular/core";
 import {
   UntypedFormGroup,
