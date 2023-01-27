@@ -7,6 +7,7 @@ import {
   TemplateRef,
   NgModule,
   Inject,
+  ViewEncapsulation
 } from "@angular/core";
 import {
   UntypedFormGroup,
@@ -56,7 +57,7 @@ export class DesignationComponent implements OnInit {
   closeResult: string;
 
   form:any
-
+  encapsulation:ViewEncapsulation.None
   sample : any = environment.path
 
   designation: any = [
@@ -72,9 +73,6 @@ export class DesignationComponent implements OnInit {
       department_name :[''],
       plant_name : [''],
       active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
       modified_by: [''],
       plantcode: [sessionStorage.getItem('plantcode')]
      

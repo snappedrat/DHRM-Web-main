@@ -54,8 +54,6 @@
   .dark-modal .modal-content {
   background-color: #292b2c;
   color: white;
-  height: auto;
-  width:auto
   }
   .dark-modal .close {
   color: white;
@@ -71,6 +69,7 @@
   .modal-content {
   margin: 2px auto;
   z-index: 1100 !important;
+  
   }
   .title{
     font-size: 20px;

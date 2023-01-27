@@ -38,7 +38,7 @@ export class DeptComponent implements OnInit {
 
   sample : any = environment.path
 
-  dummy: any = [
+  department: any = [
     {
       'plant_code':1220,
       'department_name' : 'ABCD',
@@ -71,7 +71,7 @@ export class DeptComponent implements OnInit {
     var username = {'username': sessionStorage.getItem('plantcode')}
     this.service.getModules(username).
     subscribe({
-      next: (response)=>{this.dummy = response}
+      next: (response)=>{this.department = response}
     })
   }
 
@@ -93,7 +93,7 @@ export class DeptComponent implements OnInit {
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.department.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
       }}
@@ -110,10 +110,10 @@ export class DeptComponent implements OnInit {
   edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['department_name'].setValue(this.dummy[a].dept_name)
-    this.form.controls['sap_code'].setValue(this.dummy[a].sap_code)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+    this.form.controls['plant_code'].setValue(this.department[a].plant_code)
+    this.form.controls['department_name'].setValue(this.department[a].dept_name)
+    this.form.controls['sap_code'].setValue(this.department[a].sap_code)
+    this.form.controls['active_status'].setValue(this.department[a].del_staus)
     
 
 
@@ -131,7 +131,7 @@ export class DeptComponent implements OnInit {
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.department[this.form.controls['sno'].value] = this.form.value
       }}
     })
     this.form.reset();
@@ -140,11 +140,11 @@ export class DeptComponent implements OnInit {
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletemodule(this.department[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
-      this.dummy.splice(a,1)
+      this.department.splice(a,1)
   }
   })
 }
