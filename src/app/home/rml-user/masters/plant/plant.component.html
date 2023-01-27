@@ -13,7 +13,7 @@
               </div>
               <div class="col">
                   <label>plant code: </label><br>
-                  <input class="form-control"  type = "number" formControlName = "plant_code">
+                  <input class="form-control"  type = "number" formControlName = "plant_code" [readonly] = 'editing_flag' >
               </div>
           </div><br>
           <div class="row">
@@ -22,9 +22,10 @@
                   <input class="form-control"  type = "text" formControlName = "pl">
               </div>
               <div class="col">
-                  <label>address: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "addr">
-              </div>
+                <label>plant sign </label><br>
+                <input class="form-control"  type = "file" (change) = "upload($event)">
+            </div>
+
           </div><br>
           <div class="row">
               <div class="col">
@@ -48,12 +49,13 @@
                 <label>payroll area: </label><br>
                 <input class="form-control"  type = "number" formControlName = "payroll_area">
             </div>
-        </div>
+        </div><br>
       <div class="row">
         <div class="col">
-          <label>plant sign </label><br>
-          <input class="form-control"  type = "file" (change) = "upload($event)">
+          <label>address: </label><br>
+          <textarea class="form-control"  type = "textarea" formControlName = "addr"></textarea>
       </div>
+
       </div>
 
       </form>

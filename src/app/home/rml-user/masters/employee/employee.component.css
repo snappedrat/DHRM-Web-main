@@ -51,7 +51,8 @@
   
   
   
-  .dark-modal .modal-content {
+  .dark-modal .modal-content 
+  {
   background-color: #292b2c;
   color: white;
   }
@@ -81,6 +82,8 @@
     font-weight:bolder;
     text-align:center;
   }
-  .ng-template{
-    height:600px;
+  .modal-content
+  {
+    width: 600px;
+    height: 600px;
   }

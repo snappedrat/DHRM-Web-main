@@ -121,7 +121,7 @@ export class PlantComponent implements OnInit {
       next: (response:any)=>{console.log(response);
       if(response.message== 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('plant with code already exists')
       }
     else
       {

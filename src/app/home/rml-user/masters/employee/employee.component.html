@@ -5,63 +5,70 @@
             </h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
-        <div class="modal-content-lg container ">
+        <div class="modal-content container ">
             <br>
             <form [formGroup] = "form">
                 <div class="row">
                     <div class="col">
+                        <label>Gen ID: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "gen_id">
+                    </div>
+                    <div class="col">
                         <label>Employee Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "employee_name">
                     </div><br>
-                    <div class="row">
+                </div><br>
+                <div class="row">
                         <div class="col">
                             <label>Plant Code: </label><br>
                             <input class="form-control"  type = "number" formControlName = "plant_code">
-                        </div></div><br>
-                    <div class="row">
+                        </div>
                     <div class="col">
                         <label>Department: </label><br>
                         <input class="form-control"  type = "text" formControlName = "department_name">
-                    </div></div><br>
-                    <div class="row">
+                    </div>
+                </div><br>
+                
+                <div class="row">
                         <div class="col">
                             <label>Line: </label><br>
                             <input class="form-control"  type = "text" formControlName = "line">
-                        </div></div><br>
-                    <div class="row">
-                        <div class="col">
-                            <div *ngFor="let data of dummy">
-                            
+                        </div>
+                        <div class="col">                            
                             <label>Designation: </label><br>
-                            <td><select type = "text" (ngModel)="data.designation"  (click)="sendData()"><option *ngFor= "let i of dummy">
-                                {{i}}                        </option></select></div></div><br>
-                        <div class="row">
-                            <div class="col">
-                                <label>Mail ID: </label><br>
-                                <input class="form-control"  type = "text" formControlName = "mail_id">
-                            </div></div><br>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Mobile No: </label><br>
-                                    <input class="form-control"  type = "text" formControlName = "mobile_no">
-                                </div></div><br>
+                            <select><option *ngFor= "let i of dummy">{{i}}</option></select>
+                        </div>
+                    </div><br>
+                <div class="row">
+                    <div class="col">
+                        <label>Mail ID: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "mail_id">
+                    </div>
+                    <div class="col">
+                        <label>Mobile No: </label><br>
+                            <input class="form-control"  type = "text" formControlName = "mobile_no">
+                    </div>
+                </div><br>
+
                                 <div class="row">
                                     <div class="col">
                                         <label>User Name: </label><br>
                                         <input class="form-control"  type = "text" formControlName = "user_name">
-                                    </div></div><br>
-                                    <div class="row">
+                                    </div>
                                         <div class="col">
                                             <label>Password: </label><br>
                                             <input class="form-control"  type = "text" required formControlName = "password">
-                                            <mat-error>Password is required.</mat-error>
-                                        </div></div><br>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Del Status: </label><br>
-                                                <input class="form-control"  type = "checkbox" required formControlName = "del_status">
-                                            </div></div><br>
-                </div><br>
+                                        </div>
+                                </div><br>
+                                
+                <div style="align-self: center;">
+                    <input type = "checkbox"> Hr user <br>
+                    <input type = "checkbox"> Hr approver <br>
+                    <input type = "checkbox"> Trainer <br>
+                    <input type = "checkbox"> supervisor <br>
+                    <input type = "checkbox"> reporting authority <br>
+                    <input type = "checkbox"> time office user<br>
+
                 </div>
   
             </form>
@@ -111,31 +118,21 @@
               >
                   Department
               </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Designation
-              </th>
+
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
                   Mail ID
+                  </th>
                   <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
                   Mobile NO
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                Active Status
+              </th>
               <th
                       class="text-center"
                       style="width: 500px"
@@ -150,11 +147,8 @@
                    <td>{{i.gen_id}}</td>
                     <td>{{i.employee_name}}</td>
                     <td>{{i.department}}</td>
-                    <td>{{i.designation}}</td>
                     <td>{{i.mail_id}}</td>
                     <td>{{i.mobile_no}}</td>
-                    <td>{{i.user_name}}</td>
-                    <td>{{i.active_status}}</td>
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">

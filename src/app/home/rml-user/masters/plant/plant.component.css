@@ -83,3 +83,7 @@ height: 600px;
   font-weight:bolder;
   text-align:center;
 }
+
+textarea{
+  height: 200px;
+}
