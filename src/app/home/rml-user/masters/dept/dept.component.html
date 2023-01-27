@@ -31,9 +31,9 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-          <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-          <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+          <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+          <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+          <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
       </div>
 </ng-template>
 
@@ -93,7 +93,7 @@
           </tr>
           </thead>
           <tbody >
-              <tr *ngFor = "let i of dummy; let a = index">
+              <tr *ngFor = "let i of department; let a = index">
                  <td>{{a+1}}</td>
                   <td>{{i.plant_name}}</td>
                   <td>{{i.dept_name}}</td>

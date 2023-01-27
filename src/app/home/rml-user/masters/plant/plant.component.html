@@ -1,58 +1,60 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-      <h4 class="modal-title">Add plant</h4>
+      <h4 class="modal-title">Add Plant</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
   </div>
   <div class="modal-content container">
       <br>
       <form [formGroup] = "form">
           <div class="row">
-              <div class="col">
-                  <label>plant Name: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "plant_name">
-              </div>
-              <div class="col">
-                  <label>plant code: </label><br>
+            <div class="col">
+              <label>Company code: </label><br>
+              <input class="form-control"  type = "number" formControlName = "company_code" size="25">
+            </div>
+            <div class="col">
+                  <label>Plant code: </label><br>
                   <input class="form-control"  type = "number" formControlName = "plant_code" [readonly] = 'editing_flag' >
               </div>
-          </div><br>
-          <div class="row">
+              <div class="row">
               <div class="col">
-                  <label>pl: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "pl">
+                  <label>Plant Name: </label><br>
+                  <input class="form-control"  type = "text" formControlName = "plant_name">
               </div>
+              
+          </div><br>
               <div class="col">
-                <label>plant sign </label><br>
+                  <label>Plant shortname: </label><br>
+                  <input class="form-control"  type = "text" formControlName = "pl">
+              </div></div><br>
+              <div class="row">
+              <div class="col">
+                <label>Plant HR sign </label><br>
                 <input class="form-control"  type = "file" (change) = "upload($event)">
             </div>
 
-          </div><br>
-          <div class="row">
+        <br>
+        
               <div class="col">
-                  <label>location: </label><br>
+                  <label>Location: </label><br>
                   <input class="form-control"  type = "text" formControlName = "locatn">
 
-              </div>
-              <div class="col">
-                <label>company code: </label><br>
-                <input class="form-control"  type = "number" formControlName = "company_code" size="25">
               </div>
 
           </div><br>
           <div class="row">
             <div class="col">
-                <label>personal area: </label><br>
+                <label>Personal area: </label><br>
                 <input class="form-control"  type = "number" formControlName = "personal_area">
 
             </div>
             <div class="col">
-                <label>payroll area: </label><br>
+                <label>Payroll area: </label><br>
                 <input class="form-control"  type = "number" formControlName = "payroll_area">
             </div>
         </div><br>
       <div class="row">
         <div class="col">
-          <label>address: </label><br>
+          <label>Address: </label><br>
           <textarea class="form-control"  type = "textarea" formControlName = "addr"></textarea>
       </div>
 
@@ -61,9 +63,9 @@
       </form>
   </div>
   <div class="modal-footer">
-      <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-      <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-      <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+      <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+      <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+      <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
   </div>
 </ng-template>
   <br>
@@ -95,35 +97,35 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                 plant Code
+                 Plant Code
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                plant Name
+                Plant Name
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                pl
+                Plant shortname
               </th>
               <th
-                      class="text-center"
+                      class="text-center1"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                address
+                Address
               </th>
               <th
                       class="text-center"
-                      style="width: 500px"
+                      style="width:500px"
                       style="background-color: darkblue"
               >
-                location
+                Location
               </th>
               <!-- <th
                       class="text-center"
@@ -137,14 +139,14 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                personal area
+                Personal area
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                payroll area
+                Payroll area
               </th>
 
               <th

@@ -70,8 +70,8 @@ z-index: 1040 !important;
 margin: 2px auto;
 z-index: 1100 !important;
 
-width: 800px;
-height: 600px;
+width: 800px;;
+height: 400px;;
 
 }
 .title{
@@ -86,4 +86,8 @@ height: 600px;
 
 textarea{
   height: 200px;
+}
+.text-center1{
+  
+  width: 500px;
 }

@@ -41,7 +41,7 @@ export class DeptComponent implements OnInit {
   sample : any = environment.path
   temp_a:any
   array:any = []
-  dummy: any = [
+  department: any = [
 
   ]
   editing_flag: any;
@@ -64,7 +64,7 @@ export class DeptComponent implements OnInit {
 
     this.service.getdepartment().
     subscribe({
-      next: (response)=>{this.dummy = response}
+      next: (response)=>{this.department = response}
     })
   }
 
@@ -100,7 +100,7 @@ export class DeptComponent implements OnInit {
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.department.push(this.form.value)
         this.form.reset()
       }}
     })    
@@ -137,7 +137,7 @@ export class DeptComponent implements OnInit {
       }
     else
       {
-        this.dummy[this.temp_a] = this.form.value
+        this.department[this.temp_a] = this.form.value
       }}
     })
   }
@@ -150,7 +150,7 @@ delete(a:any, slno:any)
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
-      this.dummy.splice(a,1)
+      this.department.splice(a,1)
   }
   })
 }
