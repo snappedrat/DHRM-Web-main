@@ -10,22 +10,23 @@
                 <div class="row">
                 <div class="col">
                         <label>Plant Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "line_name">
+                        <select class="form-control" formControlName = "plant_name" (change)="getall($event)"><option *ngFor= "let i of array" [ngValue] = "i" >{{i}}</option></select>
                     </div>
               
                         <div class="col">                            
                             <label>Department: </label><br>
-                            <select><option *ngFor= "let i of line">{{i}}</option></select>
+                            <select class="form-control" formControlName = "dept_name" ><option *ngFor= "let i of array2" [ngValue] = "i">{{i}}</option></select>
                         </div></div>
+                        <br>
                     <div class= "row">
                     <div class="col">
                             <label>Line Name: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "module_code">
+                            <input class="form-control"  type = "text" formControlName = "Line_Name">
                         </div>
         
                         <div class="col">
                                 <label>Personal Subarea: </label><br>
-                                <input class="form-control"  type = "text" formControlName = "plant_code">
+                                <input class="form-control"  type = "text" formControlName = "personal_subarea">
                             </div>
                 </div><br>
                
@@ -62,7 +63,21 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                 Plant Desc
+                 S.No</th>
+                 <th
+                 class="text-center"
+                 style="width: 500px"
+                 style="background-color: darkblue"
+                   >
+                   Line code
+                   </th>
+                   <th
+                   class="text-center"
+                   style="width: 500px"
+                   style="background-color: darkblue"
+                     >
+                     Line Name
+                     </th>
               <th
                       class="text-center"
                       style="width: 500px"
@@ -70,6 +85,7 @@
               >
                  Plant Name
               </th>
+
               <th
               class="text-center"
               style="width: 500px"
@@ -77,13 +93,7 @@
       >
         Department
       </th>
-      <th
-      class="text-center"
-      style="width: 500px"
-      style="background-color: darkblue"
->
- Line Name
-</th>
+
 <th
 class="text-center"
 style="width: 500px"
@@ -103,15 +113,16 @@ Personal Subarea
             <tbody >
                 <tr *ngFor = "let i of line; let a = index">
                    <td>{{a+1}}</td>
+                   <td>{{i.Line_code}}</td>
+                   <td>{{i.Line_Name}}</td>
                     <td>{{i.plant_name}}</td>
-                    <td>{{i.department}}</td>
-                    <td>{{i.line_name}}</td>
+                    <td>{{i.dept_name}}</td>
                     <td>{{i.personal_subarea}}</td>   
                     <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.Line_code)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.Line_code)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

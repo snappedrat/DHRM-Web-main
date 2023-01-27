@@ -60,28 +60,25 @@ export class LineComponent implements OnInit {
   form:any
 
   sample : any = environment.path
+  array :any = []
+  array2 :any = []
 
-  line: any = [
-    {
-      'plant_name':'AIDUA',
-      'department':'ada',
-      'line_name':'fsm;',
-      'personal_subarea':'SFSF',
-
-    
-      
-    }
-  ]
+  line: any = []
   editing_flag: any;
+  plantname: any;
+  dept:any
+  all_details:any
+  temp_a: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
       plant_name: [''],
-      department: [''],
-      line_name:[''],
+      dept_name: [''],
+      Line_Name:[''],
+      Line_code: [''],
       personal_subarea:[''],
-      plantcode: [sessionStorage.getItem('plantcode')]
-     
+      modified_by: [''],
+      created_by: [''],     
     })
    }
 
@@ -97,76 +94,108 @@ export class LineComponent implements OnInit {
 }
 
 ngOnInit(): void {
-  var username = {'username': sessionStorage.getItem('plantcode')}
-  this.service.getModules(username).
+  this.getplantcode()
+  var plantcode:any = {plantcode: sessionStorage.getItem('plantcode')}
+  this.service.getline(plantcode).
   subscribe({
-    next: (response)=>{this.line = response}
+    next: (response)=>{console.log(response);this.line = response;
+      for(var o in this.plantname)
+      this.array.push(this.plantname[o].plant_name) }
   })
 }
 
+getplantcode(){
+  var company = {'company_name': sessionStorage.getItem('companycode')}
+  this.service.plantcodelist(company)
+  .subscribe({
+    next: (response) =>{ console.log(response); this.plantname = response },
+    error: (error) => console.log(error),
+  });
+}
 
-   open(content:any)
+getall(event:any)
+{
+  var plantcode = {plantcode: event.target.value.split(' ')[1]}
+    this.service.line_dept_design(plantcode)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.all_details = response;
+        this.dept= this.all_details[1]
+        for(var o in this.dept)
+        this.array2.push(this.dept[o].dept_name)
+      },
+      error: (error) => console.log(error),
+    });
+}
+
+open(content:any)
   {
     this.editing_flag = false
+    this.form.reset();
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
-  opentoedit(content:any)
+opentoedit(content:any)
   {
-    console.log("opening")
+
+   console.log("opening")
     this.modalService.open(content, {centered: true})
   }
 
    
-edit(a:any)
+edit(a:any, slno:any)
   {
     this.editing_flag = true
+    this.temp_a = a
+    this.form.controls['Line_code'].setValue(slno)
     this.form.controls['plant_name'].setValue(this.line[a].plant_name)
-    this.form.controls['department'].setValue(this.line[a].department)
-    this.form.controls['line_name'].setValue(this.line[a].line_name)
+    this.form.controls['Line_Name'].setValue(this.line[a].Line_Name)
     this.form.controls['personal_subarea'].setValue(this.line[a].personal_subarea)
+    this.form.controls['modified_by'].setValue(sessionStorage.getItem('user_name'))
 
+    
+    var plantcode = {plantcode: this.form.controls['plant_name'].value}
+    this.service.line_dept_design(plantcode)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.all_details = response;
+        this.dept= this.all_details[1]
+        for(var o in this.dept)
+        this.array2.push(this.dept[o].dept_name)
+      },
+      error: (error) => console.log(error),
+    });
+    this.form.controls['dept_name'].setValue(this.line[a].dept_name)
 
   }
-  save()
+save()
   {
-    this.service.addmodule(this.form.value)
+    this.form.controls['created_by'].setValue(sessionStorage.getItem('user_name'))
+    this.service.addline(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('Module with same priority value already exists')
-      }
-    else
-      {
+
         this.line.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
-      }}
+      }
     })    
 
   }
-  editSave()
+editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updateline(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('Module with same priority value already exists')
-      }
-    else
-      {
-        this.line[this.form.controls['sno'].value] = this.form.value
-      }}
+
+      this.line[this.temp_a] = this.form.value
+        }
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deletemodule(this.line[a])
+  console.log("vrrrrrrrrrrrrrrrrrrr", slno)
+  this.service.deleteline({slno : slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

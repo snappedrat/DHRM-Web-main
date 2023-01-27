@@ -112,8 +112,7 @@ export class EmployeeComponent implements OnInit {
 
 ngOnInit(): void {
   this.getplantcode()
-  var username = {'username': sessionStorage.getItem('plantcode')}
-  this.service.getModules(username).
+  this.service.getemployee().
   subscribe({
     next: (response)=>{this.employee = response}
   })
@@ -169,7 +168,7 @@ edit(a:any)
   }
   save()
   {
-    this.service.addmodule(this.form.value)
+    this.service.addemployee(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
@@ -190,7 +189,7 @@ edit(a:any)
   } 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updateemployee(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message== 'already')
@@ -208,7 +207,7 @@ edit(a:any)
 
 delete(a:any)
 {
-  this.service.deletemodule(this.employee[a])
+  this.service.deleteemployee(this.employee[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

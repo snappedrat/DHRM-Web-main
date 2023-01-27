@@ -7,6 +7,7 @@ import {
   TemplateRef,
   NgModule,
   Inject,
+  ViewEncapsulation
 } from "@angular/core";
 import {
   UntypedFormGroup,
@@ -49,7 +50,8 @@ const material = [
 @Component({
   selector: 'app-dept',
   templateUrl: './designation.component.html',
-  styleUrls: ['./designation.component.css']
+  styleUrls: ['./designation.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class DesignationComponent implements OnInit {
@@ -57,26 +59,23 @@ export class DesignationComponent implements OnInit {
 
   form:any
 
+  plantname:any
+
+  temp_a:any
   sample : any = environment.path
+  array:any = []
 
   designation: any = [
-    {
-      'designation_name':'AIDUA',
-      'plant_code' : 'ABCD',
-    }
+
   ]
   editing_flag: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      department_name :[''],
+      slno:[''],
+      desig_name :[''],
       plant_name : [''],
-      active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
-      modified_by: [''],
-      plantcode: [sessionStorage.getItem('plantcode')]
+      names:['']
      
     })
    }
@@ -93,17 +92,30 @@ export class DesignationComponent implements OnInit {
 }
 
 ngOnInit(): void {
-  var username = {'username': sessionStorage.getItem('plantcode')}
-  this.service.getModules(username).
+  this.getplantcode()
+  this.service.getdesignation().
   subscribe({
-    next: (response)=>{this.designation = response}
+    next: (response)=>{console.log(response);this.designation = response}
   })
+}
+
+getplantcode(){
+  var company = {'company_name': sessionStorage.getItem('companycode')}
+  this.service.plantcodelist(company)
+  .subscribe({
+    next: (response) =>{ console.log(response); this.plantname = response;
+      for(var o in this.plantname)
+      this.array.push(this.plantname[o].plant_name) },
+    error: (error) => console.log(error),
+  });
 }
 
 
    open(content:any)
   {
+    this.form.reset();
     this.editing_flag = false
+
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
@@ -116,50 +128,46 @@ ngOnInit(): void {
    
 edit(a:any)
   {
+    this.temp_a = a
     this.editing_flag = true
-    this.form.controls['designation_name'].setValue(this.designation[a].plant_code)
-    this.form.controls['plant_name'].setValue(this.designation[a].dept_name)
+    this.form.controls['slno'].setValue(this.designation[a].slno)
+    this.form.controls['desig_name'].setValue(this.designation[a].desig_name)
+
+      this.form.controls['names'].setValue(this.designation[a]?.plant_name)
+      this.form.controls['plant_name'].setValue(this.designation[a]?.plant_name)
+
+      for(var o in this.plantname)
+        this.array.push(this.plantname[o].plant_name)
 
   }
   save()
   {
-    this.service.addmodule(this.form.value)
+    console.log(this.form.value)
+    this.service.adddesignation(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('Module with same priority value already exists')
-      }
-    else
-      {
+
         this.designation.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
-      }}
+      }
     })    
 
   }
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updatedesignation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('Module with same priority value already exists')
+      if(response.message == 'updated')
+        this.designation[this.temp_a] = this.form.value
       }
-    else
-      {
-        this.designation[this.form.controls['sno'].value] = this.form.value
-      }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deletemodule(this.designation[a])
+  this.service.deletedesignation({slno : slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

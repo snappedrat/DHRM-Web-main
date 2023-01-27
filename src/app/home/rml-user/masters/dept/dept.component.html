@@ -4,35 +4,28 @@
           <h4 class="modal-title">Add User</h4>
           <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
       </div>
-      <div class="modal-content">
+      <div class="modal-content container">
           <br>
           <form [formGroup] = "form">
               <div class="row">
-                  <div class="col">
-                      <label>Plant Code: </label><br>
-                      <input class="form-control"  type = "number" formControlName = "plant_code">
+                <div class="col">
+                      <label>Plant Name: </label><br>
+                      <select class="form-control" formControlName = "plant_name"><option value="">Choose an option</option><option *ngFor = "let i of array" [ngValue] = "i">{{i}}</option></select>
                   </div>
-                  <div class="col">
+
+                </div><br>
+                  <div class="row">
+                    <div class="col">
                       <label>Department Name: </label><br>
-                      <input class="form-control"  type = "text" formControlName = "department_name">
-                  </div>
-              </div><br>
+                      <input class="form-control"  type = "text" formControlName = "dept_name">
+                  </div></div>
+              <br>
               <div class="row">
                   <div class="col">
                       <label>SAP Code: </label><br>
-                      <input class="form-control"  type = "number" formControlName = "sap_code">
+                      <input class="form-control"  type = "text" formControlName = "sap_code">
                   </div>
-                  <div class="col">
-                    <label>Active Status</label>
-                    <br>
-                    <input type="radio" id="active" formControlName="active_status" value="active">
-                    <label for="active">Active</label><br>
-                    <input type="radio" id="inactive" formcontrolname="active_status" value="inactive">
-                    <label for="inactive">Inactive</label><br>
-                        
-                    
-    
-                  </div>
+
               </div>
 
           </form>
@@ -89,41 +82,7 @@
             >
                 SAP Code
             </th>
-            <th
-                    class="text-center"
-                    style="width: 500px"
-                    style="background-color: darkblue"
-            >
-                Active Status 
-            </th>
-            <th
-                    class="text-center"
-                    style="width: 500px"
-                    style="background-color: darkblue"
-            >
-                Created On
-            </th>
-            <th
-                    class="text-center"
-                    style="width: 500px"
-                    style="background-color: darkblue"
-            >
-                Created By
-            </th>
-            <th
-                    class="text-center"
-                    style="width: 500px"
-                    style="background-color: darkblue"
-            >
-                Modified On
-            </th>
-            <th
-                    class="text-center"
-                    style="width: 500px"
-                    style="background-color: darkblue"
-                    >
-                    Modified By
-            </th>
+
             <th
                     class="text-center"
                     style="width: 500px"
@@ -136,20 +95,16 @@
           <tbody >
               <tr *ngFor = "let i of dummy; let a = index">
                  <td>{{a+1}}</td>
-                  <td>{{i.plant_code}}</td>
-                  <td>{{i.department_name}}</td>
+                  <td>{{i.plant_name}}</td>
+                  <td>{{i.dept_name}}</td>
                   <td>{{i.sap_code}}</td>
-                  <td>{{i.active_status}}</td>
-                  <td>{{i.created_on}}</td>
-                  <td>{{i.created_by}}</td>
-                  <td>{{i.modified_on}}</td>
-                  <td>{{i.modified_by}}</td>
+
 
                   <td>
-                      <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                      <button mat-mini-fab color = 'accent' (click)= "edit(a, i.dept_slno)" (click)="opentoedit(content)">
                           <mat-icon>edit</mat-icon>
                       </button>
-                      <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                      <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.dept_slno)" >
                           <mat-icon>delete</mat-icon>
                       </button>
                   </td>

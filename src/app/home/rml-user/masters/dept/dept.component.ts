@@ -36,47 +36,52 @@ export class DeptComponent implements OnInit {
 
   form:any
 
-  sample : any = environment.path
+  plantname:any
 
+  sample : any = environment.path
+  temp_a:any
+  array:any = []
   dummy: any = [
-    {
-      'plant_code':1220,
-      'department_name' : 'ABCD',
-      'sap_code': 800,
-      'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
-    }
+
   ]
   editing_flag: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      plant_code :[''],
-      department_name : [''],
+      dept_slno:[''],
+      plant_name :[''],
+      names:[''],
+      dept_name : [''],
       sap_code: [''],
-      active_status: [''],
-      created_on: [''],
-      created_by: [''],
-      modified_on: [''],
-      modified_by: [''],
-      plantcode: [sessionStorage.getItem('plantcode')]
+
      
     })
    }
 
   ngOnInit(): void {
-    var username = {'username': sessionStorage.getItem('plantcode')}
-    this.service.getModules(username).
+
+    this.getplantcode()
+
+    this.service.getdepartment().
     subscribe({
       next: (response)=>{this.dummy = response}
     })
   }
 
+  getplantcode(){
+    var company = {'company_name': sessionStorage.getItem('companycode')}
+    this.service.plantcodelist(company)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.plantname = response;
+        for(var o in this.plantname)
+        this.array.push(this.plantname[o].plant_name) },
+      error: (error) => console.log(error),
+    });
+  }
+
   open(content:any)
   {
+    this.form.reset()
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -84,18 +89,19 @@ export class DeptComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
+    console.log(this.form.value)
+    this.form.controls['dept_slno'].setValue(this.dummy.length+1)
+    this.service.adddepartment(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('department already exists')
       }
     else
       {
         this.dummy.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
       }}
     })    
 
@@ -107,40 +113,40 @@ export class DeptComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
-  edit(a:any)
+  edit(a:any, slno:any)
   {
+    console.log(this.array)
+    this.temp_a = a
     this.editing_flag = true
-    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['department_name'].setValue(this.dummy[a].dept_name)
+    this.form.controls['slno'].setValue(slno)
+    this.form.controls['names'].setValue(this.dummy[a].plant_name)
+    this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
+    this.form.controls['dept_name'].setValue(this.dummy[a].dept_name)
     this.form.controls['sap_code'].setValue(this.dummy[a].sap_code)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
-    
-
-
-
   }
 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    console.log(this.form.value)
+    this.service.updatedepartment(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message== 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('already exists')
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.dummy[this.temp_a] = this.form.value
       }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  console.log(slno)
+  this.service.deletedepartment({slno: slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

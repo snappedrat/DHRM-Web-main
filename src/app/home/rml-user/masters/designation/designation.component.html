@@ -8,17 +8,17 @@
             <br>
             <form [formGroup] = "form">
                 <div class="row">
-                    <div class="col">
-                        <label>Department Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
-                    </div>
-                        <<div class="col">                            
-                            <label>Plant Code: </label><br>
-                            <select><option ngModel="data.plant_code" *ngFor= "let i of designation">{{i}}</option></select>
+                        <div class="col">                            
+                            <label>Plant Name: </label><br>
+                            <select class="form-control" formControlName = "plant_name" ><option value="">choose an option</option><option  *ngFor= "let i of array" [ngValue]="i">{{i}}</option></select>
+                        </div>
+
+                        <div class="col">
+                            <label>Department Name: </label><br>
+                            <input class="form-control"  type = "text" formControlName = "desig_name">
                         </div>
                 </div><br>
                
-                <input type = "checkbox"> Del Status<br>
             </form>
         </div>
         <div class="modal-footer">
@@ -80,14 +80,14 @@
             <tbody >
                 <tr *ngFor = "let i of designation; let a = index">
                    <td>{{a+1}}</td>
-                    <td>{{i.designation_name}}</td>
-                    <td>{{i.plant_code}}</td>
+                    <td>{{i.desig_name}}</td>
+                    <td>{{i.plant_name}}</td>
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.slno)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

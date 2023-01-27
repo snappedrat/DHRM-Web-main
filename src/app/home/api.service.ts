@@ -66,6 +66,90 @@ url:any = environment.path
     return this.http.post(this.url+'/addbank', form)
   }
 
+  getdepartment()
+  {
+    return this.http.post(this.url+'/getdepartment', '')
+  }
+  deletedepartment(form:any)
+  {
+    return this.http.post(this.url+'/deletedepartment', form)
+  }
+  updatedepartment(form:any)
+  {
+    return this.http.post(this.url+'/updatedepartment', form)
+  }
+  adddepartment(form:any)
+  {
+    return this.http.post(this.url+'/adddepartment', form)
+  }
+
+  getdesignation()
+  {
+    return this.http.post(this.url+'/getdesignation', '')
+  }
+  deletedesignation(form:any)
+  {
+    return this.http.post(this.url+'/deletedesignation', form)
+  }
+  updatedesignation(form:any)
+  {
+    return this.http.post(this.url+'/updatedesignation', form)
+  }
+  adddesignation(form:any)
+  {
+    return this.http.post(this.url+'/adddesignation', form)
+  }
+
+  getline(form:any)
+  {
+    return this.http.post(this.url+'/getline', form)
+  }
+  deleteline(form:any)
+  {
+    return this.http.post(this.url+'/deleteline', form)
+  }
+  updateline(form:any)
+  {
+    return this.http.post(this.url+'/updateline', form)
+  }
+  addline(form:any)
+  {
+    return this.http.post(this.url+'/addline', form)
+  }
+
+  getoperation()
+  {
+    return this.http.post(this.url+'/getoperation', '')
+  }
+  deleteoperation(form:any)
+  {
+    return this.http.post(this.url+'/deleteoperation', form)
+  }
+  updateoperation(form:any)
+  {
+    return this.http.post(this.url+'/updateoperation', form)
+  }
+  addoperation(form:any)
+  {
+    return this.http.post(this.url+'/addoperation', form)
+  }
+
+  getemployee()
+  {
+    return this.http.post(this.url+'/getemployee', '')
+  }
+  deleteemployee(form:any)
+  {
+    return this.http.post(this.url+'/deleteemployee', form)
+  }
+  updateemployee(form:any)
+  {
+    return this.http.post(this.url+'/updateemployee', form)
+  }
+  addemployee(form:any)
+  {
+    return this.http.post(this.url+'/addemployee', form)
+  }
   ////////////////////////////////////////////////////////////////////////masters
 
   plantcodelist(form:any)
@@ -157,5 +241,10 @@ url:any = environment.path
   traineeAnswers(formvalue:any)
   {
     return this.http.post(this.url+'/traineeAnswers', formvalue)
+  }
+
+  plantcode(form:any)
+  {
+    return this.http.post(this.url+'/plantcode', form)
   }
 }

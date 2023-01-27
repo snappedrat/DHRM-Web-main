@@ -80,7 +80,6 @@ flagger : any = false
         this.plantcodeService.getdatabasic(this.uniqueId)
         .subscribe({
             next: (response) => {console.log("banking : ",response); this.bank = response;
-            console.log("after u", this.bank)
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
             this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
             this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)

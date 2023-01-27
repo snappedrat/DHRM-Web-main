@@ -38,39 +38,52 @@ export class OperationsComponent implements OnInit {
 
   sample : any = environment.path
 
+  plantname:any
+  type = ['YES', 'NO']
+
   dummy: any = [
-    {
-      'plant_code':1220,
-      'operation_description' : 'ABCD',
-      'line_code': 300,
-      'skills_level': 500,
-   
-    }
+
   ]
   editing_flag: any;
+  temp_a: any;
+  array: any = [];
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      plant_code :[''],
-      operation_description : [''],
-      line_code: [''],
-      skills_level: [''],
-     
-      plantcode: [sessionStorage.getItem('plantcode')]
-     
+      oprn_slno: [''],
+      plant_name :[''],
+      oprn_desc : [''],
+      critical_oprn: [''],
+      skill_level: [''],
+          
     })
    }
 
   ngOnInit(): void {
-    var username = {'username': sessionStorage.getItem('plantcode')}
-    this.service.getModules(username).
+
+    this.getplantcode()
+    this.service.getoperation().
     subscribe({
       next: (response)=>{this.dummy = response}
     })
   }
 
+  getplantcode(){
+    var company = {'company_name': sessionStorage.getItem('companycode')}
+    this.service.plantcodelist(company)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.plantname = response ;
+        for(var o in this.plantname)
+        this.array.push(this.plantname[o].plant_name)
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
   open(content:any)
   {
+    this.form.reset();
+
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -78,19 +91,14 @@ export class OperationsComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
+    this.service.addoperation(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('Module with same priority value already exists')
-      }
-    else
-      {
+
         this.dummy.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
-      }}
+      }
     })    
 
   }
@@ -101,37 +109,38 @@ export class OperationsComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
-  edit(a:any)
+  edit(a:any, slno:any)
   {
     this.editing_flag = true
-    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['operation_description'].setValue(this.dummy[a].operation_description)
-    this.form.controls['line_code'].setValue(this.dummy[a].line_code)
-    this.form.controls['skills_level'].setValue(this.dummy[a].skills_level)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+    this.temp_a = a
+
+    this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
+    this.form.controls['oprn_slno'].setValue(slno)
+    this.form.controls['oprn_desc'].setValue(this.dummy[a].oprn_desc)
+    this.form.controls['skill_level'].setValue(this.dummy[a].skill_level)
+
+    if(this.dummy[a].critical_oprn == true)
+      this.form.controls['critical_oprn'].setValue('YES')
+    else if(this.dummy[a].critical_oprn == false)
+      this.form.controls['critical_oprn'].setValue('NO')
+
   }
 
   editSave()
   {
-    this.service.updatemodule(this.form.value)
+    this.service.updateoperation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('Module with same priority value already exists')
+      if(response.message == 'updated')
+        this.dummy[this.temp_a] = this.form.value
       }
-    else
-      {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
-      }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deleteoperation({slno : slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

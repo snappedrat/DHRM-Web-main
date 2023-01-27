@@ -9,20 +9,22 @@
             <form [formGroup] = "form">
                 <div class="row">
                     <div class="col">
-                        <label>Plant Code: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "plant_code">
+                        <label>Plant Name: </label><br>
+                        <select class="form-control" formControlName = "plant_name"><option  *ngFor= "let i of array" [ngValue] = "i">{{i}}</option></select>
                     </div>
                     <div class="col">
-                        <label>Operation Description </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
+                        <label>Operation Description: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "oprn_desc">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <label>Skills Level: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "skill_level">
                     </div>
                     <div class="col">
-                        <label>Line Code </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
-                    </div>
-                    <div class="col">
-                        <label>Skills Level </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
+                        <label>Critical process: </label><br>
+                        <select class="form-control" formControlName = "critical_oprn" ><option *ngFor= "let i of type" [ngValue] = "i">{{i}}</option></select>
                     </div>
                 </div><br>
                
@@ -60,13 +62,7 @@
                       style="background-color: darkblue"
               >
                  SNo
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                 Plant Code
-              </th>
+
               <th
                       class="text-center"
                       style="width: 500px"
@@ -79,14 +75,14 @@
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Line Code
+                  Skill level
               </th>
               <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Skill Level 
+                  critical oprn 
               </th>
               
              
@@ -102,17 +98,16 @@
             <tbody >
                 <tr *ngFor = "let i of dummy; let a = index">
                    <td>{{a+1}}</td>
-                    <td>{{i.plant_code}}</td>
-                    <td>{{i.operations_description}}</td>
-                    <td>{{i.line_code}}</td>
-                    <td>{{i.skills_level}}</td>
+                    <td>{{i.oprn_desc}}</td>
+                    <td>{{i.skill_level}}</td>
+                    <td>{{i.critical_oprn}}</td>
                    
   
                     <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.oprn_slno)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.oprn_slno)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
