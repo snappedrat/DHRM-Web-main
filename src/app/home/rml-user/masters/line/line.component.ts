@@ -61,9 +61,13 @@ export class LineComponent implements OnInit {
 
   sample : any = environment.path
 
-  dummy: any = [
+  line: any = [
     {
-      'plant_code':'AIDUA',
+      'plant_name':'AIDUA',
+      'department':'ada',
+      'line_name':'fsm;',
+      'personal_subarea':'SFSF',
+
     
       
     }
@@ -72,8 +76,10 @@ export class LineComponent implements OnInit {
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      plant_code: [''],
-    
+      plant_name: [''],
+      department: [''],
+      line_name:[''],
+      personal_subarea:[''],
       plantcode: [sessionStorage.getItem('plantcode')]
      
     })
@@ -87,14 +93,14 @@ export class LineComponent implements OnInit {
   const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
   const wb: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'designation.xlsx');
+  XLSX.writeFile(wb, 'line.xlsx');
 }
 
 ngOnInit(): void {
   var username = {'username': sessionStorage.getItem('plantcode')}
   this.service.getModules(username).
   subscribe({
-    next: (response)=>{this.dummy = response}
+    next: (response)=>{this.line = response}
   })
 }
 
@@ -115,10 +121,10 @@ ngOnInit(): void {
 edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['line_name'].setValue(this.dummy[a].line_name)
-    this.form.controls['shop_code'].setValue(this.dummy[a].shop_code)
-    this.form.controls['module_code'].setValue(this.dummy[a].module_code)
-    this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
+    this.form.controls['plant_name'].setValue(this.line[a].plant_name)
+    this.form.controls['department'].setValue(this.line[a].department)
+    this.form.controls['line_name'].setValue(this.line[a].line_name)
+    this.form.controls['personal_subarea'].setValue(this.line[a].personal_subarea)
 
 
   }
@@ -133,7 +139,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.line.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
       }}
@@ -151,7 +157,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.line[this.form.controls['sno'].value] = this.form.value
       }}
     })
     this.form.reset();
@@ -160,11 +166,11 @@ edit(a:any)
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletemodule(this.line[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
-      this.dummy.splice(a,1)
+      this.line.splice(a,1)
   }
   })
 }

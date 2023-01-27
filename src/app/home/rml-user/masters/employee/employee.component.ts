@@ -62,12 +62,12 @@ export class EmployeeComponent implements OnInit {
 
   sample : any = environment.path
 
-  dummy: any = [
+  employee: any = [
     {
       'employee_name':'AIDUA',
-      'plant_code':[''],
-      'department' : [''],
-      'designation' : ['fkms,sfnk,shf'],
+      'plant_code':'',
+      'department' : '',
+      'designation' : '',
       'line':[''],
       'mail_id':'abc123@gmail.com',
       'mobile_no':'99876543210',
@@ -108,7 +108,7 @@ ngOnInit(): void {
   var username = {'username': sessionStorage.getItem('plantcode')}
   this.service.getModules(username).
   subscribe({
-    next: (response)=>{this.dummy = response}
+    next: (response)=>{this.employee = response}
   })
 }
 
@@ -129,13 +129,13 @@ ngOnInit(): void {
 edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['employee_name'].setValue(this.dummy[a].plant_code)
-    this.form.controls['department'].setValue(this.dummy[a].dept_name)
-    this.form.controls['designation'].setValue(this.dummy[a].designation)
-    this.form.controls['mail_id'].setValue(this.dummy[a].mail_id)
-    this.form.controls['mobile_no'].setValue(this.dummy[a].mobile_no)
-    this.form.controls['user_name'].setValue(this.dummy[a].user_name)
-    this.form.controls['password'].setValue(this.dummy[a].password)
+    this.form.controls['employee_name'].setValue(this.employee[a].plant_code)
+    this.form.controls['department'].setValue(this.employee[a].dept_name)
+    this.form.controls['designation'].setValue(this.employee[a].designation)
+    this.form.controls['mail_id'].setValue(this.employee[a].mail_id)
+    this.form.controls['mobile_no'].setValue(this.employee[a].mobile_no)
+    this.form.controls['user_name'].setValue(this.employee[a].user_name)
+    this.form.controls['password'].setValue(this.employee[a].password)
   }
   save()
   {
@@ -148,7 +148,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.employee.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
       }}
@@ -156,7 +156,7 @@ edit(a:any)
 
   }
   sendData(){
-    this.plantcodeService.fam = this.dummy
+    this.plantcodeService.fam = this.employee
   } 
   editSave()
   {
@@ -169,7 +169,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.employee[this.form.controls['sno'].value] = this.form.value
       }}
     })
     this.form.reset();
@@ -178,11 +178,11 @@ edit(a:any)
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletemodule(this.employee[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
-      this.dummy.splice(a,1)
+      this.employee.splice(a,1)
   }
   })
 }

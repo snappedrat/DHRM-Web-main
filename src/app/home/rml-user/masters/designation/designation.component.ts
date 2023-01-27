@@ -59,15 +59,10 @@ export class DesignationComponent implements OnInit {
 
   sample : any = environment.path
 
-  dummy: any = [
+  designation: any = [
     {
       'designation_name':'AIDUA',
-      'plant_name' : 'ABCD',
-      'active_status': 1,
-      'created_on' :'12/2/2022',
-      'created_by': '12/1/2022',
-      'modified_on': '12/1/2022',
-      'modified_by': '12/1/2022', 
+      'plant_code' : 'ABCD',
     }
   ]
   editing_flag: any;
@@ -101,7 +96,7 @@ ngOnInit(): void {
   var username = {'username': sessionStorage.getItem('plantcode')}
   this.service.getModules(username).
   subscribe({
-    next: (response)=>{this.dummy = response}
+    next: (response)=>{this.designation = response}
   })
 }
 
@@ -122,8 +117,8 @@ ngOnInit(): void {
 edit(a:any)
   {
     this.editing_flag = true
-    this.form.controls['designation_name'].setValue(this.dummy[a].plant_code)
-    this.form.controls['plant_name'].setValue(this.dummy[a].dept_name)
+    this.form.controls['designation_name'].setValue(this.designation[a].plant_code)
+    this.form.controls['plant_name'].setValue(this.designation[a].dept_name)
 
   }
   save()
@@ -137,7 +132,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.designation.push(this.form.value)
         this.form.reset()
         console.log(this.form.value)
       }}
@@ -155,7 +150,7 @@ edit(a:any)
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.designation[this.form.controls['sno'].value] = this.form.value
       }}
     })
     this.form.reset();
@@ -164,11 +159,11 @@ edit(a:any)
 
 delete(a:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletemodule(this.designation[a])
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
-      this.dummy.splice(a,1)
+      this.designation.splice(a,1)
   }
   })
 }

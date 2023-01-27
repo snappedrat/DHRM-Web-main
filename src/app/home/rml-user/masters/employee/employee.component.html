@@ -1,8 +1,7 @@
 
     <ng-template #content let-modal>
         <div class="modal-header">
-            <h4 class="modal-title">Add Employee
-            </h4>
+            <h4 class="modal-title">Add Employee</h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
         <div class="modal-content container ">
@@ -21,22 +20,22 @@
                 <div class="row">
                         <div class="col">
                             <label>Plant Code: </label><br>
-                            <input class="form-control"  type = "number" formControlName = "plant_code">
+                            <select><option ngModel="data.plant_code" *ngFor= "let i of employee">{{i}}</option></select>
                         </div>
                     <div class="col">
                         <label>Department: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "department_name">
+                        <select><option ngModel="data.department" *ngFor= "let i of employee">{{i}}</option></select>
                     </div>
                 </div><br>
                 
                 <div class="row">
                         <div class="col">
                             <label>Line: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "line">
+                            <select><option ngModel="data.line_name" *ngFor= "let i of employee">{{i}}</option></select>
                         </div>
                         <div class="col">                            
                             <label>Designation: </label><br>
-                            <select><option *ngFor= "let i of dummy">{{i}}</option></select>
+                            <select><option ngModel="data.designation" *ngFor= "let i of employee">{{i}}</option></select>
                         </div>
                     </div><br>
                 <div class="row">
@@ -69,15 +68,13 @@
                     <input type = "checkbox"> reporting authority <br>
                     <input type = "checkbox"> time office user<br>
 
-                </div>
-  
-            </form>
-        </div>
+                </div>  </form>
+       
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class=" btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+        </div></div>
     </ng-template>
   <br>
   <div>
@@ -143,12 +140,13 @@
             </tr>
             </thead>
             <tbody >
-                <tr *ngFor = "let i of dummy; let a = index">
+                <tr *ngFor = "let i of employee; let a = index">
                    <td>{{i.gen_id}}</td>
                     <td>{{i.employee_name}}</td>
                     <td>{{i.department}}</td>
                     <td>{{i.mail_id}}</td>
                     <td>{{i.mobile_no}}</td>
+                    
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">

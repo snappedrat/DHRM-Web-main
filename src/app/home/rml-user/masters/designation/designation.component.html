@@ -9,22 +9,22 @@
             <form [formGroup] = "form">
                 <div class="row">
                     <div class="col">
-                        <label>Plant Code: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "plant_code">
-                    </div>
-                    <div class="col">
                         <label>Department Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "department_name">
                     </div>
+                        <<div class="col">                            
+                            <label>Plant Code: </label><br>
+                            <select><option ngModel="data.plant_code" *ngFor= "let i of designation">{{i}}</option></select>
+                        </div>
                 </div><br>
                
-  
+                <input type = "checkbox"> Del Status<br>
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
   <br>
@@ -66,41 +66,8 @@
               >
                   Plant Name
               </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Active Status 
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Created On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Created By
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-              >
-                  Modified On
-              </th>
-              <th
-                      class="text-center"
-                      style="width: 500px"
-                      style="background-color: darkblue"
-                      >
-                      Modified By
-              </th>
+             
+             
               <th
                       class="text-center"
                       style="width: 500px"
@@ -111,16 +78,10 @@
             </tr>
             </thead>
             <tbody >
-                <tr *ngFor = "let i of dummy; let a = index">
+                <tr *ngFor = "let i of designation; let a = index">
                    <td>{{a+1}}</td>
                     <td>{{i.designation_name}}</td>
-                    <td>{{i.plant_name}}</td>
-                   
-                    <td>{{i.active_status}}</td>
-                    <td>{{i.created_on}}</td>
-                    <td>{{i.created_by}}</td>
-                    <td>{{i.modified_on}}</td>
-                    <td>{{i.modified_by}}</td>
+                    <td>{{i.plant_code}}</td>
   
                     <td>
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
