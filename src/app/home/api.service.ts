@@ -150,6 +150,24 @@ url:any = environment.path
   {
     return this.http.post(this.url+'/addemployee', form)
   }
+
+  getshift()
+  {
+    return this.http.post(this.url+'/getshift', '')
+  }
+  deleteshift(form:any)
+  {
+    return this.http.post(this.url+'/deleteshift', form)
+  }
+  updateshift(form:any)
+  {
+    return this.http.post(this.url+'/updateshift', form)
+  }
+  addshift(form:any)
+  {
+    return this.http.post(this.url+'/addshift', form)
+  }
+  
   ////////////////////////////////////////////////////////////////////////masters
 
   plantcodelist(form:any)

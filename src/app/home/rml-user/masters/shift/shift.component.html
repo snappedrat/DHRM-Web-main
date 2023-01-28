@@ -10,24 +10,48 @@
                 <div class="row">
                     <div class="col">
                         <label>Shift Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "shift_name">
+                        <input class="form-control"  type = "text" formControlName = "shift_desc">
                     </div><br>
-                    <div class="col">
+                    <!-- <div class="col">
                         <label>Plant Code:</label><br>
-                        <input class="form-control"  type = "text" formControlName = "plant_code">
-                    </div>
+                        <input class="form-control"  type = "text" formControlName = "plant_name">
+                    </div> -->
                     <div class="col">
                         <label>Shift Group: </label><br>
                         <input class="form-control"  type = "text" formControlName = "shift_group">
-                    </div></div><br><br>
-                    <div class="row">
+                    </div>
+                </div><br><br>
+
+                <div class="row">
                     <div class="col">
                         <label>Start Time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "start_time">
+                        <input class="form-control"  type = "time" formControlName = "act_tm_from">
                     </div>
                     <div class="col">
                         <label>End Time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "end_time">
+                        <input class="form-control"  type = "time" formControlName = "act_tm_to">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <label>max time: </label><br>
+                        <input class="form-control"  type = "time" formControlName = "in_tm_max">
+                    </div>
+                    <div class="col">
+                        <label>min Time: </label><br>
+                        <input class="form-control"  type = "time" formControlName = "in_tm_min">
+                    </div></div>
+                <br>
+
+                <div class="row">
+                    <div class="col">
+                        <label>shift type: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "type">
+                    </div>
+                    <div class="col">
+                        <label>security shift: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "security_shift">
                     </div></div>
                 <br>
                
@@ -35,7 +59,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" >Save</button>
             <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
             <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
@@ -94,13 +118,34 @@
               >
                   End Time
               </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                 Min time
+              </th>
+              <th
+                      class="text-center"
+                      style="width: 500px"
+                      style="background-color: darkblue"
+              >
+                  max time
+              </th>
             <th
                       class="text-center"
                       style="width: 500px"
                       style="background-color: darkblue"
               >
-                  Shift group
+                  Shift type
               </th>
+              <th
+              class="text-center"
+              style="width: 500px"
+              style="background-color: darkblue"
+                >
+                    security shift
+                </th>
              
               <th
                       class="text-center"
@@ -112,20 +157,23 @@
             </tr>
             </thead>
             <tbody >
-                <tr *ngFor = "let i of dummy; let a = index">
+                <tr *ngFor = "let i of shift; let a = index">
                    <td>{{a+1}}</td>
                     <td>{{i.shift_desc}}</td>
-                    <td>{{i.plant_code}}</td>
-                    <td>{{i.act_tm_from}}</td>
-                    <td>{{i.act_tm_to}}</td>
-                    <td>{{i.shift_group}}</td>
+                    <td>{{i.plant_desc}}</td>
+                    <td>{{i.act_tm_from.slice(i.act_tm_from.indexOf('T')+1, i.act_tm_from.indexOf('.'))}}</td>
+                    <td>{{i.act_tm_to.slice(i.act_tm_to.indexOf('T')+1, i.act_tm_to.indexOf('.'))}}</td>
+                    <td>{{i.in_tm_min.slice(i.in_tm_min.indexOf('T')+1, i.in_tm_min.indexOf('.'))}}</td>
+                    <td>{{i.in_tm_max.slice(i.in_tm_min.indexOf('T')+1, i.in_tm_max.indexOf('.'))}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.security_shift}}</td>
 
   
                     <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.shift_id)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.shift_id)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
