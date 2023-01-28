@@ -118,7 +118,7 @@ export class DeptComponent implements OnInit {
     console.log(this.array)
     this.temp_a = a
     this.editing_flag = true
-    this.form.controls['slno'].setValue(slno)
+    this.form.controls['dept_slno'].setValue(slno)
     this.form.controls['names'].setValue(this.department[a].plant_name)
     this.form.controls['plant_name'].setValue(this.department[a].plant_name)
     this.form.controls['dept_name'].setValue(this.department[a].dept_name)

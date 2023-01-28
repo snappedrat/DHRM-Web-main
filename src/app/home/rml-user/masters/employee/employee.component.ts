@@ -59,42 +59,46 @@ export class EmployeeComponent implements OnInit {
   closeResult: string;
 
  form:any
- plantcode:any;
+ plantname:any
+ array:any = []
 
  all_details:any
  desig:any
  dept:any
  line:any
 
+ desig_:any= []
+ dept_:any= []
+ line_:any= []
+
+
   sample : any = environment.path
 
   employee: any = [
-    {
-      'employee_name':'AIDUA',
-      'plant_code':'',
-      'department' : '',
-      'designation' : '',
-      'line':[''],
-      'mail_id':'abc123@gmail.com',
-      'mobile_no':'99876543210',
-      'user_name':'aameerk',
-      'active_status': 1,
-    }
+
   ]
   editing_flag: any;
+  temp_a: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService) {
     this.form = this.fb.group({
       gen_id: [''],
-      employee_name :[''],
-      plant_code:[''],
-      department : [''],
-      designation : [''],
-      line:[''],
-      mail_id: [''],
-      mobile_no: [''],
-      user_name: [''],
-      password: [ ''],     
+      Emp_Name :[''],
+      plant_name:[''],
+      dept_name : [''],
+      desig_name : [''],
+      Line_Name:[''],
+      Mail_Id: [''],
+      Mobile_No: [''],
+      User_Name: [''],
+      Password: [ ''],     
+      Is_HR:[''],
+      Is_HRAppr:[''],
+      Is_Trainer:[''],
+      Is_Supervisor:[''],
+      Is_ReportingAuth:[''],
+      Is_TOU:[''],
+
     })
    }
 
@@ -122,7 +126,12 @@ getplantcode(){
   var company = {'company_name': sessionStorage.getItem('companycode')}
   this.service.plantcodelist(company)
   .subscribe({
-    next: (response) =>{ console.log(response); this.plantcode = response },
+    next: (response) =>
+    { console.log(response); this.plantname = response;
+
+      for(var o in this.plantname)
+      this.array.push(this.plantname[o].plant_name) 
+    },
     error: (error) => console.log(error),
   });
 }
@@ -137,6 +146,15 @@ getall(event:any)
         this.dept= this.all_details[1]
         this.line= this.all_details[2]
 
+        for(var o in this.desig)
+        this.desig_.push(this.desig[o].desig_name) 
+
+        for(var o in this.dept)
+        this.dept_.push(this.dept[o].dept_name) 
+
+        for(var o in this.line)
+        this.line_.push(this.line[o].line_name) 
+
       },
       error: (error) => console.log(error),
     });
@@ -144,12 +162,22 @@ getall(event:any)
 
    open(content:any)
   {
+    this.form.reset()
+
+    this.form.controls['Is_HR'].setValue(false)
+    this.form.controls['Is_HRAppr'].setValue(false)
+    this.form.controls['Is_Trainer'].setValue(false)
+    this.form.controls['Is_Supervisor'].setValue(false)
+    this.form.controls['Is_ReportingAuth'].setValue(false)
+    this.form.controls['Is_TOU'].setValue(false)
+
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
   opentoedit(content:any)
   {
+
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
@@ -157,14 +185,53 @@ getall(event:any)
    
 edit(a:any)
   {
+    this.temp_a = a
+
+    this.desig_.splice(0, this.desig_.length);
+    this.dept_.splice(0, this.dept_.length);
+    this.line_.splice(0, this.line_.length);
+
+    var plantcode = {plantcode: this.employee[a].plant_name}
+    this.service.line_dept_design(plantcode)
+    .subscribe({
+      next: (response) =>{ console.log(response); this.all_details = response;
+        this.desig= this.all_details[0]
+        this.dept= this.all_details[1]
+        this.line= this.all_details[2]
+
+        for(var o in this.desig)
+        this.desig_.push(this.desig[o].desig_name) 
+
+        for(var o in this.dept)
+        this.dept_.push(this.dept[o].dept_name) 
+
+        for(var o in this.line)
+        this.line_.push(this.line[o].line_name) 
+
+      },
+      error: (error) => console.log(error),
+    });
+
     this.editing_flag = true
-    this.form.controls['employee_name'].setValue(this.employee[a].plant_code)
-    this.form.controls['department'].setValue(this.employee[a].dept_name)
-    this.form.controls['designation'].setValue(this.employee[a].designation)
-    this.form.controls['mail_id'].setValue(this.employee[a].mail_id)
-    this.form.controls['mobile_no'].setValue(this.employee[a].mobile_no)
-    this.form.controls['user_name'].setValue(this.employee[a].user_name)
-    this.form.controls['password'].setValue(this.employee[a].password)
+    this.form.controls['Emp_Name'].setValue(this.employee[a].Emp_Name)
+    this.form.controls['gen_id'].setValue(this.employee[a].gen_id)
+    this.form.controls['plant_name'].setValue(this.employee[a].plant_name)
+
+    this.form.controls['dept_name'].setValue(this.employee[a].dept_name)
+    this.form.controls['desig_name'].setValue(this.employee[a].desig_name)
+    this.form.controls['Line_Name'].setValue(this.employee[a].Line_Name)
+
+    this.form.controls['Mail_Id'].setValue(this.employee[a].Mail_Id)
+    this.form.controls['Mobile_No'].setValue(this.employee[a].Mobile_No)
+    this.form.controls['User_Name'].setValue(this.employee[a].User_Name)
+    this.form.controls['Password'].setValue(this.employee[a].Password)
+
+    this.form.controls['Is_HR'].setValue(this.employee[a].Is_HR)
+    this.form.controls['Is_HRAppr'].setValue(this.employee[a].Is_HRAppr)
+    this.form.controls['Is_Trainer'].setValue(this.employee[a].Is_Trainer)
+    this.form.controls['Is_Supervisor'].setValue(this.employee[a].Is_Supervisor)
+    this.form.controls['Is_ReportingAuth'].setValue(this.employee[a].Is_ReportingAuth)
+    this.form.controls['Is_TOU'].setValue(this.employee[a].Is_TOU)
   }
   save()
   {
@@ -173,7 +240,7 @@ edit(a:any)
       next : (response:any)=>{console.log(response);
       if(response.message == 'already')
       {
-        alert('Module with same priority value already exists')
+        alert('username already exists')
       }
     else
       {
@@ -183,31 +250,25 @@ edit(a:any)
       }}
     })    
 
+    console.log(this.form.value)
   }
-  sendData(){
-    this.plantcodeService.fam = this.employee
-  } 
+
   editSave()
   {
+    console.log(this.form.value)
     this.service.updateemployee(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('Module with same priority value already exists')
+
+      this.employee[this.temp_a] = this.form.value
       }
-    else
-      {
-        this.employee[this.form.controls['sno'].value] = this.form.value
-      }}
     })
-    this.form.reset();
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deleteemployee(this.employee[a])
+  this.service.deleteemployee({empl_slno : slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')
