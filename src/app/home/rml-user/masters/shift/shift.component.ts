@@ -44,6 +44,7 @@ export class ShiftComponent implements OnInit {
       'plant_code' : 1220,
       'start_time': 12.00,
       'end_time': 4.00,
+      'shift_group':'fsfs',
     
     }
   ]
@@ -55,9 +56,7 @@ export class ShiftComponent implements OnInit {
      plant_code : [''],
       start_time: [''],
       end_time: [''],
-      
-      plantcode: [sessionStorage.getItem('plantcode')]
-     
+      shift_group:[''],     
     })
    }
 
@@ -78,20 +77,21 @@ export class ShiftComponent implements OnInit {
 
   save()
   {
-    this.service.addmodule(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('Module with same priority value already exists')
-      }
-    else
-      {
-        this.dummy.push(this.form.value)
-        this.form.reset()
-        console.log(this.form.value)
-      }}
-    })    
+    // this.service.addmodule(this.form.value)
+    // .subscribe({
+    //   next : (response:any)=>{console.log(response);
+    //   if(response.message == 'already')
+    //   {
+    //     alert('Module with same priority value already exists')
+    //   }
+    // else
+    //   {
+    //     this.dummy.push(this.form.value)
+    //     this.form.reset()
+    //     console.log(this.form.value)
+    //   }}
+    // })    
+    console.log(this.form.value)
 
   }
 /////////////////////////////////////////////////////edit functions
@@ -105,10 +105,10 @@ export class ShiftComponent implements OnInit {
   {
     this.editing_flag = true
     this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
-    this.form.controls['operation_description'].setValue(this.dummy[a].operation_description)
-    this.form.controls['line_code'].setValue(this.dummy[a].line_code)
-    this.form.controls['skills_level'].setValue(this.dummy[a].skills_level)
-    this.form.controls['active_status'].setValue(this.dummy[a].del_staus)
+    this.form.controls['shift_name'].setValue(this.dummy[a].shift_name)
+    this.form.controls['start_time'].setValue(this.dummy[a].start_time)
+    this.form.controls['end_time'].setValue(this.dummy[a].end_time)
+    this.form.controls['shift_group'].setValue(this.dummy[a].shift_group)
   }
 
   editSave()

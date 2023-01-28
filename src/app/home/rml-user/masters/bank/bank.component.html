@@ -12,6 +12,10 @@
                         <label>Bank Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "bank_name">
                     </div>
+                    <div class="col">
+                        <label>IFSC Code: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "bank_name">
+                    </div>
                 <br>
              <br>
                           
@@ -23,9 +27,9 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
   <br>
@@ -68,7 +72,7 @@
                       style="background-color: darkblue"
               >
 
-                  Bank Code
+                  IFSC Code
               </th>
              
               <th

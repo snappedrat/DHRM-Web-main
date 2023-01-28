@@ -11,32 +11,33 @@
                     <div class="col">
                         <label>Shift Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "shift_name">
-                    </div>
+                    </div><br>
                     <div class="col">
                         <label>Plant Code:</label><br>
-                        <input class="form-control"  type = "text" formControlName = "plant_name">
-                    </div>
-                    <div class="col">
-                        <label>Start Time: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "start_time">
-                    </div>
-                    <div class="col">
-                        <label>End Time: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "end_time">
+                        <input class="form-control"  type = "text" formControlName = "plant_code">
                     </div>
                     <div class="col">
                         <label>Shift Group: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "end_time">
+                        <input class="form-control"  type = "text" formControlName = "shift_group">
+                    </div></div><br><br>
+                    <div class="row">
+                    <div class="col">
+                        <label>Start Time: </label><br>
+                        <input class="form-control"  type = "time" formControlName = "start_time">
                     </div>
-                </div><br>
+                    <div class="col">
+                        <label>End Time: </label><br>
+                        <input class="form-control"  type = "time" formControlName = "end_time">
+                    </div></div>
+                <br>
                
   
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
   <br>
