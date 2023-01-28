@@ -14,60 +14,60 @@
                     </div>
                     <div class="col">
                         <label>Employee Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "employee_name">
+                        <input class="form-control"  type = "text" formControlName = "Emp_Name">
                     </div><br>
                 </div><br>
                 <div class="row">
                         <div class="col">
-                            <label>Plant Code: </label><br>
-                    <select class = "form-control" (change)="getall($event)" ><option *ngFor= "let i of plantcode">{{i.plant_name}}</option></select>
+                            <label>Plant Name: </label><br>
+                    <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of array" [ngValue]="i" >{{i}}</option></select>
                         </div>
                         <div class="col">                            
                             <label>Line: </label><br>
-                            <select class = "form-control" ><option *ngFor= "let i of line">{{i.line_name}}</option></select>
+                            <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line_" [ngValue]="i">{{i}}</option></select>
                         </div>
                 </div><br>
                 
                 <div class="row">
                     <div class="col">                            
                         <label>Department: </label><br>
-                        <select class = "form-control" ><option *ngFor= "let i of dept">{{i.dept_name}}</option></select>
+                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept_" [ngValue]="i">{{i}}</option></select>
                     </div>
                         <div class="col">                            
                             <label>Designation: </label><br>
-                            <select class = "form-control"><option *ngFor= "let i of desig">{{i.desig_name}}</option></select>
+                            <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig_" [ngValue]="i">{{i}}</option></select>
 
                         </div>
                     </div><br>
                 <div class="row">
                     <div class="col">
                         <label>Mail ID: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "mail_id">
+                        <input class="form-control"  type = "text" formControlName = "Mail_Id">
                     </div>
                     <div class="col">
                         <label>Mobile No: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "mobile_no">
+                            <input class="form-control"  type = "text" formControlName = "Mobile_No">
                     </div>
                 </div><br>
 
                                 <div class="row">
                                     <div class="col">
                                         <label>User Name: </label><br>
-                                        <input class="form-control"  type = "text" formControlName = "user_name">
+                                        <input class="form-control"  type = "text" formControlName = "User_Name">
                                     </div>
                                         <div class="col">
                                             <label>Password: </label><br>
-                                            <input class="form-control"  type = "text" required formControlName = "password">
+                                            <input class="form-control"  type = "text" required formControlName = "Password">
                                         </div>
                                 </div><br>
                                 
                 <div style="align-self: center;">
-                    <input type = "checkbox"> Hr user <br>
-                    <input type = "checkbox"> Hr approver <br>
-                    <input type = "checkbox"> Trainer <br>
-                    <input type = "checkbox"> supervisor <br>
-                    <input type = "checkbox"> reporting authority <br>
-                    <input type = "checkbox"> time office user<br>
+                    <input type = "checkbox" formControlName = "Is_HR"> Hr user <br>
+                    <input type = "checkbox" formControlName = "Is_HRAppr">  Hr approver <br>
+                    <input type = "checkbox" formControlName = "Is_Trainer"> Trainer <br>
+                    <input type = "checkbox" formControlName = "Is_Supervisor"> supervisor <br>
+                    <input type = "checkbox" formControlName = "Is_ReportingAuth"> reporting authority <br>
+                    <input type = "checkbox" formControlName = "Is_TOU"> time office user<br>
 
                 </div>  </form>
        
@@ -144,7 +144,7 @@
                 <tr *ngFor = "let i of employee; let a = index">
                    <td>{{i.gen_id}}</td>
                     <td>{{i.Emp_Name}}</td>
-                    <td>{{i.Department}}</td>
+                    <td>{{i.dept_name}}</td>
                     <td>{{i.Mail_Id}}</td>
                     <td>{{i.Mobile_No}}</td>
                     
@@ -153,7 +153,7 @@
                         <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.empl_slno)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
