@@ -1,12 +1,41 @@
-.div-c{
-    padding-top: 10px;
-    text-align: center;
-    font-family: 'Kanit', sans-serif;
+.btn{
+    border-radius: 0px;
+    margin-left:50%;
+    width:90px 
 }
-.mat-radio-button ~ .mat-radio-button {
-    margin-left: 16px;
+h3{
+    margin-top:20px;
+    font-weight:bold;
+}
+input{
+    border-radius:0px;
+    border-color: black;
+}
+input:hover{
+    border:2px solid grey;
+
+}
+select{
+    border-radius:0px;
+    border-color: black;
+    height: 34px;
+}
+select:hover{
+    border:2px solid grey;
+
 }
 
 .row{
-    margin-right: 0px;
+    white-space: nowrap;
+}
+.star-color{
+    color: red;
+}
+.form-control{
+    font-size: 14px;
+}
+.title{
+    text-align: Center;
+    font-size: 25px;
+    font-weight: 900;
 }
