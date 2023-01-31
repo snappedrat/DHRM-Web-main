@@ -1,49 +1,102 @@
-<div class="container pt-2">
-    <div class="row justify-content-md-center pt-5">
-        <div class="table col-sm-20 shadow round pb-4">
-            <div class="mx-5">
-<br><div class = "title"> Department Transfer Details</div>
-<form [formGroup] = "form">
+<div class = "container">
+    <div  style = "margin-top: 40px;">   
 
-            <div class="row">
-                <div class="col">                            
-                    <label>Gen ID: </label><br>
-                    <select class="form-control" formControlName = "gen_id" ><option value="">select</option><option  *ngFor= "let i of gen_id" [ngValue]="i">{{i}}</option></select>
-                </div></div><br>
-                <div class="row">
-                <div class="col">
-                    <label>Current Department: </label><br>
-                    <input class="form-control"  type = "text" formControlName = "current_department">
-                </div></div>
-            <br>
-            <div class="row">
-            <div class="col">
-                <label>Current Line: </label><br>
-                <input class="form-control"  type = "text" formControlName = "current_line">
-            </div></div><br>
-            <div class="row">
-                    <div class="col">                            
-                    <label>Change Department To: </label><br>
-                    <select class="form-control" formControlName = "changeshift" ><option value="">select</option><option  *ngFor= "let i of changedepartment" [ngValue]="i">{{i}}</option></select>
-                </div></div>
-            <br>
-            <div class="row">
-            <div class="col">                            
-                <label>Change Line To: </label><br>
-                <select class="form-control" formControlName = "changeline" ><option value="">select</option><option  *ngFor= "let i of changeline" [ngValue]="i">{{i}}</option></select>
-            </div>
-            </div><br>
-            <div class="row"> 
-                <div class="col">                            
-                    <label>Reporting To </label><br>
-                    <select class="form-control" formControlName = "reportingto" ><option value="">select</option><option  *ngFor= "let i of reportingto" [ngValue]="i">{{i}}</option></select>
-                </div></div>
-            <br>
+      <form [formGroup]="form">
 
-   
-               
-<br>
-    <button type="submit" class="btn btn-success btn-md"  (click)="submit()">Save</button>
-   
-</form>
-            </div></div></div></div> 
+      <br><br>
+        <div class = "table-wrapper">
+        <table class="table table-bordered table-striped table-hover">
+          <table id="table">
+              <thead>
+              <tr>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                     Date
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Full name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Father Name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Date of birth 
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      mobileNumber
+                  </th>
+                  <th
+                  class="text-center"
+                  style="width: 500px"
+                  style="background-color: darkblue"
+                >
+                     ID NO
+                 </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Aaadhar number
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Application status
+                  </th>
+    
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                          >
+                      Approval
+                  </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let i of filterinfo">
+                        <td>{{ i.doj.split('T')[0] }}</td>
+                        <td>{{ i.fullname }}</td>
+                        <td>{{ i.fathername }}</td>
+                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.mobile_no1 }}</td>
+                        <td>{{i.gen_id}}</td>
+                        <td>{{ i.aadhar_no }}</td>
+                        <td>{{ i.apln_status }}</td>
+                        <td>
+                            <div>
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/transfer_form', i.gen_id, i.dept_slno, i.line_code]" >
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </table>
+        </div>
+        </form>
+    </div>
+</div>

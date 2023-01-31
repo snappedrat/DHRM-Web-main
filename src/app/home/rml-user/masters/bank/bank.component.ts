@@ -121,9 +121,8 @@ delete(a:any)
 
 exportexcel(): void
 {
-  let element = document.getElementById('table');
-  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
-  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  var ws = XLSX.utils.json_to_sheet(this.dummy);
+  var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   XLSX.writeFile(wb, 'bank_details.xlsx');
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../new-joiners/plantcode.service';
 import { leadingComment } from '@angular/compiler';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 
 import {
@@ -15,6 +15,8 @@ import {
 } from '@angular/animations';
 import { Timestamp } from 'rxjs';
 import { threadId } from 'worker_threads';
+import { ApiService } from 'src/app/home/api.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -25,85 +27,36 @@ import { threadId } from 'worker_threads';
   
 })
 export class DeptTransferComponent implements OnInit {
-form:any
-gen_id: any 
-current_department: any 
-current_line: any 
-changedepartment : any
-changeline : any
-reportingto: any 
+  someSubscription:any
+  filterinfo:any = []
+  id:any
+  form:any
 
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
-
-Shiftata = [
-  {
-    'ifsc_code':'',
-    'grade':'',
-    'doj':'',
-    'account_number':'',
-    'department':'',
-    'active_status':'',
-    'bank_name':'',
-    'line':'',
-    'dol':'',
-    'b_id':'',
-    'process_trained':'',
-    'rfr':'',
-    'b_num':'',
-    'reporting_to':'',
-    'uan':'',
-    'w_contract':'',
-    'trainee_id':'',
-    'designation':'',
-
-
-
-
-
-
-
-
-
-
-
-
-
-    'change_line':'',
-    'reportingto':''
-  }
-
-
-    
-];
-  flag: any = true;
-  state: boolean;
-
-  constructor(private fb : UntypedFormBuilder,private http: HttpClient, private cookie: CookieService,  private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
-  
     this.form = this.fb.group({
-      
-      gen_id: [''],
-      current_department: [''],
-      current_line: [''],
-      changedepartment : [''],
-      changeline : [''],
-      reportingto:  ['']
-   
-    })
+      plantcode: [sessionStorage.getItem('plantcode')],
+    });
 
-  }
-
+   }
 
   ngOnInit(): void {
-   
+
+    console.log("00",this.form.value)
+
+    this.service.depttransfer(this.form.value)
+    .subscribe(
+      {
+        next: (response)=>{console.log(response); this.filterinfo = response}
+      }
+    )
   }
-  submit(){
 
-}
+  save()
+  {
+    console.log(this.form.value)
+  }
 
-sendData(){
- 
-} 
 
 
 }
