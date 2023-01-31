@@ -49,7 +49,11 @@ const routes: Routes = [
   {
     path: 'trainee-test/:username',
     component: TraineeTestComponent
-  }
+  },
+  // {
+  //   path: '/*',
+  //   component:FirstPageComponent
+  // }
   
 ];
 

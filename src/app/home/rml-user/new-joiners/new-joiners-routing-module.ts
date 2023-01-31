@@ -6,6 +6,8 @@ import { TraineeApplicationStatusComponent } from './trainee-application-status/
 import { FormsComponent } from './forms/forms.component';
 import { IdcardComponent } from './idcard/idcard.component';
 import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
+import { OnboardComponent } from './onboard/onboard.component';
+import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 
 const routes: Routes = [
     {
@@ -15,6 +17,14 @@ const routes: Routes = [
     {
       path:'trainee-application',
       component: TraineeApplicationComponent
+    }, 
+    {
+      path:'onboard',
+      component: OnboardComponent
+    }, 
+    {
+      path:'dept_transfer',
+      component: DeptTransferComponent
     }, 
     {
       path:'forms/:mobile_no1/:apln_status/:company',

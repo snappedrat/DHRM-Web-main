@@ -30,7 +30,8 @@ export class ChooseFilesComponent implements OnInit {
 	uniqueId :any = {'mobile': this.active.snapshot.paramMap.get('mobile_no1'),
 						'company': this.active.snapshot.paramMap.get('company')}
 
-	url: any = environment.path
+	url: any = environment.path+'/'
+	
 
 	urlforResume: any 
 	urlforMark: any

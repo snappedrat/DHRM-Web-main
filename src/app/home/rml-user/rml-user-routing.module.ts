@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {CompanyComponent} from "./masters/company/company.component";
+import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'training_dojo',
         loadChildren:() => import('./training-dojo/training-dojo.module').then(m => m.TrainingDojoModule)
+      },
+      {
+        path: 'skill-developement',
+        loadChildren:() => import('./skill-developemnt/skill-developemnt.module').then(m => m.SkillDevelopemntModule)
       }
       ]
   }

@@ -31,6 +31,8 @@ import { FamilyEditComponent } from './forms/family-edit/family-edit.component';
 import { EducationEditComponent } from './forms/education-edit/education-edit.component';
 import { PrevEditComponent } from './forms/prev-edit/prev-edit.component';
 import { ChooseFilesComponent } from './forms/choose-files/choose-files.component';
+import { OnboardComponent } from './onboard/onboard.component';
+import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -50,6 +52,8 @@ import { ChooseFilesComponent } from './forms/choose-files/choose-files.componen
         EducationEditComponent,
         PrevEditComponent,
         ChooseFilesComponent,
+        OnboardComponent,
+        DeptTransferComponent,
     ],
       imports: [
           CommonModule,

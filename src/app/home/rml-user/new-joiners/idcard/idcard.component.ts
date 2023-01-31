@@ -68,7 +68,7 @@ export class IdcardComponent implements OnInit {
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
         this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
-        this.url = this.url + this.formvalues[0]?.other_files6
+        this.url = this.url+'/' + this.formvalues[0]?.other_files6
         console.log("url",this.url)
       },
       error: (error) => 

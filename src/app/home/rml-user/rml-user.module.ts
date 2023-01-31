@@ -26,6 +26,7 @@ import { ShiftComponent} from './masters/shift/shift.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDividerModule,
     MatDialogModule,
     MatSnackBarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SkillDevelopemntModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
