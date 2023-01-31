@@ -1,18 +1,9 @@
-.datepicker{
-    width: 400px;
-    height: 500px;
+.container{
+    position: center;
+    font-size: large;
 }
-
-.div-c{
-    padding-top: 10px;
+.textboz{
+    font-size: 50px;
+    margin-top: 20%;
     text-align: center;
-    font-family: 'Kanit', sans-serif;
-}
-
-.row{
-    margin-right: 0px;
-}
-
-.fs-text{
-    font-size: 1.25rem;
 }

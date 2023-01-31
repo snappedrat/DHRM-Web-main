@@ -9,13 +9,11 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class OdComponent implements OnInit {
 
   // myForm: FormGroup;
-  selectedDate: Date = new Date();
+ 
   constructor() { }
 
   ngOnInit(): void {
-    // this.myForm = new FormGroup({
-    //   type_leave: new FormControl('')
-    // });
+    
   }
 
   // onSubmit(form: FormGroup) {

@@ -1,89 +1,68 @@
-<div class="div-c" style="color: #2A2550">
-    <h1>Shift Change</h1>
-</div>
-<mat-divider style="padding-bottom: 10px"></mat-divider>
-<mat-stepper #stepper>
-    <mat-step label="Start/End Date">
-        <br><br>
-        <div style="padding-left: 20px; margin-bottom: 20px">
+<div class="container pt-2">
+    <div class="row justify-content-md-left pt-5">
+        <div class="table col-sm-20 shadow round pb-4">
+            <div class="mx-5">
+<br><div class = "title"> Shift Change Details</div>
+<div class="container pt-2">
+        <div class="row justify-content-md-left pt-5">
+            <div class="table col-sm-20 shadow round pb-4">
+                <div class="mx-5">
+                    <h3>Start/End Date</h3>
+        <form [formGroup] = "form1">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h2>Start date:</h2>
-                    <mat-form-field appearance="outline" style="padding-right: 20px">
-                        <mat-label>Start date</mat-label>
-                        <input matInput [matDatepicker]="picker">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
+                <div class="col">
+                    <label>Start Date: </label><br>
+                    <input class="form-control"  type = "date" formControlName = "start_date">
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <h2>End date:</h2>
-                    <mat-form-field appearance="outline" style="padding-right: 20px">
-                        <mat-label>End date</mat-label>
-                        <input matInput [matDatepicker]="picker2">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
+                <div class="col">
+                    <label>End Date: </label><br>
+                    <input class="form-control"  type = "date" formControlName = "end_date">
                 </div>
-            </div>
-            <button mat-raised-button color="warn" matStepperNext>Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Current/Preferred Shift">
-        <br><br>
-        <div style="padding-left: 20px; margin-bottom: 20px">
+            </div><br>
+                   
+        </form>
+                </div></div></div></div>
+                <div class="container pt-2">
+                    <div class="row justify-content-md-left pt-5">
+                        <div class="table col-sm-20 shadow round pb-4">
+                            <div class="mx-5">
+                                <h3>Current/Preferred Shift</h3>
+        <form [formGroup] = "form2">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h2>Current Shift:</h2>
-                    <mat-form-field appearance="outline">
-                        <mat-select>
-                            <mat-option value="option1">Option 1</mat-option>
-                            <mat-option value="option2">Option 2</mat-option>
-                            <mat-option value="option3">Option 3</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <div class="col">                            
+                        <label>Current Shift: </label><br>
+                        <select class="form-control" formControlName = "current_shift" ><option value="">choose an option</option><option  *ngFor= "let i of current_shift" [ngValue]="i">{{i}}</option></select>
+                    </div>
+                    <div class="col">                            
+                    <label>Preferred Shift: </label><br>
+                    <select class="form-control" formControlName = "preferred_shift" ><option value="">choose an option</option><option  *ngFor= "let i of preferred_shift" [ngValue]="i">{{i}}</option></select>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <h2>Preferred Shift:</h2>
-                    <mat-form-field appearance="outline">
-                        <mat-select>
-                            <mat-option value="option1">Option 1</mat-option>
-                            <mat-option value="option2">Option 2</mat-option>
-                            <mat-option value="option3">Option 3</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-            </div>
-            <br><br>
-            <button mat-raised-button color="warn" matStepperPrevious>Back</button>
-            <button mat-raised-button color="warn" matStepperNext style="margin-left: 5px">Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Reliever">
-        <br><br>
-        <div style="padding-left: 20px; margin-bottom: 20px">
+            </div><br>
+           
+        </form></div></div></div></div>
+        <div class="container pt-2">
+            <div class="row justify-content-md-left pt-5">
+                <div class="table col-sm-20 shadow round pb-4">
+                    <div class="mx-5">
+                        <h3>Reliever</h3>
+        <form [formGroup] = "form3">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <h2>Reliever availability:</h2>
-                    <br>
-                    <mat-radio-group aria-label="Select an option" color="primary">
-                        <mat-radio-button value="yes">Yes</mat-radio-button>
-                        <mat-radio-button value="no">No</mat-radio-button>
-                    </mat-radio-group>
+                <div class="col">
+                    <label  for = "vacc" > Reliever Availability: </label>&nbsp;
+                    <select  formControlName= "reliever_availability" >
+                        <option value = 'yes' > YES</option>
+                        <option value = 'no' >NO</option>
+                    </select>                </div>
+                <div class="col">                            
+                    <label>Reliever Name: </label><br>
+                    <select class="form-control" formControlName = "reliever_name" ><option value="">choose an option</option><option  *ngFor= "let i of reliever_name" [ngValue]="i">{{i}}</option></select>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <h2>Reliever Name:</h2>
-                    <mat-form-field appearance="outline">
-                        <mat-select>
-                            <mat-option value="option1">Option 1</mat-option>
-                            <mat-option value="option2">Option 2</mat-option>
-                            <mat-option value="option3">Option 3</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <br><br>
-            </div>
-            <button mat-raised-button color="warn" type="submit">Submit</button>
-        </div>
-    </mat-step>
-</mat-stepper>
+            </div><br>
+
+        </form>
+                    </div></div></div></div>
+<br>
+    <button type="submit" class="btn btn-success btn-md"  [disabled]=flag (click)="submit()">Save</button>
+   
+    
+            </div></div></div></div>

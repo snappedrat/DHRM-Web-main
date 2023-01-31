@@ -76,6 +76,24 @@
     font-size: larger;
     font-weight:900;
   }
+  .home
+{
+    width:1920px;
+    background-color: #fefefe;
+    height:1080px;
+}
+
+@media screen and (min-width: 500px) {
+   .home {
+      width:420px;
+   }
+}
+
+@media screen and (min-width: 800px) {
+   .homex {
+      width:720px;
+   }
+}
   
   /* .home img{
       width: 100%;

@@ -5,6 +5,7 @@ import {CalenderComponent} from "./calender/calender.component";
 import {ForgetPunchComponent} from "./forget-punch/forget-punch.component";
 import {ShiftChangeComponent} from "./shift-change/shift-change.component";
 import {LeaveComponent} from "./leave/leave.component";
+import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import {OdComponent} from "./od/od.component";
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'shift_change',
     component:ShiftChangeComponent
+  },
+  {
+    path:'dept_transfer',
+    component:DeptTransferComponent
   }
 ];
 

@@ -22,6 +22,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
+import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
     ForgetPunchComponent,
     AttendanceComponent,
     OdComponent,
-    LeaveComponent
+    LeaveComponent,
+    DeptTransferComponent
   ],
     imports: [
         MatNativeDateModule,
