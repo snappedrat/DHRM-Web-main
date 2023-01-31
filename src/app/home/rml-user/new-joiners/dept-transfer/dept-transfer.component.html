@@ -1,1 +1,49 @@
-<p>dept-transfer works!</p>
+<div class="container pt-2">
+    <div class="row justify-content-md-center pt-5">
+        <div class="table col-sm-20 shadow round pb-4">
+            <div class="mx-5">
+<br><div class = "title"> Department Transfer Details</div>
+<form [formGroup] = "form">
+
+            <div class="row">
+                <div class="col">                            
+                    <label>Gen ID: </label><br>
+                    <select class="form-control" formControlName = "gen_id" ><option value="">select</option><option  *ngFor= "let i of gen_id" [ngValue]="i">{{i}}</option></select>
+                </div></div><br>
+                <div class="row">
+                <div class="col">
+                    <label>Current Department: </label><br>
+                    <input class="form-control"  type = "text" formControlName = "current_department">
+                </div></div>
+            <br>
+            <div class="row">
+            <div class="col">
+                <label>Current Line: </label><br>
+                <input class="form-control"  type = "text" formControlName = "current_line">
+            </div></div><br>
+            <div class="row">
+                    <div class="col">                            
+                    <label>Change Department To: </label><br>
+                    <select class="form-control" formControlName = "changeshift" ><option value="">select</option><option  *ngFor= "let i of changedepartment" [ngValue]="i">{{i}}</option></select>
+                </div></div>
+            <br>
+            <div class="row">
+            <div class="col">                            
+                <label>Change Line To: </label><br>
+                <select class="form-control" formControlName = "changeline" ><option value="">select</option><option  *ngFor= "let i of changeline" [ngValue]="i">{{i}}</option></select>
+            </div>
+            </div><br>
+            <div class="row"> 
+                <div class="col">                            
+                    <label>Reporting To </label><br>
+                    <select class="form-control" formControlName = "reportingto" ><option value="">select</option><option  *ngFor= "let i of reportingto" [ngValue]="i">{{i}}</option></select>
+                </div></div>
+            <br>
+
+   
+               
+<br>
+    <button type="submit" class="btn btn-success btn-md"   (click)="submit()">Save</button>
+   
+</form>
+            </div></div></div></div> 

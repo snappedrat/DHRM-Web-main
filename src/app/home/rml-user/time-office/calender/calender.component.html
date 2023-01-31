@@ -1,4 +1,4 @@
-
+<div class="mx-5">
 <div class="row">
     <div class="col" style="margin-top: 10px; margin-left: 10px">
         <button mat-mini-fab color="warn" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" style="margin-right: 5px">
@@ -11,18 +11,20 @@
     <div class="cal">
         <p>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</p>
     </div>
-</div>
+</div></div>
 <br><br>
 
 <ng-template #IN_OUT_TIME let-day="day" let-locale="locale">
+    <div class="container pt-1">
+                <div class="mx-5">
     <div class="cal-cell-top">
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
-        <div >
-         <small> IN TIME : {{in_time}}</small>
-        </div>
-        <small > OUT TIME : {{out_time}}</small>
+        <div class="font" >
+         IN TIME : {{in_time}}<br>
+        OUT TIME : {{out_time}}
+        </div></div></div>
   </ng-template>
 
   <ng-template  let-day="day" let-locale="locale">
@@ -30,8 +32,7 @@
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
-  </ng-template>  
-
+  </ng-template>
 <div [ngSwitch]="view">
 
     <mwl-calendar-month-view (dayClicked)="dayClicked($event.day)" *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate"  [events]="events"  (beforeViewRender)="beforeMonthViewRender($event)"  [cellTemplate]= "IN_OUT_TIME" >
