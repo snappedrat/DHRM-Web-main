@@ -3,13 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Route, Router, RouteReuseStrategy, RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
-
 @Component({
-  selector: 'app-trainer-evaluation',
-  templateUrl: './trainer-evaluation.component.html',
-  styleUrls: ['./trainer-evaluation.component.css']
+  selector: 'app-supervisor-evaluation',
+  templateUrl: './supervisor-evaluation.component.html',
+  styleUrls: ['./supervisor-evaluation.component.css']
 })
-export class TrainerEvaluationComponent implements OnInit {
+export class SupervisorEvaluationComponent implements OnInit {
 
   someSubscription:any
   filterinfo:any = []
@@ -32,7 +31,7 @@ export class TrainerEvaluationComponent implements OnInit {
     this.form = this.fb.group({
       status: ['0-90'],
       plantcode: [sessionStorage.getItem('plantcode')],
-      id: ['1']
+      id: ['2']
 
     });
 

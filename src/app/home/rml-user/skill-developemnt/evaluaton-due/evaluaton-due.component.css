@@ -1,0 +1,50 @@
+.btn {
+    float: right;
+
+}
+.boxx{
+    box-sizing: 100%;
+}
+
+th{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
+  td{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: medium;
+  }
+  th { background: #c5c5c5;}
+table 
+{
+
+  width: 100%;
+}
+td, th { border: 1px solid #cdcdcd; padding: 8px;}
+.form-group
+{
+  background-color: lightgrey;
+}
+
+tbody
+{
+  text-align: center;
+
+}
+
+.table-wrapper
+{
+    display: block;
+}
+.mat-success{
+  color:green;
+}
+.mat-error{
+  color:red;
+}
+
+.form-control
+{
+    font-size: medium;
+}

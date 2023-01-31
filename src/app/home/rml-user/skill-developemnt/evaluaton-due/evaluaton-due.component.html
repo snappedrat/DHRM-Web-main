@@ -1,0 +1,115 @@
+<div class = "container">
+    <div  style = "margin-top: 40px;">   
+
+      <form [formGroup]="form" (ngSubmit)="filter()">
+      <div class = "row">
+      <div class = "col-sm-3 boxx">
+      <label for="Status" id="center"> Status: </label>
+        <br>
+        <select name="Status" id="Status" class="form-control" formControlName = "status" (change)="filter()" >
+            <option value="0-90">0 to 90 days</option>
+            <option value="91-180" selected>91 to 180 days</option>
+            <option value="181-270">181 to 270 days</option>
+            <option value="271-360">271 to 360 days</option>
+          </select> 
+
+      </div>
+
+    </div>
+      <br><br>
+        <div class = "table-wrapper">
+        <table class="table table-bordered table-striped table-hover">
+          <table id="table">
+              <thead>
+              <tr>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                     Date
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Full name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Father Name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Date of birth 
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      mobileNumber
+                  </th>
+                  <th
+                  class="text-center"
+                  style="width: 500px"
+                  style="background-color: darkblue"
+                >
+                     ID NO
+                 </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Aaadhar number
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Application status
+                  </th>
+    
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                          >
+                      Approval
+                  </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let i of filterinfo">
+                        <td>{{ i.created_dt.split('T')[0] }}</td>
+                        <td>{{ i.fullname }}</td>
+                        <td>{{ i.fathername }}</td>
+                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.mobile_no1 }}</td>
+                        <td>{{i.trainee_idno}}</td>
+                        <td>{{ i.aadhar_no }}</td>
+                        <td>{{ i.apln_status }}</td>
+                        <td>
+                            <div>
+                            <button mat-mini-fab color = "success">
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </table>
+        </div>
+        </form>
+    </div>
+</div>

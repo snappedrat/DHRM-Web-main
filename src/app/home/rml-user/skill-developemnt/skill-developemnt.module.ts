@@ -5,12 +5,16 @@ import { SkillDevelopemntRoutingModule } from './skill-developemnt-routing.modul
 import { TrainerEvaluationComponent } from './trainer-evaluation/trainer-evaluation.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ReactiveFormsModule } from '@angular/forms';
+import { SupervisorEvaluationComponent } from './supervisor-evaluation/supervisor-evaluation.component';
+import { EvaluatonDueComponent } from './evaluaton-due/evaluaton-due.component';
 
 
 
 @NgModule({
   declarations: [
-    TrainerEvaluationComponent
+    TrainerEvaluationComponent,
+    SupervisorEvaluationComponent,
+    EvaluatonDueComponent
   ],
   imports: [
     CommonModule,
