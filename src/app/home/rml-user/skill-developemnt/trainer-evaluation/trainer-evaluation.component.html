@@ -1,4 +1,4 @@
-          <div class = "container">
+<div class = "container">
             <div  style = "margin-top: 40px;">   
 
               <form [formGroup]="form" (ngSubmit)="filter()">
@@ -100,7 +100,7 @@
                                 <td>{{ i.apln_status }}</td>
                                 <td>
                                     <div>
-                                    <button mat-mini-fab color = "success">
+                                    <button mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno]" >
                                         <mat-icon>visibility</mat-icon>
                                     </button>
                                 </div>

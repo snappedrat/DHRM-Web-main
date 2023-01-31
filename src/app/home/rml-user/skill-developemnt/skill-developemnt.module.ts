@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { ReactiveFormsModule } from '@angular/forms';
 import { SupervisorEvaluationComponent } from './supervisor-evaluation/supervisor-evaluation.component';
 import { EvaluatonDueComponent } from './evaluaton-due/evaluaton-due.component';
+import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
 
 
 
@@ -14,7 +15,8 @@ import { EvaluatonDueComponent } from './evaluaton-due/evaluaton-due.component';
   declarations: [
     TrainerEvaluationComponent,
     SupervisorEvaluationComponent,
-    EvaluatonDueComponent
+    EvaluatonDueComponent,
+    EvaluationFormComponent
   ],
   imports: [
     CommonModule,
