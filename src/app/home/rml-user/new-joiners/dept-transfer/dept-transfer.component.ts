@@ -35,12 +35,39 @@ reportingto: any
 
 
 
-ShiftData = [
+Shiftata = [
   {
-    'gen_id':'',
-    'current_department':'',
-    'current_line':'',
-    'change_department':'',
+    'ifsc_code':'',
+    'grade':'',
+    'doj':'',
+    'account_number':'',
+    'department':'',
+    'active_status':'',
+    'bank_name':'',
+    'line':'',
+    'dol':'',
+    'b_id':'',
+    'process_trained':'',
+    'rfr':'',
+    'b_num':'',
+    'reporting_to':'',
+    'uan':'',
+    'w_contract':'',
+    'trainee_id':'',
+    'designation':'',
+
+
+
+
+
+
+
+
+
+
+
+
+
     'change_line':'',
     'reportingto':''
   }
