@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-trainer-evaluation',
@@ -14,9 +15,9 @@ export class TrainerEvaluationComponent implements OnInit {
 
   form:any
 
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService) {
     this.form = this.fb.group({
-      status: [''],
+      status: ['0-90'],
       plantcode: [sessionStorage.getItem('plantcode')]
     });
 
@@ -24,11 +25,22 @@ export class TrainerEvaluationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.service.evaluationdays(this.form.value)
+    .subscribe(
+      {
+        next: (response)=>{console.log(response); this.filterinfo = response}
+      }
+    )
   }
 
   filter()
   {
-    
+    this.service.evaluationdays(this.form.value)
+    .subscribe(
+      {
+        next: (response)=>{console.log(response); this.filterinfo = response}
+      }
+    ) 
   }
 
 }

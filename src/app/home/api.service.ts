@@ -265,4 +265,9 @@ url:any = environment.path
   {
     return this.http.post(this.url+'/plantcode', form)
   }
+
+  evaluationdays(status:any)
+  {
+    return this.http.post(this.url+'/evaluationdays', status)
+  }
 }

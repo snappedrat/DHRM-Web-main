@@ -66,6 +66,7 @@ ShiftData = [
   state: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
+
    }
 
 
