@@ -14,11 +14,12 @@
   }
   .container{
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 5%;
     margin-top:5%;
     align-items: center;
     box-shadow: 5px;
     margin-right: 3%;
+    position: fixed;
   }
   
   .picture{
