@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../new-joiners/plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+
 import {
   trigger,
   state,
@@ -33,8 +35,6 @@ export class ShiftChangeComponent implements OnInit {
   message = {'fam':false}
   message_bad = {'fam':true}
 form1:any
-form2:any
-form3:any
 start_date: any = ['']
 end_date: any = ['']
 current_shift: any = ['']
@@ -65,9 +65,21 @@ ShiftData = [
   flag: any = true;
   state: boolean;
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
+  constructor(private fb : UntypedFormBuilder,private http: HttpClient, private cookie: CookieService,  private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
+  
+    this.form1 = this.fb.group({
 
-   }
+      
+      start_date: [''],
+      end_date: [''],
+      current_shift: [''],
+      preferred_shift : [''],
+      reliever_availability : [''],
+      reliever_name:  ['']
+   
+    })
+
+  }
 
 
   ngOnInit(): void {
