@@ -48,3 +48,7 @@ tbody
 {
     font-size: medium;
 }
+.aligncommand{
+  background-color: darkblue;
+  line-height: 20px; width: 400px; border: 1px ;
+}
