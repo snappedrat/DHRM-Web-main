@@ -270,4 +270,20 @@ url:any = environment.path
   {
     return this.http.post(this.url+'/evaluationdays', status)
   }
+  depttransfer(form:any)
+  {
+    return this.http.post(this.url+'/depttransfer', form)
+  }
+  dept_line(form:any)
+  {
+    return this.http.post(this.url+'/dept-line', form)
+  }
+  dept_line_report(form:any)
+  {
+    return this.http.post(this.url+'/dept-line-report', form)
+  }
+  reporting(form:any)
+  {
+    return this.http.post(this.url+'/reporting', form)
+  }
 }

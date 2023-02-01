@@ -8,6 +8,7 @@ import { IdcardComponent } from './idcard/idcard.component';
 import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
 import { OnboardComponent } from './onboard/onboard.component';
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
+import { TransferFormComponent } from './transfer-form/transfer-form.component';
 
 const routes: Routes = [
     {
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
       path:'dept_transfer',
       component: DeptTransferComponent
+    }, 
+    {
+      path:'transfer_form/:id/:dept/:line',
+      component: TransferFormComponent
     }, 
     {
       path:'forms/:mobile_no1/:apln_status/:company',
