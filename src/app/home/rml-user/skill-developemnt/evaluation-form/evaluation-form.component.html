@@ -1,47 +1,63 @@
-
-<br><br>
-<div class="container">
-<div style="width: 100%; height: 650px;">  
-
-
-    <div style="width: 50%; height: 550px; float:left; text-align: center;">  
-    Trainee details:
-    <br>
-    <br>
-    <div class="row">
-        <div class="col"><img class = "img" [src]= "['https://www.mail-signatures.com/wp-content/uploads/2019/02/How-to-find-direct-link-to-image_Blog-Picture.png']"  alt="Avatar" ><br><br><br>        </div>
+<form [formGroup]="form">
+    <div class="container">
+      <div class="card"> 
+          <table class="font">
+              <div class="center"><div class="mx-3"><br>
+                  <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
+                  <div class="font2 comp_addr" ><p><textarea formControlName="company_address"  readonly style="height:80px;width:350px;" > </textarea></p></div>
+                  <div class = "name"><p><b>TEMP IDENTITY CARD</b></p></div>
+              </div></div>
+              <img class = "img" [src]= this.url alt="Avatar" ><br><br><br>
+              <div class="mx-5">
+                <tr class="font">
+                <tr > <div class="md">
+                    <td div class="aligncommand"><b>Name</b></td>
+                    <td div class="aligncommand">:</td><br>
+                <tr > 
+                    <td div class="aligncommand"><b>Father's Name</b></td><br>
+                    <td div class="aligncommand">:</td><br><br>
+                <tr>
+                    <td div class="aligncommand"><b> Department</b></td><br>
+                    <td div class="aligncommand">:Dojo Training</td><br><br>
+                <tr>
+                    <td div class="aligncommand"><b> Designation</b></td><br>
+                    <td div class="aligncommand">:Trainee</td><br><br></div><br>
+              <div class="sign">
+                  <img src="../assets/rane.png" alt="Avatar"></div>
+                  <div class="sign1"><b>authorised signature </b>
+                  </div>
+              </div></table>
+      </div>
+    
+      <div class="card">
+          <div class="container2">
+            <div class="col-sm-8">
+             <table class="font">
+                  <div  style="font-size: 25px;" > <b>Address:</b></div><br>
+    
+                  <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width: 350px;height:150px;font-size: 15px;"></textarea>
+    
+                  <tr><td></td></tr><br><br><br>
+                  <tr class="font">
+                      <u><td style="font-size: 25px;" ><b>Emergency contact</b></td></u>
+                      <td></td><br><br><br><br>
+                  </tr>
+                  <tr > <div class="md">
+                      <td div class="aligncommand"><b>Name</b></td>
+                      <td div class="aligncommand">:</td><br>
+                  <tr > 
+                      <td div class="aligncommand"><b>Relation</b></td>
+                      <td div class="aligncommand">:}</td><br><br>
+                  <tr></div><div class="md">
+                      <td div class="aligncommand"><b> Valid from</b></td>
+                      <td div class="aligncommand">:</td><br>
+                  <tr> 
+                      <td div class="aligncommand"><b> Valid to</b></td>
+                      <td div class="aligncommand">:</td><br><br></div>
+              </table>
+      </div>
+    
+      </div></div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <table>
-    <div class="row">
-        <div class="col">category</div>
-        <div class="col">ASD</div>
-    </div>
-    <div class="row">
-        <div class="col">Dpeartment</div>
-        <div class="col">ASD</div>
-    </div>
-    <div class="row">
-        <div class="col">line</div>
-        <div class="col">ASD</div>
-    </div>
-    <div class="row">
-        <div class="col">Skill level</div>
-        <div class="col">ASD</div>
-    </div>
-    <div class="row">
-        <div class="col">operation trained</div>
-        <div class="col">ASD</div>
-    </div>
-    </table>
-    </div>  
-
-    <div style="width:50%; height: 550px; float:left; text-align: center;">  
-        Evaluation
-    </div>  
-</div>  
-</div>
-
+    </form>
+    
