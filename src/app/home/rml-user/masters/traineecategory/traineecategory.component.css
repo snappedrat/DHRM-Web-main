@@ -81,4 +81,8 @@
     font-weight:bolder;
     text-align:center;
   }
+  .text-center{
+    width: 500px;
+    background-color: darkblue;
   
+  }

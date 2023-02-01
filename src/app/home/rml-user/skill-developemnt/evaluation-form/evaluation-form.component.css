@@ -114,3 +114,6 @@ textarea{
 .items{
   text-align: right;
 }
+.aligncommand{
+  line-height: 20px; width: 400px; border: 1px ;
+}

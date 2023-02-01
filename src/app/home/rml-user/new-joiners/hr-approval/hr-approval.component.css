@@ -43,3 +43,8 @@ tbody
 .mat-error{
   color:red;
 }
+.text-center{
+  width: 500px;
+  background-color: darkblue;
+
+}

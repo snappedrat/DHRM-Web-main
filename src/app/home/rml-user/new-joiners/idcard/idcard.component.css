@@ -111,3 +111,6 @@ textarea{
 .aligncommand{
   line-height: 20px; width: 400px; border: 1px ;
 }
+.fs-text{
+  font-size: 25px;
+}

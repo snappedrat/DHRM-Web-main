@@ -31,10 +31,6 @@ export class EvaluationFormComponent implements OnInit {
             company_address : []
           }
         )
-      this.frommdate = this.fromdate.getDate()+'-'+this.fromdate.getMonth()+'-'+this.fromdate.getFullYear()
-    this.toodate = this.todate.getDate()+'-'+this.todate.getMonth()+'-'+this.todate.getFullYear()
-
-    console.log(this.toodate)
 
     }
 
