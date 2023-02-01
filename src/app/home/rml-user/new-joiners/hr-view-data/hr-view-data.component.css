@@ -25,3 +25,11 @@ th, td{
     text-align: left;
 }
 
+.aligncommand{
+  line-height: 20px; width: 400px; border: 1px ;
+}
+.text-center{
+  width: 500px;
+  background-color: darkblue;
+
+}

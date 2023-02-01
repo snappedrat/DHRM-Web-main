@@ -74,3 +74,7 @@ tbody
   width: 1000px;
   height: 700px;
 }
+.aligncommand{
+  background-color: darkblue;
+  line-height: 20px; width: 400px; border: 1px ;
+}
