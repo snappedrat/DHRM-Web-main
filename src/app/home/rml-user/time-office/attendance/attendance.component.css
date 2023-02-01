@@ -14,5 +14,10 @@
 }
 
 .fs-text{
-    font-size: 1.25rem;
+    font-size: 20px;
+    font-weight: 600;
 }
+.font{
+    font-size: 13px;
+    font-weight: 550;
+  }
