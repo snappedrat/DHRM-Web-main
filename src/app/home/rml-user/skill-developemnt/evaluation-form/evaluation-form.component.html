@@ -1,13 +1,19 @@
 <form [formGroup]="form">
+
+    <div class="col-sm-3">
+        <br>
+     <h1>&nbsp;<b>Evaluation Form</b></h1>
     <div class="container">
       <div class="card"> 
           <table class="font">
-              <div class="center"><div class="mx-3"><br>
-                  <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
-                  <div class="font2 comp_addr" ><p><textarea formControlName="company_address"  readonly style="height:80px;width:350px;" > </textarea></p></div>
-                  <div class = "name"><p><b>Evaluation Form</b></p></div>
-              </div></div>
-              <img class = "img" [src]= this.url alt="Avatar" ><br><br><br>
+            <div class="mx-5">
+            <tr>
+              <td><img class = "img" [src]= this.url alt="Avatar" ></td>
+              <div class="mx-5">
+              <td class="name"><b>Name</b></td>
+              </div>
+            </tr></div>
+              <br><br><br>
               <div class="mx-5">
                 <tr class="font">
                 <tr > <div class="md">
@@ -21,50 +27,75 @@
                     <td div class="aligncommand">:Dojo Training</td><br><br>
                 <tr>
                     <td div class="aligncommand"><b> Skill Level</b></td><br>
-                    <td div class="aligncommand">:Trainee</td><br><br></div><br>
+                    <td div class="aligncommand">:Trainee</td><br><br>
                     <tr>
                         <td div class="aligncommand"><b> Operation Trained</b></td><br>
                         <td div class="aligncommand">:Dojo Training</td><br><br>
                         <tr>
-                        <td>Upload File</td>
+                        <td div class="aligncommand"><b> Uploaded File</b></td><br>
                 <td><div class="text-center"> 
-          <input class="form-control" type="file"   > </div></td>
-              <div class="sign">
-                  <img src="../assets/rane.png" alt="Avatar"></div>
-                  <div class="sign1"><b>authorised signature </b>
-                  </div>
+                <input class="form-control" type="file"   > </div></td>
+                </div>
               </div></table>
-      </div>
-    
-      <div class="card">
-          <div class="container2">
-            <div class="col-sm-8">
-             <table class="font">
-                  <div  style="font-size: 25px;" > <b>Address:</b></div><br>
-    
-                  <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width: 350px;height:150px;font-size: 15px;"></textarea>
-    
-                  <tr><td></td></tr><br><br><br>
-                  <tr class="font">
-                      <u><td style="font-size: 25px;" ><b>Emergency contact</b></td></u>
-                      <td></td><br><br><br><br>
-                  </tr>
-                  <tr > <div class="md">
-                      <td div class="aligncommand"><b>Name</b></td>
-                      <td div class="aligncommand">:</td><br>
-                  <tr > 
-                      <td div class="aligncommand"><b>Relation</b></td>
-                      <td div class="aligncommand">:}</td><br><br>
-                  <tr></div><div class="md">
-                      <td div class="aligncommand"><b> Valid from</b></td>
-                      <td div class="aligncommand">:</td><br>
-                  <tr> 
-                      <td div class="aligncommand"><b> Valid to</b></td>
-                      <td div class="aligncommand">:</td><br><br></div>
-              </table>
-      </div>
-    
-      </div></div>
+      </div></div>     
     </div>
+    <div class="col-md-11">
+        <div class="container2">
+          <div class="card2"> 
+           
+                    <form [formGroup] = "form">
+                        <div class="mx-5">
+                            <div class="col"><br>
+                                <label>Evaluation Date: </label><br>
+                                <input class="form-control"  type = "date" formControlName = "evaluation_date"></div>
+                        <br>
+                            <div class="col">
+                                <label>Score Obtained </label><br>
+                                <input class="form-control"  type = "number" formControlName = "score_obtained">
+                            </div><br>
+                        <div class="col">
+                            <label>Score For(Total) </label><br>
+                            <input class="form-control"  type = "number" formControlName = "score_for">
+                      </div><br>
+                       
+                        <div class="col">
+                            <label>Percentage</label><br>
+                            <input class="form-control"  type = "number" formControlName = "percentage">
+                        <br></div>
+               
+                        <div class="col">
+                            <label>Upload File</label><br>
+                            <input class="form-control" type="file"  formControlName = "percentage">
+                    </div><br>
+                        
+                            <div class="col">                            
+                                    <label>Department </label><br>
+                                    <select formControlName="department" class = "form-control"><option value="">select</option><option *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
+                                </div>
+                            <br>
+                  
+                            <div class="col">                            
+                                    <label>Line </label><br>
+                                    <select formControlName="line" class = "form-control"><option value="">select</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                            </div><br>
+                           
+                            
+                                    <div class="col">                            
+                                        <label>New Skill Level </label><br>
+                                        <select formControlName="new_skill" class = "form-control"><option value="">select</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                            
+                        </div><br>                                 
+                                                <div class="col">
+                                                    <label>Process Trained</label><br>
+                                                    <input class="form-control"  type = "text" formControlName="process_trained">
+                                                </div>
+                                       <br></div>
+                        </form>
+                        <button type="submit" class="btn btn-success btn-lg "  routerLink="/rml/skill-developement/trainer-evaluation" (click)="submit()">Save</button>
+               
+             </div>   </div></div>
+        
+            <br><br>
+                                     
     </form>
     
