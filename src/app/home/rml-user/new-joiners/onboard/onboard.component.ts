@@ -35,6 +35,11 @@ export class OnboardComponent implements OnInit {
   id:any
   form:any
 
+  page:any = 1
+  pageSize:any = 50
+  data:any
+  collectionSize:any = 0
+
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
     this.form = this.fb.group({
@@ -50,7 +55,7 @@ export class OnboardComponent implements OnInit {
     this.service.onboard(this.form.value)
     .subscribe(
       {
-        next: (response:any)=>{console.log(response); this.filterinfo = response}
+        next: (response:any)=>{console.log(response); this.filterinfo = response; this.collectionSize = this.filterinfo.length;this.getPremiumData()}
       }
     )
   }
@@ -59,6 +64,12 @@ export class OnboardComponent implements OnInit {
   {
     console.log(this.form.value)
   }
+
+  getPremiumData(){
+    
+    this.data =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+     
+   }
 
 
 }

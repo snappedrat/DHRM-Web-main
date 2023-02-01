@@ -76,13 +76,13 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let i of filterinfo">
+                    <tr *ngFor="let i of data">
                         <td>{{ i.doj.split('T')[0] }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
                         <td>{{ i.birthdate }}</td>
                         <td>{{ i.mobile_no1 }}</td>
-                        <td>{{i.gen_id}}</td>
+                        <td>{{i.trainee_idno}}</td>
                         <td>{{ i.aadhar_no }}</td>
                         <td>{{ i.apln_status }}</td>
                         <td>
@@ -99,4 +99,15 @@
         </div>
         </form>
     </div>
+
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">
+    </ngb-pagination>
+  
+    <select class="form-control" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getPremiumData();">
+      <option [ngValue]="100">100 items per page</option>
+      <option [ngValue]="50" selected>50 items per page</option>
+      <option [ngValue]="25">25 items per page</option>
+    </select>
+    <br><br>
+
 </div>

@@ -35,6 +35,8 @@ import { OnboardComponent } from './onboard/onboard.component';
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -77,7 +79,9 @@ import { OnboardFormComponent } from './onboard-form/onboard-form.component';
           MatStepperModule,
           MatIconModule,
           NgxMatTimepickerModule,
-          FormsModule
+          FormsModule,
+          NgbPaginationModule
+
       ]
   })
   export class NewJoinersModule { }

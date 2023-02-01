@@ -16,7 +16,8 @@ import {
 import { Timestamp } from 'rxjs';
 import { threadId } from 'worker_threads';
 import { ApiService } from 'src/app/home/api.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { AnyARecord } from 'dns';
 
 
 
@@ -32,6 +33,10 @@ export class DeptTransferComponent implements OnInit {
   ]
   id:any
   form:any
+  page:any = 1
+  pageSize:any = 50
+  paginateData:any
+  collectionSize:any = 0
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
@@ -48,7 +53,7 @@ export class DeptTransferComponent implements OnInit {
     this.service.depttransfer(this.form.value)
     .subscribe(
       {
-        next: (response)=>{console.log(response); this.filterinfo = response}
+        next: (response)=>{console.log(response); this.filterinfo = response;this.collectionSize = this.filterinfo.length;this.getPremiumData()        }
       }
     )
   }
@@ -57,6 +62,12 @@ export class DeptTransferComponent implements OnInit {
   {
     console.log(this.form.value)
   }
+
+  getPremiumData(){
+    
+    this.paginateData =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+     
+   }
 
 
 

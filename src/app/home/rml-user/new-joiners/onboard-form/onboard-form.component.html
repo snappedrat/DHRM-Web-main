@@ -8,7 +8,7 @@
             <div class="row">                        
                     <div class="col">
                         <label>IFSC Code: </label>
-                        <input class="form-control"  type = "text" formControlName = "ifsc_code">
+                        <input class="form-control"  type = "text" formControlName = "ifsc_code" readonly>
                     </div><br>
                
                     <div class="col">                            
@@ -23,7 +23,7 @@
             <div class="row">
             <div class="col">
                 <label>Account Number: </label>
-                <input class="form-control"  type = "text" formControlName = "account_number">
+                <input class="form-control"  type = "text" formControlName = "account_number" readonly>
             </div><br>
                     <div class="col">                            
                     <label>Department : </label>
@@ -37,7 +37,7 @@
             <div class="row"> 
                 <div class="col">                            
                     <label>Bank Name </label>
-                    <select class="form-control" formControlName = "bank_name" ><option value="">select</option><option  *ngFor= "let i of bank_name" [ngValue]="i">{{i}}</option></select>
+                    <input class="form-control" formControlName = "bank_name" readonly>
                 </div>
                 <div class="col">                            
                     <label>Line </label>
@@ -53,7 +53,9 @@
                     <div style="align-self: center;">
                         <label><h4>Is Biometric ID created?</h4></label>&nbsp;
                         <input type = "checkbox" formControlName = "bio_id"> 
-                    </div></div></div>
+                    </div>
+                </div>
+            </div>
                     <div class="row"> 
                     <div class="col-sm-4">                     
                         <label>Process Trained </label>
@@ -90,12 +92,7 @@
                                     <label>Designation </label>
                                     <select class="form-control" formControlName = "designation" ><option value="">select</option><option  *ngFor= "let i of designation" [ngValue]="i">{{i}}</option></select>
                                 </div></div><br>
-
-
-            <br>
-
-   
-               
+            <br>            
 <br>
     <button type="submit" class="btn btn-success btn-md"   (click)="submit()">Save</button>
    

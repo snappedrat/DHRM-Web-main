@@ -27,7 +27,7 @@ const routes: Routes = [
     component:EvaluatonDueComponent
   },
   {
-    path:'evaluation-form/:id',
+    path:'evaluation-form/:id/:nav',
     component: EvaluationFormComponent
   }
 ];

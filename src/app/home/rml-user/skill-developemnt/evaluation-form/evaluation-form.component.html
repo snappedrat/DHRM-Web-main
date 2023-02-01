@@ -1,4 +1,3 @@
-<form [formGroup]="form">
 
     <div class="col-sm-3">
         <br>
@@ -8,9 +7,9 @@
           <table class="font">
             <div class="mx-5">
             <tr>
-              <td><img class = "img" [src]= this.url alt="Avatar" ></td>
+              <td><img class = "img" [src]= "['https://play-lh.googleusercontent.com/7SNVliKjQ29YWLIabByRoP71xp9eXSM3Oq4mr5rpUpHhbxi-Y8LPSAqpHST-Ty5HCnY=w240-h480-rw']" alt="Avatar" ></td>
               <div class="mx-5">
-              <td class="name"><b>Name</b></td>
+              <td class="name"><b>{{name}}</b></td>
               </div>
             </tr></div>
               <br><br><br>
@@ -18,23 +17,22 @@
                 <tr class="font">
                 <tr > <div class="md">
                     <td div class="aligncommand"><b>Category</b></td>
-                    <td div class="aligncommand">:</td><br>
+                    <td div class="aligncommand">:{{cat}}</td><br>
                 <tr > 
                     <td div class="aligncommand"><b>Department</b></td><br>
-                    <td div class="aligncommand">:</td><br><br>
+                    <td div class="aligncommand">:{{dept}}</td><br><br>
                 <tr>
                     <td div class="aligncommand"><b> Line</b></td><br>
-                    <td div class="aligncommand">:Dojo Training</td><br><br>
+                    <td div class="aligncommand">:{{ln}}</td><br><br>
                 <tr>
                     <td div class="aligncommand"><b> Skill Level</b></td><br>
-                    <td div class="aligncommand">:Trainee</td><br><br>
+                    <td div class="aligncommand">:{{skill}}</td><br><br>
                     <tr>
                         <td div class="aligncommand"><b> Operation Trained</b></td><br>
-                        <td div class="aligncommand">:Dojo Training</td><br><br>
+                        <td div class="aligncommand">:{{oprn}}</td><br><br>
                         <tr>
                         <td div class="aligncommand"><b> Uploaded File</b></td><br>
-                <td><div class="text-center"> 
-                <input class="form-control" type="file"   > </div></td>
+
                 </div>
               </div></table>
       </div></div>     
@@ -82,7 +80,7 @@
                             
                                     <div class="col">                            
                                         <label>New Skill Level </label><br>
-                                        <select formControlName="new_skill" class = "form-control"><option value="">select</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                                        <select formControlName="new_skill" class = "form-control"><option value="">select</option><option *ngFor= "let i of new_skill_lvl" [ngValue]="i">{{i}}</option></select>
                             
                         </div><br>                                 
                                                 <div class="col">
@@ -91,11 +89,10 @@
                                                 </div>
                                        <br></div>
                         </form>
-                        <button type="submit" class="btn btn-success btn-lg "  routerLink="/rml/skill-developement/trainer-evaluation" (click)="submit()">Save</button>
-               
+                        <button type="submit" class="btn btn-success btn-lg "  (click)="submit()">Save</button>
+                        <!-- [routerLink]="[this.nav]" -->
              </div>   </div></div>
         
             <br><br>
                                      
-    </form>
     

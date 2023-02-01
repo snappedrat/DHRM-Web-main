@@ -1,7 +1,7 @@
 .card {
 
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.4); 
-   width: 600px;
+   width: 450px;
   height: 500px;
   float: left;
   font-size:2px;
@@ -27,7 +27,7 @@
 
 .container {
   font-size:5px;
-  padding-top: 40px;
+  padding-top: 20px;
   padding-left: 10%;
   align-items: center;
 

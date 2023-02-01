@@ -14,21 +14,28 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class EvaluationFormComponent implements OnInit {
 
-  evaluation_date: any
-  score_obtained:any
-  score_for:any
-  percentage : any
-  upload_file : any
   line:any
   department: any
-  new_skill: any
+  new_skill_lvl: any = ['1','2','3','4']
   process_trained: any
   uniqueId :any = {'mobile':''}
   form:any    
   status: any = {'status': ''}
   formvalues: any
   address:any  = 'hello'
+
+  cat:any = ''
+  ln:any
+  dept:any
+  skill:any
+  oprn:any
+  name:any
+
+
+  nav:any
+
   url: any = environment.path
+  obj: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -45,47 +52,41 @@ export class EvaluationFormComponent implements OnInit {
     
        }
     
-      ngOnInit(): void {
-    
-        console.log("00",this.form.value)
-    
-        this.service.depttransfer(this.form.value)
-        
-        
-      }
-      getDataForID(){
-        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
-        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-    
-        this.status.status = this.active.snapshot.paramMap.get('status');
-        
-        console.log(this.status)
-    
-        this.http
-        .post(this.url+'/getdataforid', this.uniqueId)
+      ngOnInit(): void 
+      {
+        if(this.active.snapshot.paramMap.get('nav') == '1')
+          this.nav = '/rml/skill-developement/trainer-evaluation'
+        else if(this.active.snapshot.paramMap.get('nav') == '2')
+          this.nav = '/rml/skill-developement/supervisor-evaluation'
+        else
+          this.nav = '/rml/skill-developement/evaluation-due'
+
+        this.service.get_eval_form({apln_slno : this.active.snapshot.paramMap.get('id')})
         .subscribe({
-          next:(response)=>{console.log(response); this.formvalues = response
-            this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
-            this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
-    
-            this.url = this.url+'/' + this.formvalues[0]?.other_files6
-            console.log("url",this.url)
-          },
-          error: (error) => 
-          console.log(error),
-        })}
- save()
+          next: (response:any)=>
+          {
+            this.obj = response    
+            
+            this.name = this.obj[0][0].fullname        
+            this.cat = this.obj[0][0].desig_name        
+            this.dept = this.obj[0][0].dept_name        
+            this.ln = this.obj[0][0].line_name        
+            this.skill = this.obj[0][0].new_level
+            
+            this.oprn = this.obj[1][0].oprn_desc
+            this.department = this.obj[2]
+            this.line = this.obj[3]
+
+            this.department = this.department.map((a:any)=>a.dept_name)
+            this.line = this.line.map((a:any)=>a.line_name)
+
+          }
+        })
+
+      }
+      submit()
       {
         console.log(this.form.value)
       }
     
-    reset(){
-      
-    }
-    
-    
-  submit()
-  {
-
-  }
 }

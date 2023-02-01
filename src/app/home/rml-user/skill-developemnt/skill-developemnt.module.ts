@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SupervisorEvaluationComponent } from './supervisor-evaluation/supervisor-evaluation.component';
 import { EvaluatonDueComponent } from './evaluaton-due/evaluaton-due.component';
 import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 

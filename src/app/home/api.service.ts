@@ -291,4 +291,12 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/reporting', form)
   }
+  getonboard(form:any)
+  {
+    return this.http.post(this.url+'/getonboard', form)
+  }
+  get_eval_form(form:any)
+  {
+    return this.http.post(this.url+'/get_eval_form', form)
+  }
 }

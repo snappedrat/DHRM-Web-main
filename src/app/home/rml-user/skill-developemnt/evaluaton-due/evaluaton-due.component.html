@@ -18,87 +18,42 @@
     </div>
       <br><br>
         <div class = "table-wrapper">
-        <table class="table table-bordered table-striped table-hover">
-          <table id="table">
-              <thead>
-              <tr>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                     Date
-                  </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      Full name
-                  </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      Father Name
-                  </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      Date of birth 
-                  </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      mobileNumber
-                  </th>
-                  <th
-                  class="text-center"
-                  style="width: 500px"
-                  style="background-color: darkblue"
-                >
-                     ID NO
-                 </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      Aaadhar number
-                  </th>
-                  <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
-                  >
-                      Application status
-                  </th>
+          <table class="table table-bordered table-striped table-hover">
+            <table id="table">
+                <thead>
+                <tr>
+                    <th div class="aligncommand">Date</th>
+                    <th div class="aligncommand">ID No</th>
+                    <th div class="aligncommand">Name</th>
+                    <th div class="aligncommand">Mobile No</th>
+                    <th div class="aligncommand">line Name</th>
+                    <th div class="aligncommand">Dept Name</th>
+                    <th div class="aligncommand">Eval days</th>
+                    <th div class="aligncommand">Evaluate</th>
 
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let i of filterinfo">
-                        <td>{{ i.doj.split('T')[0] }}</td>
-                        <td>{{ i.fullname }}</td>
-                        <td>{{ i.fathername }}</td>
-                        <td>{{ i.birthdate }}</td>
-                        <td>{{ i.mobile_no1 }}</td>
-                        <td>{{i.trainee_idno}}</td>
-                        <td>{{ i.aadhar_no }}</td>
-                        <td>{{ i.apln_status }}</td>
-                        <td>
-
-                        </td>
-                      </tr>
-                    </tbody>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let i of filterinfo">
+                          <td>{{ i.doj.split('T')[0] }}</td>
+                          <td>{{i.trainee_idno}}</td>
+                          <td>{{ i.fullname }}</td>
+                          <td>{{ i.mobile_no1 }}</td>
+                          <td>{{ i.line_name }}</td>
+                          <td>{{ i.dept_name }}</td>
+                          <td>{{ i.diff }}</td>
+                          <td>
+                              <div>
+                              <button mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno, 3]" >
+                                  <mat-icon>edit</mat-icon>
+                              </button>
+                          </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                  </table>
                 </table>
-              </table>
-        </div>
-        </form>
-    </div>
-</div>
+          </div>
+          </form>
+      </div>
+  </div>
