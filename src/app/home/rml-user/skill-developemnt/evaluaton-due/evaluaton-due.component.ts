@@ -29,7 +29,7 @@ export class EvaluatonDueComponent implements OnInit {
     // });
 
     this.form = this.fb.group({
-      status: ['0-90'],
+      status: ['0-60'],
       plantcode: [sessionStorage.getItem('plantcode')],
       id: ['3']
 

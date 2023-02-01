@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ApiService {
 
 url:any = environment.path
+url2:any = environment.path2
 
   constructor(private http: HttpClient) {}
 
@@ -273,6 +274,10 @@ url:any = environment.path
   depttransfer(form:any)
   {
     return this.http.post(this.url+'/depttransfer', form)
+  }
+  onboard(form:any)
+  {
+    return this.http.post(this.url+'/onboard', form)
   }
   dept_line(form:any)
   {

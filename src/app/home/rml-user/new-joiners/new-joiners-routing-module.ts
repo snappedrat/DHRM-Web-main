@@ -9,6 +9,7 @@ import { HrViewDataComponent } from './hr-view-data/hr-view-data.component';
 import { OnboardComponent } from './onboard/onboard.component';
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
+import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
       path:'transfer_form/:id/:dept/:line',
       component: TransferFormComponent
+    }, 
+    {
+      path:'onboard_form/:id',
+      component: OnboardFormComponent
     }, 
     {
       path:'forms/:mobile_no1/:apln_status/:company',

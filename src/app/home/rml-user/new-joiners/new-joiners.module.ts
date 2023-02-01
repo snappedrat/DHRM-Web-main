@@ -34,6 +34,7 @@ import { ChooseFilesComponent } from './forms/choose-files/choose-files.componen
 import { OnboardComponent } from './onboard/onboard.component';
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
+import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 @NgModule({
     declarations: [
         HrApprovalComponent,
@@ -56,6 +57,7 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
         OnboardComponent,
         DeptTransferComponent,
         TransferFormComponent,
+        OnboardFormComponent,
     ],
       imports: [
           CommonModule,

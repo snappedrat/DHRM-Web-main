@@ -1,103 +1,102 @@
-<div class="container pt-2">
-    <div class="row justify-content-md-center pt-5">
-        <div class="table col-sm-20 shadow round pb-4">
-            <div class="mx-5">
-<br><div class = "title"> Onboard Details</div><br><br>
-<form [formGroup] = "form">
+<div class = "container">
+    <div  style = "margin-top: 40px;">   
 
-            <div class="row">                        
-                    <div class="col">
-                        <label>IFSC Code: </label>
-                        <input class="form-control"  type = "text" formControlName = "ifsc_code">
-                    </div><br>
-               
-                    <div class="col">                            
-                        <label>Grade: </label>
-                        <select class="form-control" formControlName = "grade" ><option value="">select</option><option  *ngFor= "let i of grade" [ngValue]="i">{{i}}</option></select>
-                    </div>
-                    <div class="col">
-                        <label>Date of Joining: </label>
-                        <input class="form-control"  type = "date" formControlName = "doj">
-                    </div></div>
-            <br>
-            <div class="row">
-            <div class="col">
-                <label>Account Number: </label>
-                <input class="form-control"  type = "text" formControlName = "account_number">
-            </div><br>
-                    <div class="col">                            
-                    <label>Department : </label>
-                    <select class="form-control" formControlName = "department" ><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
-                </div>
-            <div class="col">                            
-                <label>Active Status: </label>
-                <select class="form-control" formControlName = "active_status" ><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
-            </div>
-            </div><br>
-            <div class="row"> 
-                <div class="col">                            
-                    <label>Bank Name </label>
-                    <select class="form-control" formControlName = "bank_name" ><option value="">select</option><option  *ngFor= "let i of bank_name" [ngValue]="i">{{i}}</option></select>
-                </div>
-                <div class="col">                            
-                    <label>Line </label>
-                    <select class="form-control" formControlName = "line" ><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
-                </div>
-                <div class="col">
-                    <label>Date of Leaving </label>
-                    <input class="form-control"  type = "date" formControlName = "dol">
-                </div>
-            </div>
-            <div class="row"> 
-                <div class="col">   <br><br>
-                    <div style="align-self: center;">
-                        <label><h4>Is Biometric ID created?</h4></label>&nbsp;
-                        <input type = "checkbox" formControlName = "bio_id"> 
-                    </div></div></div>
-                    <div class="row"> 
-                    <div class="col-sm-4">                     
-                        <label>Process Trained </label>
-                        <select class="form-control" formControlName = "process_trained" ><option value="">select</option><option  *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
-                    </div><br>
-                    <div class="col-sm-4">                            
-                        <label>Remarks for Relieving</label>
-                        <select class="form-control" formControlName = "rfr" ><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
-                    </div></div><br>
-                    <div class="row"> 
-                        <div class="col-sm-4">
-                            <label>Biometric Number </label>
-                            <input class="form-control"  type = "number" formControlName = "bnum">
-                        </div>   <br>
-                        <div class="col-sm-4">                            
-                            <label>Reporting To </label>
-                            <select class="form-control" formControlName = "reportingto" ><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i">{{i}}</option></select>
-                        </div></div><br>
-                        <div class="row"> 
-                            <div class="col-sm-4">
-                                <label>UAN Number</label>
-                                <input class="form-control"  type = "number" formControlName = "uan">
-                            </div>   <br>
-                            <div class="col-sm-4">                            
-                                <label>Work Contract </label>
-                                <select class="form-control" formControlName = "wcontract" ><option value="">select</option><option  *ngFor= "let i of w_contract" [ngValue]="i">{{i}}</option></select>
-                            </div></div><br>
-                            <div class="row"> 
-                                <div class="col-sm-4">
-                                    <label>Trainee ID</label>
-                                    <input class="form-control"  type = "number" formControlName = "trainee_id">
-                                </div>  <br> 
-                                <div class="col-sm-4">                            
-                                    <label>Designation </label>
-                                    <select class="form-control" formControlName = "designation" ><option value="">select</option><option  *ngFor= "let i of designation" [ngValue]="i">{{i}}</option></select>
-                                </div></div><br>
+      <form [formGroup]="form">
 
-
-            <br>
-
-   
-               
-<br>
-    <button type="submit" class="btn btn-success btn-md"   (click)="submit()">Save</button>
-   
-</form>
-            </div></div></div></div>
+      <br><br>
+        <div class = "table-wrapper">
+        <table class="table table-bordered table-striped table-hover">
+          <table id="table">
+              <thead>
+              <tr>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                     Date
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Full name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Father Name
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Date of birth 
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      mobileNumber
+                  </th>
+                  <th
+                  class="text-center"
+                  style="width: 500px"
+                  style="background-color: darkblue"
+                >
+                     ID NO
+                 </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Aaadhar number
+                  </th>
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                  >
+                      Application status
+                  </th>
+    
+                  <th
+                          class="text-center"
+                          style="width: 500px"
+                          style="background-color: darkblue"
+                          >
+                      Approval
+                  </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let i of filterinfo">
+                        <td>{{ i.doj.split('T')[0] }}</td>
+                        <td>{{ i.fullname }}</td>
+                        <td>{{ i.fathername }}</td>
+                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.mobile_no1 }}</td>
+                        <td>{{i.gen_id}}</td>
+                        <td>{{ i.aadhar_no }}</td>
+                        <td>{{ i.apln_status }}</td>
+                        <td>
+                            <div>
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/onboard_form', i.apln_slno]" >
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </table>
+        </div>
+        </form>
+    </div>
+</div>

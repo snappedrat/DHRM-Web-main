@@ -7,10 +7,10 @@
       <label for="Status" id="center"> Status: </label>
         <br>
         <select name="Status" id="Status" class="form-control" formControlName = "status" (change)="filter()" >
-            <option value="0-90">0 to 90 days</option>
-            <option value="91-180" selected>91 to 180 days</option>
+            <option value="0-60">0 to 60 days</option>
+            <option value="61-120" selected>61 to 120 days</option>
+            <option value="121-180">121 to 180 days</option>
             <option value="181-270">181 to 270 days</option>
-            <option value="271-360">271 to 360 days</option>
           </select> 
 
       </div>

@@ -28,7 +28,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DeptTransferComponent implements OnInit {
   someSubscription:any
-  filterinfo:any = []
+  filterinfo:any = [
+  ]
   id:any
   form:any
 
