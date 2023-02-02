@@ -41,34 +41,34 @@
         <div class="container2">
           <div class="card2"> 
            
-                    <form [formGroup] = "form">
+                    <form [formGroup] = "form" (ngSubmit)="submit()" >
                         <div class="mx-5">
                             <div class="col"><br>
                                 <label>Evaluation Date: </label><br>
-                                <input class="form-control"  type = "date" formControlName = "evaluation_date"></div>
+                                <input class="form-control"  type = "date" formControlName = "evaluation_date" [readonly]="readable" ></div>
                         <br>
                             <div class="col">
                                 <label>Score Obtained </label><br>
-                                <input class="form-control"  type = "number" formControlName = "score_obtained">
+                                <input class="form-control"  type = "number" formControlName = "score_obtained" [readonly]="readable">
                             </div><br>
                         <div class="col">
                             <label>Score For(Total) </label><br>
-                            <input class="form-control"  type = "number" formControlName = "score_for">
+                            <input class="form-control"  type = "number" formControlName = "score_for" [readonly]="readable">
                       </div><br>
                        
                         <div class="col">
                             <label>Percentage</label><br>
-                            <input class="form-control"  type = "number" formControlName = "percentage">
+                            <input class="form-control"  type = "number" formControlName = "percentage" [readonly]="readable">
                         <br></div>
                
                         <div class="col">
                             <label>Upload File</label><br>
-                            <input class="form-control" type="file"  formControlName = "percentage">
+                            <input class="form-control" type="file" (change)="files($event)">
                     </div><br>
                         
                             <div class="col">                            
                                     <label>Department </label><br>
-                                    <select formControlName="department" class = "form-control"><option value="">select</option><option *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
+                                    <select formControlName="department" class = "form-control" ><option value="">select</option><option *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
                                 </div>
                             <br>
                   
@@ -78,18 +78,18 @@
                             </div><br>
                            
                             
-                                    <div class="col">                            
+                                       <div class="col">                            
                                         <label>New Skill Level </label><br>
                                         <select formControlName="new_skill" class = "form-control"><option value="">select</option><option *ngFor= "let i of new_skill_lvl" [ngValue]="i">{{i}}</option></select>
                             
                         </div><br>                                 
                                                 <div class="col">
                                                     <label>Process Trained</label><br>
-                                                    <input class="form-control"  type = "text" formControlName="process_trained">
+                                                    <select class="form-control"  formControlName="process_trained"><option value="">select</option><option *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
                                                 </div>
                                        <br></div>
+                                       <button type="submit" class="btn btn-success btn-lg">Save</button>
                         </form>
-                        <button type="submit" class="btn btn-success btn-lg "  (click)="submit()">Save</button>
                         <!-- [routerLink]="[this.nav]" -->
              </div>   </div></div>
         

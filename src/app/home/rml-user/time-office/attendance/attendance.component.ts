@@ -16,6 +16,7 @@ export class AttendanceComponent implements OnInit {
   out_time:string = "5:00PM";
   total_hrs:string = "7 Hours";
   shift:string = "1 (10:00AM - 5:00PM)";
+  date:any 
 
   // myForm: FormGroup;
 
@@ -28,9 +29,10 @@ export class AttendanceComponent implements OnInit {
     // });
   }
 
-  // onSubmit(form: FormGroup) {
-  //   console.log(form.value.type_leave);
-  // }
+  getChangedValue(event:any)
+  {
+    console.log(event)
+  }
 
 }
 

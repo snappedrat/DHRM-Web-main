@@ -295,8 +295,30 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/getonboard', form)
   }
+  onboard_form(form:any)
+  {
+    return this.http.post(this.url+'/onboard_form', form)
+  }
   get_eval_form(form:any)
   {
     return this.http.post(this.url+'/get_eval_form', form)
   }
+  eval_form(form:any)
+  {
+    return this.http.post(this.url+'/eval_form', form)
+  }
+  eval_form_sup(form:any)
+  {
+    return this.http.post(this.url+'/eval_form_sup', form)
+  }
+  get_eval_sup(form:any)
+  {
+    return this.http.post(this.url+'/get_eval_sup', form)
+  }
+  attendance(form:any)
+  {
+    return this.http.get(this.url2+'/attendance', form)
+  }
+
+
 }

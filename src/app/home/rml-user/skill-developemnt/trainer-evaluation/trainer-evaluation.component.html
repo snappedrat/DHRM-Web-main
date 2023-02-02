@@ -44,7 +44,7 @@
                                 <td>{{ i.diff }}</td>
                                 <td>
                                     <div>
-                                    <button mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno, 1]" >
+                                    <button mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 1]" >
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                 </div>

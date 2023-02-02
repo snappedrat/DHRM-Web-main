@@ -9,7 +9,7 @@
             <div class="col-sm-12 col-md-6">
                 <h2>Select Date:</h2>
                 <div class="datepicker">
-                    <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+                    <mat-calendar (selectedChange)="getChangedValue($event)" #calendar [(selected)]="selectedDate"></mat-calendar>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6">
