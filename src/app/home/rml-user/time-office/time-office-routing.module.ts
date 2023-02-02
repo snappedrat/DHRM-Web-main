@@ -7,6 +7,8 @@ import {ShiftChangeComponent} from "./shift-change/shift-change.component";
 import {LeaveComponent} from "./leave/leave.component";
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import {OdComponent} from "./od/od.component";
+import { OverTimeComponent } from './over-time/over-time.component';
+import { CompOffComponent } from './comp-off/comp-off.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
   {
     path:'dept_transfer',
     component:DeptTransferComponent
+  },
+  {
+    path:'over-time',
+    component:OverTimeComponent
+  },
+  {
+    path:'comp-off',
+    component:CompOffComponent
   }
 ];
 

@@ -23,6 +23,8 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
+import { OverTimeComponent } from './over-time/over-time.component';
+import { CompOffComponent } from './comp-off/comp-off.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
     AttendanceComponent,
     OdComponent,
     LeaveComponent,
-    DeptTransferComponent
+    DeptTransferComponent,
+    OverTimeComponent,
+    CompOffComponent
   ],
     imports: [
         MatNativeDateModule,
