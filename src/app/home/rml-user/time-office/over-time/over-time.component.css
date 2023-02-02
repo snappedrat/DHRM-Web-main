@@ -1,0 +1,34 @@
+.example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
+  }
+  .fs-text{
+      font-size: 40px;
+      font-weight: 900;
+      text-align: center;
+      color: rgb(0, 0, 139);
+      text-decoration: underline;
+  }
+  .container{
+      box-shadow: 2px 4px 4px 3px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    height: 250px;
+    margin-top: 5%;
+    margin-left: 5%;
+    float: left;
+    font-size:18px;
+    border-color: black;
+    }
+    .fs{
+      align-items: center;
+      color: blue;
+  
+    }
+    .fs{
+      size:10px;
+    }
+   
+  

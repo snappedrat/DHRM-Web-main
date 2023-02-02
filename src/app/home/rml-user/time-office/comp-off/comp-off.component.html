@@ -1,1 +1,22 @@
-<p>comp-off works!</p>
+<div class= "container">
+<div class="md-5">
+<br>
+
+    <mat-label> <div class="fs-text"><b>Comp Off</b></div></mat-label>
+    <br><br>
+    <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="dp" [formControl]="date">
+
+    <mat-datepicker-toggle class="fs" matIconSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (monthSelected)="setMonthAndYear($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field></div></div>
+
+  
+  
+  <!-- Copyright 2023 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at https://angular.io/license -->
