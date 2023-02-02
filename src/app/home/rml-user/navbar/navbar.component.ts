@@ -69,7 +69,7 @@ getHr()
       sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
       sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
       sessionStorage.setItem('plant_name', this.ishrappr[0]?.plant_name)
-      sessionStorage.setItem('emp_slno', this.ishrappr[0]?.empl_slno)
+      sessionStorage.setItem('emp_id', this.ishrappr[0]?.emp_slno)
       this.getitems()
   },
     error: (error) => console.log(error),

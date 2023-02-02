@@ -317,7 +317,7 @@ url2:any = environment.path2
   }
   attendance(form:any)
   {
-    return this.http.get(this.url2+'/attendance', form)
+    return this.http.get(this.url2+'/attendance?emp_id='+form.emp_id+'&date='+form.date)
   }
 
 
