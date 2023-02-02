@@ -27,6 +27,8 @@ import { OverTimeComponent } from './over-time/over-time.component';
 import { CompOffComponent } from './comp-off/comp-off.component';
 
 
+
+
 @NgModule({
   declarations: [
     CalenderComponent,
@@ -59,6 +61,7 @@ import { CompOffComponent } from './comp-off/comp-off.component';
         MatStepperModule,
         MatIconModule,
         NgxMatTimepickerModule
+        
     ]
 })
 export class TimeOfficeModule { }
