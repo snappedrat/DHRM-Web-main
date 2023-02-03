@@ -39,6 +39,7 @@
     margin-bottom: 5px;
     width: 150px;
     margin-top: 10px;
+    position: relative;
   }
   b{
     padding: 40.5rem;
@@ -82,7 +83,7 @@
     width:1920px;
     background-color: #7d602b;
     height:1080px;
-    position: fixed;
+ 
 }
 
 @media screen and (min-width: 500px) {
@@ -149,4 +150,7 @@
   } */
 button{
   border-color: rgb(232, 229, 229)
+}
+.homescreen{
+  position: static;
 }
