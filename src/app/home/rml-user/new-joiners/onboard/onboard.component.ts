@@ -29,6 +29,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class OnboardComponent implements OnInit {
 
 
+  select:any = ['APPOINTED', 'TRAINING COMPLETED']
   someSubscription:any
   filterinfo:any = [
   ]
@@ -44,32 +45,33 @@ export class OnboardComponent implements OnInit {
 
     this.form = this.fb.group({
       plantcode: [sessionStorage.getItem('plantcode')],
+      select : ['APPOINTED']
+
     });
 
    }
 
   ngOnInit(): void {
 
-    console.log("00",this.form.value)
+    this.filter()
 
+  }
+
+  getPremiumData()
+  {
+    this.data =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+  filter()
+  {
     this.service.onboard(this.form.value)
     .subscribe(
       {
-        next: (response:any)=>{console.log(response); this.filterinfo = response; this.collectionSize = this.filterinfo.length;this.getPremiumData()}
+        next:
+      (response:any)=>{console.log(response); this.filterinfo = response; this.collectionSize = this.filterinfo.length;this.getPremiumData()}
       }
     )
   }
-
-  save()
-  {
-    console.log(this.form.value)
-  }
-
-  getPremiumData(){
-    
-    this.data =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-     
-   }
 
 
 }

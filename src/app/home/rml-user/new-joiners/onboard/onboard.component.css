@@ -48,3 +48,8 @@ tbody
 {
     font-size: medium;
 }
+
+select
+{
+  width: 200px;
+}

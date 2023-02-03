@@ -14,9 +14,12 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <h2>Present/Absent:</h2>
-                <div class="successbox"><div class="alert alert-success" role="alert">
-                  <div class="fs-text">  <b>Present</b></div>
-                </div></div>
+                <div class="successbox">
+                <div class="alert" [ngClass]=" this.class == 1 ? ' alert-danger' : 'alert-success' " role="alert">
+                    <div class="fs-text">  <b>{{present_type}}</b>
+                    </div>
+                </div>
+                </div>
                 <br><br>
                 <h3 class="fs-text"><strong>In time: </strong>{{in_time}}</h3>
                 <h3 class="fs-text"><strong>Out time: </strong>{{out_time}}</h3>

@@ -9,10 +9,37 @@
             <div class="col-sm-12 col-md-6">
                 <h2>Select Date:</h2>
                 <div class="datepicker">
-                    <mat-calendar #calendar [(selected)]="selectedDate"></mat-calendar>
+                    <mat-calendar #calendar [(selected)]="selectedDate" (selectedChange)="getChangedValue($event)"></mat-calendar>
                 </div>
             </div>
             <div class="col-sm-12 col-md-6">
+
+                <div class="row">
+                    <div class="col">
+                <h2>Biometric In-time:</h2>
+                <mat-form-field appearance="outline">
+                    <input matInput name="bio_time_A" readonly/>
+                    <mat-icon matSuffix>
+                        watch_later
+                    </mat-icon>
+                </mat-form-field>
+                <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                    </div>
+                    <div class="col">
+                <h2>Biometric Out-time:</h2>
+                <mat-form-field appearance="outline">
+                    <input matInput name="bio_time_B" readonly/>
+                    <mat-icon matSuffix>
+                        watch_later
+                    </mat-icon>
+                </mat-form-field>
+                <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col">
                 <h2>Actual In-time:</h2>
                 <mat-form-field appearance="outline">
                     <input matInput name="selected_time_A" [ngxMatTimepicker]="pickerA" readonly/>
@@ -21,6 +48,8 @@
                     </mat-icon>
                 </mat-form-field>
                 <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                    </div>
+                    <div class="col">
                 <h2>Actual Out-time:</h2>
                 <mat-form-field appearance="outline">
                     <input matInput name="selected_time_B" [ngxMatTimepicker]="pickerB" readonly/>
@@ -29,6 +58,9 @@
                     </mat-icon>
                 </mat-form-field>
                 <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
+                    </div>
+                </div>
+
                 <br>
                 <div class="reason">
                     <mat-form-field appearance="outline">

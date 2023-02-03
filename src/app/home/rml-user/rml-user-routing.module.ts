@@ -19,6 +19,10 @@ const routes: Routes = [
         loadChildren:() => import('./time-office/time-office.module').then(m => m.TimeOfficeModule)
       },
       {
+        path:'time_office-status',
+        loadChildren:() => import('./time-office-status/time-office-status.module').then(m => m.TimeOfficeStatusModule)
+      },
+      {
         path:'new_joiners',
         loadChildren:() => import('./new-joiners/new-joiners.module').then(m => m.NewJoinersModule)
       },

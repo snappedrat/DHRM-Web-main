@@ -24,7 +24,8 @@ export class NavbarComponent implements OnInit{
   istrainee:any
   a : any
   username :any = {
-    "username": sessionStorage.getItem('user_name')
+    "username": sessionStorage.getItem('user_name'),
+    "user": sessionStorage.getItem('user')
   }
   showname:any = ''
   showid : any = ''
@@ -56,20 +57,28 @@ export class NavbarComponent implements OnInit{
 
 getHr()
 {
-  console.log(this.username)
   this.service.getHr(this.username)
   .subscribe({
-    next: (response) => {console.log(response); this.ishrappr = response;;
-      console.log("hr details",this.ishrappr)
+
+    next: (response) => 
+    {
+      console.log(response); this.ishrappr = response;;
+
+      sessionStorage.setItem("all", this.ishrappr[0])
       sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
       sessionStorage.setItem('istrainee', this.ishrappr[0]?.Is_Trainee)
       sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
-      sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_name)
+      if(this.username.user == 'emp')
+        sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_Name)
+      else
+        sessionStorage.setItem('emp_name', this.ishrappr[0]?.fullname)
+
       sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
       sessionStorage.setItem('plant_name', this.ishrappr[0]?.plant_name)
       sessionStorage.setItem('emp_id', this.ishrappr[0]?.emp_slno)
+
       this.getitems()
   },
     error: (error) => console.log(error),

@@ -33,7 +33,7 @@ const routes: Routes = [
       component: TransferFormComponent
     }, 
     {
-      path:'onboard_form/:id',
+      path:'onboard_form/:id/:apln_status',
       component: OnboardFormComponent
     }, 
     {

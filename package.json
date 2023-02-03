@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^14.0.2",
     "@angular/platform-browser-dynamic": "^14.0.2",
     "@angular/router": "^14.0.2",
+    "@auth0/angular-jwt": "^5.1.2",
     "@flatfile/angular": "^3.1.0",
     "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "@popperjs/core": "^2.11.6",

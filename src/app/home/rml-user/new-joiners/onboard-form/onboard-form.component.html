@@ -27,11 +27,11 @@
             </div><br>
                     <div class="col">                            
                     <label>Department : </label>
-                    <select class="form-control" formControlName = "department" ><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" formControlName = "department"><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
                 </div>
             <div class="col">                            
                 <label>Active Status: </label>
-                <select class="form-control" formControlName = "active_status" ><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
+                <select class="form-control" formControlName = "active_status"><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
             </div>
             </div><br>
             <div class="row"> 
@@ -41,43 +41,43 @@
                 </div>
                 <div class="col">                            
                     <label>Line </label>
-                    <select class="form-control" formControlName = "line" ><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" formControlName = "line"><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
                 </div>
                 <div class="col">
                     <label>Date of Leaving </label>
-                    <input class="form-control"  type = "date" formControlName = "dol">
+                    <input class="form-control"  type = "date" formControlName = "dol" [readonly]="!readonly">
                 </div>
             </div>
             <div class="row"> 
                 <div class="col">   <br><br>
                     <div style="align-self: center;">
                         <label><h4>Is Biometric ID created?</h4></label>&nbsp;
-                        <input type = "checkbox" formControlName = "bio_id"> 
+                        <input type = "checkbox" formControlName = "bio_id" [readonly]="readonly"> 
                     </div>
                 </div>
             </div>
                     <div class="row"> 
                     <div class="col-sm-4">                     
                         <label>Process Trained </label>
-                        <select class="form-control" formControlName = "process_trained" ><option value="">select</option><option  *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
+                        <select class="form-control" formControlName = "process_trained"><option value="">select</option><option  *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
                     </div><br>
                     <div class="col-sm-4">                            
                         <label>Remarks for Relieving</label>
-                        <select class="form-control" formControlName = "rfr" ><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
+                        <select class="form-control" formControlName = "rfr"><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
                     </div></div><br>
                     <div class="row"> 
                         <div class="col-sm-4">
                             <label>Biometric Number </label>
-                            <input class="form-control"  type = "number" formControlName = "bnum">
+                            <input class="form-control"  type = "number" formControlName = "bnum" [readonly]="readonly">
                         </div>   <br>
                         <div class="col-sm-4">                            
                             <label>Reporting To </label>
-                            <select class="form-control" formControlName = "reportingto" ><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i">{{i}}</option></select>
+                            <select class="form-control" formControlName = "reportingto"><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i">{{i}}</option></select>
                         </div></div><br>
                         <div class="row"> 
                             <div class="col-sm-4">
                                 <label>UAN Number</label>
-                                <input class="form-control"  type = "number" formControlName = "uan">
+                                <input class="form-control"  type = "number" formControlName = "uan" [readonly]="readonly">
                             </div>   <br>
                             <div class="col-sm-4">                            
                                 <label>Work Contract </label>
@@ -86,7 +86,7 @@
                             <div class="row"> 
                                 <div class="col-sm-4">
                                     <label>Trainee ID</label>
-                                    <input class="form-control"  type = "number" formControlName = "trainee_id">
+                                    <input class="form-control"  type = "number" formControlName = "trainee_id" [readonly]="readonly">
                                 </div>  <br> 
                                 <div class="col-sm-4">                            
                                     <label>Designation </label>

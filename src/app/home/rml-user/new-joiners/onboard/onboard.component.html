@@ -1,8 +1,14 @@
+<div class="pt-5 px-5">
+    <form [formGroup]="form">
+    <select class="form-control" (change)="filter()" formControlName="select">
+        <option value="">--- select ---</option>
+        <option *ngFor="let i of select" >{{i}}</option>
+    </select>
+    </form>
+</div>
+
 <div class = "container">
     <div  style = "margin-top: 40px;">   
-
-      <form [formGroup]="form">
-
       <br><br>
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
@@ -87,7 +93,7 @@
                         <td>{{ i.apln_status }}</td>
                         <td>
                             <div>
-                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/onboard_form', i.apln_slno]" >
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/onboard_form', i.apln_slno, i.apln_status]" >
                                 <mat-icon>visibility</mat-icon>
                             </button>
                         </div>
@@ -97,7 +103,6 @@
                 </table>
               </table>
         </div>
-        </form>
     </div>
 
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">

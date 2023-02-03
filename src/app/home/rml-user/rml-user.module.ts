@@ -28,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 
+
 @NgModule({
   declarations: [
     CompanyComponent,

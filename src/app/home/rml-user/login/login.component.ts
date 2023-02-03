@@ -53,9 +53,18 @@ export class LoginComponent implements OnInit {
                     if(response.token) {
                         sessionStorage.setItem('token', response.token)
                     }
-                    if(response.message == "Success") {
+                    if(response.message == "Success1") 
+                    {
                         this.goPlaces();
-                    } else if (response.message == "User") {
+                        sessionStorage.setItem('user', 'emp')
+                    } 
+                    else if(response.message == "Success2") 
+                    {
+                        this.goPlaces();
+                        sessionStorage.setItem('user', 'trainee')
+                    } 
+                    else if (response.message == "User") 
+                    {
                         alert("Username does not exist");
                     } else {
                         alert("Please Enter the correct Password");
