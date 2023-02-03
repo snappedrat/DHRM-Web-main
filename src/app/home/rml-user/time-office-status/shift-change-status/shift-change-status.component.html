@@ -1,1 +1,92 @@
-<p>shift-change-status works!</p>
+<div class= "container">
+    <div class="md-5">
+    <br>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Month and Year</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date">
+        <mat-hint>MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView="multi-year"
+                        (monthSelected)="setMonthAndYear($event, dp)"
+                        panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field></div></div>
+      <br>
+  <div>
+    <div class= "container">
+        <div class="md-5">
+    <h1 class="title" >Shift Change Status</h1>
+    <hr style="border-block-color: orange" />
+  </div>
+  <br><br><br>
+  <div class = "table-wrapper">
+    <table class="table table-bordered table-striped table-hover">
+      <table id="table">
+          <thead>
+          <tr>
+            <th
+            div class="text-center"
+    >
+      Date
+              
+              </th>
+              <th
+                      div class="text-center"
+              >
+
+                In
+              </th>
+             
+              <th
+                       div class="text-center"
+                      >
+              Out
+              </th>
+              <th
+              div class="text-center"
+             >
+      Current Shift
+     </th>
+     <th
+     div class="text-center"
+    >
+Actual Shift
+</th>
+<th
+div class="text-center"
+>
+
+Reliever Name
+</th>
+     <th
+     div class="text-center"
+    >
+ Status
+</th>
+            </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor = "let i of dummy; let a = index">
+                    <td>{{i.date}}</td>
+                    <td>{{i.in_time}}</td>
+                    <td>{{i.out_time}}</td>
+                    <td>{{i.current_shift}}</td>
+                    <td>{{i.actual_shift}}</td>
+                    <td>{{i.reliever_name}</td>
+                    <td>{{i.status}}</td>
+                    
+  
+                    
+                </tr>
+            </tbody>
+        </table>
+    </table>
+  </div>
+    </div></div>
+  
+  
+    
+      
+      
