@@ -1,1 +1,84 @@
-<p>comp-off-status works!</p>
+<div class= "container">
+    <div class="md-5">
+    <br>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Month and Year</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date">
+        <mat-hint>MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp
+                        startView="multi-year"
+                        (monthSelected)="setMonthAndYear($event, dp)"
+                        panelClass="example-month-picker">
+        </mat-datepicker>
+      </mat-form-field></div></div>
+      <br>
+  <div>
+    <div class= "container">
+        <div class="md-5">
+    <h1 class="title" >Comp Off Status</h1>
+    <hr style="border-block-color: orange" />
+  </div>
+  <br><br><br>
+  <div class = "table-wrapper">
+    <table class="table table-bordered table-striped table-hover">
+      <table id="table">
+          <thead>
+          <tr>
+            <th
+            div class="text-center"
+    >
+       Work Date
+              
+              </th>
+              <th
+                       div class="text-center"
+              >
+               IN-Time
+              </th>
+              <th
+                      div class="text-center"
+              >
+
+                 OUT-Time
+              </th>
+             
+              <th
+                       div class="text-center"
+                      >
+                 Reasons
+              </th>
+              <th
+              div class="text-center"
+             >
+       Coff Date
+     </th>
+     <th
+     div class="text-center"
+    >
+Coff Status
+</th>
+            </tr>
+            </thead>
+            <tbody >
+                <tr *ngFor = "let i of dummy; let a = index">
+                    <td>{{i.work_date}}</td>
+                    <td>{{i.in_time}}</td>
+                    <td>{{i.out_time}}</td>
+                    <td>{{i.reason}}</td>
+                    <td>{{i.coff_date}}</td>
+                    <td>{{i.coff_status}}</td>
+  
+                    
+                </tr>
+            </tbody>
+        </table>
+    </table>
+  </div>
+    </div></div>
+  
+  
+    
+      
+      
