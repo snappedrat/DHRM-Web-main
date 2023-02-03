@@ -18,41 +18,37 @@
                     <div class="col">
                 <h2>Biometric In-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput name="bio_time_A" readonly/>
-                    <mat-icon matSuffix>
-                        watch_later
-                    </mat-icon>
+                    <input matInput [(ngModel)]="bio_time_A" readonly/>
+
                 </mat-form-field>
                 <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
                     </div>
                     <div class="col">
                 <h2>Biometric Out-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput name="bio_time_B" readonly/>
-                    <mat-icon matSuffix>
-                        watch_later
-                    </mat-icon>
+                    <input matInput [(ngModel)]="bio_time_B" readonly/>
+
                 </mat-form-field>
                 <ngx-mat-timepicker #pickerB></ngx-mat-timepicker>
                     </div>
                 </div>
 
-
-                <div class="row">
-                    <div class="col">
+                <form [formGroup]="form">
+                <div *ngIf="disable==1" class="row">
+                    <div *ngIf="disable1==1" class="col">
                 <h2>Actual In-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput name="selected_time_A" [ngxMatTimepicker]="pickerA" readonly/>
+                    <input matInput formControlName="actual_in_time" [ngxMatTimepicker]="pickerA" readonly/>
                     <mat-icon matSuffix (click)="pickerA.open()">
                         watch_later
                     </mat-icon>
                 </mat-form-field>
                 <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
                     </div>
-                    <div class="col">
+                    <div *ngIf="disable2==1" class="col">
                 <h2>Actual Out-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput name="selected_time_B" [ngxMatTimepicker]="pickerB" readonly/>
+                    <input matInput formControlName="actual_out_time" [ngxMatTimepicker]="pickerB" />
                     <mat-icon matSuffix (click)="pickerB.open()">
                         watch_later
                     </mat-icon>
@@ -62,15 +58,16 @@
                 </div>
 
                 <br>
-                <div class="reason">
+                <div *ngIf="disable==1" class="reason">
                     <mat-form-field appearance="outline">
                         <mat-label>Reason</mat-label>
-                        <textarea matInput></textarea>
+                        <textarea matInput formControlName="reason" ></textarea>
                     </mat-form-field>
                 </div>
-
+                </form>
                 <br><br>
-                <button mat-raised-button color="warn" type="submit">Submit</button>
+                <button *ngIf="disable==1" [disabled]="form.invalid" (click)="submit()" mat-raised-button color="warn" type="submit">Submit</button>
+                <div *ngIf="disable==0" >You are not eligible to apply</div>
             </div>
         </div>
     </div>

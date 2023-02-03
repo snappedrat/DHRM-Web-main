@@ -315,9 +315,18 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/get_eval_sup', form)
   }
+  /////////////////////////////////////// PHASE - 3
   attendance(form:any)
   {
     return this.http.get(this.url2+'/attendance?emp_id='+form.emp_id+'&date='+form.date)
+  }
+  forgotpunch_details(form:any)
+  {
+    return this.http.get(this.url2+'/forgotPunchDetail?id='+form.id+'&date='+form.date)
+  }
+  forgot_punch(form:any)
+  {
+    return this.http.post(this.url2+'/forgot_punch', form)
   }
 
 

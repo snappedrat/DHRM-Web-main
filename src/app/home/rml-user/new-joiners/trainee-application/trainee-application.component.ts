@@ -61,11 +61,13 @@ errmsg: any = '';
 ngOnInit(): void {
 
   this.getcompanycode()
-  this.plantcodeService.getHr('newuser')
+  this.plantcodeService.getHr({username:'newuser', user:'emp'})
   .subscribe({
     next: (response)=>{console.log("hr",response); this.isHrappr = response
     sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
-    sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)}
+    sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
+    sessionStorage.setItem('user', 'emp')
+  }
   })
 }
 

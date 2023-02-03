@@ -21,6 +21,7 @@ export class AttendanceComponent implements OnInit {
   shift:string 
   present_type:any
   class:any 
+  wd:any
 
   // myForm: FormGroup;
 
@@ -45,13 +46,14 @@ export class AttendanceComponent implements OnInit {
       console.log(response);
       this.in_time = response.In_Time
       this.out_time = response.Out_Time
+      this.wd = response.worked_date
       this.total_hrs = response.Total_Hours == null ? response.Total_Hours : response.Total_Hours + ' Hours'
       this.shift = response.Shift
       this.present_type = response.present_type
       this.class = this.present_type == 'Absent' ? 1 : 0
 
       if(this.present_type == 'false')
-        this.present_type = 'Unknown'
+        this.present_type = 'NO Punch Data'
 
       },
       error: (err)=>{console.log(err)

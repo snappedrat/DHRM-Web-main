@@ -12,7 +12,7 @@ import { LeaveComponent } from './leave/leave.component';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -60,7 +60,8 @@ import { CompOffComponent } from './comp-off/comp-off.component';
         MatSelectModule,
         MatStepperModule,
         MatIconModule,
-        NgxMatTimepickerModule
+        NgxMatTimepickerModule,
+        FormsModule
         
     ]
 })
