@@ -48,12 +48,14 @@ validate_All()
   this.flag_submit_all = false
 }
 
+res:any;
+
 submitbank(){
   console.log(this.bank)
   this.http
   .post(this.url+'/bankforms', this.bank)
   .subscribe({
-      next: (response) => console.log(response),
+      next: (response:any) => {console.log(response); this.res = response.message},
       error: (error) => console.log(error),
 })
 }

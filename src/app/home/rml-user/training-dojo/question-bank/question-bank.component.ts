@@ -23,7 +23,7 @@ export class QuestionBankComponent implements OnInit {
   height:any
   // answer:any = ['']
   questions: any = ['']
-  child:any = {}
+  inserted:any = 1
 
   username = {'username': sessionStorage.getItem('plantcode')}
   sno :any= -1
@@ -64,7 +64,7 @@ export class QuestionBankComponent implements OnInit {
     this.service.getQuestions_tnr({module: event.target.value.split('.')[1], plant_code: sessionStorage.getItem('plantcode')})
     .subscribe(
       {
-        next: (response:any)=>{console.log(response); this.questions = response}
+        next: (response:any)=>{console.log(response); this.questions = response; this.questions.push({})}
       }
     )
 
@@ -79,13 +79,16 @@ export class QuestionBankComponent implements OnInit {
     else
     {
         if(i == this.questions.length-1)
+        {
           this.questions.push({})
+          this.inserted += 1;
+        }
     }
   }
 
   question(event:any, i:any)
   {    
-    console.log(event.target.value)
+
     this.questions[i].question = event.target.value
     console.log(this.questions[i])
   }
@@ -93,7 +96,7 @@ export class QuestionBankComponent implements OnInit {
   {
     console.log(event.target.value)
     this.questions[i].correct_answer = event.target.value
-    console.log(this.questions[i])  
+    console.log(this.questions)  
   }
 
   file(event:any, i:any)
@@ -102,9 +105,9 @@ export class QuestionBankComponent implements OnInit {
     exten = exten.pop()
     var formData = new FormData()
 
-    formData.append("file", event.target.files[0], this.form.controls['module'].value+(i+1)+ '_picture.'+exten )
+    formData.append("file", event.target.files[0], this.form.controls['module'].value+'_'+(i+1)+ '_picture.'+exten )
 
-    this.questions[i].image_filename = this.form.controls['module'].value+(i+1)+ '_picture.'+exten
+    this.questions[i].image_filename = this.form.controls['module'].value+'_'+(i+1)+ '_picture.'+exten
 
     this.service.questionbankupload(formData)
     .subscribe({
@@ -119,11 +122,24 @@ export class QuestionBankComponent implements OnInit {
     console.log(this.questions)
     console.log(this.form.value)
 
-    this.questions[this.questions.length] = {module: this.form.controls['module'].value,plantcode: sessionStorage.getItem('plantcode')}
+    this.questions[this.questions.length-1] = 
+    {
+      module: this.form.controls['module'].value,
+      plantcode: sessionStorage.getItem('plantcode'),
+      inserted: this.inserted
+     }
 
     this.service.questionbank(this.questions)
     .subscribe({
-      next:(res) => {console.log(res);},
+      next:(res:any) => 
+      {
+        console.log(res);
+        if(res.message =='success')
+        {
+          alert("The questions have been updated.")
+          location.reload()
+        }
+      },
       error:(err)=>{console.log(err)}
     })
 

@@ -356,6 +356,6 @@ url2:any = environment.path2
   {
     return this.http.post(this.url2+'/forgot_punch', form)
   }
-
+  
 
 }

@@ -106,12 +106,13 @@ flagger : any = false
     }
     
     submit(){
-        console.log("values : ",this.form.value);
+        console.log("values : ",this.form.value);        
         this.plantcodeService.submitbank()
         this.state = true
         setTimeout(() => {
             this.state = false
         }, 2000);
+        
     }
     sendData(){
         this.plantcodeService.bank = this.form.value
