@@ -82,3 +82,8 @@ z-index: 1100 !important;
   background-color: darkblue;
 
 }
+.modal-content
+{
+  width: 400px;
+  height: 400px;
+}

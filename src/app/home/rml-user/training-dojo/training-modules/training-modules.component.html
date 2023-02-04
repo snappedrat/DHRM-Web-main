@@ -132,10 +132,10 @@
                     <td>{{i.category}}</td>
                     <td>{{i.priorityval}}</td>
                     <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.slno)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.slno)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

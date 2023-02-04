@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { appendFile } from 'fs';
+import { report } from 'process';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 // import { ProductModel } from './models/product.model';
@@ -198,6 +200,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/getQuestions',formvalue)
   }
+  getQuestions_tnr(formvalue:any)
+  {
+    return this.http.post(this.url+'/getQuestions_tnr',formvalue)
+  }
   getTest(formvalue:any)
   {
     return this.http.post(this.url+'/getTest',formvalue)
@@ -226,6 +232,10 @@ url2:any = environment.path2
   {
     var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
     return this.http.post(this.url+'/getTrainee', plantcode)
+  }
+  get_test_status(form:any)
+  {
+    return this.http.post(this.url+'/get_test_status', form)
   }
   getOfflineModules()
   {
@@ -279,6 +289,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/onboard', form)
   }
+  relieve(form:any)
+  {
+    return this.http.post(this.url+'/relieve', form)
+  }
   dept_line(form:any)
   {
     return this.http.post(this.url+'/dept-line', form)
@@ -299,6 +313,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/onboard_form', form)
   }
+  filedrop(form:any)
+  {
+    return this.http.post(this.url+'/filedrop', form)
+  }
   get_eval_form(form:any)
   {
     return this.http.post(this.url+'/get_eval_form', form)
@@ -315,6 +333,16 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/get_eval_sup', form)
   }
+
+  trainee_report()
+  {
+    return this.http.get(this.url+'/trainee-report')
+  }
+  test_summary()
+  {
+    return this.http.get(this.url+'/test-summary')
+  }
+
   /////////////////////////////////////// PHASE - 3
   attendance(form:any)
   {

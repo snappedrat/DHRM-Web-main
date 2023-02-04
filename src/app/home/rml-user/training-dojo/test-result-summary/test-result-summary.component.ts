@@ -9,9 +9,19 @@ import { ApiService } from 'src/app/home/api.service';
 })
 export class TestResultSummaryComponent implements OnInit { 
 
+d:any = this.getCurrentDate()
+
+getCurrentDate() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+  return `${year}-${month}-${day}`;
+}
+
 date :any = {
-  "start": '01-01-2020',
-  "end": '01-01-2023',
+  "start": '2020-01-01',
+  "end": this.d,
   "plantcode": sessionStorage.getItem('plantcode') 
 }
 

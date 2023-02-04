@@ -1,13 +1,13 @@
 <div class="container pt-5">
     <div [formGroup]="form" class="row">
         <div class="col-sm-3">
-            <select (change)="submit($event)"  style="font-size:14px" formControlName="module" class="form-control">
+            <select (change)="getquestions($event)"  style="font-size:14px" formControlName="module" class="form-control">
                 <option value="" disabled>Select your module</option>            
                 <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
             </select>
         </div>
         <div class="col-sm-3">
-            <button mat-raised-button class="btn-success"(click) = show() >save</button>&nbsp;
+            <button mat-raised-button class="btn-success"(click) = submit() >save</button>&nbsp;
             <button mat-raised-button class="btn-danger">clear</button>
         </div>
     </div>
@@ -24,12 +24,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor = "let i of answer; let a = index">
+                <tr *ngFor = "let i of questions; let a = index">
                     <td style="background-color: rgb(218, 218, 218);">{{a+1}}</td>
-                    <td><textarea [readonly] = 'flag' style="resize:none;outline: none;border-color: white;width: 600px;height: 200px;" (change)="question($event, i)" (click) = "addrow(i)" type = 'text' class="form-group"></textarea></td>
-                    <td><textarea [readonly] = 'flag' name ="answer" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;width: 120px;" (change)="answers($event,i)" class="form-group"></textarea></td>
-                    <td><div style="width: 300px;"><a [href] = 'filename[a]'  target = "_blank" style="border-color: white;white-space: pre-wrap">{{filename[a]}}</a></div></td>
-                    <td><input [disabled] = 'flag' name ="file" type="file" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;" (change)="file($event,i)" class="form-group"></td>
+                    <td><textarea [readonly] = 'flag' style="resize:none;outline: none;border-color: white;width: 600px;height: 300px;" (change)="question($event, a)"  (click) ="addrow(a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
+                    <td><textarea [readonly] = 'flag' name ="answer" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;width: 120px;" (change)="answers($event, a)" class="form-group">{{i.correct_answer}}</textarea></td>
+                    <td><div style="width: 300px;"><a [href] = 'this.url+i.file_name' target = "_blank" style="border-color: white;white-space: pre-wrap">{{i.image_file == null ? i.image_file : this.url+i.image_file}}</a></div></td>
+                    <td><input [disabled] = 'flag' name ="file" type="file" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;" (change)="file($event,a)" class="form-group"></td>
                 </tr>
             </tbody>
          </table>

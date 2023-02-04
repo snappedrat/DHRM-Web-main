@@ -14,6 +14,7 @@ export class SupervisorEvaluationComponent implements OnInit {
   filterinfo:any = []
   id:any
   form:any
+  filterinfos: any;
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router) {
 
@@ -51,7 +52,11 @@ export class SupervisorEvaluationComponent implements OnInit {
     this.service.evaluationdays(this.form.value)
     .subscribe(
       {
-        next: (response)=>{console.log(response); this.filterinfo = response}
+        next: (response)=>{console.log(response); 
+          this.filterinfo = response
+          this.filterinfos = this.filterinfo.filter((obj:any)=> obj.ra_entry !== 'N')
+          console.log(this.filterinfos)
+        }
       }
     )
   }

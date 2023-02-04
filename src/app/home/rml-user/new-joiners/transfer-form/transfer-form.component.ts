@@ -22,14 +22,16 @@ export class TransferFormComponent implements OnInit {
   
     flag: any = true;
     state: boolean;
+  slno: any;
   
     constructor(private fb : UntypedFormBuilder,private http: HttpClient,private active :ActivatedRoute , private service: ApiService, private router : Router) {
     
       this.form = this.fb.group({
         
-        gen_id: [''],
+        apln_slno: [''],
         current_department: [''],
         current_line: [''],
+        emp_name:[''],
         changedepartment : [''],
         changeline : [''],
         reportingto:  [''],
@@ -42,9 +44,10 @@ export class TransferFormComponent implements OnInit {
   
     ngOnInit(): void {
 
-      this.form.controls['gen_id'].setValue(this.active.snapshot.paramMap.get('id'))
+      this.form.controls['apln_slno'].setValue(this.active.snapshot.paramMap.get('id'))
 
       var object = {
+        'apln_slno': this.active.snapshot.paramMap.get('id'),
         'dept_slno': this.active.snapshot.paramMap.get('dept'),
         'line_code':this.active.snapshot.paramMap.get('line')
       }
@@ -55,6 +58,7 @@ export class TransferFormComponent implements OnInit {
           this.obj = response;
           this.form.controls['current_department'].setValue(this.obj[0]?.dept_name)
           this.form.controls['current_line'].setValue(this.obj[1]?.line_name)
+          this.form.controls['emp_name'].setValue(this.obj[2]?.emp_name)
           this.obj = []
         }
       })
@@ -79,6 +83,8 @@ export class TransferFormComponent implements OnInit {
     {
       console.log(this.form.value)
 
+      this.form.controls['reportingto'].setValue(this.slno)
+
       this.service.reporting(this.form.value)
       .subscribe(
         {
@@ -86,11 +92,18 @@ export class TransferFormComponent implements OnInit {
           if(response.message == 'success')
           {
             alert("Department transferred")
-            this.router.navigate(['/rml/new_joiners/dept_transfer'])
+            // this.router.navigate(['/rml/new_joiners/dept_transfer'])
           }
           }
         }
       )
+    }
+
+    emp_slno(event:any)
+    {
+      const func = this.reportingto.findIndex( (obj:any)=> obj['emp_name'] === event.target.value)
+      this.slno = this.reportingto[func].empl_slno
+      console.log(this.slno)
     }
 
 }

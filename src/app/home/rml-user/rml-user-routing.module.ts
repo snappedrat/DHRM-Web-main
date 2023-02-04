@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {CompanyComponent} from "./masters/company/company.component";
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'skill-developement',
         loadChildren:() => import('./skill-developemnt/skill-developemnt.module').then(m => m.SkillDevelopemntModule)
+      },
+      {
+        path:'reports',
+        component: ReportsComponent
       }
       ]
   }

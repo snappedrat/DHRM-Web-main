@@ -24,7 +24,9 @@ export class TestEvaluationComponent implements OnInit {
       score :[''],
       pf: [''],
       percent: [''],
-      priorityval:['']
+      priorityval:[''],
+      min_percent:[''],
+      plant_code:['']
 
     })
    }
@@ -60,9 +62,11 @@ export class TestEvaluationComponent implements OnInit {
     else
     {
       var i = this.form.controls['module'].value.split('.')[0]-1
-      this.form.controls['pf'].setValue(this.modules[i].pass_criteria < this.form.controls['score'].value ? 'p' : 'f')
+      this.form.controls['pf'].setValue(this.modules[i].pass_criteria <= this.form.controls['score'].value ? 'p' : 'f')
       this.form.controls['priorityval'].setValue(this.modules[i].priorityval)
       this.form.controls['percent'].setValue(((this.form.controls['score'].value) / (this.modules[i].total_marks)) * 100)
+      this.form.controls['min_percent'].setValue(this.modules[i].pass_percent)
+      this.form.controls['plant_code'].setValue(sessionStorage.getItem('plantcode'))
       console.log(this.form.value)
   
       this.service.offlineUpload(this.form.value)
@@ -77,6 +81,27 @@ export class TestEvaluationComponent implements OnInit {
   store_trainee(event:any)
   {
     this.trainee_id = event.target.value.split('-')[1]
+  }
+
+  get_test_status(event:any)
+  {
+    var value = event.target.value.split('.')[1]
+    var obj = {module_name : value, idno : this.trainee_id}
+
+    this.service.get_test_status(obj)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+        console.log(response)
+        if(response.status=='already')
+          alert("Trainee already finished evauation")
+        else
+          this.form.controls['test'].setValue(response.status)
+        }
+      }
+    )
+
   }
 
   offline_upload(event:any)

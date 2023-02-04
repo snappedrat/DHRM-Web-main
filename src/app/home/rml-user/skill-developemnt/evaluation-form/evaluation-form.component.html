@@ -41,8 +41,8 @@
         <div class="container2">
           <div class="card2"> 
            
-                    <form [formGroup] = "form" (ngSubmit)="submit()" >
-                        <div class="mx-5">
+            <form [formGroup] = "form">
+                <div class="mx-5">
                             <div class="col"><br>
                                 <label>Evaluation Date: </label><br>
                                 <input class="form-control"  type = "date" formControlName = "evaluation_date" [readonly]="readable" ></div>
@@ -86,11 +86,11 @@
                                                 <div class="col">
                                                     <label>Process Trained</label><br>
                                                     <select class="form-control"  formControlName="process_trained"><option value="">select</option><option *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
-                                                </div>
+                                                </div> 
                                        <br></div>
-                                       <button type="submit" class="btn btn-success btn-lg">Save</button>
+                                       <button [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
                         </form>
-                        <!-- [routerLink]="[this.nav]" -->
+                        <!-- -->
              </div>   </div></div>
         
             <br><br>

@@ -5,6 +5,7 @@ import { PlantcodeService } from '../../new-joiners/plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import * as XLSX from 'xlsx';
 
 import {
   trigger,
@@ -71,6 +72,15 @@ export class OnboardComponent implements OnInit {
       (response:any)=>{console.log(response); this.filterinfo = response; this.collectionSize = this.filterinfo.length;this.getPremiumData()}
       }
     )
+  }
+
+  exportexcel()
+  {
+    var ws = XLSX.utils.json_to_sheet(this.filterinfo)
+    var wb = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(wb, ws, 'people')
+    XLSX.writeFile(wb, 'onboard.xlsx')
+
   }
 
 

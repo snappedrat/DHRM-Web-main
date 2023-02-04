@@ -227,7 +227,6 @@ export class BasicComponent implements OnInit{
 
     setcity_state(event:any)
     {
-        console.log(event.length)
         if(event.length == 6)
         {
             console.log(event.length)

@@ -2,18 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
-import {
-  Event,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router
-} from '@angular/router';
-
-import { threadId } from 'worker_threads';
-import { truncate } from 'fs';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainee-test',
@@ -32,8 +21,8 @@ export class QuestionBankComponent implements OnInit {
   
   sheight :any 
   height:any
-  answer = new Set()
-  questions: any = []
+  // answer:any = ['']
+  questions: any = ['']
   child:any = {}
 
   username = {'username': sessionStorage.getItem('plantcode')}
@@ -51,8 +40,6 @@ export class QuestionBankComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  this.answer.add(0)
-
     this.service.getModules(this.username)
     .subscribe({
       next: (response)=>{console.log(response); this.modules = response},
@@ -61,10 +48,9 @@ export class QuestionBankComponent implements OnInit {
   }
 
 
-  submit(event:any)
+  getquestions(event:any)
   {
     this.flag = false
-    this.questions[0] = this.form.value
     var i = event.target.value.split('.')[0]-1
     if(this.modules[i].category == 'OFFLINE')
     {
@@ -74,25 +60,14 @@ export class QuestionBankComponent implements OnInit {
     {
       this.offline_flag = true
     }
+    console.log(event.target.value.split('.')[1])
+    this.service.getQuestions_tnr({module: event.target.value.split('.')[1], plant_code: sessionStorage.getItem('plantcode')})
+    .subscribe(
+      {
+        next: (response:any)=>{console.log(response); this.questions = response}
+      }
+    )
 
-  }
-
-
-  scroll(e:any, i:any)
-  {
-    var a = e.target.scrollHeight
-    var b = e.target.style.height
-    console.log(a);
-    
-    console.log(b)
-    this.sheight = a;
-    this.height = b
-
-  }
-
-  style(i:any)
-  {
-      return this.sheight >= (this.height-2)? {'height':this.sheight + 'px'} :{'height': this.height+'px'}
   }
 
   addrow(i:any)
@@ -103,26 +78,22 @@ export class QuestionBankComponent implements OnInit {
     }
     else
     {
-      this.answer.add(i+1)
-      if(this.questions[i+1]?.question == undefined)
-        this.questions.push({})
+        if(i == this.questions.length-1)
+          this.questions.push({})
     }
-
-  }
-
-  class(i:any)
-  {
-    return 'class' + (i+1)
   }
 
   question(event:any, i:any)
   {    
-    
-    this.questions[i+1].question = event.target.value
+    console.log(event.target.value)
+    this.questions[i].question = event.target.value
+    console.log(this.questions[i])
   }
   answers(event:any, i:any)
   {
-    this.questions[i+1].answer = event.target.value
+    console.log(event.target.value)
+    this.questions[i].correct_answer = event.target.value
+    console.log(this.questions[i])  
   }
 
   file(event:any, i:any)
@@ -131,23 +102,24 @@ export class QuestionBankComponent implements OnInit {
     exten = exten.pop()
     var formData = new FormData()
 
-    formData.append("file", event.target.files[0], (i+1) + '_picture.'+exten )
+    formData.append("file", event.target.files[0], this.form.controls['module'].value+(i+1)+ '_picture.'+exten )
 
-    this.questions[i+1].file = (i+1) + '_picture.'+exten
+    this.questions[i].image_filename = this.form.controls['module'].value+(i+1)+ '_picture.'+exten
 
     this.service.questionbankupload(formData)
     .subscribe({
-      next:(res) => {console.log(res)
-      this.filename[i] = this.url + this.questions[i+1].file},
+      next:(res) => {console.log(res)},
       error:(err)=> {console.log(err)}
     })
 
   }
 
-  show()
+  submit()
   {
     console.log(this.questions)
     console.log(this.form.value)
+
+    this.questions[this.questions.length] = {module: this.form.controls['module'].value,plantcode: sessionStorage.getItem('plantcode')}
 
     this.service.questionbank(this.questions)
     .subscribe({

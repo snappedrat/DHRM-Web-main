@@ -16,8 +16,16 @@
                         </select>
                         </div>
                         <br>
+                        <div>Module :
+                            <select (change) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="form-control" formControlName = "module">
+                                
+                                <option value="" disabled>Select Module</option>  
+                                <option *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</option>          
+    
+                            </select>
+                        </div><br>
                         <div class ="dropdown1">Exam type:
-                            <select  style="font-size:14px"  placeholder = "Select Exam Type" class="form-control" formControlName = "test">
+                            <select  style="font-size:14px"  placeholder = "Select Exam Type" class="form-control" formControlName = "test" readonly>
                                 
                                 <option value="" disabled>Select Exam Type</option>     
                                 <option value="pre-test">Pre-test</option>            
@@ -25,14 +33,7 @@
        
                             </select>
                         </div><br>
-                        <div>Module :
-                            <select style="font-size:14px"placeholder = "Select Module" class="form-control" formControlName = "module">
-                                
-                                <option value="" disabled>Select Module</option>  
-                                <option *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</option>          
-    
-                            </select>
-                        </div>
+
                         <br>
                         <div>
                             <p> Exam Paper: </p>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment.prod';
 import { ApiService } from 'src/app/home/api.service';
 import { Router } from '@angular/router';
@@ -43,21 +43,22 @@ export class EvaluationFormComponent implements OnInit {
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
-          evaluation_date: [''],
-          score_obtained:[''],
-          score_for:[''],
-          percentage : [''],
+          evaluation_date: ['', Validators.required],
+          score_obtained:['', Validators.required],
+          score_for:['', Validators.required],
+          percentage : ['', Validators.required],
           upload_file : [''],
-          line: [''],
-          department: [''],
-          new_skill: [''],
-          process_trained: [''],
+          line: ['', Validators.required],
+          department: ['', Validators.required],
+          new_skill: ['', Validators.required],
+          process_trained: ['', Validators.required],
           curr_dept: [''],
           curr_line: [''],
           curr_skill_level: [''],
           apln_slno:[this.active.snapshot.paramMap.get('id')],
           eval_days :[this.active.snapshot.paramMap.get('eval')],
-          emp_slno : [sessionStorage.getItem('emp_slno')],
+          emp_slno : [sessionStorage.getItem('emp_id')],
+          emp_name : [sessionStorage.getItem('emp_name')],
           line_name :[''],
           plantcode: [sessionStorage.getItem('plantcode')],
           pe_slno:['']
@@ -158,6 +159,8 @@ export class EvaluationFormComponent implements OnInit {
           .subscribe({
             next: (response:any)=>{
               console.log(response);
+              if(response.message == 'success')
+                alert("Trainee has been Evaluated")
             }
           })
         }
@@ -167,6 +170,8 @@ export class EvaluationFormComponent implements OnInit {
         .subscribe({
           next: (response:any)=>{
             console.log(response);
+            if(response.message == 'success')
+            alert("Trainee has been Evaluated")
           }
         })
         }

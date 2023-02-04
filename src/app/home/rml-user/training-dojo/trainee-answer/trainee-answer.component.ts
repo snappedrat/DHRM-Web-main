@@ -12,17 +12,30 @@ export class TraineeAnswerComponent implements OnInit {
   idno:any
   module:any
   data:any
+  slno:any
+  status:any
 
   constructor(private active:ActivatedRoute, private service: ApiService) {
     this.idno = this.active.snapshot.paramMap.get('trainee_idno')
     this.module = this.active.snapshot.paramMap.get('module_name')
+    this.slno = this.active.snapshot.paramMap.get('slno')
    }
 
   ngOnInit(): void {
 
-    this.service.traineeAnswers({'idno': this.idno, 'module':this.module})
+    this.service.traineeAnswers({'idno': this.idno, 'module':this.module, slno:this.slno})
     .subscribe({
-      next: (response)=>{console.log('asnwers', response); this.data = response},
+      next: (response:any)=>
+      {
+        console.log('asnwers', response); 
+        this.data = response[0]
+        this.status = response[1]
+
+        if(this.status.status == 'OFFLINE')
+        {
+          this.data[0].question = 'This is an Offline exam'
+        }
+      },
       error: (err)=>{console.log(err)}
     })
 

@@ -22,28 +22,21 @@ export class TrainingModulesComponent implements OnInit {
 
   dummy: any = [
     {
-      'sno':1,
-      'name' : 'safety',
-      'pass': 80,
-      'total': 100,
-      'percent' : 80,
-      'category': 'ONLINE',
-      'priority': 4,
-      'plantcode': 1150, 
     }
   ]
   editing_flag: any;
+  temp_a: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      sno :[''],
+      slno :[''],
       module_name : [''],
       pass_criteria: [''],
       total_marks: [''],
       pass_percent : [''],
       category: [''],
       priorityval: [''],
-      plantcode: [sessionStorage.getItem('plantcode')]
+      plantcode: ['']
     })
    }
 
@@ -65,6 +58,7 @@ export class TrainingModulesComponent implements OnInit {
 
   save()
   {
+    this.form.controls['plantcode'].setValue(sessionStorage.getItem('plantcode'))
     this.service.addmodule(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
@@ -76,7 +70,6 @@ export class TrainingModulesComponent implements OnInit {
       {
         this.dummy.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
       }}
     })    
 
@@ -88,10 +81,11 @@ export class TrainingModulesComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
-  edit(a:any)
+  edit(a:any ,slno:any)
   {
+    this.temp_a = a
     this.editing_flag = true
-    this.form.controls['sno'].setValue(a)
+    this.form.controls['slno'].setValue(slno)
     this.form.controls['module_name'].setValue(this.dummy[a].module_name)
     this.form.controls['pass_criteria'].setValue(this.dummy[a].pass_criteria)
     this.form.controls['total_marks'].setValue(this.dummy[a].total_marks)
@@ -103,6 +97,7 @@ export class TrainingModulesComponent implements OnInit {
 
   editSave()
   {
+    this.form.controls['plantcode'].setValue(sessionStorage.getItem('plantcode'))
     this.service.updatemodule(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
@@ -112,15 +107,15 @@ export class TrainingModulesComponent implements OnInit {
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.dummy[this.temp_a] = this.form.value
       }}
     })
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(a:any, slno:any)
 {
-  this.service.deletemodule(this.dummy[a])
+  this.service.deletemodule({slno: slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

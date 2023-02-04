@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
+import { ReportsComponent } from './reports/reports.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.mo
     PincodeComponent,
     EmployeeComponent,
     ShiftComponent,
+    ReportsComponent,
 
   ],
   imports: [

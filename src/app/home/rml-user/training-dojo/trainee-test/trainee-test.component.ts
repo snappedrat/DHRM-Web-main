@@ -34,7 +34,7 @@ export class TraineeTestComponent implements OnInit {
     'module' : '',
     'pf': '',
     'percent' :'',
-    'priorityval' :''
+    'priorityval' :'',
   }
 ]
   test:any = ['pre-test', 'post-test']
@@ -85,6 +85,7 @@ Qualified(event:any)
   this.answers[0].priorityval = this.modules[this.ind-1].priorityval
   var category = this.modules[this.ind-1].category
 
+
   this.service.Qualified(this.form.value)
   .subscribe({
     next: (response:any)=>{console.log(response)
@@ -113,6 +114,11 @@ Qualified(event:any)
       {
         this.qualified = 'you are qualifed'
         this.getQuestions(true,category)
+      }
+      else if(response.message == 'failure')
+      {
+        this.qualified = 'This module has no questions'
+        this.loading = false
       }
       
     },
@@ -161,6 +167,7 @@ submit()
   {
     if(this.form.controls['test'].value == 'pre-test')
     {
+      console.log(this.answers)
       this.service.pretest(this.answers)
       .subscribe({
         next : (response:any)=> {console.log(response)
@@ -170,6 +177,7 @@ submit()
     }
     else if(this.form.controls['test'].value == 'post-test')
     {
+      console.log(this.answers)
       this.service.posttest(this.answers)
       .subscribe({
         next : (response:any)=> {console.log(response)
@@ -185,7 +193,6 @@ submit()
 load_answers(event:any, i:any,qslno :any, correct_answer:any)
 {
   this.count.add(i)
-  console.log(this.count)
 
   console.log(event.target.value ,':', correct_answer)
 

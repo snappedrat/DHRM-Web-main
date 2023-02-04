@@ -77,7 +77,7 @@ getHr()
 
       sessionStorage.setItem('dept_name', this.ishrappr[0]?.dept_name)
       sessionStorage.setItem('plant_name', this.ishrappr[0]?.plant_name)
-      sessionStorage.setItem('emp_id', this.ishrappr[0]?.emp_slno)
+      sessionStorage.setItem('emp_id', this.ishrappr[0]?.empl_slno)
 
       this.getitems()
   },
