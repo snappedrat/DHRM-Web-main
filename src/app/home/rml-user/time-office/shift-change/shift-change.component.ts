@@ -34,13 +34,14 @@ export class ShiftChangeComponent implements OnInit {
   @Output() emit = new EventEmitter<any>()
   message = {'fam':false}
   message_bad = {'fam':true}
-form1:any
+form:any
 start_date: any = ['']
 end_date: any = ['']
 current_shift: any = ['']
 preferred_shift : any = ['']
 reliever_availability : any = ['']
 reliever_name: any = ['']
+reliever:any = 0
 mobile_no1:any =
   {
     "mobile" : this.active.snapshot.paramMap.get('mobile_no1'),
@@ -67,7 +68,7 @@ ShiftData = [
 
   constructor(private fb : UntypedFormBuilder,private http: HttpClient, private cookie: CookieService,  private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
   
-    this.form1 = this.fb.group({
+    this.form = this.fb.group({
 
       
       start_date: [''],
@@ -86,12 +87,19 @@ ShiftData = [
    
   }
   submit(){
-
+    console.log(this.form.value)
 }
 
-sendData(){
- 
-} 
 
+get(event:any)
+{
+  if(event.target.checked)
+    this.reliever = 1
+}
+no(event:any)
+{
+  if(event.target.checked)
+  this.reliever = 0
+}
 
 }

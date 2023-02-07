@@ -153,7 +153,12 @@ export class OverTimeComponent {
     // this.service.ot_apply(this.form.value)
     // .subscribe(
     //   {
-    //     next:(response:any)=>{console.log(response)}
+    //     next:(response:any)=>
+    //     {
+    //       console.log(response);
+    //       if(response.Message == 'success')
+    //         alert("OT applied Succesfully")
+    //     }
     //   }
     // )
   }

@@ -26,7 +26,6 @@ import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { OverTimeComponent } from './over-time/over-time.component';
 import { CompOffComponent } from './comp-off/comp-off.component';
 import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
-import { ForgotPunchApprComponent } from './forgot-punch-appr/forgot-punch-appr.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import { ForgotPunchApprComponent } from './forgot-punch-appr/forgot-punch-appr.
     DeptTransferComponent,
     OverTimeComponent,
     CompOffComponent,
-    ForgotPunchApprComponent,
   ],
     imports: [
         MatNativeDateModule,
