@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren:() => import('./skill-developemnt/skill-developemnt.module').then(m => m.SkillDevelopemntModule)
       },
       {
+        path: 'time-office-appr',
+        loadChildren:() => import('./time-office-appr/time-office-appr.module').then(m => m.TimeOfficeApprModule)
+      },
+      {
         path:'reports',
         component: ReportsComponent
       }

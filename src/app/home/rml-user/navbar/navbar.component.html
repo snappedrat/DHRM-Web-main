@@ -144,6 +144,30 @@
                 </mat-nav-list>
             </mat-expansion-panel>
 
+            <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
+                <mat-expansion-panel-header style="color: white">
+                    <mat-icon class="icon-pad">
+                        task
+                    </mat-icon>
+                    Time Office Approval
+                </mat-expansion-panel-header>
+                <mat-nav-list dense>
+
+                    <a mat-list-item routerLink="/rml/time-office-appr/forgot-punch-appr" style="color: white">
+                        <mat-icon class="icon-pad">browse_gallery</mat-icon>Forget Punch</a>
+                    <a mat-list-item routerLink="/rml/time-office-appr/shift-change-appr" style="color: white">
+                        <mat-icon class="icon-pad">track_changes</mat-icon>Shift Change</a>
+                    <a mat-list-item routerLink="/rml/time-office-appr/over-time-appr" style="color: white">
+                        <mat-icon class="icon-pad">more_time</mat-icon>Over Time</a>
+                    <a mat-list-item routerLink="/rml/time-office-appr/comp-off-appr" style="color: white">
+                        <mat-icon class="icon-pad">add_task</mat-icon>Comp Off</a>
+                    <a mat-list-item routerLink="/rml/time-office-appr/leave-appr" style="color: white">
+                        <mat-icon class="icon-pad">villa</mat-icon>Leave</a>
+                    <a mat-list-item routerLink="/rml/time-office-appr/od-appr" style="color: white">
+                        <mat-icon class="icon-pad">work_history</mat-icon>On-Duty</a>
+                </mat-nav-list>
+            </mat-expansion-panel>
+
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
