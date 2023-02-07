@@ -1,91 +1,96 @@
 <div class= "container">
-    <div class="md-5">
-    <br>
-    
-    <mat-form-field appearance="fill">
-        <mat-label>Month and Year</mat-label>
-        <input matInput [matDatepicker]="dp" [formControl]="date">
-        <mat-hint>MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+  <div class="md-5">
+  <br>
+  
+      <mat-label> <div class="fs-text"><b>Over Time </b></div></mat-label>
+      <mat-form-field>
+        <input matInput [matDatepicker]="dp" placeholder="Month and Year" [formControl]="date">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
         <mat-datepicker #dp
                         startView="multi-year"
-                        (monthSelected)="setMonthAndYear($event, dp)"
+                        (yearSelected)="chosenYearHandler($event)"
+                        (monthSelected)="chosenMonthHandler($event, dp)"
                         panelClass="example-month-picker">
         </mat-datepicker>
-      </mat-form-field></div></div>
-      <br>
-  <div>
-    <div class= "container">
-        <div class="md-5">
-    <h1 class="title" >Over Time Status</h1>
-    <hr style="border-block-color: orange" />
+      </mat-form-field>
+    </div>
   </div>
+  
+  
   <br><br><br>
+  <h1 class="title" >Over Time Status</h1>
+  <hr style="border-block-color: orange" />
   <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
           <thead>
           <tr>
             <th
-            div class="text-center"
+            class="text-center"
+            style="width: 500px"
+            style="background-color: darkblue"
     >
-      Date
-              
+       SNo
+              <th
+                       div class="text-center"
+              >
+                 Date
               </th>
               <th
                        div class="text-center"
               >
-         Machine
+               Machine
               </th>
               <th
-                      div class="text-center"
+                       div class="text-center"
               >
-
-                In
+               In
               </th>
-             
+              <th
+                       div class="text-center"
+              >
+               Out
+              </th>
               <th
                        div class="text-center"
                       >
-              Out
+                    Hrs
               </th>
               <th
               div class="text-center"
              >
-       Hrs
+   Work
      </th>
-     <th
-     div class="text-center"
-    >
-Work
-</th>
-     <th
-     div class="text-center"
-    >
- Status
-</th>
+              <th
+                       div class="text-center"
+                      >
+           Status
+              </th>
             </tr>
             </thead>
             <tbody >
-                <tr *ngFor = "let i of dummy; let a = index">
+                <tr *ngFor = "let i of table_data; let a = index">
+                    <td>{{a+1}}</td>
                     <td>{{i.date}}</td>
                     <td>{{i.machine}}</td>
-                    <td>{{i.in_time}}</td>
+                    <td>{{i.in_time}</td>
                     <td>{{i.out_time}}</td>
                     <td>{{i.hrs}}</td>
                     <td>{{i.work}}</td>
                     <td>{{i.status}}</td>
-                    
   
-                    
+                    <td>
+  
+
+                    </td>
                 </tr>
             </tbody>
         </table>
     </table>
   </div>
-    </div></div>
   
   
-    
-      
-      
+  
+  
+  
+  

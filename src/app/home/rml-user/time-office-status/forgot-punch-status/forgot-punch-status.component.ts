@@ -65,16 +65,24 @@ export const MY_FORMATS = {
   ],
 })
 
+
 export class ForgotPunchStatusComponent {
   date = new FormControl(moment());
+
+  dates:any
+  data:any= ['']
+  table_temp:any
+  table_data:any = []
+  temp_a: any;
+  disable: number = 1;
+
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-     date:[''],
-     applied_in :[''],
+     actual_in:[''],
+     actual_out :[''],
+      applied_in: [''],
       applied_out: [''],
-      actual_in: [''],
-      actual_out: [''],
-      reasons: [''],
+      reason: [''],
       status: ['']
       
      
@@ -86,9 +94,7 @@ export class ForgotPunchStatusComponent {
 
   sample : any = environment.path
 
-  dummy: any = [
-
-  ]
+  dummy: any 
   editing_flag: any;
   ngOnInit(): void {
     this.service.getbank().
@@ -132,8 +138,57 @@ export class ForgotPunchStatusComponent {
   }
 
  
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value!;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
 
- 
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
+  {
+    const ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+    var x = ctrlValue.month()+1
+
+    if(x<10)
+      var send = ctrlValue.year()+'/0'+x
+    else
+      var send = ctrlValue.year()+'/'+x
+
+    this.getDates(send)
+  }
+  getDates(date:any)
+  {
+    this.table_data = []
+    var form = {date: date, id: sessionStorage.getItem('user_name')}
+
+    this.service.coff_date(form)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response); this.data = response;
+          for(var i=0; i<this.data.length; i++)
+          {
+            var f = {date: this.data[i].dates, emp_id: sessionStorage.getItem('user_name')}
+            this.service.coff_details(f)
+            .subscribe(
+              {
+                next: (response:any)=>
+                {
+                  console.log(response); this.table_temp = response;
+                  this.table_data.push(this.table_temp);
+                  console.log(this.table_data)
+                }
+              }
+            )
+          }
+        },
+        error: (err)=>{console.log(err)}
+      })
+  }
 /////////////////////////////////////////////////////edit functions
 
 delete(a:any)

@@ -36,6 +36,7 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
   ],
   imports: [
     MatNativeDateModule,
+    MatDatepickerModule,
     CommonModule,
     TimeOfficeStatusRoutingModule,
     CalendarModule.forRoot({
