@@ -22,6 +22,8 @@ export class NavbarComponent implements OnInit{
   ishr: any 
   istrainer:any
   istrainee:any
+  istou:any
+  isadmin:any
   a : any
   username :any = {
     "username": sessionStorage.getItem('user_name'),
@@ -68,7 +70,9 @@ getHr()
       sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
-      sessionStorage.setItem('istrainee', this.ishrappr[0]?.Is_Trainee)
+      sessionStorage.setItem('istrainee', this.ishrappr[0]?.is_trainee)
+      sessionStorage.setItem('isadmin', this.ishrappr[0]?.is_admin)
+      sessionStorage.setItem('istou', this.ishrappr[0]?.Is_TOU)
       sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
       if(this.username.user == 'emp')
         sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_Name)
@@ -96,6 +100,7 @@ getitems()
   this.showname = sessionStorage.getItem('emp_name')
   this.showdept = sessionStorage.getItem('dept_name')
   this.showplant = sessionStorage.getItem('plant_name')
+
 
 }
 

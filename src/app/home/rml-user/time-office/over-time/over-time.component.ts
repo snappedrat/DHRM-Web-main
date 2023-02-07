@@ -147,20 +147,23 @@ export class OverTimeComponent {
   }
   save()
   {
+    this.form.controls['machine_id'].setValue(this.machine_id[this.form.controls['machine_id'].value.split('.')[0]-1].machine_id)
     this.form.controls['ot_date'].setValue(this.table_data[this.temp_a].date)
     this.form.controls['ot_hr'].setValue(this.table_data[this.temp_a].Overtime)
     console.log(this.form.value)
-    // this.service.ot_apply(this.form.value)
-    // .subscribe(
-    //   {
-    //     next:(response:any)=>
-    //     {
-    //       console.log(response);
-    //       if(response.Message == 'success')
-    //         alert("OT applied Succesfully")
-    //     }
-    //   }
-    // )
+    this.service.ot_apply(this.form.value)
+    .subscribe(
+      {
+        next:(response:any)=>
+        {
+          console.log(response);
+          if(response.Message == 'Success')
+            alert("OT applied Succesfully")
+          else
+            alert(response.Message)
+        }
+      }
+    )
   }
 }
 

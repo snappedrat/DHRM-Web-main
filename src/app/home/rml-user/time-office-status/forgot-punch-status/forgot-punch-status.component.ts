@@ -7,15 +7,6 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
-import { MatSidenav } from '@angular/material/sidenav';
-import { ServiceService } from '../../masters/service.service';
-import { User } from '../../masters/user/user';
-import { MatTableModule } from '@angular/material/table';
-import { Observable,Subject } from 'rxjs';
-import { Options } from 'selenium-webdriver';
-import { Directive, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";

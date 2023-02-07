@@ -61,6 +61,12 @@ export class TraineeTestComponent implements OnInit {
     })
    }
 
+   logout()
+   {
+    sessionStorage.clear()
+    this.router.navigate([''])
+   }
+
   ngOnInit(): void {
     console.log(this.form.value);
     this.service.getModules(this.username)

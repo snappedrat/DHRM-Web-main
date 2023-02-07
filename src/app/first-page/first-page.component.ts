@@ -12,4 +12,13 @@ export class FirstPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  login()
+  {
+    sessionStorage.setItem('user', 'emp')
+  }
+  ars()
+  {
+    sessionStorage.setItem('user', 'trainee')
+  }
+
 }

@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col">
                     <label>Start Date: </label><br>
-                    <input class="form-control"  type = "date" formControlName = "start_date">
+                    <input class="form-control"  type = "date" formControlName = "date">
                 </div>
                 <div class="col">
                     <label>End Date: </label><br>
@@ -30,11 +30,11 @@
             <div class="row">
                     <div class="col">                            
                         <label>Current Shift: </label><br>
-                        <select class="form-control" formControlName = "current_shift" ><option value="">choose an option</option><option  *ngFor= "let i of current_shift" [ngValue]="i">{{i}}</option></select>
+                        <select class="form-control" formControlName = "current_shift" ><option value="">choose an option</option><option  *ngFor= "let i of current_shift; let a = index" >{{a+1}}. {{i.shift_desc}} ({{i.act_tm_from}} - {{i. act_tm_to}})</option></select>
                     </div>
                     <div class="col">                            
                     <label>Preferred Shift: </label><br>
-                    <select class="form-control" formControlName = "preferred_shift" ><option value="">choose an option</option><option  *ngFor= "let i of preferred_shift" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" formControlName = "actual_shift" ><option value="">choose an option</option><option  *ngFor= "let i of current_shift; let a = index" >{{a+1}}. {{i.shift_desc}} ({{i.act_tm_from}} - {{i. act_tm_to}})</option></select>
                 </div>
             </div><br>
            
@@ -53,14 +53,14 @@
                 </div>
                 <div class="col" *ngIf="reliever">                            
                     <label>Reliever Name: </label><br>
-                    <select class="form-control" formControlName = "reliever_name" ><option value="">choose an option</option><option  *ngFor= "let i of reliever_name" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" formControlName = "reliever_id" ><option value="">choose an option</option><option  *ngFor= "let i of reliever_name; let a = index">{{a+1}}. {{i.fullname}}</option></select>
                 </div>
             </div><br>
 
    
                     </div></div></div></div>
 <br>
-    <button type="submit" class="btn btn-success btn-md"  [disabled]=flag (click)="submit()">Save</button>
+    <button type="submit" class="btn btn-success btn-md"  [disabled]="form.invalid" (click)="submit()">Save</button>
    
 </form>
             </div></div></div></div> 

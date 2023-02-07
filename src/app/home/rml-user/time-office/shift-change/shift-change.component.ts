@@ -4,7 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PlantcodeService } from '../../new-joiners/plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, Validators} from '@angular/forms';
 
 import {
   trigger,
@@ -15,6 +15,7 @@ import {
 } from '@angular/animations';
 import { Timestamp } from 'rxjs';
 import { threadId } from 'worker_threads';
+import { ApiService } from 'src/app/home/api.service';
 
 
 
@@ -35,11 +36,10 @@ export class ShiftChangeComponent implements OnInit {
   message = {'fam':false}
   message_bad = {'fam':true}
 form:any
-start_date: any = ['']
-end_date: any = ['']
-current_shift: any = ['']
-preferred_shift : any = ['']
-reliever_availability : any = ['']
+
+current_shift: any = []
+preferred_shift : any = []
+
 reliever_name: any = ['']
 reliever:any = 0
 mobile_no1:any =
@@ -66,17 +66,17 @@ ShiftData = [
   flag: any = true;
   state: boolean;
 
-  constructor(private fb : UntypedFormBuilder,private http: HttpClient, private cookie: CookieService,  private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
+  constructor(private fb : UntypedFormBuilder,private http: HttpClient, private service: ApiService, private active :ActivatedRoute ) {
   
     this.form = this.fb.group({
 
       
-      start_date: [''],
-      end_date: [''],
-      current_shift: [''],
-      preferred_shift : [''],
-      reliever_availability : [''],
-      reliever_name:  ['']
+      date: ['', Validators.required],
+      end_date: ['', Validators.required],
+      current_shift: ['', Validators.required],
+      actual_shift : ['', Validators.required],
+      reliever_id:  [null],
+      emp_id: [sessionStorage.getItem("user_name")]
    
     })
 
@@ -84,17 +84,60 @@ ShiftData = [
 
 
   ngOnInit(): void {
+
+    var form = {id: sessionStorage.getItem('user_name')}
+    this.service.shift_change_shifts(form)
+    .subscribe(
+      {
+        next: (response:any)=>{console.log(response); this.current_shift = response }
+      }
+    )
    
   }
-  submit(){
+  submit()
+  {
+
+    if(this.form.controls['reliever_id'].value != null)
+    {
+      this.form.controls['reliever_id'].setValue(this.reliever_name[this.form.controls['reliever_id'].value.split('.')[0]-1].apln_slno)
+    }
+    this.form.controls['actual_shift'].setValue(this.current_shift[this.form.controls['actual_shift'].value.split('.')[0]-1].shift_id)
+    this.form.controls['current_shift'].setValue(this.current_shift[this.form.controls['current_shift'].value.split('.')[0]-1].shift_id)
+
+
+
     console.log(this.form.value)
-}
+
+    this.service.shift_change(this.form.value)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+        console.log(response); 
+        if(response.message == "success")
+          alert("Shift change has been applied")
+        else
+          alert(response.message)
+        location.reload()
+        }
+      }
+    )
+    
+  }
 
 
 get(event:any)
 {
   if(event.target.checked)
     this.reliever = 1
+  
+  var form = {id: sessionStorage.getItem('user_name')}
+    this.service.shift_change_reliever_name(form)
+    .subscribe(
+      {
+        next: (response:any)=>{console.log(response); this.reliever_name = response }
+      }
+    )
 }
 no(event:any)
 {

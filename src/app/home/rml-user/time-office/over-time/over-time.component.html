@@ -29,7 +29,7 @@
                       <label>Machine ID: </label><br>
                       <select class="form-control" formControlName = "machine_id" >
                         <option value="">---Select Machine ID---</option>
-                        <option *ngFor="let i of machine_id" value="">{{i}}</option>
+                        <option *ngFor="let i of machine_id; let a = index">{{a+1}}.{{i.machine_name}}</option>
                       </select>
                   </div>
               </div><br>
@@ -43,7 +43,7 @@
           </form>
       </div>
       <div class="modal-footer">
-          <button mat-raised-button type="button" color="primary" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')">Apply</button>
+          <button mat-raised-button type="button" color="primary" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" [disabled]="form.invalid" >Apply</button>
       </div>
     </ng-template>
     

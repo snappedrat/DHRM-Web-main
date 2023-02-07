@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../auth.service';
 import { CompanyComponent } from '../masters/company/company.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ApiService } from '../../api.service';
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
     master: any;
     username: any = ''
     password:any = ''
-    constructor(public fb: UntypedFormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private cookie:CookieService) {}
+    constructor(public fb: UntypedFormBuilder, private http: HttpClient, private router: Router, private authService: AuthService, private cookie:CookieService, private service: ApiService) {}
     ngOnInit() {
 
         this.exform = new UntypedFormGroup({
@@ -45,7 +46,9 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.authService
+        if(sessionStorage.getItem('user')=='emp')
+        {
+            this.authService
             .login(this.exform.get('User_Name')?.value, this.exform.get('Password')?.value)
             .subscribe({
                 next: (response) => {
@@ -53,15 +56,9 @@ export class LoginComponent implements OnInit {
                     if(response.token) {
                         sessionStorage.setItem('token', response.token)
                     }
-                    if(response.message == "Success1") 
+                    if(response.message == "Success") 
                     {
                         this.goPlaces();
-                        sessionStorage.setItem('user', 'emp')
-                    } 
-                    else if(response.message == "Success2") 
-                    {
-                        this.goPlaces();
-                        sessionStorage.setItem('user', 'trainee')
                     } 
                     else if (response.message == "User") 
                     {
@@ -72,6 +69,34 @@ export class LoginComponent implements OnInit {
                 },
                 error: (error) => console.log(error),
             });
+        }
+
+        else
+        {
+            console.log(this.exform.value)
+            this.service.ars_login(this.exform.value)
+            .subscribe({
+                next: (response:any) => {
+                    console.log(response);
+                    if(response.token) {
+                        sessionStorage.setItem('token', response.token)
+                    }
+                    if(response.message == "Success") 
+                    {
+                        this.goPlaces();
+                    } 
+                    else if (response.message == "User") 
+                    {
+                        alert("Username does not exist");
+                    } else {
+                        alert("Please Enter the correct Password");
+                    }
+                },
+                error: (error) => console.log(error),
+            });
+        }
+
+
     }
 
 

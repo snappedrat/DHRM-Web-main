@@ -18,6 +18,11 @@ url2:any = environment.path2
   constructor(private http: HttpClient) {}
 
 ////////////////////////////////////////////////////////////////////////masters
+  ars_login(form:any)
+  {
+    return this.http.post(this.url+'/ars-login', form)
+  }
+
   companyshow()
   {
     return this.http.get(this.url+'/companyshow')
@@ -388,6 +393,18 @@ url2:any = environment.path2
   ot_apply(form:any)
   {
     return this.http.post(this.url2+'/ot_apply', form)
+  }
+  shift_change_shifts(form:any)
+  {
+    return this.http.get(this.url2+'/shift_change_shifts?id='+form.id, form)
+  }
+  shift_change_reliever_name(form:any)
+  {
+    return this.http.get(this.url2+'/shift_change_reliever_name?id='+form.id, form)
+  }
+  shift_change(form:any)
+  {
+    return this.http.post(this.url2+'/shift_change', form) 
   }
 
 }

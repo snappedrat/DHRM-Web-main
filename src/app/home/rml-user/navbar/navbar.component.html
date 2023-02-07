@@ -4,6 +4,7 @@
         <mat-nav-list style="background-color: #023075;">
             <a mat-list-item routerLink="#" style="color: white">
                 <mat-icon class="icon-pad">dashboard</mat-icon> Dashboard</a>
+            <div *ngIf = "isadmin == 'true' ">
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -43,6 +44,7 @@
                         <mat-icon class="icon-pad">watch_later</mat-icon>Shift</a>
                 </mat-nav-list>
             </mat-expansion-panel>
+            </div>
             <div *ngIf = "ishr == 'true' || ishrappr == 'true' ">
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
@@ -61,10 +63,14 @@
                     <a mat-list-item routerLink="/rml/new_joiners/hr-approval" style="color: white">
                         <mat-icon class="icon-pad" >how_to_reg</mat-icon>HR Approval</a>
                     </div>
+                    <div *ngIf = "ishr == 'true' || ishrappr == 'true' ">
                     <a mat-list-item routerLink="/rml/new_joiners/onboard" style="color: white">
                         <mat-icon class="icon-pad" >how_to_reg</mat-icon>Onboard/Seperation</a>
+                    </div>
+                    <div *ngIf = "ishr == 'true' ">
                     <a mat-list-item routerLink="/rml/new_joiners/dept_transfer" style="color: white">
                         <mat-icon class="icon-pad" >how_to_reg</mat-icon>Department Transfer</a>
+                    </div>
 
                 </mat-nav-list>
             </mat-expansion-panel>
@@ -143,7 +149,7 @@
                         <mat-icon class="icon-pad">work_history</mat-icon>On-Duty</a>
                 </mat-nav-list>
             </mat-expansion-panel>
-
+            <div *ngIf="istou == 'true' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -167,7 +173,8 @@
                         <mat-icon class="icon-pad">work_history</mat-icon>On-Duty</a>
                 </mat-nav-list>
             </mat-expansion-panel>
-
+        </div>
+        <div *ngIf="istrainee == 'false' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -176,14 +183,20 @@
                     Skill Development
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
+                    <div *ngIf="istrainer == 'true' " >
                     <a mat-list-item [routerLink]="['/rml/skill-developement/trainer-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people</mat-icon>HR Evaluation</a>
+                    </div>
+                    <div *ngIf="ishr == 'true' || ishrappr =='true' " >
                     <a mat-list-item [routerLink]="['/rml/skill-developement/supervisor-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people_outline</mat-icon>Supervisor Evaluation</a>
+                    </div>
                     <a mat-list-item [routerLink]="['/rml/skill-developement/evaluation-due']" style="color: white">
                         <mat-icon class="icon-pad">plus_one</mat-icon>Evaluation Due Summary</a>
                 </mat-nav-list>
             </mat-expansion-panel>
+            </div>
+            <div *ngIf="istrainee == 'false' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -198,10 +211,13 @@
                         <mat-icon class="icon-pad">event</mat-icon>Annual Planning</a>
                 </mat-nav-list>
             </mat-expansion-panel>
+            </div>
+            <div *ngIf="istrainee == 'false' " >
             <a mat-list-item routerLink="#" style="color: white">
                 <mat-icon class="icon-pad">alarm_add</mat-icon>Shift Roaster</a>
             <a mat-list-item routerLink="/rml/reports" style="color: white">
                 <mat-icon class="icon-pad">report</mat-icon>Reports</a>
+            </div>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

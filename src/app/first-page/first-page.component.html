@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-2 mb-3 " id="shift1" >
           <div class="box shadow-lg">
-            <button routerLink="/rml/login"><img class= "picture" src="../../assets/shr.png" >
+            <button (click)="login()" routerLink="/rml/login"><img class= "picture" src="../../assets/shr.png" >
             <h3 class="text mt-2">RANE User Login</h3></button>
           </div>
         </div>
@@ -35,8 +35,8 @@
           </div></div>
        
             <div class="col-md-2 mb-3 " id="shift2" >
-          <div class="box shadow-lg" routerLink="/traineeevaluation">
-            <button><img class= "picture" src="../../assets/te.png" >
+          <div class="box shadow-lg" routerLink="/rml/login">
+            <button (click)="ars()" ><img class= "picture" src="../../assets/te.png" >
             <h3 class="text mt-2">ARS Login</h3></button>
           </div></div></div>
         </div>
