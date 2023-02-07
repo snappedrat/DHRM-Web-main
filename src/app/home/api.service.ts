@@ -356,6 +356,38 @@ url2:any = environment.path2
   {
     return this.http.post(this.url2+'/forgot_punch', form)
   }
-  
+  coff_date(form:any)
+  {
+    return this.http.post(this.url2+'/coff_dates', form)
+  }
+  coff_details(form:any)
+  {
+    return this.http.get(this.url2+'/coff_details?emp_id='+form.emp_id+'&date='+form.date, form)
+  }
+  coff_date_validation(form:any)
+  {
+    return this.http.get(this.url2+'/coffDateValidation?emp_id='+form.emp_id+'&coffDate='+form.coff_date+'&date='+form.date, form)
+  }
+  emp_coff(form:any)
+  {
+    return this.http.post(this.url2+'/emp_coff', form)
+  }
+///////////////////////////////////////////////////
+  ot_dates(form:any)
+  {
+    return this.http.post(this.url2+'/ot_dates', form)
+  }
+  ot_details(form:any)
+  {
+    return this.http.get(this.url2+'/ot_details?emp_id='+form.emp_id+'&date='+form.date, form)
+  }
+  get_machine_id(form:any)
+  {
+    return this.http.get(this.url2+'/ot_machine_id?id='+form.id, form)
+  }
+  ot_apply(form:any)
+  {
+    return this.http.post(this.url2+'/ot_apply', form)
+  }
 
 }

@@ -6,28 +6,81 @@
   display: none;
 }
 .fs-text{
-    font-size: 40px;
-    font-weight: 900;
+    font-size: 20px;
     text-align: center;
     color: rgb(0, 0, 139);
     text-decoration: underline;
 }
-.container{
-    box-shadow: 2px 4px 4px 3px rgba(0, 0, 0, 0.4);
-  width: 400px;
-  height: 250px;
-  margin-top: 5%;
-  margin-left: 5%;
-  float: left;
-  font-size:18px;
-  border-color: black;
-  }
-  .fs{
-    align-items: center;
-    color: blue;
 
+.btn {
+  float: right;
+
+}
+.boxx{
+  box-sizing: 100%;
+}
+
+th{
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+td{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-size: medium;
+}
+th { background: #c5c5c5;}
+table 
+{
+border-collapse: collapse;
+width: 100%;
+}
+td, th { border: 1px solid #cdcdcd; padding: 8px;}
+.form-group
+{
+background-color: lightgrey;
+}
+
+tbody
+{
+text-align: center;
+
+}
+
+.table-wrapper
+{
+  display: block;
+}
+.search{
+margin-left: 0px;
+}
+.button{
+
+  padding-right:50px;
+}
+.button1{
+
+padding-right:50px;
+}
+.title{
+  font-size: 30px;
+  font-style: normal;
+  color:rgb(0, 0, 139);
+  font-weight:bolder;
+  text-align:center;
+}
+.text-center{
+  width: 500px;
+  background-color: darkblue;
+
+}
+.modal-backdrop {
+  z-index: 1040 !important;
   }
-  .fs{
-    size:10px;
+  .modal-content {
+  margin: 2px auto;
+  z-index: 1100 !important;
   }
+
+
  

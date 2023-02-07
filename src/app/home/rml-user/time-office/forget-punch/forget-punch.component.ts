@@ -14,9 +14,10 @@ export class ForgetPunchComponent implements OnInit {
     bio_time_A:any
     bio_time_B:any
     form:any
-    disable:any
+    disable:any = 0
   disable1: number;
   disable2: number;
+  canapply: number;
 
   constructor( private service: ApiService, private fb: UntypedFormBuilder ) {
 
@@ -33,6 +34,9 @@ export class ForgetPunchComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    this.getChangedValue(new Date())
+
   }
 
   getChangedValue(event:any)
@@ -51,10 +55,19 @@ export class ForgetPunchComponent implements OnInit {
     .subscribe({
       next: (response:any)=>
       {
-        console.log(response)
         this.bio_time_A = response.in_time
         this.bio_time_B = response.out_time
-        this.disable =((this.bio_time_A == null) && (this.bio_time_B == null))? 1 : 0
+        console.log(response)
+        if(response.canApply == 0)
+        {
+          this.disable = 0;
+          console.log(this.disable)
+        }
+        else
+        {
+          this.disable = ((this.bio_time_A == null) && (this.bio_time_B == null))? 1 : 0
+        }
+
         this.disable1 =(this.bio_time_A == null) ? 1 : 0
         this.disable2 =(this.bio_time_B == null)? 1 : 0
       }
@@ -73,14 +86,6 @@ export class ForgetPunchComponent implements OnInit {
       {
         next:(response:any)=>{console.log(response);
           alert(response.message)
-        // if(response.message == 'No of days exceeds limit')
-        // {
-        //   alert(response.message)
-        // }
-        // else if(response.message == "You have already applied for this date.")
-        // { 
-        //   alert(response.message)
-        // }
         }
       }
     )

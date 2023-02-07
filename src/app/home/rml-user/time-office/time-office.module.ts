@@ -25,9 +25,8 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { OverTimeComponent } from './over-time/over-time.component';
 import { CompOffComponent } from './comp-off/comp-off.component';
-
-
-
+import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
+import { ForgotPunchApprComponent } from './forgot-punch-appr/forgot-punch-appr.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,8 @@ import { CompOffComponent } from './comp-off/comp-off.component';
     LeaveComponent,
     DeptTransferComponent,
     OverTimeComponent,
-    CompOffComponent
+    CompOffComponent,
+    ForgotPunchApprComponent,
   ],
     imports: [
         MatNativeDateModule,
@@ -61,7 +61,9 @@ import { CompOffComponent } from './comp-off/comp-off.component';
         MatStepperModule,
         MatIconModule,
         NgxMatTimepickerModule,
-        FormsModule
+        FormsModule,
+        
+        
         
     ]
 })
