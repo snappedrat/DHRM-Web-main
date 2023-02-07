@@ -11,18 +11,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
 
-// Depending on whether rollup is used, moment needs to be imported differently.
-// Since Moment.js doesn't have a default export, we normally need to import using the `* as`
-// syntax. However, rollup creates a synthetic default module and we thus need to import it using
-// the `default as` syntax.
 import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
 import {Moment} from 'moment';
 
 const moment = _moment;
 
-// See the Moment.js docs for the meaning of these formats:
-// https://momentjs.com/docs/#/displaying/format/
 export const MY_FORMATS = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -43,9 +36,6 @@ export const MY_FORMATS = {
   templateUrl: 'forgot-punch-status.component.html',
   styleUrls: ['forgot-punch-status.component.css'],
   providers: [
-    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
-    // application's root module. We provide it at the component level here, due to limitations of
-    // our example generation script.
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
@@ -62,73 +52,28 @@ export class ForgotPunchStatusComponent {
 
   dates:any
   data:any= ['']
-  table_temp:any
   table_data:any = []
   temp_a: any;
   disable: number = 1;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
-    this.form = this.fb.group({
-     actual_in:[''],
-     actual_out :[''],
-      applied_in: [''],
-      applied_out: [''],
-      reason: [''],
-      status: ['']
-      
-     
-    })
    }
-   closeResult: string;
 
-  form:any
+   ngOnInit(): void {
 
-  sample : any = environment.path
+    var date = new Date()
+    var year = date.getFullYear()
+    var month = date.getMonth()+1
 
-  dummy: any 
-  editing_flag: any;
-  ngOnInit(): void {
-    this.service.getbank().
-    subscribe({
-      next: (response)=>{this.dummy = response}
-    })
-  }
+    if(month<10)
+    var send = year+'/0'+month
+  else
+    var send = year+'/'+month
 
-  open(content:any)
-  {
-    this.form.reset();
-    this.editing_flag = false
-    console.log("opening")
-    this.modalService.open(content, {centered: true})
-  }
+    this.getDates(send)
 
-  save()
-  {
-    this.form.controls['Slno'].setValue(this.dummy.length+1)
-    this.service.addbank(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('bank already exists')
-      }
-    else
-      {
-        this.dummy.push(this.form.value)
+   }
 
-        this.form.reset()
-      }}
-    })    
-
-  }
-/////////////////////////////////////////////////////edit functions
-  opentoedit(content:any)
-  {
-    console.log("opening")
-    this.modalService.open(content, {centered: true})
-  }
-
- 
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value!;
     ctrlValue.year(normalizedYear.year());
@@ -150,69 +95,16 @@ export class ForgotPunchStatusComponent {
 
     this.getDates(send)
   }
+
   getDates(date:any)
   {
-    this.table_data = []
-    var form = {date: date, id: sessionStorage.getItem('user_name')}
-
-    this.service.coff_date(form)
-    .subscribe(
-      {
-        next: (response:any)=>
-        {
-          console.log(response); this.data = response;
-          for(var i=0; i<this.data.length; i++)
-          {
-            var f = {date: this.data[i].dates, emp_id: sessionStorage.getItem('user_name')}
-            this.service.coff_details(f)
-            .subscribe(
-              {
-                next: (response:any)=>
-                {
-                  console.log(response); this.table_temp = response;
-                  this.table_data.push(this.table_temp);
-                  console.log(this.table_data)
-                }
-              }
-            )
-          }
-        },
-        error: (err)=>{console.log(err)}
-      })
+    var form = {empID: sessionStorage.getItem('user_name'), date: date}
+    this.service.forgotPunchStatus(form)
+    .subscribe({
+      next: (response:any)=>{console.log(response); this.table_data = response}
+    })
   }
-/////////////////////////////////////////////////////edit functions
 
-delete(a:any)
-{
-  this.service.deletebank(this.dummy[a])
-  .subscribe({
-    next: (response:any) =>{console.log(response); 
-    if(response.message == 'success')
-      this.dummy.splice(a,1)
-  }
-  })
-}
-
-exportexcel(): void
-{
-  var ws = XLSX.utils.json_to_sheet(this.dummy);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'bank_details.xlsx');
-}
-
-reset()
-{
-  this.form.reset()
-}
-
-setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {
-  const ctrlValue = this.date.value!;
-  ctrlValue.month(normalizedMonthAndYear.month());
-  ctrlValue.year(normalizedMonthAndYear.year());
-  datepicker.close();
-
-}
 }
 
 

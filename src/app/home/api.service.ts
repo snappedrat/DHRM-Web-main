@@ -377,7 +377,6 @@ url2:any = environment.path2
   {
     return this.http.post(this.url2+'/emp_coff', form)
   }
-///////////////////////////////////////////////////
   ot_dates(form:any)
   {
     return this.http.post(this.url2+'/ot_dates', form)
@@ -405,6 +404,22 @@ url2:any = environment.path2
   shift_change(form:any)
   {
     return this.http.post(this.url2+'/shift_change', form) 
+  }
+  forgotPunchStatus(form:any)
+  {
+    return this.http.get(this.url2+'/forgotPunchStatus?empID='+form.empID+'&date='+form.date, form)
+  }
+  shiftChangeStatus(form:any)
+  {
+    return this.http.get(this.url2+'/shiftChangeStatus?empID='+form.empID+'&date='+form.date, form)
+  }
+  otStatus(form:any)
+  {
+    return this.http.get(this.url2+'/otStatus?empID='+form.empID+'&date='+form.date, form)
+  }
+  coffStatus(form:any)
+  {
+    return this.http.get(this.url2+'/coffStatus?empID='+form.empID+'&date='+form.date, form)
   }
 
 }

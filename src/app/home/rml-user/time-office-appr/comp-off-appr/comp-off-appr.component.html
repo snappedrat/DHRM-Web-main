@@ -7,12 +7,12 @@
                     Are you sure you want to approve?
                     <div class = "row">
                         <div class = "col">
-                            <button class="btn btn-success btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">YES</span></button>
+                            <button class="btn btn-success btn-sm" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >YES</span></button>
 </div>
                         <div class = "col">
                         <div class="button">
-                            <button class="btn btn-danger btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">NO</span></button>
-                            ></div></div></div>
+                            <button class="btn btn-danger btn-sm"(click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >NO</span></button>
+                            </div></div></div>
                 </div>
             <br>
          <br>
@@ -34,12 +34,12 @@
                         Are you sure you want to delete?
                         <div class = "row">
                             <div class = "col">
-                                <button class="btn btn-success btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">YES</span></button>
+                                <button class="btn btn-success btn-sm"  (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">YES</span></button>
     </div>
                             <div class = "col">
                             <div class="button">
-                                <button class="btn btn-danger btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">NO</span></button>
-                                ></div></div></div>
+                                <button class="btn btn-danger btn-sm" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">NO</span></button>
+                                </div></div></div>
                     </div>
                 <br>
              <br>
@@ -119,11 +119,7 @@
                         >
              Status
                 </th>
-                <th
-                         div class="text-center"
-                        >
-             Status
-                </th>
+
               </tr>
               </thead>
               <tbody >
@@ -139,10 +135,10 @@
                      
     
                         <td>
-                            <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content1)">
+                            <button mat-mini-fab color = 'accent' (click)="open(content1)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button mat-mini-fab color="warn" type="button" (click)="opentoedit1(content2)" >
+                            <button mat-mini-fab color="warn" type="button" (click)="open1(content2)" >
                                 <mat-icon>delete</mat-icon>
                             </button>
                        

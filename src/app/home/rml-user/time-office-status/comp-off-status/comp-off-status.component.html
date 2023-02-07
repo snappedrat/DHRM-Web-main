@@ -34,7 +34,7 @@
               <th
                        div class="text-center"
               >
-                 Date
+                 Worked Date
               </th>
               <th
                        div class="text-center"
@@ -49,18 +49,14 @@
               <th
                        div class="text-center"
               >
-                Applied In
+                Coff Date
               </th>
-              <th
-                       div class="text-center"
-                      >
-                     Applied Out
-              </th>
+
               <th
               div class="text-center"
              >
-    Reason
-     </th>
+              Reason
+              </th>
               <th
                        div class="text-center"
                       >
@@ -71,17 +67,12 @@
             <tbody >
                 <tr *ngFor = "let i of table_data; let a = index">
                     <td>{{a+1}}</td>
-                    <td>{{i.work_date}}</td>
-                    <td>{{i.in_time}}</td>
-                    <td>{{i.out_time}}</td>
-                    <td>{{i.reasons}}</td>
+                    <td>{{i.workedDate}}</td>
+                    <td>{{i.inTime}}</td>
+                    <td>{{i.outTime}}</td>
                     <td>{{i.coff_date}}</td>
-                    <td>{{i.coff_status}}</td>
-  
-                    <td>
-  
-
-                    </td>
+                    <td>{{i.reason}}</td>
+                    <td>{{i.coffStatus}}</td>
                 </tr>
             </tbody>
         </table>

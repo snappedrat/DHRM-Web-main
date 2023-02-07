@@ -52,6 +52,7 @@ export const MY_FORMATS = {
   selector: 'comp-off-appr',
   templateUrl: 'comp-off-appr.component.html',
   styleUrls: ['comp-off-appr.component.css'],
+  encapsulation: ViewEncapsulation.None,
   providers: [
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
@@ -73,7 +74,7 @@ export class CompOffApprComponent {
   dates:any
   data:any= ['']
   table_temp:any
-  table_data:any = []
+  table_data:any = ['']
   temp_a: any;
   disable: number = 1;
 
@@ -95,14 +96,9 @@ export class CompOffApprComponent {
 
   sample : any = environment.path
 
-  dummy: any 
+  dummy: any  = ['']
   editing_flag: any;
   ngOnInit(): void {
-    this.service.getbank().
-    subscribe({
-      next: (response)=>{this.dummy = response}
-      
-    })
   }
 
   open(content1:any)
@@ -122,49 +118,14 @@ export class CompOffApprComponent {
   save()
   {
     this.form.controls['Slno'].setValue(this.dummy.length+1)
-    this.service.addbank(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('bank already exists')
-      }
-    else
-      {
-        this.dummy.push(this.form.value)
-
-        this.form.reset()
-      }}
-    })    
 
   }
 /////////////////////////////////////////////////////edit functions
-  opentoedit(content1:any)
-  {
-    console.log("opening")
-    this.modalService.open(content1, {centered: true})
 
-  }
-  opentoedit1(content1:any)
-  {
-    console.log("opening")
-    this.modalService.open(content1, {centered: true})
-
-  }
 
   submit(){
-    console.log("values : ",this.form.value);        
-    this.plantcodeService.submitbank()
-   
+    console.log("values : ",this.form.value);           
     
-}
-sendData(){
-    this.plantcodeService.bank = this.form.value
-    this.emitData()
-}
-emitData()
-{
-  
 }
   chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value!;
@@ -192,30 +153,6 @@ emitData()
     this.table_data = []
     var form = {date: date, id: sessionStorage.getItem('user_name')}
 
-    this.service.coff_date(form)
-    .subscribe(
-      {
-        next: (response:any)=>
-        {
-          console.log(response); this.data = response;
-          for(var i=0; i<this.data.length; i++)
-          {
-            var f = {date: this.data[i].dates, emp_id: sessionStorage.getItem('user_name')}
-            this.service.coff_details(f)
-            .subscribe(
-              {
-                next: (response:any)=>
-                {
-                  console.log(response); this.table_temp = response;
-                  this.table_data.push(this.table_temp);
-                  console.log(this.table_data)
-                }
-              }
-            )
-          }
-        },
-        error: (err)=>{console.log(err)}
-      })
   }
 /////////////////////////////////////////////////////edit functions
 edit(a:any)
@@ -228,25 +165,14 @@ edit(a:any)
 
   editSave()
   {
-    this.service.updatebank(this.form.value)
-    .subscribe({
-      next: (response:any)=>{console.log(response);
-        this.dummy[this.form.controls['Slno'].value] = this.form.value
-      }
-    })
+
   }
 /////////////////////////////////////////////////////edit functions
 
 
 delete(a:any)
 {
-  this.service.deletebank(this.dummy[a])
-  .subscribe({
-    next: (response:any) =>{console.log(response); 
-    if(response.message == 'success')
-      this.dummy.splice(a,1)
-  }
-  })
+
 }
 
 exportexcel(): void

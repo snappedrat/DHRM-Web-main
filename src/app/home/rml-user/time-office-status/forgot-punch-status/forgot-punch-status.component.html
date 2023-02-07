@@ -14,10 +14,7 @@
         </mat-datepicker>
       </mat-form-field>
     </div>
-  </div>
-  
-  
-  <br><br><br>
+  </div> 
   <h1 class="title" >Forgot Punch Status</h1>
   <hr style="border-block-color: orange" />
   <div class = "table-wrapper">
@@ -71,13 +68,13 @@
             <tbody >
                 <tr *ngFor = "let i of table_data; let a = index">
                     <td>{{a+1}}</td>
-                    <td>{{i.date}}</td>
-                    <td>{{i.actual_in}}</td>
-                    <td>{{i.actual_out}}</td>
-                    <td>{{i.applied_in}}</td>
-                    <td>{{i.applied_out}}</td>
-                    <td>{{i.reason}}</td>
-                    <td>{{i.status}}</td>
+                    <td>{{i.forgotPunchDate}}</td>
+                    <td>{{i.actualInTime}}</td>
+                    <td>{{i.actualOutTime}}</td>
+                    <td>{{i.forgotInTime}}</td>
+                    <td>{{i.forgotOutTime}}</td>
+                    <td>{{i.forgotReason}}</td>
+                    <td>{{i.forgotStatus}}</td>
   
                     <td>
   

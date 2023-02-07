@@ -34,17 +34,12 @@
                 <th
                          div class="text-center"
                 >
-                   Date
+                   Start Date
                 </th>
                 <th
                          div class="text-center"
                 >
-                 In
-                </th>
-                <th
-                         div class="text-center"
-                >
-                 Out
+                  End Date
                 </th>
                 <th
                          div class="text-center"
@@ -71,13 +66,12 @@
               <tbody >
                   <tr *ngFor = "let i of table_data; let a = index">
                       <td>{{a+1}}</td>
-                      <td>{{i.date}}</td>
-                      <td>{{i.in_time}}</td>
-                      <td>{{i.out_time}</td>
-                      <td>{{i.current_shift}}</td>
-                      <td>{{i.actual_shift}}</td>
-                      <td>{{i.reliever_name}}</td>
-                      <td>{{i.status}}</td>
+                      <td>{{i.shiftChangeDate}}</td>
+                      <td>{{i.shiftChangeEndDate}}</td>
+                      <td>{{i.currentShift}}</td>
+                      <td>{{i.actualShift}}</td>
+                      <td>{{i.relieverName}}</td>
+                      <td>{{i.shiftChangeStatus}}</td>
     
                       <td>
     
