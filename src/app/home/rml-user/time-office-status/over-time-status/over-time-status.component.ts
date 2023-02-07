@@ -3,7 +3,7 @@ import {MomentDateAdapter,MAT_MOMENT_DATE_ADAPTER_OPTIONS}from '@angular/materia
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDatepicker} from '@angular/material/datepicker';
 import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder,Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
@@ -48,7 +48,7 @@ export const MY_FORMATS = {
 
 /** @title Datepicker emulating a Year and month picker */
 @Component({
-  selector: 'comp-off',
+  selector: 'over-time',
   templateUrl: 'over-time-status.component.html',
   styleUrls: ['over-time-status.component.css'],
   providers: [
@@ -65,17 +65,24 @@ export const MY_FORMATS = {
   ],
 })
 
+
 export class OverTimeStatusComponent {
   date = new FormControl(moment());
+
+  dates:any
+  data:any= ['']
+  table_temp:any
+  table_data:any = []
+  temp_a: any;
+  disable: number = 1;
+
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
-      date:[''],
-      machine:[''],
-     in_time :[''],
-      out_time: [''],
-      hrs:[''],
-      work: [''],
-      status: ['']
+      ot_date:[''],
+      work_carried_out:['', Validators.required],
+      ot_hr: [''],
+      id:[sessionStorage.getItem('user_name')],
+      machine_id:['', Validators.required]
       
      
     })
@@ -86,9 +93,7 @@ export class OverTimeStatusComponent {
 
   sample : any = environment.path
 
-  dummy: any = [
-
-  ]
+  dummy: any 
   editing_flag: any;
   ngOnInit(): void {
     this.service.getbank().
@@ -132,8 +137,57 @@ export class OverTimeStatusComponent {
   }
 
  
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value!;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
 
- 
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
+  {
+    const ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+    var x = ctrlValue.month()+1
+
+    if(x<10)
+      var send = ctrlValue.year()+'/0'+x
+    else
+      var send = ctrlValue.year()+'/'+x
+
+    this.getDates(send)
+  }
+  getDates(date:any)
+  {
+    this.table_data = []
+    var form = {date: date, id: sessionStorage.getItem('user_name')}
+
+    this.service.coff_date(form)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response); this.data = response;
+          for(var i=0; i<this.data.length; i++)
+          {
+            var f = {date: this.data[i].dates, emp_id: sessionStorage.getItem('user_name')}
+            this.service.coff_details(f)
+            .subscribe(
+              {
+                next: (response:any)=>
+                {
+                  console.log(response); this.table_temp = response;
+                  this.table_data.push(this.table_temp);
+                  console.log(this.table_data)
+                }
+              }
+            )
+          }
+        },
+        error: (err)=>{console.log(err)}
+      })
+  }
 /////////////////////////////////////////////////////edit functions
 
 delete(a:any)

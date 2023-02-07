@@ -1,1 +1,160 @@
-<p>comp-off-appr works!</p>
+<ng-template #content1 let-modal>
+    <div class="modal-content1 container">
+        <br>
+        <form [formGroup] = "form">
+            <div class = "row">
+                <div class="col">
+                    Are you sure you want to approve?
+                    <div class = "row">
+                        <div class = "col">
+                            <button class="btn btn-success btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">YES</span></button>
+</div>
+                        <div class = "col">
+                        <div class="button">
+                            <button class="btn btn-danger btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">NO</span></button>
+                            ></div></div></div>
+                </div>
+            <br>
+         <br>
+                      
+           
+  
+            
+            </div><br>
+
+        </form>
+    
+    </div></ng-template>
+    <ng-template #content2 let-modal>
+        <div class="modal-content1 container">
+            <br>
+            <form [formGroup] = "form">
+                <div class = "row">
+                    <div class="col">
+                        Are you sure you want to delete?
+                        <div class = "row">
+                            <div class = "col">
+                                <button class="btn btn-success btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">YES</span></button>
+    </div>
+                            <div class = "col">
+                            <div class="button">
+                                <button class="btn btn-danger btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">NO</span></button>
+                                ></div></div></div>
+                    </div>
+                <br>
+             <br>
+                          
+                      
+      
+                
+                </div><br>
+    
+            </form>
+        </div></ng-template>
+<div class= "container">
+    <div class="md-5">
+    <br>
+    
+        <mat-label> <div class="fs-text"><b>Comp Off</b></div></mat-label>
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp" placeholder="Month and Year" [formControl]="date">
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp
+                          startView="multi-year"
+                          (yearSelected)="chosenYearHandler($event)"
+                          (monthSelected)="chosenMonthHandler($event, dp)"
+                          panelClass="example-month-picker">
+          </mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    
+    
+    <br><br><br>
+    <h1 class="title" >Comp Off Status</h1>
+    <hr style="border-block-color: orange" />
+    <div class = "table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+            <thead>
+            <tr>
+              <th
+              class="text-center"
+              style="width: 500px"
+              style="background-color: darkblue"
+      >
+         SNo
+                <th
+                         div class="text-center"
+                >
+                   Date
+                </th>
+                <th
+                         div class="text-center"
+                >
+                 Actual In
+                </th>
+                <th
+                         div class="text-center"
+                >
+                  Actual Out
+                </th>
+                <th
+                         div class="text-center"
+                >
+                  Applied In
+                </th>
+                <th
+                         div class="text-center"
+                        >
+                       Applied Out
+                </th>
+                <th
+                div class="text-center"
+               >
+      Reason
+       </th>
+                <th
+                         div class="text-center"
+                        >
+             Status
+                </th>
+                <th
+                         div class="text-center"
+                        >
+             Status
+                </th>
+              </tr>
+              </thead>
+              <tbody >
+                  <tr *ngFor = "let i of table_data; let a = index">
+                      <td>{{a+1}}</td>
+                      <td>{{i.work_date}}</td>
+                      <td>{{i.in_time}}</td>
+                      <td>{{i.out_time}}</td>
+                      <td>{{i.reasons}}</td>
+                      <td>{{i.coff_date}}</td>
+                      <td>{{i.coff_status}}</td>
+    
+                     
+    
+                        <td>
+                            <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content1)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab color="warn" type="button" (click)="opentoedit1(content2)" >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                       
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </table>
+    </div>
+    
+    
+    
+    
+    
+    
