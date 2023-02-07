@@ -73,6 +73,7 @@ getHr()
       sessionStorage.setItem('istrainee', this.ishrappr[0]?.is_trainee)
       sessionStorage.setItem('isadmin', this.ishrappr[0]?.is_admin)
       sessionStorage.setItem('istou', this.ishrappr[0]?.Is_TOU)
+
       sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
       if(this.username.user == 'emp')
         sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_Name)
@@ -100,6 +101,8 @@ getitems()
   this.showname = sessionStorage.getItem('emp_name')
   this.showdept = sessionStorage.getItem('dept_name')
   this.showplant = sessionStorage.getItem('plant_name')
+  this.isadmin = sessionStorage.getItem('isadmin')
+  this.istou = sessionStorage.getItem('istou')
 
 
 }
