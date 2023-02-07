@@ -1,57 +1,51 @@
 <ng-template #content1 let-modal>
     <div class="modal-content1 container">
         <br>
-        <form [formGroup] = "form">
             <div class = "row">
                 <div class="col">
-                    Are you sure you want to approve?
+                    Are you sure you want to approve the request?
                     <div class = "row">
                         <div class = "col">
-                            <button class="btn btn-success btn-sm" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >YES</span></button>
-</div>
+                            <button class="btn btn-success btn-sm" (click)= "approve()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >YES</span></button>
+                        </div>
                         <div class = "col">
                         <div class="button">
-                            <button class="btn btn-danger btn-sm"(click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >NO</span></button>
-                            </div></div></div>
+                            <button class="btn btn-danger btn-sm" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;" (click)="modal.close('Close click')" >NO</span></button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
+                <br>
+                <br>
+            </div>
             <br>
-         <br>
-                      
-           
-  
-            
-            </div><br>
+    </div>
 
-        </form>
-    
-    </div></ng-template>
+</ng-template>
     <ng-template #content2 let-modal>
         <div class="modal-content1 container">
             <br>
-            <form [formGroup] = "form">
                 <div class = "row">
                     <div class="col">
-                        Are you sure you want to delete?
+                        Are you sure you want to Reject the request?
                         <div class = "row">
                             <div class = "col">
-                                <button class="btn btn-success btn-sm"  (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">YES</span></button>
-    </div>
+                                <button class="btn btn-success btn-sm"  (click)= "reject()" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">YES</span></button>
+                            </div>
                             <div class = "col">
                             <div class="button">
-                                <button class="btn btn-danger btn-sm" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">NO</span></button>
-                                </div></div></div>
+                                <button class="btn btn-danger btn-sm" style ="margin-top: 20px; text-align:center;" type="submit" (click)="modal.close('Close click')" ><span style="font-size: 14px;">NO</span></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 <br>
              <br>
-                          
-                      
-      
-                
-                </div><br>
-    
-            </form>
-        </div></ng-template>
-<div class= "container">
+        </div>
+        <br>
+    </div>
+</ng-template>
+<!-- <div class= "container">
     <div class="md-5">
     <br>
     
@@ -67,7 +61,7 @@
           </mat-datepicker>
         </mat-form-field>
       </div>
-    </div>
+</div> -->
     
     
     <br><br><br>
@@ -81,65 +75,38 @@
               <th
               class="text-center"
               style="width: 500px"
-              style="background-color: darkblue"
-      >
-         SNo
-                <th
-                         div class="text-center"
-                >
-                   Date
-                </th>
-                <th
-                         div class="text-center"
-                >
-                 Actual In
-                </th>
-                <th
-                         div class="text-center"
-                >
-                  Actual Out
-                </th>
-                <th
-                         div class="text-center"
-                >
-                  Applied In
-                </th>
-                <th
-                         div class="text-center"
-                        >
-                       Applied Out
-                </th>
-                <th
-                div class="text-center"
-               >
-      Reason
-       </th>
-                <th
-                         div class="text-center"
-                        >
-             Status
-                </th>
-
+              style="background-color: darkblue">SNo
+              </th>
+              <th div class="text-center">ID</th>
+              <th div class="text-center">Name</th>
+              <th div class="text-center">coff Date</th>
+              <th div class="text-center">In Time</th>
+              <th div class="text-center">Out Time</th>
+              <th div class="text-center">reason</th>
+              <th div class="text-center">worked Date</th>
+              <th div class="text-center">Status</th>
+                
               </tr>
               </thead>
               <tbody >
                   <tr *ngFor = "let i of table_data; let a = index">
                       <td>{{a+1}}</td>
-                      <td>{{i.work_date}}</td>
-                      <td>{{i.in_time}}</td>
-                      <td>{{i.out_time}}</td>
-                      <td>{{i.reasons}}</td>
-                      <td>{{i.coff_date}}</td>
-                      <td>{{i.coff_status}}</td>
+                      <td>{{i.EmpID}}</td>
+                      <td>{{i.EmpName}}</td>
+                      <td>{{i.coffDate}}</td>
+                      <td>{{i.inTime}}</td>
+                      <td>{{i.outTime}}</td>
+                      <td>{{i.reason}}</td>
+                      <td>{{i.workedDate}}</td>
     
                      
     
                         <td>
-                            <button mat-mini-fab color = 'accent' (click)="open(content1)">
-                                <mat-icon>edit</mat-icon>
+                            <button mat-mini-fab color = 'accent' (click)="open(content1, a)">
+                                <mat-icon>done</mat-icon>
                             </button>
-                            <button mat-mini-fab color="warn" type="button" (click)="open1(content2)" >
-                                <mat-icon>delete</mat-icon>
+                            <button mat-mini-fab color="warn" type="button" (click)="open1(content2, a)" >
+                                <mat-icon>clear</mat-icon>
                             </button>
                        
                       </td>

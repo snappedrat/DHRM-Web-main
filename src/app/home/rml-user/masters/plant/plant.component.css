@@ -71,7 +71,7 @@ margin: 2px auto;
 z-index: 1100 !important;
 
 width: 800px;;
-height: 400px;;
+height: 600px;;
 
 }
 .title{
@@ -95,4 +95,8 @@ textarea{
   width: 500px;
   background-color: darkblue;
 
+}
+.form-control
+{
+  font-size:small;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, Validators} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import * as XLSX from 'xlsx';
@@ -31,24 +31,27 @@ export class PlantComponent implements OnInit {
   form:any
   file:any
   new:any
+  company:any
+  companylist:any
 
   sample : any = environment.path
 
   dummy: any = []
   editing_flag: any;
+  inx: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
       sno:[''],
-      plant_code :[''],
-      plant_name : [''],
-      pl : [''], 
-      addr : [''],
-      locatn : [''],
+      plant_code :['', Validators.required],
+      plant_name : ['', Validators.required],
+      pl : ['', Validators.required], 
+      addr : ['', Validators.required],
+      locatn : ['', Validators.required],
       plant_sign : [''],
-      personal_area : [''],
-      payroll_area:[''],
-      company_code:['']
+      personal_area : ['', Validators.required],
+      payroll_area:['', Validators.required],
+      company_code:['', Validators.required]
      
     })
    }
@@ -57,6 +60,14 @@ export class PlantComponent implements OnInit {
     this.service.getplant().
     subscribe({
       next: (response)=>{this.dummy = response}
+    })
+    this.service.companycodelist()
+    .    subscribe({
+      next: (response)=>{
+        console.log(response)
+        this.companylist = response;
+        this.company = this.companylist.map((a:any) => a.company_name)
+      }
     })
   }
 
@@ -70,9 +81,9 @@ export class PlantComponent implements OnInit {
 
   save()
   {
-    
+    this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
     this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_'+'_sign.'+this.new)
-    console.log(this.form.controls['plant_sign'].value)
+    console.log(this.form.value)
 
     this.service.addplant(this.form.value)
     .subscribe({
@@ -88,7 +99,11 @@ export class PlantComponent implements OnInit {
         this.form.reset()
       }}
     })    
-
+  }
+  getValue(event:any)
+  {
+    var inx = event.target.value.split(':')[0]
+    this.inx = inx - 1
   }
 /////////////////////////////////////////////////////edit functions
   opentoedit(content:any)
@@ -103,7 +118,10 @@ export class PlantComponent implements OnInit {
 
     this.form.controls['sno'].setValue(a)
 
-    this.form.controls['company_code'].setValue(this.dummy[a].company_code)
+    let index = this.companylist.findIndex((x:any)=> x.company_code === this.dummy[a].company_code);
+    
+    this.form.controls['company_code'].setValue(this.companylist[index].company_name)    
+
     this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
     this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
     this.form.controls['pl'].setValue(this.dummy[a].pl)
@@ -116,6 +134,7 @@ export class PlantComponent implements OnInit {
 
   editSave()
   {
+    this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
     this.service.updateplant(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);

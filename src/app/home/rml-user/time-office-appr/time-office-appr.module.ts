@@ -21,6 +21,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
+import { OdApprComponent } from './od-appr/od-appr.component';
+import { LeaveApprComponent } from './leave-appr/leave-appr.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import {NgxMatTimepickerModule} from "ngx-mat-timepicker";
     CompOffApprComponent,
     OverTimeApprComponent,
     ShiftChangeApprComponent,
-    ForgotPunchApprComponent
+    ForgotPunchApprComponent,
+    OdApprComponent,
+    LeaveApprComponent
   ],imports: [
     MatNativeDateModule,
     CommonModule,
