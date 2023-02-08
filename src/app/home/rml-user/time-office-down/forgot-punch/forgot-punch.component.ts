@@ -3,6 +3,7 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-forgot-punch',
@@ -38,5 +39,15 @@ export class ForgotPunchComponent implements OnInit {
       }
     )
   }
+
+  exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'comp-off.xlsx');
+  window.print()
+}
    
 }

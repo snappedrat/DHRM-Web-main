@@ -48,6 +48,10 @@ const routes: Routes = [
         loadChildren:() => import('./time-office-down/time-office-down.module').then(m => m.TimeOfficeDownModule)
       },
       {
+        path: 'people-planning',
+        loadChildren:() => import('./people-planning/people-planning.module').then(m => m.PeoplePlanningModule)
+      },
+      {
         path:'reports',
         component: ReportsComponent
       }

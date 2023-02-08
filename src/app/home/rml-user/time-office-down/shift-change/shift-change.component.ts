@@ -7,6 +7,9 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
+import * as XLSX from 'xlsx';
+
+
 @Component({
   selector: 'app-shift-change',
   templateUrl: './shift-change.component.html',
@@ -28,19 +31,6 @@ export class ShiftChangeComponent implements OnInit {
   ngOnInit(): void {
 
     this.getDates()
-  }
-
-  open(content1:any, a:any)
-  {
-    this.temp_a = a
-    console.log("opening")
-    this.modalService.open(content1, {centered: true})
-  }
-  open1(content2:any, a:any)
-  {
-    this.temp_a = a
-    console.log("opening")
-    this.modalService.open(content2, {centered: true})
   }
 
   // chosenYearHandler(normalizedYear: Moment) {
@@ -76,61 +66,14 @@ export class ShiftChangeComponent implements OnInit {
     )
   }
 
-  approve()
-  {
-    var form = 
-    {
-      status: 'ACCEPT',
-      executiveID: sessionStorage.getItem('user_name'),
-      date: this.table_data[this.temp_a].shiftChangeDate,
-      end_date:  this.table_data[this.temp_a].shiftChangeEndDate,
-      empID: this.table_data[this.temp_a].empID,
-      actualShift: this.table_data[this.temp_a].actualShiftId,
+  exportexcel(): void
+{
+  let element = document.getElementById('table');
+  const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  XLSX.writeFile(wb, 'comp-off.xlsx');
+}
 
-    }
-    this.service.shiftChangeRequestStatus(form)
-    .subscribe(
-      {
-        next: (response:any)=>
-        {
-          console.log(response)
-          if(response.message == 'Success')
-          {
-            alert("The Request was Accepted")
-            this.table_data.splice(this.temp_a, 1)
-          }
-        },
-        error: (err)=>{console.log(err)}
-      }
-    )
-  }
-  reject()
-  {
-    var form = 
-    {
-      status: 'REJECT',
-      executiveID: sessionStorage.getItem('user_name'),
-      date: this.table_data[this.temp_a].shiftChangeDate,
-      end_date:  this.table_data[this.temp_a].shiftChangeEndDate,
-      empID: this.table_data[this.temp_a].empID,
-      actualShift: this.table_data[this.temp_a].actualShiftId,
-    }
-    console.log(form)
-    this.service.shiftChangeRequestStatus(form)
-    .subscribe(
-      {
-        next: (response:any)=>
-        {
-          console.log(response)
-          if(response.message == 'Success')
-          {
-            alert("The Request was Accepted")
-            this.table_data.splice(this.temp_a, 1)
-          }
-        },
-        error: (err)=>{console.log(err)}
-      }
-    )    
-  }
 
 }
