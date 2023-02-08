@@ -44,6 +44,10 @@ const routes: Routes = [
         loadChildren:() => import('./time-office-appr/time-office-appr.module').then(m => m.TimeOfficeApprModule)
       },
       {
+        path: 'time-office-down',
+        loadChildren:() => import('./time-office-down/time-office-down.module').then(m => m.TimeOfficeDownModule)
+      },
+      {
         path:'reports',
         component: ReportsComponent
       }
