@@ -1,1 +1,38 @@
-<p>shift-change works!</p>
+      <br><br><br>
+    <h1 class="title" >Comp Off Status</h1>
+    <hr style="border-block-color: orange" />
+    <div class = "table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+            <thead>
+            <tr>
+              <th
+              class="text-center"
+              style="width: 500px"
+              style="background-color: darkblue">SNo
+              </th>
+              <th div class="text-center">ID</th>
+              <th div class="text-center">Name</th>
+              <th div class="text-center">Actual Shift</th>
+              <th div class="text-center">CurrentShift</th>
+              <th div class="text-center">Reliever Name</th>
+              <th div class="text-center">Shift Start Date</th>
+              <th div class="text-center">Shift End Date</th>
+                
+              </tr>
+              </thead>
+              <tbody >
+                  <tr *ngFor = "let i of table_data; let a = index">
+                      <td>{{a+1}}</td>
+                      <td>{{i.empID}}</td>
+                      <td>{{i.empName}}</td>
+                      <td>{{i.actualShift}}</td>
+                      <td>{{i.currentShift}}</td>
+                      <td>{{i.relieverName}}</td>
+                      <td>{{i.shiftChangeDate}}</td>
+                      <td>{{i.shiftChangeEndDate}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </table>
+    </div>

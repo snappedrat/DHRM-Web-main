@@ -1,1 +1,43 @@
-<p>over-time works!</p>
+
+    <br><br><br>
+    <h1 class="title" >Comp Off Status</h1>
+    <hr style="border-block-color: orange" />
+    <div class = "table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+            <thead>
+            <tr>
+              <th
+              class="text-center"
+              style="width: 500px"
+              style="background-color: darkblue">SNo
+              </th>
+              <th div class="text-center">ID</th>
+              <th div class="text-center">Name</th>
+              <th div class="text-center">att Date</th>
+              <th div class="text-center">In Time</th>
+              <th div class="text-center">Out Time</th>
+              <th div class="text-center">Machine ID</th>
+              <th div class="text-center">Machine Name</th>
+              <th div class="text-center">Excess Hours</th>
+              <th div class="text-center">work Carried Out</th>
+                
+              </tr>
+              </thead>
+              <tbody >
+                  <tr *ngFor = "let i of table_data; let a = index">
+                      <td>{{a+1}}</td>
+                      <td>{{i.EmpID}}</td>
+                      <td>{{i.EmpName}}</td>
+                      <td>{{i.attDate}}</td>
+                      <td>{{i.inTime}}</td>
+                      <td>{{i.outTime}}</td>
+                      <td>{{i.machine_id}}</td>
+                      <td>{{i.machine_name}}</td>
+                      <td>{{i.othr}}</td>
+                      <td>{{i.workCarriedOut}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </table>
+    </div>

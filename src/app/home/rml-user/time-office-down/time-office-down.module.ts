@@ -8,6 +8,7 @@ import { OverTimeComponent } from './over-time/over-time.component';
 import { ShiftChangeComponent } from './shift-change/shift-change.component';
 import { OnDutyComponent } from './on-duty/on-duty.component';
 import { LeaveComponent } from './leave/leave.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LeaveComponent } from './leave/leave.component';
   ],
   imports: [
     CommonModule,
-    TimeOfficeDownRoutingModule
+    TimeOfficeDownRoutingModule,
+    MatIconModule
   ]
 })
 export class TimeOfficeDownModule { }

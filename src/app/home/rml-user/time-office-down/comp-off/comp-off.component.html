@@ -1,1 +1,46 @@
-<p>comp-off works!</p>
+
+    <br><br><br>
+    <h1 class="title" >Comp Off Status</h1>
+    <hr style="border-block-color: orange" />
+    <div class = "table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+            <thead>
+            <tr>
+              <th
+              class="text-center"
+              style="width: 500px"
+              style="background-color: darkblue">SNo
+              </th>
+              <th div class="text-center">ID</th>
+              <th div class="text-center">Name</th>
+              <th div class="text-center">coff Date</th>
+              <th div class="text-center">In Time</th>
+              <th div class="text-center">Out Time</th>
+              <th div class="text-center">reason</th>
+              <th div class="text-center">worked Date</th>
+                
+              </tr>
+              </thead>
+              <tbody >
+                  <tr *ngFor = "let i of table_data; let a = index">
+                      <td>{{a+1}}</td>
+                      <td>{{i.EmpID}}</td>
+                      <td>{{i.EmpName}}</td>
+                      <td>{{i.coffDate}}</td>
+                      <td>{{i.inTime}}</td>
+                      <td>{{i.outTime}}</td>
+                      <td>{{i.reason}}</td>
+                      <td>{{i.workedDate}}</td>
+    
+                  </tr>
+              </tbody>
+          </table>
+      </table>
+    </div>
+    
+    
+    
+    
+    
+    
