@@ -34,8 +34,8 @@
                         <mat-icon class="icon-pad">business_center</mat-icon>Operations</a>
                     <!-- <a mat-list-item routerLink="/rml/masters/pincode" style="color: white">
                         <mat-icon class="icon-pad">pin</mat-icon>Pin code</a> -->
-                    <a mat-list-item routerLink="#" style="color: white">
-                        <mat-icon class="icon-pad">person_add</mat-icon>Role Access</a>
+                    <!-- <a mat-list-item routerLink="#" style="color: white">
+                        <mat-icon class="icon-pad">person_add</mat-icon>Role Access</a> -->
                     <a mat-list-item routerLink="#" style="color: white">
                         <mat-icon class="icon-pad">visibility</mat-icon>FTP path</a>
                     <a mat-list-item routerLink="#" style="color: white">
@@ -128,6 +128,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
             </div>
+            <div *ngIf="istrainee == 'true' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -151,6 +152,7 @@
                         <mat-icon class="icon-pad">work_history</mat-icon>On-Duty</a>
                 </mat-nav-list>
             </mat-expansion-panel>
+            </div>
             <div *ngIf="istou == 'true' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
@@ -183,7 +185,7 @@
                     <mat-icon class="icon-pad">
                         task
                     </mat-icon>
-                    Time Office Status
+                    Time Office Report
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
 
@@ -216,7 +218,7 @@
                     <a mat-list-item [routerLink]="['/rml/skill-developement/trainer-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people</mat-icon>HR Evaluation</a>
                     </div>
-                    <div *ngIf="issupervisor == 'true' " >
+                    <div *ngIf="isRA" >
                     <a mat-list-item [routerLink]="['/rml/skill-developement/supervisor-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people_outline</mat-icon>Supervisor Evaluation</a>
                     </div>

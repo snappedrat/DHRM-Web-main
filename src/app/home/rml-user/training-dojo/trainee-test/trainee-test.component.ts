@@ -25,6 +25,7 @@ export class TraineeTestComponent implements OnInit {
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
   ind :any
+  x:any
   count:any = new Set()
   loading:any = false
   modules :any
@@ -68,6 +69,11 @@ export class TraineeTestComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    var a:any = sessionStorage.getItem('user_token')
+    var x = atob(a.split('.')[1])
+    this.x = JSON.parse(x)
+
     console.log(this.form.value);
     this.service.getModules(this.username)
     .subscribe({

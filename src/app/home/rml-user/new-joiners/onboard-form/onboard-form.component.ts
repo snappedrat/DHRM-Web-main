@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { el } from 'date-fns/locale';
 import { ApiService } from 'src/app/home/api.service';
 import { threadId } from 'worker_threads';
@@ -69,8 +69,9 @@ export class OnboardFormComponent implements OnInit {
     cat: any;
   oprn: any;
   setting: number;
+  true: boolean = false;
   
-    constructor(private fb : UntypedFormBuilder,private http: HttpClient, private active :ActivatedRoute, private service:ApiService ) {
+    constructor(private fb : UntypedFormBuilder,private http: HttpClient, private router: Router, private active :ActivatedRoute, private service:ApiService ) {
     
       this.form = this.fb.group({
         
@@ -88,7 +89,7 @@ export class OnboardFormComponent implements OnInit {
       rfr:[''],
       bnum:['', Validators.required],
       reportingto:[''],
-      uan:['', Validators.required],
+      uan:['', [Validators.required ,Validators.maxLength(12)]],
       wcontract:[''],
       trainee_id:[''],
       designation:[''],
@@ -193,6 +194,19 @@ export class OnboardFormComponent implements OnInit {
         }
       )
     }
+    get pc()
+    {
+      return this.form.controls
+    }
+
+    call(event:any)
+    {
+      if(this.form.get('uan').value.toString().length  > 12)
+        this.true = true
+      else
+        this.true = false
+    }
+
     submit()
     {
       
@@ -205,7 +219,8 @@ export class OnboardFormComponent implements OnInit {
           next: (response:any)=>{console.log(response);
           if(response.message == 'success')
           {
-            alert('The Employee has been Appointed')
+            alert('The Employee has been Appointed');
+            this.router.navigate(['/rml/new_joiners/onboard'])
             if(this.setting == 1)
             this.exportexcel();
           }
@@ -220,7 +235,11 @@ export class OnboardFormComponent implements OnInit {
         .subscribe({
           next: (response:any)=>{console.log(response);
             if(response.message == 'success')
-            alert('The Employee has been Relieved ')},
+            {
+              alert('The Employee has been Relieved ')
+              this.router.navigate(['/rml/new_joiners/onboard'])
+            }
+          },
           error: (err)=>{console.log(err)}
         })
       }

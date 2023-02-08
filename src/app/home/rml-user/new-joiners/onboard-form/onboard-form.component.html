@@ -70,8 +70,11 @@
                             </div>
                         </div>
                     <div *ngIf="!readonly" class="col-sm-4">                     
-                        <label>Process Trained </label>
-                        <select class="form-control" formControlName = "process_trained"><option value="">select</option><option  *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
+                        <mat-form-field>
+                        <mat-select placeholder="process trained" formControlName = "process_trained" multiple>
+                            <mat-option  *ngFor= "let i of process_trained" [value]="i">{{i}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                     </div>
                     <div  *ngIf="readonly" class="col-sm-4">
                        <b>Process trained:</b> 
@@ -92,8 +95,8 @@
                         </div></div><br>
                         <div class="row"> 
                             <div class="col-sm-4">
-                                <label>UAN Number <span  style="color: red;">*</span></label>
-                                <input class="form-control"  type = "number" formControlName = "uan" [readonly]="readonly">
+                                <label>UAN Number <span  style="color: red;">*</span ><span style="color: red;" *ngIf="this.true"> (it should be 12 digit)</span></label>
+                                <input class="form-control" (ngModelChange)="call($event)" type = "number" formControlName = "uan" [readonly]="readonly">
                             </div>   <br>
                             <div class="col-sm-4">                            
                                 <label>Work Contract </label>
@@ -112,5 +115,4 @@
 <br>
     <button type="submit" [disabled]="form.invalid" class="btn btn-success btn-md" (click)="submit()">Save</button>
 </form>
-<!-- [routerLink]="['/rml/new_joiners/onboard']"  -->
             </div></div></div></div>

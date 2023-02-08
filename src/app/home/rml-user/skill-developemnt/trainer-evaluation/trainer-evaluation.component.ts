@@ -31,8 +31,6 @@ export class TrainerEvaluationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("00",this.form.value)
-
     this.service.evaluationdays(this.form.value)
     .subscribe(
       {
@@ -51,12 +49,6 @@ export class TrainerEvaluationComponent implements OnInit {
     ) 
   }
 
-  open(content:any)
-  {
-    this.form.reset()
-    console.log("opening")
-    this.modalService.open(content, {centered: true})
-  }
 
   save()
   {

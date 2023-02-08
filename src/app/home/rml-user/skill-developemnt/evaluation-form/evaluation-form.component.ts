@@ -16,6 +16,7 @@ import { isThisSecond } from 'date-fns';
 
 export class EvaluationFormComponent implements OnInit {
 
+  pp:any
   line:any
   department: any
   new_skill_lvl: any = [1,2,3,4]
@@ -25,7 +26,7 @@ export class EvaluationFormComponent implements OnInit {
   status: any = {'status': ''}
   formvalues: any
   address:any  = 'hello'
-
+  image:any
   cat:any = ''
   ln:any
   dept:any
@@ -40,6 +41,7 @@ export class EvaluationFormComponent implements OnInit {
   url: any = environment.path
   obj: any;
   new: any;
+  pt: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -93,12 +95,14 @@ export class EvaluationFormComponent implements OnInit {
           {
 
             console.log(response)
-            this.obj = response    
+            this.obj = response;
+            this.image = this.url+'/'+this.obj[0][0]?.other_files6;
+
             
             try 
             {
               this.name = this.obj[0][0]?.fullname        
-              this.cat = this.obj[0][0]?.desig_name        
+              this.cat = this.obj[0][0]?.apprentice_type        
               this.dept = this.obj[0][0]?.dept_name        
               this.ln = this.obj[0][0]?.line_name        
               this.skill = this.obj[0][0]?.new_level
@@ -135,6 +139,11 @@ export class EvaluationFormComponent implements OnInit {
               next:(response:any)=>
               {
                 console.log(response)
+
+                this.pt = response[3]
+
+                this.pt = this.pt.map((a:any)=>a.oprn_desc)
+
                 this.form.controls['evaluation_date'].setValue('2023-02-02')
                 this.form.controls['score_obtained'].setValue(response[0][0].tnr_numerator)
                 this.form.controls['score_for'].setValue(response[0][0].tnr_denominator)
@@ -142,7 +151,7 @@ export class EvaluationFormComponent implements OnInit {
                 this.form.controls['line'].setValue(response[1][0].line_name)
                 this.form.controls['pe_slno'].setValue(response[1][0].pe_slno)
                 this.form.controls['department'].setValue(response[2][0].dept_name)
-                this.form.controls['process_trained'].setValue(response[3][0].oprn_desc)
+                this.form.controls['process_trained'].setValue(this.pt)
                 this.form.controls['new_skill'].setValue(response[4][0].new_level)
               }
             }
@@ -160,7 +169,10 @@ export class EvaluationFormComponent implements OnInit {
             next: (response:any)=>{
               console.log(response);
               if(response.message == 'success')
+              {
                 alert("Trainee has been Evaluated")
+                this.router.navigate(['/rml/skill-developement/supervisor-evaluation'])
+              }
             }
           })
         }
@@ -171,7 +183,10 @@ export class EvaluationFormComponent implements OnInit {
           next: (response:any)=>{
             console.log(response);
             if(response.message == 'success')
-            alert("Trainee has been Evaluated")
+            {
+              alert("Trainee has been Evaluated")
+              this.router.navigate(['/rml/skill-developement/trainer-evaluation'])
+            }
           }
         })
         }
@@ -182,5 +197,12 @@ export class EvaluationFormComponent implements OnInit {
         this.file = event.target.files[0]
         var file_local = this.file?.name.split('.')
         this.new = file_local?.pop()
+      }
+      cal()
+      {
+        var a = this.form.controls['score_for'].value
+        var b = this.form.controls['score_obtained'].value
+        var c = Math.round((b/a)*100)
+        this.form.controls['percentage'].setValue(c)
       }
 }

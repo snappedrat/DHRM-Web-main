@@ -5,9 +5,10 @@
     <div class="container">
       <div class="card"> 
           <table class="font">
+            <br><br>
             <div class="mx-5">
             <tr>
-              <td><img class = "img" alt="Avatar" ></td>
+              <td><img class = "img" [src]=this.image alt="Avatar" ></td>
               <div class="mx-5">
               <td class="name"><b>{{name}}</b></td>
               </div>
@@ -17,7 +18,7 @@
                 <tr class="font">
                 <tr > <div class="md">
                     <td div class="aligncommand"><b>Category</b></td>
-                    <td div>:{{cat}}</td><br>
+                    <td div class="aligncommand">:{{cat}}</td><br>
                 <tr > 
                     <td div class="aligncommand"><b>Department</b></td><br>
                     <td div class="aligncommand">:{{dept}}</td><br><br>
@@ -29,7 +30,7 @@
                     <td div class="aligncommand">:{{skill}}</td><br><br>
                     <tr>
                         <td div class="aligncommand"><b> Operation Trained</b></td><br>
-                        <td div class="aligncommand">:{{oprn}}</td><br><br>
+                        <td div class="aligncommand"><div *ngFor="let i of pt">:{{i}}</div></td><br><br>
                         <tr>
                         <td div class="aligncommand"><b> Uploaded File</b></td><br>
 
@@ -53,12 +54,12 @@
                             </div><br>
                         <div class="col">
                             <label>Score For(Total) </label><br>
-                            <input class="form-control"  type = "number" formControlName = "score_for" [readonly]="readable">
+                            <input class="form-control"  type = "number" formControlName = "score_for"  [readonly]="readable">
                       </div><br>
                        
                         <div class="col">
                             <label>Percentage</label><br>
-                            <input class="form-control"  type = "number" formControlName = "percentage" [readonly]="readable">
+                            <input class="form-control"  type = "number" formControlName = "percentage" (click)="cal()" readonly>
                         <br></div>
                
                         <div class="col">
@@ -82,15 +83,18 @@
                                         <label>New Skill Level </label><br>
                                         <select formControlName="new_skill" class = "form-control"><option value="">select</option><option *ngFor= "let i of new_skill_lvl" [ngValue]="i">{{i}}</option></select>
                             
-                        </div><br>                                 
-                                                <div class="col">
-                                                    <label>Process Trained</label><br>
-                                                    <select class="form-control"  formControlName="process_trained"><option value="">select</option><option *ngFor= "let i of process_trained" [ngValue]="i">{{i}}</option></select>
-                                                </div> 
+                                        </div><br>              
+                                        <div class="col">
+                                            <mat-form-field  style="width: 500px; height: 50px;" >
+                                            <mat-select style="width: 500px; height: 50px;"   class="form-control" placeholder="process trained" formControlName="process_trained" [(value)]="pp" multiple>
+                                                <mat-option style="width: 500px; height: 50px;" *ngFor="let i of process_trained" [value]="i">{{i}}</mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                        </div>                   
                                        <br></div>
-                                       <button [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
+                                       <button [disabled]="form.invalid" type="submit"  (click)="submit()" class="btn btn-success btn-lg">Save</button>
                         </form>
-                        <!-- -->
+                        <!-- routerLink]="[this.nav]" -->
              </div>   </div></div>
         
             <br><br>

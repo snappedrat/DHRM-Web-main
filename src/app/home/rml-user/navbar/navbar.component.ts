@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit{
   showdept: string | null;
   showplant: string | null;
   issupervisor: string | null;
+  all: any;
+  isRA: string | null;
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
@@ -67,7 +69,9 @@ getHr()
     {
       console.log(response); this.ishrappr = response;;
 
-      sessionStorage.setItem("all", this.ishrappr[0])
+      sessionStorage.setItem("all", JSON.stringify(this.ishrappr[0]))
+
+
       sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
@@ -100,6 +104,14 @@ getHr()
 
 getitems()
 {
+  const item = sessionStorage.getItem("all");
+
+if (item !== null) {
+  this.all = JSON.parse(item);
+}
+  this.isRA = this.all.Is_ReportingAuth
+  console.log(this.isRA)
+
   this.ishr = sessionStorage.getItem('ishr')
   this.ishrappr = sessionStorage.getItem('ishrappr')
   this.istrainer = sessionStorage.getItem('istrainer')

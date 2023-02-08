@@ -71,7 +71,10 @@ export class TestEvaluationComponent implements OnInit {
   
       this.service.offlineUpload(this.form.value)
       .subscribe({
-        next: (res) =>{console.log(res)},
+        next: (res) =>{console.log(res);
+        alert("Updated Successfully")
+        this.form.reset()
+        },
         error: (err) => console.log(err) 
       })
     }
@@ -98,6 +101,10 @@ export class TestEvaluationComponent implements OnInit {
         {
           alert("Trainee already finished evauation")
           this.form.reset()
+        }
+        if(response.status=='exam failed')
+        {
+          this.form.controls['test'].setValue('post-test')
         }
         else
           this.form.controls['test'].setValue(response.status)

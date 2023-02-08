@@ -74,10 +74,6 @@ export class IdcardComponent implements OnInit {
       error: (error) => 
       console.log(error),
     })
-
-    setTimeout(() => {
-
-    }, 500);
     
   }
 }

@@ -92,7 +92,7 @@ export class TransferFormComponent implements OnInit {
           if(response.message == 'success')
           {
             alert("Department transferred")
-            // this.router.navigate(['/rml/new_joiners/dept_transfer'])
+            this.router.navigate(['/rml/new_joiners/dept_transfer'])
           }
           }
         }
