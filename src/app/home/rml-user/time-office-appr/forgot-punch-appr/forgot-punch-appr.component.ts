@@ -42,27 +42,6 @@ export class ForgotPunchApprComponent implements OnInit {
     this.modalService.open(content2, {centered: true})
   }
 
-  // chosenYearHandler(normalizedYear: Moment) {
-  //   const ctrlValue = this.date.value!;
-  //   ctrlValue.year(normalizedYear.year());
-  //   this.date.setValue(ctrlValue);
-  // }
-
-  // chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
-  // {
-  //   const ctrlValue = this.date.value!;
-  //   ctrlValue.month(normalizedMonth.month());
-  //   this.date.setValue(ctrlValue);
-  //   datepicker.close();
-  //   var x = ctrlValue.month()+1
-
-  //   if(x<10)
-  //     var send = ctrlValue.year()+'/0'+x
-  //   else
-  //     var send = ctrlValue.year()+'/'+x
-
-  //   this.getDates(send)
-  // }
   getDates()
   {
     this.table_data = []

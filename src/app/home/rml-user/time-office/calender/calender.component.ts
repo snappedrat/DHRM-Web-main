@@ -5,6 +5,13 @@ import {CalendarEvent,CalendarMonthViewBeforeRenderEvent,
   CalendarDayViewBeforeRenderEvent, CalendarView, CalendarMonthViewDay} from "angular-calendar";
 import { isSunday, isWednesday, isWeekend } from 'date-fns';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import { ApiService } from 'src/app/home/api.service';
+
+interface MyEvent extends CalendarEvent {
+  in_time: string;
+  out_time: string
+}
 
 @Component({
   selector: 'app-calender',
@@ -13,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.css']
 })
+
 export class CalenderComponent implements OnInit {
 
   title:any[];
@@ -20,59 +28,23 @@ export class CalenderComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
 
-  events: CalendarEvent[] = []
-
-  // attData: any[] = [  
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":24,
-  //     "status":"OD",
-  //     "in_time" : '10:00AM',
-  //     "out_time" : '5:00PM'
-  //   },
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":2,
-  //     "status":"absent",
-  //     "in_time" : '10:00AM',
-  //     "out_time" : '5:00PM'
-  //   },
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":7,
-  //     "status":"permission",
-  //     "in_time" : '10:00AM',
-  //     "out_time" : '5:00PM'
-  //   },
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":9,
-  //     "status":"leave",
-  //     "in_time" : '10:00AM',
-  //     "out_time" : '5:00PM'
-  //   },
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":30,
-  //     "status":"holiday",
-  //   },
-  //   {
-  //     "year":2022,
-  //     "month":9,
-  //     "date":23,
-  //     "status":"OD",
-  //   },
-  // ]
+  events: MyEvent[] = [{
+    title: 'title',
+    start: new Date('2023-02-12'),
+    in_time: '1',
+    out_time: '2',
+  },{
+    title: 'title',
+    start: new Date('2023-02-13'),
+    in_time: '3',
+    out_time: '4',
+  }]
 
    in_time = '10:00am'
    out_time = '5:00pm'
-    a = "IN_OUT_TIME"
-  constructor(private http: HttpClient) { }
+    a:any = "IN_OUT_TIME"
+  date: string | null;
+  constructor(private http: HttpClient, private service: ApiService) { }
 
   ngOnInit(): void {
 
@@ -85,7 +57,38 @@ export class CalenderComponent implements OnInit {
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     console.log(events);
     this.title = events;
-    //this.openAppointmentList(date)
+  }
+
+  attData: any[] = [ ]
+
+  getDates()
+  {
+    this.date = new DatePipe('en-US').transform(this.viewDate, 'yyyy/MM')
+    console.log(this.date)
+
+    this.service.calendar({id: sessionStorage.getItem('user_name'), date: this.date})
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response); this.attData = response
+          this.events = []
+          for(var i=0; i<this.attData.length; i++)
+          {
+            var form = 
+            {
+              title: 'title',
+              start: new Date(this.attData[i].att_date),
+              in_time: this.attData[i].in_time,
+              out_time: this.attData[i].in_time
+            }
+            this.events.push(form)
+            }
+            console.log(this.events)
+          }
+        }
+    )
+
   }
 
   beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void
@@ -93,73 +96,28 @@ export class CalenderComponent implements OnInit {
 
     renderEvent.body.forEach((day) => {
 
-      const attData: any[] = [  
-        {
-          "year":2022,
-          "month":9,
-          "date":24,
-          "status":"OD",
-          "in_time" : '10:00AM',
-          "out_time" : '5:00PM'
-        },
-        {
-          "year":2022,
-          "month":9,
-          "date":2,
-          "status":"absent",
-          "in_time" : '10:00AM',
-          "out_time" : '5:00PM'
-        },
-        {
-          "year":2022,
-          "month":9,
-          "date":7,
-          "status":"permission",
-          "in_time" : '10:00AM',
-          "out_time" : '5:00PM'
-        },
-        {
-          "year":2022,
-          "month":9,
-          "date":9,
-          "status":"leave",
-          "in_time" : '10:00AM',
-          "out_time" : '5:00PM'
-        },
-        {
-          "year":2022,
-          "month":9,
-          "date":30,
-          "status":"holiday",
-        },
-        {
-          "year":2022,
-          "month":9,
-          "date":23,
-          "status":"OD",
-        },
-      ]
-
       const dayOfWeek = day.date.getDay();
       const dayOfMonth = day.date.getDate();
       const monthofYear = day.date.getMonth();
       if (day.isWeekend) {
         day.cssClass = 'bg-dg';
-        console.log(day);
       }
       else {
         day.cssClass = 'bg-green';
       }
 
+      if(dayOfMonth == 10)
+        this.in_time = "hello"
+
       // if(holidaysDate.includes(dayOfMonth) && holidaysMonth.includes(monthofYear+1)){
       //   day.cssClass = 'bg-red';
       // }
-      for( var i = 0; i < attData.length; i++){
-        switch (attData[i].status)
+      for( var i = 0; i < this.attData.length; i++){
+        switch (this.attData[i].present)
         {
           case "OD":
           {
-            if(attData[i].month == monthofYear+1 && attData[i].date == dayOfMonth)
+            if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
             {
               day.cssClass = 'bg-purple';
             }
@@ -167,7 +125,7 @@ export class CalenderComponent implements OnInit {
           }
           case "absent":
             {
-              if(attData[i].month == monthofYear+1 && attData[i].date == dayOfMonth)
+              if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                 day.cssClass = 'bg-red';
               }
@@ -175,7 +133,7 @@ export class CalenderComponent implements OnInit {
             }
           case "leave":
              {
-              if(attData[i].month == monthofYear+1 && attData[i].date == dayOfMonth)
+              if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                 day.cssClass = 'bg-magenta';
               }
@@ -183,7 +141,7 @@ export class CalenderComponent implements OnInit {
             }
           case "permission":
               {
-               if(attData[i].month == monthofYear+1 && attData[i].date == dayOfMonth)
+               if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                  day.cssClass = 'bg-orange';
                }
@@ -191,7 +149,7 @@ export class CalenderComponent implements OnInit {
               }
               case "holidays":
                 {
-                 if(attData[i].month == monthofYear+1 && attData[i].date == dayOfMonth)
+                 if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
                 {
                    day.cssClass = 'bg-blue';
                  }
@@ -199,15 +157,14 @@ export class CalenderComponent implements OnInit {
         }
         if (day.isWeekend) {
           day.cssClass = 'bg-dg';
-          console.log(day);
         }
 
-        if(day.isWeekend){
-          const a = "IN_OUT_TIME"
-        }
-        else{
-          const a = "NO_IN_OUT_TIME"
-        }
+        // if(day.isWeekend){
+        //   this.a = "IN_OUT_TIME"
+        // }
+        // else{
+        //   this.a = "NO_IN_OUT_TIME"
+        // }
         
       }
 

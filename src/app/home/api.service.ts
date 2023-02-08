@@ -458,5 +458,9 @@ url2:any = environment.path2
   {
     return this.http.post(this.url2+'/forgotPunchRequestStatus', form) 
   }
+  calendar(form:any)
+  {
+    return this.http.get(this.url2+'/calendar?id='+form.id+'&date='+form.date, form)
+  }
 
 }
