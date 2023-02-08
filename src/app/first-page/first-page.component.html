@@ -1,47 +1,30 @@
-<div class="homescreen">
-  <div class="container pt-7">
-    <div class="row justify-content-md-center pt-8">
-        <div class="table col-sm-20 shadow round pb-4">
-            <div class="mx-8">
-   
-      <img src="../../assets/rane.png" class= "center">
-      <b><h1 class = "title1" style = "text-align: center;font-size: xx-large;"> DIGITAL HR MANAGEMENT </h1></b>
-      <div class="row mt-3 " >
-        <div class="col-md-2 mb-3 " id="shift1" >
-          <div class="box shadow-lg" routerLink="/trainee-application">
-            <button><img class= "picture" src="../../assets/ta.png"  >
-            <h3 class="text mt-2">Trainee New Application</h3></button>
+<div class="container">
+  <div class="innercontainer">
+      
+      <div class="row1">
+          <div class="card">
+            
+              <img class= "picture" routerLink="/trainee-application" src="../../assets/ta.png"  >
+              <div class="text"> Trainee New Application</div>
           </div>
-        </div>
-        <div class="col-md-2 mb-3 " id="shift1" >
-          <div class="box shadow-lg">
-            <button (click)="login()" routerLink="/rml/login"><img class= "picture" src="../../assets/shr.png" >
-            <h3 class="text mt-2">RANE User Login</h3></button>
-          </div>
-        </div>
-
-        <div class="col-md-2 mb-3 " id="shift1" >
-          <div class="box shadow-lg" routerLink="/trainee-login">
-            <button><img class= "picture" src="../../assets/tt.png" >
-            <h3 class="text mt-2">Trainee Test Login (DOJO)</h3></button>
-          </div>
-        </div><br><br><br>
-        <div class="mx-10">
-        <div class="row mt-5 " >
-          <div class="col-md-2 mb-3 " id="shift2" >
-          <div class="box shadow-lg" routerLink="/rml/login" (click)="login()">
-            <button><img class= "picture" src="../../assets/Trainer Login(Dojo).jpeg" >
-            <h3 class="text mt-2">Trainer Login(Dojo) </h3></button>
+          <div class="card">
+          <img class= "picture" (click)="login()" routerLink="/rml/login" src="../../assets/shr.png" >
+              <div class="text ">RANE User Login
           </div></div>
-       
-            <div class="col-md-2 mb-3 " id="shift2" >
-          <div class="box shadow-lg" routerLink="/rml/login">
-            <button (click)="ars()" ><img class= "picture" src="../../assets/te.png" >
-            <h3 class="text mt-2">ARS Login</h3></button>
-          </div></div></div>
-        </div>
-  
+          <div class="card">
+            
+            <img class= "picture" routerLink="/trainee-login" src="../../assets/tt.png" >
+            <div class="text">Trainee Test Login (DOJO)
+          </div>
+      </div></div>
+      <div class="row2">
+          <div class="card">
+            <img class= "picture" routerLink="/rml/login" src="../../assets/Trainer Login(Dojo).jpeg" >
+            <div class="text ">Trainer Login(Dojo)
+          </div></div>
+          <div class="card"> 
+           <img class= "picture" routerLink="/traineeevaluation" src="../../assets/te.png" >
+            <div class="text">ARS Login
+            </div>
       </div>
-    </div></div></div></div>
-
-  
+  </div>
