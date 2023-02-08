@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit{
     );
   showdept: string | null;
   showplant: string | null;
+  issupervisor: string | null;
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
@@ -70,11 +71,17 @@ getHr()
       sessionStorage.setItem('ishr', this.ishrappr[0]?.Is_HR)
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
-      sessionStorage.setItem('istrainee', this.ishrappr[0]?.is_trainee)
+      sessionStorage.setItem('issupervisor', this.ishrappr[0]?.Is_Supervisor)
+
+      if(this.username.user == 'emp')
+          sessionStorage.setItem('istrainee', this.ishrappr[0]?.is_trainee)
+      else
+          sessionStorage.setItem('istrainee', 'true')
+
       sessionStorage.setItem('isadmin', this.ishrappr[0]?.is_admin)
       sessionStorage.setItem('istou', this.ishrappr[0]?.Is_TOU)
-
       sessionStorage.setItem('plantcode', this.ishrappr[0]?.plant_code)
+
       if(this.username.user == 'emp')
         sessionStorage.setItem('emp_name', this.ishrappr[0]?.Emp_Name)
       else
@@ -103,6 +110,8 @@ getitems()
   this.showplant = sessionStorage.getItem('plant_name')
   this.isadmin = sessionStorage.getItem('isadmin')
   this.istou = sessionStorage.getItem('istou')
+  this.issupervisor =   sessionStorage.getItem('issupervisor')
+
 
 
 }

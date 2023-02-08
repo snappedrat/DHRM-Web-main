@@ -1,0 +1,107 @@
+.example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
+  }
+  .text-center{
+    width: 500px;
+    background-color: darkblue;
+  
+  }.btn {
+    float: right;
+  
+  }
+  .boxx{
+    box-sizing: 100%;
+  }
+  
+  th{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+  }
+  td{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: medium;
+  }
+  th { background: #c5c5c5;}
+  table 
+  {
+  border-collapse: collapse;
+  width: 100%;
+  }
+  td, th { border: 1px solid #cdcdcd; padding: 8px;}
+  .form-group
+  {
+  background-color: lightgrey;
+  }
+  
+  tbody
+  {
+  text-align: center;
+  
+  }
+  
+  .table-wrapper
+  {
+    display: block;
+  }
+  .search{
+  margin-left: 0px;
+  }
+  .button{
+  
+    padding-right:50px;
+  }
+  .button1{
+  
+  padding-right:50px;
+  }
+  
+  
+  
+  .dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+  }
+  .dark-modal .close {
+  color: white;
+  }
+  .light-blue-backdrop {
+  background-color: #5cb3fd;
+  }
+  
+  
+  .modal-backdrop {
+  z-index: 1040 !important;
+  }
+  .modal-content {
+  margin: 2px auto;
+  z-index: 1100 !important;
+  height:auto;
+  width:auto;
+  }
+  .title{
+    font-size: 40px;
+  
+    color:rgb(0, 0, 139);
+    font-weight:bolder;
+    text-align:center;
+    text-decoration: solid;
+    font-size: larger;
+    font-weight:900;
+  }
+  .modal-title{
+    color:rgb(0, 0, 139);
+    text-decoration: solid;
+    font-size: larger;
+    font-weight:900;
+  }
+  
+  .text-center{
+    width: 500px;
+    background-color: darkblue;
+  
+  }

@@ -105,6 +105,7 @@ export class OnboardFormComponent implements OnInit {
     ngOnInit(): void 
     {
 
+
       if(this.readonly)
       {
         var control = this.form.get('dol')
@@ -115,11 +116,12 @@ export class OnboardFormComponent implements OnInit {
 
       this.form.controls['bio_id'].setValue(false)
 
-      this.service.getonboard({apln_slno : this.active.snapshot.paramMap.get('id')})
+      this.service.getonboard({apln_slno : this.active.snapshot.paramMap.get('id'), readonly: this.readonly  })
       .subscribe(
         {
           next: (response:any)=>
           {
+          console.log("5555", response)
            this.obj = response;
            this.basic = this.obj[0]
            this.designation = this.obj[1]
@@ -129,29 +131,38 @@ export class OnboardFormComponent implements OnInit {
            this.reporting_to = this.obj[5]
            this.category = this.obj[6]
            this.oprn = this.obj[7]
-           console.log(this.basic)
 
-          this.form.controls['ifsc_code'].setValue(this.basic[0].ifsc_code)
-          this.form.controls['account_number'].setValue(this.basic[0].bank_account_number)
-          this.form.controls['bank_name'].setValue(this.basic[0].bank_name)
-          this.form.controls['apln_slno'].setValue(this.basic[0].apln_slno)
+          this.form.controls['ifsc_code'].setValue(this.basic[0]?.ifsc_code)
+          this.form.controls['account_number'].setValue(this.basic[0]?.bank_account_number)
+          this.form.controls['bank_name'].setValue(this.basic[0]?.bank_name)
+          this.form.controls['apln_slno'].setValue(this.basic[0]?.apln_slno)
+
+          if(this.readonly == false)
+            this.form.controls['active_status'].disable()
 
           if(this.readonly == true)
           {
-            this.form.controls['grade'].setValue(this.basic[0].emp_grade)
-            this.form.controls['department'].setValue(this.basic[0].dept_name)
-            this.form.controls['designation'].setValue(this.basic[0].desig_name)
-            this.form.controls['line'].setValue(this.basic[0].line_name)
-            this.form.controls['process_trained'].setValue(this.basic[0].oprn_desc)
-            this.form.controls['bnum'].setValue(this.basic[0].biometric_no)
+            this.form.controls['grade'].setValue(this.basic[0]?.emp_grade)
+            this.form.controls['department'].setValue(this.basic[0]?.dept_name)
+            this.form.controls['designation'].setValue(this.basic[0]?.desig_name)
+            this.form.controls['line'].setValue(this.basic[0]?.line_name)
+            this.form.controls['process_trained'].setValue(this.basic[0]?.oprn_desc)
+            this.form.controls['bnum'].setValue(this.basic[0]?.biometric_no)
             this.form.controls['bio_id'].setValue(true)
-            this.form.controls['uan'].setValue(this.basic[0].uan_number)
-            this.form.controls['trainee_id'].setValue(this.basic[0].gen_id)
-            this.form.controls['reportingto'].setValue(this.basic[0].emp_name)
+            this.form.controls['uan'].setValue(this.basic[0]?.uan_number)
+            this.form.controls['trainee_id'].setValue(this.basic[0]?.gen_id)
+            this.form.controls['reportingto'].setValue(this.basic[0]?.emp_name)
             this.form.controls['wcontract'].setValue('DIRECT')
-            this.form.controls['doj'].setValue(this.basic[0].doj)
-            this.form.controls['active_status'].setValue(this.basic[0].activestat)
-            this.form.controls['category'].setValue(this.basic[0].apprentice_type)
+            this.form.controls['doj'].setValue(this.basic[0]?.doj)
+            this.form.controls['active_status'].setValue(this.basic[0]?.activestat)
+            if(this.form.controls['active_status'].value == 'ACTIVE')
+            {
+              this.form.controls['rfr'].disable()
+              this.form.controls['dol'].disable()
+            }
+
+
+            this.form.controls['category'].setValue(this.basic[0]?.apprentice_type)
 
             this.form.controls['department'].disable()
             this.form.controls['designation'].disable()
@@ -165,8 +176,11 @@ export class OnboardFormComponent implements OnInit {
 
           }
           else
-            this.form.controls['rfr'].disable()
+          {
+            this.form.controls['rfr'].disable()            
+            this.form.controls['dol'].disable()            
 
+          }
 
             this.line = this.line.map((line_name:any) => line_name.line_name)
             this.designation = this.designation.map((a:any) => a.desig_name)
@@ -210,6 +224,23 @@ export class OnboardFormComponent implements OnInit {
           error: (err)=>{console.log(err)}
         })
       }
+    }
+
+    change(event:any)
+    {
+      console.log(event.target.value)
+
+      if(event.target.value.split(':')[1].trim() == 'INACTIVE')
+      {
+        this.form.controls['dol'].enable()
+        this.form.controls['rfr'].enable()
+      }
+      else if(event.target.value.split(':')[1].trim() == 'ACTIVE')
+      {
+        this.form.controls['dol'].disable()
+        this.form.controls['rfr'].disable()
+      }
+
     }
 
     gen_id(event:any)

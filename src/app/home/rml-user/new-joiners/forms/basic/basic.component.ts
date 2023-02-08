@@ -34,7 +34,7 @@ export class BasicComponent implements OnInit{
     @Output() emit = new EventEmitter<any>()
     message = {'basic':false}
 
-    Title : any = ['Mr', 'Miss', 'Mrs']
+    Title : any = ['Mr.', 'Miss.', 'Mrs.']
     Gender: any = ['Men', 'Women'];
     nation :any = ['India'];
     religion: any =['Hindu','christain','muslim'];
@@ -132,9 +132,14 @@ export class BasicComponent implements OnInit{
         this.form.controls['weight'].setValue(this.basic[0]?.weight)
 
         this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
+        try
+        {
         this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
         this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
         this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
+        }
+        catch(err)
+        {}
 
         this.form.controls['pd'].setValue(this.basic[0]?.physical_disability)
         this.form.controls['mar'].setValue(this.basic[0]?.marital_status)
@@ -227,7 +232,7 @@ export class BasicComponent implements OnInit{
 
     setcity_state(event:any)
     {
-        if(event.length == 6)
+        if(event?.length == 6)
         {
             console.log(event.length)
             var pincode = {

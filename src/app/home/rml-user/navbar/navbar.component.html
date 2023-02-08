@@ -1,3 +1,4 @@
+<div *ngIf="showplant != 'undefined' " >
 <mat-sidenav-container class="sidenav-container bg-primary">
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar style="background-color:  #023075; color: white; padding-left: 90px">MENU</mat-toolbar>
@@ -99,6 +100,7 @@
                 </mat-nav-list>
             </mat-expansion-panel>
         </div>
+        <div *ngIf="istrainee == 'true' " >
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -125,7 +127,7 @@
                         <mat-icon class="icon-pad">work_history</mat-icon>On-Duty</a>
                 </mat-nav-list>
             </mat-expansion-panel>
-
+            </div>
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color:  #023075;">
                 <mat-expansion-panel-header style="color: white">
                     <mat-icon class="icon-pad">
@@ -183,11 +185,11 @@
                     Skill Development
                 </mat-expansion-panel-header>
                 <mat-nav-list dense>
-                    <div *ngIf="istrainer == 'true' " >
+                    <div *ngIf="istrainer == 'true' || ishr == 'true' || ishrappr == 'true' " >
                     <a mat-list-item [routerLink]="['/rml/skill-developement/trainer-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people</mat-icon>HR Evaluation</a>
                     </div>
-                    <div *ngIf="ishr == 'true' || ishrappr =='true' " >
+                    <div *ngIf="issupervisor == 'true' " >
                     <a mat-list-item [routerLink]="['/rml/skill-developement/supervisor-evaluation']" style="color: white">
                         <mat-icon class="icon-pad">people_outline</mat-icon>Supervisor Evaluation</a>
                     </div>
@@ -237,3 +239,4 @@
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
+</div>

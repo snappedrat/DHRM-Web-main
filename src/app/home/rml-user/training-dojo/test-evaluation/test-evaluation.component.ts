@@ -95,7 +95,10 @@ export class TestEvaluationComponent implements OnInit {
         {
         console.log(response)
         if(response.status=='already')
+        {
           alert("Trainee already finished evauation")
+          this.form.reset()
+        }
         else
           this.form.controls['test'].setValue(response.status)
         }

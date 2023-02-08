@@ -9,7 +9,10 @@
           <div class="row">
             <div class="col">
               <label>Company code: </label><br>
-              <input class="form-control"  type = "number" formControlName = "company_code" size="25">
+              <select class="form-control" formControlName = "company_code"  (change)="getValue($event)">
+                <option value="">--select--</option>
+                <option *ngFor="let i of company; let a = index" [ngValue]="i">{{a+1}}. {{i}}</option>
+              </select>
             </div>
             <div class="col">
                   <label>Plant code: </label><br>
@@ -63,7 +66,7 @@
       </form>
   </div>
   <div class="modal-footer">
-      <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+      <button *ngIf="editing_flag==false" [disabled]="form.invalid" type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
       <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
       <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
   </div>

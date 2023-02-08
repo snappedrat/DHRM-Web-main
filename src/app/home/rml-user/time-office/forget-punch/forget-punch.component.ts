@@ -27,7 +27,9 @@ export class ForgetPunchComponent implements OnInit {
         actual_out_time : ['', Validators.required],
         reason : ['', Validators.required],
         emp_id: [sessionStorage.getItem('user_name')],
-        date:[]
+        date:[],
+        in_time:[],
+        out_time:[]
       }
     )
 
@@ -77,10 +79,13 @@ export class ForgetPunchComponent implements OnInit {
 
   submit()
   {
-    this.form.controls['actual_in_time'].setValue(this.change_format(this.form.controls['actual_in_time'].value))
-    this.form.controls['actual_out_time'].setValue(this.change_format(this.form.controls['actual_out_time'].value))
     console.log(this.form.value)
 
+    this.form.controls['in_time'].setValue(this.change_format(this.form.controls['actual_in_time'].value))
+    this.form.controls['out_time'].setValue(this.change_format(this.form.controls['actual_out_time'].value))
+    this.form.controls['actual_in_time'].setValue(this.bio_time_A)
+    this.form.controls['actual_out_time'].setValue(this.bio_time_B)
+    
     this.service.forgot_punch(this.form.value)
     .subscribe(
       {

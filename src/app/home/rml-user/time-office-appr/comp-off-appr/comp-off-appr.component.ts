@@ -4,22 +4,9 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import {MatDatepicker} from '@angular/material/datepicker';
 import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import {Router} from '@angular/router';
-import * as XLSX from 'xlsx';
-import { MatSidenav } from '@angular/material/sidenav';
-import { ServiceService } from '../../masters/service.service';
-import { User } from '../../masters/user/user';
-import { MatTableModule } from '@angular/material/table';
-import { Observable,Subject } from 'rxjs';
-import { Options } from 'selenium-webdriver';
-import { Directive, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
-import { PlantcodeService } from '../../new-joiners/plantcode.service';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -78,123 +65,115 @@ export class CompOffApprComponent {
   temp_a: any;
   disable: number = 1;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService, public plantcodeService: PlantcodeService) {
-    this.form = this.fb.group({
-      work_date:[''],
-     in_time :[''],
-      out_time: [''],
-      reasons: [''],
-      coff_date: [''],
-      coff_status: ['']
-      
-     
-    })
-   }
-   closeResult: string;
-
-  form:any
-
-  sample : any = environment.path
-
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+  }
   dummy: any  = ['']
-  editing_flag: any;
+
   ngOnInit(): void {
+
+    this.getDates()
   }
 
-  open(content1:any)
+  open(content1:any, a:any)
   {
-    this.form.reset();
-    this.editing_flag = false
+    this.temp_a = a
     console.log("opening")
     this.modalService.open(content1, {centered: true})
   }
-  open1(content2:any)
+  open1(content2:any, a:any)
   {
-    this.form.reset();
-    this.editing_flag = false
+    this.temp_a = a
     console.log("opening")
     this.modalService.open(content2, {centered: true})
   }
-  save()
-  {
-    this.form.controls['Slno'].setValue(this.dummy.length+1)
 
-  }
-/////////////////////////////////////////////////////edit functions
+  // chosenYearHandler(normalizedYear: Moment) {
+  //   const ctrlValue = this.date.value!;
+  //   ctrlValue.year(normalizedYear.year());
+  //   this.date.setValue(ctrlValue);
+  // }
 
+  // chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
+  // {
+  //   const ctrlValue = this.date.value!;
+  //   ctrlValue.month(normalizedMonth.month());
+  //   this.date.setValue(ctrlValue);
+  //   datepicker.close();
+  //   var x = ctrlValue.month()+1
 
-  submit(){
-    console.log("values : ",this.form.value);           
-    
-}
-  chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value!;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
+  //   if(x<10)
+  //     var send = ctrlValue.year()+'/0'+x
+  //   else
+  //     var send = ctrlValue.year()+'/'+x
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
-  {
-    const ctrlValue = this.date.value!;
-    ctrlValue.month(normalizedMonth.month());
-    this.date.setValue(ctrlValue);
-    datepicker.close();
-    var x = ctrlValue.month()+1
-
-    if(x<10)
-      var send = ctrlValue.year()+'/0'+x
-    else
-      var send = ctrlValue.year()+'/'+x
-
-    this.getDates(send)
-  }
-  getDates(date:any)
+  //   this.getDates(send)
+  // }
+  getDates()
   {
     this.table_data = []
-    var form = {date: date, id: sessionStorage.getItem('user_name')}
-
+    var form = {id: sessionStorage.getItem('user_name')}
+    this.service.coffRequestDisplay(form)
+    .subscribe(
+      {
+        next: (response:any)=>{console.log(response); this.table_data = response}
+      }
+    )
   }
-/////////////////////////////////////////////////////edit functions
-edit(a:any)
+
+  approve()
   {
-    this.editing_flag = true
-    this.form.controls['Slno'].setValue(a)
-    this.form.controls['bank_name'].setValue(this.dummy[a].bank_name)
-    this.form.controls['bank_code'].setValue(this.dummy[a].bank_code)
+    var form = 
+    {
+      statuslet: 'ACCEPT',
+      executiveID: sessionStorage.getItem('user_name'),
+      date: this.table_data[this.temp_a].workedDate,
+      coffDate:  this.table_data[this.temp_a].coffDate,
+      empID: this.table_data[this.temp_a].EmpID
+    }
+    this.service.coffRequestStatus(form)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response)
+          if(response.message == 'Success')
+          {
+            alert("The Request was Accepted")
+            this.table_data.splice(this.temp_a, 1)
+          }
+        },
+        error: (err)=>{console.log(err)}
+      }
+    )
   }
-
-  editSave()
+  reject()
   {
-
+    var form = 
+    {
+      statuslet: 'REJECT',
+      executiveID: sessionStorage.getItem('user_name'),
+      date: this.table_data[this.temp_a].workedDate,
+      coffDate:  this.table_data[this.temp_a].coffDate,
+      empID: this.table_data[this.temp_a].EmpID
+    }
+    console.log(form)
+    this.service.coffRequestStatus(form)
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response)
+          if(response.message == 'Success')
+          {
+            alert("The Request was Accepted")
+            this.table_data.splice(this.temp_a, 1)
+          }
+        },
+        error: (err)=>{console.log(err)}
+      }
+    )    
   }
-/////////////////////////////////////////////////////edit functions
 
-
-delete(a:any)
-{
-
-}
-
-exportexcel(): void
-{
-  var ws = XLSX.utils.json_to_sheet(this.dummy);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'bank_details.xlsx');
-}
-
-reset()
-{
-  this.form.reset()
-}
-
-setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {
-  const ctrlValue = this.date.value!;
-  ctrlValue.month(normalizedMonthAndYear.month());
-  ctrlValue.year(normalizedMonthAndYear.year());
-  datepicker.close();
-
-}
 }
 
 

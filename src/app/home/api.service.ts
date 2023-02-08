@@ -182,6 +182,11 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/getplant',form)
   }
+  companycodelist()
+  {
+    return this.http.post(this.url+'/companycodelist','')
+  }
+
 
   line_dept_design(form:any)
   {
@@ -420,6 +425,42 @@ url2:any = environment.path2
   coffStatus(form:any)
   {
     return this.http.get(this.url2+'/coffStatus?empID='+form.empID+'&date='+form.date, form)
+  }
+  coffRequestDisplay(form:any)
+  {
+    return this.http.get(this.url2+'/coffRequestDisplay?executiveID='+form.id, form)
+  }
+  coffRequestStatus(form:any)
+  {
+    return this.http.post(this.url2+'/coffRequestStatus', form) 
+  }
+  otRequestDisplay(form:any)
+  {
+    return this.http.get(this.url2+'/otRequestDisplay?executiveID='+form.id, form)
+  }
+  otRequestStatus(form:any)
+  {
+    return this.http.post(this.url2+'/otRequestStatus', form) 
+  }
+  shiftChangeRequestDisplay(form:any)
+  {
+    return this.http.get(this.url2+'/shiftChangeRequestDisplay?executiveID='+form.id, form)
+  }
+  shiftChangeRequestStatus(form:any)
+  {
+    return this.http.post(this.url2+'/shiftChangeRequestStatus', form) 
+  }
+  forgotPunchRequestDisplay(form:any)
+  {
+    return this.http.get(this.url2+'/forgotPunchRequestDisplay?executiveID='+form.id, form)
+  }
+  forgotPunchRequestStatus(form:any)
+  {
+    return this.http.post(this.url2+'/forgotPunchRequestStatus', form) 
+  }
+  calendar(form:any)
+  {
+    return this.http.get(this.url2+'/calendar?id='+form.id+'&date='+form.date, form)
   }
 
 }
