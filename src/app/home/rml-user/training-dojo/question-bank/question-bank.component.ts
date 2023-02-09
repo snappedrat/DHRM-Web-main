@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, Untyp
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-trainee-test',
@@ -17,7 +18,8 @@ export class QuestionBankComponent implements OnInit {
   loading:any = false
   modules :any
   filename :any =[]
-  url = 'http://localhost:3000/uploads/'
+  url = environment.path +'/qbank/'
+  
   
   sheight :any 
   height:any
