@@ -22,6 +22,7 @@ export class IdcardComponent implements OnInit {
   frommdate:any
   toodate:any
   todate = new Date(this.fromdate.getTime() + (10000 * 60 * 60 * 24));
+  plant: any;
   // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
     constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder ) { 
@@ -31,8 +32,20 @@ export class IdcardComponent implements OnInit {
             company_address : []
           }
         )
-      this.frommdate = this.fromdate.getDate()+'-'+this.fromdate.getMonth()+'-'+this.fromdate.getFullYear()
-    this.toodate = this.todate.getDate()+'-'+this.todate.getMonth()+'-'+this.todate.getFullYear()
+        var x = this.fromdate.getMonth()+1
+        var y = this.todate.getMonth()+1
+
+        if(x<10)
+        this.frommdate = this.fromdate.getDate()+'-0'+x+'-'+this.fromdate.getFullYear()
+        else
+        this.frommdate = this.fromdate.getDate()+'-'+x+'-'+this.fromdate.getFullYear()
+
+        if(y<10)
+        this.toodate = this.todate.getDate()+'-0'+y+'-'+this.todate.getFullYear()
+        else
+        this.toodate = this.todate.getDate()+'-'+y+'-'+this.todate.getFullYear()
+
+
 
     console.log(this.toodate)
 
@@ -65,11 +78,14 @@ export class IdcardComponent implements OnInit {
     .post(this.url+'/getdataforid', this.uniqueId)
     .subscribe({
       next:(response)=>{console.log(response); this.formvalues = response
+        this.plant = this.formvalues[0].plant_sign
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
         this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
         this.url = this.url+'/' + this.formvalues[0]?.other_files6
-        console.log("url",this.url)
+        this.plant = environment.path+'/plant/' + this.formvalues[0]?.plant_sign
+
+        console.log("url",this.plant)
       },
       error: (error) => 
       console.log(error),

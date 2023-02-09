@@ -462,5 +462,8 @@ url2:any = environment.path2
   {
     return this.http.get(this.url2+'/calendar?id='+form.id+'&date='+form.date, form)
   }
-
+  plantupload(form:any)
+  {
+    return this.http.post(this.url+'/plantupload', form) 
+  }
 }

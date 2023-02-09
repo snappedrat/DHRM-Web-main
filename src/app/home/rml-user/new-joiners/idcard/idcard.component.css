@@ -81,8 +81,13 @@ textarea{
   height: 100px;
   width: 25%;
 }
+.img2{
+  /* margin-left: 35%; */
+  height: 70px;
+  width: 40%;
+}
 .sign{
-  margin-left: 60%;
+  margin-left: 65%;
   width: 70%;
 
 }

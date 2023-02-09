@@ -16,22 +16,20 @@
 
 <ng-template #IN_OUT_TIME let-day="day" let-locale="locale">
     <div class="container pt-1">
-                <div class="mx-5">
-    <div class="cal-cell-top">
-        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+    <div  id="yes" class="cal-cell-top">
+        <!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span> -->
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
         <div class="font" >
-         IN TIME : {{day.events[0]?.in_time}}<br>
-        OUT TIME : {{day.events[0]?.out_time}}
+        <b> IN TIME :</b> {{day.events[0]?.in_time}}<br>
+        <b> OUT TIME :</b> {{day.events[0]?.out_time}}
         </div>
-    </div>
     </div>
   </ng-template>
 
   <ng-template  let-day="day" let-locale="locale">
     <div class="cal-cell-top">
-        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+        <!-- <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span> -->
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
   </ng-template>
@@ -48,13 +46,3 @@
     </mwl-calendar-month-view >
 
 </div>
-<!-- <div class="container-fluid event">
-    <div class="alert alert-primary" role="alert">
-        Event List:
-    </div>
-    <ul>
-        <li *ngFor="let index of title">
-            {{ index.title }}
-        </li>
-    </ul>
-</div> -->

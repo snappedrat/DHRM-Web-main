@@ -82,7 +82,7 @@ export class PlantComponent implements OnInit {
   save()
   {
     this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
-    this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_'+'_sign.'+this.new)
+    this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_sign.'+this.new)
     console.log(this.form.value)
 
     this.service.addplant(this.form.value)
@@ -113,15 +113,14 @@ export class PlantComponent implements OnInit {
   }
 
   edit(a:any)
-  {
+  {      
     this.editing_flag = true
-
+    this.form.get('company_code').disable()
     this.form.controls['sno'].setValue(a)
 
     let index = this.companylist.findIndex((x:any)=> x.company_code === this.dummy[a].company_code);
     
-    this.form.controls['company_code'].setValue(this.companylist[index].company_name)    
-
+    this.form.controls['company_code'].setValue(this.companylist[index]?.company_name)    
     this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
     this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
     this.form.controls['pl'].setValue(this.dummy[a].pl)
@@ -134,7 +133,8 @@ export class PlantComponent implements OnInit {
 
   editSave()
   {
-    this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
+    this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_sign.'+this.new)
+    console.log(this.form.value)
     this.service.updateplant(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
@@ -177,9 +177,21 @@ reset()
 upload(event:any)
 {
   this.file = event.target.files[0]
-
 	var file_local = this.file?.name.split('.')
 	this.new = file_local?.pop()
+
+  var formData = new FormData()
+
+  formData.append("file", event.target.files[0], this.form.controls['plant_code'].value+'_sign.'+this.new )
+  
+  this.service.plantupload(formData)
+  .subscribe(
+    {
+      next: (res)=>{console.log(res)},
+      error: (err=>{console.log(err)})
+    }
+  )
+
 }
 
 }

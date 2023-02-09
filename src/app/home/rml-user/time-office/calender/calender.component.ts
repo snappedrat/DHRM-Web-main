@@ -28,6 +28,8 @@ export class CalenderComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
 
+  evnt: CalendarEvent[] = []
+
   events: MyEvent[] = [{
     title: 'title',
     start: new Date('2023-02-12'),
@@ -83,8 +85,17 @@ export class CalenderComponent implements OnInit {
               out_time: this.attData[i].in_time
             }
             this.events.push(form)
-            }
-            console.log(this.events)
+          }
+            var date:Date = new Date()
+            var events:CalendarEvent<any>[] = this.evnt
+            this.dayClicked({date, events})
+
+            const element = document.getElementById("yes");
+
+            if (element) 
+            {
+              element.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+            }          
           }
         }
     )
@@ -99,60 +110,53 @@ export class CalenderComponent implements OnInit {
       const dayOfWeek = day.date.getDay();
       const dayOfMonth = day.date.getDate();
       const monthofYear = day.date.getMonth();
-      if (day.isWeekend) {
-        day.cssClass = 'bg-dg';
-      }
-      else {
-        day.cssClass = 'bg-green';
-      }
 
-      if(dayOfMonth == 10)
-        this.in_time = "hello"
-
-      // if(holidaysDate.includes(dayOfMonth) && holidaysMonth.includes(monthofYear+1)){
-      //   day.cssClass = 'bg-red';
-      // }
-      for( var i = 0; i < this.attData.length; i++){
+      for( var i = 0; i < this.attData.length; i++)
+      {
+        var x = new Date(this.attData[i].att_date)
+        var date = x.getDate()
+        var month = x.getMonth()+1
         switch (this.attData[i].present)
         {
-          case "OD":
+          case "Present":
           {
-            if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
+            if(month == monthofYear && date == dayOfMonth)
             {
               day.cssClass = 'bg-purple';
             }
-            break
+          break;
           }
-          case "absent":
+          case "Absent":
             {
               if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                 day.cssClass = 'bg-red';
               }
-              break
+            break;
             }
-          case "leave":
+          case "Comp Off":
              {
               if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                 day.cssClass = 'bg-magenta';
               }
-              break
+              break;
             }
-          case "permission":
+          case "Holiday":
               {
                if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
               {
                  day.cssClass = 'bg-orange';
                }
-               break
+               break;
               }
-              case "holidays":
+              case "Factory Holiday":
                 {
                  if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
                 {
                    day.cssClass = 'bg-blue';
                  }
+                 break;
                 }
         }
         if (day.isWeekend) {
