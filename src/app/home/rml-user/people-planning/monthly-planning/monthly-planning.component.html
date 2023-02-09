@@ -1,1 +1,54 @@
-<p>monthly-planning works!</p>
+
+
+<br>
+<div>
+<h1 class="title" >Monthly Planning</h1>
+<hr style="border-block-color: orange" />
+</div>
+<div class="button">
+
+<div class = "button1">
+
+<br><br><br>
+<div class = "table-wrapper">
+<table class="table table-bordered table-striped table-hover">
+  <table id="table">
+      <thead>
+      <tr>
+        <th
+                   div class="text-center"
+          >
+             SNo
+          <th
+                   div class="text-center"
+          >
+             Designation Name
+          </th>
+          <th
+                   div input type = "text" class="text-center"
+          >
+              Plant Name
+          </th>
+         
+         
+          <th
+                   div input type = "text" class="text-center"
+                  >
+              Action
+          </th>
+        </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor = "let i of designation; let a = index">
+               <td>{{a+1}}</td>
+                <td>{{i.desig_name}}</td>
+                <td>{{i.plant_name}}</td>
+
+              
+            </tr>
+        </tbody>
+    </table>
+</table>
+</div>
+
+
