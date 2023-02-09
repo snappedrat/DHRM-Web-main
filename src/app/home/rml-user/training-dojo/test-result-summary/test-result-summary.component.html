@@ -1,20 +1,23 @@
+<div class="container">
+    <br>
 <div class="px-3 pt-3">
-<div class="row row-cols-6">
+<div class="row row-cols-4">
 <div class="col">
-    <input type="date" style="width:200px;" class="form-control" [(ngModel)] = "date.start">
+    <input type="mat-date" style="width:200px;" class="form-control" [(ngModel)] = "date.start">
 </div>
 <div class="col">
-    <input type="date" style="width: 200px;" class="form-control" [(ngModel)] = "date.end">
+    <input type="mat-date" style="width: 200px;" class="form-control" [(ngModel)] = "date.end">
 </div>
 <div class="col">
-<button (click)="save()" class="btn-success" >Search</button>
+<button (click)="save()"  mat-raised-button class="mat-btn btn-success" >Search</button>
 &nbsp;
-<button class="btn-warning" (click)="refresh()">Reload</button>
+<button  mat-raised-button class=" btn-warning" (click)="refresh()">Reload</button>
 </div>
 </div>
 </div>
 
 <br><br>
+<div class="container">
 <div class = "table-wrapper">
 <table class="table table-bordered table-striped table-hover">
   <table id="table">
@@ -88,4 +91,6 @@
             </tbody>
         </table>
       </table>
+</div>
+</div>
     
