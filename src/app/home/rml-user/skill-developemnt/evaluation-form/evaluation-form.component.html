@@ -32,8 +32,8 @@
                         <td div class="aligncommand"><b> Operation Trained</b></td><br>
                         <td div class="aligncommand"><div *ngFor="let i of pt">:{{i}}</div></td><br><br>
                         <tr>
-                        <td div class="aligncommand"><b> Uploaded File</b></td><br>
-
+                        <td *ngIf="readable" div class="aligncommand"><b> Uploaded File</b></td><br>
+                        <td  *ngIf="readable" div class="aligncommand"><a [href]="this.uploaded" target="_blank" >:uploaded file</a></td><br><br>
                 </div>
               </div></table>
       </div></div>     
@@ -92,9 +92,8 @@
                                             </mat-form-field>
                                         </div>                   
                                        <br></div>
-                                       <button [disabled]="form.invalid" type="submit"  (click)="submit()" class="btn btn-success btn-lg">Save</button>
+                                       <button [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
                         </form>
-                        <!-- routerLink]="[this.nav]" -->
              </div>   </div></div>
         
             <br><br>

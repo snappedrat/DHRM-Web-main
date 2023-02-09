@@ -323,9 +323,9 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/onboard_form', form)
   }
-  filedrop(form:any)
+  getfiledrop(form:any)
   {
-    return this.http.post(this.url+'/filedrop', form)
+    return this.http.post(this.url+'/getfiledrop', form)
   }
   get_eval_form(form:any)
   {
@@ -465,5 +465,17 @@ url2:any = environment.path2
   plantupload(form:any)
   {
     return this.http.post(this.url+'/plantupload', form) 
+  }
+  offline_test(form:any)
+  {
+    return this.http.post(this.url+'/offline_test_upload', form) 
+  }
+  skill_dev(form:any)
+  {
+    return this.http.post(this.url+'/skill_dev_upload', form) 
+  }
+  filedrop(form:any)
+  {
+    return this.http.post(this.url+'/filedrop', form) 
   }
 }

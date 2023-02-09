@@ -32,6 +32,7 @@ export class OnboardFormComponent implements OnInit {
   designation : any
   basic :any
   status: any = this.active.snapshot.paramMap.get('apln_status')
+  apln_slno: any = this.active.snapshot.paramMap.get('id')
   down:any
   
   readonly:boolean = (this.status == 'APPOINTED')? true : false
@@ -209,7 +210,7 @@ export class OnboardFormComponent implements OnInit {
 
     submit()
     {
-      
+
       console.log(this.form.value)
 
       if(this.readonly == false)
@@ -220,9 +221,23 @@ export class OnboardFormComponent implements OnInit {
           if(response.message == 'success')
           {
             alert('The Employee has been Appointed');
-            this.router.navigate(['/rml/new_joiners/onboard'])
             if(this.setting == 1)
-            this.exportexcel();
+            {
+              this.form.controls['trainee_id'].setValue()
+              this.service.getfiledrop({apln_slno: this.active.snapshot.paramMap.get('id')})
+              .subscribe(
+                {
+                  next: (response)=>
+                  {
+                    console.log("down",response);
+                    this.down = response;
+                      this.exportexcel();                
+      
+                  }
+                }
+              )
+            }
+            this.router.navigate(['/rml/new_joiners/onboard'])
           }
 
             },
@@ -244,6 +259,7 @@ export class OnboardFormComponent implements OnInit {
         })
       }
     }
+
 
     change(event:any)
     {
@@ -270,27 +286,35 @@ export class OnboardFormComponent implements OnInit {
       {
         this.setting = 1
         this.form.controls['trainee_id'].setValue()
-        this.service.filedrop({apln_slno: this.active.snapshot.paramMap.get('id')})
-        .subscribe(
-          {
-            next: (response)=>{console.log(response);this.down = response}
-          }
-        )
-        {
-
-        }
       }
-      else
-      this.form.controls['trainee_id'].setValue(value.split(' ')[1].split('')[0]+this.active.snapshot.paramMap.get('id'))
+      else if(this.category[value.split(':')[0]-1].file_drop == '0')
+      {
+        this.setting = 0
+        this.form.controls['trainee_id'].setValue(value.split(' ')[1].split('')[0]+this.active.snapshot.paramMap.get('id'))
+      }
     }
 
     exportexcel()
     {
-      var ws = XLSX.utils.json_to_sheet(this.down)
+      const aoa = this.down.map((obj:any) => Object.values(obj));
+      var ws = XLSX.utils.aoa_to_sheet(aoa)
       var wb = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(wb, ws, 'people')
       XLSX.writeFile(wb, 'onboard.xlsx')
-  
+      var buffer  = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      
+      var formData = new FormData()
+      formData.append("file", file, this.apln_slno+'_filedrop.xlsx' )
+
+      this.service.filedrop(formData)
+      .subscribe
+      (
+        {
+          next: (response)=>{console.log(response)}
+        }
+      )
+
     }
 
 }

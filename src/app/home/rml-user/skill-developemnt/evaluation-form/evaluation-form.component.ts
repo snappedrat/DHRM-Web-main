@@ -42,6 +42,8 @@ export class EvaluationFormComponent implements OnInit {
   obj: any;
   new: any;
   pt: any;
+  trainee_idno: any;
+  uploaded: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -106,7 +108,7 @@ export class EvaluationFormComponent implements OnInit {
               this.dept = this.obj[0][0]?.dept_name        
               this.ln = this.obj[0][0]?.line_name        
               this.skill = this.obj[0][0]?.new_level
-              
+              this.trainee_idno = this.obj[0][0]?.apln_slno
               this.oprn = this.obj[1][0]?.oprn_desc
               this.department = this.obj[2]
               this.line = this.obj[3]
@@ -153,6 +155,7 @@ export class EvaluationFormComponent implements OnInit {
                 this.form.controls['department'].setValue(response[2][0].dept_name)
                 this.form.controls['process_trained'].setValue(this.pt)
                 this.form.controls['new_skill'].setValue(response[4][0].new_level)
+                this.uploaded = this.url+'/skill_dev/'+response[0][0].tnr_filename
               }
             }
           )
@@ -163,7 +166,7 @@ export class EvaluationFormComponent implements OnInit {
       {
         if(this.active.snapshot.paramMap.get('nav')== '1')
         {
-          this.form.controls['upload_file'].setValue(this.obj[0][0]?.apln_slno+'_'+'file1.'+this.new)
+          this.form.controls['upload_file'].setValue(this.trainee_idno+'_'+'tnr_eval'+'.'+this.new)
           this.service.eval_form(this.form.value)
           .subscribe({
             next: (response:any)=>{
@@ -171,13 +174,13 @@ export class EvaluationFormComponent implements OnInit {
               if(response.message == 'success')
               {
                 alert("Trainee has been Evaluated")
-                this.router.navigate(['/rml/skill-developement/supervisor-evaluation'])
+                this.router.navigate(['/rml/skill-developement/trainer-evaluation'])
               }
             }
           })
         }
         else if(this.active.snapshot.paramMap.get('nav')== '2')
-        {try{this.form.controls['upload_file'].setValue(this.obj[0][0]?.apln_slno+'_'+'file2.'+this.new)}catch(err){console.log(err)}
+        {try{this.form.controls['upload_file'].setValue(this.trainee_idno+'_'+'sup_eval'+'.'+this.new)}catch(err){console.log(err)}
         this.service.eval_form_sup(this.form.value)
         .subscribe({
           next: (response:any)=>{
@@ -185,7 +188,7 @@ export class EvaluationFormComponent implements OnInit {
             if(response.message == 'success')
             {
               alert("Trainee has been Evaluated")
-              this.router.navigate(['/rml/skill-developement/trainer-evaluation'])
+              this.router.navigate(['/rml/skill-developement/supervisor-evaluation'])
             }
           }
         })
@@ -197,6 +200,21 @@ export class EvaluationFormComponent implements OnInit {
         this.file = event.target.files[0]
         var file_local = this.file?.name.split('.')
         this.new = file_local?.pop()
+
+        var formData = new FormData()
+        if(this.readable == true)
+          formData.append("file", event.target.files[0], this.trainee_idno+'_'+'sup_eval'+'.'+this.new )
+        else
+          formData.append("file", event.target.files[0], this.trainee_idno+'_'+'tnr_eval'+'.'+this.new )
+
+
+        this.service.skill_dev(formData)
+        .subscribe(
+          {
+            next: (response)=>{console.log(response)}
+          }
+        )
+
       }
       cal()
       {

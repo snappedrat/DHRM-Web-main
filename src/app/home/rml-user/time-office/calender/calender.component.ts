@@ -115,20 +115,20 @@ export class CalenderComponent implements OnInit {
       {
         var x = new Date(this.attData[i].att_date)
         var date = x.getDate()
-        var month = x.getMonth()+1
+        var month = x.getMonth()
         switch (this.attData[i].present)
         {
           case "Present":
           {
             if(month == monthofYear && date == dayOfMonth)
             {
-              day.cssClass = 'bg-purple';
+              day.cssClass = 'bg-green';
             }
           break;
           }
           case "Absent":
             {
-              if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
+              if(month == monthofYear && date == dayOfMonth)
               {
                 day.cssClass = 'bg-red';
               }
@@ -136,32 +136,32 @@ export class CalenderComponent implements OnInit {
             }
           case "Comp Off":
              {
-              if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
+              if(month == monthofYear && date == dayOfMonth)
               {
-                day.cssClass = 'bg-magenta';
+                day.cssClass = 'bg-purple';
               }
               break;
             }
           case "Holiday":
               {
-               if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
+               if(month == monthofYear && date == dayOfMonth)
               {
-                 day.cssClass = 'bg-orange';
+                 day.cssClass = 'bg-dg';
                }
                break;
               }
               case "Factory Holiday":
                 {
-                 if(this.attData[i].month == monthofYear+1 && this.attData[i].date == dayOfMonth)
+                 if(month == monthofYear && date == dayOfMonth)
                 {
                    day.cssClass = 'bg-blue';
                  }
                  break;
                 }
         }
-        if (day.isWeekend) {
-          day.cssClass = 'bg-dg';
-        }
+        // if (day.isWeekend) {
+        //   day.cssClass = 'bg-dg';
+        // }
 
         // if(day.isWeekend){
         //   this.a = "IN_OUT_TIME"

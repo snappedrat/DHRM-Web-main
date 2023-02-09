@@ -126,7 +126,7 @@ export class TestEvaluationComponent implements OnInit {
   
       formData.append("file", event.target.files[0], this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten )
     
-      this.service.questionbankupload(formData)
+      this.service.offline_test(formData)
       .subscribe({
         next:(res) => {console.log(res)
         this.form.controls['file'].setValue(this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten)},
