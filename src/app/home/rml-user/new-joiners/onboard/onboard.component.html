@@ -88,7 +88,8 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let i of data">
-                        <td>{{ i.doj.split('T')[0] }}</td>
+                        <td *ngIf="i.apln_status == 'APPOINTED' " >{{ i.doj.split('T')[0] }}</td>
+                        <td *ngIf="i.apln_status == 'APPROVED' ">{{ i.created_dt.split('T')[0] }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
                         <td>{{ i.birthdate }}</td>

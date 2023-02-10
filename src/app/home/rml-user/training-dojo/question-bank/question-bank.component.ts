@@ -24,7 +24,7 @@ export class QuestionBankComponent implements OnInit {
   sheight :any 
   height:any
   // answer:any = ['']
-  questions: any = ['']
+  questions: any = [{}]
   inserted:any = 1
 
   username = {'username': sessionStorage.getItem('plantcode')}

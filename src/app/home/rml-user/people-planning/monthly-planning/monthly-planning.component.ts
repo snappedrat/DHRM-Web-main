@@ -54,86 +54,70 @@ const material = [
 })
 
 export class MonthlyPlanningComponent implements OnInit {
-  closeResult: string;
 
+  questions: any = [{}]
+  inserted:any = 1
   form:any
 
-  plantname:any
-
-  temp_a:any
-  sample : any = environment.path
-  array:any = []
-
-  designation: any = [
-
-  ]
-  editing_flag: any;
-
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
-    this.form = this.fb.group({
-      slno:[''],
-      desig_name :[''],
-      plant_name : [''],
-      names:['']
-     
-    })
-   }
-
-  
-
-  exportexcel(): void
+  constructor(private fb : UntypedFormBuilder)
   {
-  var ws = XLSX.utils.json_to_sheet(this.designation);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'designation.xlsx');
-}
+    this.form = this.fb.group
+    (
+      {
+        department:[],
+        line: [],
+        shift1:[],
+        shift2:[],
+        shift3:[]
+      }
+    )
 
-ngOnInit(): void {
-  this.getplantcode()
-  this.service.getdesignation().
-  subscribe({
-    next: (response)=>{console.log(response);this.designation = response}
-  })
-}
-
-getplantcode(){
-  var company = {'company_name': sessionStorage.getItem('companycode')}
-  this.service.plantcodelist(company)
-  .subscribe({
-    next: (response) =>{ console.log(response); this.plantname = response;
-      for(var o in this.plantname)
-      this.array.push(this.plantname[o].plant_name) },
-    error: (error) => console.log(error),
-  });
-}
-
-
-   open(content:any)
-  {
-    this.form.reset();
-    this.editing_flag = false
-
-    console.log("opening")
-    this.modalService.open(content, {centered: true})
-  }
-  opentoedit(content:any)
-  {
-    console.log("opening")
-    this.modalService.open(content, {centered: true})
   }
 
-   
+  ngOnInit(): void {
+    
+  }
 
+  addrow(i:any)
+  {
+        if(i == this.questions.length-1)
+        {
+          this.questions.push({})
+          this.inserted += 1;
+        }
+  }
+
+  dept(event:any, i:any)
+  {    
+    this.questions[i].dept = event.target.value
+    console.log(this.questions[i])
+  }
+  line(event:any, i:any)
+  {    
+    this.questions[i].line = event.target.value
+    console.log(this.questions[i])
+  }
+  shift1(event:any, i:any)
+  {    
+    this.questions[i].shift1 = event.target.value
+    console.log(this.questions[i])
+  }
+  shift2(event:any, i:any)
+  {    
+    this.questions[i].shift2 = event.target.value
+    console.log(this.questions[i])
+  }
+  shift3(event:any, i:any)
+  {    
+    this.questions[i].shift3 = event.target.value
+    console.log(this.questions[i])
+  }
   save()
   {
-    console.log(this.form.value)
-      }
-    
-
+    console.log(this.questions)
   }
 
-/////////////////////////////////////////////////////edit functions
+  }
 
 
 

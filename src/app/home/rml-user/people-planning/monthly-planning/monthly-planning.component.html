@@ -1,54 +1,27 @@
-
-
-<br>
-<div>
-<h1 class="title" >Monthly Planning</h1>
-<hr style="border-block-color: orange" />
-</div>
-<div class="button">
-
-<div class = "button1">
-
-<br><br><br>
-<div class = "table-wrapper">
-<table class="table table-bordered table-striped table-hover">
-  <table id="table">
-      <thead>
-      <tr>
-        <th
-                   div class="text-center"
-          >
-             SNo
-          <th
-                   div class="text-center"
-          >
-             Designation Name
-          </th>
-          <th
-                   div input type = "text" class="text-center"
-          >
-              Plant Name
-          </th>
-         
-         
-          <th
-                   div input type = "text" class="text-center"
-                  >
-              Action
-          </th>
-        </tr>
-        </thead>
-        <tbody >
-            <tr *ngFor = "let i of designation; let a = index">
-               <td>{{a+1}}</td>
-                <td>{{i.desig_name}}</td>
-                <td>{{i.plant_name}}</td>
-
-              
-            </tr>
-        </tbody>
+<div class="px-5 py-5">
+    <table style="width: 100%;" class="table-bordered">
+       <thead style="background-color: rgb(24, 33, 205);color:white;height: 30px">
+           <tr>
+               <td>S.NO</td>
+               <td>Department</td>
+               <td>Line</td>
+               <td>Shift 1</td>
+               <td>Shift 2</td>
+               <td>Shift 3</td>
+           </tr>
+       </thead>
+       <tbody>
+           <tr *ngFor = "let i of questions; let a = index">
+               <td style="background-color: rgb(218, 218, 218);">{{a+1}}</td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (change)="dept($event, a)" (click)="addrow(a)"  type = 'text' class="form-group">{{i.question}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (change)="line($event, a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift1($event, a)"  type = 'text' class="form-group">{{i.question}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift2($event, a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="shift3($event, a)" class="form-group">{{i.correct_answer}}</textarea></td>
+           </tr>
+       </tbody>
     </table>
-</table>
 </div>
-
-
+<div class="px-5 py-5">
+    <button (click)="save()" class="btn-alert">SAVE</button>
+</div>
