@@ -159,17 +159,6 @@ export class CalenderComponent implements OnInit {
                  break;
                 }
         }
-        // if (day.isWeekend) {
-        //   day.cssClass = 'bg-dg';
-        // }
-
-        // if(day.isWeekend){
-        //   this.a = "IN_OUT_TIME"
-        // }
-        // else{
-        //   this.a = "NO_IN_OUT_TIME"
-        // }
-        
       }
 
     });
