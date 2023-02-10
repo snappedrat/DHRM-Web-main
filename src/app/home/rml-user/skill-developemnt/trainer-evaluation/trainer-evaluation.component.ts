@@ -41,6 +41,7 @@ export class TrainerEvaluationComponent implements OnInit {
 
   filter()
   {
+    console.log(this.form.value)
     this.service.evaluationdays(this.form.value)
     .subscribe(
       {

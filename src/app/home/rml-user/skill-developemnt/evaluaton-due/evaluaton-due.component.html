@@ -35,7 +35,7 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let i of filterinfo">
-                          <td>{{ i.doj.split('T')[0] }}</td>
+                          <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                           <td>{{i.trainee_idno}}</td>
                           <td>{{ i.fullname }}</td>
                           <td>{{ i.mobile_no1 }}</td>

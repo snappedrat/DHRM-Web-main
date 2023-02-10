@@ -6,13 +6,14 @@
               <div class = "col-sm-3 boxx">
               <label for="Status" id="center"> Status: </label>
                 <br>
-                <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (change)="filter()" >
+                <!-- <mat-form-field> -->
+                <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (ngModelChange)="filter()" >
                     <mat-option value="0-60">0 to 60 days</mat-option>
                     <mat-option value="61-120">61 to 120 days</mat-option>
                     <mat-option value="121-180">121 to 180 days</mat-option>
                     <mat-option value="181-270">181 to 270 days</mat-option>
                   </mat-select> 
-        
+                <!-- </mat-form-field> -->
               </div>
         
             </div>
@@ -35,7 +36,7 @@
                           </thead>
                           <tbody>
                             <tr *ngFor="let i of filterinfo">
-                                <td>{{ i.doj.split('T')[0] }}</td>
+                                <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                                 <td>{{i.trainee_idno}}</td>
                                 <td>{{ i.fullname }}</td>
                                 <td>{{ i.mobile_no1 }}</td>

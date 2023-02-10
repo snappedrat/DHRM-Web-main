@@ -35,7 +35,7 @@ export class BasicComponent implements OnInit{
     message = {'basic':false}
 
     Title : any = ['Mr.', 'Miss.', 'Mrs.']
-    Gender: any = ['Men', 'Women'];
+    Gender: any = ['Male', 'Female'];
     nation :any = ['India'];
     religion: any =['Hindu','christain','muslim'];
     marital: any =['Married','unmarried','widower'];
