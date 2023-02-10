@@ -114,7 +114,9 @@ textarea{
   font-size: 20px;
 }
 .aligncommand{
-  line-height: 20px; width: 400px; border: 1px ;
+  line-height: 20px;
+   width: 200px; 
+   border: 1px ;
 }
 .fs-text{
   font-size: 25px;

@@ -5,11 +5,12 @@ img{
     margin-top:10px;
 }
 .bd{
-    height: 1000px;background-position: fixed;
+    height: 100%;
+    background-position: fixed;
     background-size: 100% ;
     background-size: cover;
     background-image:url('src\assets\bg.png');
-    background-position:10% 10%;
+    background-position:0 0;
 }
 
 .example-container .mat-form-field + .mat-form-field {

@@ -31,8 +31,8 @@
   padding: 0 16px;
 }
 
-/deep/ .mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: white;}
-/deep/ .mat-drawer-side{
+.mat-expansion-indicator::after, .mat-expansion-panel-header-description { color: white;}
+ .mat-drawer-side{
   border-right: none;
 }
 .icon-pad{

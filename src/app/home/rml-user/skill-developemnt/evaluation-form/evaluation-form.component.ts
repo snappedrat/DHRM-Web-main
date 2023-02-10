@@ -31,7 +31,7 @@ export class EvaluationFormComponent implements OnInit {
   ln:any
   dept:any
   skill:any
-  oprn:any
+  oprn:any 
   name:any
   file:any
   readable:any = false

@@ -1,8 +1,8 @@
-
-    <div class="col-sm-3">
+<div class="container">
+<div class="row1">
+    <div class="col">
         <br>
      <h1>&nbsp;<b>Evaluation Form</b></h1>
-    <div class="container">
       <div class="card"> 
           <table class="font">
             <br><br>
@@ -16,31 +16,35 @@
               <br><br><br>
               <div class="mx-5">
                 <tr class="font">
-                <tr > <div class="md">
-                    <td div class="aligncommand"><b>Category</b></td>
-                    <td div class="aligncommand">:{{cat}}</td><br>
-                <tr > 
-                    <td div class="aligncommand"><b>Department</b></td><br>
-                    <td div class="aligncommand">:{{dept}}</td><br><br>
+                
+                    
+                    <tr > 
+                        <td class = "stylecommand"><b>Category</b></td><br>
+                        <td>:{{cat}}</td><br><br>
+                    <tr > 
+                    <td class = "stylecommand" ><b>Department</b></td><br>
+                    <td >:{{dept}}</td><br><br>
                 <tr>
-                    <td div class="aligncommand"><b> Line</b></td><br>
-                    <td div class="aligncommand">:{{ln}}</td><br><br>
+                    
+                    <td  class = "stylecommand" ><b> Line</b></td><br>
+                    <td >:{{ln}}</td><br><br>
                 <tr>
-                    <td div class="aligncommand"><b> Skill Level</b></td><br>
-                    <td div class="aligncommand">:{{skill}}</td><br><br>
+                    <td class = "stylecommand" ><b> Skill Level</b></td><br>
+                    <td >:{{skill}}</td><br><br>
                     <tr>
-                        <td div class="aligncommand"><b> Operation Trained</b></td><br>
-                        <td div class="aligncommand"><div *ngFor="let i of pt">:{{i}}</div></td><br><br>
+                        <td  ><b> Operation Trained</b></td><br>
+                        <td ><div *ngFor="let i of pt">:{{i}}</div></td><br><br>
                         <tr>
-                        <td *ngIf="readable" div class="aligncommand"><b> Uploaded File</b></td><br>
-                        <td  *ngIf="readable" div class="aligncommand"><a [href]="this.uploaded" target="_blank" >:uploaded file</a></td><br><br>
+                        <td *ngIf="readable" ><b> Uploaded File</b></td><br>
+                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:uploaded file</a></td><br><br>
                 </div>
-              </div></table>
+             </table>
       </div></div>     
     </div>
-    <div class="col-md-11">
-        <div class="container2">
-          <div class="card2"> 
+    <div class="row1">
+    <div class="col">
+       
+          <div class="card"> 
            
             <form [formGroup] = "form">
                 <div class="mx-5">
@@ -91,11 +95,10 @@
                                               </mat-select>
                                             </mat-form-field>
                                         </div>                   
-                                       <br></div>
+                                       <br></div><br>
                                        <button [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
                         </form>
              </div>   </div></div>
         
             <br><br>
-                                     
-    
+</div>             
