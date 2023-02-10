@@ -23,7 +23,8 @@ export class TrainerEvaluationComponent implements OnInit {
     this.form = this.fb.group({
       status: ['0-60'],
       plantcode: [sessionStorage.getItem('plantcode')],
-      id: ['1']
+      id: ['1'],
+      filter:['PENDING']
 
     });
 
@@ -49,7 +50,6 @@ export class TrainerEvaluationComponent implements OnInit {
       }
     ) 
   }
-
 
   save()
   {

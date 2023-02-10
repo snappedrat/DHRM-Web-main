@@ -6,16 +6,21 @@
               <div class = "col-sm-3 boxx">
               <label for="Status" id="center"> Status: </label>
                 <br>
-                <!-- <mat-form-field> -->
                 <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (ngModelChange)="filter()" >
                     <mat-option value="0-60">0 to 60 days</mat-option>
                     <mat-option value="61-120">61 to 120 days</mat-option>
                     <mat-option value="121-180">121 to 180 days</mat-option>
                     <mat-option value="181-270">181 to 270 days</mat-option>
                   </mat-select> 
-                <!-- </mat-form-field> -->
               </div>
-        
+              <div class = "col-sm-3 boxx">
+                  <br>
+                  <mat-select name="Status" id="Status" class="form-control" formControlName = "filter" (ngModelChange)="filter()" >
+                      <mat-option value="PENDING">PENDING</mat-option>
+                      <mat-option value="APPROVED">APPROVED</mat-option>
+
+                    </mat-select> 
+                </div>
             </div>
               <br><br>
                 <div class = "table-wrapper">
@@ -29,7 +34,7 @@
                           <th div class="aligncommand">Mobile No</th>
                           <th div class="aligncommand">line Name</th>
                           <th div class="aligncommand">Dept Name</th>
-                          <th div class="aligncommand">Eval days</th>
+                          <th div class="aligncommand">Aging</th>
                           <th div class="aligncommand">Evaluate</th>
 
                           </tr>

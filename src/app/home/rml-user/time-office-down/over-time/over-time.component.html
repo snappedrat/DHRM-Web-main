@@ -3,7 +3,7 @@
     <button mat-fab style="float: right" (click)="exportexcel()">
         <mat-icon>download</mat-icon>
     </button></div>
-    <h1 class="title" >Comp Off Status</h1>
+    <h1 class="title" >Over Time Status</h1>
     <hr style="border-block-color: orange" />
     <div class = "table-wrapper">
       <table class="table table-bordered table-striped table-hover">
@@ -15,14 +15,14 @@
               style="width: 500px"
               style="background-color: darkblue">SNo
               </th>
-              <th div class="text-center">ID</th>
+              <th div class="text-center">Emp ID</th>
               <th div class="text-center">Name</th>
-              <th div class="text-center">att Date</th>
+              <th div class="text-center">attendance Date</th>
               <th div class="text-center">In Time</th>
               <th div class="text-center">Out Time</th>
+              <th div class="text-center">OT Hours</th>
               <th div class="text-center">Machine ID</th>
               <th div class="text-center">Machine Name</th>
-              <th div class="text-center">Excess Hours</th>
               <th div class="text-center">work Carried Out</th>
                 
               </tr>
@@ -35,9 +35,9 @@
                       <td>{{i.attDate}}</td>
                       <td>{{i.inTime}}</td>
                       <td>{{i.outTime}}</td>
+                      <td>{{i.othr}}</td>
                       <td>{{i.machine_id}}</td>
                       <td>{{i.machine_name}}</td>
-                      <td>{{i.othr}}</td>
                       <td>{{i.workCarriedOut}}</td>
                   </tr>
               </tbody>

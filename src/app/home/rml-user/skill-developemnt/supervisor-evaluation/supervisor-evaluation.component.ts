@@ -18,21 +18,12 @@ export class SupervisorEvaluationComponent implements OnInit {
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router) {
 
-    // this.router.routeReuseStrategy.shouldReuseRoute = function () {
-    //   return false;
-    // };
-    // this.someSubscription = this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     // Here is the dashing line comes in the picture.
-    //     // You need to tell the router that, you didn't visit or load the page previously, so mark the navigated flag to false as below.
-    //     this.router.navigated = false;
-    //   }
-    // });
 
     this.form = this.fb.group({
       status: ['0-60'],
       plantcode: [sessionStorage.getItem('plantcode')],
-      id: ['2']
+      id: ['2'],
+      emp_id: [sessionStorage.getItem('user_name')]
 
     });
 
@@ -63,6 +54,7 @@ export class SupervisorEvaluationComponent implements OnInit {
 
   filter()
   {
+    console.log(this.form.value)
     this.service.evaluationdays(this.form.value)
     .subscribe(
       {

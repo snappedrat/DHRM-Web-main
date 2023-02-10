@@ -6,7 +6,7 @@
       <div class = "col-sm-3 boxx">
       <label for="Status" id="center"> Status: </label>
         <br>
-        <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (change)="filter()" >
+        <mat-select name="status" id="status" class="form-control" formControlName = "status" (ngModelChange)=filter() >
             <mat-option value="0-60">0 to 60 days</mat-option>
             <mat-option value="61-120" selected>61 to 120 days</mat-option>
             <mat-option value="121-180">121 to 180 days</mat-option>
