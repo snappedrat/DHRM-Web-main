@@ -23,8 +23,8 @@ export class ForgetPunchComponent implements OnInit {
 
     this.form = this.fb.group(
       {
-        actual_in_time : [, Validators.required],
-        actual_out_time : [, Validators.required],
+        actual_in_time : ['', Validators.required],
+        actual_out_time : ['', Validators.required],
         reason : ['', Validators.required],
         emp_id: [sessionStorage.getItem('user_name')],
         date:[],
@@ -37,7 +37,7 @@ export class ForgetPunchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getChangedValue(new Date())
+    // this.getChangedValue(new Date())
 
   }
 
@@ -79,12 +79,12 @@ export class ForgetPunchComponent implements OnInit {
 
   submit()
   {
-    console.log(this.form.value)
+    // console.log(this.form.value)
 
-    this.form.controls['in_time'].setValue(this.change_format(this.form.controls['actual_in_time'].value))
-    this.form.controls['out_time'].setValue(this.change_format(this.form.controls['actual_out_time'].value))
-    this.form.controls['actual_in_time'].setValue(this.bio_time_A)
-    this.form.controls['actual_out_time'].setValue(this.bio_time_B)
+    // this.form.controls['in_time'].setValue(this.change_format(this.form.controls['actual_in_time'].value))
+    // this.form.controls['out_time'].setValue(this.change_format(this.form.controls['actual_out_time'].value))
+    // this.form.controls['actual_in_time'].setValue(this.bio_time_A)
+    // this.form.controls['actual_out_time'].setValue(this.bio_time_B)
     
     this.service.forgot_punch(this.form.value)
     .subscribe(
