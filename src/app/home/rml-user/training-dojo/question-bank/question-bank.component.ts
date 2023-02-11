@@ -97,7 +97,7 @@ export class QuestionBankComponent implements OnInit {
   answers(event:any, i:any)
   {
     console.log(event.target.value)
-    this.questions[i].correct_answer = event.target.value
+    this.questions[i].correct_answer = event.target.value.toUpperCase()
     console.log(this.questions)  
   }
 

@@ -40,7 +40,7 @@
                 maxlength="10" 
                 pattern="\d{10}"
                 [(ngModel)]="mobilenum"
-                (blur)="getPasswors()"
+                (ngModelChange)="getPassword($event)"
                 (click)="show()"
            >  
             <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  

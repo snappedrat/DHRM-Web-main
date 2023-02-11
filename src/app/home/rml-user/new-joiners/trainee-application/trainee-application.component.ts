@@ -139,9 +139,14 @@ get f()
 submit(){  
   console.log(this.bankForms.value);  
 }
-getPasswors(){
-  this.bankForms.controls['pass'].setValue( this.bankForms.controls['mobileNumber'].value.substr(-4))
- this.Tvalue = this.bankForms.controls['mobileNumber'].value.substr(-4) ;
+getPassword(event:any){
+
+  if(event?.length == 10)
+  {
+    this.bankForms.controls['pass'].setValue( this.bankForms.controls['mobileNumber'].value.substr(-4))
+    this.Tvalue = this.bankForms.controls['mobileNumber'].value.substr(-4) ;
+  }
+
 }
 }
 

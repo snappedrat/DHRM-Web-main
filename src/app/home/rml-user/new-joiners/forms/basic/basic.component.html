@@ -159,7 +159,7 @@
                 Permanent Address:<span class = "star-color">*</span>
             </label>
             <br>
-            <textarea type="text"  formControlName="permanent" (ngModelChange)="sendData()"  class="form-control" (mouseout)="getVal('')"></textarea>
+            <textarea type="text"  formControlName="permanent" (ngModelChange)="sendData()"  class="form-control" ></textarea>
         </div>
         <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert alert-danger">
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
@@ -167,7 +167,7 @@
         <p>Is permanent address same as present address</p>
         <div class="form-group" style="margin-left:20px;">
             <input
-                    (ngModelChange)="getValue($event)"
+                    (change)="getValue($event)"
                     type="radio"
                     name="address"
                     class="form-check-input" checked>YES

@@ -29,10 +29,10 @@
                           <td>{{ i.line_name }}</td>
                           <td>{{ i.dept_name }}</td>
                           <td>{{ i.diff }}</td>
-                          <td>{{ i.record_count == 1?tick:ex }}</td>
-                          <td>{{ i.record_count == 2?tick:ex }}</td>
-                          <td>{{ i.record_count == 3?tick:ex }}</td>
-                          <td>{{ i.record_count == 4?tick:ex }}</td>
+                          <td>{{ (i.record_count >= 1 &&i.record_count <= 4) ?tick:ex }}</td>
+                          <td>{{ (i.record_count >= 2 &&i.record_count <= 4) ?tick:ex }}</td>
+                          <td>{{ (i.record_count >= 3 &&i.record_count <= 4) ?tick:ex }}</td>
+                          <td>{{ (i.record_count >= 4 &&i.record_count <= 4) ?tick:ex }}</td>
 
                         </tr>
                       </tbody>

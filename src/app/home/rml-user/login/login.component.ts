@@ -31,11 +31,6 @@ export class LoginComponent implements OnInit {
             'Password': new UntypedFormControl(null, Validators.required),
         });
     }
-    setCookie(){
-        this.cookie.set("User_Name", this.username)
-        this.cookie.set("Password", this.password)
-    }
-
     setLocal(){
         sessionStorage.setItem('user_name', this.exform.value.User_Name)
         console.log(this.exform.value.User_Name)

@@ -70,8 +70,8 @@ export class BasicComponent implements OnInit{
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
         this.form = fb.group({
-            permanent:['',Validators.required],
-            present: [''],
+            permanent: new FormControl('', Validators.required),
+            present: new FormControl('', Validators.required),
             title: ['',Validators.required],
             fname:['',Validators.required],
             lname:['',Validators.required],
@@ -101,6 +101,8 @@ export class BasicComponent implements OnInit{
             mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')],
             company: [this.active.snapshot.paramMap.get('company')]
     })
+
+    this.form.get('permanent')?.valueChanges.subscribe((value)=> this.form.get('present')?.setValue(value) )
 
    }
 
@@ -375,26 +377,14 @@ export class BasicComponent implements OnInit{
     {
         if(event.target.checked)
         {
-
-            this.inputValue=this.form.controls['permanent'].value;
-            this.check =true;
-            this.noEntry=true;
-        }
-    }
-    public getVal(event:any):void{
-        if(this.noEntry)
-        {
-            this.inputValue=this.form.controls['permanent'].value;
-            this.check =true;
-
+            this.form.get('present')?.setValue(this.form.get('permanent')?.value)
+            this.form.get('permanent')?.valueChanges.subscribe((value)=> this.form.get('present')?.setValue(value) )
         }
     }
     public noValue(event:any):void{
         if(event.target.checked)
         {
-            this.inputValue='';
-            this.check=false;
-            this.noEntry=false;
+            this.form.get('present')?.setValue('')
         }
     }
 

@@ -170,7 +170,15 @@ export class CompOffComponent implements OnInit{
     this.service.emp_coff(this.form.value)
     .subscribe(
       {
-        next:(response:any)=>{console.log(response)}
+        next:(response:any)=>{console.log(response)
+          if(response[0].message == 'Success')
+          {
+            this.table_data.splice(this.temp_a, 1)
+            alert("Comp Off applied Successfully")
+          }
+            else
+            alert(response[0].message)
+        }
       }
     )
   }

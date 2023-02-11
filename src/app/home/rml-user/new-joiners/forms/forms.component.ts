@@ -88,18 +88,27 @@ export class FormsComponent implements OnInit {
 
     this.message_from_basic = data.basic
 
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false&& this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false )
+    if(this.message_from_basic == false && this.message_from_edu == false&& this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false )
       this.message = false
     else
       this.message = true
   }
-  eventchanger_bank(data:any)
+  eventchanger_fam(data:any)
   {
     console.log(data)
+    this.message_from_fam = data.fam
 
-    this.message_from_bank = data.bank
+    if(this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+      this.message = false
+    else
+      this.message = true
+  }
+  eventchanger_emer(data:any)
+  {
+    console.log(data)
+    this.message_from_emer = data.emer
 
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+    if(this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
     else
       this.message = true
@@ -110,7 +119,7 @@ export class FormsComponent implements OnInit {
 
     this.message_from_edu = data.edu
 
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+    if(this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
     else
       this.message = true
@@ -122,27 +131,7 @@ export class FormsComponent implements OnInit {
 
     this.message_from_choose = data.choose
 
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
-      this.message = false
-    else
-      this.message = true
-  }
-  eventchanger_fam(data:any)
-  {
-    console.log(data)
-    this.message_from_fam = data.fam
-
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
-      this.message = false
-    else
-      this.message = true
-  }
-  eventchanger_emer(data:any)
-  {
-    console.log(data)
-    this.message_from_emer = data.emer
-
-    if(this.message_from_bank == false && this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
+    if(this.message_from_basic == false && this.message_from_edu == false && this.message_from_fam == false && this.message_from_emer == false &&this.message_from_choose == false)
       this.message = false
     else
       this.message = true
@@ -150,7 +139,7 @@ export class FormsComponent implements OnInit {
   
   allSave()
   {
-    if(this.message_from_bank == true && this.message_from_basic == true && this.message_from_edu == true && this.message_from_fam == true && this.message_from_emer == true &&this.message_from_choose == true)
+    if(this.message_from_basic == true && this.message_from_edu == true && this.message_from_fam == true && this.message_from_emer == true &&this.message_from_choose == true)
     this.message = true
   else
   {
@@ -180,8 +169,6 @@ export class FormsComponent implements OnInit {
 
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
     this.uniqueId.company = this.active.snapshot.paramMap.get('company')
-
-
     
     console.log("ishr :", this.ishr, "ishrappr :", this.ishrappr)
   

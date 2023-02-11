@@ -257,6 +257,7 @@ onResumeChange(event:any){
 				{
 					this.flag_for_size = true
 					window.alert("File size should be less than 2MB")
+					this.resume_file = null
 				}
 				else
 				{
@@ -277,12 +278,17 @@ onMarksheetChange(event:any){
 		if(this.size > 1000000)
 		{
 			this.flag_for_size = true
-			window.alert("File size should be less than 2MB") 
+			window.alert("File size should be less than 1MB") 
+			this.marksheet_file = null
+
 		}
 		else
 		{
 			if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+			{
 				window.alert("File is not of metioned type")
+				this.marksheet_file = null
+			}
 			else
 				this.service.fileupload(this.marksheet_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_marksheet','2' )
 		}
@@ -298,12 +304,16 @@ onTransfercertificateChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.transfercertificate_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.transfercertificate_file = null
+		}
 		else
 			this.service.fileupload(this.transfercertificate_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_tc','3' )
 	}
@@ -322,12 +332,16 @@ onAadharcardChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB")			
+		this.aadharcard_file = null 
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.aadharcard_file = null
+		}
 		else
 			this.service.fileupload(this.aadharcard_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_aadhar','4' )
 	}
@@ -345,13 +359,17 @@ onBankpassbookChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.aadharcard_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
-		else
+			this.aadharcard_file = null
+		}
+				else
 			this.service.fileupload(this.bankpassbook_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_passbook','5' )
 	}
 	// this.urlforbankpass = this.url+this.filenames[0]?.other_files5
@@ -369,12 +387,17 @@ onPhotoChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.photo_file = null
 	}
 	else
 	{
 		if(new_ != 'png'&& new_ != 'jpg' && new_!='jpeg')
-			window.alert("File is not of metioned type")
+			{
+				window.alert("File is not of metioned type")
+				this.photo_file = null
+			}
+
 		else
 			this.service.fileupload(this.photo_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_photo','6' )
 	}
@@ -393,12 +416,17 @@ onSignatureChange(event:any){
 	{
 		this.flag_for_size = true
 		window.alert("File size should be less than 2MB") 
+		this.signature_file = null
+
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
-	else
+			this.signature_file = null
+		}
+			else
 	this.service.fileupload(this.signature_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_sign','7' )
 	}
 	// this.urlforSign = this.url+this.filenames[0]?.other_files7
@@ -419,12 +447,16 @@ onAppointmentorderChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.appointmentorder_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.appointmentorder_file = null
+		}
 		else
 			this.service.fileupload(this.appointmentorder_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_appointmentorder_file','8' )
 	}
@@ -440,12 +472,16 @@ onDeclarationChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.declaration_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.declaration_file = null
+		}
 		else
 			this.service.fileupload(this.declaration_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_declaration_file','9' )
 	}	
@@ -461,12 +497,16 @@ onMedicalfitnessChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.medicalfitness_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.medicalfitness_file = null
+		}
 		else
 			this.service.fileupload(this.medicalfitness_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_medicalfitness_file','10' )
 	}
@@ -482,12 +522,16 @@ onForma4Change(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.formA4_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.formA4_file = null
+		}
 		else
 			this.service.fileupload(this.formA4_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_formA4_file','11' )
 	}
@@ -503,12 +547,16 @@ onForm11Change(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.form11_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.form11_file = null
+		}
 		else
 			this.service.fileupload(this.form11_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_form11_file','12' )
 	}
@@ -524,12 +572,16 @@ onFormh2Change(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		this.formh2_file = null
+		window.alert("File size should be less than 1MB") 
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.formh2_file = null
+		}
 		else
 			this.service.fileupload(this.formh2_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_formh2_file','13' )
 	}
@@ -545,12 +597,16 @@ onNatxChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 2MB") 
+		window.alert("File size should be less than 1MB") 
+		this.natx_file = null
 	}
 	else
 	{
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+		{
 			window.alert("File is not of metioned type")
+			this.natx_file = null
+		}
 		else
 			this.service.fileupload(this.natx_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_natx_file','14' )
 	}

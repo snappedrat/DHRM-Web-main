@@ -73,8 +73,10 @@ export class OperationsComponent implements OnInit {
     this.service.plantcodelist(company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantname = response ;
-        for(var o in this.plantname)
-        this.array.push(this.plantname[o].plant_name)
+        // for(var o in this.plantname)
+        // this.array.push(this.plantname[o].plant_name)
+
+        this.plantname = this.plantname.map((a:any)=>a.plant_name)
       },
       error: (error) => console.log(error),
     });

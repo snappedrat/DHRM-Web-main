@@ -168,9 +168,12 @@ export class OverTimeComponent implements OnInit{
       {
         next:(response:any)=>
         {
-          console.log(response);
+          console.log(response)
           if(response.Message == 'Success')
+          {
+            this.table_data.splice(this.temp_a, 1)
             alert("OT applied Succesfully")
+          }
           else
             alert(response.Message)
         }

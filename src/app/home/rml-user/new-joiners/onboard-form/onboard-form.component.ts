@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { el } from 'date-fns/locale';
 import { ApiService } from 'src/app/home/api.service';
@@ -71,6 +71,7 @@ export class OnboardFormComponent implements OnInit {
   oprn: any;
   setting: number;
   true: boolean = false;
+  onboard:any = true
   
     constructor(private fb : UntypedFormBuilder,private http: HttpClient, private router: Router, private active :ActivatedRoute, private service:ApiService ) {
     
@@ -84,10 +85,10 @@ export class OnboardFormComponent implements OnInit {
       active_status:['ACTIVE'],
       bank_name:[''],
       line:[''],
-      dol:[''],
+      dol:new FormControl(''),
       bio_id:[''],
       process_trained:[''],
-      rfr:[''],
+      rfr:new FormControl(''),
       bnum:['', Validators.required],
       reportingto:[''],
       uan:['', [Validators.required ,Validators.maxLength(12)]],
@@ -106,15 +107,13 @@ export class OnboardFormComponent implements OnInit {
     
     ngOnInit(): void 
     {
-
-
-      if(this.readonly)
-      {
-        var control = this.form.get('dol')
-        control.setValidators([Validators.required]);
-        var control = this.form.get('rfr')
-        control.setValidators([Validators.required]);
-      }
+      // if(this.readonly)
+      // {
+      //   var control = this.form.get('dol')
+      //   control.setValidators([Validators.required]);
+      //   var control = this.form.get('rfr')
+      //   control.setValidators([Validators.required]);
+      // }
 
       this.form.controls['bio_id'].setValue(false)
 
@@ -181,7 +180,6 @@ export class OnboardFormComponent implements OnInit {
           {
             this.form.controls['rfr'].disable()            
             this.form.controls['dol'].disable()            
-
           }
 
             this.line = this.line.map((line_name:any) => line_name.line_name)
@@ -194,6 +192,12 @@ export class OnboardFormComponent implements OnInit {
           }
         }
       )
+
+      if(this.readonly == true)
+      {
+        this.form.controls["dol"].setValidators(Validators.required);
+        this.form.controls["rfr"].setValidators(Validators.required);
+      }
     }
     get pc()
     {
@@ -258,6 +262,15 @@ export class OnboardFormComponent implements OnInit {
           error: (err)=>{console.log(err)}
         })
       }
+    }
+
+    rel()
+    {
+      if(this.form.get('dol').value!='' &&  this.form.get('rfr').value!='')
+        this.onboard =false
+      if(this.form.get('active_status').value == 'ACTIVE')
+        this.onboard =true
+
     }
 
 

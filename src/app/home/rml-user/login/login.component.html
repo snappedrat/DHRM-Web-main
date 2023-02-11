@@ -10,14 +10,14 @@
                 <form [formGroup]="exform" (ngSubmit)="submit()">
                     <div class="form-group">
                         <label class="col-form-label" style="color: black;">User name</label>
-                        <input formControlName="User_Name" type="text" class="form-control" [(ngModel)]="username">
+                        <input formControlName="User_Name" type="text" class="form-control">
 <!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" style="color: black;">Password:</label>
-                        <input formControlName="Password" type="password" class="form-control" [(ngModel)]="password">
+                        <input formControlName="Password" type="password" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary" (click)="setCookie()" (click)="setLocal()">Sign In</button>
+                    <button type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
                 </form>
             </div>
         </div>

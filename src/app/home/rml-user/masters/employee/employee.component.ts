@@ -147,7 +147,6 @@ getall(event:any)
 
         // for(var o in this.desig)
         // this.desig_.push(this.desig[o].desig_name) 
-
         this.desig = this.desig.map((a:any)=>a.desig_name)
         this.dept= this.dept.map((a:any)=>a.dept_name)
         this.line = this.line.map((a:any)=>a.line_name)
@@ -202,14 +201,9 @@ edit(a:any)
         this.dept= this.all_details[1]
         this.line= this.all_details[2]
 
-        for(var o in this.desig)
-        this.desig_.push(this.desig[o].desig_name) 
-
-        for(var o in this.dept)
-        this.dept_.push(this.dept[o].dept_name) 
-
-        for(var o in this.line)
-        this.line_.push(this.line[o].line_name) 
+        this.desig = this.desig.map((a:any)=>a.desig_name)
+        this.dept= this.dept.map((a:any)=>a.dept_name)
+        this.line = this.line.map((a:any)=>a.line_name)
 
       },
       error: (error) => console.log(error),

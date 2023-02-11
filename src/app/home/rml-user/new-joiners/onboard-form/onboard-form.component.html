@@ -31,7 +31,7 @@
                 </div>
             <div class="col">                            
                 <label>Active Status: </label>
-                <select class="form-control" formControlName = "active_status" (change)="change($event)"><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
+                <select class="form-control" (change)="rel()" formControlName = "active_status" (change)="change($event)"><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
             </div>
             </div><br>
             <div class="row"> 
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col">
                     <label>Date of Leaving </label> <span *ngIf="readonly" style="color: red;"> *</span>
-                    <input class="form-control"  type = "date" formControlName = "dol" [readonly]="!readonly">
+                    <input class="form-control" (change)="rel()" type = "date" formControlName = "dol" [readonly]="!readonly">
                 </div>
             </div><br>
             <div class="row"> 
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-sm-4">                            
                     <label>Remarks for Relieving </label> <span *ngIf="readonly" style="color: red;"> *</span>
-                    <select class="form-control" formControlName = "rfr"><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" (change)="rel()" formControlName = "rfr"><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
                 </div>
             </div>
                     <div class="row"> 
@@ -113,7 +113,8 @@
                                 </div></div><br>
             <br>            
 <br>
-    <button [disabled]="form.invalid"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
+    <button *ngIf="!readonly" [disabled]="form.invalid"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
+    <button *ngIf="readonly" [disabled]="onboard"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
 </form>
             </div></div></div></div>
 

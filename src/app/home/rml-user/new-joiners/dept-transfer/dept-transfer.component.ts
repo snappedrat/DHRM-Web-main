@@ -19,6 +19,7 @@ import { threadId } from 'worker_threads';
 import { ApiService } from 'src/app/home/api.service';
 import { NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { AnyARecord } from 'dns';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -38,8 +39,8 @@ export class DeptTransferComponent implements OnInit {
   pageSize:any = 50
   paginateData:any
   collectionSize:any = 0
-  from:any
-  to:any
+  from:any = '2023-01-01'
+  to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
