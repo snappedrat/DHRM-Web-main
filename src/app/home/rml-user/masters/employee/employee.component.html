@@ -24,18 +24,18 @@
                         </div>
                         <div class="col">                            
                             <label>Line: </label><br>
-                            <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line_" [ngValue]="i">{{i}}</option></select>
+                            <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
                         </div>
                 </div><br>
                 
                 <div class="row">
                     <div class="col">                            
                         <label>Department: </label><br>
-                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept_" [ngValue]="i">{{i}}</option></select>
+                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i">{{i}}</option></select>
                     </div>
                         <div class="col">                            
                             <label>Designation: </label><br>
-                            <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig_" [ngValue]="i">{{i}}</option></select>
+                            <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i">{{i}}</option></select>
 
                         </div>
                     </div><br>

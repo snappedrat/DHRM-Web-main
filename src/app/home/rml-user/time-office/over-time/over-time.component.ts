@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, UntypedFormBuilder, Validators} from '@angular/forms';
 import {MomentDateAdapter,MAT_MOMENT_DATE_ADAPTER_OPTIONS}from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -49,7 +49,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class OverTimeComponent {
+export class OverTimeComponent implements OnInit{
   form:any
 
   date = new FormControl(moment());
@@ -73,6 +73,18 @@ export class OverTimeComponent {
         machine_id:['', Validators.required]
       }
     )
+  }
+
+  ngOnInit(): void {
+    var date = new Date()
+    var x = date.getMonth()+1
+    var y = date.getFullYear()
+    if(x<10)
+    var send = y+'/0'+x
+  else
+    var send = y+'/'+x
+
+    this.getDates(send)
   }
 
   chosenYearHandler(normalizedYear: Moment) {

@@ -50,6 +50,8 @@ export class CalenderComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getDates()
+
   }
 
   setView(view: CalendarView) {
@@ -82,7 +84,7 @@ export class CalenderComponent implements OnInit {
               title: 'title',
               start: new Date(this.attData[i].att_date),
               in_time: this.attData[i].in_time,
-              out_time: this.attData[i].in_time
+              out_time: this.attData[i].out_time
             }
             this.events.push(form)
           }

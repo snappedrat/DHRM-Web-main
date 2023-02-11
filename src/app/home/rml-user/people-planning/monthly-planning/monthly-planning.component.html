@@ -1,27 +1,47 @@
+<div class="container">
 <div class="px-5 py-5">
-    <table style="width: 100%;" class="table-bordered">
+
+    <mat-form-field >
+      <input matInput [matDatepicker]="dp" placeholder="Month and Year"  [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+      <mat-datepicker #dp
+                      startView="multi-year"
+                      (yearSelected)="chosenYearHandler($event)"
+                      (monthSelected)="chosenMonthHandler($event, dp)"
+                      panelClass="example-month-picker">
+      </mat-datepicker>
+    </mat-form-field>
+
+    <table style="width: 100%;" class="table-wrapper table-bordered table-responsive">
        <thead style="background-color: rgb(24, 33, 205);color:white;height: 30px">
            <tr>
                <td>S.NO</td>
+               <td>Dept Group</td>
                <td>Department</td>
                <td>Line</td>
                <td>Shift 1</td>
                <td>Shift 2</td>
                <td>Shift 3</td>
+               <td>General</td>
+               <td>Total</td>
            </tr>
        </thead>
        <tbody>
            <tr *ngFor = "let i of questions; let a = index">
                <td style="background-color: rgb(218, 218, 218);">{{a+1}}</td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (change)="dept($event, a)" (click)="addrow(a)"  type = 'text' class="form-group">{{i.question}}</textarea></td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (change)="line($event, a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift1($event, a)"  type = 'text' class="form-group">{{i.question}}</textarea></td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift2($event, a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
-               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="shift3($event, a)" class="form-group">{{i.correct_answer}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white"  type = 'text' class="form-group" readonly>{{i.dept_group}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white"  type = 'text' class="form-group" readonly>{{i.dept_name}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" type = 'text' class="form-group" readonly>{{i.line_name}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (click)="addrow(a)" (change)="shift1($event, a)"  type = 'text' class="form-group">{{i.shift1_reqd}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift2($event, a)" type = 'text' class="form-group">{{i.shift2_reqd}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="shift3($event, a)" class="form-group">{{i.shift3_reqd}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="gen($event, a)" class="form-group">{{i.genl_reqd}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (click)="total($event, a)" class="form-group" readonly>{{i.total_reqd}}</textarea></td>
            </tr>
        </tbody>
     </table>
 </div>
 <div class="px-5 py-5">
     <button (click)="save()" class="btn-alert">SAVE</button>
+</div>
 </div>

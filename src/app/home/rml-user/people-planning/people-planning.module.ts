@@ -7,6 +7,10 @@ import { AnnualPlanningComponent } from './annual-planning/annual-planning.compo
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {CdkTableModule} from '@angular/cdk/table';
 import { FormsModule } from '@angular/forms';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {ReactiveFormsModule} from "@angular/forms";
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -18,6 +22,11 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     PeoplePlanningRoutingModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatInputModule 
+
     
   ]
 })

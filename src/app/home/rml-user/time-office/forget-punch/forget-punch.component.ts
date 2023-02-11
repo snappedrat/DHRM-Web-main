@@ -23,8 +23,8 @@ export class ForgetPunchComponent implements OnInit {
 
     this.form = this.fb.group(
       {
-        actual_in_time : ['', Validators.required],
-        actual_out_time : ['', Validators.required],
+        actual_in_time : [, Validators.required],
+        actual_out_time : [, Validators.required],
         reason : ['', Validators.required],
         emp_id: [sessionStorage.getItem('user_name')],
         date:[],

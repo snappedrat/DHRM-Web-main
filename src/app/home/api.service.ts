@@ -352,6 +352,14 @@ url2:any = environment.path2
   {
     return this.http.get(this.url+'/test-summary')
   }
+  people_planning(form:any)
+  {
+    return this.http.post(this.url+'/people_planning', form)
+  }
+  people_planning_save(form:any)
+  {
+    return this.http.post(this.url+'/people_planning_save', form)
+  }
 
   /////////////////////////////////////// PHASE - 3
   attendance(form:any)

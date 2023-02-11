@@ -48,7 +48,7 @@
                     <div *ngIf="disable2==1" class="col">
                 <h2>Actual Out-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="actual_out_time" [ngxMatTimepicker]="pickerB" />
+                    <input matInput formControlName="actual_out_time" [ngxMatTimepicker]="pickerB" readonly/>
                     <mat-icon matSuffix (click)="pickerB.open()">
                         watch_later
                     </mat-icon>

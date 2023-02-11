@@ -23,7 +23,8 @@ import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";
 import { MatIcon } from "@angular/material/icon";
-
+import {MomentDateAdapter,MAT_MOMENT_DATE_ADAPTER_OPTIONS}from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 
 
@@ -44,6 +45,26 @@ const material = [
   MatTableModule
 ];
 
+import * as _moment from 'moment';
+import {Moment} from 'moment';
+import { MatDatepicker } from "@angular/material/datepicker";
+import { isThisSecond } from "date-fns";
+
+const moment = _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+  
+};
+
 
  
 
@@ -51,31 +72,82 @@ const material = [
   selector: 'app-dept',
   templateUrl: './monthly-planning.component.html',
   styleUrls: ['./monthly-planning.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 
 export class MonthlyPlanningComponent implements OnInit {
+  date = new FormControl(moment());
 
   questions: any = [{}]
   inserted:any = 1
   form:any
+  f: { year: any; month: any; plantcode: string | null; };
 
-  constructor(private fb : UntypedFormBuilder)
+  constructor(private fb : UntypedFormBuilder, private service : ApiService)
   {
     this.form = this.fb.group
     (
       {
-        department:[],
-        line: [],
-        shift1:[],
-        shift2:[],
-        shift3:[]
+      year:[''],
+      month:[''],
+      plant_code:[sessionStorage.getItem('plantcode')]
       }
     )
+  }
 
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value!;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) 
+  {
+    const ctrlValue = this.date.value!;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+    var x = ctrlValue.month()+1
+    var y = ctrlValue.year()
+    console.log(x, y)
+
+    if(x<10)
+      var send = ctrlValue.year()+'/0'+x
+    else
+      var send = ctrlValue.year()+'/'+x
+
+    this.getDetails(x,y)
   }
 
   ngOnInit(): void {
+
+    var date = new Date()
+    var x = Number(date.getMonth)+1
+    var y = date.getFullYear()
+    this.getDetails(x, y)
     
+  }
+
+  getDetails(x:any, y:any)
+  {
+    var form = {year: y, month: x, plantcode: sessionStorage.getItem('plantcode')}
+    this.f = form
+    this.service.people_planning(form)
+    .subscribe(
+      {
+        next: (response)=>{console.log(response);
+          this.questions = response}
+      }
+    )
+
   }
 
   addrow(i:any)
@@ -87,34 +159,48 @@ export class MonthlyPlanningComponent implements OnInit {
         }
   }
 
-  dept(event:any, i:any)
+  gen(event:any, i:any)
   {    
-    this.questions[i].dept = event.target.value
+    this.questions[i].genl_reqd = event.target.value
     console.log(this.questions[i])
   }
-  line(event:any, i:any)
+  total(event:any, i:any)
   {    
-    this.questions[i].line = event.target.value
-    console.log(this.questions[i])
+    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd) +Number(this.questions[i].shift2_reqd)
+    +Number(this.questions[i].shift3_reqd) +Number(this.questions[i].genl_reqd)
+
   }
   shift1(event:any, i:any)
   {    
-    this.questions[i].shift1 = event.target.value
+    this.questions[i].shift1_reqd = event.target.value
     console.log(this.questions[i])
   }
   shift2(event:any, i:any)
   {    
-    this.questions[i].shift2 = event.target.value
+    this.questions[i].shift2_reqd = event.target.value
     console.log(this.questions[i])
   }
   shift3(event:any, i:any)
   {    
-    this.questions[i].shift3 = event.target.value
+    this.questions[i].shift3_reqd = event.target.value
     console.log(this.questions[i])
   }
   save()
   {
+    this.questions.push({})
+    this.questions[this.questions.length-1].plant_code = sessionStorage.getItem('plantcode')
+    this.questions[this.questions.length-1].plant_year = this.f.year
+    this.questions[this.questions.length-1].plant_month = this.f.month
+    this.questions[this.questions.length-1].created_by = sessionStorage.getItem('emp_name')
+
     console.log(this.questions)
+
+    this.service.people_planning_save(this.questions)
+    .subscribe(
+      {
+        next:(response)=>{console.log(response)}
+      }
+    )
   }
 
   }

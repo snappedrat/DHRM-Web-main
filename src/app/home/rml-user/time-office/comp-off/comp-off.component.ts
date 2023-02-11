@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormControl, UntypedFormBuilder} from '@angular/forms';
 import {MomentDateAdapter,MAT_MOMENT_DATE_ADAPTER_OPTIONS}from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -43,7 +43,7 @@ export const MY_FORMATS = {
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-export class CompOffComponent {
+export class CompOffComponent implements OnInit{
 
   form:any
 
@@ -66,6 +66,19 @@ export class CompOffComponent {
 
       }
     )
+  }
+
+  ngOnInit(): void {
+
+    var date = new Date()
+    var x = date.getMonth()+1
+    var y = date.getFullYear()
+    if(x<10)
+    var send = y+'/0'+x
+  else
+    var send = y+'/'+x
+
+    this.getDates(send)
   }
 
   chosenYearHandler(normalizedYear: Moment) {
