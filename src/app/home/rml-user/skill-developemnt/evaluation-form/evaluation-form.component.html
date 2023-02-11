@@ -8,7 +8,7 @@
             <br><br>
             <div class="mx-5">
             <tr>
-              <td><img class = "img" [src]=this.image alt="Avatar" ></td>
+              <!-- <td><img class = "img" [src]="this.image" alt="Avatar" ></td> -->
               <div class="mx-5">
               <td class="name"><b>{{name}}</b></td>
               </div>
@@ -33,10 +33,13 @@
                     <td >:{{skill}}</td><br><br>
                     <tr>
                         <td  ><b> Operation Trained</b></td><br>
-                        <td ><div *ngFor="let i of pt">:{{i}}</div></td><br><br>
-                        <tr>
+                        <td ><div *ngFor="let i of pt">:{{i}}</div></td><br><br><br><br>
+                    <tr>
                         <td *ngIf="readable" ><b> Uploaded File</b></td><br>
-                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:uploaded file</a></td><br><br>
+                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:View Hr file</a></td><br><br>
+                    <tr>
+                        <td *ngIf="appr" ><b> Uploaded File</b></td><br>
+                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >:View Supervisor file</a></td><br><br>
                 </div>
              </table>
       </div></div>     
@@ -68,7 +71,7 @@
                
                         <div class="col">
                             <label>Upload File</label><br>
-                            <input class="form-control" type="file" (change)="files($event)">
+                            <input class="form-control" type="file" (change)="files($event)" [disabled]="appr">
                     </div><br>
                         
                             <div class="col">                            
@@ -96,7 +99,8 @@
                                             </mat-form-field>
                                         </div>                   
                                        <br></div><br>
-                                       <button [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
+                                       <button *ngIf="!appr" [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
+                                       <button *ngIf="appr" type="submit" [routerLink]="['/rml/skill-developement/trainer-evaluation']" class="btn btn-success btn-lg">GO BACK</button>
                         </form>
              </div>   </div></div>
         

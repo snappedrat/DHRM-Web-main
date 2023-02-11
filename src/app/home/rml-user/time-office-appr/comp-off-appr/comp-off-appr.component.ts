@@ -58,6 +58,7 @@ export const MY_FORMATS = {
 export class CompOffApprComponent {
   date = new FormControl(moment());
 
+  emp_id:any
   dates:any
   data:any= ['']
   table_temp:any
@@ -66,6 +67,9 @@ export class CompOffApprComponent {
   disable: number = 1;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    var x:any = sessionStorage.getItem('all')
+    x = JSON.parse(x)
+    this.emp_id = x.gen_id
   }
   dummy: any  = ['']
 
@@ -111,7 +115,7 @@ export class CompOffApprComponent {
   getDates()
   {
     this.table_data = []
-    var form = {id: sessionStorage.getItem('user_name')}
+    var form = {id: this.emp_id}
     this.service.coffRequestDisplay(form)
     .subscribe(
       {
@@ -125,7 +129,7 @@ export class CompOffApprComponent {
     var form = 
     {
       statuslet: 'ACCEPT',
-      executiveID: sessionStorage.getItem('user_name'),
+      executiveID: this.emp_id,
       date: this.table_data[this.temp_a].workedDate,
       coffDate:  this.table_data[this.temp_a].coffDate,
       empID: this.table_data[this.temp_a].EmpID
@@ -151,7 +155,7 @@ export class CompOffApprComponent {
     var form = 
     {
       statuslet: 'REJECT',
-      executiveID: sessionStorage.getItem('user_name'),
+      executiveID: this.emp_id,
       date: this.table_data[this.temp_a].workedDate,
       coffDate:  this.table_data[this.temp_a].coffDate,
       empID: this.table_data[this.temp_a].EmpID

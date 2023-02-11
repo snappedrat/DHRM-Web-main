@@ -58,6 +58,11 @@ plantcode:any;
 companycode : any;
 errmsg: any = '';  
 
+show()
+{
+  console.log(this.bankForms.value)
+}
+
 ngOnInit(): void {
 
   this.getcompanycode()
@@ -74,7 +79,7 @@ ngOnInit(): void {
 getplantcode(event:any){
     console.log(event.target.value);
     this.bankForms.controls['plant'].setValue('')
-    var company = {'company_name': event.target.value}
+    var company = {'company_name': event.target.value.split('.')[1].trim()}
     this.http.post(this.url+'/plantcodelist',company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantcode = response },
@@ -93,13 +98,17 @@ getcompanycode(){
 
 sendFormData()
 {
+  var x = this.bankForms.controls['company'].value.split('.')[0].trim()
+  var y = this.bankForms.controls['company'].value.split('.')[1].trim()
+  this.bankForms.controls['company'].setValue(this.companycode[x-1].sno)
+
   if(this.bankForms.invalid)
   {
     window.alert('mandatory feilds are not yet filled')
   }
   else{
 
-    this.companyname = this.bankForms.controls['company'].value
+    this.companyname = this.companycode[x-1].sno
   
     this.http.post(this.url+'/traineeformdata', this.bankForms.value)
     .subscribe({

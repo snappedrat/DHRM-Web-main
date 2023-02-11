@@ -36,6 +36,7 @@ import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { DateRangeFilterPipe } from '../dateFilter.pipe';
 
 @NgModule({
     declarations: [
@@ -44,9 +45,8 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
         FormsComponent,
         BasicComponent,
         BanksComponent,
-
+        DateRangeFilterPipe,
         OtherComponent,
-
         EmergencyComponent,
         LanguageComponent,
         TraineeApplicationStatusComponent,

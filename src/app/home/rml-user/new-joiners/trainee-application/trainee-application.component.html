@@ -11,7 +11,7 @@
                 <label for="company">Company Name</label>  
                 <select formControlName="company" class="form-control" (change) = "getplantcode($event)" >
                     <option value="">Choose</option>
-                    <option *ngFor="let c of companycode"> {{c.company_name}} </option>
+                    <option *ngFor="let c of companycode; let a = index">{{a+1}}. {{c.company_name}} </option>
                 </select>
                   <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   
@@ -41,6 +41,7 @@
                 pattern="\d{10}"
                 [(ngModel)]="mobilenum"
                 (blur)="getPasswors()"
+                (click)="show()"
            >  
             <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  

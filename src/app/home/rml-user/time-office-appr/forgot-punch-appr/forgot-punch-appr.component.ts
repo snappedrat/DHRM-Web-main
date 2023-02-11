@@ -19,8 +19,13 @@ export class ForgotPunchApprComponent implements OnInit {
   table_data:any = ['']
   temp_a: any;
   disable: number = 1;
+  emp_id: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    var x:any = sessionStorage.getItem('all')
+    x = JSON.parse(x)
+    this.emp_id = x.gen_id
+
   }
   dummy: any  = ['']
 
@@ -45,7 +50,7 @@ export class ForgotPunchApprComponent implements OnInit {
   getDates()
   {
     this.table_data = []
-    var form = {id: sessionStorage.getItem('user_name')}
+    var form = {id: this.emp_id}
     this.service.forgotPunchRequestDisplay(form)
     .subscribe(
       {
@@ -59,7 +64,7 @@ export class ForgotPunchApprComponent implements OnInit {
     var form = 
     {
       status: 'ACCEPT',
-      executiveID: sessionStorage.getItem('user_name'),
+      executiveID: this.emp_id,
       date: this.table_data[this.temp_a].attDate,
       empID: this.table_data[this.temp_a].EmpID,
       inTime: this.table_data[this.temp_a].requestedIn,
@@ -88,7 +93,7 @@ export class ForgotPunchApprComponent implements OnInit {
     var form = 
     {
       status: 'REJECT',
-      executiveID: sessionStorage.getItem('user_name'),
+      executiveID: this.emp_id,
       date: this.table_data[this.temp_a].attDate,
       empID: this.table_data[this.temp_a].EmpID,
       inTime: this.table_data[this.temp_a].requestedIn,

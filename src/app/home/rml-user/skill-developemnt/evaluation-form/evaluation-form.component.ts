@@ -35,6 +35,7 @@ export class EvaluationFormComponent implements OnInit {
   name:any
   file:any
   readable:any = false
+  appr:any = false
 
   nav:any
 
@@ -44,6 +45,7 @@ export class EvaluationFormComponent implements OnInit {
   pt: any;
   trainee_idno: any;
   uploaded: any;
+  uploaded2: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -74,11 +76,13 @@ export class EvaluationFormComponent implements OnInit {
       ngOnInit(): void 
       {
 
+        this.appr = (this.active.snapshot.paramMap.get('nav') == '3') ? true : false
+
         if(this.active.snapshot.paramMap.get('nav') == '1')
         {
           this.nav = '/rml/skill-developement/trainer-evaluation'
         }
-        else if(this.active.snapshot.paramMap.get('nav') == '2')
+        else if(this.active.snapshot.paramMap.get('nav') == '2' || this.active.snapshot.paramMap.get('nav') == '3')
         {
           this.nav = '/rml/skill-developement/supervisor-evaluation'
           this.readable = true
@@ -133,7 +137,7 @@ export class EvaluationFormComponent implements OnInit {
           }
         })
 
-        if(this.active.snapshot.paramMap.get('nav')== '2')
+        if(this.active.snapshot.paramMap.get('nav')== '2' || this.active.snapshot.paramMap.get('nav')== '3')
         {
           this.service.get_eval_sup({apln_slno : this.active.snapshot.paramMap.get('id')})
           .subscribe(
@@ -147,15 +151,16 @@ export class EvaluationFormComponent implements OnInit {
                 this.pt = this.pt.map((a:any)=>a.oprn_desc)
 
                 this.form.controls['evaluation_date'].setValue('2023-02-02')
-                this.form.controls['score_obtained'].setValue(response[0][0].tnr_numerator)
-                this.form.controls['score_for'].setValue(response[0][0].tnr_denominator)
-                this.form.controls['percentage'].setValue(response[0][0].tnr_percentage)
-                this.form.controls['line'].setValue(response[1][0].line_name)
-                this.form.controls['pe_slno'].setValue(response[1][0].pe_slno)
-                this.form.controls['department'].setValue(response[2][0].dept_name)
+                this.form.controls['score_obtained'].setValue(response[0][0]?.tnr_numerator)
+                this.form.controls['score_for'].setValue(response[0][0]?.tnr_denominator)
+                this.form.controls['percentage'].setValue(response[0][0]?.tnr_percentage)
+                this.form.controls['line'].setValue(response[1][0]?.line_name)
+                this.form.controls['pe_slno'].setValue(response[1][0]?.pe_slno)
+                this.form.controls['department'].setValue(response[2][0]?.dept_name)
                 this.form.controls['process_trained'].setValue(this.pt)
-                this.form.controls['new_skill'].setValue(response[4][0].new_level)
-                this.uploaded = this.url+'/skill_dev/'+response[0][0].tnr_filename
+                this.form.controls['new_skill'].setValue(response[4][0]?.new_level)
+                this.uploaded = this.url+'/skill_dev/'+response[0][0]?.tnr_filename
+                this.uploaded2 = this.url+'/skill_dev/'+response[0][0]?.sup_filename
               }
             }
           )

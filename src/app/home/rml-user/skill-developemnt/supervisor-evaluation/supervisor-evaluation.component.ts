@@ -24,7 +24,6 @@ export class SupervisorEvaluationComponent implements OnInit {
       plantcode: [sessionStorage.getItem('plantcode')],
       id: ['2'],
       emp_id: [sessionStorage.getItem('user_name')]
-
     });
 
    }

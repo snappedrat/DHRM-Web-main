@@ -18,8 +18,12 @@ export class ForgotPunchComponent implements OnInit {
   table_data:any = ['']
   temp_a: any;
   disable: number = 1;
+  emp_id: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+    var x:any = sessionStorage.getItem('all')
+    x = JSON.parse(x)
+    this.emp_id = x.gen_id
   }
   dummy: any  = ['']
 
@@ -31,7 +35,7 @@ export class ForgotPunchComponent implements OnInit {
   getDates()
   {
     this.table_data = []
-    var form = {id: sessionStorage.getItem('user_name')}
+    var form = {id: this.emp_id}
     this.service.forgotPunchRequestDisplay(form)
     .subscribe(
       {

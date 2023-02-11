@@ -1,8 +1,13 @@
 <div class = "container">
-    <div  style = "margin-top: 40px;">   
-
-      <form [formGroup]="form">
-
+    <div  style = "margin-top: 40px;">
+    <div class="row">
+        <div class = "col-sm-2">
+            <input type="date" (change)="call($event)">
+          </div>
+          <div class = "col-sm-2">
+            <input type="date" (change)="call2($event)">
+          </div>
+    </div>
       <br><br>
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
@@ -61,8 +66,8 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let i of paginateData">
-                        <td>{{ i.doj.split('T')[0] }}</td>
+                    <tr *ngFor="let i of paginateData | dateRangeFilter:from:to:'doj' ">
+                        <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
                         <td>{{ i.birthdate }}</td>
@@ -84,7 +89,6 @@
                 </table>
               </table>
         </div>
-        </form>
     </div>
 
     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">

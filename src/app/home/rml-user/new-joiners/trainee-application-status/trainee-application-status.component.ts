@@ -3,7 +3,6 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PlantcodeService } from '../plantcode.service';
-import { ifError } from 'assert';
 
 @Component({
   selector: 'app-trainee-application-status',

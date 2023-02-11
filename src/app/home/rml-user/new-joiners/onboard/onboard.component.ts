@@ -69,7 +69,12 @@ export class OnboardComponent implements OnInit {
     .subscribe(
       {
         next:
-      (response:any)=>{console.log(response); this.filterinfo = response; this.collectionSize = this.filterinfo.length;this.getPremiumData()}
+      (response:any)=>
+      {
+        console.log(response); 
+        this.filterinfo = response;
+         this.collectionSize = this.filterinfo.length;
+         this.getPremiumData()}
       }
     )
   }

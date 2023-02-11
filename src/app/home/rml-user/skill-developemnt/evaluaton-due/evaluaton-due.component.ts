@@ -14,7 +14,8 @@ export class EvaluatonDueComponent implements OnInit {
   filterinfo:any = []
   id:any
   form:any
-
+  tick :any = '✔️'
+  ex:any
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router) {
 
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {

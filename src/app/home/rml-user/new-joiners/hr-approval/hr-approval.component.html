@@ -1,22 +1,26 @@
 <div class = "container">
     <div  style = "margin-top: 40px;">   
       <form [formGroup]="form" (ngSubmit)="filter()">
+        <label for="Status"> Status: </label>
       <div class = "row">
-      <div class = "col-sm-3 boxx">
-      <label for="Status" id="center"> Status: </label>
-        <br>
-          <select name="Status" id="Status" formControlName = "status">
+      <div class = "col-sm-2">
+          <select name="Status" formControlName = "status">
             <option value="incomplete">NEW INCOMPLETE</option>
             <option value="pending" selected>PENDING</option>
             <option value="submitted">SUBMITTED</option>
             <option value="approved">APPROVED</option>
             <option value="Rejected">REJECTED</option>
             <option value="appointed">APPOINTED</option>
-
           </select> 
       </div>
-
+      <div class = "col-sm-2">
+        <input type="date" (change)="call($event)">
+      </div>
+      <div class = "col-sm-2">
+        <input type="date" (change)="call2($event)">
+      </div>
     </div>
+    </form>
       <button class = "btn btn-primary btn-lg" (click)="filter()" >filter</button>
       <br><br>
         <div class = "table-wrapper">
@@ -75,7 +79,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let i of filterinfo">
+                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'created_dt' ">
                         <td>{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
@@ -86,7 +90,7 @@
                         <td>{{ i.apln_status }}</td>
                         <td>
                             <div *ngIf= "i.apln_status == 'SUBMITTED'">
-                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status,i.company_name ]" >
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status,i.sno ]" >
                                 <mat-icon>visibility</mat-icon>
                             </button>
                         </div>
@@ -96,6 +100,5 @@
                 </table>
               </table>
         </div>
-        </form>
     </div>
 </div>

@@ -1,59 +1,43 @@
 <div class = "container">
     <div  style = "margin-top: 40px;">   
         <h1><b>Evaluation Due Summary</b></h1>
-      <form [formGroup]="form" (ngSubmit)="filter()">
-      <div class = "row">
-      <div class = "col-sm-3 boxx">
-      <label for="Status" id="center"> Status: </label>
-        <br>
-        <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (change)="filter()" >
-            <mat-option value="0-60">0 to 60 days</mat-option>
-            <mat-option value="61-120" mat-selected>61 to 120 days</mat-option>
-            <mat-option value="121-180">121 to 180 days</mat-option>
-            <mat-option value="181-270">181 to 270 days</mat-option>
-          </mat-select> 
-
-      </div>
-
-    </div>
       <br><br>
         <div class = "table-wrapper">
           <table class="table table-bordered table-striped table-hover">
             <table id="table">
                 <thead>
                 <tr>
-                    <th div class="aligncommand">Date</th>
-                    <th div class="aligncommand">ID No</th>
+                    <!-- <th div class="aligncommand">Date</th> -->
+                    <th div class="aligncommand">Emp ID</th>
                     <th div class="aligncommand">Name</th>
-                    <th div class="aligncommand">Mobile No</th>
-                    <th div class="aligncommand">line Name</th>
+                    <th div class="aligncommand">Line Name</th>
                     <th div class="aligncommand">Dept Name</th>
-                    <th div class="aligncommand">Eval days</th>
-                    <th div class="aligncommand">Evaluate</th>
+                    <th div class="aligncommand">Aging</th>
+                    <th div class="aligncommand">First Evaluation</th>
+                    <th div class="aligncommand">Second Evaluation</th>
+                    <th div class="aligncommand">Third Evaluation</th>
+                    <th div class="aligncommand">Fourth Evaluation</th>
 
                     </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let i of filterinfo">
-                          <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
+                          <!-- <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td> -->
                           <td>{{i.trainee_idno}}</td>
                           <td>{{ i.fullname }}</td>
-                          <td>{{ i.mobile_no1 }}</td>
+                          <!-- <td>{{ i.mobile_no1 }}</td> -->
                           <td>{{ i.line_name }}</td>
                           <td>{{ i.dept_name }}</td>
                           <td>{{ i.diff }}</td>
-                          <td>
-                              <div>
-                              <button mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno, 3]" >
-                                  <mat-icon>edit</mat-icon>
-                              </button>
-                          </div>
-                          </td>
+                          <td>{{ i.record_count == 1?tick:ex }}</td>
+                          <td>{{ i.record_count == 2?tick:ex }}</td>
+                          <td>{{ i.record_count == 3?tick:ex }}</td>
+                          <td>{{ i.record_count == 4?tick:ex }}</td>
+
                         </tr>
                       </tbody>
                   </table>
                 </table>
           </div>
-          </form>
       </div>
   </div>

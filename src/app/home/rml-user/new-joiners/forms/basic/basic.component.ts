@@ -37,7 +37,13 @@ export class BasicComponent implements OnInit{
     Title : any = ['Mr.', 'Miss.', 'Mrs.']
     Gender: any = ['Male', 'Female'];
     nation :any = ['India'];
-    religion: any =['Hindu','christain','muslim'];
+    religion: any =['HINDU',
+        'BUDDHIST',
+        'ISLAM',
+        'CHRISTIAN',
+        'SIKH',
+        'JAIN',
+        'PARSI'];
     marital: any =['Married','unmarried','widower'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['No', 'Yes'];
@@ -131,9 +137,9 @@ export class BasicComponent implements OnInit{
         this.form.controls['height'].setValue(this.basic[0]?.height)
         this.form.controls['weight'].setValue(this.basic[0]?.weight)
 
-        this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
         try
         {
+        this.aadharsplitted = this.basic[0]?.aadhar_no.match(/.{1,4}/g)
         this.form.controls['aadhar1'].setValue(this.aadharsplitted[0])
         this.form.controls['aadhar2'].setValue(this.aadharsplitted[1])
         this.form.controls['aadhar3'].setValue(this.aadharsplitted[2])
@@ -180,7 +186,7 @@ export class BasicComponent implements OnInit{
     {
         if(this.ishr == 'undefined')
         {
-            if(event.length == 4 )
+            if(event?.length == 4 )
             {
                 var mobile = this.active.snapshot.paramMap.get('mobile_no1')
                 var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value

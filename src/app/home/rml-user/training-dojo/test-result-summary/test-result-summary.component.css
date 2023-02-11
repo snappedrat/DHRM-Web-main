@@ -64,3 +64,7 @@ tbody
 .search{
   margin-left: 0px;
 }
+.form-control
+{
+  font-size: small;
+}

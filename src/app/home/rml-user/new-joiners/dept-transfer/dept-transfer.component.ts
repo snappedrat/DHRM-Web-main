@@ -5,6 +5,7 @@ import { PlantcodeService } from '../../new-joiners/plantcode.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
+import { DateRangeFilterPipe } from '../../dateFilter.pipe';
 
 import {
   trigger,
@@ -37,6 +38,8 @@ export class DeptTransferComponent implements OnInit {
   pageSize:any = 50
   paginateData:any
   collectionSize:any = 0
+  from:any
+  to:any
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
@@ -57,6 +60,19 @@ export class DeptTransferComponent implements OnInit {
       }
     )
   }
+
+  call(event:any)
+  {
+   this.from = event.target.value
+   console.log(this.from)
+  }
+  call2(event:any)
+  {
+   this.to = event.target.value
+   console.log(this.to);
+   
+  }
+
 
   save()
   {
