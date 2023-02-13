@@ -16,6 +16,7 @@ import { HttpClientModule} from "@angular/common/http";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './Auth.guard';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA,

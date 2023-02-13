@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit,OnDestroy {
 
   ishrappr :any
   form: FormGroup = new FormGroup({});
@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit{
   issupervisor: string | null;
   all: any;
   isRA: string | null;
+  user: any;
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
@@ -50,6 +51,7 @@ export class NavbarComponent implements OnInit{
   }
       delCookie()
       {
+        this.user = sessionStorage.getItem('user')
         this.cookie.delete('User_Name')
         this.cookie.delete('Password')
         sessionStorage.clear()
@@ -58,6 +60,11 @@ export class NavbarComponent implements OnInit{
       ngOnInit(): void 
       {
         this.getHr()
+      }
+
+      ngOnDestroy(): void 
+      {
+        sessionStorage.clear()
       }
 
 getHr()

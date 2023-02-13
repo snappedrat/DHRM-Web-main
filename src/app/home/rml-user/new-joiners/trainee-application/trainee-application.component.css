@@ -1,3 +1,6 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
 .form-control.ng-touched.ng-invalid {
     border:1px solid red;
    }
@@ -44,4 +47,9 @@ select:hover{
 
 .container{
     justify-content: center;
+}
+#logout{
+    width:50px;
+    height:30px;
+    margin-left:90%;
 }

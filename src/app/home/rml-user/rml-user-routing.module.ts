@@ -4,12 +4,13 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {CompanyComponent} from "./masters/company/company.component";
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 import { ReportsComponent } from './reports/reports.component';
+import { AuthGuard } from 'src/app/Auth.guard';
+import { ArsLoginComponent } from './ars-login/ars-login.component';
 
 const routes: Routes = [
   {
     path:"",
-    component:NavbarComponent,
-    
+    component:NavbarComponent,canActivate:[AuthGuard],
     children:[
       {
         path:"masters",
@@ -54,8 +55,12 @@ const routes: Routes = [
       {
         path:'reports',
         component: ReportsComponent
-      }
+      },
       ]
+  },
+  {
+    path: 'ars-login',
+    component: ArsLoginComponent
   }
 
 ];

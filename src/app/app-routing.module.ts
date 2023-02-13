@@ -9,11 +9,10 @@ import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.componen
 import { IdcardComponent } from './home/rml-user/new-joiners/idcard/idcard.component';
 import { TraineeLoginComponent } from './home/rml-user/training-dojo/trainee-login/trainee-login.component';
 import { TraineeTestComponent } from './home/rml-user/training-dojo/trainee-test/trainee-test.component';
+import { AuthGuard } from './Auth.guard';
+import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+
 const routes: Routes = [
-  {
-    path:'',
-    component:FirstPageComponent,
-  },
   {
     path: 'homepage',
     component: HomepageComponent,
@@ -24,8 +23,7 @@ const routes: Routes = [
   },
   {
     path:"rml",
-    loadChildren:() => import('./home/rml-user/rml-user.module').then(m => m.RmlUserModule)
-  },
+    loadChildren:() => import('./home/rml-user/rml-user.module').then(m => m.RmlUserModule)  },
   {
     path:'first',
     component:FirstPageComponent,
@@ -36,7 +34,7 @@ const routes: Routes = [
   },
   {
     path:'forms/:mobile_no1/:company',
-    component: FormsComponent
+    component: FormsComponent, canActivate:[AuthGuard]
   },
   {
     path:'idcard/:status/:mobile/:company',
@@ -48,12 +46,20 @@ const routes: Routes = [
   },
   {
     path: 'trainee-test/:username',
-    component: TraineeTestComponent
+    component: TraineeTestComponent , canActivate:[AuthGuard]
   },
-  // {
-  //   path: '/*',
-  //   component:FirstPageComponent
-  // }
+  {
+    path:'',
+    component: FirstPageComponent,
+  },
+  {
+    path:'**',
+    redirectTo: 'page-not-found',
+  },
+  {
+    path:'page-not-found',
+    component: PageNotFoundComponent
+  }
   
 ];
 

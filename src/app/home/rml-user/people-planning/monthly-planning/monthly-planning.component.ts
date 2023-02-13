@@ -130,7 +130,7 @@ export class MonthlyPlanningComponent implements OnInit {
   ngOnInit(): void {
 
     var date = new Date()
-    var x = Number(date.getMonth)+1
+    var x = +date.getMonth()+1
     var y = date.getFullYear()
     this.getDetails(x, y)
     
@@ -187,11 +187,10 @@ export class MonthlyPlanningComponent implements OnInit {
   }
   save()
   {
-    this.questions.push({})
     this.questions[this.questions.length-1].plant_code = sessionStorage.getItem('plantcode')
     this.questions[this.questions.length-1].plant_year = this.f.year
     this.questions[this.questions.length-1].plant_month = this.f.month
-    this.questions[this.questions.length-1].created_by = sessionStorage.getItem('emp_name')
+    this.questions[this.questions.length-1].created_by = sessionStorage.getItem('emp_id')
 
     console.log(this.questions)
 

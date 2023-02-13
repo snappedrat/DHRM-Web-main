@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { ActivatedRouteSnapshot, CanActivate,Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements CanActivate{
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private readonly TOKEN_NAME = 'profains_auth'
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router:Router) {
     const token = sessionStorage.getItem(this.TOKEN_NAME);
     this._isLoggedIn$.next(!!token);
   }
@@ -24,4 +25,14 @@ export class AuthService {
       })
     );
   }
-}
+
+  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
+  canActivate(): boolean {
+    if (!localStorage.getItem('user')) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
+  }
+  }

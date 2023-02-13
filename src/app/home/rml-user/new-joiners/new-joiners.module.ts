@@ -37,6 +37,7 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DateRangeFilterPipe } from '../dateFilter.pipe';
+import { AuthGuard } from 'src/app/Auth.guard';
 
 @NgModule({
     declarations: [
@@ -82,6 +83,8 @@ import { DateRangeFilterPipe } from '../dateFilter.pipe';
           FormsModule,
           NgbPaginationModule
 
-      ]
+      ],
+      providers:
+      [AuthGuard]
   })
   export class NewJoinersModule { }

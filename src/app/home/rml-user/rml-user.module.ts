@@ -28,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 import { ReportsComponent } from './reports/reports.component';
+import { ArsLoginComponent } from './ars-login/ars-login.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ReportsComponent } from './reports/reports.component';
     EmployeeComponent,
     ShiftComponent,
     ReportsComponent,
+    ArsLoginComponent,
 
   ],
   imports: [

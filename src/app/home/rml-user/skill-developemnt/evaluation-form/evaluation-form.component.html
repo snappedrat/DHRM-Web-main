@@ -8,7 +8,7 @@
             <br><br>
             <div class="mx-5">
             <tr>
-              <!-- <td><img class = "img" [src]="this.image" alt="Avatar" ></td> -->
+              <td><img class = "img" [src]="this.image" alt="Avatar" ></td>
               <div class="mx-5">
               <td class="name"><b>{{name}}</b></td>
               </div>
@@ -61,12 +61,12 @@
                             </div><br>
                         <div class="col">
                             <label>Score For(Total) </label><br>
-                            <input class="form-control"  type = "number" formControlName = "score_for"  [readonly]="readable">
+                            <input class="form-control"  type = "number" formControlName = "score_for" (ngModelChange)="cal()" [readonly]="readable">
                       </div><br>
                        
                         <div class="col">
                             <label>Percentage</label><br>
-                            <input class="form-control"  type = "number" formControlName = "percentage" (click)="cal()" readonly>
+                            <input class="form-control"  type = "number" formControlName = "percentage" readonly>
                         <br></div>
                
                         <div class="col">

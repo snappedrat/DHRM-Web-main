@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { threadId } from 'worker_threads';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
-export class FormsComponent implements OnInit {
+export class FormsComponent implements OnInit, OnDestroy{
 
   bankdata :any
   basicData: any
@@ -41,9 +41,18 @@ export class FormsComponent implements OnInit {
   message_from_lang: any 
   message_from_other:any
   basicdetails: any;
+  isHrappr: any;
 
 
-  constructor(private formservice: PlantcodeService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
+  constructor(private formservice: PlantcodeService, private http: HttpClient,private plantcodeService: PlantcodeService, private router: Router, private active: ActivatedRoute ){
+
+  }
+
+  ngOnDestroy(): void {
+    if(this.ishr== 'undefined')
+    {
+      sessionStorage.clear()
+    }
   }
 
   ngOnInit(): void {

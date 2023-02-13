@@ -20,11 +20,11 @@
                 <div class="row">
                     <div class="col">
                         <label>Pass Mark: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "pass_criteria">
+                        <input class="form-control"  type = "number" formControlName = "pass_criteria" (ngModelChange)="cal()" >
                     </div>
                     <div class="col">
                         <label>Pass percent: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "pass_percent">
+                        <input class="form-control"  type = "number" formControlName = "pass_percent" readonly>
                     </div>
                 </div><br>
                 <div class="row">

@@ -69,7 +69,8 @@ flagger : any = false
     ngOnInit(): void {
         this.plantcodeService.getbanknames()
         .subscribe({
-            next : (response)=>{console.log("banknames", response), this.banknames = response},
+            next : (response)=>{console.log("banknames", response), this.banknames = response;
+                                this.banknames = this.banknames.map((a:any)=>a.bank_name)},
             error : (err)=> console.log(err)
           })
 

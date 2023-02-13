@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/Auth.guard';
-import {LoginComponent} from "./login.component";
+import { ArsLoginComponent } from './ars-login.component';
 
 const routes: Routes = [
     {
-        path:'login',
-        component:LoginComponent
+        path:'ars-login',
+        component:ArsLoginComponent
     },
 
 ];

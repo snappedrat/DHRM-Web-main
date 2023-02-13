@@ -48,6 +48,14 @@ export class TrainingModulesComponent implements OnInit {
     })
   }
 
+  cal()
+  {
+    var a = this.form.controls['pass_criteria'].value
+    var b = this.form.controls['total_marks'].value
+    var c = Math.round((a/b)*100)
+    this.form.controls['pass_percent'].setValue(c)
+  }
+
   open(content:any)
   {
     this.form.reset()

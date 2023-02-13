@@ -66,14 +66,7 @@ show()
 ngOnInit(): void {
 
   this.getcompanycode()
-  this.plantcodeService.getHr({username:'newuser', user:'emp'})
-  .subscribe({
-    next: (response)=>{console.log("hr",response); this.isHrappr = response
-    sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
-    sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
-    sessionStorage.setItem('user', 'emp')
-  }
-  })
+  
 }
 
 getplantcode(event:any){
@@ -114,9 +107,30 @@ sendFormData()
     .subscribe({
       next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
       if(this.errmsg.status == 'newform')
-      {  console.log("newform");this.router.navigate(['/forms',this.mobilenum,this.companyname])}
+      {
+        this.plantcodeService.getHr({username:'newuser', user:'emp2'})
+        .subscribe({
+          next: (response)=>{console.log("hr",response); this.isHrappr = response
+          sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
+          sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
+          sessionStorage.setItem('user', 'emp2')
+          this.router.navigate(['/forms',this.mobilenum,this.companyname])
+        }
+        })
+      }
     else if(this.errmsg.status == 'incomplete')
-      { this.router.navigate(['/forms',this.mobilenum,this.companyname])  }
+      { 
+        this.plantcodeService.getHr({username:'newuser', user:'emp2'})
+        .subscribe({
+          next: (response)=>{console.log("hr",response); this.isHrappr = response
+          sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
+          sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
+          sessionStorage.setItem('user', 'emp2')
+          this.router.navigate(['/forms',this.mobilenum,this.companyname]) 
+        }
+        })
+
+      }
     else if(this.errmsg.status == 'registered')
       {window.alert("Your application has already been registered. kindly contact HR department");console.log(this.bankForms.value)}},
       error: (error) => console.log(error),

@@ -40,9 +40,6 @@ export class LoginComponent implements OnInit {
         if (this.exform.invalid) {
             return;
         }
-
-        if(sessionStorage.getItem('user')=='emp')
-        {
             this.authService
             .login(this.exform.get('User_Name')?.value, this.exform.get('Password')?.value)
             .subscribe({
@@ -53,6 +50,7 @@ export class LoginComponent implements OnInit {
                     }
                     if(response.message == "Success") 
                     {
+                        sessionStorage.setItem('user','emp')
                         this.goPlaces();
                     } 
                     else if (response.message == "User") 
@@ -64,34 +62,6 @@ export class LoginComponent implements OnInit {
                 },
                 error: (error) => console.log(error),
             });
-        }
-
-        else
-        {
-            console.log(this.exform.value)
-            this.service.ars_login(this.exform.value)
-            .subscribe({
-                next: (response:any) => {
-                    console.log(response);
-                    if(response.token) {
-                        sessionStorage.setItem('token', response.token)
-                    }
-                    if(response.message == "Success") 
-                    {
-                        this.goPlaces();
-                    } 
-                    else if (response.message == "User") 
-                    {
-                        alert("Username does not exist");
-                    } else {
-                        alert("Please Enter the correct Password");
-                    }
-                },
-                error: (error) => console.log(error),
-            });
-        }
-
-
     }
 
 

@@ -3,6 +3,7 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PlantcodeService } from '../plantcode.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-trainee-application-status',
@@ -34,7 +35,7 @@ colvalue :any
     this.form.controls['status'].setValue('pending')
     this.form.controls['fromdate'].setValue('2015-01-01')
     var date = new Date()
-    var to_date = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+ date.getDate();
+    var to_date = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
     this.form.controls['todate'].setValue(to_date)
     this.filter()
   }

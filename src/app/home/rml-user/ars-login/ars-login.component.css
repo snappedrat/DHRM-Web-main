@@ -1,0 +1,43 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+img{
+    position:relative;
+    margin-left:200px;
+    margin-top:10px;
+}
+.bd{
+    height: 100%;
+    background-position: fixed;
+    background-size: 100% ;
+    background-size: cover;
+    background-image:url('src\assets\bg.png');
+    background-position:0 0;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+    border-radius: 3px;
+    position: fixed;
+}
+
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+
+#logout{
+    width:50px;
+    height:30px;
+    margin-left:90%;
+}
+.btn{
+    margin-left: 43%;
+    text-align:center;
+}
+.form-group{
+    font-size: 14px;
+}

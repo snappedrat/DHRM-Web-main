@@ -23,7 +23,7 @@
             <label for="bankName">Bank Name:<span class = "star-color">*</span></label>
             <select formControlName="bankName" class="form-control" (ngModelChange)="sendData()">
                 <option>Choose</option>
-                <option *ngFor="let bm of Bank">{{bm}}</option>
+                <option *ngFor="let bm of banknames" [ngValue]="bm" >{{bm}}</option>
             </select>
         </div>
         </div>

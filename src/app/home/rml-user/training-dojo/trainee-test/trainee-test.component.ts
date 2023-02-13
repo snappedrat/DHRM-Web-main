@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
@@ -20,7 +20,7 @@ import { eventNames } from 'process';
   templateUrl: './trainee-test.component.html',
   styleUrls: ['./trainee-test.component.css']
 })
-export class TraineeTestComponent implements OnInit {
+export class TraineeTestComponent implements OnInit, OnDestroy {
 
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
@@ -62,10 +62,15 @@ export class TraineeTestComponent implements OnInit {
     })
    }
 
+   ngOnDestroy(): void {
+     sessionStorage.clear()
+   }
+
    logout()
    {
+    localStorage.clear()
     sessionStorage.clear()
-    this.router.navigate([''])
+    this.router.navigate(['/first'])
    }
 
   ngOnInit(): void {
