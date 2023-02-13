@@ -82,16 +82,16 @@ export class EmployeeComponent implements OnInit {
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService) {
     this.form = this.fb.group({
-      gen_id: [''],
-      Emp_Name :[''],
-      plant_name:[''],
-      dept_name : [''],
-      desig_name : [''],
-      Line_Name:[''],
-      Mail_Id: [''],
-      Mobile_No: [''],
-      User_Name: [''],
-      Password: [ ''],     
+      gen_id: ['', Validators.required],
+      Emp_Name :['', Validators.required],
+      plant_name:['', Validators.required],
+      dept_name : ['', Validators.required],
+      desig_name : ['', Validators.required],
+      Line_Name:['', Validators.required],
+      Mail_Id: ['', Validators.required],
+      Mobile_No: ['', Validators.required],
+      User_Name: ['', Validators.required],
+      Password: [ '', Validators.required],     
       Is_HR:[''],
       Is_HRAppr:[''],
       Is_Trainer:[''],
@@ -137,6 +137,11 @@ getplantcode(){
 
 getall(event:any)
 {
+
+  this.form.get('dept_name').setValue('')
+  this.form.get('Line_Name').setValue('')
+  this.form.get('desig_name').setValue('')
+
   var plantcode = {plantcode: event.target.value}
     this.service.line_dept_design(plantcode)
     .subscribe({
@@ -145,18 +150,9 @@ getall(event:any)
         this.dept= this.all_details[1]
         this.line= this.all_details[2]
 
-        // for(var o in this.desig)
-        // this.desig_.push(this.desig[o].desig_name) 
         this.desig = this.desig.map((a:any)=>a.desig_name)
         this.dept= this.dept.map((a:any)=>a.dept_name)
         this.line = this.line.map((a:any)=>a.line_name)
-
-        // for(var o in this.dept)
-        // this.dept_.push(this.dept[o].dept_name) 
-
-        // for(var o in this.line)
-        // this.line_.push(this.line[o].line_name) 
-
       },
       error: (error) => console.log(error),
     });

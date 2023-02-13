@@ -3,6 +3,7 @@ import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, Fo
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { DateRangeFilterPipe } from '../../dateFilter.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-hr-approval',
@@ -16,9 +17,10 @@ export class HrApprovalComponent implements OnInit {
   filterinfo: any
   uniqueId :any = {'mobile':''}
   url = environment.path
-  from:Date = new Date('2023-01-01')
-  to:Date = new Date('2023-10-01')
-  colname:string =  'create_dt'
+  from:any = new DatePipe('en-US').transform(new Date('2023-01-01'), 'yyyy-MM-dd')
+  to:any = new DatePipe('en-US').transform( new Date(), 'yyyy-MM-dd')
+  
+    colname:string =  'create_dt'
   
     constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
       this.form = this.fb.group({

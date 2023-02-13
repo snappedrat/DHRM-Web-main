@@ -10,6 +10,7 @@ import {OdComponent} from "./od/od.component";
 import { OverTimeComponent } from './over-time/over-time.component';
 import { CompOffComponent } from './comp-off/comp-off.component';
 
+
 const routes: Routes = [
   {
     path:'attendance',

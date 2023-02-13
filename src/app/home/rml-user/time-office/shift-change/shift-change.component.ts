@@ -94,6 +94,16 @@ ShiftData = [
     )
    
   }
+
+  shift(event:any)
+  {
+    var x = event.target.value.split('.')[0]-1
+
+    this.preferred_shift = [...this.current_shift.slice(0, x), ...this.current_shift.slice(x + 1)];
+
+    console.log(this.current_shift, this.preferred_shift)
+  }
+
   submit()
   {
 

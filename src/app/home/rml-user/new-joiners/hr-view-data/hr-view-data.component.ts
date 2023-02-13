@@ -68,12 +68,16 @@ export class HrViewDataComponent implements OnInit {
       this.basic[0].prev_rane_empl = 'Yes'
       else if(this.basic[0]?.prev_rane_empl == 'N')
       this.basic[0].prev_rane_empl = 'No'
-    
-      if(this.basic[0].dose1_dt.includes('-'))
+      var dt = this.basic[0]?.dose1_dt
+      var dt2 = this.basic[0]?.dose2_dt
+      if(dt?.includes('-'))
         this.is_vaccinated = 'YES'
-      else
+      else if(dt==null && dt2 == null)
       this.is_vaccinated = 'NO'
-
+      else if(dt == 'null' && dt2 == 'null' )
+      this.is_vaccinated = 'NO'
+      else
+      this.is_vaccinated = 'YES'
 
       this.url_appointmentorder_file = this.url+this.basic[0].other_files8
       this.url_declaration_file = this.url+this.basic[0].other_files9

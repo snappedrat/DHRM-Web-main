@@ -91,6 +91,13 @@ export class MonthlyPlanningComponent implements OnInit {
   form:any
   f: { year: any; month: any; plantcode: string | null; };
 
+  shift_1:any
+  shift_2:any
+  shift_3:any
+  total_:any
+  genl_:any
+
+
   constructor(private fb : UntypedFormBuilder, private service : ApiService)
   {
     this.form = this.fb.group
@@ -144,7 +151,8 @@ export class MonthlyPlanningComponent implements OnInit {
     .subscribe(
       {
         next: (response)=>{console.log(response);
-          this.questions = response}
+          this.questions = response;
+          }
       }
     )
 
@@ -162,44 +170,88 @@ export class MonthlyPlanningComponent implements OnInit {
   gen(event:any, i:any)
   {    
     this.questions[i].genl_reqd = event.target.value
+
+    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
     console.log(this.questions[i])
   }
-  total(event:any, i:any)
-  {    
+  total(i:any)
+  {
     this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd) +Number(this.questions[i].shift2_reqd)
     +Number(this.questions[i].shift3_reqd) +Number(this.questions[i].genl_reqd)
+
+    console.log(this.questions)
 
   }
   shift1(event:any, i:any)
   {    
     this.questions[i].shift1_reqd = event.target.value
+
+    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
     console.log(this.questions[i])
   }
   shift2(event:any, i:any)
   {    
     this.questions[i].shift2_reqd = event.target.value
+
+    
+    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
     console.log(this.questions[i])
   }
   shift3(event:any, i:any)
   {    
     this.questions[i].shift3_reqd = event.target.value
+
+    
+    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
     console.log(this.questions[i])
   }
   save()
   {
-    this.questions[this.questions.length-1].plant_code = sessionStorage.getItem('plantcode')
-    this.questions[this.questions.length-1].plant_year = this.f.year
-    this.questions[this.questions.length-1].plant_month = this.f.month
-    this.questions[this.questions.length-1].created_by = sessionStorage.getItem('emp_id')
+    this.questions[0].plant_code = sessionStorage.getItem('plantcode')
+    this.questions[0].plant_year = this.f.year
+    this.questions[0].plant_month = this.f.month
+    this.questions[0].created_by = sessionStorage.getItem('emp_id')
 
     console.log(this.questions)
+    console.log(this.questions[0].status == 'old', this.questions[0].status)
 
-    this.service.people_planning_save(this.questions)
-    .subscribe(
-      {
-        next:(response)=>{console.log(response)}
-      }
-    )
+    if(this.questions[0].status == 'new')
+    {
+      this.service.people_planning_save(this.questions)
+      .subscribe(
+        {
+          next:(response)=>{console.log(response)}
+        }
+      )
+    }
+    else if(this.questions[0].status == 'old')
+    {
+      console.log("has to update")
+      this.service.people_planning_update(this.questions)
+      .subscribe(
+        {
+          next:(response)=>{console.log(response)}
+        }
+      )
+    }
+
+
   }
 
   }

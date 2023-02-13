@@ -46,7 +46,7 @@
                     </div>
                     <div class="col">
                         <label>Mobile No: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "Mobile_No">
+                            <input class="form-control"  type = "text" formControlName = "Mobile_No" maxlength="10" >
                     </div>
                 </div><br>
 
@@ -72,8 +72,8 @@
                 </div>  </form>
        
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==false" [disabled]="form.invalid"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true"  [disabled]="form.invalid" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
             <button type="button" class=" btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div></div>
     </ng-template>

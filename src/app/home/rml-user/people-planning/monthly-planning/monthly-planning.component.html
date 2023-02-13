@@ -32,11 +32,11 @@
                <td><textarea style="resize:none;outline: none;border-color: white"  type = 'text' class="form-group" readonly>{{i.dept_group}}</textarea></td>
                <td><textarea style="resize:none;outline: none;border-color: white"  type = 'text' class="form-group" readonly>{{i.dept_name}}</textarea></td>
                <td><textarea style="resize:none;outline: none;border-color: white" type = 'text' class="form-group" readonly>{{i.line_name}}</textarea></td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (click)="addrow(a)" (change)="shift1($event, a)"  type = 'text' class="form-group">{{i.shift1_reqd}}</textarea></td>
-               <td><textarea style="resize:none;outline: none;border-color: white" (change)="shift2($event, a)" type = 'text' class="form-group">{{i.shift2_reqd}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white"  (change)="shift1($event, a)"  type = 'text' class="form-group">{{i.shift1_reqd}}</textarea></td>
+               <td><textarea style="resize:none;outline: none;border-color: white"  (change)="shift2($event, a)" type = 'text' class="form-group">{{i.shift2_reqd}}</textarea></td>
                <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="shift3($event, a)" class="form-group">{{i.shift3_reqd}}</textarea></td>
-               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (change)="gen($event, a)" class="form-group">{{i.genl_reqd}}</textarea></td>
-               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white" (click)="total($event, a)" class="form-group" readonly>{{i.total_reqd}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white"  (change)="gen($event, a)" class="form-group">{{i.genl_reqd}}</textarea></td>
+               <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white"  (click)="total(a)" class="form-group" readonly>{{i.total_reqd}}</textarea></td>
            </tr>
        </tbody>
     </table>

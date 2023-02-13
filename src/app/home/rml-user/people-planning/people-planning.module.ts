@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 
 
 
+
 @NgModule({
   declarations: [
     MonthlyPlanningComponent,
@@ -25,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    MatInputModule 
+    MatInputModule ,
+    FormsModule
 
     
   ]

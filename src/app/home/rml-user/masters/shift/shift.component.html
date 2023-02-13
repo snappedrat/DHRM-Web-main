@@ -12,13 +12,22 @@
                         <label>Shift Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "shift_desc">
                     </div><br>
-                    <!-- <div class="col">
-                        <label>Plant Code:</label><br>
-                        <input class="form-control"  type = "text" formControlName = "plant_name">
-                    </div> -->
                     <div class="col">
                         <label>Shift Group: </label><br>
                         <input class="form-control"  type = "text" formControlName = "shift_group">
+                    </div>
+                </div><br><br>
+                <div class="row">
+                    <div class="col">
+                        <label>Plant Name:</label><br>
+                        <select (change)="pp($event)" class="form-control" type = "text" formControlName = "plant_desc">
+                            <option>--select--</option>
+                            <option *ngFor="let i of plant_name" [ngValue]="i">{{i}}</option>
+                            </select>
+                    </div>
+                    <div class="col">
+                        <label>Coff Hours: </label><br>
+                        <input class="form-control"  type = "number" formControlName = "coff_eligible_hours">
                     </div>
                 </div><br><br>
 
@@ -47,11 +56,17 @@
                 <div class="row">
                     <div class="col">
                         <label>shift type: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "type">
+                        <select class="form-control"  type = "text" formControlName = "type">
+                            <option>--select--</option>
+                            <option *ngFor="let i of type" [ngValue]="i">{{i}}</option>
+                        </select>
                     </div>
                     <div class="col">
                         <label>security shift: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "security_shift">
+                        <select class="form-control"  type = "text" formControlName = "security_shift">
+                            <option>--select--</option>
+                            <option *ngFor="let i of security_shift" [ngValue]="i" >{{i}}</option>
+                        </select>
                     </div></div>
                 <br>
                
@@ -59,7 +74,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" >Save</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
             <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
             <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>

@@ -36,6 +36,7 @@ export class EvaluationFormComponent implements OnInit {
   file:any
   readable:any = false
   appr:any = false
+  save:any = 'Save'
 
   nav:any
 
@@ -80,10 +81,12 @@ export class EvaluationFormComponent implements OnInit {
 
         if(this.active.snapshot.paramMap.get('nav') == '1')
         {
+          this.save = 'Save'
           this.nav = '/rml/skill-developement/trainer-evaluation'
         }
         else if(this.active.snapshot.paramMap.get('nav') == '2' || this.active.snapshot.paramMap.get('nav') == '3')
         {
+          this.save = 'Approve'
           this.nav = '/rml/skill-developement/supervisor-evaluation'
           this.readable = true
           this.form.controls['new_skill'].disable()
@@ -113,7 +116,8 @@ export class EvaluationFormComponent implements OnInit {
               this.ln = this.obj[0][0]?.line_name        
               this.skill = this.obj[0][0]?.new_level
               this.trainee_idno = this.obj[0][0]?.apln_slno
-              this.oprn = this.obj[1][0]?.oprn_desc
+              this.pt = this.obj[1]
+              this.pt = this.pt.map((a:any)=>a.oprn_desc)
               this.department = this.obj[2]
               this.line = this.obj[3]
               this.process_trained = this.obj[4]

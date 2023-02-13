@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/home/api.service';
 
@@ -9,7 +9,6 @@ import { ApiService } from 'src/app/home/api.service';
   styleUrls: ['./forget-punch.component.css']
 })
 export class ForgetPunchComponent implements OnInit {
-
     selectedDate: Date = new Date();
     bio_time_A:any
     bio_time_B:any
@@ -81,10 +80,12 @@ export class ForgetPunchComponent implements OnInit {
   {
     console.log(this.form.value)
 
-    this.form.controls['in_time'].setValue(this.change_format(this.form.controls['actual_in_time'].value))
-    this.form.controls['out_time'].setValue(this.change_format(this.form.controls['actual_out_time'].value))
+    this.form.controls['in_time'].setValue(this.form.controls['actual_in_time'].value)
+    this.form.controls['out_time'].setValue(this.form.controls['actual_out_time'].value)
     this.form.controls['actual_in_time'].setValue(this.bio_time_A)
     this.form.controls['actual_out_time'].setValue(this.bio_time_B)
+
+    console.log(this.form.value)
     
     this.service.forgot_punch(this.form.value)
     .subscribe(
@@ -94,23 +95,27 @@ export class ForgetPunchComponent implements OnInit {
         }
       }
     )
-
-
   }
+
+  call(event:any)
+  {
+    console.log(event)
+  }
+
   change_format(time:any)
   {
-    var hours = Number(time.split(':')[0])
-    var minutes = Number(time.split(':')[1].split(' ')[0])
-    var AMPM =time.split(' ')[1]
-    console.log(hours, minutes, AMPM)
-    if (AMPM == "PM" && hours < 12) 
-    hours = hours + 12;
-    if (AMPM == "AM" && hours == 12) 
-    hours = hours - 12;
-    var sHours = hours.toString();
-    var sMinutes = minutes.toString();
-    var finalTime = (sHours.length > 1 ? sHours : "0" + sHours) + ":" + (sMinutes.length > 1 ? sMinutes : "0" + sMinutes);
-    return finalTime
+    // var hours = Number(time.split(':')[0])
+    // var minutes = Number(time.split(':')[1].split(' ')[0])
+    // var AMPM =time.split(' ')[1]
+    // console.log(hours, minutes, AMPM)
+    // if (AMPM == "PM" && hours < 12) 
+    // hours = hours + 12;
+    // if (AMPM == "AM" && hours == 12) 
+    // hours = hours - 12;
+    // var sHours = hours.toString();
+    // var sMinutes = minutes.toString();
+    // var finalTime = (sHours.length > 1 ? sHours : "0" + sHours) + ":" + (sMinutes.length > 1 ? sMinutes : "0" + sMinutes);
+    // return finalTime
   }
 
 }

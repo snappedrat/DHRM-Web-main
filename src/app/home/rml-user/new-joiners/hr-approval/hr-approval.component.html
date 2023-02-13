@@ -14,10 +14,10 @@
           </select> 
       </div>
       <div class = "col-sm-2">
-        <input type="date" (change)="call($event)">
+        <input type="date" [value]="from" (change)="call($event)">
       </div>
       <div class = "col-sm-2">
-        <input type="date" (change)="call2($event)">
+        <input type="date" [value]="to" (change)="call2($event)">
       </div>
     </div>
     </form>

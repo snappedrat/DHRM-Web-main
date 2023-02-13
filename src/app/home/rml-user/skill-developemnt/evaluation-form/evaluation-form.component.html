@@ -99,7 +99,7 @@
                                             </mat-form-field>
                                         </div>                   
                                        <br></div><br>
-                                       <button *ngIf="!appr" [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">Save</button>
+                                       <button *ngIf="!appr" [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">{{save}}</button>
                                        <button *ngIf="appr" type="submit" [routerLink]="['/rml/skill-developement/trainer-evaluation']" class="btn btn-success btn-lg">GO BACK</button>
                         </form>
              </div>   </div></div>

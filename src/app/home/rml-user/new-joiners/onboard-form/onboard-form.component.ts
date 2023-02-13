@@ -313,7 +313,7 @@ export class OnboardFormComponent implements OnInit {
       var ws = XLSX.utils.aoa_to_sheet(aoa)
       var wb = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(wb, ws, 'people')
-      XLSX.writeFile(wb, 'onboard.xlsx')
+      XLSX.writeFile(wb, 'onboard.csv')
       var buffer  = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
       const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       

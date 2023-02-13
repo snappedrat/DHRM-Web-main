@@ -110,7 +110,7 @@ export class ForgotPunchApprComponent implements OnInit {
           console.log(response)
           if(response.message == 'Success')
           {
-            alert("The Request was Accepted")
+            alert("The Request was Rejected")
             this.table_data.splice(this.temp_a, 1)
           }
         },

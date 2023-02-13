@@ -37,10 +37,14 @@ export class ShiftComponent implements OnInit {
   form:any
 
   sample : any = environment.path
+  plant_name:any
+  plant:any
 
   shift: any = []
   editing_flag: any;
   temp_a: any;
+  type:any = ['S', 'R']
+  security_shift:any = ['Y', 'N']
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
@@ -54,25 +58,37 @@ export class ShiftComponent implements OnInit {
       act_tm_to: [''],
       type:[''],
       shift_group:[''],   
-      security_shift:['']  
+      security_shift:[''],
+      coff_eligible_hours: ['']
     })
    }
 
   ngOnInit(): void {
+
+    this.service.getplant().
+    subscribe({
+      next: (response:any)=>{this.plant = response;
+        this.plant_name = this.plant.map((a:any)=>a.plant_name)
+      }
+    })
+
     this.service.getshift().
     subscribe({
-      next: (response)=>{this.shift = response}
+      next: (response:any)=>{this.shift = response; console.log(response)
+      }
     })
+  }
+
+  pp(event:any)
+  {
+    var x = event.target.value.split(':')[0]-1
+    this.form.get('plant_code').setValue(this.plant[x].plant_code)
   }
 
   open(content:any)
   {
 
     this.form.reset()
-
-    this.form.controls['plant_code'].setValue(sessionStorage.getItem('plantcode'))
-    this.form.controls['plant_desc'].setValue(sessionStorage.getItem('plant_name'))
-
     this.editing_flag = false
     console.log("opening")
     this.modalService.open(content, {centered: true})
@@ -100,15 +116,16 @@ export class ShiftComponent implements OnInit {
 
   edit(a:any, slno:any)
   {
-
+    this.form.reset()
     this.temp_a = a
 
     this.editing_flag = true
 
-    this.form.controls['plant_code'].setValue(sessionStorage.getItem('plantcode'))
-    this.form.controls['plant_desc'].setValue(sessionStorage.getItem('plant_name'))
+    this.form.controls['plant_desc'].setValue(this.shift[a].plant_desc)
+    // this.form.controls['plant_name'].setValue(sessionStorage.getItem('plant_name'))
     
     this.form.controls['shift_id'].setValue(slno)
+    this.form.controls['plant_code'].setValue(this.shift[a].plant_code)
     this.form.controls['shift_desc'].setValue(this.shift[a].shift_desc)
     this.form.controls['act_tm_from'].setValue(this.shift[a].act_tm_from?.slice(this.shift[a].act_tm_from.indexOf('T')+1, this.shift[a].act_tm_from.indexOf('.')))
     this.form.controls['act_tm_to'].setValue(this.shift[a].act_tm_to?.slice(this.shift[a].act_tm_to.indexOf('T')+1, this.shift[a].act_tm_to.indexOf('.')))
@@ -117,12 +134,15 @@ export class ShiftComponent implements OnInit {
     this.form.controls['shift_group'].setValue(this.shift[a].shift_group)
     this.form.controls['type'].setValue(this.shift[a].type)
     this.form.controls['security_shift'].setValue(this.shift[a].security_shift)
+    this.form.controls['coff_eligible_hours'].setValue(this.shift[a].coff_eligible_hours)
 
     console.log(this.form.value)
   }
 
   editSave()
   {
+    console.log(this.form.value);
+    
     this.service.updateshift(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);

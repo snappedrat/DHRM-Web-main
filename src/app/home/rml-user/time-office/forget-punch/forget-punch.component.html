@@ -38,17 +38,17 @@
                     <div *ngIf="disable1==1" class="col">
                 <h2>Actual In-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="actual_in_time" [ngxMatTimepicker]="pickerA" readonly/>
+                    <input matInput formControlName="actual_in_time" [format]="24"  [ngxMatTimepicker]="pickerA">
                     <mat-icon matSuffix (click)="pickerA.open()">
                         watch_later
                     </mat-icon>
                 </mat-form-field>
-                <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+                <ngx-mat-timepicker  #pickerA></ngx-mat-timepicker>
                     </div>  
                     <div *ngIf="disable2==1" class="col">
                 <h2>Actual Out-time:</h2>
                 <mat-form-field appearance="outline">
-                    <input matInput formControlName="actual_out_time" [ngxMatTimepicker]="pickerB" readonly/>
+                    <input matInput formControlName="actual_out_time" [format]="24"  [ngxMatTimepicker]="pickerB">
                     <mat-icon matSuffix (click)="pickerB.open()">
                         watch_later
                     </mat-icon>

@@ -360,6 +360,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/people_planning_save', form)
   }
+  people_planning_update(form:any)
+  {
+    return this.http.post(this.url+'/people_planning_update', form)
+  }
 
   /////////////////////////////////////// PHASE - 3
   attendance(form:any)
