@@ -137,12 +137,13 @@ getplantcode(){
 
 getall(event:any)
 {
+  console.log(event.target.value)
 
   this.form.get('dept_name').setValue('')
   this.form.get('Line_Name').setValue('')
   this.form.get('desig_name').setValue('')
 
-  var plantcode = {plantcode: event.target.value}
+  var plantcode = {plantcode: this.plantname[event.target.value.split(':')[0]-1].plant_code}
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
@@ -189,7 +190,7 @@ edit(a:any)
     this.dept_.splice(0, this.dept_.length);
     this.line_.splice(0, this.line_.length);
 
-    var plantcode = {plantcode: this.employee[a].plant_name}
+    var plantcode = {plantcode: this.employee[a].plant_code}
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;

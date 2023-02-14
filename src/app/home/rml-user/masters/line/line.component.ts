@@ -69,6 +69,7 @@ export class LineComponent implements OnInit {
   dept:any
   all_details:any
   temp_a: any;
+  index: any = -1;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
@@ -114,13 +115,14 @@ getplantcode(){
 
 getall(event:any)
 {
-  var plantcode = {plantcode: event.target.value.split(' ')[1]}
+  console.log(event.target.value)
+  this.index = event.target.value.split(':')[0]-1
+  var plantcode = {plantcode: this.plantname[this.index].plant_code}
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
         this.dept= this.all_details[1]
-        for(var o in this.dept)
-        this.array2.push(this.dept[o].dept_name)
+        this.array2 = this.dept.map((a:any)=>a.dept_name)
       },
       error: (error) => console.log(error),
     });
@@ -152,13 +154,12 @@ edit(a:any, slno:any)
     this.form.controls['modified_by'].setValue(sessionStorage.getItem('user_name'))
 
     
-    var plantcode = {plantcode: this.form.controls['plant_name'].value}
+    var plantcode = {plantcode: this.line[a].plant_code}
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
         this.dept= this.all_details[1]
-        for(var o in this.dept)
-        this.array2.push(this.dept[o].dept_name)
+        this.array2 = this.dept.map((a:any)=>a.dept_name)
       },
       error: (error) => console.log(error),
     });
@@ -167,20 +168,30 @@ edit(a:any, slno:any)
   }
 save()
   {
+    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
     this.form.controls['created_by'].setValue(sessionStorage.getItem('user_name'))
+    this.form.controls['Line_code'].setValue(this.line.length+1)
+    console.log(this.form.value)
     this.service.addline(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
 
         this.line.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
+        this.index = -1
       }
     })    
 
   }
 editSave()
   {
+      if(this.index == -1)
+      this.form.get('plant_name').setValue(this.line[this.temp_a].plant_code)
+      else
+      this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+  
+    console.log(this.form.value);
+    
     this.service.updateline(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);

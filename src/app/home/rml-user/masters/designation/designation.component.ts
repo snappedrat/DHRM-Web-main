@@ -64,6 +64,7 @@ export class DesignationComponent implements OnInit {
   temp_a:any
   sample : any = environment.path
   array:any = []
+  index:any = -1
 
   designation: any = [
 
@@ -109,6 +110,10 @@ getplantcode(){
   });
 }
 
+get_slno(event:any)
+{
+  this.index = event.target.value.split(':')[0]-1
+}
 
    open(content:any)
   {
@@ -141,6 +146,9 @@ edit(a:any)
   }
   save()
   {
+
+    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
+
     console.log(this.form.value)
     this.service.adddesignation(this.form.value)
     .subscribe({
@@ -148,17 +156,26 @@ edit(a:any)
 
         this.designation.push(this.form.value)
         this.form.reset()
+        this.index = -1
       }
     })    
 
   }
   editSave()
   {
+    if(this.index == -1)
+    this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_code)
+    else
+    this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+
     this.service.updatedesignation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
+      {
+        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
         this.designation[this.temp_a] = this.form.value
+      }
       }
     })
   }

@@ -10,7 +10,7 @@
               <div class="row">
                 <div class="col">
                       <label>Plant Name: </label><br>
-                      <select class="form-control" formControlName = "plant_name"><option value="">Choose an option</option><option *ngFor = "let i of array" [ngValue] = "i">{{i}}</option></select>
+                      <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name"><option value="">Choose an option</option><option *ngFor = "let i of array" [ngValue] = "i">{{i}}</option></select>
                   </div>
 
                 </div><br>
@@ -24,6 +24,14 @@
                   <div class="col">
                       <label>SAP Code: </label><br>
                       <input class="form-control"  type = "text" formControlName = "sap_code">
+                  </div>
+
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col">
+                      <label>Department Group: </label><br>
+                      <input class="form-control"  type = "text" formControlName = "dept_group">
                   </div>
 
               </div>
@@ -76,6 +84,13 @@
             >
                 SAP Code
             </th>
+            <th
+                    class="text-center"
+                    style="width: 800px"
+                    style="background-color: darkblue"
+            >
+                Department Group
+            </th>
 
             <th
                      div class="text-center"
@@ -90,6 +105,7 @@
                   <td>{{i.plant_name}}</td>
                   <td>{{i.dept_name}}</td>
                   <td>{{i.sap_code}}</td>
+                  <td>{{i.dept_group}}</td>
 
                   <td>
                       <button mat-mini-fab color = 'accent' (click)= "edit(a, i.dept_slno)" (click)="opentoedit(content)">

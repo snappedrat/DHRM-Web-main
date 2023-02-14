@@ -47,6 +47,7 @@ export class OperationsComponent implements OnInit {
   editing_flag: any;
   temp_a: any;
   array: any = [];
+  index: number = -1;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
@@ -73,10 +74,8 @@ export class OperationsComponent implements OnInit {
     this.service.plantcodelist(company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantname = response ;
-        // for(var o in this.plantname)
-        // this.array.push(this.plantname[o].plant_name)
-
-        this.plantname = this.plantname.map((a:any)=>a.plant_name)
+        for(var o in this.plantname)
+        this.array.push(this.plantname[o].plant_name)
       },
       error: (error) => console.log(error),
     });
@@ -93,13 +92,15 @@ export class OperationsComponent implements OnInit {
 
   save()
   {
+    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
+
     this.service.addoperation(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
 
         this.dummy.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
+        this.index = -1
       }
     })    
 
@@ -128,13 +129,29 @@ export class OperationsComponent implements OnInit {
 
   }
 
+  get_slno(event:any)
+{
+  this.index = event.target.value.split(':')[0]-1
+}
+
   editSave()
   {
+
+    if(this.index == -1)
+    this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_code)
+    else
+    this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+
+    console.log(this.index)
+
     this.service.updateoperation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
+      {
+        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
         this.dummy[this.temp_a] = this.form.value
+      }
       }
     })
   }

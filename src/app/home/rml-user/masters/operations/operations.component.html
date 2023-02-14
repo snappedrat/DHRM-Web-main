@@ -10,7 +10,10 @@
                 <div class="row">
                     <div class="col">
                         <label>Plant Name: </label><br>
-                        <select class="form-control" formControlName = "plant_name"><option  *ngFor= "let i of plantname" [ngValue] = "i">{{i}}</option></select>
+                        <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name">
+                            <option  value="">select an option</option>
+                            <option  *ngFor= "let i of array" [ngValue] = "i">{{i}}</option>
+                        </select>
                     </div>
                     <div class="col">
                         <label>Operation Description: </label><br>
@@ -96,7 +99,7 @@
                    <td>{{i.plant_name}}</td>
                     <td>{{i.oprn_desc}}</td>
                     <td>{{i.skill_level}}</td>
-                    <td>{{i.critical_oprn}}</td>
+                    <td>{{i.critical_oprn == true ? 'YES' : 'NO'}}</td>
                    
   
                     <td>
