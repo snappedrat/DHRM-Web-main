@@ -11,6 +11,7 @@ import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 import { AuthGuard } from 'src/app/Auth.guard';
+import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
 
 const routes: Routes = [
     {
@@ -49,8 +50,8 @@ const routes: Routes = [
     {
       path:'hr-view/:mobile/:status/:company',
       component: HrViewDataComponent
-    }
-  ];
+    },
+];
   
   @NgModule({
     imports: [RouterModule.forChild(routes)],

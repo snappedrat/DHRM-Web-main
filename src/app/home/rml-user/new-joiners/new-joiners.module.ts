@@ -38,6 +38,7 @@ import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DateRangeFilterPipe } from '../dateFilter.pipe';
 import { AuthGuard } from 'src/app/Auth.guard';
+import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import { AuthGuard } from 'src/app/Auth.guard';
         DeptTransferComponent,
         TransferFormComponent,
         OnboardFormComponent,
+        PermIdcardComponent,
     ],
       imports: [
           CommonModule,

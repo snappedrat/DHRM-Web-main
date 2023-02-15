@@ -11,6 +11,7 @@ import { TraineeLoginComponent } from './home/rml-user/training-dojo/trainee-log
 import { TraineeTestComponent } from './home/rml-user/training-dojo/trainee-test/trainee-test.component';
 import { AuthGuard } from './Auth.guard';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+import { PermIdcardComponent } from './home/rml-user/new-joiners/perm-idcard/perm-idcard.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path:'idcard/:status/:mobile/:company',
     component: IdcardComponent
+  },
+  {
+    path:'perm-idcard',
+    component: PermIdcardComponent
   },
   {
     path: 'trainee-login',

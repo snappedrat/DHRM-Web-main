@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AnnualPlanningComponent } from './annual-planning/annual-planning.component';
 import { MonthlyPlanningComponent } from './monthly-planning/monthly-planning.component';
+import { PeoplePlanningReportComponent } from './people-planning-report/people-planning-report.component';
 
 const routes: Routes = [
 
@@ -10,8 +10,8 @@ const routes: Routes = [
     component: MonthlyPlanningComponent
   },
   {
-    path: 'annual',
-    component: AnnualPlanningComponent
+    path: 'actualxplanned',
+    component: PeoplePlanningReportComponent
   }
 
 ];

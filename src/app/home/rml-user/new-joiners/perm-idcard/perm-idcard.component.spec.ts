@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnnualPlanningComponent } from './annual-planning.component';
+import { PermIdcardComponent } from './perm-idcard.component';
 
-describe('AnnualPlanningComponent', () => {
-  let component: AnnualPlanningComponent;
-  let fixture: ComponentFixture<AnnualPlanningComponent>;
+describe('PermIdcardComponent', () => {
+  let component: PermIdcardComponent;
+  let fixture: ComponentFixture<PermIdcardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AnnualPlanningComponent ]
+      declarations: [ PermIdcardComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AnnualPlanningComponent);
+    fixture = TestBed.createComponent(PermIdcardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

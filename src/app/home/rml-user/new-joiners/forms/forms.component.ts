@@ -49,7 +49,7 @@ export class FormsComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    if(this.ishr== 'undefined')
+    if(this.ishr == 'undefined')
     {
       sessionStorage.clear()
     }

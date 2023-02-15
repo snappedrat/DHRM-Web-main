@@ -114,7 +114,10 @@
             <br>            
 <br>
     <button *ngIf="!readonly" [disabled]="form.invalid"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
-    <button *ngIf="readonly" [disabled]="onboard"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
+    <div class="button-container">
+            <button mat-raised-button color="primary" *ngIf="readonly" [disabled]="onboard"  type="submit" (click)="submit()">Save</button>&nbsp;
+            <button mat-raised-button color="accent" routerLink="/perm-idcard" >Print ID card</button>
+    </div>
 </form>
             </div></div></div></div>
 

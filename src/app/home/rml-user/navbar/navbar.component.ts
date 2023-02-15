@@ -15,7 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 
-export class NavbarComponent implements OnInit,OnDestroy {
+export class NavbarComponent implements OnInit {
 
   ishrappr :any
   form: FormGroup = new FormGroup({});
@@ -60,11 +60,6 @@ export class NavbarComponent implements OnInit,OnDestroy {
       ngOnInit(): void 
       {
         this.getHr()
-      }
-
-      ngOnDestroy(): void 
-      {
-        sessionStorage.clear()
       }
 
 getHr()

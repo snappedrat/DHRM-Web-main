@@ -11,7 +11,7 @@
                       panelClass="example-month-picker">
       </mat-datepicker>
     </mat-form-field>
-
+<!-- 
     <table style="width: 100%;" class="table-wrapper table-bordered table-responsive">
        <thead style="background-color: rgb(24, 33, 205);color:white;height: 30px">
            <tr>
@@ -39,9 +39,25 @@
                <td><textarea style="overflow: hidden;resize:none;outline: none;border-color: white"  (click)="total(a)" class="form-group" readonly>{{i.total_reqd}}</textarea></td>
            </tr>
        </tbody>
-    </table>
+    </table> -->
 </div>
 <div class="px-5 py-5">
-    <button (click)="save()" class="btn-alert">SAVE</button>
+    <button mat-raised-button [disabled]="excel" (click)="exportexcel()" color="primary">Download the Excel File</button>
 </div>
+<mat-divider></mat-divider>
+<div class="size" class="px-5 py-5">
+    Did you finish updating the document?<br><br>
+    <input (change)="show($event)" type="radio" name ='update'> YES<br><br>
+    <input (change)="hide($event)" type="radio" name = 'update' checked> NO
+</div>
+<mat-divider></mat-divider>
+<div class="size" *ngIf="shows" class="px-5 py-5">
+    Kindly Upload the Document here...<br><br>
+    <input #fileInput (click)="fileInput.value = null" value="" (change)="fileread($event)" type="file">
+</div>
+<div *ngIf="shows" class="px-5 py-5">
+    <button mat-raised-button color="primary" (click)="save()">SAVE</button>
+</div>
+
+
 </div>

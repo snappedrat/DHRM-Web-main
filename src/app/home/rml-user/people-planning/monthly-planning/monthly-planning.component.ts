@@ -96,6 +96,10 @@ export class MonthlyPlanningComponent implements OnInit {
   shift_3:any
   total_:any
   genl_:any
+  excel:any = true
+  shows: boolean;
+  hides: boolean;
+  excelfile: any;
 
 
   constructor(private fb : UntypedFormBuilder, private service : ApiService)
@@ -145,6 +149,7 @@ export class MonthlyPlanningComponent implements OnInit {
 
   getDetails(x:any, y:any)
   {
+    this.excel = true
     var form = {year: y, month: x, plantcode: sessionStorage.getItem('plantcode')}
     this.f = form
     this.service.people_planning(form)
@@ -152,98 +157,89 @@ export class MonthlyPlanningComponent implements OnInit {
       {
         next: (response)=>{console.log(response);
           this.questions = response;
+          for(var i=0; i< this.questions.length; i++)
+          {
+            if(this.questions[this.questions.length-1].plan_slno == undefined || this.questions[this.questions.length-1].plan_slno == null)
+            {
+              this.questions[i].shift1 = ''
+              this.questions[i].shift2 = ''
+              this.questions[i].shift3 = ''
+              this.questions[i].genl = ''
+              this.questions[i].total = ''
+
+            }
+          }
+          this.excel = false
           }
       }
     )
 
   }
+exportexcel(): void
+{
+  var ws = XLSX.utils.json_to_sheet(this.questions);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "People");
+  XLSX.writeFile(wb,"monthlyplan.xlsx");
+}
 
-  addrow(i:any)
+
+  show(event:any)
   {
-        if(i == this.questions.length-1)
-        {
-          this.questions.push({})
-          this.inserted += 1;
-        }
+    if(event.target.checked == true)
+      this.shows = true
   }
-
-  gen(event:any, i:any)
-  {    
-    this.questions[i].genl_reqd = event.target.value
-
-    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
-     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
-    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
-    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
-
-    console.log(this.questions[i])
-  }
-  total(i:any)
+  hide(event:any)
   {
-    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd) +Number(this.questions[i].shift2_reqd)
-    +Number(this.questions[i].shift3_reqd) +Number(this.questions[i].genl_reqd)
-
-    console.log(this.questions)
-
+    if(event.target.checked == true)
+      this.shows = false
   }
-  shift1(event:any, i:any)
-  {    
-    this.questions[i].shift1_reqd = event.target.value
 
-    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
-     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
-    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
-    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+  fileread(event:any)
+  {
+    var file = event.target.files[0]
 
-    console.log(this.questions[i])
-  }
-  shift2(event:any, i:any)
-  {    
-    this.questions[i].shift2_reqd = event.target.value
+    const fileReader = new FileReader()
 
-    
-    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
-     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
-    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
-    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+    fileReader.readAsBinaryString(file)
 
-    console.log(this.questions[i])
-  }
-  shift3(event:any, i:any)
-  {    
-    this.questions[i].shift3_reqd = event.target.value
+    console.log(fileReader.result)
+    console.log(file)
 
-    
-    this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
-     +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
-    +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
-    +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+    fileReader.onload = (e)=>
+    {
+      var workbook = XLSX.read(fileReader.result, {type:'binary'})
+      var sheetName = workbook.SheetNames
+      this.excelfile = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName[0]])
+      console.log(this.excelfile)  
+    }
 
-    console.log(this.questions[i])
-  }
+
+
+  } 
+
   save()
   {
-    this.questions[0].plant_code = sessionStorage.getItem('plantcode')
-    this.questions[0].plant_year = this.f.year
-    this.questions[0].plant_month = this.f.month
-    this.questions[0].created_by = sessionStorage.getItem('emp_id')
+    this.excelfile[0].plant_code = sessionStorage.getItem('plantcode')
+    this.excelfile[0].plant_year = this.f.year
+    this.excelfile[0].plant_month = this.f.month
+    this.excelfile[0].created_by = sessionStorage.getItem('emp_id')
 
-    console.log(this.questions)
-    console.log(this.questions[0].status == 'old', this.questions[0].status)
+    console.log(this.excelfile)
 
-    if(this.questions[0].status == 'new')
+    if(this.excelfile[0].plan_slno == undefined)
     {
-      this.service.people_planning_save(this.questions)
+      this.service.people_planning_save(this.excelfile)
       .subscribe(
         {
           next:(response)=>{console.log(response)}
         }
       )
     }
-    else if(this.questions[0].status == 'old')
+    else if(this.excelfile[0].plan_slno != undefined)
     {
       console.log("has to update")
-      this.service.people_planning_update(this.questions)
+      this.service.people_planning_update(this.excelfile)
       .subscribe(
         {
           next:(response)=>{console.log(response)}
@@ -253,6 +249,76 @@ export class MonthlyPlanningComponent implements OnInit {
 
 
   }
+
+
+
+
+
+
+    // gen(event:any, i:any)
+  // {    
+  //   this.questions[i].genl_reqd = event.target.value
+
+  //   this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+  //    +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+  //   +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+  //   +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
+  //   console.log(this.questions[i])
+  // }
+  // total(i:any)
+  // {
+  //   this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd) +Number(this.questions[i].shift2_reqd)
+  //   +Number(this.questions[i].shift3_reqd) +Number(this.questions[i].genl_reqd)
+
+  //   console.log(this.questions)
+
+  // }
+  // shift1(event:any, i:any)
+  // {    
+  //   this.questions[i].shift1_reqd = event.target.value
+
+  //   this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+  //    +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+  //   +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+  //   +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
+  //   console.log(this.questions[i])
+  // }
+  // shift2(event:any, i:any)
+  // {    
+  //   this.questions[i].shift2_reqd = event.target.value
+
+    
+  //   this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+  //    +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+  //   +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+  //   +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
+  //   console.log(this.questions[i])
+  // }
+  // shift3(event:any, i:any)
+  // {    
+  //   this.questions[i].shift3_reqd = event.target.value
+
+    
+  //   this.questions[i].total_reqd = Number(this.questions[i].shift1_reqd == undefined ? 0: this.questions[i].shift1_reqd)
+  //    +Number(this.questions[i].shift2_reqd  == undefined ? 0: this.questions[i].shift2_reqd)
+  //   +Number(this.questions[i].shift3_reqd  == undefined ? 0: this.questions[i].shift3_reqd) 
+  //   +Number(this.questions[i].genl_reqd  == undefined ? 0: this.questions[i].genl_reqd)
+
+  //   console.log(this.questions[i])
+  // }
+
+
+    // addrow(i:any)
+  // {
+  //       if(i == this.questions.length-1)
+  //       {
+  //         this.questions.push({})
+  //         this.inserted += 1;
+  //       }
+  // }
 
   }
 
