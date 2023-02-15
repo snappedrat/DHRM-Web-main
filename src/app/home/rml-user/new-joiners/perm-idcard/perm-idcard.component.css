@@ -1,0 +1,123 @@
+.card {
+    box-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.4);
+    width: 400px;
+    height: 680px;
+    float: left;
+    font-size:2px;
+    border-color: black;
+  }
+  .card2 {
+  
+    box-shadow: 0 14px 14px 0 rgba(0,0,0,0.4);
+    width: 400px;
+    height: 640px;
+    float: left;
+    font-size:15px;
+  }
+  
+  .left{
+    text-align: right;
+    float: right;
+    padding-left: 0px;
+  }
+  
+  .container {
+    font-size:15px;
+    padding-top: 100px;
+    padding-left: 10%;
+  
+  }
+  .container2 {
+    font-size:15px;
+    padding-top: 20px;
+    padding-right: -100px;
+    align-items: center;
+  
+  
+  }
+  .shift{
+    margin-left:100px;
+  }
+  
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  
+  .spacing{
+    float: right;
+    padding: 100px;
+  }
+  
+  .left1{
+    text-align:right;
+    padding-right:0%
+  }
+  
+  .font
+  {
+    font-size: 15px;
+  }
+  
+  textarea{
+    resize: none;
+    border-color: white;
+    text-align: center;
+  }
+  
+  .font2{
+    font-size: 15px;
+    width: 50%;
+  }
+  .header{
+    text-align: center;
+    font-size: 25px;
+  }
+  .img{
+    margin-left: 35%;
+    height: 100px;
+    width: 25%;
+  }
+  .img2{
+    /* margin-left: 35%; */
+    height: 70px;
+    width: 40%;
+  }
+  .sign{
+    margin-left: 65%;
+    width: 70%;
+  
+  }
+  .sign1{
+    margin-left:65%;
+    font-size: large;
+  }
+  .company_addr{
+    text-align:center;
+    border-radius: 2px;
+    border-color: white;
+  }
+  .home_addr{
+    align-self: left;
+    text-align:left;
+    border-radius: 2px;
+    border-color: white;
+  }
+  .space{
+    word-spacing: 20px;
+  }
+  .name{
+    text-align: center;
+    font-size: 20px;
+  }
+  .aligncommand{
+    line-height: 20px;
+     width: 200px; 
+     border: 1px ;
+  }
+  .fs-text{
+    font-size: 25px;
+  }

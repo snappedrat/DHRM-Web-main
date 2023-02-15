@@ -244,10 +244,24 @@
             </mat-expansion-panel>
             </div>
             <div *ngIf="istrainee == 'false' " >
-            <a mat-list-item routerLink="/rml" style="color: white">
-                <mat-icon class="icon-pad">alarm_add</mat-icon>Shift Roaster</a>
-            <a mat-list-item routerLink="/rml/reports" style="color: white">
-                <mat-icon class="icon-pad">report</mat-icon>Reports</a>
+                <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">
+                    <mat-expansion-panel-header style="color: white">
+                        <mat-icon class="icon-pad">
+                            report
+                        </mat-icon>
+                        Reports
+                    </mat-expansion-panel-header>
+                    <mat-nav-list dense>
+                        <a mat-list-item routerLink="/rml/reports" style="color: white">
+                            <mat-icon class="icon-pad">trainee</mat-icon>Trainee Report</a>
+                        <a mat-list-item routerLink="/rml/reports" style="color: white">
+                            <mat-icon class="icon-pad">edit</mat-icon>Test Summary</a>
+                        <a mat-list-item routerLink="/rml/reports" style="color: white">
+                            <mat-icon class="icon-pad">date_range</mat-icon>Evaluation Due</a>
+                    </mat-nav-list>
+                </mat-expansion-panel>
+                <a mat-list-item routerLink="/rml" style="color: white">
+                    <mat-icon class="icon-pad">alarm_add</mat-icon>Shift Roaster</a>
             </div>
         </mat-nav-list>
     </mat-sidenav>
@@ -256,7 +270,7 @@
             <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-            <!--      <button mat-raised-button (click)="drawer.toggle()" >Toggle drawer</button>-->
+                 <button class="btn btn-primary border border-primary"  (click)="drawer.toggle()" ><mat-icon>list</mat-icon></button>
             <!-- &nbsp;<span style="color:rgb(255, 255, 255)">DHRM</span> -->
 
             &nbsp;<div *ngIf = 'showid' class = "username" >&nbsp;{{showname}}({{showid}}) - {{showdept}} - {{showplant}}</div>
