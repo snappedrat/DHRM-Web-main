@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {CompanyComponent} from "./masters/company/company.component";
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
-import { ReportsComponent } from './reports/reports.component';
 import { AuthGuard } from 'src/app/Auth.guard';
 import { ArsLoginComponent } from './ars-login/ars-login.component';
 
@@ -53,8 +52,8 @@ const routes: Routes = [
         loadChildren:() => import('./people-planning/people-planning.module').then(m => m.PeoplePlanningModule)
       },
       {
-        path:'reports',
-        component: ReportsComponent
+        path: 'reports',
+        loadChildren:() => import('./reports/reports.module').then(m => m.ReportsModule)
       },
       ]
   },

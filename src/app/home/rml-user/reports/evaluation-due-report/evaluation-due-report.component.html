@@ -1,0 +1,33 @@
+<div class="container">
+    <br>
+    <br>
+    <h2><b>Select Date Range: </b></h2>
+    <form [formGroup]="dateForm">
+        &nbsp;&nbsp;
+        <div class="row">
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="fromDatepicker" formControlName="fromDate" placeholder="From Date" readonly>
+              <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #fromDatepicker></mat-datepicker>
+            </mat-form-field>
+          </div> &nbsp;&nbsp;&nbsp;
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="toDatepicker" formControlName="toDate" placeholder="To Date" readonly>
+              <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #toDatepicker></mat-datepicker>
+            </mat-form-field>
+          </div>&nbsp;&nbsp;&nbsp;
+          <div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="dateForm.invalid" (click)="submit()">Filter</button>
+          </div>
+        </div>
+        <mat-divider></mat-divider><br><br >
+        <mat-progress-bar  *ngIf="progressValue > 0" class="custom-progress-bar" mode="determinate" [value]="progressValue"></mat-progress-bar>
+        <div  *ngIf="progressValue > 0 && progressValue !=100"> Please Wait....</div>
+        <div  *ngIf="progressValue ==100">You can download the File</div>
+        <br><br>
+        <button (click)="exportexcel()" [disabled]="progressValue !=100" mat-raised-button color="primary" type="submit">Download File</button>
+      </form>      
+</div>

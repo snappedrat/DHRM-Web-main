@@ -3,6 +3,7 @@ import { PlantcodeService } from '../plantcode.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { threadId } from 'worker_threads';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-forms',
@@ -44,7 +45,7 @@ export class FormsComponent implements OnInit, OnDestroy{
   isHrappr: any;
 
 
-  constructor(private formservice: PlantcodeService, private http: HttpClient,private plantcodeService: PlantcodeService, private router: Router, private active: ActivatedRoute ){
+  constructor(private formservice: PlantcodeService,private service : ApiService, private http: HttpClient,private plantcodeService: PlantcodeService, private router: Router, private active: ActivatedRoute ){
 
   }
 
@@ -225,10 +226,17 @@ export class FormsComponent implements OnInit, OnDestroy{
       console.log(this.uniqueId);
       if(this.ishr == 'true' && this.apln_status == 'PENDING'  )
       {
+        this.service.submitted_mail({plant_code: sessionStorage.getItem('plantcode'), mobile: this.uniqueId.mobile, company: this.uniqueId.company})
+        .subscribe(
+          {
+            next: (response:any)=>{console.log(response)}
+          }
+        )
         this.formservice.submitted(this.uniqueId)
       }
       else if(this.ishr == 'true' &&this.apln_status == 'REJECTED' )
       {
+
         this.formservice.submitted(this.uniqueId)
       }
       else if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')

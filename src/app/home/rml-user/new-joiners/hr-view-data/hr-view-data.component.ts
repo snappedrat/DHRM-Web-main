@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { PlantcodeService } from '../plantcode.service';
 import { environment } from 'src/environments/environment.prod';
+import { ApiService } from 'src/app/home/api.service';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class HrViewDataComponent implements OnInit {
 	url_formh2_file: any
 	url_natx_file: any
 
-  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : PlantcodeService) {
+  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : PlantcodeService, private apiservice: ApiService) {
 
    }
 
@@ -107,6 +108,13 @@ export class HrViewDataComponent implements OnInit {
       this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
       this.uniqueId.company = this.active.snapshot.paramMap.get('company')
       this.service.approved(this.uniqueId)
+
+      this.apiservice.approved_mail({plant_code: sessionStorage.getItem('plant_code'), mobile: this.uniqueId.mobile, company: this.uniqueId.company })
+      .subscribe(
+        {
+          next: (response:any)=>{console.log(response)}
+        }
+      )
 
        window.alert("Application has been approved")
       this.router.navigate(['rml/new_joiners/hr-approval'])

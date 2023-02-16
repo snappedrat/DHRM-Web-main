@@ -344,13 +344,17 @@ url2:any = environment.path2
     return this.http.post(this.url+'/get_eval_sup', form)
   }
 
-  trainee_report()
+  trainee_report(form:any)
   {
-    return this.http.get(this.url+'/trainee-report')
+    return this.http.post(this.url+'/trainee-report', form)
   }
-  test_summary()
+  test_summary(form:any)
   {
-    return this.http.get(this.url+'/test-summary')
+    return this.http.post(this.url+'/test-summary', form)
+  }
+  eval_due(form:any)
+  {
+    return this.http.post(this.url+'/evaluation-due-report', form)
   }
   people_planning(form:any)
   {
@@ -489,5 +493,17 @@ url2:any = environment.path2
   filedrop(form:any)
   {
     return this.http.post(this.url+'/filedrop', form) 
+  }
+  submitted_mail(form:any)
+  {
+    return this.http.post(this.url+'/submitted_mail', form) 
+  }
+  approved_mail(form:any)
+  {
+    return this.http.post(this.url+'/approved_mail', form) 
+  }
+  evaluation_mail(form:any)
+  {
+    return this.http.post(this.url+'/evaluation_mail', form) 
   }
 }

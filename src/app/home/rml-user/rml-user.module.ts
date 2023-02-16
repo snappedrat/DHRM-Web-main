@@ -27,7 +27,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
-import { ReportsComponent } from './reports/reports.component';
 import { ArsLoginComponent } from './ars-login/ars-login.component';
 
 
@@ -46,7 +45,6 @@ import { ArsLoginComponent } from './ars-login/ars-login.component';
     PincodeComponent,
     EmployeeComponent,
     ShiftComponent,
-    ReportsComponent,
     ArsLoginComponent,
 
   ],

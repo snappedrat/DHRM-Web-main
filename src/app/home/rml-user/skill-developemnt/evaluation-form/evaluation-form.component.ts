@@ -182,6 +182,12 @@ export class EvaluationFormComponent implements OnInit {
               console.log(response);
               if(response.message == 'success')
               {
+                this.service.evaluation_mail({plant_code : sessionStorage.getItem('plantcode'), idno : this.trainee_idno})
+                .subscribe(
+                  {
+                    next: (response:any)=>{console.log(response)}
+                  }
+                )
                 alert("Trainee has been Evaluated")
                 this.router.navigate(['/rml/skill-developement/trainer-evaluation'])
               }
