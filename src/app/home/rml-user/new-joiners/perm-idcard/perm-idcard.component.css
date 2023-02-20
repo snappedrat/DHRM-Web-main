@@ -1,19 +1,21 @@
-.card {
-    box-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.4);
-    width: 400px;
-    height: 680px;
-    float: left;
-    font-size:2px;
-    border-color: black;
-  }
-  .card2 {
-  
-    box-shadow: 0 14px 14px 0 rgba(0,0,0,0.4);
-    width: 400px;
-    height: 640px;
-    float: left;
-    font-size:15px;
-  }
+.card{
+  cursor: pointer;
+height: 430px;
+width:270px;
+background-color: rgb(250, 250, 250);
+border: 5px black ;
+border-radius: 20px;
+box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+-webkit-box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+-moz-box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+z-index: 1;
+background-image:cover;
+text-align: center;
+background-image: url("src/assets/img.jpeg");
+
+
+}
+
   
   .left{
     text-align: right;
@@ -94,6 +96,7 @@
   .sign1{
     margin-left:65%;
     font-size: large;
+    margin-bottom: 2%;
   }
   .company_addr{
     text-align:center;
@@ -113,11 +116,34 @@
     text-align: center;
     font-size: 20px;
   }
-  .aligncommand{
-    line-height: 20px;
-     width: 200px; 
-     border: 1px ;
+  .aligncommand1{
+  
+
+     line-height: 10%;
+     text-align: left;
+     background-color: white;
   }
   .fs-text{
     font-size: 25px;
+  }
+  .table{
+    width:200px ;
+    margin-left:2px;
+  }
+  .row{
+  
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      flex-direction: row;
+    
+  }
+  
+  .container1{
+    height:100%;
+    width:100%
+  }
+  .bg{
+    background-size:100%;
+    object-fit: cover ;
   }

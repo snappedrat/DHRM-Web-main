@@ -36,3 +36,6 @@ select:hover{
 .form-control{
     font-size: 14px;
 }
+.alert{
+    color: red;
+}

@@ -54,3 +54,6 @@ input{
 .form-control{
     font-size: 14px;
 }
+.alert{
+    color: red;
+}

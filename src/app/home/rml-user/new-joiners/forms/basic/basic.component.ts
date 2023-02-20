@@ -84,9 +84,9 @@ export class BasicComponent implements OnInit{
             dd2:[''],
             bg:['',Validators.required],
             gender:['',Validators.required],
-            aadhar1:['', Validators.required],
-            aadhar2:['', Validators.required],
-            aadhar3:['', Validators.required],
+            aadhar1:['', [Validators.required, Validators.maxLength(4)]],
+            aadhar2:['', [Validators.required, Validators.maxLength(4)]],
+            aadhar3:['', [Validators.required, Validators.maxLength(4)]],
 
             nation:['',Validators.required],
             city:[''],
@@ -107,6 +107,7 @@ export class BasicComponent implements OnInit{
    }
 
     ngOnInit(): void {
+
         this.getdatabasic()
         this.getaadhar()
         
@@ -165,6 +166,7 @@ export class BasicComponent implements OnInit{
         this.form.controls['gender'].setValue(this.basic[0]?.gender)
         this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
         this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
+        this.form.get('nation')?.setValue('India')
 
         if(this.form.valid)
             this.emit.emit(this.message)

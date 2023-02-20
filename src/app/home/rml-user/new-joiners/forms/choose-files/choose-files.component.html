@@ -2,7 +2,7 @@
 <form>
 <div class = "mx-5" >
 <h1>Employee related</h1>
-<h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx) (file size : 200kb)</h3>
+<h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx) (file size : 1MB)</h3>
 <b><h3>(<span class = "star-color">*</span> fields are required)</h3></b>
 
 <table [width]="1000">
@@ -80,7 +80,7 @@
       </tr> <tr>
        
   </table>
-  <button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)= "func()" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
+  <button mat-raised-button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)= "func()" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
   <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
 
   <br><br>
@@ -93,7 +93,7 @@
 <h1>RML related</h1>
 <table [width]="1000">
   <tr>
-    <td>appointment order( < 300KB):</td>
+    <td>appointment order:</td>
     <td >
       <div class="text-center"> 
     <input class="form-control" formcontrolname="appointment" id = "appoinment" type="file"   (change)="onAppointmentorderChange($event)">
@@ -166,7 +166,7 @@
     </tr> <tr>
      
 </table>
-  <button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()"><span style="font-size: 14px;">Save</span></button>
+  <button mat-raised-button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()"><span style="font-size: 14px;">Save</span></button>
   <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
 
 </div>
