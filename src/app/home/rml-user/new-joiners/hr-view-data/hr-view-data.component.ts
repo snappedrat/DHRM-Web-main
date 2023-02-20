@@ -115,7 +115,6 @@ export class HrViewDataComponent implements OnInit {
           next: (response:any)=>{console.log(response)}
         }
       )
-
        window.alert("Application has been approved")
       this.router.navigate(['rml/new_joiners/hr-approval'])
 
