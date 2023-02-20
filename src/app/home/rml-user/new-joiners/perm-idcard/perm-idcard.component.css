@@ -10,59 +10,50 @@ box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
 -moz-box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
 z-index: 1;
 background-image:cover;
-text-align: center;
 background-image: url("src/assets/img.jpeg");
 
 
+
+}
+.card2{
+  cursor: pointer;
+height: 430px;
+width:270px;
+background-color: rgb(250, 250, 250);
+border: 5px black ;
+border-radius: 20px;
+box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+-webkit-box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+-moz-box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
+z-index: 1;
+background-image:cover;
+background-image: url("src/assets/img.jpeg");
+align-items: left;
+
+
+}
+.center{
+  align-items: center;
 }
 
-  
-  .left{
-    text-align: right;
-    float: right;
-    padding-left: 0px;
-  }
   
   .container {
     font-size:15px;
     padding-top: 100px;
-    padding-left: 10%;
+    padding-left: 30%;
   
   }
-  .container2 {
-    font-size:15px;
-    padding-top: 20px;
-    padding-right: -100px;
-    align-items: center;
+.header{
+  font-size: 20px;
+  font-weight: 900;
+}
   
   
-  }
-  .shift{
-    margin-left:100px;
-  }
+  
+
   
   
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-  
-  .spacing{
-    float: right;
-    padding: 100px;
-  }
-  
-  .left1{
-    text-align:right;
-    padding-right:0%
-  }
-  
-  .font
-  {
-    font-size: 15px;
-  }
+
   
   textarea{
     resize: none;
@@ -70,66 +61,12 @@ background-image: url("src/assets/img.jpeg");
     text-align: center;
   }
   
-  .font2{
-    font-size: 15px;
-    width: 50%;
-  }
-  .header{
-    text-align: center;
-    font-size: 25px;
-  }
-  .img{
-    margin-left: 35%;
-    height: 100px;
-    width: 25%;
-  }
-  .img2{
-    /* margin-left: 35%; */
-    height: 70px;
-    width: 40%;
-  }
-  .sign{
-    margin-left: 65%;
-    width: 70%;
-  
-  }
-  .sign1{
-    margin-left:65%;
-    font-size: large;
-    margin-bottom: 2%;
-  }
-  .company_addr{
-    text-align:center;
-    border-radius: 2px;
-    border-color: white;
-  }
-  .home_addr{
-    align-self: left;
-    text-align:left;
-    border-radius: 2px;
-    border-color: white;
-  }
-  .space{
-    word-spacing: 20px;
-  }
-  .name{
-    text-align: center;
-    font-size: 20px;
-  }
-  .aligncommand1{
-  
 
-     line-height: 10%;
-     text-align: left;
-     background-color: white;
-  }
-  .fs-text{
-    font-size: 25px;
-  }
-  .table{
-    width:200px ;
-    margin-left:2px;
-  }
+
+ 
+
+ 
+
   .row{
   
       display: flex;
@@ -147,3 +84,72 @@ background-image: url("src/assets/img.jpeg");
     background-size:100%;
     object-fit: cover ;
   }
+  .img{
+    margin-top: 90%;
+    margin-left: 50%;
+    height: 120px;
+    width:90px;
+   
+  }
+  .name
+  {
+    padding-top: 5%;
+    font-size: 30px;
+    font-weight: 500;
+  }
+  .font{
+    font-size: 10px;
+  }
+  .container2{
+    align-items:left;
+  }
+  .aligncommand1{
+  line-height: 25px;
+   width: 200px; 
+   border: 1px ;
+   background-color: #f6f6f6;
+   font-size: 10px;
+}
+.img2{
+  /* margin-left: 35%; */
+  height: 30px;
+  width: 70%;
+}
+.sign{
+  margin-left: 65%;
+  width: 70%;
+
+}
+.sign1{
+  padding-bottom: 20%;
+  margin-left:65%;
+  font-size: 10px;
+}
+.stylecommand{
+  line-height: 10px;
+  width: 300px; 
+  border: 1px ;
+  background-color:#f6f6f6;
+}
+.home_addr{
+  align-self: left;
+  text-align:left;
+  border-radius: 2px;
+  border-color:#f6f6f6;
+}
+.company_addr{
+  text-align:center;
+  border-radius: 2px;
+  border-color: #f6f6f6;
+}
+textarea{
+  resize: none;
+  border-color: #f6f6f6;
+  color: #f6f6f6;
+  text-align: center;
+}
+.fontstyle2{
+  font-size: 12px;
+  font-weight: 900;
+  color: blue;
+}
