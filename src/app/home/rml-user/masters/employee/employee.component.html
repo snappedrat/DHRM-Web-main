@@ -8,53 +8,73 @@
             <br>
             <form [formGroup] = "form">
                 <div class="row">
+
                     <div class="col">
                         <label>Gen ID: </label><br>
                         <input class="form-control"  type = "text" formControlName = "gen_id">
                     </div>
+
+
+                    <div class="col">                            
+                        <label>Designation: </label><br>
+                        <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i">{{i}}</option></select>
+                    </div>
+                    
+                    <br>
+                </div><br>
+                <div class="row">
+
                     <div class="col">
                         <label>Employee Name: </label><br>
                         <input class="form-control"  type = "text" formControlName = "Emp_Name">
-                    </div><br>
-                </div><br>
-                <div class="row">
-                        <div class="col">
-                            <label>Plant Name: </label><br>
-                    <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of array" [ngValue]="i" >{{i}}</option></select>
-                        </div>
-                        <div class="col">                            
-                            <label>Line: </label><br>
-                            <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
-                        </div>
-                </div><br>
-                
-                <div class="row">
-                    <div class="col">                            
-                        <label>Department: </label><br>
-                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i">{{i}}</option></select>
                     </div>
-                        <div class="col">                            
-                            <label>Designation: </label><br>
-                            <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i">{{i}}</option></select>
 
-                        </div>
-                    </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label>Mail ID: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "Mail_Id">
-                    </div>
                     <div class="col">
                         <label>Mobile No: </label><br>
                             <input class="form-control"  type = "text" formControlName = "Mobile_No" maxlength="10" >
                     </div>
+
+                </div><br>
+                
+                <div class="row">
+
+                    <div class="col">
+                        <label>Plant Name: </label><br>
+                <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of array" [ngValue]="i" >{{i}}</option></select>
+                    </div>
+
+                    
+                    <div class="col">
+                        <label>Mail ID: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "Mail_Id">
+                    </div>
+
+                        
+                    </div>
+                    <br>
+                <div class="row">
+
+                    
+                    <div class="col">                            
+                        <label>Department: </label><br>
+                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i">{{i}}</option></select>
+                    </div>
+
+                    
+                    <div class="col">
+                        <label>User Name: </label><br>
+                        <input class="form-control"  type = "text" formControlName = "User_Name">
+                    </div>
+
                 </div><br>
 
                                 <div class="row">
-                                    <div class="col">
-                                        <label>User Name: </label><br>
-                                        <input class="form-control"  type = "text" formControlName = "User_Name">
+
+                                    <div class="col">                            
+                                        <label>Line: </label><br>
+                                        <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
                                     </div>
+
                                         <div class="col">
                                             <label>Password: </label><br>
                                             <input class="form-control"  type = "text" required formControlName = "Password">

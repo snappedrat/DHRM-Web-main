@@ -1,5 +1,7 @@
 
-    <div class="container pt-2">
+<!-- [disabled]= 'flag_to_readonly' -->
+
+  <div class="container pt-2">
         <div class="row justify-content-md-left pt-5">
             <div class="table col-sm-20 shadow round pb-4">
                 <div class="mx-5">
@@ -37,7 +39,6 @@
                     type="text"
                     class="form-control"
                     (ngModelChange)="sendData()"
-                    [disabled]= 'flag_to_readonly'
                     placeholder="Title">
                     <option value ="">Select Title</option>
                     <option *ngFor="let i of Title">{{i}}</option>
@@ -53,7 +54,6 @@
                     type="text"
                     class="form-control"
                     (ngModelChange)="sendData()"
-                    [readonly] = "flag_to_readonly"
                     placeholder="First Name">
             <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert">
                 <div *ngIf="fname.fname.errors.required">First Name is required</div>
@@ -67,7 +67,6 @@
                         type="text"
                         class="form-control"
                         placeholder="Last Name"
-                        [readonly] = "flag_to_readonly"
                         (ngModelChange)="sendData()">
                 <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert ">
                     <div *ngIf="lname.lname.errors.required">Last Name is required</div>
@@ -82,7 +81,6 @@
                         type="text"
                         class="form-control"
                         (ngModelChange)="sendData()"
-                        [readonly] = "flag_to_readonly"
                         placeholder="Father Name">
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert ">
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
@@ -93,7 +91,6 @@
                 <div class = "col-sm-2">
                 <input #txt1
                        formControlName = "aadhar1"
-                       [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar1'
@@ -105,7 +102,6 @@
             <div class = "col-sm-2">
                 <input #txt2
                 formControlName = "aadhar2"
-                [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar2'
@@ -117,7 +113,6 @@
             <div class = "col-sm-2">
                 <input #txt3
                 formControlName = "aadhar3"
-                [readonly] = "flag_to_readonly"
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar3'
@@ -133,7 +128,6 @@
             <label for="bd">Birth Date:<span class = "star-color">*</span></label>
             <input
                     formControlName="bd"
-                    [readonly] = "flag_to_readonly"
                     id="bd"
                     type="date"
                     max="2100-12-12"

@@ -16,30 +16,28 @@
               <br><br><br>
               <div class="mx-5">
                 <tr class="font">
-                
-                    
                     <tr > 
                         <td class = "stylecommand"><b>Category</b></td><br>
-                        <td>:{{cat}}</td><br><br>
+                        <td>:{{cat}}</td><br><br></tr>
                     <tr > 
                     <td class = "stylecommand" ><b>Department</b></td><br>
-                    <td >:{{dept}}</td><br><br>
+                    <td >:{{dept}}</td><br><br></tr>
                 <tr>
                     
                     <td  class = "stylecommand" ><b> Line</b></td><br>
-                    <td >:{{ln}}</td><br><br>
+                    <td >:{{ln}}</td><br><br></tr>
                 <tr>
                     <td class = "stylecommand" ><b> Skill Level</b></td><br>
-                    <td >:{{skill}}</td><br><br>
+                    <td >:{{skill}}</td><br><br></tr>
                     <tr>
                         <td  ><b> Operation Trained</b></td><br>
-                        <td ><div *ngFor="let i of pt">:{{i}}</div></td><br><br><br><br>
+                        <td ><div *ngFor="let i of pt">:{{i}}</div></td></tr><br><br><br><br>
                     <tr>
                         <td *ngIf="readable" ><b> Uploaded File</b></td><br>
-                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:View Hr file</a></td><br><br>
+                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:View Hr file</a></td></tr><br><br>
                     <tr>
                         <td *ngIf="appr" ><b> Uploaded File</b></td><br>
-                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >:View Supervisor file</a></td><br><br>
+                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >:View Supervisor file</a></td></tr><br><br>
                 </div>
              </table>
       </div></div>     

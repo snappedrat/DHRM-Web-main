@@ -54,7 +54,7 @@ export class EvaluationFormComponent implements OnInit {
           score_obtained:['', Validators.required],
           score_for:['', Validators.required],
           percentage : ['', Validators.required],
-          upload_file : [''],
+          upload_file : ['', Validators.required],
           line: ['', Validators.required],
           department: ['', Validators.required],
           new_skill: ['', Validators.required],
@@ -222,6 +222,7 @@ export class EvaluationFormComponent implements OnInit {
         else
           formData.append("file", event.target.files[0], this.trainee_idno+'_'+'tnr_eval'+'.'+this.new )
 
+          this.form.get('upload_file').setValue('uploaded')
 
         this.service.skill_dev(formData)
         .subscribe(
@@ -229,7 +230,6 @@ export class EvaluationFormComponent implements OnInit {
             next: (response)=>{console.log(response)}
           }
         )
-
       }
       cal()
       {

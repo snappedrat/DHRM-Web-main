@@ -195,7 +195,10 @@ editSave()
     this.service.updateline(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-
+        if(this.index == -1)
+        this.form.controls['plant_name'].setValue(this.line[this.temp_a].plant_name)
+        else
+        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
       this.line[this.temp_a] = this.form.value
         }
     })

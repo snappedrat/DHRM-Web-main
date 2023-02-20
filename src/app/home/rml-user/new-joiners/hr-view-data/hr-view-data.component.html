@@ -566,10 +566,11 @@
 <br>
 
 
-<div style="float: right;" >
-    <b><button class = "btn-secondary btn-xlg " style="margin-bottom:auto;" routerLink="/rml/new_joiners/hr-approval"> Go back to list</button>
-    <button  type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
-    <button  type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button></b>
+<div style="float: right;"  >
+    <b><button *ngIf="apln_status != 'SUBMITTED' " class = "btn-secondary btn-xlg " style="margin-bottom:auto;" routerLink="/rml/new_joiners/trainee-application-status"> Go back to list</button>
+    <button *ngIf="apln_status == 'SUBMITTED' " class = "btn-secondary btn-xlg " style="margin-bottom:auto;" routerLink="/rml/new_joiners/hr-approval"> Go back to list</button>
+    <button *ngIf="apln_status == 'SUBMITTED' " type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
+    <button *ngIf="apln_status == 'SUBMITTED' " type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button></b>
 </div>
 <br>
 <br>

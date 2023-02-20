@@ -2,14 +2,15 @@
     <div class="row justify-content-md-center pt-5">
         <div class="table col-sm-20 shadow round pb-4">
             <div class="mx-5">
-    <h3>Bank Details</h3>
-    <h3>(<span class = "star-color">*</span> fields are required)</h3>
+    <h3>Bank Details (Optional)</h3>
+    <!-- <h3>(<span class = "star-color">*</span> fields are required)</h3> -->
 
     <form [formGroup]="form">
     <div class="row">
     <div class = "col-sm-10">
         <div class="form-group" >
-            <label for="account">Account Number:<span class = "star-color">*</span></label>
+            <label for="account">Account Number:</label>
+            <!-- <label for="account">Account Number:<span class = "star-color">*</span></label> -->
             <input  (ngModelChange)="sendData()"
                     formControlName="account"
                     id="account"
@@ -20,7 +21,8 @@
     </div>
     <div class = "col-sm-10">
         <div class="form-group">
-            <label for="bankName">Bank Name:<span class = "star-color">*</span></label>
+            <label for="bankName">Bank Name:</label>
+            <!-- <label for="bankName">Bank Name:<span class = "star-color">*</span></label> -->
             <select formControlName="bankName" class="form-control" (ngModelChange)="sendData()">
                 <option>Choose</option>
                 <option *ngFor="let bm of banknames" [ngValue]="bm" >{{bm}}</option>
@@ -29,7 +31,8 @@
         </div>
         <div class = "col-sm-10">
         <div class="form-group">
-            <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label>
+            <label for="ifsc">IFSC Code:</label>
+            <!-- <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label> -->
             <input  (ngModelChange) = "sendData()"
                     formControlName="ifsc"
                     id="ifsc"

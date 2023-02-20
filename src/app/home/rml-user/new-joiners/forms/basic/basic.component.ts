@@ -84,9 +84,9 @@ export class BasicComponent implements OnInit{
             dd2:[''],
             bg:['',Validators.required],
             gender:['',Validators.required],
-            aadhar1:['', [Validators.required, Validators.maxLength(4)]],
-            aadhar2:['', [Validators.required, Validators.maxLength(4)]],
-            aadhar3:['', [Validators.required, Validators.maxLength(4)]],
+            aadhar1:['', [Validators.required, Validators.minLength(4)]],
+            aadhar2:['', [Validators.required, Validators.minLength(4)]],
+            aadhar3:['', [Validators.required, Validators.minLength(4)]],
 
             nation:['',Validators.required],
             city:[''],
@@ -236,7 +236,6 @@ export class BasicComponent implements OnInit{
         else
         {
             this.flag_to_readonly = true
-            this.form.controls['title'].disable()
         }
     }
 

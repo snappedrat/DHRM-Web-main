@@ -60,12 +60,6 @@ margin-left: 2%;
   font-size: 15px;
 }
 
-textarea{
-  resize: none;
-  border-color: white;
-  text-align: center;
-}
-
 .font2{
   font-size: 15px;
   width: 50%;
@@ -88,17 +82,6 @@ textarea{
 .sign1{
   margin-left:65%;
   font-size: large;
-}
-.company_addr{
-  text-align:center;
-  border-radius: 2px;
-  border-color: white;
-}
-.home_addr{
-  align-self: left;
-  text-align:left;
-  border-radius: 2px;
-  border-color: white;
 }
 .space{
   word-spacing: 20px;

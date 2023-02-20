@@ -3,7 +3,7 @@
 <div class = "mx-5" >
 <h1>Employee related</h1>
 <h3>Upload the files in any one of the following formats:(pdf/jpeg/png/docx) (file size : 1MB)</h3>
-<b><h3>(<span class = "star-color">*</span> fields are required)</h3></b>
+<div *ngIf="this.ishr == 'true' " ><b><h3>(<span class = "star-color">*</span> fields are required)</h3></b></div>
 
 <table [width]="1000">
     <tr>
@@ -19,7 +19,7 @@
 
     </tr>
     <tr>
-      <td>Marksheet:<span class = "star-color">*</span></td>
+      <td>Marksheet:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
       <td><div class="text-center"> 
         <input class="form-control" type="file" (change)="valid()"  (change)="onMarksheetChange($event)"> 
 	</div> 
@@ -39,7 +39,7 @@
 		</td>
       </tr>
       <tr>
-        <td>Aadhar Card:<span class = "star-color">*</span></td>
+        <td>Aadhar Card:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
         <td><div class="text-center"> 
           <input class="form-control" type="file" (change)="valid()"  (change)="onAadharcardChange($event)"> 
 		</div> 
@@ -59,7 +59,7 @@
         </td>
       </tr>
       <tr>
-        <td>Photo:<span class = "star-color">*</span></td>
+        <td>Photo:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
         <td><div class="text-center"> 
           <input class="form-control" type="file" accept="image/*"  (change)="onPhotoChange($event)" (change)="valid()"> 
 		</div> 
@@ -88,12 +88,13 @@
 </form>
 
 <!-- /////////////////////////////////////////////////////////////////////////////// -->
+
 <form>
 <div *ngIf= "ishr == 'true' " class="mx-5" >
 <h1>RML related</h1>
 <table [width]="1000">
   <tr>
-    <td>appointment order:</td>
+    <td>Appointment Order:</td>
     <td >
       <div class="text-center"> 
     <input class="form-control" formcontrolname="appointment" id = "appoinment" type="file"   (change)="onAppointmentorderChange($event)">
@@ -105,7 +106,7 @@
 
   </tr>
   <tr>
-    <td>declaration file:</td>
+    <td>Declaration File:</td>
     <td><div class="text-center"> 
       <input class="form-control" type="file"  (change)="onDeclarationChange($event)"> 
 </div> 
@@ -115,7 +116,7 @@
       </td>
   </tr> 
 <tr>
-      <td>medicalfitness file:</td>
+      <td>Medical-Fitness File:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"  (change)="onMedicalfitnessChange($event)"> 
   </div> 
@@ -125,7 +126,7 @@
   </td>
     </tr>
     <tr>
-      <td>formA4 file:</td>
+      <td>FormA4 File:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onForma4Change($event)"> 
   </div> 
@@ -135,7 +136,7 @@
         </td>
     </tr>
     <tr>
-      <td>form11 file:</td>
+      <td>Form11 File:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onForm11Change($event)"> 
   </div> 
@@ -145,7 +146,7 @@
       </td>
     </tr>
     <tr>
-      <td>formh2 file:</td>
+      <td>Formh2 File:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"   (change)="onFormh2Change($event)"> 
   </div> 
@@ -155,7 +156,7 @@
     </td>
     </tr>
     <tr>
-      <td>natx file:</td>
+      <td>NATX File:</td>
       <td><div class="text-center"> 
         <input class="form-control" type="file"    (change)="onNatxChange($event)"> 
   </div> 

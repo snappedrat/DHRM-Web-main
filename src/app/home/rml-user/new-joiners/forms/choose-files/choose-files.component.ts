@@ -109,6 +109,14 @@ export class ChooseFilesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+	if(this.ishr == 'undefined')
+	{
+		this.flagged = false
+		this.emit.emit({'choose': false})
+
+	}
+
 	this.service.getdatabasic(this.uniqueId)
 	.subscribe({
 		next: (response) => {console.log("apln no", response); this.basicDetails = response;
@@ -222,15 +230,25 @@ generate_link_rml(){
 
 valid()
 {
+	if(this.ishr == 'true')
+	{
 		setTimeout(() => {
 	
-				if(this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
-				{
-					console.log("oeirherogerhgirueheriuerheriuhreiuh-940934504395348095")
-					this.flagged = false
-					this.emit.emit(this.message)
-				}
-		}, 50);
+			if(this.marksheet_file != null &&this.photo_file != null && this.aadharcard_file != null)
+			{
+				this.flagged = false
+				this.emit.emit(this.message)
+			}
+	}, 50);
+	}
+	else
+	{
+		this.flagged = false
+		this.emit.emit({'choose': false})
+
+	}
+
+
 
 }
 

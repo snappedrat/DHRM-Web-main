@@ -87,6 +87,7 @@ languageList = [
   }
 ];
   state: boolean;
+  disabled: boolean = true;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService , private active : ActivatedRoute) { }
 
@@ -94,6 +95,7 @@ languageList = [
 
     this.getdatabasic()
     this.sendData()
+
   }
 
   getdatabasic(){
@@ -152,6 +154,15 @@ languageList = [
           this.languageList[i].understand = 0
       
       }
+
+      for(var i=0; i<this.languageList.length; i++)
+      {
+        if(this.languageList[i].speak == 1)
+        {
+          this.disabled = false
+          break
+        }
+      }
   
       this.sendData()
       console.log(this.details[0]?.lang1_name)} ,
@@ -168,6 +179,7 @@ languageList = [
     {
       if(item == 'speak'){
         data.speak=1;
+        this.disabled = false
       }
       else if(item=='read')
       {
@@ -189,9 +201,35 @@ languageList = [
       {
         data.understand=1;
       }
-     }else{
+     }
+     else
+     {
       if(item == 'speak'){
+        if(data.speak == 1)
+        {
+          for(var i=0; i<=5; i++)
+          {
+            if(this.languageList[i].speak == 1)
+            {
+              this.disabled = false
+              break;
+            }
+            else
+            this.disabled = true
+          }
+        }
         data.speak = 0;
+
+          for(var i=0; i<=5; i++)
+          {
+            if(this.languageList[i].speak == 1)
+            {
+              this.disabled = false
+              break;
+            }
+            else
+            this.disabled = true
+          }
       }
      else if(item=='read')
       {

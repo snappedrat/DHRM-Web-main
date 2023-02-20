@@ -41,6 +41,7 @@ export class HrViewDataComponent implements OnInit {
 	url_form11_file:any
 	url_formh2_file: any
 	url_natx_file: any
+  apln_status: any;
 
   constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : PlantcodeService, private apiservice: ApiService) {
 
@@ -139,7 +140,7 @@ getdatabasic(){
   this.http.
 post(this.url+'/getdatabasic',this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.basic = response} ,
+  next: (response) => {console.log("basic",response); this.basic = response; this.apln_status = this.basic[0]?.apln_status} ,
   error: (error) => console.log(error),
 })
 }
