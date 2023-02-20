@@ -14,7 +14,7 @@
                 type="text"   
                 class="form-control"
                 placeholder="Contact Name">  
-            <div *ngIf="name.contactName.touched && name.contactName.invalid" class="alert alert-danger">  
+            <div *ngIf="name.contactName.touched && name.contactName.invalid" class="alert ">  
                 <div *ngIf="name.contactName.errors.required">Contact Name is required</div>   
             </div>  
         </div>
@@ -31,7 +31,7 @@
                 maxlength="10" 
                 pattern="\d{10}"
                 placeholder="Contact Number">  
-            <div *ngIf="f.contactNumber.touched && f.contactNumber.invalid" class="alert alert-danger">  
+            <div *ngIf="f.contactNumber.touched && f.contactNumber.invalid" class="alert ">  
                 <div *ngIf="f.contactNumber.errors.required">Contact Number is required.</div>  
                 <div *ngIf="f.contactNumber.errors.pattern">Please, Enter 10 digit Contact Number.</div>  
             </div>  
@@ -44,12 +44,12 @@
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
           </select>
-          <div *ngIf="r.relations.touched && r.relations.invalid"class="alert alert-danger">  
+          <div *ngIf="r.relations.touched && r.relations.invalid"class="alert ">  
             <div *ngIf="r.relations.errors.required">Relation is required</div>   
         </div>  
     </div>
 </div>
-<button type="submit" class="btn btn-primary btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Save</span></button>
+<button mat-raised-button type="submit" class="btn btn-primary btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Save</span></button>
 <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form>  

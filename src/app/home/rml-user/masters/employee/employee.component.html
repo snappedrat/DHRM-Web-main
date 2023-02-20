@@ -109,6 +109,11 @@
               <th
                        div class="text-center"
               >
+                  plant Name
+              </th>
+              <th
+                       div class="text-center"
+              >
                   Department
               </th>
 
@@ -133,6 +138,7 @@
                 <tr *ngFor = "let i of employee; let a = index">
                    <td>{{i.gen_id}}</td>
                     <td>{{i.Emp_Name}}</td>
+                    <td>{{i.plant_name}}</td>
                     <td>{{i.dept_name}}</td>
                     <td>{{i.Mail_Id}}</td>
                     <td>{{i.Mobile_No}}</td>

@@ -63,7 +63,7 @@
                 placeholder="Extra Curricular Activities (Sports/Hobbies)" (click)="sendData()">  
  
         </div>
-           <button (click)="submit()" (click)="sendData()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
+           <button mat-raised-button (click)="submit()" (click)="sendData()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
            <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form></div>

@@ -113,10 +113,11 @@ textarea{
   text-align: center;
   font-size: 20px;
 }
-.aligncommand{
+.aligncommand1{
   line-height: 20px;
    width: 200px; 
    border: 1px ;
+   background-color: white;
 }
 .fs-text{
   font-size: 25px;

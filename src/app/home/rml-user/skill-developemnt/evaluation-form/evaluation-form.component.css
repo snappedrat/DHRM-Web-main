@@ -173,4 +173,7 @@ select:hover{
 }
 .stylecommand{
   line-height: 15px;
+  text-align: left;
+  align-items: flex-start;
+  background-color: white;
 }
