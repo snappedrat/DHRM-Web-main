@@ -21,7 +21,8 @@ export class TraineeAplnReportComponent implements OnInit {
 
     this.dateForm = this.fb.group({
       fromDate: ['', Validators.required],
-      toDate: ['', Validators.required]
+      toDate: ['', Validators.required],
+      plantcode :[sessionStorage.getItem('plantcode')]
     });
   }
 
