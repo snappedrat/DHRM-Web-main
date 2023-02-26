@@ -4,19 +4,19 @@
             <span class="glyphicon glyphicon-home"></span> 
           </button>
         <div class="row justify-content-sm-center pt-5">
-            <div class="col-sm-6 shadow round pb-3">
+            <div class="login shadow round pb-3">
                 <h1 class="text-center pt-3 text" style="color:black;">RML Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
-                    <div class="form-group">
+                    <div class="form-group px-5">
                         <label class="col-form-label" style="color: black;">User name</label>
                         <input formControlName="User_Name" type="text" class="form-control">
 <!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
-                    </div>
-                    <div class="form-group">
+                    </div> <br>
+                    <div class="form-group px-5">
                         <label class="col-form-label" style="color: black;">Password:</label>
                         <input formControlName="Password" type="password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
+                    </div><br>
+                    <button mat-raised-button type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
                 </form>
             </div>
         </div>

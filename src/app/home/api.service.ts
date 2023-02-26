@@ -291,6 +291,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/evaluationdays', status)
   }
+  eval_pending_approval(status: Object)
+  {
+    return this.http.post(this.url+'/eval_pending_approval', status)
+  }
   depttransfer(form:any)
   {
     return this.http.post(this.url+'/depttransfer', form)

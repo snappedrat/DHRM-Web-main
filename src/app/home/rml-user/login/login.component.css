@@ -6,7 +6,7 @@ img{
 }
 .bd{
     height: 100%;
-    background-position: fixed;
+    /* background-position: fixed; */
     background-size: 100% ;
     background-size: cover;
     background-image:url('src\assets\bg.png');
@@ -37,7 +37,21 @@ input.example-right-align::-webkit-inner-spin-button {
 .btn{
     margin-left: 43%;
     text-align:center;
+    font-size: 16px;
+
 }
 .form-group{
     font-size: 14px;
+}
+
+.login
+{
+    width: 700px;
+    height: 350px;
+    position: relative;
+}
+
+.form-control
+{
+    height: 40px;
 }

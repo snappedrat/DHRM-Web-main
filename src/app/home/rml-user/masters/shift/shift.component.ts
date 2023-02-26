@@ -147,7 +147,14 @@ export class ShiftComponent implements OnInit {
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message== 'updated')
+      {
+        this.form.controls['act_tm_from'].setValue( 'T'+this.form.controls['act_tm_from'].value +'.')
+        this.form.controls['act_tm_to'].setValue( 'T'+this.form.controls['act_tm_to'].value +'.')
+        this.form.controls['in_tm_max'].setValue( 'T'+this.form.controls['in_tm_max'].value +'.')
+        this.form.controls['in_tm_min'].setValue( 'T'+this.form.controls['in_tm_min'].value +'.')
+
         this.shift[this.temp_a] = this.form.value
+      }
       }
     })
   }

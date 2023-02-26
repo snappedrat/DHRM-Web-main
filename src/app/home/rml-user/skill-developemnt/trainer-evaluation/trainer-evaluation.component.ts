@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import { ActivatedRoute, NavigationEnd, Route, Router, RouteReuseStrategy, RouterModule } from '@angular/router';
+import { UntypedFormBuilder} from '@angular/forms';
+import { ActivatedRoute, Router} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/home/api.service';
+
 @Component({
   selector: 'app-trainer-evaluation',
   templateUrl: './trainer-evaluation.component.html',
@@ -43,12 +44,25 @@ export class TrainerEvaluationComponent implements OnInit {
   filter()
   {
     console.log(this.form.value)
-    this.service.evaluationdays(this.form.value)
-    .subscribe(
-      {
-        next: (response)=>{console.log(response); this.filterinfo = response}
-      }
-    ) 
+    if(this.form.get('filter').value=='PENDING_APPROVAL')
+    {
+      this.service.eval_pending_approval(this.form.value)
+      .subscribe(
+        {
+          next: (response)=>{console.log(response); this.filterinfo = response}
+        }
+      ) 
+    }
+    else
+    {
+      this.service.evaluationdays(this.form.value)
+      .subscribe(
+        {
+          next: (response)=>{console.log(response); this.filterinfo = response}
+        }
+      ) 
+    }
+
   }
 
   save()

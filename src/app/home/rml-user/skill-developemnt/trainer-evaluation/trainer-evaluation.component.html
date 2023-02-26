@@ -17,6 +17,7 @@
                   <br>
                   <mat-select name="Status" id="Status" class="form-control" formControlName = "filter" (ngModelChange)="filter()" >
                       <mat-option value="PENDING">PENDING</mat-option>
+                      <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
                       <mat-option value="APPROVED">APPROVED</mat-option>
 
                     </mat-select> 
@@ -53,7 +54,7 @@
                                     <button *ngIf="this.form.get('filter').value == 'PENDING' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 1]" >
                                         <mat-icon>edit</mat-icon>
                                     </button>
-                                    <button *ngIf="this.form.get('filter').value == 'APPROVED' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 3]" >
+                                    <button *ngIf="this.form.get('filter').value == 'APPROVED' || this.form.get('filter').value ==  'PENDING_APPROVAL' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 3]" >
                                       <mat-icon>edit</mat-icon>
                                   </button>
 
