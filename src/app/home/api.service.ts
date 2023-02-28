@@ -20,7 +20,13 @@ url2:any = environment.path2
 ////////////////////////////////////////////////////////////////////////masters
   ars_login(form:any)
   {
-    return this.http.post(this.url+'/ars-login', form)
+    return this.http.post(this.url+'/ars-login', form, {observe: 'response'})
+    
+  }
+
+  login1(admin:any)
+  {
+        return this.http.post('http://localhost:8080/api/admins', admin)
   }
 
   companyshow()
@@ -234,6 +240,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/questionbank',formvalue)
   }
+  questionBankDelete(formvalue:any)
+  {
+    return this.http.post(this.url+'/questionBankDelete',formvalue)
+  }
   questionbankupload(formvalue:any)
   {
     return this.http.post(this.url+'/questionbankupload',formvalue)
@@ -291,7 +301,11 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/evaluationdays', status)
   }
+<<<<<<< Updated upstream
   eval_pending_approval(status: Object)
+=======
+  eval_pending_approval(status:any)
+>>>>>>> Stashed changes
   {
     return this.http.post(this.url+'/eval_pending_approval', status)
   }

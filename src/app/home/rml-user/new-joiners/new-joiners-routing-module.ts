@@ -51,6 +51,7 @@ const routes: Routes = [
       path:'hr-view/:mobile/:status/:company',
       component: HrViewDataComponent
     },
+    
 ];
   
   @NgModule({

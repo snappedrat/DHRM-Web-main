@@ -1,42 +1,48 @@
 <!-- <form [formGroup]="form"> -->
-    <!-- <div *ngFor= "let i of formvalues" class="container"> -->
+   
+      
         <div class="container1">
 
         <div class="row">
             <div class="col-sm">
         <div class="container">
       <div class="card">
+      
+    <div class="container">
+      <form [formGroup]="form">
+        <div *ngFor= "let i of formvalues"> 
         <div class="mx-5"><div class="center">
           <tr>
             <td><img class = "img" src="assets/rane.png" alt="Avatar" ></td>
             <tr></tr><tr>
-            <td><div class="name">Name</div></td></tr></div><br>
+            <td><div class="name">{{i.fullname}}</div></td></tr></div><br>
             <div class="container2">
             <tr>
               <td>
                 <div class="md">  <tr >
                   <td div class="aligncommand1"><b>Trainee ID</b></td>
-                  <td div class="aligncommand1">:8939759</td><br>
+                  <td div class="aligncommand1">:{{i.trainee_idno}}</td><br>
                  <tr >
                     <td div class="aligncommand1"><b>Valid From</b></td>
-                    <td div class="aligncommand1">:10/02/2023</td><br>
+                    <td div class="aligncommand1">:{{i.fromdate}}</td><br>
                     <tr >
                       <td div class="aligncommand1"><b>Valid To</b></td>
-                      <td div class="aligncommand1">:20/02/2023</td><br><br>
+                      <td div class="aligncommand1">:{{i.toodate}}</td><br><br>
                       
             
             </tr></div><div class="sign">
               <img class = "img2" [src]= this.plant alt="Avatar"></div><br>
               <div class="sign1"><b>authorised signature </b>
               </div>
-      </div></div></div>
-        </div></div>
+      </div></div></div></form>
+        </div></div></div></div>
      
        
           
                     <div class="col-sm">
-                    <div class="container">
-                       
+                    <div  class="container">
+                      <form [formGroup]="form">
+                        <div *ngFor= "let i of formvalues"> 
                         <div class="card2"> 
                             <div class="bg">
                               <div class="mx-5">
@@ -45,10 +51,10 @@
                                   <div class="font2 comp_addr" ><p><textarea formControlName="company_address"  readonly style="height:30px;width:200px;" > </textarea></p></div>
                                  <tr >
                                     <td div class="aligncommand1"><b>Date of birth</b></td>
-                                    <td div class="aligncommand1">:10/02/2023</td><br>
+                                    <td div class="aligncommand1">:{{i.birthdate}}</td><br>
                                     <tr >
                                       <td div class="aligncommand1"><b>Blood Group</b></td>
-                                      <td div class="aligncommand1">:O+ve</td><br>
+                                      <td div class="aligncommand1">:{{i.blood_group}}</td><br>
                                       
                             
                             </tr><div class = 'aligncommand1' > <b>Address:</b></div>
@@ -58,7 +64,7 @@
                             <tr><td></td></tr></div>
                             <tr >
                               <td div class="aligncommand1"><b>Contact No</b></td>
-                              <td div class="aligncommand1">:972893493</td><br>
+                              <td div class="aligncommand1">:{{i.mobile_no1}}</td><br>
                               
                     
                     </tr> <tr >
@@ -68,23 +74,23 @@
             
             </tr> <tr >
               <td div class="aligncommand1"><b>Department</b></td>
-              <td div class="aligncommand1">:O</td><br>
+              <td div class="aligncommand1">:{{i.department}}</td><br>
               
     
     </tr><div class="fontstyle2"><u>Employee Emergency Contact</u></div>
     <tr >
       <td div class="aligncommand1"><b>Contact Name</b></td>
-      <td div class="aligncommand1">:Ahamed</td><br>
+      <td div class="aligncommand1">:{{i.emergency_name}}</td><br>
       
 
 </tr><tr >
   <td div class="aligncommand1"><b>Contact Number</b></td>
-  <td div class="aligncommand1">:O44-4543-3453</td><br>
+  <td div class="aligncommand1">:{{i.mobile_no2}}</td><br>
   
 
 </tr><tr >
   <td div class="aligncommand1"><b>Contact Relation</b></td>
-  <td div class="aligncommand1">:Father</td><br>
+  <td div class="aligncommand1">:{{i.emergency_rel}}</td><br>
   
 
 </tr>
@@ -95,4 +101,4 @@
                             </div>    </div> 
        
     
-                    </div></div></div></div></div>
+                    </div></div></form></div></div></div></div>

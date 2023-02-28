@@ -13,6 +13,7 @@ export class PermIdcardComponent implements OnInit {
 
   uniqueId :any = {'mobile':''}
   status: any = {'status': ''}
+  apln_no:any= {'apln_no':''}
   formvalues: any
   address:any  = 'hello'
   form:any
@@ -51,11 +52,8 @@ export class PermIdcardComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // this.getDataForID()
-    setTimeout(() => {
-      this.printing()
-    }, 1500);
-
+    this.getDataForID()
+   
   }
 
   printing(){
@@ -66,22 +64,19 @@ export class PermIdcardComponent implements OnInit {
 
   
   getDataForID(){
-    this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
-    this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-
-    this.status.status = this.active.snapshot.paramMap.get('status');
-    
+    this.uniqueId.trainee_apln = this.active.snapshot.paramMap.get('trainee_apln');
+    this.uniqueId.apln_slno = this.active.snapshot.paramMap.get('apln_slno');
+    this.uniqueId.status = this.active.snapshot.paramMap.get('status');
     console.log(this.status)
 
     this.http
-    .post(this.url+'/getdataforid', this.uniqueId)
+    .post(this.url+'/getdataforpermid', this.uniqueId)
     .subscribe({
       next:(response:any)=>{console.log(response); this.formvalues = response
         this.plant = this.formvalues[0].plant_sign
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
         this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
-        this.url = this.url+'/' + this.formvalues[0]?.other_files6
         this.plant = environment.path+'/plant/' + this.formvalues[0]?.plant_sign
 
         console.log("url",this.plant)

@@ -97,7 +97,7 @@
                        (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text"
-                       (keyup)="move(txt1,txt2)">
+                       (keyup)="move(txt1,txt2,$event)">
             </div>
             <div class = "col-sm-2">
                 <input #txt2
@@ -108,7 +108,7 @@
                        (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event)"
                        type="text"
-                       (keyup)="move(txt2,txt3)">
+                       (keyup)="move(txt2,txt3, $event)">
             </div>
             <div class = "col-sm-2">
                 <input #txt3

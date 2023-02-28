@@ -42,7 +42,11 @@ const routes: Routes = [
     component: IdcardComponent
   },
   {
+<<<<<<< Updated upstream
     path:'perm-idcard',
+=======
+    path:'perm-idcard/:apln_slno',
+>>>>>>> Stashed changes
     component: PermIdcardComponent
   },
   {

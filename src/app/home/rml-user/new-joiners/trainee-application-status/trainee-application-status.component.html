@@ -121,10 +121,10 @@
                     <td>{{ i.apln_status }}</td>
                     <td>
 
-                        <button *ngIf="i.apln_status == 'PENDING' || i.apln_status == 'REJECTED' " mat-mini-fab color = 'primary' [routerLink]="['/rml/new_joiners/forms', i.mobile_no1, i.apln_status, i.sno]" title="Edit the trainee" >
+                        <button *ngIf="i.apln_status == 'PENDING' || i.apln_status == 'REJECTED' ||  i.apln_status == 'NEW INCOMPLETE' " mat-mini-fab color = 'primary' [routerLink]="['/rml/new_joiners/forms', i.mobile_no1, i.apln_status, i.sno]" title="Edit the trainee" >
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button *ngIf="i.apln_status != 'PENDING' && i.apln_status != 'REJECTED' " mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status,i.sno ]" >
+                        <button *ngIf="i.apln_status != 'PENDING' && i.apln_status != 'REJECTED' &&  i.apln_status != 'NEW INCOMPLETE'  " mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/hr-view', i.mobile_no1,i.apln_status,i.sno ]" >
                           <mat-icon>edit</mat-icon>
                         </button>
 

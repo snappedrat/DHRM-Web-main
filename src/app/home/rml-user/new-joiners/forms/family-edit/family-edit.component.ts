@@ -51,7 +51,7 @@ familyData = [
     'sno':'1',
     'name': '',
     'relation': '',
-    'age': '',
+    'age': 0,
     'occupation': '',
     'contactnumber': '',
     'dependent': '',
@@ -88,6 +88,7 @@ familyData = [
 ];
   flag: any = true;
   state: boolean;
+  age_validate: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
     this.mobile = this.active.snapshot.paramMap.get('mobile_no1')
@@ -133,7 +134,7 @@ familyData = [
       
       this.sendData()
 
-      if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+      if((this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
       {
         console.log(this.familyData)
         this.flag = false
@@ -168,15 +169,20 @@ sendData(){
 } 
 
 public valid(){
-  if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != '' && this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
+    console.log(this.familyData[0].age)
     this.flag = false
     this.emit.emit(this.message)
+  }
+  else
+  {
+    this.flag = true
   }
 }
 
 valids(event :any, item:any){
-  if((this.familyData[0].age != '' &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
     if(item == 'ContactNumber')
       {
@@ -190,7 +196,19 @@ valids(event :any, item:any){
         {
           this.flag = true
           this.mobile_validate = true
-
+        }
+      } 
+      else if(item =='age')
+      {
+        if(event.value <= 100)
+        {
+          this.flag = false
+          this.age_validate = false
+        }
+        else
+        {
+          this.flag = true
+          this.age_validate = true
         }
       }
     else

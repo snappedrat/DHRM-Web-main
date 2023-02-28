@@ -43,9 +43,9 @@ export class TrainerEvaluationComponent implements OnInit {
 
   filter()
   {
-    console.log(this.form.value)
-    if(this.form.get('filter').value=='PENDING_APPROVAL')
+    if(this.form.get('filter').value == 'PENDING_APPROVAL')
     {
+      console.log(this.form.value)
       this.service.eval_pending_approval(this.form.value)
       .subscribe(
         {
@@ -55,6 +55,7 @@ export class TrainerEvaluationComponent implements OnInit {
     }
     else
     {
+      console.log(this.form.value)
       this.service.evaluationdays(this.form.value)
       .subscribe(
         {

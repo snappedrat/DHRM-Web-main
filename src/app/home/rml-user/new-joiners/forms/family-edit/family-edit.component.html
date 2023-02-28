@@ -20,7 +20,7 @@
         <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (ngModelChange)="valids($event, data)" ><option *ngFor= "let i of relation">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "tel" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (ngModelChange)="valids($event, 'age')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "number" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (ngModelChange)="valids($event, 'age')" (ngModelChange)="valid()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "text"[(ngModel)]="data.occupation" (ngModelChange)="valids($event, 'occ')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "number" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event, 'ContactNumber')"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
                <td><select type = "text" [(ngModel)]="data.dependent" (ngModelChange)="valids($event, 'dependent')" (ngModelChange)="valid()" (click)="sendData()"><option *ngFor= "let i of dependent">

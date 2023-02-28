@@ -146,6 +146,25 @@ export class QuestionBankComponent implements OnInit {
     })
 
   } 
+  delete(i:any)
+  {
+    if(this.questions.length != 1)
+    {
+      console.log(this.questions[i].question)
+      if(this.questions[i].question != undefined)
+      {
+        this.service.questionBankDelete({qslno: this.questions[i].qslno})
+        .subscribe(
+          {
+            next: (res:any)=>{ console.log("qdel", res); }
+          }
+        )
+      }
+      this.questions.splice(i,1)
+
+    }
+    console.log(this.questions)
+  }
   }
 
 

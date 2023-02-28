@@ -43,7 +43,8 @@ export class ArsLoginComponent implements OnInit {
           this.service.ars_login(this.exform.value)
           .subscribe({
               next: (response:any) => {
-                  console.log(response);
+                  console.log(response, response.status);
+
                   if(response.token) {
                       sessionStorage.setItem('token', response.token)
                   }

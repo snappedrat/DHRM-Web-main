@@ -168,9 +168,6 @@ edit(a:any)
     else
     this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
-    console.log(this.form.value, this.temp_a)
-
-
     this.service.updatedesignation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);

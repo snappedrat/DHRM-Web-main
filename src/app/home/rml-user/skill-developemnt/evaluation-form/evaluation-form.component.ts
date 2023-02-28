@@ -47,6 +47,7 @@ export class EvaluationFormComponent implements OnInit {
   trainee_idno: any;
   uploaded: any;
   uploaded2: any;
+  id: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -111,6 +112,7 @@ export class EvaluationFormComponent implements OnInit {
             try 
             {
               this.name = this.obj[0][0]?.fullname        
+              this.id = this.obj[0][0]?.trainee_idno        
               this.cat = this.obj[0][0]?.apprentice_type        
               this.dept = this.obj[0][0]?.dept_name        
               this.ln = this.obj[0][0]?.line_name        
