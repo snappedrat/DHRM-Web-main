@@ -48,6 +48,7 @@ export class EvaluationFormComponent implements OnInit {
   uploaded: any;
   uploaded2: any;
   id: any;
+  department_: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -80,12 +81,23 @@ export class EvaluationFormComponent implements OnInit {
 
         this.appr = (this.active.snapshot.paramMap.get('nav') == '3') ? true : false
 
-        if(this.active.snapshot.paramMap.get('nav') == '1')
+        if(this.active.snapshot.paramMap.get('nav') == '3')
+        {
+          this.nav = '/rml/skill-developement/supervisor-evaluation'
+          this.readable = true
+          this.form.controls['new_skill'].disable()
+          this.form.controls['department'].disable()
+          this.form.controls['line'].disable()
+          this.form.controls['process_trained'].disable()
+        }
+
+
+        if(this.active.snapshot.paramMap.get('nav') == '1'  || this.active.snapshot.paramMap.get('nav') == '3')
         {
           this.save = 'Save'
           this.nav = '/rml/skill-developement/trainer-evaluation'
         }
-        else if(this.active.snapshot.paramMap.get('nav') == '2' || this.active.snapshot.paramMap.get('nav') == '3')
+        else if(this.active.snapshot.paramMap.get('nav') == '2')
         {
           this.save = 'Approve'
           this.nav = '/rml/skill-developement/supervisor-evaluation'
@@ -120,20 +132,30 @@ export class EvaluationFormComponent implements OnInit {
               this.trainee_idno = this.obj[0][0]?.apln_slno
               this.pt = this.obj[1]
               this.pt = this.pt.map((a:any)=>a.oprn_desc)
-              this.department = this.obj[2]
-              this.line = this.obj[3]
+              this.department_ = this.obj[2]
+              // this.line = this.obj[3]
               this.process_trained = this.obj[4]
+              this.form.controls['department'].setValue(response[0][0]?.dept_name)
 
-              console.log(this.obj[4])
-
-              this.department = this.department.map((a:any)=>a.dept_name)
-              this.line = this.line.map((a:any)=>a.line_name)
+              this.department = this.department_.map((a:any)=>a.dept_name)
               this.process_trained = this.process_trained.map((a:any)=>a.oprn_desc)
   
               this.form.controls['curr_dept'].setValue(this.obj[0][0]?.dept_slno)
               this.form.controls['curr_line'].setValue(this.obj[0][0]?.line_code)
               this.form.controls['curr_skill_level'].setValue(this.obj[0][0]?.curr_skill)
-              this.form.controls['line_name'].setValue(this.obj[0][0]?.line_name  )
+              this.form.controls['line_name'].setValue(this.obj[0][0]?.line_name)
+
+              this.service.getLineName({dept_slno: this.obj[0][0]?.dept_slno})
+              .subscribe(
+                {
+                  next:(response:any)=>{console.log(response); this.line = response
+                    this.line = this.line.map((a:any)=>a.line_name)
+                  }
+                }
+              )
+
+              this.form.controls['line'].setValue(response[0][0]?.line_name)
+
               
             } catch (error) 
             {
@@ -189,6 +211,7 @@ export class EvaluationFormComponent implements OnInit {
                   {
                     next: (response:any)=>{console.log(response)}
                   }
+
                 )
                 alert("Trainee has been Evaluated")
                 this.router.navigate(['/rml/skill-developement/trainer-evaluation'])
@@ -239,5 +262,18 @@ export class EvaluationFormComponent implements OnInit {
         var b = this.form.controls['score_obtained'].value
         var c = Math.round((b/a)*100)
         this.form.controls['percentage'].setValue(c)
+      }
+
+      getLineName(event:any)
+      {
+        var x = event.target.value.split(':')[0]-1
+        console.log(this.department_[x].dept_slno)
+        this.service.getLineName({dept_slno: this.department_[x].dept_slno})
+        .subscribe(
+          {
+            next:(response:any)=>{console.log(response); this.line = response[0]
+              this.line = this.line.map((a:any)=>a.line_name)
+            }
+        })
       }
 }

@@ -4,40 +4,44 @@
         <br>
      <h1>&nbsp;<b>Evaluation Form</b></h1>
       <div class="card"> 
-          <table class="table-bordered" style="border: 8px; width: 100%;">
+          <table class="table-bordered" style="border: 8px; width: 400px;">
             <br><br>
             <div>
             <tr>
               <td><img class = "img" [src]="this.image" alt="Avatar" ></td>
-              <div class="mx-5">
-              <td class="name"><b>{{name}}</b></td>
-              </div>
+
             </tr></div>
               <br><br><br>
-              <div class="mx-5">
+              <div class="px-5">
                 <tr class="font">
                     <tr > 
+                        <td class = "stylecommand"><b>Name</b></td><br>
+                        <td>{{name}}</td><br><br></tr>
+                    <tr > 
+                        <td class = "stylecommand"><b>Emp ID</b></td><br>
+                        <td>{{id}}</td><br><br></tr>
+                    <tr > 
                         <td class = "stylecommand"><b>Category</b></td><br>
-                        <td>:{{cat}}</td><br><br></tr>
+                        <td>{{cat}}</td><br><br></tr>
                     <tr > 
                     <td class = "stylecommand" ><b>Department</b></td><br>
-                    <td >:{{dept}}</td><br><br></tr>
+                    <td >{{dept}}</td><br><br></tr>
                 <tr>
                     
                     <td  class = "stylecommand" ><b> Line</b></td><br>
-                    <td >:{{ln}}</td><br><br></tr>
+                    <td >{{ln}}</td><br><br></tr>
                 <tr>
                     <td class = "stylecommand" ><b> Skill Level</b></td><br>
-                    <td >:{{skill}}</td><br><br></tr>
+                    <td >{{skill}}</td><br><br></tr>
                     <tr>
-                        <td  ><b> Operation Trained</b></td><br>
-                        <td ><div *ngFor="let i of pt">:{{i}}</div></td></tr><br><br><br><br>
+                        <td class = "stylecommand" ><b> Operation Trained</b></td><br>
+                        <td ><div *ngFor="let i of pt">{{i}}</div></td></tr>
                     <tr>
-                        <td *ngIf="readable" ><b> Uploaded File</b></td><br>
-                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >:View Hr file</a></td></tr><br><br>
+                        <td *ngIf="readable" class = "stylecommand" ><b> Uploaded File&nbsp;</b></td><br>
+                        <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >&nbsp;View Hr file</a></td></tr>
                     <tr>
-                        <td *ngIf="appr" ><b> Uploaded File</b></td><br>
-                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >:View Supervisor file</a></td></tr><br><br>
+                        <td *ngIf="appr" class = "stylecommand" ><b> Uploaded File&nbsp;</b></td><br>
+                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >&nbsp;View Supervisor file</a></td></tr><br><br>
                 </div>
              </table>
       </div></div>     
@@ -75,7 +79,7 @@
                         
                             <div class="col">                            
                                     <label>Department </label><br>
-                                    <select formControlName="department" class = "form-control" ><option value="">select</option><option *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
+                                    <select (change)="getLineName($event)" formControlName="department" class = "form-control" ><option value="">select</option><option *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
                                 </div>
                             <br>
                   
@@ -99,7 +103,7 @@
                                         </div>                   
                                        <br></div><br>
                                        <button *ngIf="!appr" [disabled]="form.invalid" type="submit" [routerLink]="[this.nav]" (click)="submit()" class="btn btn-success btn-lg">{{save}}</button>
-                                       <button *ngIf="appr" type="submit" [routerLink]="['/rml/skill-developement/trainer-evaluation']" class="btn btn-success btn-lg">GO BACK</button>
+                                        <button *ngIf="appr" [routerLink]= "[this.nav]" class="btn btn-success btn-lg">GO BACK</button>
                         </form>
              </div>   </div></div>
         

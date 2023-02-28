@@ -57,7 +57,7 @@
                     
                     <div class="col">                            
                         <label>Department: </label><br>
-                        <select formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i">{{i}}</option></select>
+                        <select (change)="getLineName($event)" formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [value]="i" [ngValue]="i">{{i}}</option></select>
                     </div>
 
                     

@@ -30,13 +30,13 @@
             <div class="row">
                     <div class="col">                            
                     <label>Change Department To: </label><br>
-                    <select class="form-control" formControlName = "changedepartment" ><option value="">select</option><option  *ngFor= "let i of changedepartment">{{i.dept_name}}</option></select>
+                    <select (change)="getLineName($event)" class="form-control" formControlName = "changedepartment" ><option value="">select</option><option  *ngFor= "let i of changedepartment" [ngValue]="i.dept_name">{{i.dept_name}}</option></select>
                 </div></div>
             <br>
             <div class="row">
             <div class="col">                            
                 <label>Change Line To: </label><br>
-                <select class="form-control" formControlName = "changeline" ><option value="">select</option><option  *ngFor= "let i of changeline">{{i.line_name}}</option></select>
+                <select class="form-control" formControlName = "changeline" ><option value="">select</option><option  *ngFor= "let i of changeline"  [ngValue]="i.line_name">{{i.line_name}}</option></select>
             </div>
             </div><br>
             <div class="row"> 

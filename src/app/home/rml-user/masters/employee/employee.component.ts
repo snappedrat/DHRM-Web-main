@@ -137,6 +137,9 @@ getplantcode(){
 
 getall(event:any)
 {
+  this.dept_ = []
+  this.line_ = []
+  this.desig = []
   console.log(event.target.value)
 
   this.form.get('dept_name').setValue('')
@@ -148,12 +151,12 @@ getall(event:any)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
         this.desig= this.all_details[0]
-        this.dept= this.all_details[1]
-        this.line= this.all_details[2]
+        this.dept_= this.all_details[1]
+        // this.line= this.all_details[2]
 
         this.desig = this.desig.map((a:any)=>a.desig_name)
-        this.dept= this.dept.map((a:any)=>a.dept_name)
-        this.line = this.line.map((a:any)=>a.line_name)
+        this.dept= this.dept_.map((a:any)=>a.dept_name)
+        // this.line = this.line.map((a:any)=>a.line_name)
       },
       error: (error) => console.log(error),
     });
@@ -162,7 +165,8 @@ getall(event:any)
    open(content:any)
   {
     this.form.reset()
-
+    this.form.controls['plant_name'].enable()
+    this.form.controls['gen_id'].enable()
     this.form.controls['Is_HR'].setValue(false)
     this.form.controls['Is_HRAppr'].setValue(false)
     this.form.controls['Is_Trainer'].setValue(false)
@@ -195,12 +199,19 @@ edit(a:any)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
         this.desig= this.all_details[0]
-        this.dept= this.all_details[1]
-        this.line= this.all_details[2]
+        this.dept_= this.all_details[1]
+
+        this.service.getLineName({dept_slno: this.employee[a].Department})
+        .subscribe(
+          {
+            next: (response:any)=>{console.log("line", response)
+             this.line_ = response[0]
+              this.line = this.line_.map((a:any)=>a.line_name)}
+          }
+        )
 
         this.desig = this.desig.map((a:any)=>a.desig_name)
-        this.dept= this.dept.map((a:any)=>a.dept_name)
-        this.line = this.line.map((a:any)=>a.line_name)
+        this.dept= this.dept_.map((a:any)=>a.dept_name)
 
       },
       error: (error) => console.log(error),
@@ -210,6 +221,8 @@ edit(a:any)
     this.form.controls['Emp_Name'].setValue(this.employee[a].Emp_Name)
     this.form.controls['gen_id'].setValue(this.employee[a].gen_id)
     this.form.controls['plant_name'].setValue(this.employee[a].plant_name)
+    this.form.controls['plant_name'].disable()
+    this.form.controls['gen_id'].disable()
 
     this.form.controls['dept_name'].setValue(this.employee[a].dept_name)
     this.form.controls['desig_name'].setValue(this.employee[a].desig_name)
@@ -251,6 +264,8 @@ edit(a:any)
 
   editSave()
   {
+    this.form.controls['plant_name'].enable()
+    this.form.controls['gen_id'].enable()
     console.log(this.form.value)
     this.service.updateemployee(this.form.value)
     .subscribe({
@@ -273,7 +288,20 @@ delete(a:any, slno:any)
   })
 }
 
-
+getLineName(event:any)
+{
+  var x = event.target.value.split(':')[0]-1
+  console.log(x, "index")
+  console.log(event.target.value)
+  console.log(this.dept_[x].dept_slno)
+  this.service.getLineName({dept_slno: this.dept_[x].dept_slno})
+  .subscribe(
+    {
+      next:(response:any)=>{console.log(response); this.line_ = response[0]
+        this.line = this.line_.map((a:any)=>a.line_name)
+      }
+  })
+}
 
 
   reset()

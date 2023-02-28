@@ -84,9 +84,9 @@ export class BasicComponent implements OnInit{
             dd2:[''],
             bg:['',Validators.required],
             gender:['',Validators.required],
-            aadhar1:['', [Validators.required, Validators.minLength(4)]],
-            aadhar2:['', [Validators.required, Validators.minLength(4)]],
-            aadhar3:['', [Validators.required, Validators.minLength(4)]],
+            aadhar1:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+            aadhar2:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+            aadhar3:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
 
             nation:['',Validators.required],
             city:[''],
@@ -186,10 +186,13 @@ export class BasicComponent implements OnInit{
         })
     }
 
-    check_aadhar(event:any)
+    check_aadhar(event:any, a:any)
     {
-        if(this.ishr == 'undefined')
+        if(!Number.isInteger(event))
         {
+            this.form
+        }
+
             if(event?.length == 4 )
             {
                 var mobile = this.active.snapshot.paramMap.get('mobile_no1')
@@ -212,15 +215,16 @@ export class BasicComponent implements OnInit{
 
                 }        
             }
-        }
-
     }
 
     emitData(){
         if(this.form.valid)
             this.emit.emit(this.message) 
         else
+        {
             this.emit.emit({"basic":true})
+
+        }
     }
 
     disable_for_hr()
@@ -405,14 +409,23 @@ export class BasicComponent implements OnInit{
         if(this.form.valid)
             this.emit.emit(this.message)
         else
+        {
+            console.log(this.form.get('aadhar1')?.value)
+            console.log(this.form.get('aadhar2')?.value)
+            console.log(this.form.get('aadhar3')?.value)
+            console.log(this.form.get('aadhar1')?.valid)
+            console.log(this.form.get('aadhar2')?.valid)
+            console.log(this.form.get('aadhar3')?.valid)
             this.emit.emit({'basic':true})
+
+        }
     }
 
     move(fromtext:any,totext:any, event: any){
 
         var length = fromtext.value.length;
         var maxlength = fromtext.maxLength;
-        if(length == maxlength)
+        if(length >= maxlength)
         {
             totext.focus();
         }

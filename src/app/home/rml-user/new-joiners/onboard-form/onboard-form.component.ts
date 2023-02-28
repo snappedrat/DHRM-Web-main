@@ -72,6 +72,7 @@ export class OnboardFormComponent implements OnInit {
   setting: number;
   true: boolean = false;
   onboard:any = true
+  department_: any;
   
     constructor(private fb : UntypedFormBuilder,private http: HttpClient, private router: Router, private active :ActivatedRoute, private service:ApiService ) {
     
@@ -126,7 +127,7 @@ export class OnboardFormComponent implements OnInit {
            this.obj = response;
            this.basic = this.obj[0]
            this.designation = this.obj[1]
-           this.department = this.obj[2]
+           this.department_ = this.obj[2]
            this.line = this.obj[3]
            this.process_trained = this.obj[4]
            this.reporting_to = this.obj[5]
@@ -184,7 +185,7 @@ export class OnboardFormComponent implements OnInit {
 
             this.line = this.line.map((line_name:any) => line_name.line_name)
             this.designation = this.designation.map((a:any) => a.desig_name)
-            this.department = this.department.map((a:any) => a.dept_name)
+            this.department = this.department_.map((a:any) => a.dept_name)
             this.process_trained = this.process_trained.map((a:any) => a.oprn_desc)
             this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
             this.cat = this.category.map((a:any) => a.categorynm)
@@ -328,6 +329,23 @@ export class OnboardFormComponent implements OnInit {
         }
       )
 
+    }
+
+    getLineName(event:any)
+    {
+      var x = event.target.value.split(':')[0]-1
+      console.log(this.department_[x].dept_slno)
+      this.service.getLineName({dept_slno: this.department_[x].dept_slno})
+      .subscribe(
+        {
+          next:(response:any)=>{console.log(response);
+          this.line = response[0];
+          this.line = this.line.map((a:any) => a.line_name)
+          this.reporting_to = response[1];
+          this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
+
+          }
+      })
     }
 
 }

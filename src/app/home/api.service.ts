@@ -198,6 +198,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/getall',form)
   }
+  getLineName(form:any)
+  {
+    return this.http.post(this.url+'/getLineName',form)
+  }
 
   login(User_Name: string, Password: string) 
   {
@@ -301,11 +305,7 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/evaluationdays', status)
   }
-<<<<<<< Updated upstream
-  eval_pending_approval(status: Object)
-=======
   eval_pending_approval(status:any)
->>>>>>> Stashed changes
   {
     return this.http.post(this.url+'/eval_pending_approval', status)
   }
