@@ -84,9 +84,9 @@ export class BasicComponent implements OnInit{
             dd2:[''],
             bg:['',Validators.required],
             gender:['',Validators.required],
-            aadhar1:['', [Validators.required, Validators.minLength(4)]],
-            aadhar2:['', [Validators.required, Validators.minLength(4)]],
-            aadhar3:['', [Validators.required, Validators.minLength(4)]],
+            aadhar1:['', [Validators.required, Validators.minLength(4),Validators.pattern('[0-9][0-9][0-9][0-9]')]],
+            aadhar2:['', [Validators.required, Validators.minLength(4),Validators.pattern('[0-9][0-9][0-9][0-9]')]],
+            aadhar3:['', [Validators.required, Validators.minLength(4),Validators.pattern('[0-9][0-9][0-9][0-9]')]],
 
             nation:['',Validators.required],
             city:[''],
