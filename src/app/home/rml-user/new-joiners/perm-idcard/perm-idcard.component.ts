@@ -18,10 +18,11 @@ export class PermIdcardComponent implements OnInit {
   address:any  = 'hello'
   form:any
   url: any = environment.path
+  url2: any = this.url
   fromdate:any = new Date()
   frommdate:any
   toodate:any
-  todate = new Date(this.fromdate.getTime() + (10000 * 60 * 60 * 24));
+  todate = new Date(this.fromdate.getTime() + (365000 * 60 * 60 * 24));
   plant: any;
   // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
@@ -53,8 +54,8 @@ export class PermIdcardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataForID()
-   
   }
+
 
   printing(){
     window.focus()
@@ -72,11 +73,19 @@ export class PermIdcardComponent implements OnInit {
     this.http
     .post(this.url+'/getdataforpermid', this.uniqueId)
     .subscribe({
-      next:(response:any)=>{console.log(response); this.formvalues = response
+      next:(response:any)=>{console.log(response); this.formvalues = response;
+        if(this.formvalues)
+        {
+          setTimeout(() => {
+            this.printing()      
+          }, 1000);
+        }
+
         this.plant = this.formvalues[0].plant_sign
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
         this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
+        this.url = this.url+'/' + this.formvalues[0]?.other_files6
         this.plant = environment.path+'/plant/' + this.formvalues[0]?.plant_sign
 
         console.log("url",this.plant)

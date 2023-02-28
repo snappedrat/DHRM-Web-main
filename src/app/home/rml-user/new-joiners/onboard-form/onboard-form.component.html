@@ -116,7 +116,7 @@
     <button mat-raised-button *ngIf="!readonly" [disabled]="form.invalid"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
     <div class="button-container">
             <button mat-raised-button color="primary" *ngIf="readonly" [disabled]="onboard"  type="submit" (click)="submit()">Save</button>&nbsp;
-            <button *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent" routerLink="/perm-idcard" >Print ID card</button>
+            <button *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent" [routerLink]="['/perm-idcard', apln_slno]" >Print ID card</button>
     </div>
 </form>
             </div></div></div></div>

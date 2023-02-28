@@ -1,7 +1,7 @@
 .card {
   box-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.4);
   width: 400px;
-  height: 680px;
+  height: 600px;
   float: left;
   font-size:2px;
   border-color: black;
@@ -66,6 +66,7 @@ textarea{
   resize: none;
   border-color: white;
   text-align: center;
+  background-color: transparent;
 }
 
 .font2{
@@ -77,9 +78,16 @@ textarea{
   font-size: 25px;
 }
 .img{
-  margin-left: 35%;
+  /* margin-left: 35%; */
   height: 100px;
   width: 25%;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+
 }
 .img2{
   /* margin-left: 35%; */
@@ -87,12 +95,12 @@ textarea{
   width: 40%;
 }
 .sign{
-  margin-left: 65%;
+  /* margin-left: 65%; */
   width: 70%;
 
 }
 .sign1{
-  margin-left:65%;
+  margin-right:40%;
   font-size: large;
 }
 .company_addr{
@@ -117,8 +125,21 @@ textarea{
   line-height: 20px;
    width: 200px; 
    border: 1px ;
-   background-color: white;
 }
 .fs-text{
   font-size: 25px;
+}
+
+.bg-image {
+  background-image: url('../../../../../assets/bg_id.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-image2 {
+  background-image: url('../../../../../assets/img.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

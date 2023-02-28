@@ -66,11 +66,13 @@ export class DeptTransferComponent implements OnInit {
   {
    this.from = event.target.value
    console.log(this.from)
+   this.collectionSize = this.paginateData
   }
   call2(event:any)
   {
    this.to = event.target.value
    console.log(this.to);
+   this.collectionSize = this.paginateData
    
   }
 
@@ -81,9 +83,9 @@ export class DeptTransferComponent implements OnInit {
   }
 
   getPremiumData(){
-    
     this.paginateData =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-     
+    console.log(this.collectionSize)
+
    }
 
 

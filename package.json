@@ -41,6 +41,7 @@
     "ngx-cookie-service": "^14.0.1",
     "ngx-mat-timepicker": "^14.0.2",
     "ngx-pagination": "^6.0.3",
+    "ngx-select-dropdown": "^3.2.0",
     "ngx-smart-modal": "^7.4.1",
     "ngx-toastr": "^16.0.2",
     "npm": "^9.3.1",

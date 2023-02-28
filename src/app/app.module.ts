@@ -17,6 +17,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './Auth.guard';
+import { SelectDropDownModule } from 'ngx-select-dropdown'
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { AuthGuard } from './Auth.guard';
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
+    SelectDropDownModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

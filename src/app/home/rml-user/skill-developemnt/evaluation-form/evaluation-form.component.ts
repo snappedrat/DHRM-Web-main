@@ -267,6 +267,7 @@ export class EvaluationFormComponent implements OnInit {
       getLineName(event:any)
       {
         var x = event.target.value.split(':')[0]-1
+        console.log(x)
         console.log(this.department_[x].dept_slno)
         this.service.getLineName({dept_slno: this.department_[x].dept_slno})
         .subscribe(

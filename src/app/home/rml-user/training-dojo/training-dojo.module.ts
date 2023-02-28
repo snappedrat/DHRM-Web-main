@@ -28,8 +28,8 @@ import { TraineeLoginComponent } from './trainee-login/trainee-login.component';
 import { TraineeTestComponent } from './trainee-test/trainee-test.component';
 import { TraineeAnswerComponent } from './trainee-answer/trainee-answer.component';
 
-// import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
 
 
 @NgModule({
@@ -64,7 +64,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     MatToolbarModule,
     NgbModule,
-  ],
+    SelectDropDownModule  ],
 
 })
 export class TrainingDojoModule { }

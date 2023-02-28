@@ -1,104 +1,82 @@
-<!-- <form [formGroup]="form"> -->
-   
-      
-        <div class="container1">
+<form [formGroup]="form">
+  <div *ngFor= "let i of formvalues" class="container">
+    <div class="card bg-image"> 
+          <div class="row px-2 pt-2"><img style="float: left; margin-left: 10px;" class = "img" src="../../../../../assets/rane.png" alt="Avatar" ></div>
+            <img class = "row text-center img" [src]= this.url alt="Avatar" ><br><br><br>
+            <table class="font">
 
-        <div class="row">
-            <div class="col-sm">
-        <div class="container">
-      <div class="card">
-      
-    <div class="container">
-      <form [formGroup]="form">
-        <div *ngFor= "let i of formvalues"> 
-        <div class="mx-5"><div class="center">
-          <tr>
-            <td><img class = "img" src="assets/rane.png" alt="Avatar" ></td>
-            <tr></tr><tr>
-            <td><div class="name">{{i.fullname}}</div></td></tr></div><br>
-            <div class="container2">
-            <tr>
-              <td>
-                <div class="md">  <tr >
-                  <td div class="aligncommand1"><b>Trainee ID</b></td>
-                  <td div class="aligncommand1">:{{i.trainee_idno}}</td><br>
-                 <tr >
-                    <td div class="aligncommand1"><b>Valid From</b></td>
-                    <td div class="aligncommand1">:{{i.fromdate}}</td><br>
-                    <tr >
-                      <td div class="aligncommand1"><b>Valid To</b></td>
-                      <td div class="aligncommand1">:{{i.toodate}}</td><br><br>
-                      
-            
-            </tr></div><div class="sign">
-              <img class = "img2" [src]= this.plant alt="Avatar"></div><br>
-              <div class="sign1"><b>authorised signature </b>
-              </div>
-      </div></div></div></form>
-        </div></div></div></div>
-     
-       
-          
-                    <div class="col-sm">
-                    <div  class="container">
-                      <form [formGroup]="form">
-                        <div *ngFor= "let i of formvalues"> 
-                        <div class="card2"> 
-                            <div class="bg">
-                              <div class="mx-5">
-                                <div class="md"><br><div class="center">
-                                  <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
-                                  <div class="font2 comp_addr" ><p><textarea formControlName="company_address"  readonly style="height:30px;width:200px;" > </textarea></p></div>
-                                 <tr >
-                                    <td div class="aligncommand1"><b>Date of birth</b></td>
-                                    <td div class="aligncommand1">:{{i.birthdate}}</td><br>
-                                    <tr >
-                                      <td div class="aligncommand1"><b>Blood Group</b></td>
-                                      <td div class="aligncommand1">:{{i.blood_group}}</td><br>
-                                      
-                            
-                            </tr><div class = 'aligncommand1' > <b>Address:</b></div>
+            <div class="mx-5">
+              <tr class="font">
+              <div class="md">
+                  <div style="font-size: large; text-align: center; font-size: 40px;">{{i.fullname}}</div><br>
 
-                            <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width:200px;height:30px;font-size: 15px;"></textarea>
-              
-                            <tr><td></td></tr></div>
-                            <tr >
-                              <td div class="aligncommand1"><b>Contact No</b></td>
-                              <td div class="aligncommand1">:{{i.mobile_no1}}</td><br>
-                              
-                    
-                    </tr> <tr >
-                      <td div class="aligncommand1"><b>Employee Nature</b></td>
-                      <td div class="aligncommand1">:Trainee</td><br>
-                      
-            
-            </tr> <tr >
-              <td div class="aligncommand1"><b>Department</b></td>
-              <td div class="aligncommand1">:{{i.department}}</td><br>
-              
-    
-    </tr><div class="fontstyle2"><u>Employee Emergency Contact</u></div>
-    <tr >
-      <td div class="aligncommand1"><b>Contact Name</b></td>
-      <td div class="aligncommand1">:{{i.emergency_name}}</td><br>
-      
-
-</tr><tr >
-  <td div class="aligncommand1"><b>Contact Number</b></td>
-  <td div class="aligncommand1">:{{i.mobile_no2}}</td><br>
+                  <div  style="font-size: large; text-align: center; font-size: 20px;">Trainee ID:{{i.gen_id}}</div><br><br><br>
+                  <div style="font-size: large; text-align: center; font-size: 16px;"><b>Valid from :</b> {{frommdate}} to {{toodate}}</div>
+                <!-- <tr></div><div class="md">
+                    <td div class="aligncommand1"><b> Valid from</b></td>
+                    <td div class="aligncommand1">:{{frommdate}}</td><br>
+                <tr> 
+                    <td div class="aligncommand1"><b> Valid to</b></td>
+                    <td div class="aligncommand1">:{{toodate}}</td><br><br> -->
+              </div><br><br><br>
+            <div class="sign">
+                <img class = "img2" [src]= this.plant alt="Avatar"></div><br>
+                <div class="sign1"><b>Issuing Authority </b>
+                </div>
+            </div></table>
+    </div>
   
+    <div class="card bg-image2">
+        <div class="container2">
+          <div class="col-sm-8">
+           <table class="font">
+            <div class="center"><div class="mx-3"><br>
+              <div class="header"><b> <p>Rane(Madras)Limited</p></b></div>
+              <div class="font2 comp_addr" ><p><textarea formControlName="company_address"  readonly style="height:80px;width:350px;" > </textarea></p></div>
+          </div></div>
+          <div class="md">  <tr >
+            <td div class="aligncommand1"><b> Date Of Birth</b></td>
+            <td div class="aligncommand1">:{{i.birthdate}}</td>
+        <tr > 
+            <td div class="aligncommand1"><b>Blood Group</b></td>
+            <td div class="aligncommand1">:{{i.blood_group}}</td>
+          </div><br>
+                <div  style="font-size: 25px;" > <b>Address:</b></div><br>
+                <div>{{i.permanent_address}}</div><br><br>
+                <!-- <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width: 350px;height:auto;font-size: 15px;"></textarea> -->
+                <div class="md"> 
+                <tr >
+                  <td div class="aligncommand1"><b>Contact No</b></td>
+                  <td div class="aligncommand1">:{{i.mobile_no1}}</td>
+              <tr > 
+                  <td div class="aligncommand1"><b>Empl.Nature</b></td>
+                  <td div class="aligncommand1">:Trainee</td>
+              <tr > 
+                  <td div class="aligncommand1"><b>Department</b></td>
+                  <td div class="aligncommand1">:{{i.dept_slno}}</td>
 
-</tr><tr >
-  <td div class="aligncommand1"><b>Contact Relation</b></td>
-  <td div class="aligncommand1">:{{i.emergency_rel}}</td><br>
+                </div>
+                <br>
+                <tr class="font">
+                    <u><td div class="fs-text" ><b>Emergency contact</b></td></u>
+                    <td></td><br>
+                    <br>
+                </tr>
+               <div class="md" style="background-color: transparent;">  <tr >
+                    <td div class="aligncommand1"><b>Name</b></td>
+                    <td div class="aligncommand1">:{{i.emergency_name}}</td>
+                <tr > 
+                    <td div class="aligncommand1"><b>Relation</b></td>
+                    <td div class="aligncommand1">:{{i.emergency_rel}}</td>
+                <tr > 
+                    <td div class="aligncommand1"><b>Mobile No</b></td>
+                    <td div class="aligncommand1">:{{i.mobile_no2}}</td>
+
+                  </div>
+            </table>
+    </div>
   
-
-</tr>
-
-                                   
-                                </div>
-                          
-                            </div>    </div> 
-       
-    
-                    </div></div></form></div></div></div></div>
+    </div></div>
+  </div>
+  </form>
+  

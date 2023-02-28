@@ -290,11 +290,15 @@ delete(a:any, slno:any)
 
 getLineName(event:any)
 {
+
   var x = event.target.value.split(':')[0]-1
-  console.log(x, "index")
-  console.log(event.target.value)
-  console.log(this.dept_[x].dept_slno)
-  this.service.getLineName({dept_slno: this.dept_[x].dept_slno})
+  // console.log("-------------------------", this.dept_[x].dept_slno)
+  var xx = event.target.value.split(':')[1]
+  var yy = this.dept_.findIndex((a:any)=>a.dept_name === xx.trim())
+
+  console.log(xx, yy)
+
+  this.service.getLineName({dept_slno: this.dept_[yy].dept_slno})
   .subscribe(
     {
       next:(response:any)=>{console.log(response); this.line_ = response[0]

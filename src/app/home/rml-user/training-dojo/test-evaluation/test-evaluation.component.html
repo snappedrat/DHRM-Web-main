@@ -12,7 +12,7 @@
                         <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
                             
                             <option value="" disabled>Select one</option>  
-                            <option *ngFor = "let i of trainee">{{i.fullname}} - {{i.trainee_idno}}</option>          
+                            <option *ngFor = "let i of trainee">{{i.fullname}} - {{i.trainee_idno}}<option>          
 
                         </select>
                         </div>

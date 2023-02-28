@@ -30,6 +30,7 @@ export class QuestionBankComponent implements OnInit {
   username = {'username': sessionStorage.getItem('plantcode')}
   sno :any= -1
   offline_flag: boolean = true;
+  qsize: any;
 
   constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
 
@@ -66,7 +67,7 @@ export class QuestionBankComponent implements OnInit {
     this.service.getQuestions_tnr({module: event.target.value.split('.')[1], plant_code: sessionStorage.getItem('plantcode')})
     .subscribe(
       {
-        next: (response:any)=>{console.log(response); this.questions = response; this.questions.push({})}
+        next: (response:any)=>{console.log(response); this.questions = response; this.qsize = this.questions.length; this.questions.push({})}
       }
     )
 
@@ -84,6 +85,7 @@ export class QuestionBankComponent implements OnInit {
         {
           this.questions.push({})
           this.inserted += 1;
+          console.log(this.inserted)
         }
     }
   }
@@ -148,18 +150,20 @@ export class QuestionBankComponent implements OnInit {
   } 
   delete(i:any)
   {
-    if(this.questions.length != 1)
+    console.log(this.questions[i].question)
+    if(this.questions.length != 1 && this.questions.length != i+1)
     {
-      console.log(this.questions[i].question)
-      if(this.questions[i].question != undefined)
-      {
         this.service.questionBankDelete({qslno: this.questions[i].qslno})
         .subscribe(
           {
-            next: (res:any)=>{ console.log("qdel", res); }
+            next: (res:any)=>{ console.log("qdel", res);
+            if(i+1 >=this.qsize)
+            {
+              this.inserted-=1;
+              console.log(this.inserted, this.qsize)
+            } }
           }
         )
-      }
       this.questions.splice(i,1)
 
     }

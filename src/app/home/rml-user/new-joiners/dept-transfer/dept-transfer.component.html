@@ -2,10 +2,10 @@
     <div  style = "margin-top: 40px;">
     <div class="row">
         <div class = "col-sm-2">
-            <input type="date" [(ngModel)]="from" (change)="call($event)">
+            <input type="date" [(ngModel)]="from" (ngModelChange)="call($event)">
           </div>
           <div class = "col-sm-2">
-            <input type="date"  [(ngModel)]="to" (change)="call2($event)">
+            <input type="date"  [(ngModel)]="to" (ngModelchange)="call2($event)">
           </div>
     </div>
       <br><br>
