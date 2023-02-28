@@ -6,6 +6,8 @@ import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import * as XLSX from 'xlsx';
+import { DateRangeFilterPipe } from '../../dateFilter.pipe';
+
 
 import {
   trigger,
@@ -18,6 +20,7 @@ import { Timestamp } from 'rxjs';
 import { threadId } from 'worker_threads';
 import { ApiService } from 'src/app/home/api.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -41,6 +44,8 @@ export class OnboardComponent implements OnInit {
   pageSize:any = 50
   data:any
   collectionSize:any = 0
+  from:any = '2023-01-01'
+  to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 
@@ -58,6 +63,18 @@ export class OnboardComponent implements OnInit {
 
   }
 
+  call(event:any)
+  {
+   this.from = event.target.value
+   console.log(this.from)
+  }
+  call2(event:any)
+  {
+   this.to = event.target.value
+   console.log(this.to);
+   
+  }
+
   getPremiumData()
   {
     this.data =  this.filterinfo.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
@@ -73,8 +90,7 @@ export class OnboardComponent implements OnInit {
       {
         console.log(response); 
         this.filterinfo = response;
-         this.collectionSize = this.filterinfo.length;
-         this.getPremiumData()}
+      }
       }
     )
   }

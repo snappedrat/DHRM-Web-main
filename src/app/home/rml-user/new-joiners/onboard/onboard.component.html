@@ -1,11 +1,20 @@
 <div class = "container">
-<div class="pt-5 px-5">
-    <form [formGroup]="form">
-    <select class="form-control" (change)="filter()" formControlName="select">
-        <option value="">--- select ---</option>
-        <option *ngFor="let i of select" >{{i}}</option>
-    </select>
-    </form>
+
+<div class="row pt-5">
+    <div class="col-md-2 ">
+        <form [formGroup]="form">
+        <select class="form-control" (change)="filter()" formControlName="select">
+            <option value="">--- select ---</option>
+            <option *ngFor="let i of select" >{{i}}</option>
+        </select>
+        </form>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class = "col-md-2 form-control">
+        <input type="date" [(ngModel)]="from" (change)="call($event)">
+      </div>
+      <div class = "col-md-2 form-control">
+    <input type="date"  [(ngModel)]="to" (change)="call2($event)">
+      </div>
 </div>
 <div class="px-5">
     <button mat-fab style="float: right " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
@@ -86,8 +95,28 @@
                   </th>
                   </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngFor="let i of data">
+                  <tbody *ngIf="this.form.get('select').value == 'APPOINTED' ">
+                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' ">
+                        <td *ngIf="i.apln_status == 'APPOINTED' " >{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy'}}</td>
+                        <td *ngIf="i.apln_status == 'APPROVED' ">{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{ i.fullname }}</td>
+                        <td>{{ i.fathername }}</td>
+                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.mobile_no1 }}</td>
+                        <td>{{i.trainee_idno}}</td>
+                        <td>{{ i.aadhar_no }}</td>
+                        <td>{{ i.apln_status }}</td>
+                        <td>
+                            <div>
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/onboard_form', i.apln_slno, i.apln_status]" >
+                                <mat-icon>visibility</mat-icon>
+                            </button>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  <tbody *ngIf="this.form.get('select').value == 'TRAINING COMPLETED' ">
+                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'created_dt' ">
                         <td *ngIf="i.apln_status == 'APPOINTED' " >{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy'}}</td>
                         <td *ngIf="i.apln_status == 'APPROVED' ">{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
@@ -111,14 +140,14 @@
         </div>
     </div>
 
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">
+    <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">
     </ngb-pagination>
   
     <select class="form-control" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getPremiumData();">
       <option [ngValue]="100">100 items per page</option>
       <option [ngValue]="50" selected>50 items per page</option>
       <option [ngValue]="25">25 items per page</option>
-    </select>
+    </select> -->
     <br><br>
 
 </div>
