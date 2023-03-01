@@ -148,15 +148,12 @@ export class EvaluationFormComponent implements OnInit {
               this.service.getLineName({dept_slno: this.obj[0][0]?.dept_slno})
               .subscribe(
                 {
-                  next:(response:any)=>{console.log(response); this.line = response
+                  next:(response:any)=>{console.log(response); this.line = response[0]
                     this.line = this.line.map((a:any)=>a.line_name)
+                    this.form.controls['line'].setValue(response[0][0]?.line_name)
                   }
                 }
-              )
-
-              this.form.controls['line'].setValue(response[0][0]?.line_name)
-
-              
+              )              
             } catch (error) 
             {
               console.log(error)  
