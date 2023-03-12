@@ -136,7 +136,7 @@ familyData = [
 
       if((this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
       {
-        console.log(this.familyData)
+        console.log("1",this.familyData)
         this.flag = false
         this.emit.emit(this.message)
       }
@@ -169,9 +169,8 @@ sendData(){
 } 
 
 public valid(){
-  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != '' && this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != '' && this.familyData[0].contactnumber != undefined && String(this.familyData[0].contactnumber).length == 10 ) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
-    console.log(this.familyData[0].age)
     this.flag = false
     this.emit.emit(this.message)
   }
@@ -186,7 +185,6 @@ valids(event :any, item:any){
   {
     if(item == 'ContactNumber')
       {
-        console.log(event.length)
         if(event.target.value.length == 10)
         {
           this.flag = false
@@ -198,7 +196,7 @@ valids(event :any, item:any){
           this.mobile_validate = true
         }
       } 
-      else if(item =='age')
+    else if(item =='age')
       {
         if(event.value <= 100)
         {
@@ -218,15 +216,14 @@ valids(event :any, item:any){
       this.flag = false
       this.emit.emit(this.message)
     }
-
   }
   else
   {
-    if(event == null || event.length == 0)
-    {
+    // if(event == null || event.length == 0)
+    // {
       this.flag = true
       this.emit.emit(this.message_bad)
-    }
+    // }
 
   }
 }

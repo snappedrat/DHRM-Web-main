@@ -102,7 +102,7 @@ export class MonthlyPlanningComponent implements OnInit {
   excelfile: any;
 
 
-  constructor(private fb : UntypedFormBuilder, private service : ApiService)
+  constructor(private fb : UntypedFormBuilder, private service : ApiService, private router: Router)
   {
     this.form = this.fb.group
     (
@@ -233,9 +233,10 @@ exportexcel(): void
       .subscribe(
         {
           next:(response:any)=>{console.log(response)
-          if(response.message)
+        if(response.message == 'inserted')
         {
           alert("People Planning Added Successfully")
+          this.ngOnInit()
         }}
         }
       )
@@ -246,7 +247,12 @@ exportexcel(): void
       this.service.people_planning_update(this.excelfile)
       .subscribe(
         {
-          next:(response)=>{console.log(response)}
+          next:(response:any)=>{console.log(response)
+            if(response.message == 'updated')
+            {
+              alert("People Planning Updated Successfully")
+              this.router.navigate(['/rml/people-planning/monthly'])
+            }}
         }
       )
     }

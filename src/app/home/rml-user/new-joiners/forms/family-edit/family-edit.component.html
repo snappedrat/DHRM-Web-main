@@ -17,13 +17,13 @@
         <tr *ngFor="let data of familyData">
             <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
         <td><input type="text" [(ngModel)]="data.name" (ngModelChange)="valids($event, 'name')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><select type = "text" [(ngModel)]="data.relation" (click)= "sendData()" (ngModelChange)="valids($event, data)" ><option *ngFor= "let i of relation">
+        <td><select type = "text" [(ngModel)]="data.relation" (ngModelChange)= "sendData()" (ngModelChange)="valids($event, data)" ><option *ngFor= "let i of relation">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
         <td><input type = "number" maxlength="2" pattern="/d{10}" [(ngModel)]="data.age" (ngModelChange)="valids($event, 'age')" (ngModelChange)="valid()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "text"[(ngModel)]="data.occupation" (ngModelChange)="valids($event, 'occ')" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "number" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event, 'ContactNumber')"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-               <td><select type = "text" [(ngModel)]="data.dependent" (ngModelChange)="valids($event, 'dependent')" (ngModelChange)="valid()" (click)="sendData()"><option *ngFor= "let i of dependent">
+        <td><input type = "text"[(ngModel)]="data.occupation" (ngModelChange)="valids($event, 'occ')"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+        <td><input type = "number" maxlength="10" pattern="/d{10}" [(ngModel)]="data.contactnumber" (change)="valids($event, 'ContactNumber')" (ngModelChange)="valid()"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
+               <td><select type = "text" [(ngModel)]="data.dependent" (ngModelChange)="valids($event, 'dependent')" (ngModelChange)="valid()" (ngModelChange)="sendData()"><option *ngFor= "let i of dependent">
           {{i}}
   </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
 
