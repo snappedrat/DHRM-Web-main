@@ -50,7 +50,7 @@ export class ArsLoginComponent implements OnInit {
                   }
                   if(response.message == "Success") 
                   {
-                    sessionStorage.setItem('user', 'trainee')
+                    sessionStorage.setItem('user', 'ars')
                       this.goPlaces();
                   } 
                   else if (response.message == "User") 

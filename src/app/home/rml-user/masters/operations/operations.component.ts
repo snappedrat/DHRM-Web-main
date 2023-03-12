@@ -126,6 +126,7 @@ export class OperationsComponent implements OnInit {
       this.form.controls['critical_oprn'].setValue('YES')
     else if(this.dummy[a].critical_oprn == false)
       this.form.controls['critical_oprn'].setValue('NO')
+    console.log(this.form.value)
 
   }
 
@@ -136,20 +137,24 @@ export class OperationsComponent implements OnInit {
 
   editSave()
   {
-
+    console.log(this.index)
     if(this.index == -1)
     this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_code)
     else
     this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
-    console.log(this.index)
+    console.log(this.form.value)
 
     this.service.updateoperation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
       {
-        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+        if(this.index == -1)
+        this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_name)
+        else
+        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)  
+        console.log(this.form.value)        
         this.dummy[this.temp_a] = this.form.value
       }
       }

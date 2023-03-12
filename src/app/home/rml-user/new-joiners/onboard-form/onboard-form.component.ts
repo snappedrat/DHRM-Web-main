@@ -315,11 +315,11 @@ export class OnboardFormComponent implements OnInit {
       var wb = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(wb, ws, 'people')
       XLSX.writeFile(wb, 'onboard.csv')
-      var buffer  = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      var buffer  = XLSX.write(wb, { type: 'buffer', bookType: 'csv' });
       const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       
       var formData = new FormData()
-      formData.append("file", file, this.apln_slno+'_filedrop.xlsx' )
+      formData.append("file", file, this.apln_slno+'_filedrop.csv' )
 
       this.service.filedrop(formData)
       .subscribe

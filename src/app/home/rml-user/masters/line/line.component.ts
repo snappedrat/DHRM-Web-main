@@ -73,6 +73,7 @@ export class LineComponent implements OnInit {
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
+      plant_code:[''],
       plant_name: [''],
       dept_name: [''],
       Line_Name:[''],
@@ -120,7 +121,12 @@ getall(event:any)
   var plantcode = {plantcode: this.plantname[this.index].plant_code}
     this.service.line_dept_design(plantcode)
     .subscribe({
-      next: (response) =>{ console.log(response); this.all_details = response;
+      next: (response) =>{ console.log(response); 
+        this.all_details = []
+        this.array2 = []
+        this.dept = []
+        this.form.controls['dept_name'].reset()
+        this.all_details = response;
         this.dept= this.all_details[1]
         this.array2 = this.dept.map((a:any)=>a.dept_name)
       },
@@ -138,10 +144,14 @@ open(content:any)
 opentoedit(content:any)
   {
 
-   console.log("opening")
+   console.log("editing")
     this.modalService.open(content, {centered: true})
   }
 
+  get(event:any)
+  {
+    console.log(event.target.value)
+  }
    
 edit(a:any, slno:any)
   {
@@ -151,10 +161,15 @@ edit(a:any, slno:any)
     this.form.controls['plant_name'].setValue(this.line[a].plant_name)
     this.form.controls['Line_Name'].setValue(this.line[a].Line_Name)
     this.form.controls['personal_subarea'].setValue(this.line[a].personal_subarea)
-    this.form.controls['modified_by'].setValue(sessionStorage.getItem('user_name'))
+    this.form.controls['plant_code'].setValue(this.line[a].plant_code)
 
-    
+    this.form.controls['modified_by'].setValue(sessionStorage.getItem('user_name'))
+    this.form.get('plant_name').disable()
+    this.form.get('dept_name').disable()
+    console.log(this.line[a])
     var plantcode = {plantcode: this.line[a].plant_code}
+    console.log(plantcode)
+
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
@@ -185,20 +200,22 @@ save()
   }
 editSave()
   {
-      if(this.index == -1)
-      this.form.get('plant_name').setValue(this.line[this.temp_a].plant_code)
-      else
-      this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+    this.form.get('plant_name').enable()
+    this.form.get('dept_name').enable()
+      // if(this.index == -1)
+      // this.form.get('plant_name').setValue(this.line[this.temp_a].plant_code)
+      // else
+      // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
   
     console.log(this.form.value);
     
     this.service.updateline(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-        if(this.index == -1)
-        this.form.controls['plant_name'].setValue(this.line[this.temp_a].plant_name)
-        else
-        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+        // if(this.index == -1)
+        // this.form.controls['plant_name'].setValue(this.line[this.temp_a].plant_name)
+        // else
+        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
       this.line[this.temp_a] = this.form.value
         }
     })

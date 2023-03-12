@@ -42,7 +42,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown'
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectDropDownModule
+    SelectDropDownModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

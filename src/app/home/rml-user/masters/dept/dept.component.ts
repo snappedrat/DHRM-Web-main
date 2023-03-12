@@ -85,6 +85,7 @@ export class DeptComponent implements OnInit {
   {
     this.form.reset()
     this.editing_flag = false
+    this.form.get('plant_name').enable()
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
@@ -134,14 +135,18 @@ export class DeptComponent implements OnInit {
     this.form.controls['dept_name'].setValue(this.department[a].dept_name)
     this.form.controls['dept_group'].setValue(this.department[a].dept_group)
     this.form.controls['sap_code'].setValue(this.department[a].sap_code)
+    this.form.get('plant_name').disable()
+
   }
 
   editSave()
   {
-    if(this.index == -1)
-    this.form.controls['plant_name'].setValue(this.department[this.temp_a].plant_code)
-    else
-    this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+    this.form.get('plant_name').enable()
+    
+    // if(this.index == -1)
+    // this.form.controls['plant_name'].setValue(this.department[this.temp_a].plant_code)
+    // else
+    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
     console.log(this.form.value)
     this.service.updatedepartment(this.form.value)
@@ -153,10 +158,11 @@ export class DeptComponent implements OnInit {
       }
     else
       {
-        if(this.index == -1)
-        this.form.controls['plant_name'].setValue(this.department[this.temp_a].plant_name)
-        else
-        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+        // if(this.index == -1)
+        // this.form.controls['plant_name'].setValue(this.department[this.temp_a].plant_name)
+        // else
+        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+
         this.department[this.temp_a] = this.form.value
 
       }}

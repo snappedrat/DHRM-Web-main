@@ -232,7 +232,11 @@ exportexcel(): void
       this.service.people_planning_save(this.excelfile)
       .subscribe(
         {
-          next:(response)=>{console.log(response)}
+          next:(response:any)=>{console.log(response)
+          if(response.message)
+        {
+          alert("People Planning Added Successfully")
+        }}
         }
       )
     }

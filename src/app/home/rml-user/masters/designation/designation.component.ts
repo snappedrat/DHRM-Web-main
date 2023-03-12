@@ -139,6 +139,7 @@ edit(a:any)
 
       this.form.controls['names'].setValue(this.designation[a]?.plant_name)
       this.form.controls['plant_name'].setValue(this.designation[a]?.plant_name)
+      this.form.get('plant_name').disable()
 
       for(var o in this.plantname)
         this.array.push(this.plantname[o].plant_name)
@@ -146,14 +147,14 @@ edit(a:any)
   }
   save()
   {
-
+    var x = this.form.get('plant_name').value
     this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
 
     console.log(this.form.value)
     this.service.adddesignation(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
-
+        this.form.get('plant_name').setValue(x)
         this.designation.push(this.form.value)
         this.form.reset()
         this.index = -1
@@ -163,20 +164,21 @@ edit(a:any)
   }
   editSave()
   {
-    if(this.index == -1)
-    this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_code)
-    else
-    this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+    this.form.get('plant_name').enable()
+    // if(this.index == -1)
+    // this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_code)
+    // else
+    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
     this.service.updatedesignation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
       {
-        if(this.index == -1)
-        this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_name)
-        else
-        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+        // if(this.index == -1)
+        // this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_name)
+        // else
+        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
         this.designation[this.temp_a] = this.form.value
       }
       }

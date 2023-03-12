@@ -18,7 +18,7 @@
               
                         <div class="col">                            
                             <label>Department: </label><br>
-                            <select class="form-control" formControlName = "dept_name" >
+                            <select (change)="get($event)" class="form-control" formControlName = "dept_name" >
                                 <option value="" >select an option</option>
                                 <option *ngFor= "let i of array2" [ngValue] = "i">{{i}}</option>
                             </select>

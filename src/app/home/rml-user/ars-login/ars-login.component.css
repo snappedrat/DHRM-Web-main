@@ -34,8 +34,18 @@ input.example-right-align::-webkit-inner-spin-button {
     height:30px;
     margin-left:90%;
 }
-.btn{
-    margin-left: 43%;
+/* .btn{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    text-align:center;
+} */
+.btnn{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
     text-align:center;
 }
 .form-group{
