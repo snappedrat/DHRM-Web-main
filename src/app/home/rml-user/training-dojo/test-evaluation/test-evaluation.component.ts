@@ -3,6 +3,7 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/home/api.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-test-evaluation',
@@ -17,7 +18,7 @@ export class TestEvaluationComponent implements OnInit {
 
   trainee_id :any = ''
 
-  constructor(private service : ApiService, private fb : UntypedFormBuilder) {
+  constructor(private service : ApiService, private fb : UntypedFormBuilder, private route: ActivatedRoute, private router: Router) {
     this.form = this.fb.group({
       trainee: ['',Validators.required],
       test : ['',Validators.required],
@@ -88,6 +89,9 @@ export class TestEvaluationComponent implements OnInit {
       .subscribe({
         next: (res) =>{console.log(res);
         alert("Updated Successfully")
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload'
+        this.router.navigate(['/rml/training_dojo/test-evaluation'], {relativeTo: this.route})  
         this.form.reset()
         },
         error: (err) => console.log(err) 
@@ -98,19 +102,17 @@ export class TestEvaluationComponent implements OnInit {
 
   store_trainee(event:any)
   {
-    // this.trainee_id = event.target.value.split('-')[1]
-    // this.form.get('trainee').setValue(this.trainee[event.option.value].fullname)
-    console.log(event.option.value);
-    console.log(this.form.value)
+    this.trainee_id = event.option.value
+    console.log(this.trainee_id);
     
-
   }
 
   get_test_status(event:any)
   {
+
     var value = event.target.value.split('.')[1]
     var obj = {module_name : value, idno : this.trainee_id}
-
+    console.log(obj)
     this.service.get_test_status(obj)
     .subscribe(
       {
