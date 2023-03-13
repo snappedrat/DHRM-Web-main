@@ -73,6 +73,7 @@ export class OnboardFormComponent implements OnInit {
   true: boolean = false;
   onboard:any = true
   department_: any;
+  fullname: any;
   
     constructor(private fb : UntypedFormBuilder,private http: HttpClient, private router: Router, private active :ActivatedRoute, private service:ApiService ) {
     
@@ -138,6 +139,8 @@ export class OnboardFormComponent implements OnInit {
           this.form.controls['account_number'].setValue(this.basic[0]?.bank_account_number)
           this.form.controls['bank_name'].setValue(this.basic[0]?.bank_name)
           this.form.controls['apln_slno'].setValue(this.basic[0]?.apln_slno)
+          this.fullname = this.basic[0]?.fullname
+          this.trainee_id = this.basic[0]?.trainee_idno
 
           if(this.readonly == false)
             this.form.controls['active_status'].disable()

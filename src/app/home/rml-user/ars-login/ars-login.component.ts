@@ -31,7 +31,6 @@ export class ArsLoginComponent implements OnInit {
       });
   }
   setLocal(){
-      sessionStorage.setItem('user_name', this.exform.value.User_Name)
       console.log(this.exform.value.User_Name)
   }
 
@@ -51,6 +50,7 @@ export class ArsLoginComponent implements OnInit {
                   if(response.message == "Success") 
                   {
                     sessionStorage.setItem('user', 'ars')
+                    sessionStorage.setItem('user_name', response.apln_slno)
                       this.goPlaces();
                   } 
                   else if (response.message == "User") 

@@ -31,14 +31,9 @@ export class TestEvaluationComponent implements OnInit {
       plant_code:['']
 
     })
-
-    this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
-      startWith(''),
-      map((value:any) => this.filterOptions(value))
-    );
     
    }
-   filterTrainee:any
+   filterTrainee: Observable<any[]>;
 
   ngOnInit(): void {
 
@@ -48,7 +43,10 @@ export class TestEvaluationComponent implements OnInit {
         next: (response)=>{
           console.log('trainee : ', response)
           this.trainee = response
-          this.trainee = this.trainee.map((a:any)=>a.fullname)
+          this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+            startWith(''),
+            map((value:any) => this.filterOptions(value))
+          );
       },
         error: (error)=> console.log(error)
       }
@@ -64,9 +62,9 @@ export class TestEvaluationComponent implements OnInit {
 
   }
 
-  filterOptions(value: string): string[] {
+  filterOptions(value: string): any[] {
     const filterValue = value.toLowerCase();
-    return this.trainee.filter((trainee:any) => trainee.toLowerCase().includes(filterValue));
+    return this.trainee.filter((trainee:any) => trainee.fullname.toLowerCase().includes(filterValue));
   }
 
   offline_page()
