@@ -93,11 +93,13 @@ export class EmployeeComponent implements OnInit {
       User_Name: ['', Validators.required],
       Password: [ '', Validators.required],     
       Is_HR:[''],
+      is_admin:[''],
       Is_HRAppr:[''],
       Is_Trainer:[''],
       Is_Supervisor:[''],
       Is_ReportingAuth:[''],
       Is_TOU:[''],
+      access_master:[''],
 
     })
    }
@@ -172,7 +174,9 @@ getall(event:any)
     this.form.controls['Is_Trainer'].setValue(false)
     this.form.controls['Is_Supervisor'].setValue(false)
     this.form.controls['Is_ReportingAuth'].setValue(false)
+    this.form.controls['is_admin'].setValue(false)
     this.form.controls['Is_TOU'].setValue(false)
+    this.form.controls['access_master'].setValue(false)
 
     this.editing_flag = false
     console.log("opening")
@@ -193,15 +197,20 @@ edit(a:any)
     this.desig_.splice(0, this.desig_.length);
     this.dept_.splice(0, this.dept_.length);
     this.line_.splice(0, this.line_.length);
-
     var plantcode = {plantcode: this.employee[a].plant_code}
+    console.log(plantcode)
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
         this.desig= this.all_details[0]
         this.dept_= this.all_details[1]
+        this.desig = this.desig.map((a:any)=>a.desig_name)
+        this.dept= this.dept_.map((a:any)=>a.dept_name)
 
-        this.service.getLineName({dept_slno: this.employee[a].Department})
+        console.log("dept", this.employee[a].Department);
+        
+
+    this.service.getLineName({dept_slno: this.employee[a].Department})
         .subscribe(
           {
             next: (response:any)=>{console.log("line", response)
@@ -209,10 +218,6 @@ edit(a:any)
               this.line = this.line_.map((a:any)=>a.line_name)}
           }
         )
-
-        this.desig = this.desig.map((a:any)=>a.desig_name)
-        this.dept= this.dept_.map((a:any)=>a.dept_name)
-
       },
       error: (error) => console.log(error),
     });
@@ -238,7 +243,9 @@ edit(a:any)
     this.form.controls['Is_Trainer'].setValue(this.employee[a].Is_Trainer)
     this.form.controls['Is_Supervisor'].setValue(this.employee[a].Is_Supervisor)
     this.form.controls['Is_ReportingAuth'].setValue(this.employee[a].Is_ReportingAuth)
+    this.form.controls['is_admin'].setValue(this.employee[a].is_admin)
     this.form.controls['Is_TOU'].setValue(this.employee[a].Is_TOU)
+    this.form.controls['access_master'].setValue(this.employee[a].access_master)
   }
   save()
   {
@@ -292,11 +299,10 @@ getLineName(event:any)
 {
 
   var x = event.target.value.split(':')[0]-1
-  // console.log("-------------------------", this.dept_[x].dept_slno)
   var xx = event.target.value.split(':')[1]
   var yy = this.dept_.findIndex((a:any)=>a.dept_name === xx.trim())
 
-  console.log(xx, yy)
+  console.log("dept", this.dept_[yy].dept_slno);
 
   this.service.getLineName({dept_slno: this.dept_[yy].dept_slno})
   .subscribe(

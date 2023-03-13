@@ -43,6 +43,7 @@ export class NavbarComponent implements OnInit {
   all: any;
   isRA: string | null;
   user: any;
+  access_master: string | null;
 
   constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
     this.form = fb.group({
@@ -78,6 +79,7 @@ getHr()
       sessionStorage.setItem('ishrappr', this.ishrappr[0]?.Is_HRAppr)
       sessionStorage.setItem('istrainer', this.ishrappr[0]?.Is_Trainer)
       sessionStorage.setItem('issupervisor', this.ishrappr[0]?.Is_Supervisor)
+      sessionStorage.setItem('access_master', this.ishrappr[0]?.access_master)
 
       if(this.username.user == 'emp')
           sessionStorage.setItem('istrainee', this.ishrappr[0]?.is_trainee)
@@ -118,6 +120,7 @@ if (item !== null) {
   this.ishrappr = sessionStorage.getItem('ishrappr')
   this.istrainer = sessionStorage.getItem('istrainer')
   this.istrainee = sessionStorage.getItem('istrainee')
+  this.access_master = sessionStorage.getItem('access_master')
   this.showid = sessionStorage.getItem('user_name')
   this.showname = sessionStorage.getItem('emp_name')
   this.showdept = sessionStorage.getItem('dept_name')

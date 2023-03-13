@@ -9,12 +9,24 @@
                         
 
                         <div class ="dropdown">Trainee:
-                        <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
+
+                            <br>
+                                <input type="text"
+                                       placeholder="Search for Trainee"
+                                       [matAutocomplete]="auto"
+                                       formControlName="trainee">
+                                <mat-autocomplete (optionSelected)="store_trainee($event)" #auto="matAutocomplete">
+                                  <mat-option *ngFor="let i of filterTrainee | async; let a = index" [value]= "i.trainee_idno">
+                                    {{i.fullname}} - {{i.trainee_idno}}
+                                  </mat-option> 
+                                </mat-autocomplete>                              
+
+                        <!-- <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
                             
                             <option value="" disabled>Select one</option>  
-                            <option *ngFor = "let i of trainee">{{i.fullname}} - {{i.trainee_idno}}<option>          
+                            <option *ngFor = "let i of trainee">{{i}}<option>          
 
-                        </select>
+                        </select> -->
                         </div>
                         <br>
                         <div>Module :

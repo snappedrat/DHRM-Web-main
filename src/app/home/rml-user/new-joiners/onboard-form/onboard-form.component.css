@@ -40,7 +40,7 @@ select:hover{
     font-size: 14px;
 }
 .title{
-    text-align: Center;
+    text-align: left;
     font-size: 25px;
     font-weight: 900;
 }

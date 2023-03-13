@@ -184,6 +184,11 @@ input.example-right-align::-webkit-inner-spin-button {
     left: 100%;
     transition: all .7s;
    }
+   @media (max-width: 768px) {
+    .form-container {
+      max-width: 100%;
+      padding: 20px;
+    }
    
    mat-button:hover:before {
     top: -30px;

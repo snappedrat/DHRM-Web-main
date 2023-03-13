@@ -14,7 +14,7 @@ import {
   UntypedFormBuilder,
 } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as XLSX from "xlsx";
 import { MatSidenav } from "@angular/material/sidenav";
 import { ServiceService } from "../../masters/service.service";
@@ -102,7 +102,7 @@ export class MonthlyPlanningComponent implements OnInit {
   excelfile: any;
 
 
-  constructor(private fb : UntypedFormBuilder, private service : ApiService, private router: Router)
+  constructor(private fb : UntypedFormBuilder, private service : ApiService, private router: Router, private route: ActivatedRoute)
   {
     this.form = this.fb.group
     (
@@ -144,7 +144,7 @@ export class MonthlyPlanningComponent implements OnInit {
     var x = +date.getMonth()+1
     var y = date.getFullYear()
     this.getDetails(x, y)
-    
+
   }
 
   getDetails(x:any, y:any)
@@ -236,13 +236,17 @@ exportexcel(): void
         if(response.message == 'inserted')
         {
           alert("People Planning Added Successfully")
-          this.ngOnInit()
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload'
+          this.router.navigate(['/rml/people-planning/monthly'], {relativeTo: this.route})
+      
         }}
         }
       )
     }
     else if(this.excelfile[0].plan_slno != undefined)
     {
+
       console.log("has to update")
       this.service.people_planning_update(this.excelfile)
       .subscribe(
@@ -251,7 +255,9 @@ exportexcel(): void
             if(response.message == 'updated')
             {
               alert("People Planning Updated Successfully")
-              this.router.navigate(['/rml/people-planning/monthly'])
+              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+              this.router.onSameUrlNavigation = 'reload'
+              this.router.navigate(['/rml/people-planning/monthly'], {relativeTo: this.route})          
             }}
         }
       )
