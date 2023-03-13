@@ -15,10 +15,10 @@
                                        placeholder="Search for Trainee"
                                        [matAutocomplete]="auto"
                                        formControlName="trainee">
-                                <mat-autocomplete #auto="matAutocomplete">
-                                  <mat-option *ngFor="let i of filterTrainee | async" [value]="i.fullname">
+                                <mat-autocomplete (optionSelected)="store_trainee($event)" #auto="matAutocomplete">
+                                  <mat-option *ngFor="let i of filterTrainee | async; let a = index" [value]= "i.trainee_idno">
                                     {{i.fullname}} - {{i.trainee_idno}}
-                                  </mat-option>
+                                  </mat-option> 
                                 </mat-autocomplete>                              
 
                         <!-- <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">

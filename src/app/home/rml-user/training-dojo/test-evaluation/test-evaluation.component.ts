@@ -31,7 +31,6 @@ export class TestEvaluationComponent implements OnInit {
       plant_code:['']
 
     })
-    
    }
    filterTrainee: Observable<any[]>;
 
@@ -62,7 +61,9 @@ export class TestEvaluationComponent implements OnInit {
 
   }
 
-  filterOptions(value: string): any[] {
+  filterOptions(value: any): any[] {
+    console.log(value, "/////////////////");
+    
     const filterValue = value.toLowerCase();
     return this.trainee.filter((trainee:any) => trainee.fullname.toLowerCase().includes(filterValue));
   }
@@ -97,7 +98,12 @@ export class TestEvaluationComponent implements OnInit {
 
   store_trainee(event:any)
   {
-    this.trainee_id = event.target.value.split('-')[1]
+    // this.trainee_id = event.target.value.split('-')[1]
+    // this.form.get('trainee').setValue(this.trainee[event.option.value].fullname)
+    console.log(event.option.value);
+    console.log(this.form.value)
+    
+
   }
 
   get_test_status(event:any)
