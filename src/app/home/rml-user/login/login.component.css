@@ -17,11 +17,14 @@ img{
 
 .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
-    border-radius: 3px;
+   
     background-color: rgb(255, 253, 253,0.5);
     
     
 
+}
+.mat-form-field + .mat-form-field{
+    border-radius: 10px;
 }
 .example-container {
     height: 600px; 
@@ -38,13 +41,15 @@ img{
 input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
     display: none;
+    border-radius: 45%;
 }
 
 
 #logout{
-    width:50px;
-    height:30px;
-    margin-left:90%;
+  
+    margin-left: 80%;
+    padding-bottom: 4%;
+  
 }
 .btn{
     margin-left: 43%;
@@ -89,46 +94,103 @@ input.example-right-align::-webkit-inner-spin-button {
     margin-left: 30%;
    
   }
-  .btn {
-   
-    background: #9bcff2;
-    background-image: -webkit-linear-gradient(top, #9bcff2, #177eba);
-    background-image: -moz-linear-gradient(top, #9bcff2, #177eba);
-    background-image: -ms-linear-gradient(top, #9bcff2, #177eba);
-    background-image: -o-linear-gradient(top, #9bcff2, #177eba);
-    background-image: linear-gradient(to bottom, #9bcff2, #177eba);
-    -webkit-border-radius: 5;
-    -moz-border-radius: 5;
-    border-radius: 5px;
-    text-shadow: 1px 1px 3px #666666;
-    -webkit-box-shadow: 2px 1px 3px #2b012b;
-    -moz-box-shadow: 2px 1px 3px #0c000c;
-    box-shadow: 2px 1px 3px #0a000a;
-    font-family: Arial;
-    color: #ffffff;
-    font-size: 20px;
-    padding: 3px 10px 6px 10px;
-    border: solid #1f628d 2px;
-    text-decoration: none;
-  }
-  
-  .btn:hover {
-    background: #184663;
-    background-image: -webkit-linear-gradient(top, #184663, #3498db);
-    background-image: -moz-linear-gradient(top, #184663, #3498db);
-    background-image: -ms-linear-gradient(top, #184663, #3498db);
-    background-image: -o-linear-gradient(top, #184663, #3498db);
-    background-image: linear-gradient(to bottom, #184663, #3498db);
-    text-decoration: none;
-  }
-  .text-center{
-    font-size: 30px;
+  button {
+    --color:linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
     font-weight: 500;
-
-  }
-  @media (max-width: 768px) {
-    .form-container {
-      max-width: 100%;
-      padding: 20px;
-    }
-  }
+    color: var(--color);
+    margin-left: 35%;
+   }
+   
+   button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   button:hover {
+    color: #fff;
+   }
+   
+   button:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   button:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   button:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+   }
+   mat-button {
+    --color:linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+    background-image: url('src/assets/png-transparent-computer-icons-home-house-home-angle-building-rectangle-thumbnail.png');
+    background-image: fit-content;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+    margin-left: 35%;
+   }
+   
+   mat-button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   mat-button:hover {
+    color: #fff;
+   }
+   
+   mat-button:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   mat-button:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   mat-button:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+   }

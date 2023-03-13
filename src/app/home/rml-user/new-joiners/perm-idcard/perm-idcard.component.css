@@ -143,3 +143,11 @@ textarea{
   background-position: center;
   background-repeat: no-repeat;
 }
+@media print {
+  .card {
+     -webkit-print-color-adjust: exact !important;
+     color-adjust: exact !important;
+     background-image: url('../../../../../assets/img.jpeg');
+     background-size: cover;
+  }
+}

@@ -1,53 +1,206 @@
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
-.form-control.ng-touched.ng-invalid {
-    border:1px solid red;
-   }
-   .form-control.ng-touched.ng-valid {
-    border:1px solid green;
-   }
-   
-   /* img{
-       position:relative;
-       margin-left:200px;
-       margin-top:10px;
-   } */
-
-   
-   .background{
-       position: absolute;
-       margin: auto;
-   }
- .table{
-     border-radius: 10px;
- }
- .form-control{
-     border-radius: 15px;
-     font-size: 14px;
- }
- /* .btn{
-    margin-left: 200px;
-    border-radius: 20px;
-    width: 100px;
-    height: 40px;
-} */
-input{
-    border-radius:100px;
+img{
+    position:relative;
+    margin-left:200px;
+    margin-top:10px;
 }
-input:hover{
-    border:2px solid grey;
-}
-select{
-    border-radius:100px;
-}
-select:hover{
-    border:2px solid grey;
-}
-
-.container{
+.bd{
+    height: 100%;
+    /* background-position: fixed; */
+    background-size: 100% ;
+    background-size: cover;
+    background: linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+    background-position:0 0;
+    align-items: center;
     justify-content: center;
 }
-#logout{
-    width:50px;
-    height:30px;
-    margin-left:90%;
+
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+   
+    background-color: rgb(255, 253, 253,0.5);
+    
+    
+
 }
+.mat-form-field + .mat-form-field{
+    border-radius: 10px;
+}
+.example-container {
+    height: 600px; 
+    width: 900px;
+
+    background-color: rgba(255, 255, 255, 0.8); /* Set the container to white with partial transparency */
+    backdrop-filter: blur(10px); /* Apply a blur filter to the entire container (including its contents) */
+  }
+
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+    border-radius: 45%;
+}
+
+
+#logout{
+  
+    margin-left: 85%;
+    padding-bottom: 4%;
+  
+}
+.btn{
+    margin-left: 43%;
+    text-align:center;
+    font-size: 16px;
+
+}
+.form-group{
+    font-size: 14px;
+}
+
+.login
+{
+    width: 700px;
+    height: 350px;
+    position: relative;
+}
+
+.form-control
+{
+    height: 40px;
+}
+.form-container{
+    margin-top: 15%;
+    -webkit-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    padding: 20px; /* Add padding as needed */
+    border-radius: 10px; /* Add border-radius as needed */
+    height: 400px; /* Set height as needed */
+    width: 500px; /* Set width as needed */
+    background-color: rgb(255, 253, 253,0.5);
+    align-items: center;
+  
+  
+  }
+  .container1{
+  
+    justify-content: center;
+   
+    margin-left: 30%;
+    margin-top: 2%;
+    -webkit-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
+    padding: 20px; /* Add padding as needed */
+    border-radius: 10px; /* Add border-radius as needed */
+    height: 550px; /* Set height as needed */
+    width: 500px; /* Set width as needed */
+    background-color: rgb(255, 253, 253,0.5);
+    align-items: center;
+   
+  }
+  button {
+   
+    --color:linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+    margin-left: 35%;
+   }
+   
+   button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   button:hover {
+    color: #fff;
+   }
+   
+   button:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   button:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   button:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+   }
+   mat-button {
+    --color:linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+    background-image: url('src/assets/png-transparent-computer-icons-home-house-home-angle-building-rectangle-thumbnail.png');
+    background-image: fit-content;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+    margin-left: 35%;
+   }
+   
+   mat-button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+   }
+   
+   mat-button:hover {
+    color: #fff;
+   }
+   
+   mat-button:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+   }
+   
+   mat-button:hover:before {
+    top: -30px;
+    left: -30px;
+   }
+   
+   mat-button:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+   }

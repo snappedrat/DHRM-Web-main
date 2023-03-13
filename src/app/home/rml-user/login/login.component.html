@@ -1,8 +1,8 @@
 <div class="bd">
     <div class="container1 pt-2`">
-        <button  class="btn-primary" id="logout" routerLink="/first">
+        <button mat-fab color="primary" id="logout" routerLink="/first" > 
             <span class="glyphicon glyphicon-home"></span> 
-          </button> <div class="form-container">
+        </button> <div class="form-container">
      
                 <h1 class="text-center pt-3 text" style="color:black;">RML Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
@@ -15,8 +15,6 @@
                         <label class="col-form-label" style="color: black;">Password:</label>
                         <input formControlName="Password" type="password" class="form-control">
               <br>
-      <button mat-raised-button type="submit" class="btn"  (click)="setLocal()">Sign In</button>
-                </form></div>
-            </div>
-        </div>
- 
+              <button  type="submit" (click)="setLocal()">  SIGN IN
+                
+              </button>

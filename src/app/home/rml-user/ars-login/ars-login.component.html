@@ -1,26 +1,23 @@
 <div class="bd">
-    <div class="container pt-5">
-        <button  class="btn btn-primary" id="logout" routerLink="/first">
+    <div class="container">
+        <button   id="logout" routerLink="/first">
             <span class="glyphicon glyphicon-home"></span> 
           </button>
-        <div class="row justify-content-sm-center pt-5">
-            <div class="col-sm-6 shadow round pb-3">
-                <h1 class="text-center pt-3 text" style="color:black;">ARS Login</h1>
+          <div class="form-container">
+                <h1 class="text-center " style="color:black;">ARS Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
-                    <div class="form-group">
+             
                         <label class="col-form-label" style="color: black;">User name</label>
                         <input formControlName="User_Name" type="text" class="form-control">
 <!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
-                    </div>
-                    <div class="form-group">
+                  
                         <label class="col-form-label" style="color: black;">Password:</label>
                         <input formControlName="Password" type="password" class="form-control">
-                    </div>
+                   
                     <div class="btnn"> 
-                        <button type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
+                        <button id="button"type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
                     </div>
-                </form>
+                </form></div>
             </div>
         </div>
-    </div>
-</div>
+  

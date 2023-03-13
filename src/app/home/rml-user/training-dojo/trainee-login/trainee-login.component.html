@@ -1,22 +1,20 @@
 <div class="bd">
-  <div class="container">
-
-    <div class="container pt-3">
-      <div class="row justify-content-sm-center pt-5">
-          <div class="table col-sm-6 shadow round pb-3">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <button id="logout" routerLink="/first" > 
+    <span class="glyphicon glyphicon-home"></span> 
+</button>
           <div class="row">
             <div class="col-sm-5">
             </div>
-            <div class="col-sm-5" *ngIf = "loading">
-              <img src="../../assets/1488.gif" >
-          </div>
+            <div class="loader" *ngIf="loading"></div>
           </div>
 
-
+          <div class="form-container">
           
-            <h1 class="heading text-center pt-3 text-secondary">Trainee Login</h1>
+            <h1 class=" text-center ">Trainee Login</h1>
+          
               <form [formGroup]="form" (ngSubmit)="TraineeLogin()">
-
+         
         <div class="form-group">  
             <label class="col-form-label" for="username">User Name: </label>  
             <input   
@@ -40,10 +38,9 @@
           type="checkbox" 
           class="form-check-input">Show Password
         </div>
-            <button class="btn btn-primary" type="submit">Sign In</button>
-                </form>
+            <button  type="submit">Sign In</button>
+         </form>      
           
           </div>
       </div>
-    </div>
-    </div></div>
+  

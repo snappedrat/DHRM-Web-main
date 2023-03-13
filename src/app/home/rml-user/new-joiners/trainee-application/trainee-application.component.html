@@ -1,12 +1,11 @@
-<div class="container">
+
 <div class="bd">
-  <button  class="btn btn-primary" id="logout" routerLink="/first">
+  <div class="container">
+  <button   id="logout" routerLink="/first">
     <span class="glyphicon glyphicon-home"></span> 
   </button>
-    <div class="container pt-3">
-      <div class="row justify-content-sm-center pt-5">
-          <div class="table col-sm-6 shadow round pb-3">
-          <b>  <h1 class="heading text-center pt-3 text-secondary">Trainee New Application</h1></b>
+   <div class="container1">
+          <b>  <h1 class="text-center ">Trainee New Application</h1></b>
               <form [formGroup]="bankForms" >
             <div class="form-group">  
                 <label for="company">Company Name</label>  
@@ -61,9 +60,8 @@
           class="form-check-input">Show Password
         </div>
                 </form>
-                <button (click)="sendFormData()" class="btn btn-primary" style = "float:right" (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Sign In</button>
-
+                <button (click)="sendFormData()"  (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Sign In</button>
+   </div>
           </div>
       </div>
-    </div>
-    </div></div>
+
