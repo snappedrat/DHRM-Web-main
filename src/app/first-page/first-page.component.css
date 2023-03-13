@@ -1,23 +1,26 @@
-.body{
-  box-sizing: border-box;
+.bd{
+  background-size: cover;
   margin: 0;
-  
+  background: linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
+  height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 .container{
   width: 100%;
-  height: 80%;
+  height: 100%;
   margin: 0 auto;
+  
   
 }
 .innercontainer{
   width: 100%;
   height:80%;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255,0.3);
   margin:0 auto;
   padding-top: 70px;
-  box-shadow:20px;
-  border-radius: 5px;
+  box-shadow:25px;
+  border-radius: 10px;
   border-color: black;
   
 }
@@ -43,6 +46,7 @@ text-align: center;
   flex-direction: row;
 }
 .row2{
+  padding-top: 40px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -66,7 +70,7 @@ h1{
   text-align: center;
   font-size: 30px;
   font-weight: 900;
-  color: rgb(0, 0, 139);
+  color: rgb(241, 241, 241);
 }
 .logo{
   margin-left: 1%;
