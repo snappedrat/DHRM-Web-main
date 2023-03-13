@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/home/api.service';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-evaluation',
@@ -29,19 +31,28 @@ export class TestEvaluationComponent implements OnInit {
       plant_code:['']
 
     })
-   }
 
+    this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+      startWith(''),
+      map((value:any) => this.filterOptions(value))
+    );
+    
+   }
+   filterTrainee:any
 
   ngOnInit(): void {
 
     this.service.getTrainee()
     .subscribe(
       {
-        next: (response)=>{console.log('trainee : ', response) , this.trainee = response},
+        next: (response)=>{
+          console.log('trainee : ', response)
+          this.trainee = response
+          this.trainee = this.trainee.map((a:any)=>a.fullname)
+      },
         error: (error)=> console.log(error)
       }
     )
-
     
     this.service.getOfflineModules()
     .subscribe(
@@ -51,6 +62,11 @@ export class TestEvaluationComponent implements OnInit {
       }
     )
 
+  }
+
+  filterOptions(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.trainee.filter((trainee:any) => trainee.toLowerCase().includes(filterValue));
   }
 
   offline_page()

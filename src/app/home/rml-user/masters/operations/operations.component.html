@@ -8,7 +8,7 @@
             <br>
             <form [formGroup] = "form">
                 <div class="row">
-                    <div class="col">
+                    <div *ngIf="is_admin == 'true' " class="col">
                         <label>Plant Name: </label><br>
                         <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name">
                             <option  value="">select an option</option>

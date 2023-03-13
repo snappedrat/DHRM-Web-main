@@ -48,6 +48,7 @@ export class OperationsComponent implements OnInit {
   temp_a: any;
   array: any = [];
   index: number = -1;
+  is_admin:any = sessionStorage.getItem('isadmin')
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
@@ -92,7 +93,10 @@ export class OperationsComponent implements OnInit {
 
   save()
   {
-    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
+    if(this.is_admin == 'true')
+      this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
+    else
+      this.form.get('plant_name').setValue(sessionStorage.getItem('plantcode'))
 
     this.service.addoperation(this.form.value)
     .subscribe({
@@ -114,6 +118,7 @@ export class OperationsComponent implements OnInit {
 
   edit(a:any, slno:any)
   {
+    this.form.get('plant_name').disable()
     this.editing_flag = true
     this.temp_a = a
 
@@ -137,11 +142,13 @@ export class OperationsComponent implements OnInit {
 
   editSave()
   {
+    this.form.get('plant_name').enable()
+
     console.log(this.index)
-    if(this.index == -1)
-    this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_code)
-    else
-    this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
+    // if(this.index == -1)
+    // this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_code)
+    // else
+    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
     console.log(this.form.value)
 
@@ -150,10 +157,10 @@ export class OperationsComponent implements OnInit {
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
       {
-        if(this.index == -1)
-        this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_name)
-        else
-        this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)  
+        // if(this.index == -1)
+        // this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_name)
+        // else
+        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)  
         console.log(this.form.value)        
         this.dummy[this.temp_a] = this.form.value
       }

@@ -23,12 +23,6 @@ url2:any = environment.path2
     return this.http.post(this.url+'/ars-login', form)
     
   }
-
-  login1(admin:any)
-  {
-        return this.http.post('http://localhost:8080/api/admins', admin)
-  }
-
   companyshow()
   {
     return this.http.get(this.url+'/companyshow')

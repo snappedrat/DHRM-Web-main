@@ -54,4 +54,5 @@ input.example-right-align::-webkit-inner-spin-button {
 .form-control
 {
     height: 40px;
+    font-size: 16px;
 }

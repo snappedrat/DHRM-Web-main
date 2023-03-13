@@ -56,7 +56,9 @@ export class ArsLoginComponent implements OnInit {
                   else if (response.message == "User") 
                   {
                       alert("Username does not exist");
-                  } else {
+                  } 
+                  else 
+                  {
                       alert("Please Enter the correct Password");
                   }
               },
