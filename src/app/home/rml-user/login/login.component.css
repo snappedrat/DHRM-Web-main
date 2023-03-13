@@ -17,6 +17,8 @@ img{
     margin-left: 8px;
     border-radius: 3px;
     position: fixed;
+    min-width: max-content;
+    min-height: max-content;
 }
 
 .example-right-align {
