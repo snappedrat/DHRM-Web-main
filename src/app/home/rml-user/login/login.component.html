@@ -1,24 +1,22 @@
 <div class="bd">
-    <div class="container pt-5">
-        <button  class="btn btn-primary" id="logout" routerLink="/first">
+    <div class="container1 pt-2`">
+        <button  class="btn-primary" id="logout" routerLink="/first">
             <span class="glyphicon glyphicon-home"></span> 
-          </button>
-        <div class="row justify-content-sm-center pt-5">
-            <div class="col-sm-6 shadow round pb-3">
+          </button> <div class="form-container">
+     
                 <h1 class="text-center pt-3 text" style="color:black;">RML Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
-                    <div class="form-group px-5">
+                   
                         <label class="col-form-label" style="color: black;">User name</label>
                         <input formControlName="User_Name" type="text" class="form-control">
 <!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
-                    </div> <br>
-                    <div class="form-group px-5">
+                     <br>
+            
                         <label class="col-form-label" style="color: black;">Password:</label>
                         <input formControlName="Password" type="password" class="form-control">
-                    </div><br>
-                    <button mat-raised-button type="submit" class="btn btn-primary"  (click)="setLocal()">Sign In</button>
-                </form>
+              <br>
+      <button mat-raised-button type="submit" class="btn"  (click)="setLocal()">Sign In</button>
+                </form></div>
             </div>
         </div>
-    </div>
-</div>
+ 
