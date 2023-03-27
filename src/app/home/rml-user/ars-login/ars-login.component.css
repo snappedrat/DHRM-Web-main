@@ -34,7 +34,7 @@ img{
     backdrop-filter: blur(10px); /* Apply a blur filter to the entire container (including its contents) */
   }
 
-.example-right-align {
+.example-right-align { 
     text-align: right;
 }
 
@@ -199,3 +199,11 @@ input.example-right-align::-webkit-inner-spin-button {
     background: #3a0ca3;
     transition: background 0s;
    }
+   #inputid{
+    border-color: black;
+    border-radius:10px;
+}
+#labelid{
+    font-size: 14px;
+    font-weight: 700;
+}

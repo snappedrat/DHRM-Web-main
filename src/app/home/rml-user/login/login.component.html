@@ -4,16 +4,16 @@
             <span class="glyphicon glyphicon-home"></span> 
         </button> <div class="form-container">
      
-                <h1 class="text-center pt-3 text" style="color:black;">RML Login</h1>
+                <h1  style="color:black;">RML Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
                    
-                        <label class="col-form-label" style="color: black;">User name</label>
-                        <input formControlName="User_Name" type="text" class="form-control">
+                        <label id="labelid"  style="color: black;">User name</label>
+                        <input id="inputid" formControlName="User_Name" type="text" class="form-control">
 <!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
                      <br>
             
-                        <label class="col-form-label" style="color: black;">Password:</label>
-                        <input formControlName="Password" type="password" class="form-control">
+                        <label id="labelid"  style="color: black;">Password</label>
+                        <input id="inputid" formControlName="Password" type="password" class="form-control">
               <br>
               <button  type="submit" (click)="setLocal()">  SIGN IN
                 
