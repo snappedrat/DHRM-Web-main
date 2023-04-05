@@ -195,6 +195,7 @@ url2:any = environment.path2
   getLineName(form:any)
   {
     return this.http.post(this.url+'/getLineName',form)
+    return this.http.post('localhost:3000/getLineName',form)
   }
 
   login(User_Name: string, Password: string) 
