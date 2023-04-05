@@ -1,15 +1,15 @@
-<div class="container">
+
 <div class="bd">
-  <button  class="btn btn-primary" id="logout" routerLink="/first">
+<div class="container">
+<button   id="logout" routerLink="/first">
     <span class="glyphicon glyphicon-home"></span> 
   </button>
-    <div class="container pt-3">
-      <div class="row justify-content-sm-center pt-5">
-          <div class="table col-sm-6 shadow round pb-3">
-          <b>  <h1 class="heading text-center pt-3 text-secondary">Trainee New Application</h1></b>
+  <div class="form-container"> 
+    <div class="container">
+          <b>  <h1 >Trainee New Application</h1></b>
               <form [formGroup]="bankForms" >
-            <div class="form-group">  
-                <label for="company">Company Name</label>  
+           
+                <label id="labelid" for="company">Company Name</label>  
                 <select formControlName="company" class="form-control" (change) = "getplantcode($event)" >
                     <option value="">Choose</option>
                     <option *ngFor="let c of companycode; let a = index">{{a+1}}. {{c.company_name}} </option>
@@ -18,9 +18,8 @@
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   
                 </div>   
                 <br>
-            </div>  
-            <div class="form-group">  
-              <label for="plant">Plant Name</label>  
+         
+              <label id="labelid" for="plant">Plant Name</label>  
               <select [(ngModel)]="plantname"  formControlName="plant" class="form-control">
                   <option value="">Choose</option>
                 <option  *ngFor="let pl of plantcode">{{pl.plant_name}}</option>
@@ -29,9 +28,9 @@
                   <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   
               </div>   
               <br>
-          </div>  
-          <div class="form-group">  
-            <label for="mobileNumber">Mobile Number</label>  
+        
+          
+            <label id="labelid" for="mobileNumber">Mobile Number</label>  
             <input   
                 formControlName="mobileNumber"  
                 id="mobileNumber"   
@@ -48,22 +47,22 @@
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  
                 <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
             </div>  
-        </div>  
-        <div class="form-group">
-          <label class="col-form-label">Password:</label>
+       <br>
+       
+          <label id="labelid">Password</label>
           <input formControlName="pass" [type]="inputType" class="form-control" [value]="Tvalue" readonly>
-        </div>
-        <div class="form-group" style="margin-left:25px;">
+       <br>
+        <div id="labelid" style="margin-left:25px;">
           <input 
           
           (change)="updateInput($event)"
           type="checkbox" 
           class="form-check-input">Show Password
         </div>
-                </form>
-                <button (click)="sendFormData()" class="btn btn-primary" style = "float:right" (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Sign In</button>
-
+          
+                <button (click)="sendFormData()"  (click)="setCookie()" type="submit" [disabled]="!bankForms.valid">Submit</button>
+   </form>
           </div>
       </div>
-    </div>
-    </div></div>
+
+</div></div>
