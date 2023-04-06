@@ -166,7 +166,7 @@ exportexcel(): void
   var ws = XLSX.utils.json_to_sheet(this.dummy);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'master_company.xlsx');
+  XLSX.writeFile(wb, 'plant_master.xlsx');
 }
 
 reset()
