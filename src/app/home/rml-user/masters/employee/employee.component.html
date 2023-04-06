@@ -17,7 +17,7 @@
 
                     <div class="col">                            
                         <label>Designation: </label><br>
-                        <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i">{{i}}</option></select>
+                        <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i.slno">{{i.desig_name}}</option></select>
                     </div>
                     
                     <br>
@@ -40,7 +40,7 @@
 
                     <div class="col">
                         <label>Plant Name: </label><br>
-                <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of array" [ngValue]="i" >{{i}}</option></select>
+                <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of plantname" [ngValue]="i.plant_code" >{{i.plant_name}}</option></select>
                     </div>
 
                     
@@ -57,7 +57,7 @@
                     
                     <div class="col">                            
                         <label>Department: </label><br>
-                        <select (change)="getLineName($event)" formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [value]="i" [ngValue]="i">{{i}}</option></select>
+                        <select (change)="getLineName($event)" formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
                     </div>
 
                     
@@ -72,7 +72,7 @@
 
                                     <div class="col">                            
                                         <label>Line: </label><br>
-                                        <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                                        <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
                                     </div>
 
                                         <div class="col">

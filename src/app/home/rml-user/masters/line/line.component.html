@@ -12,7 +12,7 @@
                         <label>Plant Name: </label><br>
                         <select class="form-control" formControlName = "plant_name" (change)="getall($event)">
                             <option value="" >select an option</option>
-                            <option *ngFor= "let i of array" [ngValue] = "i" >{{i}}</option>
+                            <option *ngFor= "let i of plantname" [ngValue] = "i.plant_code" >{{i.plant_name}}</option>
                         </select>
                     </div>
               
@@ -20,7 +20,7 @@
                             <label>Department: </label><br>
                             <select (change)="get($event)" class="form-control" formControlName = "dept_name" >
                                 <option value="" >select an option</option>
-                                <option *ngFor= "let i of array2" [ngValue] = "i">{{i}}</option>
+                                <option *ngFor= "let i of dept" [ngValue] = "i.dept_slno">{{i.dept_name}}</option>
                             </select>
                         </div></div>
                         <br>

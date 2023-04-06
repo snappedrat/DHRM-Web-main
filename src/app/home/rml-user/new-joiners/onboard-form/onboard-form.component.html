@@ -27,7 +27,7 @@
             </div><br>
                     <div class="col">                            
                     <label>Department : </label>
-                    <select (change)="getLineName($event)" class="form-control" formControlName = "department"><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i">{{i}}</option></select>
+                    <select (change)="getLineName($event)" class="form-control" formControlName = "department"><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
                 </div>
             <div class="col">                            
                 <label>Active Status: </label>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col">                            
                     <label>Line </label>
-                    <select class="form-control" formControlName = "line"><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i">{{i}}</option></select>
+                    <select class="form-control" formControlName = "line"><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
                 </div>
                 <div class="col">
                     <label>Date of Leaving </label> <span *ngIf="readonly" style="color: red;"> *</span>
@@ -91,7 +91,7 @@
                         </div>   <br>
                         <div class="col-sm-4">                            
                             <label>Reporting To </label>
-                            <select class="form-control" formControlName = "reportingto"><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i">{{i}}</option></select>
+                            <select class="form-control" formControlName = "reportingto"><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i.empl_slno">{{i.emp_name}}</option></select>
                         </div></div><br>
                         <div class="row"> 
                             <div class="col-sm-4">

@@ -83,7 +83,7 @@ export class TransferFormComponent implements OnInit {
     {
       console.log(this.form.value)
 
-      this.form.controls['reportingto'].setValue(this.slno)
+      // this.form.controls['reportingto'].setValue(this.slno)
 
       this.service.reporting(this.form.value)
       .subscribe(
@@ -109,12 +109,11 @@ export class TransferFormComponent implements OnInit {
     getLineName(event:any)
     {
       var x = event.target.value.split(':')[0]-1
-      console.log(this.changedepartment[x].dept_slno)
       this.service.getLineName({dept_slno: this.changedepartment[x].dept_slno})
       .subscribe(
         {
           next:(response:any)=>{console.log(response);
-           this.changeline = response[0];
+           this.changeline = response[0]
             this.reportingto = response[1]
           }
       })
