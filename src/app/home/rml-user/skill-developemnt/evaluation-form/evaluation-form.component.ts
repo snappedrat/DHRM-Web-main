@@ -136,6 +136,7 @@ export class EvaluationFormComponent implements OnInit {
               // this.line = this.obj[3]
               this.process_trained = this.obj[4]
               this.form.controls['department'].setValue(response[0][0]?.dept_name)
+              this.form.controls['department'].disable()
 
               this.department = this.department_.map((a:any)=>a.dept_name)
               this.process_trained = this.process_trained.map((a:any)=>a.oprn_desc)
@@ -144,13 +145,15 @@ export class EvaluationFormComponent implements OnInit {
               this.form.controls['curr_line'].setValue(this.obj[0][0]?.line_code)
               this.form.controls['curr_skill_level'].setValue(this.obj[0][0]?.curr_skill)
               this.form.controls['line_name'].setValue(this.obj[0][0]?.line_name)
-
+              
               this.service.getLineName({dept_slno: this.obj[0][0]?.dept_slno})
               .subscribe(
                 {
                   next:(response:any)=>{console.log(response); this.line = response[0]
                     this.line = this.line.map((a:any)=>a.line_name)
                     this.form.controls['line'].setValue(response[0][0]?.line_name)
+                    this.form.controls['line'].disable()
+
                   }
                 }
               )              
@@ -194,6 +197,8 @@ export class EvaluationFormComponent implements OnInit {
       }
       submit()
       {
+        this.form.get('department').enable()
+        this.form.get('line').enable()
         if(this.active.snapshot.paramMap.get('nav')== '1')
         {
           this.form.controls['upload_file'].setValue(this.trainee_idno+'_'+'tnr_eval'+'.'+this.new)

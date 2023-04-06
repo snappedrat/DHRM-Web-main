@@ -3,42 +3,40 @@
   width: 400px;
   height: 680px;
   float: left;
-  font-size:2px;
+  font-size: 2px;
   border-color: black;
 }
-.card2 {
 
-  box-shadow: 0 14px 14px 0 rgba(0,0,0,0.4);
+.card2 {
+  box-shadow: 0 14px 14px 0 rgba(0, 0, 0, 0.4);
   width: 400px;
   height: 640px;
   float: left;
-  font-size:15px;
+  font-size: 15px;
 }
 
-.left{
+.left {
   text-align: right;
   float: right;
   padding-left: 0px;
 }
 
 .container {
-  font-size:15px;
+  font-size: 15px;
   padding-top: 100px;
   padding-left: 10%;
-
 }
+
 .container2 {
-  font-size:15px;
+  font-size: 15px;
   padding-top: 20px;
   padding-right: -100px;
   align-items: center;
-
-
-}
-.shift{
-  margin-left:100px;
 }
 
+.shift {
+  margin-left: 100px;
+}
 
 .center {
   display: block;
@@ -47,78 +45,86 @@
   width: 100%;
 }
 
-.spacing{
+.spacing {
   float: right;
   padding: 100px;
 }
 
-.left1{
-  text-align:right;
-  padding-right:0%
+.left1 {
+  text-align: right;
+  padding-right: 0%;
 }
 
-.font
-{
+.font {
   font-size: 15px;
 }
 
-textarea{
+textarea {
   resize: none;
   border-color: white;
   text-align: center;
 }
 
-.font2{
+.font2 {
   font-size: 15px;
   width: 50%;
 }
-.header{
+
+.header {
   text-align: center;
   font-size: 25px;
 }
-.img{
+
+.img {
   margin-left: 35%;
   height: 100px;
   width: 25%;
 }
-.img2{
-  /* margin-left: 35%; */
+
+.img2 {
   height: 70px;
   width: 40%;
 }
-.sign{
+
+.sign {
   margin-left: 65%;
   width: 70%;
-
 }
-.sign1{
-  margin-left:65%;
+
+.sign1 {
+  margin-left: 65%;
   font-size: large;
 }
-.company_addr{
-  text-align:center;
+
+.company_addr {
+  text-align: center;
   border-radius: 2px;
   border-color: white;
 }
-.home_addr{
+
+.home_addr {
   align-self: left;
-  text-align:left;
+  text-align: left;
   border-radius: 2px;
   border-color: white;
 }
-.space{
+
+.space {
   word-spacing: 20px;
 }
-.name{
+
+.name {
   text-align: center;
   font-size: 20px;
 }
-.aligncommand1{
+
+.aligncommand1 {
   line-height: 20px;
-   width: 200px; 
-   border: 1px ;
-   background-color: white;
+  width: 200px; 
+  border: 1px;
+  background-color: white;
 }
-.fs-text{
+
+.fs-text {
   font-size: 25px;
 }

@@ -39,7 +39,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DateRangeFilterPipe } from '../dateFilter.pipe';
 import { AuthGuard } from 'src/app/Auth.guard';
 import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
-import { FilterPipe } from '../filter.pipe';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({

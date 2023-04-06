@@ -75,8 +75,9 @@ export class DeptComponent implements OnInit {
     this.service.plantcodelist(company)
     .subscribe({
       next: (response) =>{ console.log(response); this.plantname = response;
-        for(var o in this.plantname)
-        this.array.push(this.plantname[o].plant_name) },
+        // for(var o in this.plantname)
+        // this.array.push(this.plantname[o].plant_name)
+       },
       error: (error) => console.log(error),
     });
   }
@@ -92,6 +93,8 @@ export class DeptComponent implements OnInit {
 
   get_slno(event:any)
   {
+    console.log(this.form.value);
+    
     console.log(event.target.value)
     this.index = event.target.value.split(':')[0]-1
   }
@@ -127,16 +130,20 @@ export class DeptComponent implements OnInit {
 
   edit(a:any, slno:any)
   {
-    console.log(this.array)
     this.temp_a = a
     this.editing_flag = true
     this.form.controls['dept_slno'].setValue(slno)
-    this.form.controls['plant_name'].setValue(this.department[a].plant_name)
+    // var plant = {
+    //   plant_code : this.department[a].plant_code,
+    //   plant_name : this.department[a].plant_name,
+
+    // }
+    this.form.controls['plant_name'].setValue(this.department[a].plant_code)
     this.form.controls['dept_name'].setValue(this.department[a].dept_name)
     this.form.controls['dept_group'].setValue(this.department[a].dept_group)
     this.form.controls['sap_code'].setValue(this.department[a].sap_code)
     this.form.get('plant_name').disable()
-
+    console.log(this.form.value)  
   }
 
   editSave()

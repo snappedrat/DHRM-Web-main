@@ -13,13 +13,13 @@ export class HeaderInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = sessionStorage.getItem('profains_auth');
+    const token = sessionStorage.getItem('token');
     
     // If a token is present, add it to the Authorization header
     if (token) {
       request = request.clone({
         setHeaders: {
-          Authorization:token
+          authorization:token
         }
       });
     }

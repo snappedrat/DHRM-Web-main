@@ -12,12 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatExpansionModule} from "@angular/material/expansion";
-import { HttpClientModule} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './Auth.guard';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
+import { HeaderInterceptor } from './header.interceptor';
+
+
 
 
 
@@ -44,8 +47,15 @@ import { SelectDropDownModule } from 'ngx-select-dropdown'
     FormsModule,
     ReactiveFormsModule,
     SelectDropDownModule,
+
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA,
