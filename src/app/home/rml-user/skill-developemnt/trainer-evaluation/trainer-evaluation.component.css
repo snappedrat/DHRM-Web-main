@@ -78,3 +78,10 @@ tbody
   background-color: darkblue;
   line-height: 20px; width: 400px; border: 1px ;
 }
+.input1
+{
+  border-color: #c5c5c5;
+  width: 255px;
+  height: 33.5px;
+  font-size: 16px;
+}

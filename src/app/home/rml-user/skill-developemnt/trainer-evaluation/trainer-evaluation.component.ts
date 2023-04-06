@@ -4,6 +4,7 @@ import { UntypedFormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/home/api.service';
+import { FilterPipe } from '../../filter.pipe';
 
 @Component({
   selector: 'app-trainer-evaluation',
@@ -18,6 +19,7 @@ export class TrainerEvaluationComponent implements OnInit {
   filterinfo:any = []
   id:any
   form:any
+  searchText:any
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 

@@ -100,6 +100,7 @@ export class MonthlyPlanningComponent implements OnInit {
   shows: boolean;
   hides: boolean;
   excelfile: any;
+  disabled: boolean = false;
 
 
   constructor(private fb : UntypedFormBuilder, private service : ApiService, private router: Router, private route: ActivatedRoute)
@@ -220,6 +221,7 @@ exportexcel(): void
 
   save()
   {
+    this.disabled = true
     this.excelfile[0].plant_code = sessionStorage.getItem('plantcode')
     this.excelfile[0].plant_year = this.f.year
     this.excelfile[0].plant_month = this.f.month
