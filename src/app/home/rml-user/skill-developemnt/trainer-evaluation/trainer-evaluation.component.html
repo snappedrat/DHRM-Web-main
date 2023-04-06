@@ -1,80 +1,88 @@
-<div class = "container">
-            <div  style = "margin-top: 40px;">   
+
+
+
+  <div class = "container">
+    <div  style = "margin-top: 40px;">   
 <h1><b>HR Evaluation</b></h1>
-              <form [formGroup]="form" (ngSubmit)="filter()">
-              <div class = "row">
-              <div class = "col-sm-3 boxx">
-              <label for="Status" id="center"> Status: </label>
+      <form [formGroup]="form" (ngSubmit)="filter()">
+      <div class = "row">
+      <div class = "boxx">
+      <!-- <label for="Status" id="center"> Status: </label> -->
+        <mat-select name="Status" id="Status" class="form-control" formControlName = "status" >
+            <mat-option value="0-60">0 to 60 days</mat-option>
+            <mat-option value="61-120">61 to 120 days</mat-option>
+            <mat-option value="121-180">121 to 180 days</mat-option>
+            <mat-option value="181-270">181 to 270 days</mat-option>
+          </mat-select> 
+      </div>
+      <div class = " boxx">
+          <mat-select name="Status" id="Status" class="form-control" formControlName = "filter" >
+              <mat-option value="PENDING">PENDING</mat-option>
+              <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
+              <mat-option value="APPROVED">APPROVED</mat-option>
 
-                <br>
-                <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (ngModelChange)="filter()" >
-                    <mat-option value="0-60">0 to 60 days</mat-option>
-                    <mat-option value="61-120">61 to 120 days</mat-option>
-                    <mat-option value="121-180">121 to 180 days</mat-option>
-                    <mat-option value="181-270">181 to 270 days</mat-option>
-                  </mat-select> 
-              </div>
-              <div class = "col-sm-3 boxx">
-                  <br>
-                  <mat-select name="Status" id="Status" class="form-control" formControlName = "filter" (ngModelChange)="filter()" >
-                      <mat-option value="PENDING">PENDING</mat-option>
-                      <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
-                      <mat-option value="APPROVED">APPROVED</mat-option>
-
-                    </mat-select> 
-                </div>
-            </div>
-          </form>
-            <div class="row">
-              <div class = "col-sm-3 boxx">
-                <br>
-                <label for="text">Name:</label>
-                  <input name="text" [(ngModel)]="searchText" class="input1" type="text">
-              </div>
-            </div>
-              <br><br>
-                <div class = "table-wrapper">
-                <table class="table table-bordered table-striped table-hover">
-                  <table id="table">
-                      <thead>
-                      <tr>
-                          <th div class="aligncommand">Date</th>
-                          <th div class="aligncommand">ID No</th>
-                          <th div class="aligncommand">Name</th>
-                          <th div class="aligncommand">Mobile No</th>
-                          <th div class="aligncommand">line Name</th>
-                          <th div class="aligncommand">Dept Name</th>
-                          <th div class="aligncommand">Reporting To</th>
-                          <th div class="aligncommand">Aging</th>
-                          <th div class="aligncommand">Evaluate</th>
-
-                          </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let i of filterinfo | filter : searchText">
-                                <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
-                                <td>{{i.trainee_idno}}</td>
-                                <td>{{ i.fullname }}</td>
-                                <td>{{ i.mobile_no1 }}</td>
-                                <td>{{ i.line_name }}</td>
-                                <td>{{ i.dept_name }}</td>
-                                <td>{{ i.Emp_Name }}</td>
-                                <td>{{ i.diff }}</td>
-                                <td>
-                                    <div>
-                                    <button *ngIf="this.form.get('filter').value == 'PENDING' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 1]" >
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button *ngIf="this.form.get('filter').value == 'APPROVED' || this.form.get('filter').value == 'PENDING_APPROVAL' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 3]" >
-                                      <mat-icon>edit</mat-icon>
-                                  </button>
-
-                                </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                        </table>
-                      </table>
-                </div>
-            </div>
+            </mat-select>  
         </div>
+        <div class="col-sm-3" style="display: flex; align-items:center ">
+          <button mat-raised-button color="primary" (click)="filter()" >Search</button>
+
+        </div>
+      </div>
+  </form>
+    <div class="row">
+      <div class = "col-sm-3 boxx">
+        <br>
+        <label for="text">Name:</label><br>
+        <input class="input" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
+          
+      </div>
+    </div> 
+
+      <br><br><app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
+        <div class = "table-wrapper">
+        <table class="table table-bordered table-striped table-hover">
+          <table id="table">
+              <thead>
+              <tr>
+                  <th div class="aligncommand">Date</th>
+                  <th div class="aligncommand">ID No</th>
+                  <th div class="aligncommand">Name</th>
+                  <th div class="aligncommand">Mobile No</th>
+                  <th div class="aligncommand">line Name</th>
+                  <th div class="aligncommand">Dept Name</th>
+                  <th div class="aligncommand">Reporting To</th>
+                  <th div class="aligncommand">Aging</th>
+                  <th div class="aligncommand">Evaluate</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let i of filterinfo | filter : searchText">
+                        <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{i.trainee_idno}}</td>
+                        <td>{{ i.fullname }}</td>
+                        <td>{{ i.mobile_no1 }}</td>
+                        <td>{{ i.line_name }}</td>
+                        <td>{{ i.dept_name }}</td>
+                        <td>{{ i.Emp_Name }}</td>
+                        <td>{{ i.diff }}</td>
+                        <td>
+                            <div>
+                            <button *ngIf="this.form.get('filter').value == 'PENDING' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 1]" >
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button *ngIf="this.form.get('filter').value == 'APPROVED' || this.form.get('filter').value == 'PENDING_APPROVAL' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 3]" >
+                              <mat-icon>edit</mat-icon>
+                          </button>
+
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+              </table>
+        </div></ng-template>
+    </div>
+</div>
+

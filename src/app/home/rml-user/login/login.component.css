@@ -13,7 +13,7 @@ img{
     background-position:0 0;
     align-items: center;
     justify-content: center;
-    z-index: -1;
+
 }
 
 .example-container .mat-form-field + .mat-form-field {
