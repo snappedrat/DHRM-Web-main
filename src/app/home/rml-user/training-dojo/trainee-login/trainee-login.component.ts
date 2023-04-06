@@ -63,8 +63,8 @@ TraineeLogin()
       if(this.message.status == 'success')
       {
         sessionStorage.setItem('user', 'test')
-        sessionStorage.setItem('user_token', this.message.token)
-        localStorage.setItem('user_token', this.message.token)
+        sessionStorage.setItem('token', this.message.token)
+        localStorage.setItem('token', this.message.token)
         this.router.navigate(['/trainee-test', username])
       }
       else if(this.message.status == 'wrong_user')

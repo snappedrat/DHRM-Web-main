@@ -75,7 +75,7 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    var a:any = sessionStorage.getItem('user_token')
+    var a:any = sessionStorage.getItem('token')
     var x = atob(a.split('.')[1])
     this.x = JSON.parse(x)
 
