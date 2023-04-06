@@ -39,7 +39,7 @@ export class OnboardComponent implements OnInit {
   ]
   id:any
   form:any
-
+  searchText:any
   page:any = 1
   pageSize:any = 50
   data:any

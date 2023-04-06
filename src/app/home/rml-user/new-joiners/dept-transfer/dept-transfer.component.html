@@ -1,14 +1,24 @@
 <div class = "container">
     <div  style = "margin-top: 40px;">
+    <div>
+        <b><p>Date : </p></b>
+    </div>
     <div class="row">
-        <div class = "col-sm-2">
-            <input type="date" [(ngModel)]="from" (ngModelChange)="call($event)">
+        <div class = "col-sm-3">
+            <input  class="input1" type="date" [(ngModel)]="from" (ngModelChange)="call($event)">
           </div>
-          <div class = "col-sm-2">
-            <input type="date"  [(ngModel)]="to" (ngModelchange)="call2($event)">
+          <div class = "col-sm-3">
+            <input  class="input1" type="date"  [(ngModel)]="to" (ngModelchange)="call2($event)">
           </div>
     </div>
       <br><br>
+    <b><p>Name : </p></b>
+    <div class="row">
+        <div class="col-sm-3">
+            <input type="text" class="input1" [(ngModel)]="searchText">
+        </div>
+    </div>
+    <br><br>
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
@@ -66,7 +76,7 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' ">
+                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' | filter:searchText ">
                         <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>

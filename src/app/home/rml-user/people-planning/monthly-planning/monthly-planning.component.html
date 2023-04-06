@@ -56,7 +56,7 @@
     <input #fileInput (click)="fileInput.value = null" value="" (change)="fileread($event)" type="file">
 </div>
 <div *ngIf="shows" class="px-5 py-5">
-    <button mat-raised-button color="primary" (click)="save()">SAVE</button>
+    <button [disabled]="disabled" mat-raised-button color="primary" (click)="save()">SAVE</button>
 </div>
 
 

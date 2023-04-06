@@ -41,6 +41,7 @@ export class DeptTransferComponent implements OnInit {
   collectionSize:any = 0
   from:any = '2023-01-01'
   to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
+  searchText:any
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
 

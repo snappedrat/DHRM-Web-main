@@ -322,7 +322,7 @@ export class OnboardFormComponent implements OnInit {
       const file = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       
       var formData = new FormData()
-      formData.append("file", file, this.apln_slno+'_filedrop.csv' )
+      formData.append("file", file, 'CR_'+this.apln_slno+'_'+this.down[0].doj+'.csv')
 
       this.service.filedrop(formData)
       .subscribe

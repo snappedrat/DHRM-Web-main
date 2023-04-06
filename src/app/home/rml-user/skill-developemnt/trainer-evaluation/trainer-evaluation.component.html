@@ -5,6 +5,7 @@
               <div class = "row">
               <div class = "col-sm-3 boxx">
               <label for="Status" id="center"> Status: </label>
+
                 <br>
                 <mat-select name="Status" id="Status" class="form-control" formControlName = "status" (ngModelChange)="filter()" >
                     <mat-option value="0-60">0 to 60 days</mat-option>
@@ -22,6 +23,14 @@
 
                     </mat-select> 
                 </div>
+            </div>
+          </form>
+            <div class="row">
+              <div class = "col-sm-3 boxx">
+                <br>
+                <label for="text">Name:</label>
+                  <input name="text" [(ngModel)]="searchText" class="input1" type="text">
+              </div>
             </div>
               <br><br>
                 <div class = "table-wrapper">
@@ -42,7 +51,7 @@
                           </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let i of filterinfo">
+                            <tr *ngFor="let i of filterinfo | filter : searchText">
                                 <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                                 <td>{{i.trainee_idno}}</td>
                                 <td>{{ i.fullname }}</td>
@@ -67,6 +76,5 @@
                         </table>
                       </table>
                 </div>
-                </form>
             </div>
         </div>
