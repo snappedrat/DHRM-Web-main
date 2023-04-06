@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import { FilterPipe } from './filter.pipe';
+import { LoadModule } from 'src/app/loader/loader.module';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { FilterPipe } from './filter.pipe';
     SupervisorEvaluationComponent,
     EvaluatonDueComponent,
     EvaluationFormComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     CommonModule,
@@ -48,7 +49,7 @@ import { FilterPipe } from './filter.pipe';
     MatStepperModule,
     MatIconModule,
     FormsModule,
-
+    LoadModule,
   ]
 })
 export class SkillDevelopemntModule { }
