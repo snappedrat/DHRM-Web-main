@@ -23,6 +23,8 @@
     </form>
       <button class = "btn btn-primary btn-lg" (click)="filter()" >filter</button>
       <br><br>
+      <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
@@ -99,6 +101,6 @@
                     </tbody>
                 </table>
               </table>
-        </div>
+        </div></ng-template>
     </div>
 </div>

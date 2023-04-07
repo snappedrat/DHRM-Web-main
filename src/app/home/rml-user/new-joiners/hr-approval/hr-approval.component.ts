@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { DateRangeFilterPipe } from '../../dateFilter.pipe';
 import { DatePipe } from '@angular/common';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 @Component({
   selector: 'app-hr-approval',
@@ -22,7 +23,7 @@ export class HrApprovalComponent implements OnInit {
   
     colname:string =  'create_dt'
   
-    constructor(private fb : UntypedFormBuilder, private http: HttpClient) {
+    constructor(private fb : UntypedFormBuilder, private http: HttpClient,public loader:LoaderserviceService) {
       this.form = this.fb.group({
         status:new UntypedFormControl(' '),
         plantcode: [sessionStorage.getItem('plantcode')]

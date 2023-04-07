@@ -13,21 +13,22 @@
         </select>
         </form>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class = "col-md-2 form-control">
+    <div class = "col-lg-2">
         <input type="date" [(ngModel)]="from" (change)="call($event)">
       </div>
-      <div class = "col-md-2 form-control">
+      <div class = "col-lg-2 ">
     <input type="date"  [(ngModel)]="to" (change)="call2($event)">
       </div>
 </div><br><br>
 
 
-<b><label for="text">Name:</label></b>
 <div class="row">
     <div class = "col-sm-3">
-        <input class="input1" name="text" [(ngModel)]="searchText" class="input1" type="text">
-    </div>
-  </div>
+        <label for="text">Name:</label><br>
+        <input class="input" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
+          
+      </div>    </div>
+
 
 
 <div class="px-5">
@@ -38,6 +39,8 @@
 
     <div  style = "margin-top: 40px;">   
       <br><br>
+      <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
@@ -151,7 +154,7 @@
                     </tbody>
                 </table>
               </table>
-        </div>
+        </div></ng-template>
     </div>
 
     <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">

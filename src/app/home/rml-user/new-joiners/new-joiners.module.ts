@@ -40,6 +40,7 @@ import { DateRangeFilterPipe } from '../dateFilter.pipe';
 import { AuthGuard } from 'src/app/Auth.guard';
 import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
 import { FilterPipe } from './filter.pipe';
+import { LoadModule } from 'src/app/loader/loader.module';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { FilterPipe } from './filter.pipe';
         TransferFormComponent,
         OnboardFormComponent,
         PermIdcardComponent,
-        FilterPipe
+        FilterPipe,
+        
     ],
       imports: [
           CommonModule,
@@ -86,7 +88,8 @@ import { FilterPipe } from './filter.pipe';
           MatIconModule,
           NgxMatTimepickerModule,
           FormsModule,
-          NgbPaginationModule
+          NgbPaginationModule,
+          LoadModule
 
       ],
       providers:

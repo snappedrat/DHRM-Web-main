@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 const material = [
   MatSidenav,
@@ -39,7 +40,7 @@ export class BankComponent implements OnInit {
   ]
   editing_flag: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader:LoaderserviceService) {
     this.form = this.fb.group({
       Slno:[''],
       bank_name :[''],

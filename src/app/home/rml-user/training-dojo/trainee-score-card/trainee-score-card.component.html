@@ -3,6 +3,8 @@
                 <div class="header"><p><b>Trainee ID: {{idno}}</b></p></div>
                 <div style='overflow-x:auto'>
                         <br><br>
+                        <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
                         <div class = "table-wrapper">
                         <table class="table table-bordered table-striped table-hover">
                           <table id="table">
@@ -90,4 +92,4 @@
                 
                 
                 
-                </div></div></div>
+                </div></ng-template></div></div>

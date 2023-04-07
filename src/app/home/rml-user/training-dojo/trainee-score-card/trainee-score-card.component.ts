@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 @Component({
   selector: 'app-trainee-score-card',
@@ -11,7 +12,7 @@ export class TraineeScoreCardComponent implements OnInit {
 
   idno :any
   data:any 
-  constructor(private active: ActivatedRoute, private service : ApiService) { }
+  constructor(private active: ActivatedRoute, private service : ApiService,public loader:LoaderserviceService) { }
 
   ngOnInit(): void {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
 import { ApiService } from 'src/app/home/api.service';
-
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 @Component({
   selector: 'app-test-result-summary',
   templateUrl: './test-result-summary.component.html',
@@ -29,7 +29,7 @@ data: any
 
 form:any
 
-  constructor(private dateAdapter: DateAdapter<Date>, private service : ApiService) {
+  constructor(private dateAdapter: DateAdapter<Date>, private service : ApiService,public loader:LoaderserviceService) {
     this.dateAdapter.setLocale('en-GB');
    }
 

@@ -71,11 +71,14 @@
   z-index: 1100 !important;
   
   }
-  .title{
+  #title1{
     font-size: 20px;
-    font-style: normal;
+  
     color:rgb(0, 0, 139);
+    font-weight:bolder;
     text-align:center;
+    text-decoration: solid;
+    font-weight:900;
   }
   .text-center{
     width: 500px;

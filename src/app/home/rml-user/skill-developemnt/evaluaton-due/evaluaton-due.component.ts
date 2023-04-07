@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Route, Router, RouteReuseStrategy, RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 @Component({
   selector: 'app-evaluaton-due',
   templateUrl: './evaluaton-due.component.html',
@@ -16,7 +17,7 @@ export class EvaluatonDueComponent implements OnInit {
   form:any
   tick :any = '✔️'
   ex:any
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router,public loader:LoaderserviceService) {
 
     // this.router.routeReuseStrategy.shouldReuseRoute = function () {
     //   return false;

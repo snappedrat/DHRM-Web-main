@@ -2,6 +2,8 @@
     <div  style = "margin-top: 40px;">   
         <h1><b>Evaluation Due Summary</b></h1>
       <br><br>
+      <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
         <div class = "table-wrapper">
           <table class="table table-bordered table-striped table-hover">
             <table id="table">
@@ -40,6 +42,6 @@
                       </tbody>
                   </table>
                 </table>
-          </div>
+          </div></ng-template>
       </div>
   </div>

@@ -30,7 +30,7 @@
     <div class="container">
   <br>
   <div>
-    <h1 class="title" >Designation Master</h1>
+    <h1 id = "title1" >Designation Master</h1>
     <hr style="border-block-color: orange" />
   </div>
   <div class="button">
@@ -42,6 +42,8 @@
         <mat-icon>download</mat-icon>
     </button></div>
   <br><br><br>
+  <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
   <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
@@ -90,5 +92,5 @@
     </table>
   </div>
   
-  
+      </ng-template>
     </div>

@@ -31,6 +31,7 @@ import { TraineeAnswerComponent } from './trainee-answer/trainee-answer.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { LoadModule } from 'src/app/loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatToolbarModule,
     NgbModule,
     SelectDropDownModule,
+    LoadModule,
   MatAutocompleteModule  ],
 
 })

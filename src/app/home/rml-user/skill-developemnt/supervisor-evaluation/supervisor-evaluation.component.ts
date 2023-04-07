@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Route, Router, RouteReuseStrategy, RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
+
 @Component({
   selector: 'app-supervisor-evaluation',
   templateUrl: './supervisor-evaluation.component.html',
@@ -16,7 +18,7 @@ export class SupervisorEvaluationComponent implements OnInit {
   form:any
   filterinfos: any;
 
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router,public loader:LoaderserviceService) {
 
 
     this.form = this.fb.group({
