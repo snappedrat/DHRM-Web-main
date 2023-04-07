@@ -76,7 +76,8 @@ export class DesignationComponent implements OnInit {
       slno:[''],
       desig_name :[''],
       plant_name : [''],
-      names:['']
+      names:[''],
+      plant_code: ['']
      
     })
    }
@@ -104,15 +105,16 @@ getplantcode(){
   this.service.plantcodelist(company)
   .subscribe({
     next: (response) =>{ console.log(response); this.plantname = response;
-      for(var o in this.plantname)
-      this.array.push(this.plantname[o].plant_name) },
+     },
     error: (error) => console.log(error),
   });
 }
 
 get_slno(event:any)
 {
-  this.index = event.target.value.split(':')[0]-1
+  // this.index = event.target.value.split(':')[0]-1
+  console.log(this.form.value);
+  
 }
 
    open(content:any)
@@ -136,28 +138,22 @@ edit(a:any)
     this.editing_flag = true
     this.form.controls['slno'].setValue(this.designation[a].slno)
     this.form.controls['desig_name'].setValue(this.designation[a].desig_name)
-
-      this.form.controls['names'].setValue(this.designation[a]?.plant_name)
-      this.form.controls['plant_name'].setValue(this.designation[a]?.plant_name)
-      this.form.get('plant_name').disable()
-
-      for(var o in this.plantname)
-        this.array.push(this.plantname[o].plant_name)
-
+    this.form.controls['names'].setValue(this.designation[a]?.plant_name)
+    this.form.controls['plant_name'].setValue(this.designation[a]?.plant_code)
+    this.form.get('plant_name').disable()
   }
   save()
   {
-    var x = this.form.get('plant_name').value
-    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
-
     console.log(this.form.value)
     this.service.adddesignation(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
-        this.form.get('plant_name').setValue(x)
+
+        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
+        this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
+        this.form.get('plant_name').setValue(this.plantname[index].plant_name)        
         this.designation.push(this.form.value)
         this.form.reset()
-        this.index = -1
       }
     })    
 
@@ -165,20 +161,16 @@ edit(a:any)
   editSave()
   {
     this.form.get('plant_name').enable()
-    // if(this.index == -1)
-    // this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_code)
-    // else
-    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
 
     this.service.updatedesignation(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
       {
-        // if(this.index == -1)
-        // this.form.controls['plant_name'].setValue(this.designation[this.temp_a].plant_name)
-        // else
-        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
+        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
+        this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
+        this.form.get('plant_name').setValue(this.plantname[index].plant_name)  
+
         this.designation[this.temp_a] = this.form.value
       }
       }

@@ -82,10 +82,10 @@
                     <td>{{i.bank_code}}</td>
   
                     <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
+                        <button mat-mini-fab color = 'accent' (click)= "edit(i.Slno, a)" (click)="opentoedit(content)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a)" >
+                        <button mat-mini-fab color="warn" type="button" (click)="delete(i.Slno, a)" >
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

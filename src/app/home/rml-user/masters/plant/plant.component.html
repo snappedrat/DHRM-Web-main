@@ -11,7 +11,7 @@
               <label>Company code: </label><br>
               <select class="form-control" formControlName = "company_code"  (change)="getValue($event)" >
                 <option value="">--select--</option>
-                <option *ngFor="let i of company; let a = index" [ngValue]="i">{{a+1}}. {{i}}</option>
+                <option *ngFor="let i of companylist; let a = index" [ngValue]="i.company_code">{{i.company_name}}</option>
               </select>
             </div>
             <div class="col">

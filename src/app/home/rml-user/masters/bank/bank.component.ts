@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
+import { log } from 'console';
 
 const material = [
   MatSidenav,
@@ -38,9 +39,11 @@ export class BankComponent implements OnInit {
 
   ]
   editing_flag: any;
+  temp_a: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
     this.form = this.fb.group({
+      sno : [''],
       Slno:[''],
       bank_name :[''],
       bank_code: [''],
@@ -65,7 +68,9 @@ export class BankComponent implements OnInit {
 
   save()
   {
-    this.form.controls['Slno'].setValue(this.dummy.length+1)
+    this.form.controls['sno'].setValue(this.dummy.length+1)
+    console.log(this.form.value);
+    
     this.service.addbank(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
@@ -89,28 +94,33 @@ export class BankComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
-  edit(a:any)
+  edit(slno:any, a:any)
   {
+    this.temp_a = a
     this.editing_flag = true
-    this.form.controls['Slno'].setValue(a)
+    this.form.controls['Slno'].setValue(this.dummy[a].Slno)
     this.form.controls['bank_name'].setValue(this.dummy[a].bank_name)
     this.form.controls['bank_code'].setValue(this.dummy[a].bank_code)
+    console.log(this.form.value);
+    
   }
 
   editSave()
   {
+    console.log(this.form.value);
+    
     this.service.updatebank(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
-        this.dummy[this.form.controls['Slno'].value] = this.form.value
+        this.dummy[this.temp_a] = this.form.value
       }
     })
   }
 /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
+delete(slno:any, a:any)
 {
-  this.service.deletebank(this.dummy[a])
+  this.service.deletebank({Slno: slno})
   .subscribe({
     next: (response:any) =>{console.log(response); 
     if(response.message == 'success')

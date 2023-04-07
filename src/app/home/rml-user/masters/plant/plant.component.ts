@@ -66,7 +66,7 @@ export class PlantComponent implements OnInit {
       next: (response)=>{
         console.log(response)
         this.companylist = response;
-        this.company = this.companylist.map((a:any) => a.company_name)
+        // this.company = this.companylist.map((a:any) => a.company_name)
       }
     })
   }
@@ -75,13 +75,14 @@ export class PlantComponent implements OnInit {
   {
     this.form.reset();
     this.editing_flag = false
+    this.form.get('company_code').enable()
     console.log("opening")
     this.modalService.open(content, {centered: true})
   }
 
   save()
   {
-    this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
+    // this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
     this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_sign.'+this.new)
     console.log(this.form.value)
 
@@ -102,8 +103,7 @@ export class PlantComponent implements OnInit {
   }
   getValue(event:any)
   {
-    var inx = event.target.value.split(':')[0]
-    this.inx = inx - 1
+    console.log(this.form.value);
   }
 /////////////////////////////////////////////////////edit functions
   opentoedit(content:any)
@@ -117,10 +117,7 @@ export class PlantComponent implements OnInit {
     this.editing_flag = true
     this.form.get('company_code').disable()
     this.form.controls['sno'].setValue(a)
-
-    let index = this.companylist.findIndex((x:any)=> x.company_code === this.dummy[a].company_code);
-    
-    this.form.controls['company_code'].setValue(this.companylist[index]?.company_name)    
+    this.form.controls['company_code'].setValue(this.dummy[a]?.company_code)    
     this.form.controls['plant_code'].setValue(this.dummy[a].plant_code)
     this.form.controls['plant_name'].setValue(this.dummy[a].plant_name)
     this.form.controls['pl'].setValue(this.dummy[a].pl)
@@ -128,6 +125,7 @@ export class PlantComponent implements OnInit {
     this.form.controls['locatn'].setValue(this.dummy[a].locatn)
     this.form.controls['personal_area'].setValue(this.dummy[a].personal_area)
     this.form.controls['payroll_area'].setValue(this.dummy[a].payroll_area)
+    console.log(this.form.value);
 
   }
 

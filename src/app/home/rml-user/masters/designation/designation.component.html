@@ -10,7 +10,7 @@
                 <div class="row">
                         <div class="col">                            
                             <label>Plant Name: </label><br>
-                            <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name" ><option value="">choose an option</option><option  *ngFor= "let i of array" [ngValue]="i">{{i}}</option></select>
+                            <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name" ><option value="">choose an option</option><option  *ngFor= "let i of plantname" [ngValue]="i.plant_code">{{i.plant_name}}</option></select>
                         </div>
 
                         <div class="col">

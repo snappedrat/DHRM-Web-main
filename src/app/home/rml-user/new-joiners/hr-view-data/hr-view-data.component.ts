@@ -89,13 +89,13 @@ export class HrViewDataComponent implements OnInit {
       this.url_formh2_file = this.url+this.basic[0].other_files13
       this.url_natx_file = this.url+this.basic[0].other_files14
 
-      this.urlforResume = this.url+this.basic[0].other_files1
-      this.urlforMark = this.url+this.basic[0].other_files2
-      this.urlforTc = this.url+this.basic[0].other_files3
-      this.urlforaadhar = this.url+this.basic[0].other_files4 
-      this.urlforbankpass = this.url+this.basic[0].other_files5
-      this.urlforphoto = this.url+this.basic[0].other_files6
-      this.urlforSign = this.url+this.basic[0].other_files7
+      this.urlforResume = this.url+'/'+this.basic[0].other_files1
+      this.urlforMark = this.url+'/'+this.basic[0].other_files2
+      this.urlforTc = this.url+'/'+this.basic[0].other_files3
+      this.urlforaadhar = this.url+'/'+this.basic[0].other_files4 
+      this.urlforbankpass = this.url+'/'+this.basic[0].other_files5
+      this.urlforphoto = this.url+'/'+this.basic[0].other_files6
+      this.urlforSign = this.url+'/'+this.basic[0].other_files7
 
 
       console.log(this.urlforResume)
