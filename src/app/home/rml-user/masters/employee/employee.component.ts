@@ -100,6 +100,10 @@ export class EmployeeComponent implements OnInit {
       Is_ReportingAuth:[''],
       Is_TOU:[''],
       access_master:[''],
+      plant_code: [''],
+      Department: [''],
+      Designation : [''],
+      line_code: [''],
 
     })
    }
@@ -129,9 +133,6 @@ getplantcode(){
   .subscribe({
     next: (response) =>
     { console.log(response); this.plantname = response;
-
-      for(var o in this.plantname)
-      this.array.push(this.plantname[o].plant_name) 
     },
     error: (error) => console.log(error),
   });
@@ -148,23 +149,18 @@ getall(event:any)
   this.form.get('Line_Name').setValue('')
   this.form.get('desig_name').setValue('')
 
-  var plantcode = {plantcode: this.plantname[event.target.value.split(':')[0]-1].plant_code}
+  var plantcode = {plantcode: event.target.value.split(' ')[1]}
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
-        this.desig= this.all_details[0]
-        this.dept_= this.all_details[1]
-        // this.line= this.all_details[2]
-
-        this.desig = this.desig.map((a:any)=>a.desig_name)
-        this.dept= this.dept_.map((a:any)=>a.dept_name)
-        // this.line = this.line.map((a:any)=>a.line_name)
+        this.desig = this.all_details[0]
+        this.dept = this.all_details[1]
       },
       error: (error) => console.log(error),
     });
 }
 
-   open(content:any)
+open(content:any)
   {
     this.form.reset()
     this.form.controls['plant_name'].enable()
@@ -193,29 +189,24 @@ getall(event:any)
 edit(a:any)
   {
     this.temp_a = a
+    console.log(this.employee[a]);
+    
 
-    this.desig_.splice(0, this.desig_.length);
-    this.dept_.splice(0, this.dept_.length);
-    this.line_.splice(0, this.line_.length);
     var plantcode = {plantcode: this.employee[a].plant_code}
     console.log(plantcode)
+
     this.service.line_dept_design(plantcode)
     .subscribe({
       next: (response) =>{ console.log(response); this.all_details = response;
-        this.desig= this.all_details[0]
-        this.dept_= this.all_details[1]
-        this.desig = this.desig.map((a:any)=>a.desig_name)
-        this.dept= this.dept_.map((a:any)=>a.dept_name)
-
-        console.log("dept", this.employee[a].Department);
-        
+        this.desig = this.all_details[0]
+        this.dept = this.all_details[1]     
 
     this.service.getLineName({dept_slno: this.employee[a].Department})
         .subscribe(
           {
             next: (response:any)=>{console.log("line", response)
-             this.line_ = response[0]
-              this.line = this.line_.map((a:any)=>a.line_name)}
+             this.line = response[0]
+            }
           }
         )
       },
@@ -225,13 +216,13 @@ edit(a:any)
     this.editing_flag = true
     this.form.controls['Emp_Name'].setValue(this.employee[a].Emp_Name)
     this.form.controls['gen_id'].setValue(this.employee[a].gen_id)
-    this.form.controls['plant_name'].setValue(this.employee[a].plant_name)
+    this.form.controls['plant_name'].setValue(this.employee[a].plant_code)
     this.form.controls['plant_name'].disable()
     this.form.controls['gen_id'].disable()
 
-    this.form.controls['dept_name'].setValue(this.employee[a].dept_name)
-    this.form.controls['desig_name'].setValue(this.employee[a].desig_name)
-    this.form.controls['Line_Name'].setValue(this.employee[a].Line_Name)
+    this.form.controls['dept_name'].setValue(Number(this.employee[a].Department))
+    this.form.controls['desig_name'].setValue(Number(this.employee[a].Designation))
+    this.form.controls['Line_Name'].setValue(Number(this.employee[a].line_code))
 
     this.form.controls['Mail_Id'].setValue(this.employee[a].Mail_Id)
     this.form.controls['Mobile_No'].setValue(this.employee[a].Mobile_No)
@@ -247,10 +238,12 @@ edit(a:any)
     this.form.controls['Is_TOU'].setValue(this.employee[a].Is_TOU)
     this.form.controls['access_master'].setValue(this.employee[a].access_master)
   }
+
+
   save()
   {
+    console.log(this.form.value);
     
-
     this.service.addemployee(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
@@ -260,14 +253,22 @@ edit(a:any)
       }
     else
       {
+        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
+        this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+        this.form.get('plant_name').setValue(this.plantname[index].plant_name)
+        
+        const index2 = this.dept.findIndex((obj:any) => obj.dept_slno === this.form.get('dept_name').value);
+        this.form.get('Department').setValue(this.form.get('dept_name').value)
+        this.form.get('Designation').setValue(this.form.get('desig_name').value)
+        this.form.get('line_code').setValue(this.form.get('Line_Name').value)
+        this.form.get('dept_name').setValue(this.dept[index2].dept_name)
+
         this.employee.push(this.form.value)
         this.form.reset()
-        console.log(this.form.value)
       }}
     })    
-
-    console.log(this.form.value)
   }
+
 
   editSave()
   {
@@ -277,8 +278,20 @@ edit(a:any)
     this.service.updateemployee(this.form.value)
     .subscribe({
       next: (response:any)=>{console.log(response);
+        if(response.message != 'failure')
+        {
+          const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
+          this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+          this.form.get('plant_name').setValue(this.plantname[index].plant_name)
+      
+          const index2 = this.dept.findIndex((obj:any) => obj.dept_slno === this.form.get('dept_name').value);
+          this.form.get('Department').setValue(this.form.get('dept_name').value)
+          this.form.get('Designation').setValue(this.form.get('desig_name').value)
+          this.form.get('line_code').setValue(this.form.get('Line_Name').value)
+          this.form.get('dept_name').setValue(this.dept[index2].dept_name)
 
-      this.employee[this.temp_a] = this.form.value
+          this.employee[this.temp_a] = this.form.value
+        }
       }
     })
   }
@@ -298,17 +311,12 @@ delete(a:any, slno:any)
 getLineName(event:any)
 {
 
-  var x = event.target.value.split(':')[0]-1
-  var xx = event.target.value.split(':')[1]
-  var yy = this.dept_.findIndex((a:any)=>a.dept_name === xx.trim())
-
-  console.log("dept", this.dept_[yy].dept_slno);
-
-  this.service.getLineName({dept_slno: this.dept_[yy].dept_slno})
+  this.service.getLineName({dept_slno: event.target.value.split(' ')[1]})
   .subscribe(
     {
-      next:(response:any)=>{console.log(response); this.line_ = response[0]
-        this.line = this.line_.map((a:any)=>a.line_name)
+      next:(response:any)=>{console.log(response); 
+        this.line = response[0]
+        // this.line = this.line_.map((a:any)=>a.line_name)
       }
   })
 }

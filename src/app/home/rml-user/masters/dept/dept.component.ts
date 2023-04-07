@@ -92,20 +92,9 @@ export class DeptComponent implements OnInit {
     this.modalService.open(content, {centered: true})
   }
 
-  get_slno(event:any)
-  {
-    console.log(this.form.value);
-    
-    console.log(event.target.value)
-    this.index = event.target.value.split(':')[0]-1
-  }
-
   save()
   {
-    console.log(this.index)
-    this.form.get('plant_name').setValue(this.plantname[this.index].plant_code)
     this.form.controls['dept_slno'].setValue(this.department.length+1)
-    console.log(this.form.value)
     this.service.adddepartment(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
@@ -115,14 +104,19 @@ export class DeptComponent implements OnInit {
       }
     else
       {
+        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
+        this.form.get('plant_name').setValue(this.plantname[index].plant_name)
+        console.log(index);
+        
         this.department.push(this.form.value)
         this.form.reset()
-        this.index=-1
       }}
     })    
 
   }
+
 /////////////////////////////////////////////////////edit functions
+
   opentoedit(content:any)
   {
     console.log("opening")
@@ -134,11 +128,6 @@ export class DeptComponent implements OnInit {
     this.temp_a = a
     this.editing_flag = true
     this.form.controls['dept_slno'].setValue(slno)
-    // var plant = {
-    //   plant_code : this.department[a].plant_code,
-    //   plant_name : this.department[a].plant_name,
-
-    // }
     this.form.controls['plant_name'].setValue(this.department[a].plant_code)
     this.form.controls['dept_name'].setValue(this.department[a].dept_name)
     this.form.controls['dept_group'].setValue(this.department[a].dept_group)
@@ -150,12 +139,6 @@ export class DeptComponent implements OnInit {
   editSave()
   {
     this.form.get('plant_name').enable()
-    
-    // if(this.index == -1)
-    // this.form.controls['plant_name'].setValue(this.department[this.temp_a].plant_code)
-    // else
-    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
-
     console.log(this.form.value)
     this.service.updatedepartment(this.form.value)
     .subscribe({

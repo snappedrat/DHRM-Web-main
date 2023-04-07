@@ -124,11 +124,13 @@ export class OnboardFormComponent implements OnInit {
         {
           next: (response:any)=>
           {
+
+
           console.log("5555", response)
            this.obj = response;
            this.basic = this.obj[0]
            this.designation = this.obj[1]
-           this.department_ = this.obj[2]
+           this.department = this.obj[2]
            this.line = this.obj[3]
            this.process_trained = this.obj[4]
            this.reporting_to = this.obj[5]
@@ -148,15 +150,19 @@ export class OnboardFormComponent implements OnInit {
           if(this.readonly == true)
           {
             this.form.controls['grade'].setValue(this.basic[0]?.emp_grade)
-            this.form.controls['department'].setValue(this.basic[0]?.dept_name)
-            this.form.controls['designation'].setValue(this.basic[0]?.desig_name)
-            this.form.controls['line'].setValue(this.basic[0]?.line_name)
+            this.form.controls['department'].setValue(this.basic[0]?.dept_slno)
+            
+            if(this.readonly)
+            {
+              this.getLineName(this.form.get('department').value)
+            }
+            this.form.controls['line'].setValue(this.basic[0]?.line_code)
             this.form.controls['process_trained'].setValue(this.basic[0]?.oprn_desc)
             this.form.controls['bnum'].setValue(this.basic[0]?.biometric_no)
             this.form.controls['bio_id'].setValue(true)
             this.form.controls['uan'].setValue(this.basic[0]?.uan_number)
             this.form.controls['trainee_id'].setValue(this.basic[0]?.gen_id)
-            this.form.controls['reportingto'].setValue(this.basic[0]?.emp_name)
+            this.form.controls['reportingto'].setValue(this.basic[0]?.reporting_to)
             this.form.controls['wcontract'].setValue('DIRECT')
             this.form.controls['doj'].setValue(this.basic[0]?.doj)
             this.form.controls['active_status'].setValue(this.basic[0]?.activestat)
@@ -186,11 +192,11 @@ export class OnboardFormComponent implements OnInit {
             this.form.controls['dol'].disable()            
           }
 
-            this.line = this.line.map((line_name:any) => line_name.line_name)
-            this.designation = this.designation.map((a:any) => a.desig_name)
-            this.department = this.department_.map((a:any) => a.dept_name)
+            // this.line = this.line.map((line_name:any) => line_name.line_name)
+            // this.designation = this.designation.map((a:any) => a.desig_name)
+            // this.department = this.department_.map((a:any) => a.dept_name)
             this.process_trained = this.process_trained.map((a:any) => a.oprn_desc)
-            this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
+            // this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
             this.cat = this.category.map((a:any) => a.categorynm)
             this.oprn = this.oprn.map((a:any) => a.oprn_desc)
           }
@@ -336,16 +342,18 @@ export class OnboardFormComponent implements OnInit {
 
     getLineName(event:any)
     {
-      var x = event.target.value.split(':')[0]-1
-      console.log(this.department_[x].dept_slno)
-      this.service.getLineName({dept_slno: this.department_[x].dept_slno})
+      if(!this.readonly)
+        var dept = {dept_slno: event.target.value.split(' ')[1]}
+      else
+        var dept = {dept_slno: event}
+      this.service.getLineName(dept)
       .subscribe(
         {
           next:(response:any)=>{console.log(response);
           this.line = response[0];
-          this.line = this.line.map((a:any) => a.line_name)
+          // this.line = this.line.map((a:any) => a.line_name)
           this.reporting_to = response[1];
-          this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
+          // this.reporting_to = this.reporting_to.map((a:any) => a.emp_name)
 
           }
       })
