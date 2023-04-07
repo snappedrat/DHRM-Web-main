@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 @Component({
   selector: 'app-trainee-answer',
@@ -15,7 +16,7 @@ export class TraineeAnswerComponent implements OnInit {
   slno:any
   status:any
 
-  constructor(private active:ActivatedRoute, private service: ApiService) {
+  constructor(private active:ActivatedRoute, private service: ApiService,public loader:LoaderserviceService) {
     this.idno = this.active.snapshot.paramMap.get('trainee_idno')
     this.module = this.active.snapshot.paramMap.get('module_name')
     this.slno = this.active.snapshot.paramMap.get('slno')

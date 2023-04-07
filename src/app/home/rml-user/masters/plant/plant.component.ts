@@ -16,6 +16,7 @@ import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
 import { CookieService } from 'ngx-cookie-service';
 import { threadId } from 'worker_threads';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 const material = [MatSidenav, MatTableModule];
 
@@ -40,7 +41,7 @@ export class PlantComponent implements OnInit {
   editing_flag: any;
   inx: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader: LoaderserviceService) {
     this.form = this.fb.group({
       sno:[''],
       plant_code :['', Validators.required],

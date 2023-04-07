@@ -24,6 +24,10 @@ import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";
 import { PlantcodeService } from "../../new-joiners/plantcode.service";
+import { LoaderserviceService } from "src/app/loaderservice.service";
+
+
+
 
 import {
   MatDialog,
@@ -76,7 +80,7 @@ export class EmployeeComponent implements OnInit {
   editing_flag: any;
   temp_a: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService,public loader:LoaderserviceService) {
     this.form = this.fb.group({
       gen_id: ['', Validators.required],
       Emp_Name :['', Validators.required],

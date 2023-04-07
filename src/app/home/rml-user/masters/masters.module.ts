@@ -10,6 +10,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
+import { LoadModule } from 'src/app/loader/loader.module';
+
 
 @NgModule({
   declarations: [],
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     MatSnackBarModule,
     FlexLayoutModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    LoadModule
   ],
   providers:[CookieService],
   schemas:[

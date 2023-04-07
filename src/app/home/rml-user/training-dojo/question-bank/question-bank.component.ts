@@ -4,6 +4,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 @Component({
   selector: 'app-trainee-test',
@@ -32,7 +33,7 @@ export class QuestionBankComponent implements OnInit {
   offline_flag: boolean = true;
   qsize: any;
 
-  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
+  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router,public loader:LoaderserviceService) {
 
 
     this.form = fb.group({

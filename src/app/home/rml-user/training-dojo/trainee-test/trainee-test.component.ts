@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
-import {
+import { LoaderserviceService } from 'src/app/loaderservice.service';
+import{
   Event,
   NavigationCancel,
   NavigationEnd,
@@ -49,7 +50,7 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
   flag: boolean = true
   offline: string = ''
 
-  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router) {
+  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router,public loader:LoaderserviceService) {
 
 
     this.form = fb.group({

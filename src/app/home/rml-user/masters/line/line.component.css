@@ -70,12 +70,14 @@
   margin: 2px auto;
   z-index: 1100 !important;
   }
-  .title{
-    font-size: 30px;
-    font-style: normal;
+  #title1{
+    font-size: 20px;
+  
     color:rgb(0, 0, 139);
     font-weight:bolder;
     text-align:center;
+    text-decoration: solid;
+    font-weight:900;
   }
   .text-center{
     width: 500px;

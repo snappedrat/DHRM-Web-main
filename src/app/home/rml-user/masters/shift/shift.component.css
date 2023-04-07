@@ -73,14 +73,14 @@
   height:auto;
   width:600px;
   }
-  .title{
-    font-size: 40px;
+  #title1{
+    font-size: 20px;
   
     color:rgb(0, 0, 139);
     font-weight:bolder;
     text-align:center;
     text-decoration: solid;
-    font-size: larger;
+  
     font-weight:900;
   }
   .modal-title{

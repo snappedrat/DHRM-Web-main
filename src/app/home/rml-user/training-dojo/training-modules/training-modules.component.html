@@ -44,9 +44,9 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
             <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
 <br>
@@ -59,6 +59,8 @@
         <mat-icon>download</mat-icon>
     </button></div>
 <br><br><br>
+<app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
 <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
@@ -143,6 +145,6 @@
             </tbody>
         </table>
     </table>
-</div>
+</div></ng-template>
 
 

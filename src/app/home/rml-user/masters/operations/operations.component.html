@@ -35,15 +35,15 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-light" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-light" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </ng-template>
     <div class="container">
   <br>
   <div>
-    <h1 class="title" >Operations Master</h1>
+    <h1 id = "title1" >Operations Master</h1>
     <hr style="border-block-color: orange" />
   </div>
   <div class="button">
@@ -55,6 +55,8 @@
         <mat-icon>download</mat-icon>
     </button></div>
   <br><br><br>
+  <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
   <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
@@ -116,5 +118,5 @@
     </table>
   </div>
   
-  
+      </ng-template>
     </div>

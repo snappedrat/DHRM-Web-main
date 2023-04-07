@@ -6,6 +6,7 @@ import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { DateRangeFilterPipe } from '../../dateFilter.pipe';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 import {
   trigger,
@@ -43,7 +44,7 @@ export class DeptTransferComponent implements OnInit {
   to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
   searchText:any
 
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal,public loader:LoaderserviceService) {
 
     this.form = this.fb.group({
       plantcode: [sessionStorage.getItem('plantcode')],

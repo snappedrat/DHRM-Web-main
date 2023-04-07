@@ -17,6 +17,7 @@ import{User} from "../user/user";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
 import { environment } from "src/environments/environment.prod";
+import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 const material = [
   MatSidenav,
@@ -46,7 +47,7 @@ export class ShiftComponent implements OnInit {
   type:any = ['S', 'R']
   security_shift:any = ['Y', 'N']
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader:LoaderserviceService) {
     this.form = this.fb.group({
       shift_id:[''],
      shift_desc :[''],

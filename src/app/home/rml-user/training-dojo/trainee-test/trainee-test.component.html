@@ -26,9 +26,8 @@
     </div>
     </form>
     <br><br>
-    <div style="align-self: center;" *ngIf = "loading">
-        <img src="../../assets/1488.gif" >
-    </div>
+    <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+      <ng-template #show>
     
     <div *ngIf = "!loading" class="body form-group">
         <body>
@@ -57,7 +56,7 @@
         <button class="btn btn-primary" [disabled] = 'flag' type="submit">save</button>
         </form>
         </body>
-    </div>
+    </div></ng-template>
 </div>
 </div>
 </div>
