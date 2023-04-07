@@ -59,15 +59,15 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let i of filterinfo | filter : searchText">
-                        <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
-                        <td>{{i.trainee_idno}}</td>
-                        <td>{{ i.fullname }}</td>
-                        <td>{{ i.mobile_no1 }}</td>
-                        <td>{{ i.line_name }}</td>
-                        <td>{{ i.dept_name }}</td>
-                        <td>{{ i.Emp_Name }}</td>
-                        <td>{{ i.diff }}</td>
-                        <td>
+                      <td>{{ formatDate(i.doj) }}</td>
+                      <td>{{i.trainee_idno}}</td>
+                      <td>{{ i.fullname }}</td>
+                      <td>{{ i.mobile_no1 }}</td>
+                      <td>{{ i.line_name }}</td>
+                      <td>{{ i.dept_name }}</td>
+                      <td>{{ i.Emp_Name }}</td>
+                      <td>{{ i.diff }}</td>
+                      <td>
                             <div>
                             <button *ngIf="this.form.get('filter').value == 'PENDING' " mat-mini-fab color = "success" [routerLink]="['/rml/skill-developement/evaluation-form', i.apln_slno,this.form.controls['status'].value.split('-')[1], 1]" >
                                 <mat-icon>edit</mat-icon>

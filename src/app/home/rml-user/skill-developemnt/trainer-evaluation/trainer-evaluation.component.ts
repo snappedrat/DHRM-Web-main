@@ -43,6 +43,12 @@ export class TrainerEvaluationComponent implements OnInit {
       )
   }
 
+  formatDate(dateString: string): string {
+    const formattedDate = dateString.split('T')[0].replace(/\./g, '-');
+    return formattedDate ? new Date(formattedDate).toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'}) : 'Invalid Date';
+  }
+  
+
   filter() {
     if (this.form.get('filter').value == 'PENDING_APPROVAL') {
       console.log(this.form.value)
