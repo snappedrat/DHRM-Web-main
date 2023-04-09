@@ -1,31 +1,31 @@
 <div class = "container">
 
     <div class=" pt-5">
-        <b><p>Status : </p></b>
+      
     </div>
 
 <div class="row">
-    <div class="col-md-2 ">
+    <div class="col-sm-3.5">  <b><p>Status : </p></b>
         <form [formGroup]="form">
-        <select class="form-control" (change)="filter()" formControlName="select">
-            <option value="">--- select ---</option>
-            <option *ngFor="let i of select" >{{i}}</option>
-        </select>
+        <mat-select class="input2" (change)="filter()" formControlName="select">
+            <mat-option value="APPOINTED" selected>APPOINTED</mat-option>
+            <mat-option value="TRAINING COMPLETED">TRAINING COMPLETED</mat-option>
+        </mat-select>
         </form>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div class = "col-lg-2">
-        <input type="date" [(ngModel)]="from" (change)="call($event)">
+    <div class = "col-sm-3.5"><b><p>From Date : </p></b>
+        <input type="date" class="input2" [(ngModel)]="from" (change)="call($event)">
       </div>
-      <div class = "col-lg-2 ">
-    <input type="date"  [(ngModel)]="to" (change)="call2($event)">
+      <div class = "col-sm-3 "><b><p>To Date : </p></b>
+    <input type="date" class="input2" [(ngModel)]="to" (change)="call2($event)">
       </div>
 </div><br><br>
 
 
 <div class="row">
-    <div class = "col-sm-3">
+    <div class = "col-sm-4">
         <label for="text">Name:</label><br>
-        <input class="input" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
+        <input placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
           
       </div>    </div>
 

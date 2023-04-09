@@ -1,27 +1,28 @@
 <div class = "container">
     <div  style = "margin-top: 40px;">   
       <form [formGroup]="form" (ngSubmit)="filter()">
-        <label for="Status"> Status: </label>
+   
       <div class = "row">
-      <div class = "col-sm-2">
-          <select name="Status" formControlName = "status">
-            <option value="incomplete">NEW INCOMPLETE</option>
-            <option value="pending" selected>PENDING</option>
-            <option value="submitted">SUBMITTED</option>
-            <option value="APPROVED">APPROVED</option>
-            <option value="REJECTED">REJECTED</option>
-            <option value="APPOINTED">APPOINTED</option>
-          </select> 
+      <div class = "col-sm-3">
+        <b><p>Status </p></b>
+          <mat-select name="Status" class="input2" formControlName = "status">
+            <mat-option value="incomplete">NEW INCOMPLETE</mat-option>
+            <mat-option value="pending" selected>PENDING</mat-option>
+            <mat-option value="submitted">SUBMITTED</mat-option>
+            <mat-option value="APPROVED">APPROVED</mat-option>
+            <mat-option value="REJECTED">REJECTED</mat-option>
+            <mat-option value="APPOINTED">APPOINTED</mat-option>
+          </mat-select> 
       </div>
-      <div class = "col-sm-2">
-        <input type="date" [value]="from" (change)="call($event)">
+      <div class = "col-sm-3.5">    <b><p>From Date : </p></b>
+        <input type="date" class="input2" [value]="from" (change)="call($event)">
       </div>
-      <div class = "col-sm-2">
-        <input type="date" [value]="to" (change)="call2($event)">
+      <div class = "col-sm-2">    <b><p>From Date : </p></b>
+        <input type="date" class="input2" [value]="to" (change)="call2($event)">
       </div>
     </div>
-    </form>
-      <button class = "btn btn-primary btn-lg" (click)="filter()" >filter</button>
+    </form><br>
+      <button mat-raised-button color="primary" (click)="filter()" >filter</button>
       <br><br>
       <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
       <ng-template #show>

@@ -44,7 +44,7 @@ tbody
   width: 150px;
 }
 .input2 {
-  min-width: 300px;
+  min-width: 200px;
   background-color: #f5f5f5;
   color: #242424;
   padding: .15rem .5rem;
@@ -63,4 +63,8 @@ tbody
 
 .input2:hover {
   outline: 3px solid lightgrey;
+}
+::ng-deep .mat-select-value {
+  text-align: center;
+  margin-top: 5%;
 }
