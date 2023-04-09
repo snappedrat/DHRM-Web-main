@@ -101,3 +101,7 @@ tbody
 .input2:hover {
   outline: 3px solid lightgrey;
 }
+::ng-deep .mat-select-value {
+  text-align: left;
+  margin-top: 8%;
+}
