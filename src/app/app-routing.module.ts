@@ -2,7 +2,6 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NavbarComponent} from "./home/rml-user/navbar/navbar.component";
 import {AppComponent} from "./app.component";
-import {HomepageComponent} from "./home/homepage/homepage.component";
 import { FirstPageComponent } from './first-page/first-page.component';
 import { TraineeApplicationComponent } from './home/rml-user/new-joiners/trainee-application/trainee-application.component';
 import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.component';
@@ -14,10 +13,7 @@ import { PageNotFoundComponent } from './home/page-not-found/page-not-found.comp
 import { PermIdcardComponent } from './home/rml-user/new-joiners/perm-idcard/perm-idcard.component';
 
 const routes: Routes = [
-  {
-    path: 'homepage',
-    component: HomepageComponent,
-  },
+
   {
     path:"home",
     loadChildren:() => import('./home/home.module').then(m => m.HomeModule)

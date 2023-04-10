@@ -1,22 +1,12 @@
-import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder, Validators} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import {Router} from '@angular/router';
-import * as XLSX from 'xlsx';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import {ServiceService} from "../service.service";
-import {User} from "../user/user";
 import { MatTableModule } from '@angular/material/table';
-import { Observable,Subject } from 'rxjs';
-import { Options } from 'selenium-webdriver';
-import { Directive, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
-import { environment } from "src/environments/environment.prod";
-import { CookieService } from 'ngx-cookie-service';
-import { threadId } from 'worker_threads';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
+import { environment } from "src/environments/environment.prod";
+import * as XLSX from 'xlsx';
 
 const material = [MatSidenav, MatTableModule];
 

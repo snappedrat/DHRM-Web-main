@@ -18,7 +18,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import * as XLSX from "xlsx";
 import { MatSidenav } from "@angular/material/sidenav";
 import { ServiceService } from "../../masters/service.service";
-import { User } from "../../masters/user/user";
 import { MatTableModule } from "@angular/material/table";
 import { Observable, Subject } from "rxjs";
 import { Options } from "selenium-webdriver";

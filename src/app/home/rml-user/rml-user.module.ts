@@ -16,7 +16,6 @@ import { PlantComponent } from './masters/plant/plant.component';
 import { LineComponent } from './masters/line/line.component';
 import { DesignationComponent } from './masters/designation/designation.component';
 import { TraineecategoryComponent} from './masters/traineecategory/traineecategory.component';
-import { UserComponent, userForm } from './masters/user/user.component';
 import { BankComponent } from './masters/bank/bank.component';
 import {LoginModule} from "./login/login.module";
 import { OperationsComponent } from './masters/operations/operations.component';
@@ -38,8 +37,6 @@ import { ArsLoginComponent } from './ars-login/ars-login.component';
     LineComponent,
     DesignationComponent,
     TraineecategoryComponent,
-    UserComponent,
-    userForm,
     BankComponent,
     OperationsComponent,
     PincodeComponent,

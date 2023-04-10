@@ -137,7 +137,6 @@ getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
-  // this.http.post(this.url+'/getdatabasic',this.uniqueId)
   this.service.getdatabasic(this.uniqueId)
 .subscribe({
   next: (response) => {console.log("basic",response); this.basic = response; this.apln_status = this.basic[0]?.apln_status} ,
@@ -149,7 +148,6 @@ getdataqualifn(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
-  // this.http.post(this.url+'/getdataqualfn',this.uniqueId)
   this.service.getdataqualifn(this.uniqueId)
 .subscribe({
   next: (response) => {console.log("qual",response); this.education = response} ,
@@ -162,7 +160,6 @@ getdatafamily(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
-  // this.http.post(this.url+'/getdatafamily',this.uniqueId)
   this.service.getdatafamily(this.uniqueId)
 .subscribe({
   next: (response) => {console.log("fam",response); this.family = response} ,
@@ -174,7 +171,6 @@ getdatacareer(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company')
 
-  // this.http.post(this.url+'/getdatacareer',this.uniqueId)
   this.service.getdatacareer(this.uniqueId)
 .subscribe({
   next: (response) => {console.log("career",response); this.career = response} ,

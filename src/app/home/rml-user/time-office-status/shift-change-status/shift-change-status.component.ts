@@ -1,24 +1,10 @@
-import {FormControl} from '@angular/forms';
-import {MomentDateAdapter,MAT_MOMENT_DATE_ADAPTER_OPTIONS}from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import {MatDatepicker} from '@angular/material/datepicker';
-import { Component, OnInit,ViewChild,Injectable, ViewContainerRef, TemplateRef, NgModule,ViewEncapsulation} from '@angular/core';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder,Validators} from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import {Router} from '@angular/router';
-import * as XLSX from 'xlsx';
-import { MatSidenav } from '@angular/material/sidenav';
-import { ServiceService } from '../../masters/service.service';
-import { User } from '../../masters/user/user';
-import { MatTableModule } from '@angular/material/table';
-import { Observable,Subject } from 'rxjs';
-import { Options } from 'selenium-webdriver';
-import { Directive, Input } from '@angular/core';
-import { NgControl } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
+import { Component } from '@angular/core';
+import { FormControl, UntypedFormBuilder } from '@angular/forms';
+import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from "src/app/home/api.service";
-import { environment } from "src/environments/environment.prod";
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -26,7 +12,7 @@ import { environment } from "src/environments/environment.prod";
 // the `default as` syntax.
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 const moment = _moment;
 

@@ -1,12 +1,5 @@
-import { Injectable } from '@angular/core';
-import { User } from '../masters/user/user';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { BanksComponent } from './forms/banks/banks.component';
-import { BasicComponent } from './forms/basic/basic.component';
-import { LanguageComponent } from './forms/language/language.component';
-import { OtherComponent } from './forms/other/other.component';
-import { EmergencyComponent } from './forms/emergency/emergency.component';
+import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 
