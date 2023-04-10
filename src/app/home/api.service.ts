@@ -300,6 +300,10 @@ url2:any = environment.path2
   {
     return this.http.post(this.url+'/evaluationdays', status)
   }
+  evaluationDueSupervisor(form:any)
+  {
+    return this.http.get(this.url+'/evaluationDueSupervisor?plantcode='+form.plant_code+'&dept_slno='+form.dept_slno)
+  }
   eval_pending_approval(status:any)
   {
     return this.http.post(this.url+'/eval_pending_approval', status)

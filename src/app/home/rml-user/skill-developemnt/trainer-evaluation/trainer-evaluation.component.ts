@@ -20,6 +20,12 @@ export class TrainerEvaluationComponent implements OnInit {
   id: any
   form: any
   searchText: any
+  options = [
+    { label: '0 to 60 days', value: '0-60' },
+    { label: '61 to 120 days', value: '61-120' },
+    { label: '121 to 180 days', value: '121-180' },
+    { label: '181 to 270 days', value: '181-270' }
+  ];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService: NgbModal,public loader:LoaderserviceService) {
 
@@ -43,7 +49,8 @@ export class TrainerEvaluationComponent implements OnInit {
       )
   }
 
-  formatDate(dateString: string): string {
+  formatDate(dateString: string): string 
+  {
     const formattedDate = dateString.split('T')[0].replace(/\./g, '-');
     return formattedDate ? new Date(formattedDate).toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'}) : 'Invalid Date';
   }

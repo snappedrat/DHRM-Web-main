@@ -79,13 +79,13 @@ export class OnboardFormComponent implements OnInit {
     
       this.form = this.fb.group({
         
-      ifsc_code:[''],
+      ifsc_code:['', Validators.required],
       grade:[''],
       doj:['', Validators.required],
-      account_number:[''],
+      account_number:['', Validators.required],
       department:[''],
       active_status:['ACTIVE'],
-      bank_name:[''],
+      bank_name:['', Validators.required],
       line:[''],
       dol:new FormControl(''),
       bio_id:[''],

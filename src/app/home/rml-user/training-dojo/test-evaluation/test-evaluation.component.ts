@@ -36,7 +36,7 @@ export class TestEvaluationComponent implements OnInit {
    filterTrainee: Observable<any[]>;
 
   ngOnInit(): void {
-
+    this.form.get('test').disable()
     this.service.getTrainee()
     .subscribe(
       {
@@ -71,6 +71,7 @@ export class TestEvaluationComponent implements OnInit {
 
   offline_page()
   {
+    this.form.get('test').enable()
     if(this.form.controls['score'].value == '' || this.form.controls['score'].value == null)
     {
       alert("please enter mark for the paper")

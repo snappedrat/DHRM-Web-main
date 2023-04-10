@@ -70,9 +70,9 @@ export class TransferFormComponent implements OnInit {
           {
             console.log(response);
             this.obj = response;
-            this.reportingto = this.obj[0]
+            // this.reportingto = this.obj[0]
             this.changedepartment = this.obj[1]
-            this.changeline = this.obj[2]
+            // this.changeline = this.obj[2]
           }
         }
       )

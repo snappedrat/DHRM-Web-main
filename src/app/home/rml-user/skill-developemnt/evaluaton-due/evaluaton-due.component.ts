@@ -39,33 +39,36 @@ export class EvaluatonDueComponent implements OnInit {
 
    }
 
-  //  ngOnDestroy() {
-  //   if (this.someSubscription) {
-  //     this.someSubscription.unsubscribe();
-  //   }
-  // }
-
-
   ngOnInit(): void {
-
-    console.log("00",this.form.value)
-
-    this.service.evaluationdays(this.form.value)
-    .subscribe(
-      {
-        next: (response)=>{console.log(response); this.filterinfo = response}
-      }
-    )
+    
+    this.filter()
   }
 
   filter()
   {
-    this.service.evaluationdays(this.form.value)
-    .subscribe(
-      {
-        next: (response)=>{console.log(response); this.filterinfo = response}
-      }
-    ) 
+    if(sessionStorage.getItem('issupervisor') == 'true')
+    {
+      var form = {plant_code : sessionStorage.getItem('plantcode'), dept_slno : ''}
+      var x:any = sessionStorage.getItem('all')
+      x = JSON.parse(x)
+      form.dept_slno = x.Department
+      this.service.evaluationDueSupervisor(form)
+      .subscribe(
+        {
+          next: (response)=>{console.log(response); this.filterinfo = response}
+        }
+      ) 
+    }
+    else
+    {
+      this.service.evaluationdays(this.form.value)
+      .subscribe(
+        {
+          next: (response)=>{console.log(response); this.filterinfo = response}
+        }
+      ) 
+    }
+
   }
 
 }

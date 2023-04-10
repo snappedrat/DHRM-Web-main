@@ -7,6 +7,96 @@
     width:200px;
     margin: 0 15px;
 }
+.boxx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+select {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+select:hover,
+select:focus {
+  outline: none;
+  background-color: #dcdcdc;
+}
+
+option {
+  font-size: 16px;
+  color: #555;
+}
+
+.custom-select {
+  position: relative;
+  font-size: 16px;
+}
+
+.custom-select select {
+  display: none; /* hide the original select element */
+}
+
+.custom-select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 0 5px 5px 0;
+  font-size: 20px;
+  color: #555;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-select:hover::after,
+.custom-select:focus::after {
+  background-color: #dcdcdc;
+}
+
+.custom-options {
+  display: none; /* hide the options by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #f5f5f5;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-options.active {
+  display: block; /* show the options when the select is clicked */
+}
+
+.custom-options:hover,
+.custom-options:focus {
+  background-color: #dcdcdc;
+}
+
+.custom-options > div {
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-options > div:hover,
+.custom-options > div:focus {
+  background-color: #dcdcdc;
+}
 
 th{
     color: white;

@@ -33,6 +33,7 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
   questions:any
   answers:any = [{
     'username' : this.active.snapshot.paramMap.get('username'),
+    'apln_slno' :  '',
     'module' : '',
     'pf': '',
     'percent' :'',
@@ -79,6 +80,10 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
     var a:any = sessionStorage.getItem('token')
     var x = atob(a.split('.')[1])
     this.x = JSON.parse(x)
+    
+    this.answers[0].apln_slno = this.x.apln_slno
+    console.log(this.answers, this.x.apln_slno);
+    
 
     console.log(this.form.value);
     this.service.getModules(this.username)

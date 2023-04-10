@@ -6,23 +6,31 @@
 <h1><b>HR Evaluation</b></h1>
       <form [formGroup]="form">
       <div class = "row">
-      <div class = "boxx">
-      <!-- <label for="Status" id="center"> Status: </label> -->
-        <mat-select name="Status" id="Status" class="form-control" formControlName = "status" >
-            <mat-option value="0-60">0 to 60 days</mat-option>
-            <mat-option value="61-120">61 to 120 days</mat-option>
-            <mat-option value="121-180">121 to 180 days</mat-option>
-            <mat-option value="181-270">181 to 270 days</mat-option>
-          </mat-select> 
-      </div>
-      <div class = " boxx">
-          <mat-select name="Status" id="Status" class="form-control" formControlName = "filter" >
-              <mat-option value="PENDING">PENDING</mat-option>
-              <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
-              <mat-option value="APPROVED">APPROVED</mat-option>
+        <!-- <div class="boxx">
+          <label for="Status" id="center"> Status: </label>
+          <select name="Status" id="Status" class="form-control" formControlName="status">
 
-            </mat-select>  
+            <option value="0-60">0 to 60 days</option>
+            <option value="61-120">61 to 120 days</option>
+            <option value="121-180">121 to 180 days</option>
+            <option value="181-270">181 to 270 days</option>
+          </select>
+        </div> -->
+        <div class="boxx">
+          <!--<label for="Status" id="center"> Status: </label>-->
+          <select name="Status" id="Status" class="form-control" formControlName="status">
+            <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+          </select>
         </div>
+        
+        <div class="boxx">
+          <select name="Status" id="Status" class="form-control" formControlName="filter">
+            <option value="PENDING">PENDING</option>
+            <option value="PENDING_APPROVAL">PENDING APPROVAL</option>
+            <option value="APPROVED">APPROVED</option>
+          </select>
+        </div>
+        
         <div class="col-sm-3" style="display: flex; align-items:center ">
           <button mat-raised-button color="primary" (click)="filter()" >Search</button>
 
