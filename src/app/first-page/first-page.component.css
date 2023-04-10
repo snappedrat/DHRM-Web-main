@@ -5,6 +5,7 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
+  font-size: 14px;
 }
 .container{
   width: 100%;
@@ -37,6 +38,7 @@ box-shadow: 12px 10px 45px -8px rgba(0,0,0,0.67);
 z-index: 1;
 justify-content: center;
 text-align: center;
+font-size: 14px;
 
 }
 .row1{

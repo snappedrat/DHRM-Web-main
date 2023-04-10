@@ -1,9 +1,6 @@
 <div class = "container">
 
-    <div class=" pt-5">
-      
-    </div>
-
+<div class="form-container1">
 <div class="row">
     <div class="col-sm-3.5">  <b><p>Status : </p></b>
         <form [formGroup]="form">
@@ -19,16 +16,17 @@
       <div class = "col-sm-3 "><b><p>To Date : </p></b>
     <input type="date" class="input2" [(ngModel)]="to" (change)="call2($event)">
       </div>
-</div><br><br>
+</div>
 
-
+</div>
+<div class="form-container1">
 <div class="row">
     <div class = "col-sm-4">
-        <label for="text">Name:</label><br>
+        <label for="text"><b>Name:</b></label><br>
         <input placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
-          
+    </div>     
       </div>    </div>
-
+<br>
 
 
 <div class="px-5">
