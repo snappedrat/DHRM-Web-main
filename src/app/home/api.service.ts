@@ -27,11 +27,11 @@ url2:any = environment.path2
   }
   getHr(uniqueid: any)
   {
-    return this.http.post(this.url+'/gethrappr',uniqueid)
+    return this.http.get(this.url+'/gethrappr?username='+uniqueid.username+'&user='+uniqueid.user,uniqueid)
   }
   getPlantCode(form:any)
   {
-    return this.http.post(this.url+'/plantcodelist',form)
+    return this.http.get(this.url+'/plantcodelist?company_name='+form.company_name)
   }
   getCompanyCode()
   {
@@ -47,15 +47,15 @@ url2:any = environment.path2
   }
   getDataForId(form:any)
   {
-    return this.http.post(this.url+'/getdataforid', form)
+    return this.http.get(this.url+'/getdataforid?mobile='+form.mobile+'&company='+form.company)
   }
   getDataForPermId(form:any)
   {
-    return this.http.post(this.url+'/getdataforpermid', form)
+    return this.http.get(this.url+'/getdataforpermid?apln_slno='+form.apln_slno)
   }
   filterForApproval(form:any)
   {
-    return this.http.post(this.url+'/filterforapproval', form)
+    return this.http.get(this.url+'/filterforapproval?status='+form.status+'&plantcode='+form.plantcode)
   }
 
   getdatabasic(uniqueId:any){
@@ -242,13 +242,13 @@ url2:any = environment.path2
   }
   companycodelist()
   {
-    return this.http.post(this.url+'/companycodelist','')
+    return this.http.get(this.url+'/companycodelist')
   }
 
 
   line_dept_design(form:any)
   {
-    return this.http.post(this.url+'/getall',form)
+    return this.http.get(this.url+'/getall?plantcode='+form.plantcode)
   }
   getLineName(form:any)
   {
