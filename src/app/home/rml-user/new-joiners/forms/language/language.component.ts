@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import { threadId } from 'worker_threads';
@@ -89,7 +89,7 @@ languageList = [
   state: boolean;
   disabled: boolean = true;
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService , private active : ActivatedRoute) { }
+  constructor(private http: HttpClient, private cookie: CookieService, private formservice: FormService , private active : ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -101,7 +101,7 @@ languageList = [
   getdatabasic(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-    this.plantcodeService.getdatabasic(this.uniqueId)
+    this.formservice.getdatabasic(this.uniqueId)
     .subscribe({
     next: (response) => {console.log("lang : ",response); this.details = response;
     this.languageList[0].speak = this.details[0]?.lang1_speak
@@ -256,7 +256,7 @@ languageList = [
       console.log("good");
       }
       else{
-      this.plantcodeService.sumbitlang()
+      this.formservice.sumbitlang()
       this.state = true
       setTimeout(() => {
           this.state = false
@@ -265,7 +265,7 @@ languageList = [
 }
 
 sendData(){
-  this.plantcodeService.lang = this.languageList
+  this.formservice.lang = this.languageList
 } 
 
 

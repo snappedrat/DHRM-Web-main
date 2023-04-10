@@ -10,7 +10,7 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { MatTableModule } from "@angular/material/table";
 import { LoaderserviceService } from "src/app/loaderservice.service";
 import * as XLSX from "xlsx";
-import { PlantcodeService } from "../../new-joiners/plantcode.service";
+import { FormService } from "../../new-joiners/form.service";
 
 
 
@@ -60,7 +60,7 @@ export class EmployeeComponent implements OnInit {
   editing_flag: any;
   temp_a: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private plantcodeService: PlantcodeService, private service : ApiService,public loader:LoaderserviceService) {
+  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private formservice: FormService, private service : ApiService,public loader:LoaderserviceService) {
     this.form = this.fb.group({
       gen_id: ['', Validators.required],
       Emp_Name :['', Validators.required],

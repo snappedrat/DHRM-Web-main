@@ -10,33 +10,43 @@ import { OnboardComponent } from './onboard/onboard.component';
 import { DeptTransferComponent } from './dept-transfer/dept-transfer.component';
 import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
-import { AuthGuard } from 'src/app/Auth.guard';
+import { AuthGuard,  } from 'src/app/home/Guards/Auth.guard';
 import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
+import { isHr, isHrAppr, HrPermission } from '../../Guards/newJoiners.guard';
 
 const routes: Routes = [
     {
       path:'hr-approval',
-      component:HrApprovalComponent
+      component:HrApprovalComponent,
+      canActivate: [isHrAppr]
     },
     {
       path:'trainee-application',
-      component: TraineeApplicationComponent
+      component: TraineeApplicationComponent,
     }, 
     {
       path:'onboard',
-      component: OnboardComponent
+      component: OnboardComponent,
+      canActivate: [HrPermission]
+
     }, 
     {
       path:'dept_transfer',
-      component: DeptTransferComponent
+      component: DeptTransferComponent,
+      canActivate: [HrPermission]
+
     }, 
     {
       path:'transfer_form/:id/:dept/:line',
-      component: TransferFormComponent
+      component: TransferFormComponent,
+      canActivate: [HrPermission]
+
     }, 
     {
       path:'onboard_form/:id/:apln_status',
-      component: OnboardFormComponent
+      component: OnboardFormComponent,
+      canActivate: [HrPermission]
+
     }, 
     {
       path:'forms/:mobile_no1/:apln_status/:company',
@@ -44,7 +54,9 @@ const routes: Routes = [
     },
     {
       path:'trainee-application-status',
-      component: TraineeApplicationStatusComponent
+      component: TraineeApplicationStatusComponent,
+      canActivate: [isHr]
+
     },
 
     {

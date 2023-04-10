@@ -1,7 +1,7 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -90,14 +90,14 @@ eduData = [
 ];
   state: boolean;
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) { 
+  constructor(private http: HttpClient, private cookie: CookieService, private formservice: FormService, private active : ActivatedRoute) { 
     // this.mobile = this.cookie.get('mobilenum')
     this.eduData[0].passed = 'Yes'
 
   }
 
   ngOnInit(): void {
-    this.plantcodeService.getdataqualifn(this.mobile_no1)
+    this.formservice.getdataqualifn(this.mobile_no1)
     .subscribe({
       next: (response) => {console.log("qualifn",response); this.education = response;
       for(var i= 0; i<4 ;i++)
@@ -152,7 +152,7 @@ eduData = [
 
       console.log("good");
 
-      this.plantcodeService.submitedu()
+      this.formservice.submitedu()
       this.state = true
       setTimeout(() => {
           this.state = false
@@ -162,7 +162,7 @@ eduData = [
     }
 
 sendData(){
-  this.plantcodeService.edu = this.eduData
+  this.formservice.edu = this.eduData
 } 
 
 public valid(){

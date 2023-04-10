@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class PlantcodeService {
+export class FormService {
   bank: any;
   basic : any;
   edu : any;
@@ -161,7 +161,7 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
 
 submitted(uniqueId: any){
   console.log("----------------------------", uniqueId)
-  this.http.post(this.url+'/submitted',uniqueId)
+  this.http.put(this.url+'/submitted',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),

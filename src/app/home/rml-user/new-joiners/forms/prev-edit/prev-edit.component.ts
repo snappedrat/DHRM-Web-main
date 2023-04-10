@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { leadingComment } from '@angular/compiler';
 import { send } from 'process';
 import { ActivatedRoute } from '@angular/router';
@@ -80,11 +80,11 @@ export class PrevEditComponent implements OnInit {
   flag: any = true;
   state: boolean;
   
-    constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active: ActivatedRoute ) { }
+    constructor(private http: HttpClient, private cookie: CookieService, private formservice: FormService, private active: ActivatedRoute ) { }
   
     ngOnInit(): void {
       
-      this.plantcodeService.getdatacareer(this.mobile_no1)
+      this.formservice.getdatacareer(this.mobile_no1)
       .subscribe({
         next : (response)=>{console.log("career", response); this.career = response;
         for(var i = 0; i<4; i++)
@@ -160,7 +160,7 @@ export class PrevEditComponent implements OnInit {
 
         console.log('family', this.prevData);
 
-        this.plantcodeService.submitprev()
+        this.formservice.submitprev()
 
         this.state = true
         setTimeout(() => {
@@ -170,7 +170,7 @@ export class PrevEditComponent implements OnInit {
       }
   
   sendData(){
-    this.plantcodeService.prev = this.prevData
+    this.formservice.prev = this.prevData
   } 
 
   public valid(){

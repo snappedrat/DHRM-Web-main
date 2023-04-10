@@ -8,7 +8,7 @@ import { FormsComponent } from './home/rml-user/new-joiners/forms/forms.componen
 import { IdcardComponent } from './home/rml-user/new-joiners/idcard/idcard.component';
 import { TraineeLoginComponent } from './home/rml-user/training-dojo/trainee-login/trainee-login.component';
 import { TraineeTestComponent } from './home/rml-user/training-dojo/trainee-test/trainee-test.component';
-import { AuthGuard } from './Auth.guard';
+import { AuthGuard } from './home/Guards/Auth.guard';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { PermIdcardComponent } from './home/rml-user/new-joiners/perm-idcard/perm-idcard.component';
 

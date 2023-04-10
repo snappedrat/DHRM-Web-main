@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { PlantcodeService } from '../plantcode.service';
+import { FormService } from '../form.service';
 import { DatePipe } from '@angular/common';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
 
@@ -19,7 +19,7 @@ colname :any
 colvalue :any
   searchfilterinfo: any;
 
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : PlantcodeService,public loader:LoaderserviceService) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : FormService,public loader:LoaderserviceService) {
     this.form = this.fb.group({
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),

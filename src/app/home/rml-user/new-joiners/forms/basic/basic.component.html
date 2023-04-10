@@ -136,8 +136,8 @@
                     (ngModelChange)="sendData()"
                     (change)="validate($event)"
                     class="form-control"><div *ngIf="flag"  class = "alert ">Invalid Birth Date</div>
-            <div *ngIf="bd.bd.touched && bd.bd.invalid" class="alert ">
-                <div *ngIf="bd.bd.errors.required">Birth Date is required</div>
+            <div *ngIf="bd.touched && bd.invalid" class="alert ">
+                <div *ngIf="bd.errors.required">Birth Date is required</div>
             </div>
         </div>
         <div  class="form-group">

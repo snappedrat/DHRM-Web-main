@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { ActivatedRoute } from '@angular/router';
 import {
     trigger,
@@ -55,7 +55,7 @@ flagger : any = false
     form: UntypedFormGroup;
     sno: any;
     state: boolean;
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient, private cookie : CookieService, public plantcodeService: PlantcodeService, private active : ActivatedRoute) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient, private cookie : CookieService, public formservice: FormService, private active : ActivatedRoute) {
         this.form = fb.group({
             sno: new UntypedFormControl(' '),
             account:['', Validators.required],
@@ -67,7 +67,7 @@ flagger : any = false
     }
 
     ngOnInit(): void {
-        this.plantcodeService.getbanknames()
+        this.formservice.getbanknames()
         .subscribe({
             next : (response)=>{console.log("banknames", response), this.banknames = response;
                                 this.banknames = this.banknames.map((a:any)=>a.bank_name)},
@@ -78,7 +78,7 @@ flagger : any = false
         this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
         console.log(this.uniqueId)
-        this.plantcodeService.getdatabasic(this.uniqueId)
+        this.formservice.getdatabasic(this.uniqueId)
         .subscribe({
             next: (response) => {console.log("banking : ",response); this.bank = response;
             this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
@@ -108,7 +108,7 @@ flagger : any = false
     
     submit(){
         console.log("values : ",this.form.value);        
-        this.plantcodeService.submitbank()
+        this.formservice.submitbank()
         this.state = true
         setTimeout(() => {
             this.state = false
@@ -116,7 +116,7 @@ flagger : any = false
         
     }
     sendData(){
-        this.plantcodeService.bank = this.form.value
+        this.formservice.bank = this.form.value
         this.emitData()
     }
 

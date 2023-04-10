@@ -37,7 +37,7 @@ import { TransferFormComponent } from './transfer-form/transfer-form.component';
 import { OnboardFormComponent } from './onboard-form/onboard-form.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { DateRangeFilterPipe } from '../dateFilter.pipe';
-import { AuthGuard } from 'src/app/Auth.guard';
+import { AuthGuard } from 'src/app/home/Guards/Auth.guard';
 import { PermIdcardComponent } from './perm-idcard/perm-idcard.component';
 import { FilterPipe } from './filter.pipe';
 import { LoadModule } from 'src/app/loader/loader.module';

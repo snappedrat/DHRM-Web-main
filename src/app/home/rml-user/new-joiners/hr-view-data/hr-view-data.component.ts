@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { threadId } from 'worker_threads';
-import { PlantcodeService } from '../plantcode.service';
+import { FormService } from '../form.service';
 import { environment } from 'src/environments/environment.prod';
 import { ApiService } from 'src/app/home/api.service';
 
@@ -43,7 +43,7 @@ export class HrViewDataComponent implements OnInit {
 	url_natx_file: any
   apln_status: any;
 
-  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : PlantcodeService, private apiservice: ApiService) {
+  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : FormService, private apiservice: ApiService) {
 
    }
 

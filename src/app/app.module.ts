@@ -16,7 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './Auth.guard';
+import { AuthGuard } from './home/Guards/Auth.guard';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { HeaderInterceptor } from './header.interceptor';
 import { ScrollingModule } from '@angular/cdk/scrolling';

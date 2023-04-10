@@ -1,23 +1,18 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
-import {HttpClient} from "@angular/common/http";
-import { AnyNaptrRecord } from 'dns';
-import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { HttpClient } from "@angular/common/http";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { threadId } from 'worker_threads';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment.prod';
+import { FormService } from '../../form.service';
 
 import {
-    trigger,
-    state,
-    style,
     animate,
+    style,
     transition,
-  } from '@angular/animations';
-  import { Timestamp } from 'rxjs';
+    trigger
+} from '@angular/animations';
 import { ApiService } from 'src/app/home/api.service';
-import { log } from 'console';
 
   
 @Component({
@@ -70,7 +65,7 @@ export class BasicComponent implements OnInit{
     url = environment.path
 
 
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute, private service: ApiService) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private formservice: FormService, private active : ActivatedRoute, private service: ApiService) {
         this.form = fb.group({
             permanent: new FormControl('', Validators.required),
             present: new FormControl('', Validators.required),
@@ -121,7 +116,7 @@ export class BasicComponent implements OnInit{
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
         this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-        this.plantcodeService.getdatabasic(this.uniqueId)
+        this.formservice.getdatabasic(this.uniqueId)
       .subscribe({
         next: (response) => {console.log("basic : ",response); this.basic = response;
 
@@ -271,7 +266,7 @@ export class BasicComponent implements OnInit{
             var pincode = {
                 "pincode": event
             }
-            this.plantcodeService.getpincode(pincode)
+            this.formservice.getpincode(pincode)
             .subscribe({
                 next : (response)=>{console.log("pincode : ", response), this.pincodes = response;
                 this.form.controls['st'].setValue(this.pincodes[0]?.statename)
@@ -316,7 +311,7 @@ export class BasicComponent implements OnInit{
     get bd()
     {
 
-        return this.form.controls;
+        return this.form.controls['bd'];
     }
     get height()
     {
@@ -415,7 +410,7 @@ export class BasicComponent implements OnInit{
 
     submit()
     {
-            this.plantcodeService.submitbasic()
+            this.formservice.submitbasic()
             this.sendData()
             this.state = true
             setTimeout(() => {
@@ -425,7 +420,7 @@ export class BasicComponent implements OnInit{
     }
 
     sendData(){
-        this.plantcodeService.basic = this.form.value
+        this.formservice.basic = this.form.value
         if(this.form.valid)
             this.emit.emit(this.message)
         else

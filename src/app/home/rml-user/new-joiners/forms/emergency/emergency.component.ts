@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { ActivatedRoute } from '@angular/router';
 import {
   trigger,
@@ -36,7 +36,7 @@ emer : any = []
 
  form: FormGroup = new FormGroup({});  
   state: boolean;
-   constructor(private fb: FormBuilder, private http: HttpClient,private cookie:CookieService, private plantcodeService : PlantcodeService, private active : ActivatedRoute) {
+   constructor(private fb: FormBuilder, private http: HttpClient,private cookie:CookieService, private formservice : FormService, private active : ActivatedRoute) {
     this.form = fb.group({
       contactNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       contactName:['',Validators.required],
@@ -58,7 +58,7 @@ emer : any = []
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.uniqueId.company = this.active.snapshot.paramMap.get('company');
   
-    this.plantcodeService.getdatabasic(this.uniqueId)
+    this.formservice.getdatabasic(this.uniqueId)
   
     .subscribe({
       next: (response) => {console.log("emer : ",response); this.emer = response;
@@ -92,7 +92,7 @@ submit(){
       console.log("good");
     }
     else{
-      this.plantcodeService.submitemer()
+      this.formservice.submitemer()
       this.state = true
       setTimeout(() => {
           this.state = false
@@ -100,7 +100,7 @@ submit(){
     }
 }
 sendData(){
-    this.plantcodeService.emer = this.form.value
+    this.formservice.emer = this.form.value
     this.emitData()
 } 
 

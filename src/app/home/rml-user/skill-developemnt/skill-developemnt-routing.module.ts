@@ -5,6 +5,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { SupervisorEvaluationComponent } from './supervisor-evaluation/supervisor-evaluation.component';
 import { EvaluatonDueComponent } from './evaluaton-due/evaluaton-due.component';
 import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
+import { SkillDevHR, SkillDevSupervisor} from '../../Guards/SkillDev.guard';
 
 // export class CustomRouteReuseStrategy extends RouteReuseStrategy {
 
@@ -17,18 +18,24 @@ const routes: Routes = [
   {
     path:'trainer-evaluation',
     component:TrainerEvaluationComponent,
-    data: {reuse : false}
+    data: {reuse : false},
+    canActivate:[SkillDevHR]
+
   },
   {
     path:'supervisor-evaluation',
-    component:SupervisorEvaluationComponent
-  },  {
+    component:SupervisorEvaluationComponent,
+    canActivate: [SkillDevSupervisor]
+  },  
+  {
     path:'evaluation-due',
-    component:EvaluatonDueComponent
+    component:EvaluatonDueComponent,
   },
   {
     path:'evaluation-form/:id/:eval/:nav',
-    component: EvaluationFormComponent
+    component: EvaluationFormComponent,
+    canActivate: [SkillDevHR]
+
   }
 ];
 

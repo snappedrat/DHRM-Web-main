@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
-import { PlantcodeService } from '../new-joiners/plantcode.service';
+import { FormService } from '../new-joiners/form.service';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../api.service';
 
@@ -111,9 +111,9 @@ getitems()
 {
   const item = sessionStorage.getItem("all");
 
-if (item !== null) {
+  if (item !== null) {
   this.all = JSON.parse(item);
-}
+  }
   this.isRA = this.all.Is_ReportingAuth
   console.log(this.isRA)
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { leadingComment } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -90,13 +90,13 @@ familyData = [
   state: boolean;
   age_validate: boolean;
 
-  constructor(private http: HttpClient, private cookie: CookieService, private plantcodeService: PlantcodeService, private active :ActivatedRoute ) {
+  constructor(private http: HttpClient, private cookie: CookieService, private formservice: FormService, private active :ActivatedRoute ) {
     this.mobile = this.active.snapshot.paramMap.get('mobile_no1')
    }
 
 
   ngOnInit(): void {
-    this.plantcodeService.getdatafamily(this.mobile_no1)
+    this.formservice.getdatafamily(this.mobile_no1)
     .subscribe({
       next: (response) => {console.log("family",response); this.family = response;
       for(var i= 0; i<4 ;i++)
@@ -155,7 +155,7 @@ familyData = [
     else
     {
       console.log('family', this.familyData);
-      this.plantcodeService.submitfamily()
+      this.formservice.submitfamily()
       this.state = true
       setTimeout(() => {
           this.state = false
@@ -165,7 +165,7 @@ familyData = [
 }
 
 sendData(){
-  this.plantcodeService.fam = this.familyData
+  this.formservice.fam = this.familyData
 } 
 
 public valid(){

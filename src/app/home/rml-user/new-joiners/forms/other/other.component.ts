@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder, NgControl } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../plantcode.service';
+import { FormService } from '../../form.service';
 import { ActivatedRoute } from '@angular/router';
 import {
   trigger,
@@ -32,7 +32,7 @@ export class OtherComponent implements OnInit {
 
   forms: FormGroup = new FormGroup({});
   state: boolean;
-  constructor(private fb: FormBuilder, private http: HttpClient, private cookie:CookieService , private plantcodeService : PlantcodeService, private active: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private cookie:CookieService , private formservice : FormService, private active: ActivatedRoute) {
     this.forms = fb.group({ 
       known:[''],
       work:[''],
@@ -85,7 +85,7 @@ submit(){
       console.log("good");
     }
     else{
-      this.plantcodeService.submitother()
+      this.formservice.submitother()
       this.state = true
       setTimeout(() => {
           this.state = false
@@ -94,14 +94,14 @@ submit(){
 
 }
 sendData(){
-  this.plantcodeService.other = this.forms.value
+  this.formservice.other = this.forms.value
 } 
 
 getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-  this.plantcodeService.getdatabasic(this.uniqueId)
+  this.formservice.getdatabasic(this.uniqueId)
 
 .subscribe({
   next: (response) => {console.log("other : ",response); this.other = response;

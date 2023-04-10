@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PlantcodeService } from '../plantcode.service';
+import { FormService } from '../form.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { threadId } from 'worker_threads';
@@ -45,7 +45,7 @@ export class FormsComponent implements OnInit, OnDestroy{
   isHrappr: any;
 
 
-  constructor(private formservice: PlantcodeService,private service : ApiService, private http: HttpClient,private plantcodeService: PlantcodeService, private router: Router, private active: ActivatedRoute ){
+  constructor(private formservice: FormService,private service : ApiService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
 
   }
 

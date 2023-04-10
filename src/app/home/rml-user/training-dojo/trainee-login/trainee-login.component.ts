@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { PlantcodeService } from '../../new-joiners/plantcode.service';
+import { FormService } from '../../new-joiners/form.service';
 import { Router, RouterLinkActive } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 
@@ -30,7 +30,7 @@ export class TraineeLoginComponent implements OnInit {
       }
   }
  form: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService,private plantcodeService: PlantcodeService,private service: ApiService, private router : Router ) {
+  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService,private formservice: FormService,private service: ApiService, private router : Router ) {
     this.form= fb.group({ 
       username: ['',Validators.required],
       pass: ['', Validators.required]

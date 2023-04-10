@@ -1,17 +1,14 @@
+import {
+	animate,
+	style,
+	transition,
+	trigger
+} from '@angular/animations';
+import { HttpClient } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { threadId } from 'worker_threads';
-import { PlantcodeService } from '../../plantcode.service';
-import {HttpClient} from "@angular/common/http";
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-  } from '@angular/animations';
-  import { Timestamp } from 'rxjs';
-  import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
+import { FormService } from '../../form.service';
 @Component({
   selector: 'app-choose-files',
   templateUrl: './choose-files.component.html',
@@ -101,7 +98,7 @@ export class ChooseFilesComponent implements OnInit {
 	state_: boolean= false;
 	basicDetails: any;
 	
-  constructor(private service: PlantcodeService, private active : ActivatedRoute, private http: HttpClient) {
+  constructor(private service: FormService, private active : ActivatedRoute, private http: HttpClient) {
 	this.ishr = sessionStorage.getItem('ishr')
 	console.log('====================================');
 	console.log(this.ishr)
