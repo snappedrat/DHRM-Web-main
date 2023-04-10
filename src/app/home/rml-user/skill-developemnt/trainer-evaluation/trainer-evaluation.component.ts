@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/home/api.service';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-trainer-evaluation',
@@ -21,6 +20,7 @@ export class TrainerEvaluationComponent implements OnInit {
   id: any
   form: any
   searchText: any
+  year:Number[] = []
   options = [
     { label: '0 to 60 days', value: '0-60' },
     { label: '61 to 120 days', value: '61-120' },
@@ -34,13 +34,20 @@ export class TrainerEvaluationComponent implements OnInit {
       status: ['0-60'],
       plantcode: [sessionStorage.getItem('plantcode')],
       id: ['1'],
-      filter: ['PENDING']
+      filter: ['PENDING'],
+      year : [new Date().getFullYear()]
 
     });
 
   }
 
   ngOnInit(): void {
+
+    const currentYear = new Date().getFullYear();
+    const oldestYear = currentYear - 15;
+    for (let i = currentYear; i >= oldestYear; i--) {
+      this.year.push(i);
+    }
 
     this.service.evaluationdays(this.form.value)
       .subscribe(

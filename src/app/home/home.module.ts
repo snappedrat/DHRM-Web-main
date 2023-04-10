@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import {RmlUserRoutingModule} from "./rml-user/rml-user-routing.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   imports: [
     CommonModule,
     HomeRoutingModule,
-    RmlUserRoutingModule
+    RmlUserRoutingModule,
+    ScrollingModule
   ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA,
