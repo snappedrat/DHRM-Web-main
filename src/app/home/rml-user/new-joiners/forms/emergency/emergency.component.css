@@ -7,25 +7,6 @@ h3{
     margin-top:20px;
     font-weight:bold;
 }
-input{
-    border-radius:0px;
-    border-color: black;
-
-}
-input:hover{
-    border:2px solid grey;
-    border-color: black;
-
-}
-select{
-    border-radius:0px;
-    height: 34px;
-    border-color: black;
-
-}
-select:hover{
-    border:2px solid grey;
-}
 
 .row{
     white-space: nowrap;

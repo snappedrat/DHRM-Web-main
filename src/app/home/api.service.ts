@@ -41,6 +41,10 @@ url2:any = environment.path2
   {
     return this.http.get(this.url+'/getaadhar')
   }
+  checkAadhar(aadhar:any)
+  {
+    return this.http.get(this.url+'/checkAadhar?aadhar='+aadhar)
+  }
   getDataForId(form:any)
   {
     return this.http.post(this.url+'/getdataforid', form)

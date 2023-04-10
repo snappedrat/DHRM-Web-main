@@ -17,6 +17,7 @@ import {
   } from '@angular/animations';
   import { Timestamp } from 'rxjs';
 import { ApiService } from 'src/app/home/api.service';
+import { log } from 'console';
 
   
 @Component({
@@ -188,33 +189,52 @@ export class BasicComponent implements OnInit{
 
     check_aadhar(event:any, a:any)
     {
+        this.aadhar_invalid = true
+
         if(!Number.isInteger(event))
         {
             this.form
         }
-
-            if(event?.length == 4 )
-            {
-                var mobile = this.active.snapshot.paramMap.get('mobile_no1')
-                var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value
-                for(var i = 0 ; i< this.aadhar.length;i++)
+        var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value
+        if(total.length == 12)
+        {
+            this.service.checkAadhar(total)
+            .subscribe(
                 {
-                    if(this.aadhar[i].aadhar_no == total && mobile == this.aadhar[i].mobile_no1)
+                    next : (response:any)=>
                     {
-                        this.aadhar_invalid = true
+                        console.log(response);
+                        if(response.message == 'new')
+                            this.aadhar_invalid = true
+                        else if(response.message == 'old')
+                            this.aadhar_invalid = false
+                        else
+                            console.log("failed");
                     }
-                    else if(this.aadhar[i].aadhar_no == total && mobile != this.aadhar[i].mobile_no1)
-                    {
-                        this.aadhar_invalid = false
-                        this.form.controls['aadhar3'].setErrors({'incorrect':true})
-                        console.log("aadhar check",this.form.controls['aadhar3'].valid)
-                        break
-                    }
-                    else
-                        this.aadhar_invalid = true
+                }
+            )
+        }
+            // {
+            //     var mobile = this.active.snapshot.paramMap.get('mobile_no1')
+            //     var total = this.form.controls['aadhar1']?.value+this.form.controls['aadhar2']?.value+this.form.controls['aadhar3']?.value
+            //     for(var i = 0 ; i< this.aadhar.length;i++)
+            //     {
+            //         if(this.aadhar[i].aadhar_no == total && mobile == this.aadhar[i].mobile_no1)
+            //         {
+            //             this.aadhar_invalid = true
+            //         }
+            //         else if(this.aadhar[i].aadhar_no == total && mobile != this.aadhar[i].mobile_no1)
+            //         {
+            //             this.aadhar_invalid = false
+            //             this.form.controls['aadhar3'].setErrors({'incorrect':true})
+            //             console.log("aadhar check",this.form.controls['aadhar3'].valid)
+            //             break
+            //         }
+            //         else
+            //             this.aadhar_invalid = true
 
-                }        
-            }
+            //     }        
+            // }
     }
 
     emitData(){
