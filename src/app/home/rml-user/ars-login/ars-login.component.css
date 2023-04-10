@@ -13,7 +13,7 @@ img{
     background-position:0 0;
     align-items: center;
     justify-content: center;
-    z-index: -1;
+ 
 }
 
 .example-container .mat-form-field + .mat-form-field {
@@ -80,8 +80,8 @@ input.example-right-align::-webkit-inner-spin-button {
     box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
     padding: 20px; /* Add padding as needed */
     border-radius: 10px; /* Add border-radius as needed */
-    min-height: 300px; /* Set height as needed */
-    min-width: 500px; /* Set width as needed */
+    height: 300px; /* Set height as needed */
+    width: 500px; /* Set width as needed */
     background-color: rgb(255, 253, 253,0.5);
     align-items: center;
     margin-left: 25%;
@@ -203,7 +203,7 @@ input.example-right-align::-webkit-inner-spin-button {
    #inputid{
     border-color: black;
     border-radius:10px;
-}
+   }
 #labelid{
     font-size: 14px;
     font-weight: 700;

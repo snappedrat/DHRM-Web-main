@@ -2,6 +2,7 @@
 <div  style = "margin-top: 40px;">
 
   <form [formGroup]="form">
+    <div class="form-container1">
   <div class = "row">
  
     <div class = "col-sm-3">
@@ -15,24 +16,23 @@
         <mat-option value="appointed">APPOINTED</mat-option>
       </mat-select> </div>
  
-  <div class = "col-sm-3.5">
+  <div class = "col-sm-3">
       <label for="fromdate" id="center"> From date:</label>
       <br>
       <input type="date" class="input2" formControlName = "fromdate">
   </div>
-  <div class = "col-sm-1">
+  <div class = "col-sm-3.5">
       <label for="todate" id="center"> To date:</label>
       <br>
       <input type="date" class="input2" formControlName = "todate">
   </div>
-</div> 
+ 
   <br>
 
-  <div class="row">
-    <div class="col-sm-1">
-    <button mat-raised-button  color="primary" (click)="filter()" >Search</button>
-  </div></div><br>
-
+    <div class="col-sm-2">
+    <button mat-raised-button class="button1"  color="primary" (click)="filter()" >Search</button>
+  </div></div>
+<br><br>
   <div class = "row" >
   <div class="col-sm-3">
     <label for="Status" > Search: </label>
@@ -43,13 +43,13 @@
       <mat-option value="aadhar_no">aadhar number</mat-option>
     </mat-select><br>
   </div>
-  <div class="col-sm-2">
+  <div class="col-sm-2.5">
     <label for="Status" id="center"> Name: </label><br>
 
     <input class="input2" name="searchfor" formControlName = "colvalue" > </div>
     <div class="col-md-3">    <label for="Status" id="center"><br>  </label><br>
       <button mat-raised-button color="primary" (click)="searchfilter()"  >🔍</button></div>
-  </div>
+  </div></div>
 </form>
 
   <br><br>

@@ -2,21 +2,24 @@
     <div  style = "margin-top: 40px;">
     <div>
         
-    </div>
+    </div> 
+    
+<div class="form-container1">
     <div class="row">
-        <div class = "col-sm-3.5"><b><p>From Date : </p></b>
+        <div class = "col-sm-4"><b><p>From Date : </p></b>
             <input  class="input2" type="date" [(ngModel)]="from" (ngModelChange)="call($event)">
           </div>
-          <div class = "col-sm-3"><b><p>To Date : </p></b>
+          <div class = "col-sm-4"><b><p>To Date : </p></b>
             <input  class="input2" type="date"  [(ngModel)]="to" (ngModelchange)="call2($event)">
           </div>
-    </div>
-      <br><br>
+    </div></div>
+    
+      <div class="form-container1">
     <b><p>Name : </p></b>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <input type="text" class="input2" [(ngModel)]="searchText">
-        </div>
+        </div></div>
     </div>
     <br><br>
     <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
