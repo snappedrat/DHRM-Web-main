@@ -2,14 +2,14 @@
 
 <div class="form-container1">
 <div class="row">
-    <div class="col-sm-3.5">  <b><p>Status : </p></b>
+    <div class="col-sm-4">  <b><p>Status : </p></b>
         <form [formGroup]="form">
         <mat-select class="input2" (selectionChange)="filter()" formControlName="select">
             <mat-option value="APPOINTED" selected>APPOINTED</mat-option>
             <mat-option value="TRAINING COMPLETED">TRAINING COMPLETED</mat-option>
         </mat-select>
         </form>
-    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
     <div class = "col-sm-3.5"><b><p>From Date : </p></b>
         <input type="date" class="input2" [(ngModel)]="from" (change)="call($event)">
       </div>
@@ -18,8 +18,7 @@
       </div>
 </div>
 
-</div>
-<div class="form-container1">
+<br>
 <div class="row">
     <div class = "col-sm-4">
         <label for="text"><b>Name:</b></label><br>

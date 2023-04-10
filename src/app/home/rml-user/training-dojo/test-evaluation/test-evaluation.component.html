@@ -31,27 +31,27 @@
                         </div>
                         <br><br>
                         <div>Module :<br>
-                            <select (change) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="input2" formControlName = "module">
+                            <mat-select (selectionChange) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="input2" formControlName = "module">
                                 
-                                <option value="" disabled>Select Module</option>  
-                                <option *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</option>          
+                                <mat-option value="" >Select Module</mat-option>  
+                                <mat-option [value]="{index: a, module: i.module_name}" *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</mat-option>          
     
-                            </select>
+                            </mat-select>
                         </div><br>
-                        <div class ="dropdown1">Exam type:
-                            <select  style="font-size:14px"  placeholder = "Select Exam Type" class="form-control" formControlName = "test">
+                        <div class ="dropdown1">Exam type:<br>
+                            <mat-select  style="font-size:14px"  placeholder = "Select Exam Type" class="input2" formControlName = "test">
                                 
-                                <option value="" disabled>Select Exam Type</option>     
-                                <option value="pre-test">Pre-test</option>            
-                                <option value="post-test">Post-test</option>            
+                                <mat-option value="" disabled>Select Exam Type</mat-option>     
+                                <mat-option value="pre-test">Pre-test</mat-option>            
+                                <mat-option value="post-test">Post-test</mat-option>            
        
-                            </select>
+                            </mat-select>
                         </div><br>
 
                         <br>
                         <div>
                             <p> Exam Paper: </p>
-                            <input type="file" class="input2" (change) = "offline_upload($event)" [disabled] = "form.invalid">
+                            <input type="file" (change) = "offline_upload($event)" [disabled] = "form.invalid">
                         </div>
                         
                         <br>

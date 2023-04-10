@@ -4,7 +4,9 @@
   <div class = "container">
     <div  style = "margin-top: 40px;">   
 <h1><b>HR Evaluation</b></h1>
+        <div class="form-container1">
       <form [formGroup]="form">
+
       <div class = "row">
       <div class = "col-sm-4">
       <!-- <label for="Status" id="center"> Status: </label> -->
@@ -21,6 +23,7 @@
               <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
               <mat-option value="APPROVED">APPROVED</mat-option>
           </mat-select>
+
         </div> 
       <div class="col-sm-2" style="align-items: center; justify-content: center; display: flex; width: 100%;">
         <select formControlName="year" >
@@ -29,6 +32,8 @@
       </div>
 
         <div class="col-sm-2" style="display: flex; align-items:center ">
+
+
           <button mat-raised-button color="primary" (click)="filter()" >Search</button>
 
         </div>
