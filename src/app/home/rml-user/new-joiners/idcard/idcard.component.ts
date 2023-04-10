@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UntypedFormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment.prod';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-idcard',
@@ -25,7 +26,7 @@ export class IdcardComponent implements OnInit {
   plant: any;
   // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
-    constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder ) { 
+    constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder, private service : ApiService ) { 
         this.form = fb.group(
           {
             permanent:[],
@@ -74,18 +75,19 @@ export class IdcardComponent implements OnInit {
     
     console.log(this.status)
 
-    this.http
-    .post(this.url+'/getdataforid', this.uniqueId)
+    this.service.getDataForId(this.uniqueId)
     .subscribe({
-      next:(response)=>{console.log(response); this.formvalues = response
+      next:(response)=>
+      {
+        console.log(response); 
+        this.formvalues = response
+
         this.plant = this.formvalues[0].plant_sign
         this.form.controls['permanent'].setValue(this.formvalues[0]?.permanent_address)
         this.form.controls['company_address'].setValue(this.formvalues[0]?.addr)
 
         this.url = this.url+'/' + this.formvalues[0]?.other_files6
         this.plant = environment.path+'/plant/' + this.formvalues[0]?.plant_sign
-
-        console.log("url",this.plant)
       },
       error: (error) => 
       console.log(error),

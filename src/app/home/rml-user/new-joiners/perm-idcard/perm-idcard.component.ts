@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UntypedFormBuilder } from '@angular/forms';
 import { environment } from 'src/environments/environment.prod';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-perm-idcard',
@@ -26,7 +27,7 @@ export class PermIdcardComponent implements OnInit {
   plant: any;
   // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
-    constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder ) { 
+    constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder, private service: ApiService ) { 
         this.form = fb.group(
           {
             permanent:[],
@@ -70,10 +71,13 @@ export class PermIdcardComponent implements OnInit {
     this.uniqueId.status = this.active.snapshot.paramMap.get('status');
     console.log(this.status)
 
-    this.http
-    .post(this.url+'/getdataforpermid', this.uniqueId)
+    this.service.getDataForPermId(this.uniqueId)
     .subscribe({
-      next:(response:any)=>{console.log(response); this.formvalues = response;
+      next:(response:any)=>
+      {
+        console.log(response); 
+        this.formvalues = response;
+
         if(this.formvalues)
         {
           setTimeout(() => {

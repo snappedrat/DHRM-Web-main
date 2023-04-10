@@ -42,7 +42,7 @@ export class TraineeLoginComponent implements OnInit {
 ngOnInit(): void {
 
 
-  this.plantcodeService.getHr('newuser')
+  this.service.getHr('newuser')
 
 }
 

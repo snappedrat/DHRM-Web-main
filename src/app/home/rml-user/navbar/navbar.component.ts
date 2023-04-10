@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
 import { PlantcodeService } from '../new-joiners/plantcode.service';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -45,7 +46,7 @@ export class NavbarComponent implements OnInit {
   user: any;
   access_master: string | null;
 
-  constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : PlantcodeService, private active : ActivatedRoute ) {
+  constructor(private fb : FormBuilder, private breakpointObserver: BreakpointObserver, private cookie: CookieService, private http: HttpClient, private service : ApiService, private active : ActivatedRoute ) {
     this.form = fb.group({
         username : new UntypedFormControl(sessionStorage.getItem('user_name'))
     })

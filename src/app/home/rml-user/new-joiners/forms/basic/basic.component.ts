@@ -16,6 +16,7 @@ import {
     transition,
   } from '@angular/animations';
   import { Timestamp } from 'rxjs';
+import { ApiService } from 'src/app/home/api.service';
 
   
 @Component({
@@ -68,7 +69,7 @@ export class BasicComponent implements OnInit{
     url = environment.path
 
 
-    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute) {
+    constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private plantcodeService: PlantcodeService, private active : ActivatedRoute, private service: ApiService) {
         this.form = fb.group({
             permanent: new FormControl('', Validators.required),
             present: new FormControl('', Validators.required),
@@ -178,8 +179,7 @@ export class BasicComponent implements OnInit{
       }
 
     getaadhar(){
-        this.http
-        .get(this.url+'/getaadhar')
+        this.service.getAadhar()
         .subscribe({
           next: (response) =>{ console.log(response); this.aadhar = response},
           error: (error) => console.log(error),

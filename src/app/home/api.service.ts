@@ -17,12 +17,66 @@ url2:any = environment.path2
 
   constructor(private http: HttpClient) {}
 
-////////////////////////////////////////////////////////////////////////masters
   ars_login(form:any)
   {
     return this.http.post(this.url+'/ars-login', form)
-    
   }
+  traineeFormData(form:any)
+  {
+    return this.http.post(this.url+'/traineeformdata',form)
+  }
+  getHr(uniqueid: any)
+  {
+    return this.http.post(this.url+'/gethrappr',uniqueid)
+  }
+  getPlantCode(form:any)
+  {
+    return this.http.post(this.url+'/plantcodelist',form)
+  }
+  getCompanyCode()
+  {
+    return this.http.post(this.url+'/companycodelist', '')
+  }
+  getAadhar()
+  {
+    return this.http.get(this.url+'/getaadhar')
+  }
+  getDataForId(form:any)
+  {
+    return this.http.post(this.url+'/getdataforid', form)
+  }
+  getDataForPermId(form:any)
+  {
+    return this.http.post(this.url+'/getdataforpermid', form)
+  }
+  filterForApproval(form:any)
+  {
+    return this.http.post(this.url+'/filterforapproval', form)
+  }
+
+  getdatabasic(uniqueId:any){
+    return this.http.post(this.url+'/getdatabasic',uniqueId)
+  
+  }
+  
+  getdataqualifn(uniqueId:any){
+    // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    return this.http.post(this.url+'/getdataqualfn',uniqueId)
+  
+  }
+  
+  getdatafamily(uniqueId:any){
+    // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    return this.http.post(this.url+'/getdatafamily',uniqueId)
+  
+  }
+  
+  getdatacareer(uniqueId:any){
+    // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
+    return this.http.post(this.url+'/getdatacareer',uniqueId)
+  
+  }
+  ////////////////////////////////////////////////////////////////////////masters
   companyshow()
   {
     return this.http.get(this.url+'/companyshow')

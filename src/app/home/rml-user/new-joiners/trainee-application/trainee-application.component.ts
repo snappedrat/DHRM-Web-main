@@ -7,6 +7,7 @@ import { Router, RouterLinkActive } from '@angular/router';
 import { format } from 'path';
 import { threadId } from 'worker_threads';
 import { environment } from 'src/environments/environment.prod';
+import { ApiService } from 'src/app/home/api.service';
 
 @Component({
   selector: 'app-trainee-application',
@@ -43,7 +44,7 @@ export class TraineeApplicationComponent implements OnInit{
       }
   }
  bankForms: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService,private plantcodeService: PlantcodeService, private router : Router ) {
+  constructor(private fb: FormBuilder,private http: HttpClient, private cookie: CookieService, private router : Router, private service : ApiService ) {
     this.bankForms = fb.group({ 
       mobileNumber: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       company:['',Validators.required],
@@ -73,18 +74,19 @@ getplantcode(event:any){
     console.log(event.target.value);
     this.bankForms.controls['plant'].setValue('')
     var company = {'company_name': event.target.value.split('.')[1].trim()}
-    this.http.post(this.url+'/plantcodelist',company)
+
+    this.service.getPlantCode(company)
     .subscribe({
-      next: (response) =>{ console.log(response); this.plantcode = response },
+      next: (response) =>{ this.plantcode = response },
       error: (error) => console.log(error),
     });
 }
 
 getcompanycode(){
 
-  this.http.post(this.url+'/companycodelist', '')
+  this.service.getCompanyCode()
   .subscribe({
-    next: (response) =>{ console.log(response); this.companycode = response },
+    next: (response) =>{ this.companycode = response },
     error: (error) => console.log(error),
   });
 }
@@ -102,13 +104,13 @@ sendFormData()
   else{
 
     this.companyname = this.companycode[x-1].sno
-  
-    this.http.post(this.url+'/traineeformdata', this.bankForms.value)
+
+    this.service.traineeFormData(this.bankForms.value)
     .subscribe({
-      next: (response) => {console.log("vathuchaaa",response);this.errmsg=response;
+      next: (response:any) => {console.log("vathuchaaa",response);this.errmsg=response;
       if(this.errmsg.status == 'newform')
       {
-        this.plantcodeService.getHr({username:'newuser', user:'emp2'})
+        this.service.getHr({username:'newuser', user:'emp2'})
         .subscribe({
           next: (response)=>{console.log("hr",response); this.isHrappr = response
           sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
@@ -120,7 +122,7 @@ sendFormData()
       }
     else if(this.errmsg.status == 'incomplete')
       { 
-        this.plantcodeService.getHr({username:'newuser', user:'emp2'})
+        this.service.getHr({username:'newuser', user:'emp2'})
         .subscribe({
           next: (response)=>{console.log("hr",response); this.isHrappr = response
           sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
@@ -133,7 +135,7 @@ sendFormData()
       }
     else if(this.errmsg.status == 'registered')
       {window.alert("Your application has already been registered. kindly contact HR department");console.log(this.bankForms.value)}},
-      error: (error) => console.log(error),
+      error: (error:any) => console.log(error),
     })
   }
 }
