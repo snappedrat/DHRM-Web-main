@@ -59,8 +59,9 @@
 
                   </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngFor="let i of filterinfo | filter : searchText">
+                  <tbody *cdkVirtualFor="let i of filterinfo | filter : searchText; let j = index; let c = count">
+                    <cdk-virtual-scroll-viewport itemSize="50" style="height: 100%">
+                      <tr [style.height.px]="50" [style.opacity]="c === j ? 1 : 0" *cdkVirtualFor="let i of [i]" class="table-row">
                       <td>{{ formatDate(i.doj) }}</td>
                       <td>{{i.trainee_idno}}</td>
                       <td>{{ i.fullname }}</td>
@@ -81,6 +82,7 @@
                         </div>
                         </td>
                       </tr>
+                    </cdk-virtual-scroll-viewport>
                     </tbody>
                 </table>
               </table>

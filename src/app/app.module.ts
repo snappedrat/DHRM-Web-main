@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './Auth.guard';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { HeaderInterceptor } from './header.interceptor';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 
@@ -47,6 +48,7 @@ import { HeaderInterceptor } from './header.interceptor';
     FormsModule,
     ReactiveFormsModule,
     SelectDropDownModule,
+    ScrollingModule
 
   ],
   providers: [AuthGuard,

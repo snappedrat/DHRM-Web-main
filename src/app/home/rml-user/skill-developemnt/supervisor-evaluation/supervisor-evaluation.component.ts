@@ -59,7 +59,9 @@ export class SupervisorEvaluationComponent implements OnInit {
     this.service.evaluationdays(this.form.value)
     .subscribe(
       {
-        next: (response)=>{console.log(response); this.filterinfo = response}
+        next: (response)=>{
+          console.log(response); this.filterinfo = response
+        }
       }
     ) 
   }
