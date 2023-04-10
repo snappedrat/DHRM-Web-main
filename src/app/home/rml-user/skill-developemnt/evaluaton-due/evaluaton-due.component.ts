@@ -46,12 +46,13 @@ export class EvaluatonDueComponent implements OnInit {
 
   filter()
   {
-    if(sessionStorage.getItem('issupervisor') == 'true')
+    var form = {plant_code : sessionStorage.getItem('plantcode'), dept_slno : ''}
+    var x:any = sessionStorage.getItem('all')
+    x = JSON.parse(x)
+    form.dept_slno = x.Department
+    var RA = x.Is_ReportingAuth
+    if(RA)
     {
-      var form = {plant_code : sessionStorage.getItem('plantcode'), dept_slno : ''}
-      var x:any = sessionStorage.getItem('all')
-      x = JSON.parse(x)
-      form.dept_slno = x.Department
       this.service.evaluationDueSupervisor(form)
       .subscribe(
         {

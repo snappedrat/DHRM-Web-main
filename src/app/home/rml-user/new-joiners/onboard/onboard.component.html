@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-sm-4">  <b><p>Status : </p></b>
         <form [formGroup]="form">
-        <mat-select class="input2" (change)="filter()" formControlName="select">
+        <mat-select class="input2" (selectionChange)="filter()" formControlName="select">
             <mat-option value="APPOINTED" selected>APPOINTED</mat-option>
             <mat-option value="TRAINING COMPLETED">TRAINING COMPLETED</mat-option>
         </mat-select>

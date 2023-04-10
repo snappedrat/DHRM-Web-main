@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SkillDevelopemntModule } from './skill-developemnt/skill-developemnt.module';
 import { ArsLoginComponent } from './ars-login/ars-login.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ArsLoginComponent } from './ars-login/ars-login.component';
     MatDialogModule,
     MatSnackBarModule,
     FlexLayoutModule,
-    SkillDevelopemntModule
+    SkillDevelopemntModule,
+    ScrollingModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

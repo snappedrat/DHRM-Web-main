@@ -22,6 +22,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import { FilterPipe } from './filter.pipe';
 import { LoadModule } from 'src/app/loader/loader.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { LoadModule } from 'src/app/loader/loader.module';
     MatIconModule,
     FormsModule,
     LoadModule,
+    ScrollingModule
   ]
 })
 export class SkillDevelopemntModule { }
