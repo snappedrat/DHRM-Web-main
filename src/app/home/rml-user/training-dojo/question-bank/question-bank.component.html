@@ -1,7 +1,7 @@
 <div class="container pt-5">
     <div [formGroup]="form" class="row">
         <div class="col-sm-3">
-            <select (change)="getquestions($event)"  style="font-size:14px" formControlName="module" class="form-control">
+            <select (change)="getquestions($event)"  style="font-size:14px" formControlName="module" class="input2">
                 <option value="" disabled>Select your module</option>            
                 <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
             </select>

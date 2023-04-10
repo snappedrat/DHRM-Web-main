@@ -3,46 +3,47 @@
 
   <form [formGroup]="form">
   <div class = "row">
-  <div class = " boxx">
-  <label for="Status" id="center"> Status: </label>
-    <br>
-      <mat-select name="Status" id="Status" formControlName = "status" class = "form-select h-30 w-100">
+ 
+    <div class = "col-sm-3">
+ <label for="Status" id="center"> Status: </label>
+      <mat-select class="input2" formControlName = "status" >
         <mat-option value="NEW INCOMPLETE">NEW INCOMPLETE</mat-option>
         <mat-option value="pending">PENDING</mat-option>
         <mat-option value="submitted">SUBMITTED</mat-option>
         <mat-option value="approved">APPROVED</mat-option>
         <mat-option value="Rejected">REJECTED</mat-option>
         <mat-option value="appointed">APPOINTED</mat-option>
-      </mat-select> 
-  </div>
-  <div class = "col-sm-3">
+      </mat-select> </div>
+ 
+  <div class = "col-sm-3.5">
       <label for="fromdate" id="center"> From date:</label>
       <br>
-      <input type="date" id="fromdate" name="fromdate" formControlName = "fromdate">
+      <input type="date" class="input2" formControlName = "fromdate">
   </div>
-  <div class = "col-sm-3">
+  <div class = "col-sm-1">
       <label for="todate" id="center"> To date:</label>
       <br>
-      <input type="date" id="todate" name="todate" formControlName = "todate">
+      <input type="date" class="input2" formControlName = "todate">
   </div>
-</div>
-  <button mat-raised-button  class = "btn btn-primary btn-lg" (click)="filter()" >Search</button>
+</div> 
+  <br>
 
-  <br><br>
+  <div class="row">
+    <div class="col-sm-1">
+    <button mat-raised-button  color="primary" (click)="filter()" >Search</button>
+  </div></div><br>
 
-<div class = "row" >
-  <div class="col-md-3">
-
-  <label for="Status" id="center"> Search: </label><br>
-  
-    <mat-select placeholder="--SELECT--" id="Search" formControlName = "colname" >
+  <div class = "row" >
+  <div class="col-sm-3">
+    <label for="Status" > Search: </label>
+    <mat-select class="input2" placeholder="--SELECT--" id="Search" formControlName = "colname" >
       <mat-option value="fullname" >Name</mat-option>
       <mat-option value="fathername">Father name</mat-option>
       <mat-option value="mobile_no1">mobile number</mat-option>
       <mat-option value="aadhar_no">aadhar number</mat-option>
     </mat-select><br>
   </div>
-  <div class="col-md-3">
+  <div class="col-sm-2">
     <label for="Status" id="center"> Name: </label><br>
 
     <input class="input2" name="searchfor" formControlName = "colvalue" > </div>
