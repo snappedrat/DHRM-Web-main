@@ -100,7 +100,7 @@ select{
 
 
 .input2 {
-  min-width: 200px;
+  width: 200px;
   background-color: #f5f5f5;
   color: #242424;
   padding: .15rem .5rem;

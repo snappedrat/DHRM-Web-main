@@ -77,3 +77,16 @@ tbody
   text-align: left;
   margin-top: 7%;
 }
+.form-container1 {
+  margin-top: 5%;
+  -webkit-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
+  -moz-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
+  box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 100px;
+  min-width: 800px;
+  background-color: rgba(211, 204, 204, 0.618); /* Update opacity here */
+  align-items: center;
+  margin-left: 8%;
+}

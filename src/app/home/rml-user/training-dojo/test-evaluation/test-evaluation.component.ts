@@ -65,7 +65,7 @@ export class TestEvaluationComponent implements OnInit {
   filterOptions(value: any): any[] {
     console.log(value, "/////////////////");
     
-    const filterValue = value.toLowerCase();
+    const filterValue = value?.toLowerCase();
     return this.trainee.filter((trainee:any) => trainee.fullname.toLowerCase().includes(filterValue));
   }
 
@@ -78,12 +78,16 @@ export class TestEvaluationComponent implements OnInit {
     }
     else
     {
-      var i = this.form.controls['module'].value.split('.')[0]-1
+      console.log(this.form.value);
+      
+      var i = this.form.controls['module'].value.index
       this.form.controls['pf'].setValue(this.modules[i].pass_criteria <= this.form.controls['score'].value ? 'p' : 'f')
       this.form.controls['priorityval'].setValue(this.modules[i].priorityval)
       this.form.controls['percent'].setValue(((this.form.controls['score'].value) / (this.modules[i].total_marks)) * 100)
       this.form.controls['min_percent'].setValue(this.modules[i].pass_percent)
       this.form.controls['plant_code'].setValue(sessionStorage.getItem('plantcode'))
+      this.form.controls['module'].setValue(this.form.controls['module'].value.module)
+
       console.log(this.form.value)
   
       this.service.offlineUpload(this.form.value)
@@ -110,8 +114,9 @@ export class TestEvaluationComponent implements OnInit {
 
   get_test_status(event:any)
   {
-
-    var value = event.target.value.split('.')[1]
+    console.log(event);
+    
+    var value = event.value.module
     var obj = {module_name : value, idno : this.trainee_id}
     console.log(obj)
     this.service.get_test_status(obj)
@@ -124,6 +129,20 @@ export class TestEvaluationComponent implements OnInit {
         {
           alert("Trainee already finished evauation")
           this.form.reset()
+          this.service.getTrainee()
+    .subscribe(
+      {
+        next: (response)=>{
+          console.log('trainee : ', response)
+          this.trainee = response
+          this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+            startWith(''),
+            map((value:any) => this.filterOptions(value))
+          );
+      },
+        error: (error)=> console.log(error)
+      }
+    )
         }
         if(response.status=='exam failed')
         {

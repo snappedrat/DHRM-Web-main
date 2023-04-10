@@ -4,7 +4,9 @@
   <div class = "container">
     <div  style = "margin-top: 40px;">   
 <h1><b>HR Evaluation</b></h1>
+        <div class="form-container1">
       <form [formGroup]="form">
+
       <div class = "row">
       <div class = "col-sm-4">
       <!-- <label for="Status" id="center"> Status: </label> -->
@@ -15,28 +17,27 @@
             <mat-option value="181-270">181 to 270 days</mat-option>
           </mat-select> 
       </div>
-      <div class = " col-sm-4">
+      <div class = " col-sm-3.5">
           <mat-select name="Status" id="Status" class="input2" formControlName = "filter" >
               <mat-option value="PENDING">PENDING</mat-option>
               <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
               <mat-option value="APPROVED">APPROVED</mat-option>
           </mat-select>
         </div>
-        <div class="boxx">
-
-        </div>
-        <div class="col-sm-3.5" style="display: flex; align-items:center ">
+      
+        <div class="col-sm-4" style="display: flex; align-items:center ">
           <button mat-raised-button color="primary" (click)="filter()" >Search</button>
 
         </div>
       </div>
   </form>
     <div class="row">
-      <div class = "col-sm-3.5 ">
+      <div class = "col-sm-4 ">
         <br>
-        <label for="text">Name:</label><br>
-        <input class="input" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
-          
+        <label for="text"><p>Name:</p></label><br>
+        <input class="input2" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
+          </div>
+
       </div>
     </div> 
 
