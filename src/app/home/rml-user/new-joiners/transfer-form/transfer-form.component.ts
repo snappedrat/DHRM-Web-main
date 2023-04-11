@@ -85,7 +85,7 @@ export class TransferFormComponent implements OnInit {
 
       // this.form.controls['reportingto'].setValue(this.slno)
 
-      this.service.reporting(this.form.value)
+      this.service.transfer(this.form.value)
       .subscribe(
         {
           next: (response:any)=>{console.log(response);

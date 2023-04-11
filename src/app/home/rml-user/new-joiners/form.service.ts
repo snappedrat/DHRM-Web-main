@@ -45,7 +45,7 @@ res:any;
 
 submitbank(){
   console.log(this.bank)
-  this.http.put(this.url+'/bankforms', this.bank)
+  this.http.put(this.url+'/hrOperation/bankforms', this.bank)
   .subscribe({
       next: (response:any) => {console.log(response); this.res = response.message},
       error: (error) => console.log(error),
@@ -54,7 +54,7 @@ submitbank(){
 
 submitbasic(){
   console.log(this.basic)
-  this.http.put(this.url+'/basicforms', this.basic)
+  this.http.put(this.url+'/hrOperation/basicforms', this.basic)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -63,7 +63,7 @@ submitbasic(){
 
 submitedu(){
   console.log(this.edu)
-  this.http.put(this.url+'/edu', this.edu)
+  this.http.put(this.url+'/hrOperation/edu', this.edu)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -74,7 +74,7 @@ submitedu(){
 submitemer(){
   
   console.log(this.edu)
-  this.http.put(this.url+'/emergency', this.emer)
+  this.http.put(this.url+'/hrOperation/emergency', this.emer)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -83,7 +83,7 @@ submitemer(){
 
 submitfamily(){
   console.log(this.edu)
-  this.http.put(this.url+'/family', this.fam)
+  this.http.put(this.url+'/hrOperation/family', this.fam)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -92,7 +92,7 @@ submitfamily(){
 
 submitother(){
   console.log(this.other)
-  this.http.put(this.url+'/others', this.other)
+  this.http.put(this.url+'/hrOperation/others', this.other)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -101,7 +101,7 @@ submitother(){
 
 submitprev(){
   console.log(this.prev)
-  this.http.put(this.url+'/prev', this.prev)
+  this.http.put(this.url+'/hrOperation/prev', this.prev)
   .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -109,7 +109,7 @@ submitprev(){
 }
 
 sumbitlang(){
-        this.http.put(this.url+'/lang', this.lang)
+        this.http.put(this.url+'/hrOperation/lang', this.lang)
     .subscribe({
       next: (response) => console.log(response),
       error: (error) => console.log(error),
@@ -117,25 +117,22 @@ sumbitlang(){
 }
 
 getdatabasic(uniqueId:any){
-  return this.http.get(this.url+'/getdatabasic?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
+  return this.http.get(this.url+'/hrOperation/getdatabasic?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
 
 }
 
 getdataqualifn(uniqueId:any){
-  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
-  return this.http.get(this.url+'/getdataqualfn?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
+  return this.http.get(this.url+'/hrOperation/getdataqualfn?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
 
 }
 
 getdatafamily(uniqueId:any){
-  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
-  return this.http.get(this.url+'/getdatafamily?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
+  return this.http.get(this.url+'/hrOperation/getdatafamily?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
 
 }
 
 getdatacareer(uniqueId:any){
-  // this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile');
-  return this.http.get(this.url+'/getdatacareer?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
+  return this.http.get(this.url+'/hrOperation/getdatacareer?mobile='+uniqueId.mobile+'&company='+uniqueId.company)
 
 }
 
@@ -161,7 +158,7 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
 
 submitted(uniqueId: any){
   console.log("----------------------------", uniqueId)
-  this.http.put(this.url+'/submitted',uniqueId)
+  this.http.put(this.url+'/hrOperation/submitted',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -169,7 +166,7 @@ submitted(uniqueId: any){
 }
 
 pending(uniqueId: any){
-  this.http.put(this.url+'/pending',uniqueId)
+  this.http.put(this.url+'/hrOperation/pending',uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -178,7 +175,7 @@ pending(uniqueId: any){
 
 approved(uniqueId:any){
 
-  this.http.put(this.url+'/approved', uniqueId)
+  this.http.put(this.url+'/hrOperation/approved', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -188,7 +185,7 @@ approved(uniqueId:any){
 rejected(uniqueId:any){
   console.log(this.uniqueId);
 
-  this.http.put(this.url+'/rejected', uniqueId)
+  this.http.put(this.url+'/hrOperation/rejected', uniqueId)
   .subscribe({
     next: (response) =>{ console.log(response);},
     error: (error) => console.log(error),
@@ -197,22 +194,22 @@ rejected(uniqueId:any){
 
 filter(form:any)
 {
-  return this.http.get(this.url+'/filter?status='+form.status+'&fromdate='+form.fromdate+'&todate='+form.todate+'&plantcode='+form.plantcode)
+  return this.http.get(this.url+'/hrOperation/filter?status='+form.status+'&fromdate='+form.fromdate+'&todate='+form.todate+'&plantcode='+form.plantcode)
 }
 
 searchfilter(form:any)
 {
-  return this.http.post(this.url+'/searchfilter', form)
+  return this.http.post(this.url+'/hrOperation/searchfilter', form)
 
 }
 getbanknames()
 {
-    return this.http.get(this.url+'/getbanknames')
+    return this.http.get(this.url+'/hrOperation/getbanknames')
 }
 
 getpincode(pincode:any)
 {
-    return  this.http.get(this.url+'/getpincode?pincode='+pincode.pincode)
+    return  this.http.get(this.url+'/hrOperation/getpincode?pincode='+pincode.pincode)
 }
 
 }

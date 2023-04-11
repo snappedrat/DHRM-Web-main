@@ -52,12 +52,11 @@ export class PlantComponent implements OnInit {
     subscribe({
       next: (response)=>{this.dummy = response}
     })
-    this.service.companycodelist()
-    .    subscribe({
+    this.service.getCompanyCode()
+    .subscribe({
       next: (response)=>{
         console.log(response)
         this.companylist = response;
-        // this.company = this.companylist.map((a:any) => a.company_name)
       }
     })
   }
