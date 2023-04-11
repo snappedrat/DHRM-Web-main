@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { appendFile } from 'fs';
@@ -81,6 +81,7 @@ url2:any = environment.path2
   
   }
   ////////////////////////////////////////////////////////////////////////masters
+
   companyshow()
   {
     return this.http.get(this.url+'/companyshow')
@@ -91,24 +92,24 @@ url2:any = environment.path2
   }
   companyedit(form:any)
   {
-    return this.http.post(this.url+'/companyedit', form)
+    return this.http.put(this.url+'/companyedit', form)
   }
   companydel(form:any)
   {
-    return this.http.post(this.url+'/companydel', form)
+    return this.http.put(this.url+'/companydel', form)
   }
 
   getplant()
   {
-    return this.http.post(this.url+'/getplant', '')
+    return this.http.get(this.url+'/getplant')
   }
   deleteplant(form:any)
   {
-    return this.http.post(this.url+'/deleteplant', form)
+    return this.http.put(this.url+'/deleteplant', form)
   }
   updateplant(form:any)
   {
-    return this.http.post(this.url+'/updateplant', form)
+    return this.http.put(this.url+'/updateplant', form)
   }
   addplant(form:any)
   {
@@ -117,15 +118,15 @@ url2:any = environment.path2
 
   getbank()
   {
-    return this.http.post(this.url+'/getbank', '')
+    return this.http.get(this.url+'/getbank')
   }
   deletebank(form:any)
   {
-    return this.http.post(this.url+'/deletebank', form)
+    return this.http.put(this.url+'/deletebank', form)
   }
   updatebank(form:any)
   {
-    return this.http.post(this.url+'/updatebank', form)
+    return this.http.put(this.url+'/updatebank', form)
   }
   addbank(form:any)
   {
@@ -134,15 +135,15 @@ url2:any = environment.path2
 
   getdepartment()
   {
-    return this.http.post(this.url+'/getdepartment', '')
+    return this.http.get(this.url+'/getdepartment')
   }
   deletedepartment(form:any)
   {
-    return this.http.post(this.url+'/deletedepartment', form)
+    return this.http.put(this.url+'/deletedepartment', form)
   }
   updatedepartment(form:any)
   {
-    return this.http.post(this.url+'/updatedepartment', form)
+    return this.http.put(this.url+'/updatedepartment', form)
   }
   adddepartment(form:any)
   {
@@ -151,15 +152,15 @@ url2:any = environment.path2
 
   getdesignation()
   {
-    return this.http.post(this.url+'/getdesignation', '')
+    return this.http.get(this.url+'/getdesignation')
   }
   deletedesignation(form:any)
   {
-    return this.http.post(this.url+'/deletedesignation', form)
+    return this.http.put(this.url+'/deletedesignation', form)
   }
   updatedesignation(form:any)
   {
-    return this.http.post(this.url+'/updatedesignation', form)
+    return this.http.put(this.url+'/updatedesignation', form)
   }
   adddesignation(form:any)
   {
@@ -185,15 +186,15 @@ url2:any = environment.path2
 
   getoperation()
   {
-    return this.http.post(this.url+'/getoperation', '')
+    return this.http.get(this.url+'/getoperation')
   }
   deleteoperation(form:any)
   {
-    return this.http.post(this.url+'/deleteoperation', form)
+    return this.http.put(this.url+'/deleteoperation', form)
   }
   updateoperation(form:any)
   {
-    return this.http.post(this.url+'/updateoperation', form)
+    return this.http.put(this.url+'/updateoperation', form)
   }
   addoperation(form:any)
   {
@@ -202,15 +203,15 @@ url2:any = environment.path2
 
   getemployee()
   {
-    return this.http.post(this.url+'/getemployee', '')
+    return this.http.get(this.url+'/getemployee')
   }
   deleteemployee(form:any)
   {
-    return this.http.post(this.url+'/deleteemployee', form)
+    return this.http.put(this.url+'/deleteemployee', form)
   }
   updateemployee(form:any)
   {
-    return this.http.post(this.url+'/updateemployee', form)
+    return this.http.put(this.url+'/updateemployee', form)
   }
   addemployee(form:any)
   {
@@ -219,15 +220,15 @@ url2:any = environment.path2
 
   getshift()
   {
-    return this.http.post(this.url+'/getshift', '')
+    return this.http.get(this.url+'/getshift')
   }
   deleteshift(form:any)
   {
-    return this.http.post(this.url+'/deleteshift', form)
+    return this.http.put(this.url+'/deleteshift', form)
   }
   updateshift(form:any)
   {
-    return this.http.post(this.url+'/updateshift', form)
+    return this.http.put(this.url+'/updateshift', form)
   }
   addshift(form:any)
   {
@@ -238,13 +239,12 @@ url2:any = environment.path2
 
   plantcodelist(form:any)
   {
-    return this.http.post(this.url+'/getplant',form)
+    return this.http.get(this.url+'/getplant')
   }
   companycodelist()
   {
     return this.http.get(this.url+'/companycodelist')
-  }
-
+  } 
 
   line_dept_design(form:any)
   {
@@ -252,8 +252,7 @@ url2:any = environment.path2
   }
   getLineName(form:any)
   {
-    return this.http.post(this.url+'/getLineName',form)
-    return this.http.post('localhost:3000/getLineName',form)
+    return this.http.get(this.url+`/getLineName?dept_slno=${form.dept_slno}`)
   }
 
   login(User_Name: string, Password: string) 
@@ -374,23 +373,23 @@ url2:any = environment.path2
   }
   relieve(form:any)
   {
-    return this.http.post(this.url+'/relieve', form)
+    return this.http.put(this.url+'/relieve', form)
   }
   dept_line(form:any)
   {
-    return this.http.post(this.url+'/dept-line', form)
+    return this.http.get(this.url+`/dept-line?line_code=${form.line_code}&dept_slno=${form.dept_slno}&apln_slno=${form.apln_slno}`)
   }
   dept_line_report(form:any)
   {
-    return this.http.post(this.url+'/dept-line-report', form)
+    return this.http.get(this.url+`/dept-line-report?plantcode=${form.plantcode}`)
   }
   reporting(form:any)
   {
-    return this.http.post(this.url+'/reporting', form)
+    return this.http.put(this.url+'/reporting', form)
   }
   getonboard(form:any)
   {
-    return this.http.post(this.url+'/getonboard', form)
+    return this.http.get(this.url+`/getonboard?apln_slno=${form.apln_slno}&readonly=${form.readonly}`)
   }
   onboard_form(form:any)
   {
@@ -402,7 +401,7 @@ url2:any = environment.path2
   }
   get_eval_form(form:any)
   {
-    return this.http.post(this.url+'/get_eval_form', form)
+    return this.http.get(this.url+`/get_eval_form?apln_slno=${form.apln_slno}`)
   }
   eval_form(form:any)
   {
@@ -410,28 +409,28 @@ url2:any = environment.path2
   }
   eval_form_sup(form:any)
   {
-    return this.http.post(this.url+'/eval_form_sup', form)
+    return this.http.put(this.url+'/eval_form_sup', form)
   }
   get_eval_sup(form:any)
   {
-    return this.http.post(this.url+'/get_eval_sup', form)
+    return this.http.get(this.url+`/get_eval_sup?apln_slno=${form.apln_slno}`)
   }
 
   trainee_report(form:any)
   {
-    return this.http.post(this.url+'/trainee-report', form)
+    return this.http.post(this.url+`/trainee-report`, form)
   }
   test_summary(form:any)
   {
-    return this.http.post(this.url+'/test-summary', form)
+    return this.http.post(this.url+`/test-summary-report`,form)
   }
   eval_due(form:any)
   {
-    return this.http.post(this.url+'/evaluation-due-report', form)
+    return this.http.post(this.url+`/evaluation-due-report`, form)
   }
   people_planning(form:any)
   {
-    return this.http.post(this.url+'/people_planning', form)
+    return this.http.get(this.url+`/people_planning?plantcode=${form.plantcode}&year=${form.year}&month=${form.month}`)
   }
   people_planning_save(form:any)
   {
@@ -439,7 +438,7 @@ url2:any = environment.path2
   }
   people_planning_update(form:any)
   {
-    return this.http.post(this.url+'/people_planning_update', form)
+    return this.http.put(this.url+'/people_planning_update', form)
   }
 
   /////////////////////////////////////// PHASE - 3
