@@ -74,13 +74,13 @@ input.example-right-align::-webkit-inner-spin-button {
     height: 40px;
 }
 .form-container {
-    margin-top: 15%;
+    margin-top: 5%;
     -webkit-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
     -moz-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
     box-shadow: 9px 10px 30px 0px rgba(0,0,0,0.42);
     padding: 20px; /* Add padding as needed */
     border-radius: 10px; /* Add border-radius as needed */
-    height: 350px; /* Set height as needed */
+    min-height: 300px; /* Set height as needed */
     width: 500px; /* Set width as needed */
     background-color: rgb(255, 253, 253,0.5);
     align-items: center;

@@ -1,36 +1,37 @@
-
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add Trainee Category</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
-            <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                    <div class="col">
-                        <label>Category Name: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "full_name">
-                    </div>
-                    <div class="col">
-                        <label>Insap: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "father_name">
-                    </div>
-                    <div class="col">
-                        <label>Employee Subgroup: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "dob">
-                    </div>
-                </div><br>
-               
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Shift Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
   
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+        <br>
+        <form [formGroup] = "form">
+            <div class="row">
+                <div class="col">
+                    <label>Category Name: </label><br>
+                    <input class = "input2"  type = "number" formControlName = "full_name">
+                </div>
+                <div class="col">
+                    <label>Insap: </label><br>
+                    <input class = "input2"  type = "text" formControlName = "father_name">
+                </div>
+                <div class="col">
+                    <label>Employee Subgroup: </label><br>
+                    <input class = "input2"  type = "text" formControlName = "dob">
+                </div>
+            </div><br>
+           
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+</ng-template>
     <div class="container">
   <br>
   <div>

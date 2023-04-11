@@ -1,45 +1,45 @@
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add operations</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
-            <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                    <div *ngIf="is_admin == 'true' " class="col">
-                        <label>Plant Name: </label><br>
-                        <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name">
-                            <option  value="">select an option</option>
-                            <option  *ngFor= "let i of array" [ngValue] = "i">{{i}}</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label>Operation Description: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "oprn_desc">
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label>Skills Level: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "skill_level">
-                    </div>
-                    <div class="col">
-                        <label>Critical process: </label><br>
-                        <select class="form-control" formControlName = "critical_oprn" ><option *ngFor= "let i of type" [ngValue] = "i">{{i}}</option></select>
-                    </div>
-                </div><br>
-               
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Operations Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div><br>
   
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+    <form [formGroup] = "form">
+        <div class="row">
+            <div *ngIf="is_admin == 'true' " class="col">
+                <label>Plant Name: </label><br>
+                <select (change)="get_slno($event)" class = "input2" formControlName = "plant_name">
+                    <option  value="">select an option</option>
+                    <option  *ngFor= "let i of array" [ngValue] = "i">{{i}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label>Operation Description: </label><br>
+                <input class = "input2"  type = "text" formControlName = "oprn_desc">
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col">
+                <label>Skills Level: </label><br>
+                <input class = "input2"  type = "number" formControlName = "skill_level">
+            </div>
+            <div class="col">
+                <label>Critical process: </label><br>
+                <select class = "input2" formControlName = "critical_oprn" ><option *ngFor= "let i of type" [ngValue] = "i">{{i}}</option></select>
+            </div>
+        </div><br>
+       
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+    <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+    <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+</div>
+</ng-template>
     <div class="container">
   <br>
   <div>

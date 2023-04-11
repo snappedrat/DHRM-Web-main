@@ -1,20 +1,21 @@
 
     <ng-template #content let-modal>
+        <div class="modal-content-container">
         <div class="modal-header">
             <h4 class="modal-title">Add Bank Details</h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
         </div>
-        <div class="modal-content container">
+      
             <br>
             <form [formGroup] = "form">
                 <div class = "row">
                     <div class="col">
                         <label>Bank Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "bank_name">
+                        <input class="input2"  type = "text" formControlName = "bank_name">
                     </div>
                     <div class="col">
                         <label>IFSC Code: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "bank_code">
+                        <input class="input2"  type = "text" formControlName = "bank_code">
                     </div>
                 <br>
              <br>
@@ -27,6 +28,7 @@
             <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
             <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
+    
     </ng-template>
     <div class="container">
   <br>

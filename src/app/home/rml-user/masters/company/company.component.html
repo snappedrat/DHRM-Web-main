@@ -1,33 +1,35 @@
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add Company</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
-            <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                    <div class="col">
-                        <label>Company Code: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "company_code" [readonly]="editing_flag">
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label>Company Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "company_name">
-                    </div>
-                </div><br>
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Company Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
   
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >update</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+        <br>
+        <form [formGroup] = "form">
+            <div class = "row">
+                <div class="col">
+                    <label>Company Code: </label><br>
+                    <input class="input2"  type = "text" formControlName = "company_code" [readOnly]="editing_flag">
+                </div>
+                <div class="col">
+                    <label>Company Name: </label><br>
+                    <input class="input2"  type = "text" formControlName = "company_name">
+                </div>
+            <br>
+         <br>
+            </div><br>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+</ng-template>
     <div class="container">
   <br>
   <div>

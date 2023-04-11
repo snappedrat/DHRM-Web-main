@@ -1,84 +1,86 @@
-
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add Shift</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
-            <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                    <div class="col">
-                        <label>Shift Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "shift_desc">
-                    </div><br>
-                    <div class="col">
-                        <label>Shift Group: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "shift_group">
-                    </div>
-                </div><br><br>
-                <div class="row">
-                    <div class="col">
-                        <label>Plant Name:</label><br>
-                        <select (change)="pp($event)" class="form-control" type = "text" formControlName = "plant_desc">
-                            <option>--select--</option>
-                            <option *ngFor="let i of plant_name" [ngValue]="i">{{i}}</option>
-                            </select>
-                    </div>
-                    <div class="col">
-                        <label>Coff Hours: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "coff_eligible_hours">
-                    </div>
-                </div><br><br>
-
-                <div class="row">
-                    <div class="col">
-                        <label>Start Time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "act_tm_from">
-                    </div>
-                    <div class="col">
-                        <label>End Time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "act_tm_to">
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col">
-                        <label>max time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "in_tm_max">
-                    </div>
-                    <div class="col">
-                        <label>min Time: </label><br>
-                        <input class="form-control"  type = "time" formControlName = "in_tm_min">
-                    </div></div>
-                <br>
-
-                <div class="row">
-                    <div class="col">
-                        <label>shift type: </label><br>
-                        <select class="form-control"  type = "text" formControlName = "type">
-                            <option>--select--</option>
-                            <option *ngFor="let i of type" [ngValue]="i">{{i}}</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label>security shift: </label><br>
-                        <select class="form-control"  type = "text" formControlName = "security_shift">
-                            <option>--select--</option>
-                            <option *ngFor="let i of security_shift" [ngValue]="i" >{{i}}</option>
-                        </select>
-                    </div></div>
-                <br>
-               
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Shift Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
   
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+        <br>
+        <form [formGroup] = "form">
+            <div class="row">
+                <div class="col">
+                    <label>Shift Name: </label><br>
+                    <input class = "input2"  type = "text" formControlName = "shift_desc">
+                </div><br>
+                <div class="col">
+                    <label>Shift Group: </label><br>
+                    <input class = "input2"  type = "text" formControlName = "shift_group">
+                </div>
+            </div><br><br>
+            <div class="row">
+                <div class="col">
+                    <label>Plant Name:</label><br>
+                    <select (change)="pp($event)" class = "input2" type = "text" formControlName = "plant_desc">
+                        <option>--select--</option>
+                        <option *ngFor="let i of plant_name" [ngValue]="i">{{i}}</option>
+                        </select>
+                </div>
+                <div class="col">
+                    <label>Coff Hours: </label><br>
+                    <input class = "input2"  type = "number" formControlName = "coff_eligible_hours">
+                </div>
+            </div><br><br>
+
+            <div class="row">
+                <div class="col">
+                    <label>Start Time: </label><br>
+                    <input class = "input2"  type = "time" formControlName = "act_tm_from">
+                </div>
+                <div class="col">
+                    <label>End Time: </label><br>
+                    <input class = "input2"  type = "time" formControlName = "act_tm_to">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label>max time: </label><br>
+                    <input class = "input2"  type = "time" formControlName = "in_tm_max">
+                </div>
+                <div class="col">
+                    <label>min Time: </label><br>
+                    <input class = "input2"  type = "time" formControlName = "in_tm_min">
+                </div></div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <label>shift type: </label><br>
+                    <select class = "input2"  type = "text" formControlName = "type">
+                        <option>--select--</option>
+                        <option *ngFor="let i of type" [ngValue]="i">{{i}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label>security shift: </label><br>
+                    <select class = "input2"  type = "text" formControlName = "security_shift">
+                        <option>--select--</option>
+                        <option *ngFor="let i of security_shift" [ngValue]="i" >{{i}}</option>
+                    </select>
+                </div></div>
+            <br>
+           
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+    
+</ng-template>
     <div class="container">
   <br>
   <div>
