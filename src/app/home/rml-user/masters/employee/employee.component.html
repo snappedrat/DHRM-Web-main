@@ -1,104 +1,107 @@
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Employee Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+  
+    <form [formGroup] = "form">
+        <div class="row">
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add Employee</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container ">
+            <div class="col">
+                <label>Gen ID: </label><br>
+                <input class="input2"  type = "text" formControlName = "gen_id">
+            </div>
+
+
+            <div class="col">                            
+                <label>Designation: </label><br>
+                <select formControlName="desig_name" class = "input2"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i.slno">{{i.desig_name}}</option></select>
+            </div>
+            
             <br>
-            <form [formGroup] = "form">
-                <div class="row">
+        </div><br>
+        <div class="row">
 
-                    <div class="col">
-                        <label>Gen ID: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "gen_id">
-                    </div>
+            <div class="col">
+                <label>Employee Name: </label><br>
+                <input class = "input2"  type = "text" formControlName = "Emp_Name">
+            </div>
 
+            <div class="col">
+                <label>Mobile No: </label><br>
+                    <input class = "input2"  type = "text" formControlName = "Mobile_No" maxlength="10" >
+            </div>
 
-                    <div class="col">                            
-                        <label>Designation: </label><br>
-                        <select formControlName="desig_name" class = "form-control"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i.slno">{{i.desig_name}}</option></select>
-                    </div>
-                    
-                    <br>
-                </div><br>
-                <div class="row">
+        </div><br>
+        
+        <div class="row">
 
-                    <div class="col">
-                        <label>Employee Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "Emp_Name">
-                    </div>
+            <div class="col">
+                <label>Plant Name: </label><br>
+        <select formControlName="plant_name" class = "input2" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of plantname" [ngValue]="i.plant_code" >{{i.plant_name}}</option></select>
+            </div>
 
-                    <div class="col">
-                        <label>Mobile No: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "Mobile_No" maxlength="10" >
-                    </div>
+            
+            <div class="col">
+                <label>Mail ID: </label><br>
+                <input class = "input2"  type = "text" formControlName = "Mail_Id">
+            </div>
 
-                </div><br>
                 
-                <div class="row">
+            </div>
+            <br>
+        <div class="row">
 
-                    <div class="col">
-                        <label>Plant Name: </label><br>
-                <select formControlName="plant_name" class = "form-control" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of plantname" [ngValue]="i.plant_code" >{{i.plant_name}}</option></select>
-                    </div>
+            
+            <div class="col">                            
+                <label>Department: </label><br>
+                <select (change)="getLineName($event)" formControlName="dept_name" class = "input2" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
+            </div>
 
-                    
-                    <div class="col">
-                        <label>Mail ID: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "Mail_Id">
-                    </div>
+            
+            <div class="col">
+                <label>User Name: </label><br>
+                <input class = "input2"  type = "text" formControlName = "User_Name">
+            </div>
 
-                        
-                    </div>
-                    <br>
-                <div class="row">
+        </div><br>
 
-                    
-                    <div class="col">                            
-                        <label>Department: </label><br>
-                        <select (change)="getLineName($event)" formControlName="dept_name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
-                    </div>
+                        <div class="row">
 
-                    
-                    <div class="col">
-                        <label>User Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "User_Name">
-                    </div>
+                            <div class="col">                            
+                                <label>Line: </label><br>
+                                <select formControlName="Line_Name" class = "input2" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
+                            </div>
 
-                </div><br>
+                                <div class="col">
+                                    <label>Password: </label><br>
+                                    <input class = "input2"  type = "text" required formControlName = "Password">
+                                </div>
+                        </div><br>
+                        <div class="row">
+                        <div class="col">        
+        <div style="align-self: center;">
+            <input type="checkbox" formControlName="is_admin"> Admin <br>
+            <input type="checkbox" formControlName="Is_HR"> HR User <br>
+            <input type="checkbox" formControlName="Is_HRAppr"> HR Approver <br>
+            <input type="checkbox" formControlName="Is_Trainer"> Trainer <br>
+            <input type="checkbox" formControlName="Is_Supervisor"> Supervisor <br>
+            <input type="checkbox" formControlName="Is_ReportingAuth"> Reporting Authority <br>
+            <input type="checkbox" formControlName="Is_TOU"> Time Office User <br>
+            <input type="checkbox" formControlName="access_master"> Access Master <br>
+        </div>
+        </div>  </div>
 
-                                <div class="row">
-
-                                    <div class="col">                            
-                                        <label>Line: </label><br>
-                                        <select formControlName="Line_Name" class = "form-control" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
-                                    </div>
-
-                                        <div class="col">
-                                            <label>Password: </label><br>
-                                            <input class="form-control"  type = "text" required formControlName = "Password">
-                                        </div>
-                                </div><br>
-                                
-                <div style="align-self: center;">
-                    <input type="checkbox" formControlName="is_admin"> Admin <br>
-                    <input type="checkbox" formControlName="Is_HR"> HR User <br>
-                    <input type="checkbox" formControlName="Is_HRAppr"> HR Approver <br>
-                    <input type="checkbox" formControlName="Is_Trainer"> Trainer <br>
-                    <input type="checkbox" formControlName="Is_Supervisor"> Supervisor <br>
-                    <input type="checkbox" formControlName="Is_ReportingAuth"> Reporting Authority <br>
-                    <input type="checkbox" formControlName="Is_TOU"> Time Office User <br>
-                    <input type="checkbox" formControlName="access_master"> Access Master <br>
-
-                </div>  </form>
-       
+        
+   
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false" [disabled]="form.invalid"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true"  [disabled]="form.invalid" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class=" btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div></div>
-    </ng-template>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+        </div>
+    </form></div>
+</ng-template>
     <div class="container">
   <br>
   <div>

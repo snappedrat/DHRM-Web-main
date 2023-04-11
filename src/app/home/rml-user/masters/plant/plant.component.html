@@ -1,75 +1,79 @@
+
 <ng-template #content let-modal>
+  <div class="modal-content-container">
   <div class="modal-header">
-      <h4 class="modal-title">Add Plant</h4>
+      <h4 class="modal-title">Add Plant Details</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
   </div>
-  <div class="modal-content container">
+
       <br>
       <form [formGroup] = "form">
-          <div class="row">
-            <div class="col">
-              <label>Company code: </label><br>
-              <select class="form-control" formControlName = "company_code"  (change)="getValue($event)" >
-                <option value="">--select--</option>
-                <option *ngFor="let i of companylist; let a = index" [ngValue]="i.company_code">{{i.company_name}}</option>
-              </select>
+       
+          <div class="col">
+            <label>Company code: </label><br>
+            <select class = "input2" formControlName = "company_code"  (change)="getValue($event)" >
+              <option value="">--select--</option>
+              <option *ngFor="let i of companylist; let a = index" [ngValue]="i.company_code">{{i.company_name}}</option>
+            </select>
+          </div>
+          <div class="col">
+                <label>Plant code: </label><br>
+                <input class = "input2"  type = "number" formControlName = "plant_code" [readonly] = 'editing_flag' >
             </div>
+          
             <div class="col">
-                  <label>Plant code: </label><br>
-                  <input class="form-control"  type = "number" formControlName = "plant_code" [readonly] = 'editing_flag' >
-              </div>
-              <div class="row">
-              <div class="col">
-                  <label>Plant Name: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "plant_name">
-              </div>
-              
-          </div><br>
-              <div class="col">
-                  <label>Plant shortname: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "pl">
-              </div></div><br>
-              <div class="row">
-              <div class="col">
-                <label>Plant HR sign </label><br>
-                <input class="form-control"  type = "file" (change) = "upload($event)">
+                <label>Plant Name: </label><br>
+                <input class = "input2"  type = "text" formControlName = "plant_name">
             </div>
-
+            
         <br>
-        
-              <div class="col">
-                  <label>Location: </label><br>
-                  <input class="form-control"  type = "text" formControlName = "locatn">
-
-              </div>
-
-          </div><br>
-          <div class="row">
             <div class="col">
-                <label>Personal area: </label><br>
-                <input class="form-control"  type = "number" formControlName = "personal_area">
+                <label>Plant shortname: </label><br>
+                <input class = "input2"  type = "text" formControlName = "pl">
+            </div><br>
+          
+            <div class="col">
+              <label>Plant HR sign </label><br>
+              <input class = "input2"  type = "file" (change) = "upload($event)">
+          </div>
+
+      <br>
+      
+            <div class="col">
+                <label>Location: </label><br>
+                <input class = "input2"  type = "text" formControlName = "locatn">
 
             </div>
-            <div class="col">
-                <label>Payroll area: </label><br>
-                <input class="form-control"  type = "number" formControlName = "payroll_area">
-            </div>
-        </div><br>
-      <div class="row">
-        <div class="col">
-          <label>Address: </label><br>
-          <textarea class="form-control"  type = "textarea" formControlName = "addr"></textarea>
-      </div>
 
-      </div>
+   <br>
+ 
+          <div class="col">
+              <label>Personal area: </label><br>
+              <input class = "input2"  type = "number" formControlName = "personal_area">
 
-      </form>
-  </div>
-  <div class="modal-footer">
-      <button *ngIf="editing_flag==false" [disabled]="form.invalid" type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-      <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-      <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-  </div>
+          </div>
+          <div class="col">
+              <label>Payroll area: </label><br>
+              <input class = "input2"  type = "number" formControlName = "payroll_area">
+          </div>
+      <br>
+
+      <div class="col">
+        <label>Address: </label><br>
+        <textarea class = "input2"  type = "textarea" formControlName = "addr"></textarea>
+    </div>
+
+ 
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button *ngIf="editing_flag==false" [disabled]="form.invalid" type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+    <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+    <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+</div>
+  
+
 </ng-template>
 <div class="container">
   <br>

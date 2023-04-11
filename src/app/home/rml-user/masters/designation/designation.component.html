@@ -1,32 +1,35 @@
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add Designation</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Designation Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+  
+        <br>
+        <form [formGroup] = "form">
+            <div class = "row">
+                <div class="col">
+                    <label>Plant Name: </label><br>
+                    <select (change)="get_slno($event)" class="input2" formControlName = "plant_name" ><option value="">choose an option</option><option  *ngFor= "let i of plantname" [ngValue]="i.plant_code">{{i.plant_name}}</option></select>
+                </div>
+                <div class="col">
+                    <label>Designation Name: </label><br>
+                    <input class="input2"  type = "text" formControlName = "desig_name">
+                </div>
             <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                        <div class="col">                            
-                            <label>Plant Name: </label><br>
-                            <select (change)="get_slno($event)" class="form-control" formControlName = "plant_name" ><option value="">choose an option</option><option  *ngFor= "let i of plantname" [ngValue]="i.plant_code">{{i.plant_name}}</option></select>
-                        </div>
+         <br>
+            </div><br>
 
-                        <div class="col">
-                            <label>Designation Name: </label><br>
-                            <input class="form-control"  type = "text" formControlName = "desig_name">
-                        </div>
-                </div><br>
-               
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+</ng-template>
     <div class="container">
   <br>
   <div>

@@ -84,8 +84,45 @@ z-index: 1100 !important;
   background-color: darkblue;
 
 }
-.modal-content
-{
-  width: 400px;
-  height: 400px;
+.modal-content{
+  margin-top: 5%;
+  -webkit-box-shadow: 9px 10px 30px 0px;
+  -moz-box-shadow: 9px 10px 30px 0px ;
+  box-shadow: 9px 10px 30px 0px;
+  padding: 20px; /* Add padding as needed */
+  border-radius: 10px; /* Add border-radius as needed */
+  height:100%;
+  background-color: rgb(255, 253, 253);
+ 
+}
+.input2 {
+  min-width: 200px;
+  background-color: #f5f5f5;
+  color: #242424;
+  padding: .15rem .5rem;
+  min-height: 40px;
+  border-radius: 6px;
+  outline: 10px;
+  border: 15px;
+  line-height: 1.15;
+  box-shadow: 0px 10px 20px -18px;
+}
+
+.input2:focus {
+  border-bottom: 2px solid #5b5fc7;
+  border-radius: 4px 4px 2px 2px;
+}
+
+.input2:hover {
+  outline: 3px solid lightgrey;
+}
+::ng-deep .mat-select-value {
+  text-align: left;
+  margin-top: 8%;
+}
+.modal-title{
+  color:rgb(0, 0, 139);
+  text-decoration: solid;
+  font-size: larger;
+  font-weight:900;
 }
