@@ -102,7 +102,7 @@
     box-shadow: 9px 10px 30px 0px;
     padding: 20px; /* Add padding as needed */
     border-radius: 10px; /* Add border-radius as needed */
-  
+    font-size: 16px;
     background-color: rgb(255, 253, 253);
     z-index: -1;
    

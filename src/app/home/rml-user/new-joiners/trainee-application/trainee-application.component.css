@@ -81,6 +81,7 @@ input.example-right-align::-webkit-inner-spin-button {
     width: 500px; /* Set width as needed */
     background-color: rgb(255, 253, 253,0.5);
     align-items: center;
+    font-size: 16px;
     justify-content: center;
   
   

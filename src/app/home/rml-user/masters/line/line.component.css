@@ -85,7 +85,7 @@
     min-height:fit-content; /* Set height as needed */
     min-width: fit-content; /* Set width as needed */
     background-color: rgb(255, 253, 253);
-   
+    font-size: 16px;
   }
   .input2 {
     min-width: 200px;

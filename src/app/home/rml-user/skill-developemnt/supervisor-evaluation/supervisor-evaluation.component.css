@@ -85,6 +85,7 @@ tbody
   padding: 20px;
   border-radius: 10px;
   min-height: 100px;
+  font-size: 16px;
   min-width: 800px;
   background-color: rgba(211, 204, 204, 0.618); /* Update opacity here */
   align-items: center;
