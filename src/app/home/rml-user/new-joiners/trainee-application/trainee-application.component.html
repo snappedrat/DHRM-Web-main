@@ -10,47 +10,47 @@
               <form [formGroup]="bankForms" >
            
                 <label id="labelid" for="company">Company Name</label>  
-                <select formControlName="company" class="form-control" (change) = "getplantcode($event)" >
+                <select formControlName="company" class="input7" (change) = "getplantcode($event)" >
                     <option value="">Choose</option>
                     <option *ngFor="let c of companycode; let a = index">{{a+1}}. {{c.company_name}} </option>
                 </select>
-                  <div *ngIf="company.company.touched && company.company.invalid" class="alert alert-danger">  
+                  <div *ngIf="company.company.touched && company.company.invalid" class="alert ">  
                     <div *ngIf="company.company.errors.required"> Company Name is required</div>   
                 </div>   
                 <br>
-         
+         <br>
               <label id="labelid" for="plant">Plant Name</label>  
-              <select [(ngModel)]="plantname"  formControlName="plant" class="form-control">
+              <select [(ngModel)]="plantname"  formControlName="plant" class="input7">
                   <option value="">Choose</option>
                 <option  *ngFor="let pl of plantcode">{{pl.plant_name}}</option>
                 </select>
-                <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert alert-danger">  
+                <div *ngIf="plant.plant.touched && plant.plant.invalid" class="alert">  
                   <div *ngIf="plant.plant.errors.required"> Plant Code is required</div>   
               </div>   
               <br>
         
-          
+          <br>
             <label id="labelid" for="mobileNumber">Mobile Number</label>  
             <input   
                 formControlName="mobileNumber"  
                 id="mobileNumber"   
                 name = "mobilenumber"
                 type="text"   
-                class="form-control"
+                class="input7"
                 maxlength="10" 
                 pattern="\d{10}"
                 [(ngModel)]="mobilenum"
                 (ngModelChange)="getPassword($event)"
                 (click)="show()"
            >  
-            <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert alert-danger">  
+            <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert">  
                 <div *ngIf="f.mobileNumber.errors.required">Mobile Number is required.</div>  
                 <div *ngIf="f.mobileNumber.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
             </div>  
        <br>
-       
+       <br>
           <label id="labelid">Password</label>
-          <input formControlName="pass" [type]="inputType" class="form-control" [value]="Tvalue" readonly>
+          <input formControlName="pass" [type]="inputType" class="input7" [value]="Tvalue" readonly>
        <br>
         <div id="labelid" style="margin-left:25px;">
           <input 

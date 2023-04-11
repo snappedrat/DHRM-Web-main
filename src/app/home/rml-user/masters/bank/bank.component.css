@@ -66,8 +66,7 @@
   .modal-content {
   margin: 2px auto;
   z-index: 1100 !important;
-  height:auto;
-  width:auto;
+
   }
   #title1{
     font-size: 20px;

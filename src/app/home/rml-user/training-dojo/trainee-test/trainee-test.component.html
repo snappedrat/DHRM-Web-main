@@ -1,9 +1,9 @@
 <div>
 <mat-toolbar style="color: white;">
     <span>Trainee Test Page</span>&nbsp;
-    <span><img style="width: 70px;" src="../../assets/rane.png"></span>&nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
+   &nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
     <span class="example-spacer"></span>
-    <button style="color: white; background-color: blue;" (click)="logout()" ><mat-icon class="example-icon" aria-hidden="false">home</mat-icon></button>
+    <button style="color: white; background-color:#007BFF;" (click)="logout()" ><mat-icon class="example-icon" aria-hidden="false">home</mat-icon></button>
 </mat-toolbar>
 <div class="pt-2">
 <div class="container-fluid pt-4">
@@ -12,13 +12,13 @@
     <form [formGroup] = "form">
     <div class = "row">
         <div class="col-sm-3">
-        <select (change)="Qualified($event)" formControlName="module" class="form-control">
+        <select (change)="Qualified($event)" formControlName="module" class="input2">
             <option value="" disabled>Select your module</option>            
             <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
         </select>
         </div>
         <div class="col-sm-3">
-            <input formControlName="test" class="form-control" readonly>
+            <input formControlName="test" class="input2" readonly>
                 <!-- <option value="">Select test type</option>
                 <option *ngFor= "let i of test">{{i}}</option> -->
                 <!-- </input>  -->
@@ -53,7 +53,7 @@
                     </tr>
                 </tbody>
             </table>
-        <button class="btn btn-primary" [disabled] = 'flag' type="submit">save</button>
+        <button mat-raised-button color="primary" [disabled] = 'flag' type="submit">save</button>
         </form>
         </body>
     </div></ng-template>

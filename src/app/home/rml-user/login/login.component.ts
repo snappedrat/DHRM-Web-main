@@ -71,5 +71,8 @@ export class LoginComponent implements OnInit {
 
     // }
 
-
+    get name()
+    {
+      return this.exform.controls
+    }
 }

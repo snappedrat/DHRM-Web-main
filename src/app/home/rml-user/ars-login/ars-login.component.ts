@@ -34,6 +34,12 @@ export class ArsLoginComponent implements OnInit {
       console.log(this.exform.value.User_Name)
   }
 
+  get name()
+  {
+    return this.exform.controls
+  }
+
+
   submit() {
       if (this.exform.invalid) {
           return;
