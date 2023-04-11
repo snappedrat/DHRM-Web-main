@@ -8,7 +8,7 @@
 
       <br>
       <form [formGroup] = "form">
-       
+        <div class="row">
           <div class="col">
             <label>Company code: </label><br>
             <select class = "input2" formControlName = "company_code"  (change)="getValue($event)" >
@@ -20,33 +20,35 @@
                 <label>Plant code: </label><br>
                 <input class = "input2"  type = "number" formControlName = "plant_code" [readonly] = 'editing_flag' >
             </div>
-          
+        </div><br>
+      <div class="row">
             <div class="col">
                 <label>Plant Name: </label><br>
                 <input class = "input2"  type = "text" formControlName = "plant_name">
             </div>
             
-        <br>
+       
             <div class="col">
                 <label>Plant shortname: </label><br>
                 <input class = "input2"  type = "text" formControlName = "pl">
-            </div><br>
-          
+            </div>
+          </div><br>
+       <div class="row">
             <div class="col">
               <label>Plant HR sign </label><br>
-              <input class = "input2"  type = "file" (change) = "upload($event)">
+              <input class = "input7"  type = "file" (change) = "upload($event)">
           </div>
 
-      <br>
+      
       
             <div class="col">
                 <label>Location: </label><br>
-                <input class = "input2"  type = "text" formControlName = "locatn">
+                <input class = "input7"  type = "text" formControlName = "locatn">
 
-            </div>
+            </div></div>
 
    <br>
- 
+            <div class="row">
           <div class="col">
               <label>Personal area: </label><br>
               <input class = "input2"  type = "number" formControlName = "personal_area">
@@ -55,7 +57,7 @@
           <div class="col">
               <label>Payroll area: </label><br>
               <input class = "input2"  type = "number" formControlName = "payroll_area">
-          </div>
+          </div></div>
       <br>
 
       <div class="col">
