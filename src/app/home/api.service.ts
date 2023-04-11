@@ -35,7 +35,7 @@ url2:any = environment.path2
   }
   getCompanyCode()
   {
-    return this.http.post(this.url+'/companycodelist', '')
+    return this.http.get(this.url+'/companycodelist')
   }
   getAadhar()
   {
@@ -362,15 +362,15 @@ url2:any = environment.path2
   }
   eval_pending_approval(status:any)
   {
-    return this.http.post(this.url+'/eval_pending_approval', status)
+    return this.http.get(this.url+'/eval_pending_approval?status='+status.status+'&plantcode='+status.plantcode)
   }
   depttransfer(form:any)
   {
-    return this.http.post(this.url+'/depttransfer', form)
+    return this.http.get(this.url+'/depttransfer?plantcode='+form.plantcode)
   }
   onboard(form:any)
   {
-    return this.http.post(this.url+'/onboard', form)
+    return this.http.get(this.url+'/onboard?plantcode='+form.plantcode+'&select='+form.select)
   }
   relieve(form:any)
   {
