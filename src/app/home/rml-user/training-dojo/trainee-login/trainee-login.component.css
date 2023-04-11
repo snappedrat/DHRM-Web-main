@@ -120,6 +120,7 @@ input.example-right-align::-webkit-inner-spin-button {
     border-radius: 10px; /* Add border-radius as needed */
     min-height: 300px; /* Set height as needed */
     width: 500px; /* Set width as needed */
+    font-size: 16px;
     background-color: rgb(255, 253, 253,0.5);
     align-items: center;
   

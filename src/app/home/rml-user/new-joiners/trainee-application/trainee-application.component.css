@@ -198,3 +198,32 @@ input.example-right-align::-webkit-inner-spin-button {
     font-size: 14px;
     font-weight: 700;
 }
+.input7 {
+    min-width: 400px;
+    background-color: #f5f5f5;
+    color: #242424;
+    padding: .15rem .5rem;
+    min-height: 40px;
+    border-radius: 6px;
+    outline: 10px;
+    border: 15px;
+    line-height: 1.15;
+    font-size: 16px;
+    box-shadow: 0px 10px 20px -18px;
+  }
+  
+  .input7:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
+  }
+  
+  .input7:hover {
+    outline: 3px solid lightgrey;
+  }
+  .alert{
+    background-color: none;
+    border:none;
+    color:red;
+    size: 10px;
+    margin-bottom: -10%;
+  }

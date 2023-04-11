@@ -8,12 +8,14 @@
                 <form [formGroup]="exform" (ngSubmit)="submit()">
                    
                         <label id="labelid"  style="color: black;">User name</label>
-                        <input id="inputid" formControlName="User_Name" type="text" class="form-control">
-<!--                        <small *ngIf="name.invalid && name.touched" class="text-danger">User name is required</small>-->
-                     <br>
+                        <input id="inputid" formControlName="User_Name" type="text" class="input8">
+                       <small *ngIf="name.User_Name.invalid && name.User_Name.touched" class="alert">User name is required</small>
+                     <br><br>
             
                         <label id="labelid"  style="color: black;">Password</label>
-                        <input id="inputid" formControlName="Password" type="password" class="form-control">
+                        <input id="inputid" formControlName="Password" type="password" class="input8">
+                        <small *ngIf="name.Password.invalid && name.Password.touched" class="alert">Password is required</small>
+
               <br>
               <button  type="submit" (click)="setLocal()">  SIGN IN
                 
