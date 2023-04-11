@@ -267,23 +267,35 @@ url2:any = environment.path2
   }
   getModules(username:any)
   {
-    return this.http.post(this.url+'/getModules', username)
+    return this.http.get(this.url+'/getModules?username='+username.username)
   }
-  getQuestions(formvalue:any)
+  addmodule(formvalue:any)
   {
-    return this.http.post(this.url+'/getQuestions',formvalue)
+    return this.http.post(this.url+'/addmodule', formvalue)
   }
-  getQuestions_tnr(formvalue:any)
+  updatemodule(formvalue:any)
   {
-    return this.http.post(this.url+'/getQuestions_tnr',formvalue)
+    return this.http.put(this.url+'/updatemodule', formvalue)
   }
-  getTest(formvalue:any)
+  deletemodule(formvalue:any)
   {
-    return this.http.post(this.url+'/getTest',formvalue)
+    return this.http.put(this.url+'/deletemodule', formvalue)
   }
-  Qualified(formvalue:any)
+  getQuestions(form:any)
   {
-    return this.http.post(this.url+'/Qualified',formvalue)
+    return this.http.get(this.url+'/getQuestions?module='+encodeURIComponent(form.module)+'&username='+form.username)
+  }
+  getQuestions_tnr(form:any)
+  {
+    return this.http.get(this.url+'/getQuestions_tnr?module='+encodeURIComponent(form.module)+'&plant_code='+form.plant_code)
+  }
+  getTest(form:any)
+  {
+    return this.http.get(this.url+'/getTest?username='+form.username+'&module='+encodeURIComponent(form.module))
+  }
+  Qualified(form:any)
+  {
+    return this.http.get(this.url+'/Qualified?username='+form.username+'&module='+encodeURIComponent(form.module))
   }
   pretest(formvalue:any)
   {
@@ -307,46 +319,32 @@ url2:any = environment.path2
   }
   getTrainee()
   {
-    var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
-    return this.http.post(this.url+'/getTrainee', plantcode)
+    return this.http.get(this.url+'/getTrainee?plantcode='+sessionStorage.getItem('plantcode'))
   }
   get_test_status(form:any)
   {
-    return this.http.post(this.url+'/get_test_status', form)
+    return this.http.get(this.url+'/get_test_status?idno='+form.idno+'&module_name='+encodeURIComponent(form.module_name))
   }
   getOfflineModules()
   {
-      var plantcode = {'plantcode' : sessionStorage.getItem('plantcode')}
-      return this.http.post(this.url+'/getOfflineModule', plantcode)
+    return this.http.get(this.url+'/getOfflineModule?plantcode='+sessionStorage.getItem('plantcode') )
   }
 
   offlineUpload(formvalue:any)
   {
     return this.http.post(this.url+'/offlineUpload', formvalue)
   }
-  addmodule(formvalue:any)
+  testSummary(form:any)
   {
-    return this.http.post(this.url+'/addmodule', formvalue)
-  }
-  updatemodule(formvalue:any)
-  {
-    return this.http.post(this.url+'/updatemodule', formvalue)
-  }
-  deletemodule(formvalue:any)
-  {
-    return this.http.post(this.url+'/deletemodule', formvalue)
-  }
-  testSummary(formvalue:any)
-  {
-    return this.http.post(this.url+'/testSummary', formvalue)
+    return this.http.get(this.url+'/testSummary?start='+form.start+'&end='+form.end+'&plantcode='+form.plantcode)
   }
   traineeScorecard(formvalue:any)
   {
-    return this.http.post(this.url+'/traineeScorecard', formvalue)
+    return this.http.get(this.url+'/traineeScorecard?trainee_idno='+formvalue.trainee_idno)
   }
-  traineeAnswers(formvalue:any)
+  traineeAnswers(form:any)
   {
-    return this.http.post(this.url+'/traineeAnswers', formvalue)
+    return this.http.get(this.url+'/traineeAnswers?idno='+form.idno+'&module='+form.module)
   }
 
   plantcode(form:any)
