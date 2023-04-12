@@ -13,7 +13,7 @@
                             <br>
                                 <input type="text"
                                        placeholder="Search for Trainee"
-                                       class="input2"
+                                       class="testevaluationinput"
                                        [matAutocomplete]="auto"
                                        formControlName="trainee">
                                 <mat-autocomplete (optionSelected)="store_trainee($event)" #auto="matAutocomplete">
@@ -31,7 +31,7 @@
                         </div>
                         <br><br>
                         <div>Module :<br>
-                            <mat-select (selectionChange) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="input2" formControlName = "module">
+                            <mat-select (selectionChange) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="testevaluationinput" formControlName = "module">
                                 
                                 <mat-option value="" >Select Module</mat-option>  
                                 <mat-option [value]="{index: a, module: i.module_name}" *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</mat-option>          
@@ -39,7 +39,7 @@
                             </mat-select>
                         </div><br>
                         <div class ="dropdown1">Exam type:<br>
-                            <mat-select  style="font-size:14px"  placeholder = "Select Exam Type" class="input2" formControlName = "test">
+                            <mat-select  style="font-size:14px"  placeholder = "Select Exam Type" class="testevaluationinput" formControlName = "test">
                                 
                                 <mat-option value="" disabled>Select Exam Type</mat-option>     
                                 <mat-option value="pre-test">Pre-test</mat-option>            
@@ -56,7 +56,7 @@
                         
                         <br>
                         <div class = "scorebox">Score:<br>
-                            <input type="number" class="input2" formControlName = "score">
+                            <input type="number" class="testevaluationinput" formControlName = "score">
                         </div>
                         <br>
                         <div>
