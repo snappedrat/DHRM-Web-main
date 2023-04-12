@@ -140,4 +140,8 @@
     font-size: larger;
     font-weight:900;
   }
-  
+  app-loader
+  {
+    width: 4000px;
+    background-color: #242424;
+  }

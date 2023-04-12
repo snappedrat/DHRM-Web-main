@@ -100,7 +100,10 @@ export class DeptComponent implements OnInit {
         this.form.get('plant_name').setValue(this.plantname[index].plant_name)
         console.log(index);
         
-        this.department.push(this.form.value)
+        this.service.getdepartment().
+        subscribe({
+          next: (response)=>{this.department = response}
+        })
         this.form.reset()
       }}
     })    
@@ -146,7 +149,10 @@ export class DeptComponent implements OnInit {
         // else
         // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)
 
-        this.department[this.temp_a] = this.form.value
+        this.service.getdepartment().
+        subscribe({
+          next: (response)=>{this.department = response}
+        })
 
       }}
     })

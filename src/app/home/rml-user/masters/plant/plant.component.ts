@@ -86,7 +86,10 @@ export class PlantComponent implements OnInit {
     else
       {
         console.log(this.form.value)
-        this.dummy.push(this.form.value)
+        this.service.getplant().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
         this.form.reset()
       }}
     })    
@@ -132,7 +135,10 @@ export class PlantComponent implements OnInit {
       }
     else
       {
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.service.getplant().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
       }}
     })
   }

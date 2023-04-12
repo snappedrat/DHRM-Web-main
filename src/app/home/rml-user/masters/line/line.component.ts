@@ -77,11 +77,10 @@ export class LineComponent implements OnInit {
 
 ngOnInit(): void {
   this.getplantcode()
-  var plantcode:any = {plantcode: sessionStorage.getItem('plantcode')}
-  this.service.getline(plantcode).
+
+  this.service.getline().
   subscribe({
     next: (response)=>{console.log(response);this.line = response;
-
      }
   })
 }
@@ -145,9 +144,8 @@ edit(a:any, slno:any)
     this.form.controls['modified_by'].setValue(sessionStorage.getItem('user_name'))
     this.form.get('plant_name').disable()
     this.form.get('dept_name').disable()
-    console.log(this.line[a])
+
     var plantcode = {plantcode: this.line[a].plant_code}
-    console.log(plantcode)
 
     this.service.line_dept_design(plantcode)
     .subscribe({
@@ -182,7 +180,12 @@ save()
           this.form.get('plant_name').setValue(this.plantname[index].plant_name)
           const index2 = this.dept.findIndex((obj:any) => obj.dept_slno === this.form.get('dept_name').value);
           this.form.get('dept_name').setValue(this.dept[index2].dept_name)
-          this.line.push(this.form.value)
+          
+          this.service.getline().
+          subscribe({
+            next: (response)=>{console.log(response);this.line = response;
+             }
+          })
           this.form.reset()
         }
 

@@ -182,17 +182,17 @@ url2:any = environment.path2
     return this.http.post(this.url+'/master/adddesignation', form)
   }
 
-  getline(form:any)
+  getline()
   {
-    return this.http.post(this.url+'/master/getline', form)
+    return this.http.get(this.url+'/master/getline')
   }
   deleteline(form:any)
   {
-    return this.http.post(this.url+'/master/deleteline', form)
+    return this.http.put(this.url+'/master/deleteline', form)
   }
   updateline(form:any)
   {
-    return this.http.post(this.url+'/master/updateline', form)
+    return this.http.put(this.url+'/master/updateline', form)
   }
   addline(form:any)
   {

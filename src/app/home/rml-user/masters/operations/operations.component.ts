@@ -95,7 +95,10 @@ export class OperationsComponent implements OnInit {
     .subscribe({
       next : (response:any)=>{console.log(response);
 
-        this.dummy.push(this.form.value)
+        this.service.getoperation().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
         this.form.reset()
         this.index = -1
       }
@@ -137,12 +140,6 @@ export class OperationsComponent implements OnInit {
   {
     this.form.get('plant_name').enable()
 
-    console.log(this.index)
-    // if(this.index == -1)
-    // this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_code)
-    // else
-    // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_code)
-
     console.log(this.form.value)
 
     this.service.updateoperation(this.form.value)
@@ -150,12 +147,12 @@ export class OperationsComponent implements OnInit {
       next: (response:any)=>{console.log(response);
       if(response.message == 'updated')
       {
-        // if(this.index == -1)
-        // this.form.controls['plant_name'].setValue(this.dummy[this.temp_a].plant_name)
-        // else
-        // this.form.controls['plant_name'].setValue(this.plantname[this.index].plant_name)  
+ 
         console.log(this.form.value)        
-        this.dummy[this.temp_a] = this.form.value
+        this.service.getoperation().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
       }
       }
     })

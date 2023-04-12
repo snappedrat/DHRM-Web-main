@@ -92,9 +92,7 @@ getplantcode(){
 
 get_slno(event:any)
 {
-  // this.index = event.target.value.split(':')[0]-1
   console.log(this.form.value);
-  
 }
 
    open(content:any)
@@ -132,7 +130,10 @@ edit(a:any)
         const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
         this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
         this.form.get('plant_name').setValue(this.plantname[index].plant_name)        
-        this.designation.push(this.form.value)
+        this.service.getdesignation().
+        subscribe({
+          next: (response)=>{console.log(response);this.designation = response}
+        })
         this.form.reset()
       }
     })    
@@ -151,7 +152,10 @@ edit(a:any)
         this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
         this.form.get('plant_name').setValue(this.plantname[index].plant_name)  
 
-        this.designation[this.temp_a] = this.form.value
+        this.service.getdesignation().
+        subscribe({
+          next: (response)=>{console.log(response);this.designation = response}
+        })
       }
       }
     })

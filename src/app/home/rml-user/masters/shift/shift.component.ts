@@ -61,7 +61,7 @@ export class ShiftComponent implements OnInit {
     this.service.getplant().
     subscribe({
       next: (response:any)=>{this.plant = response;
-        this.plant_name = this.plant.map((a:any)=>a.plant_name)
+      this.plant_name = this.plant.map((a:any)=>a.plant_name)
       }
     })
 
@@ -74,6 +74,8 @@ export class ShiftComponent implements OnInit {
 
   pp(event:any)
   {
+    console.log(event.target.value.name);
+    
     var x = event.target.value.split(':')[0]-1
     this.form.get('plant_code').setValue(this.plant[x].plant_code)
   }
@@ -89,15 +91,22 @@ export class ShiftComponent implements OnInit {
 
   save()
   {
+    console.log(this.form.value);
+    
+    this.form.get('plant_desc').setValue(this.form.get('plant_desc').value.name)
+    console.log(this.form.value)
     this.service.addshift(this.form.value)
     .subscribe({
       next : (response:any)=>{console.log(response);
 
-        this.shift.push(this.form.value)
+        this.service.getshift().
+        subscribe({
+          next: (response:any)=>{this.shift = response; console.log(response)
+          }
+        })
         this.form.reset()
       }
     })    
-    console.log(this.form.value)
 
   }
 /////////////////////////////////////////////////////edit functions
@@ -114,8 +123,7 @@ export class ShiftComponent implements OnInit {
 
     this.editing_flag = true
 
-    this.form.controls['plant_desc'].setValue(this.shift[a].plant_desc)
-    // this.form.controls['plant_name'].setValue(sessionStorage.getItem('plant_name'))
+    this.form.controls['plant_desc'].setValue(this.shift[a].plant_code)
     
     this.form.controls['shift_id'].setValue(slno)
     this.form.controls['plant_code'].setValue(this.shift[a].plant_code)
@@ -146,12 +154,16 @@ export class ShiftComponent implements OnInit {
         this.form.controls['in_tm_max'].setValue( 'T'+this.form.controls['in_tm_max'].value +'.')
         this.form.controls['in_tm_min'].setValue( 'T'+this.form.controls['in_tm_min'].value +'.')
 
-        this.shift[this.temp_a] = this.form.value
+        this.service.getshift().
+        subscribe({
+          next: (response:any)=>{this.shift = response; console.log(response)
+          }
+        })
       }
       }
     })
   }
-/////////////////////////////////////////////////////edit functions
+///////////////////////////////////////////////////////////////////////////////edit functions
 
 delete(a:any, slno:any)
 {

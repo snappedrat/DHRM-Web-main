@@ -85,7 +85,10 @@ export class CompanyComponent implements OnInit {
       }
     else
       {
-        this.dummy.push(this.form.value)
+        this.service.companyshow().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
         this.form.reset()
         console.log(this.form.value)
       }}
@@ -131,7 +134,10 @@ export class CompanyComponent implements OnInit {
         this.form.controls['created_on'].setValue(this.dummy[this.form.controls['sno'].value].created_on)    
         this.form.controls['created_by'].setValue(this.dummy[this.form.controls['sno'].value].created_by)
 
-        this.dummy[this.form.controls['sno'].value] = this.form.value
+        this.service.companyshow().
+        subscribe({
+          next: (response)=>{this.dummy = response}
+        })
       }}
     })
   }

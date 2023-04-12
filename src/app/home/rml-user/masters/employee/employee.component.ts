@@ -169,12 +169,9 @@ open(content:any)
    
 edit(a:any)
   {
-    this.temp_a = a
-    console.log(this.employee[a]);
-    
+    this.temp_a = a    
 
     var plantcode = {plantcode: this.employee[a].plant_code}
-    console.log(plantcode)
 
     this.service.line_dept_design(plantcode)
     .subscribe({
@@ -244,7 +241,10 @@ edit(a:any)
         this.form.get('line_code').setValue(this.form.get('Line_Name').value)
         this.form.get('dept_name').setValue(this.dept[index2].dept_name)
 
-        this.employee.push(this.form.value)
+        this.service.getemployee().
+        subscribe({
+          next: (response)=>{this.employee = response}
+        })
         this.form.reset()
       }}
     })    
@@ -271,7 +271,10 @@ edit(a:any)
           this.form.get('line_code').setValue(this.form.get('Line_Name').value)
           this.form.get('dept_name').setValue(this.dept[index2].dept_name)
 
-          this.employee[this.temp_a] = this.form.value
+          this.service.getemployee().
+          subscribe({
+            next: (response)=>{this.employee = response}
+          })
         }
       }
     })

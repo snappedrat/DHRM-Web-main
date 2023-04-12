@@ -22,7 +22,7 @@
                     <label>Plant Name:</label><br>
                     <select (change)="pp($event)" class = "input2" type = "text" formControlName = "plant_desc">
                         <option>--select--</option>
-                        <option *ngFor="let i of plant_name" [ngValue]="i">{{i}}</option>
+                        <option *ngFor="let i of plant" [ngValue]= "i.plant_code">{{i.plant_name}}</option>
                         </select>
                 </div>
                 <div class="col">

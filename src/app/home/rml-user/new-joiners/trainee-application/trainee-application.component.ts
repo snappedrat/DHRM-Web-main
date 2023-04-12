@@ -73,11 +73,17 @@ ngOnInit(): void {
 getplantcode(event:any){
     console.log(event.target.value);
     this.bankForms.controls['plant'].setValue('')
-    var company = {'company_name': event.target.value.split('.')[1].trim()}
+    var index = event.target.value.split('.')[0]-1
+    var company = {'company_name': this.companycode[index].sno}
 
     this.service.getPlantCode(company)
     .subscribe({
-      next: (response) =>{ this.plantcode = response },
+      next: (response) =>
+        {
+          console.log(response);
+          
+         this.plantcode = response 
+        },
       error: (error) => console.log(error),
     });
 }
