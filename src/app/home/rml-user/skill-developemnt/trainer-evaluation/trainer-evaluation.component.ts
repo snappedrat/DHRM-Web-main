@@ -14,7 +14,7 @@ import { LoaderserviceService } from 'src/app/loaderservice.service';
 
 })
 export class TrainerEvaluationComponent implements OnInit {
-
+  
   someSubscription: any
   filterinfo: any = []
   id: any
