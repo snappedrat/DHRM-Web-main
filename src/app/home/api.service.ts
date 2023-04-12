@@ -335,7 +335,7 @@ url2:any = environment.path2
   }
   traineeAnswers(form:any)
   {
-    return this.http.get(this.url+'/training/traineeAnswers?idno='+form.idno+'&module='+form.module)
+    return this.http.get(this.url+'/training/traineeAnswers?idno='+form.idno+'&module='+encodeURIComponent(form.module))
   }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////

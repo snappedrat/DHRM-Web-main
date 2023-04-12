@@ -90,8 +90,8 @@
                 <td><a [routerLink]="['/rml/training_dojo/trainee-score-card', i.trainee_idno]">{{i.fullname}}</a></td>
                 <td>{{i.trainee_idno}}</td>
                 <td>{{i.submission_date.split('T')[0]}}</td>
-                <td>{{i.sum1 > 100 ? 100 : i.sum1}} out of 100</td>
-                <td>{{i.sum2 > 100 ? 100 : i.sum1}} out of 100</td>
+                <td>{{i.mark1 > 100 ? 100 : i.mark1}} out of 100</td>
+                <td>{{i.mark2 > 100 ? 100 : i.mark2}} out of 100</td>
                 <td>P</td>
             </tr>
             </tbody>
