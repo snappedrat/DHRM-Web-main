@@ -1,26 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
-import { FormService } from '../form.service';
-import { leadingComment } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
-import { DateRangeFilterPipe } from '../../dateFilter.pipe';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
 
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-import { Timestamp } from 'rxjs';
-import { threadId } from 'worker_threads';
-import { ApiService } from 'src/app/home/api.service';
-import { NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
-import { AnyARecord } from 'dns';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/home/api.service';
 
 
 
@@ -43,6 +29,8 @@ export class DeptTransferComponent implements OnInit {
   from:any = '2023-01-01'
   to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
   searchText:any
+  department: any
+  dept: any;
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal,public loader:LoaderserviceService) {
 
@@ -54,7 +42,17 @@ export class DeptTransferComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("00",this.form.value)
+
+    this.service.dept_line_report({plantcode: sessionStorage.getItem('plantcode')})
+    .subscribe(
+      {
+        next: (response:any)=>
+        {
+          console.log(response);
+          this.department = response[1]
+        }
+      }
+    )
 
     this.service.depttransfer(this.form.value)
     .subscribe(
@@ -102,7 +100,4 @@ export class DeptTransferComponent implements OnInit {
     console.log(this.collectionSize)
 
    }
-
-
-
 }

@@ -4,10 +4,10 @@
             <span class="glyphicon glyphicon-home"></span> 
         </button> <div class="form-container">
      
-                <h1  style="color:black;">RML Login</h1>
+                <h1  style="color:black;">RML User Login</h1>
                 <form [formGroup]="exform" (ngSubmit)="submit()">
                    
-                        <label id="labelid"  style="color: black;">User name</label>
+                        <label id="labelid"  style="color: black;">Employee ID</label>
                         <input id="inputid" formControlName="User_Name" type="text" class="input8">
                        <small *ngIf="name.User_Name.invalid && name.User_Name.touched" class="alert">User name is required</small>
                      <br><br>

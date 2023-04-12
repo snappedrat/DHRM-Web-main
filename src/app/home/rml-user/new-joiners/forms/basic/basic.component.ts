@@ -201,17 +201,17 @@ export class BasicComponent implements OnInit{
                         console.log(response);
                         if(response.mobile_no1 == this.active.snapshot.paramMap.get('mobile_no1') || response.mobile == 'null')
                         {
-                            this.form.get('aadhar1')?.setErrors({ invalid: false })
-                            this.form.get('aadhar2')?.setErrors({ invalid: false })
-                            this.form.get('aadhar3')?.setErrors({ invalid: false })
+                            // this.form.get('aadhar1')?.setErrors({ invalid: false })
+                            // this.form.get('aadhar2')?.setErrors({ invalid: false })
+                            // this.form.get('aadhar3')?.setErrors({ invalid: false })
                             this.aadhar_invalid = false
 
                         }
                         else if(response.mobile != this.active.snapshot.paramMap.get('mobile_no1'))
                         {
-                            this.form.get('aadhar1')?.setErrors({ invalid: true })
-                            this.form.get('aadhar2')?.setErrors({ invalid: true })
-                            this.form.get('aadhar3')?.setErrors({ invalid: true })
+                            // this.form.get('aadhar1')?.setErrors({ invalid: true })
+                            // this.form.get('aadhar2')?.setErrors({ invalid: true })
+                            // this.form.get('aadhar3')?.setErrors({ invalid: true })
                             this.aadhar_invalid = true
                         }
                         else

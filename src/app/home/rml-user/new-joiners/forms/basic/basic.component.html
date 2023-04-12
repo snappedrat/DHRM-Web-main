@@ -123,7 +123,7 @@
 
         </div>
         <div *ngIf="aadhar_invalid"  class = "alert ">Aadhar Already Exists</div>
-        <div *ngIf="this.form.get('aadhar1')?.touched &&(this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid )"
+        <div *ngIf="this.form.get('aadhar1')?.touched && ((this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid))"
          class = "alert ">Aadhar Number is invalid</div>
 <br>
         <div class="form-group">
@@ -386,7 +386,7 @@
     placeholder="Identification Mark 2">
 </div>
 
-        <button mat-raised-button class="btn btn-primary btn-sm bg-blue" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
+        <button mat-raised-button class="btn btn-primary btn-sm bg-blue" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form>

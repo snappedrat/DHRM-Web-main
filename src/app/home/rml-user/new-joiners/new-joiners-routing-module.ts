@@ -37,7 +37,7 @@ const routes: Routes = [
 
     }, 
     {
-      path:'transfer_form/:id/:dept/:line',
+      path:'transfer_form/:id/:dept/:line/:apln_slno',
       component: TransferFormComponent,
       canActivate: [HrPermission]
 

@@ -109,14 +109,6 @@ export class OnboardFormComponent implements OnInit {
     
     ngOnInit(): void 
     {
-      // if(this.readonly)
-      // {
-      //   var control = this.form.get('dol')
-      //   control.setValidators([Validators.required]);
-      //   var control = this.form.get('rfr')
-      //   control.setValidators([Validators.required]);
-      // }
-
       this.form.controls['bio_id'].setValue(false)
 
       this.service.getonboard({apln_slno : this.active.snapshot.paramMap.get('id'), readonly: this.readonly  })
@@ -124,9 +116,6 @@ export class OnboardFormComponent implements OnInit {
         {
           next: (response:any)=>
           {
-
-
-          console.log("5555", response)
            this.obj = response;
            this.basic = this.obj[0]
            this.designation = this.obj[1]
@@ -165,7 +154,7 @@ export class OnboardFormComponent implements OnInit {
             this.form.controls['reportingto'].setValue(this.basic[0]?.reporting_to)
             this.form.controls['wcontract'].setValue('DIRECT')
             this.form.controls['doj'].setValue(this.basic[0]?.doj)
-            this.form.controls['active_status'].setValue(this.basic[0]?.activestat)
+            this.form.controls['active_status'].setValue(this.readonly?'ACTIVE' : 'INACTIVE')
             if(this.form.controls['active_status'].value == 'ACTIVE')
             {
               this.form.controls['rfr'].disable()

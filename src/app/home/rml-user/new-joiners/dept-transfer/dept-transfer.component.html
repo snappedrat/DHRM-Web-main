@@ -20,12 +20,11 @@
             <input type="text" class="input2" [(ngModel)]="searchText">
         </div>
         <div class = "col-sm-3"><b><p>Department Name </p></b>
-            <form [formGroup]="form">
-                <mat-select class="input2" (selectionChange)="filter()" formControlName="select">
+                <mat-select class="input2" [(ngModel)]="dept">
                     <mat-option value="" selected>--SELECT--</mat-option>
-                    <mat-option value="" ></mat-option>
+                    <mat-option value="" *ngFor="let i of department" [value]="i.dept_name">{{i.dept_name}}</mat-option>
                 </mat-select>
-                </form> </div>
+            </div>
     </div></div>
     </div>
     <br><br>
@@ -67,8 +66,13 @@
                   style="width: 500px"
                   style="background-color: darkblue"
                 >
-                     ID NO
+                     Gen ID
                  </th>
+                <th
+                          div class="text-center"
+                  >
+                      Department
+                  </th>
                   <th
                           div class="text-center"
                   >
@@ -83,23 +87,24 @@
                   <th
                           div class="text-center"
                           >
-                      Approval
+                     Edit
                   </th>
                   </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' | filter:searchText ">
+                    <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' | filter:searchText | deptFilter: dept ">
                         <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
                         <td>{{ i.birthdate }}</td>
                         <td>{{ i.mobile_no1 }}</td>
                         <td>{{i.gen_id}}</td>
+                        <td>{{ i.dept_name }}</td>
                         <td>{{ i.aadhar_no }}</td>
                         <td>{{ i.apln_status }}</td>
                         <td>
                             <div>
-                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/transfer_form', i.gen_id, i.dept_slno, i.line_code]" >
+                            <button mat-mini-fab color = "success" [routerLink]="['/rml/new_joiners/transfer_form', i.gen_id, i.dept_slno, i.line_code, i.apln_slno]" >
                                 <mat-icon>
                                     edit
                                 </mat-icon>

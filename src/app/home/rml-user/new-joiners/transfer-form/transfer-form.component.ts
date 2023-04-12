@@ -44,10 +44,10 @@ export class TransferFormComponent implements OnInit {
   
     ngOnInit(): void {
 
-      this.form.controls['apln_slno'].setValue(this.active.snapshot.paramMap.get('id'))
+      this.form.controls['apln_slno'].setValue(this.active.snapshot.paramMap.get('apln_slno'))
 
       var object = {
-        'apln_slno': this.active.snapshot.paramMap.get('id'),
+        'apln_slno': this.active.snapshot.paramMap.get('apln_slno'),
         'dept_slno': this.active.snapshot.paramMap.get('dept'),
         'line_code':this.active.snapshot.paramMap.get('line')
       }
