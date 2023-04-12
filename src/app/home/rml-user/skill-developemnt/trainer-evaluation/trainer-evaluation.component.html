@@ -4,12 +4,13 @@
   <div class = "container">
     <div  style = "margin-top: 40px;">   
 <h1><b>HR Evaluation</b></h1>
+      
         <div class="form-container1">
       <form [formGroup]="form">
 
       <div class = "row">
       <div class = "col-sm-4">
-      <!-- <label for="Status" id="center"> Status: </label> -->
+      <label for="Status" id="center"> Status: </label><br>
         <mat-select name="Status" id="Status" class="input2" formControlName = "status" >
             <mat-option value="0-60">First Evaluation (0 to 60 days)</mat-option>
             <mat-option value="61-120">Second Evaluation (61 to 120 days)</mat-option>
@@ -18,6 +19,8 @@
           </mat-select> 
       </div>
       <div class = "col-sm-4">
+        <label for="Status" id="center"> Status: </label>
+        <br>
           <mat-select name="Status" id="Status" class="input2" formControlName = "filter" >
               <mat-option value="PENDING">PENDING</mat-option>
               <mat-option value="PENDING_APPROVAL">PENDING APPROVAL</mat-option>
@@ -25,8 +28,11 @@
           </mat-select>
 
         </div> 
-      <div class="col-sm-2" style="align-items: center; justify-content: center; display: flex; width: 100%;">
-        <select formControlName="year" >
+        
+      <div class="col-sm-2" >
+        <label for="Status" id="center"> Status: </label>
+        <br>
+        <select formControlName="year" class="yearfilter">
           <option *ngFor="let i of year" [ngValue]="i" >{{ i }}</option>
         </select>
       </div>
@@ -38,9 +44,10 @@
 
         </div>
       </div>
-  </form>
+  </form><br>
     <div class="row">
       <div class = "col-sm-4 ">
+        <label for="Status" id="center">Name: </label>
         <br>
         <input class="input" placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
           
