@@ -122,7 +122,7 @@
             </div>
 
         </div>
-        <div *ngIf="!aadhar_invalid"  class = "alert ">Aadhar Already Exists</div>
+        <div *ngIf="aadhar_invalid"  class = "alert ">Aadhar Already Exists</div>
         <div *ngIf="this.form.get('aadhar1')?.touched &&(this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid )"
          class = "alert ">Aadhar Number is invalid</div>
 <br>

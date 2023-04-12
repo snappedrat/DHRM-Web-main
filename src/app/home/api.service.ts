@@ -52,9 +52,9 @@ url2:any = environment.path2
   {
     return this.http.get(this.url+'/hrOperation/getaadhar')
   }
-  checkAadhar(aadhar:any)
+  checkAadhar(aadhar:any, mobile: any)
   {
-    return this.http.get(this.url+'/hrOperation/checkAadhar?aadhar='+aadhar)
+    return this.http.get(this.url+'/hrOperation/checkAadhar?aadhar='+aadhar+'&mobile='+mobile)
   }
   getDataForId(form:any)
   {
