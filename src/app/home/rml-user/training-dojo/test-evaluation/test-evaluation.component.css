@@ -99,8 +99,8 @@ select{
 }
 
 
-.input2 {
-  width: 200px;
+.testevaluationinput {
+  width: 400px;
   background-color: #f5f5f5;
   color: #242424;
   padding: .15rem .5rem;
@@ -113,12 +113,12 @@ select{
   box-shadow: 0px 10px 20px -18px;
 }
 
-.input2:focus {
+.testevaluationinput:focus {
   border-bottom: 2px solid #5b5fc7;
   border-radius: 4px 4px 2px 2px;
 }
 
-.input2:hover {
+.testevaluationinput:hover {
   outline: 3px solid lightgrey;
 }
 ::ng-deep .mat-select-value {
