@@ -34,8 +34,6 @@ const routes: Routes = [
   {
     path:'evaluation-form/:id/:eval/:nav',
     component: EvaluationFormComponent,
-    canActivate: [SkillDevHR]
-
   }
 ];
 

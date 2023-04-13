@@ -1,18 +1,15 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+    animate,
+    style,
+    transition,
+    trigger
+} from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-import {UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators} from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FormService } from '../../form.service';
-import { ActivatedRoute } from '@angular/router';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-  } from '@angular/animations';
-  import { Timestamp } from 'rxjs';
-import { outputAst } from '@angular/compiler';
 
 
 @Component({
@@ -27,7 +24,7 @@ import { outputAst } from '@angular/compiler';
       ]
 })
 export class BanksComponent implements OnInit{
-
+    @Input() bank:any = []
     @Output() emit = new EventEmitter<any> ();
     message : any = {'bank':false};
 
@@ -45,7 +42,7 @@ export class BanksComponent implements OnInit{
 'Union Bank of India'];
 
 uniqueId :any = {'mobile':'', 'company': ''}
-bank : any = []
+// bank : any = []
 banknames :any = []
 banks:any = []
 temp: string = 'hellllllllllll'
@@ -69,27 +66,25 @@ flagger : any = false
     ngOnInit(): void {
         this.formservice.getbanknames()
         .subscribe({
-            next : (response)=>{console.log("banknames", response), this.banknames = response;
-                                this.banknames = this.banknames.map((a:any)=>a.bank_name)},
+            next : (response)=>
+            {
+                console.log("banknames", response);
+                this.banknames = response;
+                this.banknames = this.banknames.map((a:any)=>a.bank_name)
+            },
             error : (err)=> console.log(err)
-          })
+        })
 
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
         this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-        console.log(this.uniqueId)
-        this.formservice.getdatabasic(this.uniqueId)
-        .subscribe({
-            next: (response) => {console.log("banking : ",response); this.bank = response;
-            this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
-            this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
-            this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
-            this.sendData()
-            if(this.form.valid)
-                this.emit.emit(this.message)
-            } ,
-            error: (error) => console.log(error),
-          })  
+        this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
+        this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
+        this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
+        this.sendData()
+        if(this.form.valid)
+            this.emit.emit(this.message)
+
 
     }
 

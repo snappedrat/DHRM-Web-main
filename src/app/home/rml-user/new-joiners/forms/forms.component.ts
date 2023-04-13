@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { ApiService } from 'src/app/home/api.service';
+import { log } from 'console';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-forms',
@@ -43,7 +45,8 @@ export class FormsComponent implements OnInit, OnDestroy{
   message_from_other:any
   basicdetails: any;
   isHrappr: any;
-
+  details:any
+  Load: any = false;
 
   constructor(private formservice: FormService,private service : ApiService, private http: HttpClient, private router: Router, private active: ActivatedRoute ){
 
@@ -57,39 +60,34 @@ export class FormsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+
     this.getDataForID()
-    
-    this.ishr = sessionStorage.getItem('ishr')
-
-    if(this.ishr == 'undefined')
-    this.submit = 'SUBMIT'
-    else
-    this.submit = 'SEND FOR APPROVAL'
-
-
     this.formservice.getdatabasic(this.uniqueId)
-    .subscribe({
-      next: (response) => {console.log("basic : ",response); this.basicdetails= response;this.apln_no = this.basicdetails[0]?.apln_slno;
-      this.apln_status = this.basicdetails[0]?.apln_status
+    .subscribe(
+      (data:any)=>
+      {
+        this.details = data;
+        this.Load = true
 
-      if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+        this.ishr = sessionStorage.getItem('ishr')
+
+        if(this.ishr == 'undefined')
         this.submit = 'SUBMIT'
+        else
+        this.submit = 'SEND FOR APPROVAL'
 
-      if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL') || (this.apln_status == 'REJECTED' && this.submit == 'SEND FOR APPROVAL'))
-      {
-        this.flag = true
+          this.apln_no = this.details[0]?.apln_slno;
+          this.apln_status = this.details[0]?.apln_status      
+          
+          if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+            this.submit = 'SUBMIT'
+    
+          if((this.apln_status == 'NEW INCOMPLETE' && this.submit == 'SUBMIT') || (this.apln_status == 'PENDING' && this.submit == 'SEND FOR APPROVAL') || (this.apln_status == 'REJECTED' && this.submit == 'SEND FOR APPROVAL'))
+            this.flag = true
+          else
+            this.flag = false
       }
-      else
-      {
-        this.flag = false
-      }} ,
-      error: (error) => console.log(error),
-    })
-
-    setTimeout(() => {
-      
-
-   }, 2000);
+    )
 }
 
   eventchanger_basic(data:any)
@@ -251,10 +249,7 @@ export class FormsComponent implements OnInit, OnDestroy{
 
   getDataForID(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-    this.status.status = this.active.snapshot.paramMap.get('apln_status');
-      
-    console.log(this.status)
-
+    this.status.status = this.active.snapshot.paramMap.get('apln_status');    
   }
 
 

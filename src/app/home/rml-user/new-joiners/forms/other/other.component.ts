@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder, NgControl } from '@angular/forms';
 import {HttpClient} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
@@ -25,10 +25,10 @@ import { Timestamp } from 'rxjs';
   ]
 })
 export class OtherComponent implements OnInit {
+  @Input()   other : any = []
   Works:any=['Yes','No'];
   Relations:any=['Yes','No'];
   uniqueId :any = {'mobile':''}
-  other : any = []
 
   forms: FormGroup = new FormGroup({});
   state: boolean;
@@ -101,15 +101,12 @@ getdatabasic(){
   this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
   this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-  this.formservice.getdatabasic(this.uniqueId)
-
-.subscribe({
-  next: (response) => {console.log("other : ",response); this.other = response;
-
-    if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' ){
+  if(this.other[0]?.any_empl_rane == 'undefined' || this.other[0]?.prev_rane_empl == 'undefined' || this.other[0]?.existing_empl_name == 'undefined'||this.other[0]?.prev_rane_exp == 'undefined'||this.other[0]?.existing_empl_company == 'undefined' ||this.other[0]?.extra_curricular == 'undefined' )
+  {
         console.log("enter some values")
   }
-  else{
+  else
+  {
     if(this.other[0]?.any_empl_rane == 'Y')
     this.other[0].any_empl_rane = 'Yes'
     else if(this.other[0]?.any_empl_rane == 'N')
@@ -136,9 +133,6 @@ getdatabasic(){
       this.forms.controls['extra'].setValue(this.other[0]?.extra_curricular)
   }
     this.sendData()
-  } ,
-  error: (error) => console.log(error),
-})
 }
 
 }

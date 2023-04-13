@@ -14,8 +14,8 @@
                 type="text"   
                 class="form-control"
                 placeholder="Contact Name">  
-            <div *ngIf="name.contactName.touched && name.contactName.invalid" class="alert ">  
-                <div *ngIf="name.contactName.errors.required">Contact Name is required</div>   
+            <div *ngIf="name['contactName'].touched && name['contactName'].invalid" class="alert ">  
+                <div *ngIf= "name['contactName'].errors.required">Contact Name is required</div>   
             </div>  
         </div>
     </div>

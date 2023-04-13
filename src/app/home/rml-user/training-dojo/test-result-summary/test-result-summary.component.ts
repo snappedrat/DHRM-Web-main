@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
 import { ApiService } from 'src/app/home/api.service';
@@ -24,12 +25,18 @@ date :any = {
   "end": this.d,
   "plantcode": sessionStorage.getItem('plantcode') 
 }
+currentDate:any = new Date()
 
 data: any
 
 form:any
 
   constructor(private dateAdapter: DateAdapter<Date>, private service : ApiService,public loader:LoaderserviceService) {
+    this.date.start = new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 3, this.currentDate.getDate()), 'yyyy-MM-dd')  
+    if(this.date.start >= this.currentDate) 
+    {
+      this.date.start =  new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 2, 0), 'yyyy-MM-dd')
+    }
     this.dateAdapter.setLocale('en-GB');
    }
 

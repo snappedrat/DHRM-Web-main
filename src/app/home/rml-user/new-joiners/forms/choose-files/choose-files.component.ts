@@ -5,7 +5,7 @@ import {
 	trigger
 } from '@angular/animations';
 import { HttpClient } from "@angular/common/http";
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { FormService } from '../../form.service';
@@ -21,6 +21,7 @@ import { FormService } from '../../form.service';
   ]
 })
 export class ChooseFilesComponent implements OnInit {
+	@Input() basicDetails:any = []
 	@Output() emit = new EventEmitter<any>()
 	message = {'choose':false}
 	
@@ -96,13 +97,9 @@ export class ChooseFilesComponent implements OnInit {
 	flagged_for_rml: any = true;
 	state: boolean= false;
 	state_: boolean= false;
-	basicDetails: any;
 	
   constructor(private service: FormService, private active : ActivatedRoute, private http: HttpClient) {
 	this.ishr = sessionStorage.getItem('ishr')
-	console.log('====================================');
-	console.log(this.ishr)
-	console.log('====================================');
   }
 
   ngOnInit(): void {
@@ -111,30 +108,13 @@ export class ChooseFilesComponent implements OnInit {
 	{
 		this.flagged = false
 		this.emit.emit({'choose': false})
-
 	}
-
-	this.service.getdatabasic(this.uniqueId)
-	.subscribe({
-		next: (response) => {console.log("apln no", response); this.basicDetails = response;
-		this.rollno = this.basicDetails[0]?.apln_slno
-	}
-	})
-		this.generate_link()
-		this.generate_link_rml()
+	this.rollno = this.basicDetails[0]?.apln_slno
+	
+	this.generate_link()
+	this.generate_link_rml()
 
   }
-
-getfiles(){
-	this.service.getdatabasic(this.uniqueId)
-	.subscribe({
-		next: (response)=>{console.log('filenames : ', response);
-	this.basicDetails = response;
-	this.filenames = this.basicDetails},
-		error:(err)=>{console.error(err)}
-	})
-
-}
 
 generate_link(){
 

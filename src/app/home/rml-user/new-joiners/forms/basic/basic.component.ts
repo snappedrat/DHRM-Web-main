@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,6 +13,7 @@ import {
     trigger
 } from '@angular/animations';
 import { ApiService } from 'src/app/home/api.service';
+import { settings } from "cluster";
 
   
 @Component({
@@ -28,6 +29,7 @@ import { ApiService } from 'src/app/home/api.service';
 })
 export class BasicComponent implements OnInit{
 
+    @Input() basic:any= [];     
     @Output() emit = new EventEmitter<any>()
     message = {'basic':false}
 
@@ -45,7 +47,7 @@ export class BasicComponent implements OnInit{
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['No', 'Yes'];
     uniqueId :any = {'mobile':''}
-    basic: any = []
+    // basic: any = []
     aadharsplitted :any = []
     vaccinated :any = false
     ishr:any = sessionStorage.getItem('ishr') 
@@ -66,7 +68,7 @@ export class BasicComponent implements OnInit{
 
 
     constructor(private fb: UntypedFormBuilder, private http: HttpClient , private cookie:CookieService, private formservice: FormService, private active : ActivatedRoute, private service: ApiService) {
-        this.form = fb.group({
+        this.form = this.fb.group({
             permanent: new FormControl('', Validators.required),
             present: new FormControl('', Validators.required),
             title: ['',Validators.required],
@@ -84,7 +86,6 @@ export class BasicComponent implements OnInit{
             aadhar1:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
             aadhar2:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
             aadhar3:['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
-
             nation:['',Validators.required],
             city:[''],
             st:[''],
@@ -98,7 +99,7 @@ export class BasicComponent implements OnInit{
             mobilenumber : [this.active.snapshot.paramMap.get('mobile_no1')],
             company: [this.active.snapshot.paramMap.get('company')]
     })
-
+    
     this.form.get('permanent')?.valueChanges.subscribe((value)=> this.form.get('present')?.setValue(value) )
 
    }
@@ -106,27 +107,23 @@ export class BasicComponent implements OnInit{
     ngOnInit(): void {
 
         this.getdatabasic()
-        this.getaadhar()
-        
         this.form.controls['vacc'].setValue('no')
 
     }
 
     getdatabasic(){
-        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
-        this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
+        this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
+        this.uniqueId.company = this.active.snapshot.paramMap.get('company')
         this.formservice.getdatabasic(this.uniqueId)
-      .subscribe({
-        next: (response) => {console.log("basic : ",response); this.basic = response;
+        .subscribe((data)=>{this.basic = data
 
         this.apln_status = this.basic[0]?.apln_status 
-        this.disable_for_hr()
 
         if(this.basic[0]?.title ==null)
             this.form.controls['pd'].setValue('No')
 
-        this.form.controls['title'].setValue(this.basic[0]?.title)
+        this.form.controls['title'].setValue(this.basic[0].title)
         this.form.controls['fname'].setValue(this.basic[0]?.first_name)
         this.form.controls['lname'].setValue(this.basic[0]?.last_name)
         this.form.controls['ftname'].setValue(this.basic[0]?.fathername)
@@ -164,24 +161,16 @@ export class BasicComponent implements OnInit{
         this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
         this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
         this.form.get('nation')?.setValue('India')
-
+        console.log(this.form.value,"   ====================================");            
+        setTimeout(() => {
+            console.log(this.form.value,"   ====================================");            
+        }, 3000);
         if(this.form.valid)
             this.emit.emit(this.message)
 
         this.sendData()
-        } ,
-        error: (error) => console.log(error),
-      })
+    })
       }
-
-    getaadhar(){
-        this.service.getAadhar()
-        .subscribe({
-          next: (response) =>{ console.log(response); this.aadhar = response},
-          error: (error) => console.log(error),
-        })
-    }
-
     check_aadhar(event:any, a:any)
     {
         this.aadhar_invalid = false
@@ -201,17 +190,11 @@ export class BasicComponent implements OnInit{
                         console.log(response);
                         if(response.mobile_no1 == this.active.snapshot.paramMap.get('mobile_no1') || response.mobile == 'null')
                         {
-                            // this.form.get('aadhar1')?.setErrors({ invalid: false })
-                            // this.form.get('aadhar2')?.setErrors({ invalid: false })
-                            // this.form.get('aadhar3')?.setErrors({ invalid: false })
                             this.aadhar_invalid = false
 
                         }
                         else if(response.mobile != this.active.snapshot.paramMap.get('mobile_no1'))
                         {
-                            // this.form.get('aadhar1')?.setErrors({ invalid: true })
-                            // this.form.get('aadhar2')?.setErrors({ invalid: true })
-                            // this.form.get('aadhar3')?.setErrors({ invalid: true })
                             this.aadhar_invalid = true
                         }
                         else
@@ -232,21 +215,21 @@ export class BasicComponent implements OnInit{
         }
     }
 
-    disable_for_hr()
-    {
-        if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
-        {
-            this.flag_to_readonly = false
-        }
-        else if(this.ishr == 'undefined' && this.apln_status == 'NEW INCOMPLETE')
-        {
-            this.flag_to_readonly = false
-        }
-        else
-        {
-            this.flag_to_readonly = true
-        }
-    }
+    // disable_for_hr()
+    // {
+    //     if(this.ishr == 'true' && this.apln_status == 'NEW INCOMPLETE')
+    //     {
+    //         this.flag_to_readonly = false
+    //     }
+    //     else if(this.ishr == 'undefined' && this.apln_status == 'NEW INCOMPLETE')
+    //     {
+    //         this.flag_to_readonly = false
+    //     }
+    //     else
+    //     {
+    //         this.flag_to_readonly = true
+    //     }
+    // }
 
     setcity_state(event:any)
     {
@@ -415,14 +398,7 @@ export class BasicComponent implements OnInit{
             this.emit.emit(this.message)
         else
         {
-            console.log(this.form.get('aadhar1')?.value)
-            console.log(this.form.get('aadhar2')?.value)
-            console.log(this.form.get('aadhar3')?.value)
-            console.log(this.form.get('aadhar1')?.valid)
-            console.log(this.form.get('aadhar2')?.valid)
-            console.log(this.form.get('aadhar3')?.valid)
             this.emit.emit({'basic':true})
-
         }
     }
 

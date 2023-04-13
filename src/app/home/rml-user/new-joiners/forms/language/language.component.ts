@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { FormService } from '../../form.service';
@@ -27,10 +27,9 @@ import { Timestamp } from 'rxjs';
 })
 export class LanguageComponent implements OnInit {
 
-
+@Input() details : any = []
 
 uniqueId :any = {'mobile':''}
-details : any = []
 flag: any = true
 
 languageList = [
@@ -101,9 +100,7 @@ languageList = [
   getdatabasic(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-    this.formservice.getdatabasic(this.uniqueId)
-    .subscribe({
-    next: (response) => {console.log("lang : ",response); this.details = response;
+
     this.languageList[0].speak = this.details[0]?.lang1_speak
     this.languageList[0].read = this.details[0]?.lang1_read
     this.languageList[0].write = this.details[0]?.lang1_write
@@ -165,9 +162,6 @@ languageList = [
       }
   
       this.sendData()
-      console.log(this.details[0]?.lang1_name)} ,
-    error: (error) => console.log(error),
-  })
   }
   
 

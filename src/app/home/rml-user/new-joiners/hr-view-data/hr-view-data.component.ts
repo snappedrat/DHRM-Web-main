@@ -14,6 +14,8 @@ import { ApiService } from 'src/app/home/api.service';
 })
 export class HrViewDataComponent implements OnInit {
 
+
+  action : any
   var1: any = 'NULLL'
   uniqueId :any = {'mobile':''}
   basic : any
@@ -44,7 +46,7 @@ export class HrViewDataComponent implements OnInit {
   apln_status: any;
 
   constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : FormService, private apiservice: ApiService) {
-
+    this.action = this.active.snapshot.paramMap.get('action')
    }
 
   ngOnInit(): void {
@@ -53,8 +55,6 @@ export class HrViewDataComponent implements OnInit {
     this.getdatacareer()
     this.getdatafamily()
   
-
-    console.log("......................................................................................")
     setTimeout(() => {
 
       console.log(this.basic[0]?.apln_status )

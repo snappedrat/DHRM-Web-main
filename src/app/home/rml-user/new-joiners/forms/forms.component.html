@@ -1,23 +1,29 @@
 <!-- <div class = 'container'> -->
-    <div style="overflow-x:none">
-    <div class="textblock"><div class="mx-5"><h1><b><u>Trainee Application</u></b></h1></div></div>
-    <img *ngIf = "ishr == 'undefined' " src="../../assets/rane.png" class= "img">
-<app-basic (emit) = "eventchanger_basic($event)"></app-basic>
+<div style="overflow-x:none">
+<div class="textblock"><div class="mx-5"><h1><b><u>Trainee Application</u></b></h1></div></div>
+<img *ngIf = "ishr == 'undefined' " src="../../assets/rane.png" class= "img">
+<ng-container *ngIf="Load">
+    <app-basic [basic]="details" (emit)="eventchanger_basic($event)"></app-basic>
+</ng-container>
 <hr >
 <br> 
 <br>
-<app-banks></app-banks>
+<ng-container *ngIf="Load">
+<app-banks [bank]="details" ></app-banks>
+</ng-container>
 <hr>
 <br>
 <br>
-<app-familyedit (emit) = "eventchanger_fam($event)"></app-familyedit>
+<app-familyedit (emit)="eventchanger_fam($event)"></app-familyedit>
 <br>
-<app-emergency  (emit) = "eventchanger_emer($event)"></app-emergency>
+<ng-container *ngIf="Load">
+    <app-emergency [emer]="details" (emit)="eventchanger_emer($event)"></app-emergency>
+</ng-container>
 <hr>
 <br>
 <br>
 <!-- <app-educational></app-educational> -->
-<app-education-edit (emit) = "eventchanger_edu($event)"></app-education-edit>
+<app-education-edit (emit)="eventchanger_edu($event)"></app-education-edit>
 <hr>
 <br>
 <br>
@@ -26,15 +32,21 @@
 <hr>
 <br>
 <br>
-<app-language></app-language>
+<ng-container *ngIf="Load">
+    <app-language [details]="details" ></app-language>
+</ng-container>
 <hr>
 <br>
 <br>
-<app-other></app-other>
+<ng-container *ngIf="Load">
+    <app-other [other]="details" ></app-other>
+</ng-container>
 <hr >
 <br>
 <br>
-<app-choose-files (emit) = "eventchanger_choose($event)"></app-choose-files>
+<ng-container *ngIf="Load">
+    <app-choose-files [basicDetails]="details" (emit) = "eventchanger_choose($event)"></app-choose-files>
+</ng-container>
 <hr>
 <div class = "btn1">
 

@@ -1,27 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
-import { FormService } from '../form.service';
-import { leadingComment } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import {UntypedFormGroup,UntypedFormControl, UntypedFormBuilder} from '@angular/forms';
-import * as XLSX from 'xlsx';
-import { DateRangeFilterPipe } from '../../dateFilter.pipe';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
+import * as XLSX from 'xlsx';
 
 
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-import { Timestamp } from 'rxjs';
-import { threadId } from 'worker_threads';
-import { ApiService } from 'src/app/home/api.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/home/api.service';
 
 
 
@@ -45,11 +32,18 @@ export class OnboardComponent implements OnInit {
   pageSize:any = 50
   data:any
   collectionSize:any = 0
-  from:any = '2015-01-01'
+  currentDate:any = new Date();
+  from:any
+
+// If the resulting date is after the current date or is the same day as the current date, subtract one day to get the last day of the previous month
   to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal,public loader:LoaderserviceService) {
-
+    this.from = new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 3, this.currentDate.getDate()), 'yyyy-MM-dd')  
+    if(this.from >= this.currentDate) 
+    {
+      this.from =  new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 2, 0), 'yyyy-MM-dd')
+    }
     this.form = this.fb.group({
       plantcode: [sessionStorage.getItem('plantcode')],
       select : ['APPOINTED']

@@ -17,9 +17,10 @@ form: any
 filterinfo: any
 colname :any
 colvalue :any
-  searchfilterinfo: any;
+searchfilterinfo: any;
+  currentDate: Date;
 
-  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : FormService,public loader:LoaderserviceService) {
+  constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : FormService,public loader:LoaderserviceService, private active : ActivatedRoute) {
     this.form = this.fb.group({
       status:new UntypedFormControl(' '),
       fromdate: new UntypedFormControl(' '),
@@ -33,8 +34,14 @@ colvalue :any
    }
   ngOnInit(): void 
   {
+    this.currentDate = new Date()
     this.form.controls['status'].setValue('pending')
     this.form.controls['fromdate'].setValue('2015-01-01')
+    this.form.controls['fromdate'].setValue(new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 3, this.currentDate.getDate()), 'yyyy-MM-dd'))  
+    if(this.form.controls['fromdate'].value >= this.currentDate) 
+    {
+      this.form.controls['fromdate'].setValue(new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 2, 0), 'yyyy-MM-dd'))  
+    }
     var date = new Date()
     var to_date = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
     this.form.controls['todate'].setValue(to_date)

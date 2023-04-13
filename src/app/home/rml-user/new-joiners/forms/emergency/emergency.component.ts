@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, UntypedFormControl, Validators,FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -26,13 +26,12 @@ import { Timestamp } from 'rxjs';
   ]
 })
 export class EmergencyComponent implements OnInit  {
+  @Input() emer:any = []
   @Output() emit = new EventEmitter<any>()
   message = {'emer': false}
 
 relations :any = ['Father','Mother','Sister','Brother'];
 uniqueId :any = {'mobile':''}
-emer : any = []
-
 
  form: FormGroup = new FormGroup({});  
   state: boolean;
@@ -58,11 +57,6 @@ emer : any = []
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.uniqueId.company = this.active.snapshot.paramMap.get('company');
   
-    this.formservice.getdatabasic(this.uniqueId)
-  
-    .subscribe({
-      next: (response) => {console.log("emer : ",response); this.emer = response;
-
       this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
       this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
       this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)
@@ -70,9 +64,7 @@ emer : any = []
       this.sendData()
 
       if(this.form.valid)
-        this.emit.emit(this.message)} ,
-      error: (error) => console.log(error),
-    })
+        this.emit.emit(this.message)
   }
 
   get f(){  

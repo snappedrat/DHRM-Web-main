@@ -569,9 +569,9 @@
 <div style="float: right; margin-right: 10px;"  >
     <button  mat-raised-button *ngIf="apln_status != 'SUBMITTED' " class = "btn-secondary btn-xlg " style="margin-bottom:auto;" routerLink="/rml/new_joiners/trainee-application-status"> Go back to list</button>
     <button  mat-raised-button *ngIf="apln_status == 'SUBMITTED' " class = "btn-secondary btn-xlg " style="margin-bottom:auto;" routerLink="/rml/new_joiners/hr-approval"> Go back to list</button>
-    <button  mat-raised-button *ngIf="apln_status == 'SUBMITTED' " type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
-    <button  mat-raised-button *ngIf="apln_status == 'SUBMITTED' " type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button>
-    <button mat-raised-button class = "btn-info"  *ngIf= "this.apln_status == 'APPROVED' " [routerLink]="['/idcard',this.apln_status, this.uniqueId.mobile, this.uniqueId.company]"><span style="font-size: 14px;">PRINT ID CARD</span></button>
+    <button  mat-raised-button *ngIf="apln_status == 'SUBMITTED' && action == 'approval' " type="submit" (click)="approved()" style="margin-bottom:auto;" class = "btn-primary btn-xlg">Approve</button>
+    <button  mat-raised-button *ngIf="apln_status == 'SUBMITTED' && action == 'approval' " type="submit" (click)="rejected()" style="margin-bottom:auto;" class = "btn-danger btn-xlg">Reject</button>
+    <button mat-raised-button class = "btn-info"  *ngIf="this.apln_status == 'APPROVED' " [routerLink]="['/idcard',this.apln_status, this.uniqueId.mobile, this.uniqueId.company]"><span style="font-size: 14px;">PRINT ID CARD</span></button>
 <br><br>
 </div>
 <br>

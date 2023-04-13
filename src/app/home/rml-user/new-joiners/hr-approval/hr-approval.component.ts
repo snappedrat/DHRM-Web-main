@@ -19,12 +19,18 @@ export class HrApprovalComponent implements OnInit {
   filterinfo: any
   uniqueId :any = {'mobile':''}
   url = environment.path
-  from:any = new DatePipe('en-US').transform(new Date('2023-01-01'), 'yyyy-MM-dd')
+  from:any
+  currentDate = new Date()
   to:any = new DatePipe('en-US').transform( new Date(), 'yyyy-MM-dd')
   
     colname:string =  'create_dt'
   
     constructor(private fb : UntypedFormBuilder, private http: HttpClient,public loader:LoaderserviceService, private service: ApiService) {
+      this.from = new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 3, this.currentDate.getDate()), 'yyyy-MM-dd')  
+      if(this.from >= this.currentDate) 
+      {
+        this.from =  new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 2, 0), 'yyyy-MM-dd')
+      }
       this.form = this.fb.group({
         status:new UntypedFormControl(' '),
         plantcode: [sessionStorage.getItem('plantcode')]

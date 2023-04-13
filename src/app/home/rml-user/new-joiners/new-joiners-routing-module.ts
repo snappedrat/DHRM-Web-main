@@ -60,7 +60,7 @@ const routes: Routes = [
     },
 
     {
-      path:'hr-view/:mobile/:status/:company',
+      path:'hr-view/:mobile/:status/:company/:action',
       component: HrViewDataComponent
     },
     

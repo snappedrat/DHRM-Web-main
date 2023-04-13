@@ -26,14 +26,19 @@ export class DeptTransferComponent implements OnInit {
   pageSize:any = 50
   paginateData:any
   collectionSize:any = 0
-  from:any = '2023-01-01'
+  from:any
+  currentDate = new Date()
   to:any = new DatePipe('en-US').transform(new Date(), 'yyyy-MM-dd')
   searchText:any
   department: any
   dept: any;
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal,public loader:LoaderserviceService) {
-
+    this.from = new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 3, this.currentDate.getDate()), 'yyyy-MM-dd')  
+    if(this.from >= this.currentDate) 
+    {
+      this.from =  new DatePipe('en-US').transform(new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 2, 0), 'yyyy-MM-dd')
+    }
     this.form = this.fb.group({
       plantcode: [sessionStorage.getItem('plantcode')],
     });
