@@ -32,11 +32,17 @@
           <th
                   class="text-center"
                   style="width: 500px"
-                  style="background-color: darkblue"
-                  
-      
+                  style="background-color: darkblue" 
           >
-             Sno:
+             Slno:
+          </th>
+        <th
+                  class="text-center"
+                  style="width: 500px"
+                  style="background-color: darkblue"
+                
+          >
+              Application No
           </th>
           <th
                   class="text-center"
@@ -44,35 +50,35 @@
                   style="background-color: darkblue"
                 
           >
-              trainee name
+              Trainee Name
           </th>
           <th
                   class="text-center"
                   style="width: 800px"
                   style="background-color: darkblue"
           >
-              trainee id no
+              Trainee ID No
           </th>
           <th
                   class="text-center"
                   style="width: 500px"
                   style="background-color: darkblue"
           >
-              Date of submission
+              Test Date
           </th>
           <th
                   class="text-center"
                   style="width: 500px"
                   style="background-color: darkblue"
           >
-              pre-training score
+                Pre-Training Score
           </th>
           <th
                   class="text-center"
                   style="width: 500px"
                   style="background-color: darkblue"
           >
-              post-training score
+              Post-Training Score
           </th>
 
           <th
@@ -80,18 +86,19 @@
                   style="width: 500px"
                   style="background-color: darkblue"
                   >
-              result
+              Result
           </th>
           </tr>
           </thead>
           <tbody *ngFor="let i of data; let a = index">
             <tr>
                 <td>{{a+1}}</td>
+                <td>{{i.apln_slno}}</td>
                 <td><a [routerLink]="['/rml/training_dojo/trainee-score-card', i.trainee_idno]">{{i.fullname}}</a></td>
                 <td>{{i.trainee_idno}}</td>
                 <td>{{i.submission_date.split('T')[0]}}</td>
-                <td>{{i.mark1 > 100 ? 100 : i.mark1}} out of 100</td>
-                <td>{{i.mark2 > 100 ? 100 : i.mark2}} out of 100</td>
+                <td>{{i.mark1 > 100 ? 100 : i.mark1}}%</td>
+                <td>{{i.mark2 > 100 ? 100 : i.mark2}}%</td>
                 <td>P</td>
             </tr>
             </tbody>
