@@ -380,6 +380,11 @@ url2:any = environment.path2
 
   ////////////////////////////////////////////////////////////////////////////////////
 
+  post_eval_days()
+  {
+    return this.http.get(this.url+'/skilldev//post-eval-days')
+  }
+
   evaluationdays(status:any)
   {
     return this.http.post(this.url+'/skilldev/evaluationdays', status)

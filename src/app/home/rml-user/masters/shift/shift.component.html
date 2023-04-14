@@ -1,189 +1,182 @@
 <ng-template #content let-modal>
     <div class="modal-content-container">
-    <div class="modal-header">
-        <h4 class="modal-title">Add Shift Details</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-    </div>
-  
+        <div class="modal-header">
+            <h4 class="modal-title">Add Shift Details</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="reset()"
+                (click)="modal.dismiss('Cross click')">X</button>
+        </div>
+
         <br>
-        <form [formGroup] = "form">
+        <form [formGroup]="form">
             <div class="row">
                 <div class="col">
                     <label>Shift Name: </label><br>
-                    <input class = "input2"  type = "text" formControlName = "shift_desc">
+                    <input class="input2" type="text" formControlName="shift_desc">
                 </div><br>
                 <div class="col">
                     <label>Shift Group: </label><br>
-                    <input class = "input2"  type = "text" formControlName = "shift_group">
+                    <input class="input2" type="text" formControlName="shift_group">
                 </div>
             </div><br><br>
             <div class="row">
                 <div class="col">
                     <label>Plant Name:</label><br>
-                    <select (change)="pp($event)" class = "input2" type = "text" formControlName = "plant_desc">
+                    <select (change)="pp($event)" class="input2" type="text" formControlName="plant_code">
                         <option>--select--</option>
-                        <option *ngFor="let i of plant" [ngValue]= "i.plant_code">{{i.plant_name}}</option>
-                        </select>
+                        <option *ngFor="let i of plant" [ngValue]="i.plant_code">{{i.plant_name}}</option>
+                    </select>
                 </div>
                 <div class="col">
                     <label>Coff Hours: </label><br>
-                    <input class = "input2"  type = "number" formControlName = "coff_eligible_hours">
+                    <input class="input2" type="number" formControlName="coff_eligible_hours">
                 </div>
             </div><br><br>
 
             <div class="row">
                 <div class="col">
                     <label>Start Time: </label><br>
-                    <input class = "input2"  type = "time" formControlName = "act_tm_from">
+                    <input class="input2" type="time" formControlName="act_tm_from">
                 </div>
                 <div class="col">
                     <label>End Time: </label><br>
-                    <input class = "input2"  type = "time" formControlName = "act_tm_to">
+                    <input class="input2" type="time" formControlName="act_tm_to">
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
                     <label>max time: </label><br>
-                    <input class = "input2"  type = "time" formControlName = "in_tm_max">
+                    <input class="input2" type="time" formControlName="in_tm_max">
                 </div>
                 <div class="col">
                     <label>min Time: </label><br>
-                    <input class = "input2"  type = "time" formControlName = "in_tm_min">
-                </div></div>
+                    <input class="input2" type="time" formControlName="in_tm_min">
+                </div>
+            </div>
             <br>
 
             <div class="row">
                 <div class="col">
                     <label>shift type: </label><br>
-                    <select class = "input2"  type = "text" formControlName = "type">
+                    <select class="input2" type="text" formControlName="type">
                         <option>--select--</option>
                         <option *ngFor="let i of type" [ngValue]="i">{{i}}</option>
                     </select>
                 </div>
                 <div class="col">
                     <label>security shift: </label><br>
-                    <select class = "input2"  type = "text" formControlName = "security_shift">
+                    <select class="input2" type="text" formControlName="security_shift">
                         <option>--select--</option>
-                        <option *ngFor="let i of security_shift" [ngValue]="i" >{{i}}</option>
+                        <option *ngFor="let i of security_shift" [ngValue]="i">{{i}}</option>
                     </select>
-                </div></div>
+                </div>
+            </div>
             <br>
-           
+
 
         </form>
     </div>
     <div class="modal-footer">
-        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+        <button *ngIf="editing_flag==false" type="button" class="btn btn-success" (click)="save()"
+            (click)="modal.close('Close click')">Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()"
+            (click)="modal.close('Close click')">Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()"
+            (click)="modal.close('Close click')">Close</button>
     </div>
 
-    
+
 </ng-template>
-    <div class="container">
-  <br>
-  <div>
-    <h1 id = "title1" >Shift Master</h1>
-    <hr style="border-block-color: orange" />
-  </div>
-  <div class="button">
-    <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
-        <mat-icon>person_add</mat-icon>
-    </button></div>
-    <div class = "button1">
-    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
-        <mat-icon>download</mat-icon>
-    </button></div>
-  <br><br><br>
-  <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
-  <ng-template #show>
-  <div class = "table-wrapper">
-    <table class="table table-bordered table-striped table-hover">
-      <table id="table">
-          <thead>
-          <tr>
-            <th
-                       div class="text-center"
-              >
-                 SNo
-                 <th
-                       div class="text-center"
-              >
-                 Shift Name
-              </th>
-              <th
-                       div class="text-center"
-              >
-                 Plant Code
-              </th>
-             
-              <th
-                       div class="text-center"
-              >
-                 Start Time
-              </th>
-              <th
-                       div class="text-center"
-              >
-                  End Time
-              </th>
-              <th
-                       div class="text-center"
-              >
-                 Min Time
-              </th>
-              <th
-                       div class="text-center"
-              >
-                  Max Time
-              </th>
-            <th
-                       div class="text-center"
-              >
-                  Shift Type
-              </th>
-              <th
-              class="text-center"
-              style="width: 500px"
-              style="background-color: darkblue"
-                >
-                    Security Shift
-                </th>
-             
-              <th
-                       div class="text-center"
-                      >
-                  Action
-              </th>
-            </tr>
-            </thead>
-            <tbody >
-                <tr *ngFor = "let i of shift; let a = index">
-                   <td>{{a+1}}</td>
-                    <td>{{i.shift_desc}}</td>
-                    <td>{{i.plant_desc}}</td>
-                    <td>{{i.Shift_Start}}</td>
-                    <td>{{i.Shift_End}}</td>
-                    <td>{{i.Min_Time}}</td>
-                    <td>{{i.Max_Time}}</td>
-                    <td>{{i.type}}</td>
-                    <td>{{i.security_shift}}</td>
-
-  
-                    <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.shift_id)" (click)="opentoedit(content)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.shift_id)" >
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </table>
-  </div>
-  
-  </ng-template>
+<div class="container">
+    <br>
+    <div>
+        <h1 id="title1">Shift Master</h1>
+        <hr style="border-block-color: orange" />
     </div>
+    <div class="button">
+        <button mat-fab color="primary" (click)="open(content)" style="float: right"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>person_add</mat-icon>
+        </button>
+    </div>
+    <div class="button1">
+        <button mat-fab style="float: right" aria-label="Example icon button with a delete icon"
+            (click)="exportexcel()">
+            <mat-icon>download</mat-icon>
+        </button>
+    </div>
+    <br><br><br>
+    <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+    <ng-template #show>
+        <div class="table-wrapper">
+            <table class="table table-bordered table-striped table-hover">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th div class="text-center">
+                                SNo
+                            <th div class="text-center">
+                                Shift Name
+                            </th>
+                            <th div class="text-center">
+                                Plant Code
+                            </th>
+
+                            <th div class="text-center">
+                                Start Time
+                            </th>
+                            <th div class="text-center">
+                                End Time
+                            </th>
+                            <th div class="text-center">
+                                Min Time
+                            </th>
+                            <th div class="text-center">
+                                Max Time
+                            </th>
+                            <th div class="text-center">
+                                Coff Hours
+                            </th>
+                            <th div class="text-center">
+                                Shift Type
+                            </th>
+                            <th class="text-center" style="width: 500px" style="background-color: darkblue">
+                                Security Shift
+                            </th>
+
+                            <th div class="text-center">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let i of shift; let a = index">
+                            <td>{{a+1}}</td>
+                            <td>{{i.shift_desc}}</td>
+                            <td>{{i.plant_desc}}</td>
+                            <td>{{i.Shift_Start}}</td>
+                            <td>{{i.Shift_End}}</td>
+                            <td>{{i.Min_Time}}</td>
+                            <td>{{i.Max_Time}}</td>
+                            <td>{{i.coff_eligible_hours}}</td>
+                            <td>{{i.type}}</td>
+                            <td>{{i.security_shift}}</td>
+
+
+                            <td>
+                                <button mat-mini-fab color='accent' (click)="edit(a, i.shift_id)"
+                                    (click)="opentoedit(content)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.shift_id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </table>
+        </div>
+
+    </ng-template>
+</div>
