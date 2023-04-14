@@ -6,10 +6,10 @@
                 <div class="mx-5">
             <h3><b> Basic Details</b></h3>
             <div>
-            <table style="border-color: black; border: 1">
-                <tbody>
+            <table >
+                <tbody >
                     <tr >
-                        <td>Company Name</td>
+                        <td> Company Name</td>
                         <td>:</td>
                         <td>{{this.basic[0]?.company_name}}</td>
                     </tr>
@@ -30,8 +30,8 @@
     <form [formGroup]="form" >
         <div class="row">
             <div class = "col-sm-3">
-        <div  class="form-group">
-            <label for="title">Title:<span class = "star-color">*</span></label>
+        <div  class="basic-form">
+            <label class="form-header" for="title">Title:<span class = "star-color">*</span></label>
             <select
                     formControlName="title"
                     id="title"
@@ -45,8 +45,8 @@
             </div></div>
 
             <div class="col-sm-3">
-        <div  class="form-group">
-            <label for="fname">First Name:<span class = "star-color">*</span></label>
+        <div  class="basic-form">
+            <label class="form-header" for="fname">First Name:<span class = "star-color">*</span></label>
             <input
                     formControlName="fname"
                     id="fname"
@@ -58,8 +58,8 @@
                 <div *ngIf="fname.fname.errors.required">First Name is required</div>
             </div></div></div>
             <div class="col-sm-3">
-            <div  class="form-group">
-                <label for="lname">Last Name:<span class = "star-color">*</span></label>
+            <div  class="basic-form">
+                <label  class="form-header"for="lname">Last Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="lname"
                         id="lname"
@@ -72,8 +72,8 @@
                 </div></div></div>
                         
                 <div class = "col-sm-3">
-                <div class="form-group"> 
-                <label for="ftname">Father Name:<span class = "star-color">*</span></label>
+                <div class="basic-form"> 
+                <label class="form-header"for="ftname">Father Name:<span class = "star-color">*</span></label>
                 <input
                         formControlName="ftname"
                         id="ftname"
@@ -93,6 +93,7 @@
                        maxlength=4
                        style="width:100px"
                        [(ngModel)] = 'aadhar1'
+                       class="form-control"
                        (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event, 'a1')"
                        type="text"
@@ -103,6 +104,7 @@
                 formControlName = "aadhar2"
                        maxlength=4
                        style="width:100px"
+                       class="form-control"
                        [(ngModel)] = 'aadhar2'
                        (ngModelChange)="sendData()"
                        (ngModelChange) = "check_aadhar($event, 'a2')"
@@ -113,6 +115,7 @@
                 <input #txt3
                 formControlName = "aadhar3"
                        maxlength=4
+                       class="form-control"
                        style="width:100px"
                        [(ngModel)] = 'aadhar3'
                        (ngModelChange)="sendData()"
@@ -125,8 +128,8 @@
         <div *ngIf="this.form.get('aadhar1')?.touched && ((this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid))"
          class = "alert ">Aadhar Number is invalid</div>
 <br>
-        <div class="form-group">
-            <label for="bd">Birth Date:<span class = "star-color">*</span></label>
+        <div class="basic-form">
+            <label class="form-header"for="bd">Birth Date:<span class = "star-color">*</span></label>
             <input
                     formControlName="bd"
                     id="bd"
@@ -139,8 +142,8 @@
                 <div *ngIf="bd.errors.required">Birth Date is required</div>
             </div>
         </div>
-        <div  class="form-group">
-            <label for="">Nationality:<span class = "star-color">*</span></label>
+        <div  class="basic-form">
+            <label class="form-header" for="">Nationality:<span class = "star-color">*</span></label>
             <select formControlName="nation" class="form-control" (ngModelChange)="sendData()" >
                 <option disabled>Select Nationality</option>
                 <option *ngFor="let nat of nation">{{nat}}</option>
@@ -149,8 +152,8 @@
                 <div *ngIf="Nation.nation.errors.required">Nation is required</div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="">
+        <div class="basic-form">
+            <label class="form-header" for="">
                 Permanent Address:<span class = "star-color">*</span>
             </label>
             <br>
@@ -160,31 +163,31 @@
             <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
         </div>
         <p>Is permanent address same as present address</p>
-        <div class="form-group" style="margin-left:20px;">
+        <div class="basic-form" style="margin-left:20px;">
             <input
                     (change)="getValue($event)"
                     type="radio"
                     name="address"
                     class="form-check-input" checked>YES
         </div>
-        <div class="form-group" style="margin-left:20px;">
+        <div class="basic-form" style="margin-left:20px;">
             <input
                     (change)="noValue($event)"
                     type="radio"
                     name="address"
                     class="form-check-input">NO
         </div>
-        <div class="form-group">
-            <label for="present">
+        <div class="basic-form">
+            <label  class="form-header"for="present">
                 Present Address:<span class = "star-color">*</span>
             </label>
             <br>
             <textarea type="text"  formControlName="present" class="form-control" [value]="inputValue"></textarea>
         </div>
         <div class="row">
-            <div  class="form-group">
+            <div  class="basic-form">
                 <div class = "col-lg-10">
-                <label for="name">Pincode:<span class = "star-color">*</span></label>
+                <label  class="form-header"for="name">Pincode:<span class = "star-color">*</span></label>
                 <input
                         formControlName="pc"
                         id="pc"
@@ -200,9 +203,9 @@
                     <div *ngIf="pc.pc.errors.required">Pincode is required</div>
                 </div></div></div>
 
-            <div  class="form-group">
+            <div  class="basic-form">
                 <div class = "col-lg-10">
-                <label for="name">City:<span class = "star-color">*</span></label>
+                <label class="form-header" for="name">City:<span class = "star-color">*</span></label>
                 <input
                         formControlName="city"
                         id="city"
@@ -215,8 +218,8 @@
                 </div></div></div>
 
         </div>
-        <div class="form-group">
-            <label for="">State:<span class = "star-color">*</span></label>
+        <div class="basic-form">
+            <label  class="form-header"for="">State:<span class = "star-color">*</span></label>
             <!-- <select formControlName="st" class="form-control">
                 <option disabled>Select State</option>
                 <option>Choose State</option>
@@ -234,8 +237,8 @@
             </div></div>
 
        
-        <div class="form-group">
-            <label for="">Religion:<span class = "star-color">*</span></label>
+        <div class="basic-form">
+            <label class="form-header" for="">Religion:<span class = "star-color">*</span></label>
             <select (ngModelChange)="sendData()" formControlName="reg" class="form-control">
                 <option value ="">Select Religion</option>
                 <option *ngFor="let rg of religion">{{rg}}</option>
@@ -245,9 +248,9 @@
             </div></div>
 
     
-        <div class="form-group">
+        <div class="basic-form">
            
-            <label for="">Marital Status:<span class = "star-color">*</span></label>
+            <label class="form-header" for="">Marital Status:<span class = "star-color">*</span></label>
             <select formControlName="mar" class="form-control" (ngModelChange)="sendData()" >
                 <option value ="">Select Marital Status</option>
 
@@ -259,8 +262,8 @@
         </div>
     
 
-        <div class="form-group">
-            <label for="">Blood Group:<span class = "star-color">*</span></label>
+        <div class="basic-form">
+            <label  class="form-header" for="">Blood Group:<span class = "star-color">*</span></label>
             <select formControlName="bg" class="form-control" (ngModelChange)="sendData()">
                 <option value ="">Select BloodGroup</option>
 
@@ -270,9 +273,9 @@
                 <div *ngIf="bg.bg.errors.required">BloodGroup is required</div>
             </div></div>
 
-        <div  class="form-group">
+        <div  class="basic-form">
             
-            <label for="">Gender:<span class = "star-color">*</span></label>
+            <label  class="form-header"for="">Gender:<span class = "star-color">*</span></label>
             <select formControlName="gender" class="form-control" (ngModelChange)="sendData()">
                 <option value ="">Select Gender</option>
 
@@ -282,7 +285,7 @@
                 <div *ngIf="gender.gender.errors.required">Gender is required</div>
             </div>
 
-            <label  for = "vacc" > Vaccinated ?</label>
+            <label  class="form-header" for = "vacc" > Vaccinated ?</label>
             <select  class="form-control" formControlName= "vacc" (change)="hide_vacc($event)" >
                 <option value = 'yes' > YES</option>
                 <option value = 'no' >NO</option>
@@ -290,9 +293,9 @@
         </div><br>
         
         <div *ngIf= "vaccinated">
-        <div class="form-group">
+        <div class="basic-form">
                 
-            <label for="dd1">Dose1 Date</label>
+            <label class="form-header" for="dd1">Dose1 Date</label>
             <input
                     formControlName="dd1"
                     id="dd1"
@@ -301,8 +304,8 @@
         </div>
         
        
-        <div class="form-group">
-            <label for="dd2">Dose2 Date</label>
+        <div class="basic-form">
+            <label class="form-header" for="dd2">Dose2 Date</label>
             <input
                     formControlName="dd2"
                     id="dd2"
@@ -312,9 +315,9 @@
     </div>
 
         
-        <div class="form-group">
+        <div class="basic-form">
          
-            <label for="height">Height(cms):</label>
+            <label  class="form-header"for="height">Height(cms):</label>
             <input
                     formControlName="height"
                     id="height"
@@ -322,9 +325,9 @@
                     class="form-control"
                     placeholder="height in cms">
             <div class ="alert " *ngIf="height.height.touched&&height.height.invalid">Please, Enter valid height.</div> </div> 
-            <div class="form-group">
+            <div class="basic-form">
          
-            <label for="weight">Weight(kgs):</label>
+            <label class="form-header" for="weight">Weight(kgs):</label>
             <input
                     formControlName="weight"
                     id="weight"
@@ -336,10 +339,10 @@
                 </div>
            
                 
-                <div class="form-group">
+                <div class="basic-form">
                
 
-            <label for="">Physical Disability:</label>
+            <label class="form-header" for="">Physical Disability:</label>
             <select formControlName="pd" class="form-control" (click) = "emitData()" (ngModelChange)="sendData()">
                 <option disabled>Select Physical Disability</option>
                 <option *ngFor="let phd of physical">{{phd}}</option>
@@ -349,8 +352,8 @@
             </div>
         
 </div>
-<div class="form-group">    
-    <label for="bp">Birth Place:<span class = "star-color">*</span></label>
+<div class="basic-form">    
+    <label class="form-header" for="bp">Birth Place:<span class = "star-color">*</span></label>
 <input
 
     formControlName="bp"
@@ -363,8 +366,8 @@
 <div *ngIf="bp.bp.errors.required">Birth Place is required</div> -->
 </div>
 <!-- </div> -->
-<div class="form-group">    
-    <label for="idm1">Identification Mark 1:</label>
+<div class="basic-form">    
+    <label  class="form-header" for="idm1">Identification Mark 1:</label>
 <input
     formControlName="idm1"
     id="idm1"
@@ -374,8 +377,8 @@
 
     placeholder="Identification Mark 1">
 </div>
-<div class = 'form-group'>
-    <label for="idm2">Identification Mark 2:</label>
+<div class = 'basic-form'>
+    <label class="form-header" for="idm2">Identification Mark 2:</label>
     <input
   formControlName="idm2"
     id="idm2"
@@ -385,7 +388,7 @@
     placeholder="Identification Mark 2">
 </div>
 
-        <button mat-raised-button class="btn btn-primary btn-sm bg-blue" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
+        <button mat-raised-button class="basic-btn btn-primary btn-sm bg-blue" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form>

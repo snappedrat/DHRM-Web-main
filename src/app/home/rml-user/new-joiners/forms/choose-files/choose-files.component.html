@@ -80,7 +80,7 @@
       </tr> <tr>
        
   </table>
-  <button mat-raised-button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)= "func()" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
+  <button mat-raised-button type="submit" value = "save" class="choose-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" [disabled]='flagged' (click)= "func()" (click)="generate_link()"><span style="font-size: 14px;">Save</span></button>
   <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
 
   <br><br>
@@ -167,7 +167,7 @@
     </tr> <tr>
      
 </table>
-  <button mat-raised-button type="submit" value = "save" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()"><span style="font-size: 14px;">Save</span></button>
+  <button mat-raised-button type="submit" value = "save" class="choose-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()"><span style="font-size: 14px;">Save</span></button>
   <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
 
 </div>

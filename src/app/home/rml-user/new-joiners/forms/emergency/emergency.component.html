@@ -5,8 +5,8 @@
       <form [formGroup]="form">
         <div class="row">
         <div class="col-sm-3">
-        <div class="form-group">  
-            <label for="name">Contact Name:<span class = "star-color">*</span></label>  
+        <div class="emergency-form">  
+            <label class="form-header"for="name">Contact Name:<span class = "star-color">*</span></label>  
             <input   
                 formControlName="contactName"
                 (ngModelChange)= "emitData()" (ngModelChange)="sendData()"  
@@ -20,8 +20,8 @@
         </div>
     </div>
       <div class="col-sm-3">
-        <div class="form-group">  
-            <label for="mobileNumber">Contact Number:<span class = "star-color">*</span></label>  
+        <div class="emergency-form">  
+            <label class="form-header" for="mobileNumber">Contact Number:<span class = "star-color">*</span></label>  
             <input   
                 formControlName="contactNumber"  
                 (ngModelChange)= "emitData()" (ngModelChange)="sendData()"
@@ -39,7 +39,7 @@
     </div>
     <div class="col-sm-3">
    
-        <label class="form-label">Relation:<span class = "star-color">*</span></label>
+        <label class="form-header">Relation:<span class = "star-color">*</span></label>
         <select formControlName="relations" class="form-control" (ngModelChange)= "emitData()" (ngModelChange)="sendData()">
             <option disabled>Select Relation</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
@@ -49,7 +49,7 @@
         </div>  
     </div>
 </div>
-<button mat-raised-button type="submit" class="btn btn-primary btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Save</span></button>
+<button mat-raised-button type="submit" class="emergency-btn emergency-btn-primary emergency-btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Save</span></button>
 <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form>  

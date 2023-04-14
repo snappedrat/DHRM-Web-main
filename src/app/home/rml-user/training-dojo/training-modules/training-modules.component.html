@@ -1,54 +1,56 @@
 
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title">Add new Modules</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-        <div class="modal-content container">
-            <br>
-            <form [formGroup] = "form">
-                <div class="row">
-                    <div class="col">
-                        <label>Module Name: </label><br>
-                        <input class="form-control"  type = "text" formControlName = "module_name">
-                    </div>
-                    <div class="col">
-                        <label>Total Marks: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "total_marks">
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label>Pass Mark: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "pass_criteria" (ngModelChange)="cal()" >
-                    </div>
-                    <div class="col">
-                        <label>Pass percent: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "pass_percent" readonly>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col">
-                        <label>category: </label><br>
-                        <select class="form-control" formControlName = "category">
-                            <option value="ONLINE">ONLINE</option>
-                            <option value="OFFLINE">OFFLINE</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label>Priority value: </label><br>
-                        <input class="form-control"  type = "number" formControlName = "priorityval">
-                    </div>
-                </div><br>
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Module Details</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+  
+        <br>
+        <form [formGroup] = "form">
+            <div class="row">
+                <div class="col">
+                    <label>Module Name: </label><br>
+                    <input class = "input2" type = "text" formControlName = "module_name">
+                </div>
+                <div class="col">
+                    <label>Total Marks: </label><br>
+                    <input class = "input2" type = "number" formControlName = "total_marks">
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col">
+                    <label>Pass Mark: </label><br>
+                    <input class = "input2" type = "number" formControlName = "pass_criteria" (ngModelChange)="cal()" >
+                </div>
+                <div class="col">
+                    <label>Pass percent: </label><br>
+                    <input class = "input2" type = "number" formControlName = "pass_percent" readonly>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col">
+                    <label>category: </label><br>
+                    <select class="input2" placeholder="--select--" formControlName = "category">
+                        <option value="ONLINE" selected >ONLINE</option>
+                        <option value="OFFLINE">OFFLINE</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label>Priority value: </label><br>
+                    <input class = "input2" type = "number" formControlName = "priorityval">
+                </div>
+            </div><br>
 
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-light" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-        </div>
-    </ng-template>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+        <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+    </div>
+
+</ng-template>
     <div class="pt-5">
         <div class="container">
 <br><h1><b>Training Modules </b></h1>

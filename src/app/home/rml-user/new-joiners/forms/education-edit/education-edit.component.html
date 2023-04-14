@@ -7,27 +7,27 @@
     <table class = "table">
         <thead>
         <tr>
-        <th scope="col" >SNo</th>
-        <th scope="col" >School/College Institute & Location</th>
-        <th scope="col">Exam Passed</th>
-        <th scope="col">Year of Passing</th>
-        <th scope="col">Department</th>
-        <th scope="col">Certificate Number</th>
-        <th scope="col">Certificate Date</th>
-        <th scope="col">Percentage</th>
+        <th class="form-header" scope="col" >SNo</th>
+        <th class="form-header"scope="col" >School/College Institute & Location</th>
+        <th class="form-header"scope="col">Exam Passed</th>
+        <th class="form-header"scope="col">Year of Passing</th>
+        <th class="form-header"scope="col">Department</th>
+        <th class="form-header"scope="col">Certificate Number</th>
+        <th class="form-header"scope="col">Certificate Date</th>
+        <th class="form-header"scope="col">Percentage</th>
         </tr>
         <tr *ngFor= "let data of eduData">
-            <td><input type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><input type="text" placeholder="Schoolname,city"  [(ngModel)]="data.school" (ngModelChange)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><select type = "text" [(ngModel)]="data.passed" (ngModelChange)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
+            <td><input  class="form-control"type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control" type="text" placeholder="Schoolname,city"  [(ngModel)]="data.school" (ngModelChange)="valids($event)" (click)="sendData()" ></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><select  class="form-control"type = "text" [(ngModel)]="data.passed" (ngModelChange)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
-  </option> ></select><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "date" [(ngModel)]="data.year" max="2100-12-12" (ngModelChange)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "text"[(ngModel)]="data.department" (ngModelChange)="valids($event)" (click)="sendData()"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "text"[(ngModel)]="data.certificatenumber" (ngModelChange)="valids($event)" (click)="sendData()"><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-        <td><input type = "date"[(ngModel)]="data.certificatedate" max="2100-12-12" (ngModelChange)="valids($event)" (click)="sendData()" ><span *ngIf = "data.sno == '1' " class = "star-color">*</span></td>
-               <td><input type = "number" [(ngModel)]="data.percentage" (ngModelChange)="valids($event)"  (ngModelChange)="valid()" (click) = "emitData()">
-                <span *ngIf = "data.sno == '1' " class = "star-color">*</span>
+  </option> ></select></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control"type = "date" [(ngModel)]="data.year" max="2100-12-12" (ngModelChange)="valids($event)" (click)="sendData()" ></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control"type = "text"[(ngModel)]="data.department" (ngModelChange)="valids($event)" (click)="sendData()"></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control"type = "text"[(ngModel)]="data.certificatenumber" (ngModelChange)="valids($event)" (click)="sendData()"></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control"type = "date"[(ngModel)]="data.certificatedate" max="2100-12-12" (ngModelChange)="valids($event)" (click)="sendData()" ></td>
+               <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control"type = "number" [(ngModel)]="data.percentage" (ngModelChange)="valids($event)"  (ngModelChange)="valid()" (click) = "emitData()">
+               
   </td>
         <tr>
     </thead>    
@@ -36,6 +36,6 @@
 </div>
 
         </div>
-        <button mat-raised-button type="submit" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()" [disabled]="flag" ><span style="font-size: 14px;">Save</span></button>
+        <button mat-raised-button type="submit" class="education-btn btn-primary education-btn-sm" style = "margin-top: 20px; text-align:center;" (click)="submit()" [disabled]="flag" ><span style="font-size: 14px;">Save</span></button>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
     

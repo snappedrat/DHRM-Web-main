@@ -48,15 +48,17 @@
     <app-choose-files [basicDetails]="details" (emit) = "eventchanger_choose($event)"></app-choose-files>
 </ng-container>
 <hr>
+<div class="row">
+    <div class="col">
 <div class = "btn1">
 
 <button mat-raised-button *ngIf= 'flag' type="submit" style="margin-bottom:auto;" [disabled] = 'message' (click)="allSave()" class = "btn btn-primary btn-sm"><span style="font-size: 14px;">{{submit}}</span></button>
 <button mat-raised-button *ngIf="ishr == 'true' "  class = "btn btn-secondary btn-sm "  routerLink="/rml/new_joiners/trainee-application-status"><span style="font-size:14px"> Go back to list</span></button>
-
+</div></div><div class="col">
 <button mat-raised-button class = "btn btn-info btn-sm "  *ngIf= "this.status.status == 'APPROVED' " [routerLink]="['/idcard',this.status.status, this.uniqueId.mobile, this.uniqueId.company]"><span style="font-size: 14px;">PRINT ID CARD</span></button>
 <div *ngIf = 'message' ><span style="color: red;" >(Mandatory fields are not yet filled. Submit is not Permitted. )</span></div>
 
-</div>
+</div></div>
 <br> 
 <br>
 <br>
