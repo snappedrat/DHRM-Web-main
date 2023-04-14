@@ -131,24 +131,24 @@
               <th
                        div class="text-center"
               >
-                 Min time
+                 Min Time
               </th>
               <th
                        div class="text-center"
               >
-                  max time
+                  Max Time
               </th>
             <th
                        div class="text-center"
               >
-                  Shift type
+                  Shift Type
               </th>
               <th
               class="text-center"
               style="width: 500px"
               style="background-color: darkblue"
                 >
-                    security shift
+                    Security Shift
                 </th>
              
               <th
@@ -163,10 +163,10 @@
                    <td>{{a+1}}</td>
                     <td>{{i.shift_desc}}</td>
                     <td>{{i.plant_desc}}</td>
-                    <td>{{i.act_tm_from.slice(i.act_tm_from.indexOf('T')+1, i.act_tm_from.indexOf('.'))}}</td>
-                    <td>{{i.act_tm_to.slice(i.act_tm_to.indexOf('T')+1, i.act_tm_to.indexOf('.'))}}</td>
-                    <td>{{i.in_tm_min.slice(i.in_tm_min.indexOf('T')+1, i.in_tm_min.indexOf('.'))}}</td>
-                    <td>{{i.in_tm_max.slice(i.in_tm_min.indexOf('T')+1, i.in_tm_max.indexOf('.'))}}</td>
+                    <td>{{i.Shift_Start}}</td>
+                    <td>{{i.Shift_End}}</td>
+                    <td>{{i.Min_Time}}</td>
+                    <td>{{i.Max_Time}}</td>
                     <td>{{i.type}}</td>
                     <td>{{i.security_shift}}</td>
 

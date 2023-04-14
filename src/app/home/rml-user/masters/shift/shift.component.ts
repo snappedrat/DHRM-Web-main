@@ -181,7 +181,7 @@ exportexcel(): void
   var ws = XLSX.utils.json_to_sheet(this.shift);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'department.xlsx');
+  XLSX.writeFile(wb, 'shift.xlsx');
 }
 
 reset()
