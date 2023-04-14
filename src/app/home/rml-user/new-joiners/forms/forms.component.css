@@ -11,18 +11,7 @@ h3{
     margin-top:20px;
     font-weight:bold;
 }
-input{
-    border-radius:70px;
-}
-input:hover{
-    border:2px solid grey;
-}
-select{
-    border-radius:100px;
-}
-select:hover{
-    border:2px solid grey;
-}
+
 .img{
     border-radius: 10px;
 
@@ -65,4 +54,8 @@ hr {
     margin-bottom: 50px;
     margin-left: 5px;
     margin-right: 5px
+}
+table{
+    border-color: white;
+   
 }

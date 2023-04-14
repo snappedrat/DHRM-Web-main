@@ -97,9 +97,9 @@
         
    
         <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success btn-lg" (click)="save()" (click)="modal.close('Close click')" >Save</button>
+            <button *ngIf="editing_flag==true" type="button" class="btn btn-success btn-lg" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
+            <button type="button" class="btn btn-danger btn-lg" (click)="reset()" (click)="modal.close('Close click')">Close</button>
         </div>
     </form></div>
 </ng-template>

@@ -1,7 +1,8 @@
 .btn{
     border-radius: 0px;
     margin-left:50%;
-    width:90px 
+    width:90px;
+
 }
 h3{
     margin-top:20px;
@@ -14,8 +15,14 @@ h3{
     color: red;
 }
 .form-control{
-    font-size: 14px;
+    font-size: 16px;
 }
 .alert{
     color: red;
 }
+.form-header{
+    background-color: white;
+    color:black;
+    font-size: 16px;
+}
+

@@ -8,8 +8,8 @@
     <form [formGroup]="form">
     <div class="row">
     <div class = "col-sm-10">
-        <div class="form-group" >
-            <label for="account">Account Number:</label>
+        <div class="bank-form" >
+            <label class="form-header" for="account">Account Number:</label>
             <!-- <label for="account">Account Number:<span class = "star-color">*</span></label> -->
             <input  (ngModelChange)="sendData()"
                     formControlName="account"
@@ -20,8 +20,8 @@
         </div>
     </div>
     <div class = "col-sm-10">
-        <div class="form-group">
-            <label for="bankName">Bank Name:</label>
+        <div class="bank-form extra">
+            <label class="form-header"for="bankName">Bank Name:</label>
             <!-- <label for="bankName">Bank Name:<span class = "star-color">*</span></label> -->
             <select formControlName="bankName" class="form-control" (ngModelChange)="sendData()">
                 <option>Choose</option>
@@ -30,8 +30,8 @@
         </div>
         </div>
         <div class = "col-sm-10">
-        <div class="form-group">
-            <label for="ifsc">IFSC Code:</label>
+        <div class="bank-form">
+            <label class="form-header"for="ifsc">IFSC Code:</label>
             <!-- <label for="ifsc">IFSC Code:<span class = "star-color">*</span></label> -->
             <input  (ngModelChange) = "sendData()"
                     formControlName="ifsc"

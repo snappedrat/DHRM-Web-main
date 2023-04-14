@@ -2,16 +2,16 @@
 <div class="mx-5">
     <h3>Other Details</h3>  
     <form [formGroup]="forms">
-        <div  style = "width:fit-content" class="form-group">  
-            <label for="known">Do you have any relations or friends employed in any group of rane group of Companies or office</label>  
+        <div  style = "width:fit-content" class="other-form">  
+            <label class="form-header"for="known">Do you have any relations or friends employed in any group of rane group of Companies or office</label>  
             <select (click)="sendData()" formControlName="known" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let rel of Relations">{{rel}}</option>
               </select> 
     
         </div>  
-        <div style="width:fit-content" class="form-group">  
-            <label for="names"> Name</label>  
+        <div style="width:fit-content" class="other-form">  
+            <label class="form-header"for="names"> Name</label>  
             <input   
             (click)="sendData()"
                 formControlName="names"  
@@ -21,8 +21,8 @@
                 placeholder="Name">  
  
         </div>
-        <div style="width:fit-content" class="form-group">  
-            <label for="com">Company/Agency Name of the Acquaintance</label>  
+        <div style="width:fit-content" class="other-form">  
+            <label class="form-header"for="com">Company/Agency Name of the Acquaintance</label>  
             <input   
             (click)="sendData()"
                 formControlName="com"  
@@ -32,16 +32,16 @@
                 placeholder="Company/Agency Name">  
 
         </div>
-        <div style = "width:fit-content" class="form-group">  
-            <label for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
+        <div style = "width:fit-content" class="other-form">  
+            <label class="form-header"for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
             <select (click)="sendData()" formControlName="work" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let wk of Works">{{wk}}</option>
               </select>
         </div>  
 
-        <div style="width:fit-content" class="form-group">  
-            <label for="place">Name of the company</label>  
+        <div style="width:fit-content" class="other-form">  
+            <label class="form-header" for="place">Name of the company</label>  
             <input   
                 formControlName="place"  
                 (click)="sendData()"
@@ -52,8 +52,8 @@
 
         </div>
 
-        <div stytle="width:fit-content" class="form-group">  
-            <label for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
+        <div stytle="width:fit-content" class="other-form">  
+            <label class="form-header"for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
             <input   
                 formControlName="extra"  
                 (click)="sendData()"
@@ -63,7 +63,7 @@
                 placeholder="Extra Curricular Activities (Sports/Hobbies)" (click)="sendData()">  
  
         </div>
-           <button mat-raised-button (click)="submit()" (click)="sendData()" class="btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
+           <button mat-raised-button (click)="submit()" (click)="sendData()" class="other-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
            <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form></div>
