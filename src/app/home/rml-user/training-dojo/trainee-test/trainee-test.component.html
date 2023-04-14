@@ -3,7 +3,7 @@
     <span>Trainee Test Page</span>&nbsp;
    &nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
     <span class="example-spacer"></span>
-    <button style="color: white; background-color:#007BFF;" (click)="logout()" ><mat-icon class="example-icon" aria-hidden="false">home</mat-icon></button>
+    <button id="logout" style="color: white; background-color:#007BFF;" (click)="logout()" ><mat-icon class="example-icon" aria-hidden="false">home</mat-icon></button>
 </mat-toolbar>
 <div class="pt-2">
 <div class="container-fluid pt-4">
@@ -11,14 +11,14 @@
 <div class = "pt-5 pl-5">
     <form [formGroup] = "form">
     <div class = "row">
-        <div class="col-sm-3">
-        <select (change)="Qualified($event)" formControlName="module" class="input2">
+        <div class="col-sm-2">
+        <select (change)="Qualified($event)" formControlName="module" class="trainee-input">
             <option value="" disabled>Select your module</option>            
             <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
         </select>
         </div>
-        <div class="col-sm-3">
-            <input formControlName="test" class="input2" readonly>
+        <div class="col-sm-2">
+            <input formControlName="test" class="trainee-input" readonly>
                 <!-- <option value="">Select test type</option>
                 <option *ngFor= "let i of test">{{i}}</option> -->
                 <!-- </input>  -->
