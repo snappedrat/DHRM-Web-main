@@ -8,7 +8,7 @@
         <thead>
         <tr>
         <th class="form-header" scope="col" >SNo</th>
-        <th class="form-header"scope="col" >School/College Institute & Location</th>
+        <th class="form-header"scope="col" >School/College Institute</th>
         <th class="form-header"scope="col">Exam Passed</th>
         <th class="form-header"scope="col">Year of Passing</th>
         <th class="form-header"scope="col">Department</th>
@@ -18,7 +18,7 @@
         </tr>
         <tr *ngFor= "let data of eduData">
             <td><input  class="form-control"type="text" style="width:25px;"[(ngModel)]="data.sno" disabled ></td>
-        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control" type="text" placeholder="Schoolname,city"  [(ngModel)]="data.school" (ngModelChange)="valids($event)" (click)="sendData()" ></td>
+        <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><input class="form-control" type="text" placeholder="Schoolname"  [(ngModel)]="data.school" (ngModelChange)="valids($event)" (click)="sendData()" ></td>
         <td><span *ngIf = "data.sno == '1' " class = "star-color">*</span><select  class="form-control"type = "text" [(ngModel)]="data.passed" (ngModelChange)="valids($event)" (click)="sendData()"><option *ngFor= "let i of Exampassed">
           {{i}}
   </option> ></select></td>

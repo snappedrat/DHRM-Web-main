@@ -2,7 +2,7 @@
 <ng-template #content let-modal>
     <div class="modal-content-container">
     <div class="modal-header">
-        <h4 class="modal-title">Add Employee Details</h4>
+        <h4 class="modal-title">Add User Details</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
     </div>
   
@@ -90,7 +90,6 @@
             <input type="checkbox" formControlName="Is_Supervisor"> Supervisor <br>
             <input type="checkbox" formControlName="Is_ReportingAuth"> Reporting Authority <br>
             <input type="checkbox" formControlName="Is_TOU"> Time Office User <br>
-            <input type="checkbox" formControlName="access_master"> Access Master <br>
         </div>
         </div>  </div>
 
@@ -107,7 +106,7 @@
     <div class="container">
   <br>
   <div>
-    <h1 id = "title1" >Employee Master</h1>
+    <h1 id = "title1" >Login User Details</h1>
     <hr style="border-block-color: orange" />
   </div>
   <div class="button">
