@@ -1,9 +1,10 @@
-<div class = "container">
+
     <div  style = "margin-top: 40px;">
+        <div  style = "margin-left: 40px;">
     <div>
         <h1><b>Department Transfer</b></h1>
     </div> 
-    
+<div class="container">
 <div class="form-container1">
     <div class="row">
         <div class = "col-sm-4"><b><p>From Date : </p></b>
@@ -27,24 +28,25 @@
             </div>
     </div></div>
     </div>
-    <br><br>
+    <br><br></div>
     <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
     <ng-template #show>
+        <div class="dept-container">
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
               <thead>
               <tr>
                   <th
-                          div class="text-center"
+                          div class="text-center  " style="width:2200px"
                         
                   >
                      Date
                   </th>
                   <th
-                          div class="text-center"
+                          div class="text-center "
                   >
-                      Full name
+                      Full Name
                   </th>
                   <th
                           div class="text-center"
@@ -52,14 +54,14 @@
                       Father Name
                   </th>
                   <th
-                          div class="text-center"
+                          div class="text-center" style="width:2200px"
                   >
-                      Date of birth 
+                      DOB 
                   </th>
                   <th
                           div class="text-center"
                   >
-                      mobileNumber
+                      Mobile Number
                   </th>
                   <th
                   class="text-center"
@@ -76,12 +78,12 @@
                   <th
                           div class="text-center"
                   >
-                      Aaadhar number
+                      Aadhar Number
                   </th>
                   <th
                           div class="text-center"
                   >
-                      Application status
+                      Application Status
                   </th>
     
                   <th
@@ -93,10 +95,10 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let i of filterinfo | dateRangeFilter:from:to:'doj' | filter:searchText | deptFilter: dept ">
-                        <td>{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
+                        <td >{{ i.doj.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
-                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.birthdate | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.mobile_no1 }}</td>
                         <td>{{i.gen_id}}</td>
                         <td>{{ i.dept_name }}</td>
@@ -114,9 +116,9 @@
                       </tr>
                     </tbody>
                 </table>
-              </table>
+              </table></div>
         </div></ng-template>
-    </div>
+    
 
     <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">
     </ngb-pagination> -->

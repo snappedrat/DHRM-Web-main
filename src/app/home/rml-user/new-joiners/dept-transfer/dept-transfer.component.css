@@ -9,11 +9,13 @@
 th{
     color: white;
     font-family: 'Montserrat', sans-serif;
+    text-align: left;
   }
   td{
     font-family: 'Times New Roman', Times, serif;
     font-weight: 500;
     font-size: medium;
+    text-align: left;
   }
   th { background: #c5c5c5;}
 table 
@@ -21,7 +23,7 @@ table
 
   width: 100%;
 }
-td, th { border: 1px solid #cdcdcd; padding: 8px;}
+td, th { border: 1px solid #cdcdcd; padding: 8px;text-align: left;}
 .form-group
 {
   background-color: lightgrey;
@@ -52,6 +54,7 @@ tbody
 .text-center{
   width: 500px;
   background-color: darkblue;
+  text-align: left;
 
 }
 
@@ -93,4 +96,12 @@ tbody
   background-color: rgba(211, 204, 204, 0.618); /* Update opacity here */
   align-items: center;
   ;
+}
+
+.dept-container{
+  margin-left: 10px;
+  margin-right:10px;
+}
+.date-width{
+  width:1000px;
 }
