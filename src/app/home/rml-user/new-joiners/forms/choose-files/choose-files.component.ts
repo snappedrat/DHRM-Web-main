@@ -252,6 +252,8 @@ onResumeChange(event:any){
 				{
 					this.flag_for_size = true
 					window.alert("File size should be less than 2MB")
+					const ms:any = document.getElementById('resume')
+					ms.value = ''
 					this.resume_file = null
 				}
 				else
@@ -274,6 +276,8 @@ onMarksheetChange(event:any){
 		{
 			this.flag_for_size = true
 			window.alert("File size should be less than 1MB") 
+			const ms:any = document.getElementById('marksheet')
+			ms.value = ''
 			this.marksheet_file = null
 
 		}
@@ -300,6 +304,8 @@ onTransfercertificateChange(event:any){
 	{
 		this.flag_for_size = true
 		window.alert("File size should be less than 1MB") 
+		const t:any = document.getElementById('transfer')
+		t.value =''
 		this.transfercertificate_file = null
 	}
 	else
@@ -307,6 +313,8 @@ onTransfercertificateChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 		{
 			window.alert("File is not of metioned type")
+			const t:any = document.getElementById('transfer')
+			t.value =''
 			this.transfercertificate_file = null
 		}
 		else
@@ -327,7 +335,9 @@ onAadharcardChange(event:any){
 	if(this.size > 1000000)
 	{
 		this.flag_for_size = true
-		window.alert("File size should be less than 1MB")			
+		window.alert("File size should be less than 1MB")
+		const t:any = document.getElementById('aadhar')
+		t.value =''			
 		this.aadharcard_file = null 
 	}
 	else
@@ -335,6 +345,8 @@ onAadharcardChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 		{
 			window.alert("File is not of metioned type")
+			const t:any = document.getElementById('aadhaar')
+			t.value =''
 			this.aadharcard_file = null
 		}
 		else
@@ -355,6 +367,8 @@ onBankpassbookChange(event:any){
 	{
 		this.flag_for_size = true
 		window.alert("File size should be less than 1MB") 
+		const t:any = document.getElementById('passbook')
+		t.value =''
 		this.aadharcard_file = null
 	}
 	else
@@ -362,6 +376,8 @@ onBankpassbookChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 		{
 			window.alert("File is not of metioned type")
+			const t:any = document.getElementById('passbook')
+			t.value =''
 			this.aadharcard_file = null
 		}
 				else
@@ -383,6 +399,8 @@ onPhotoChange(event:any){
 	{
 		this.flag_for_size = true
 		window.alert("File size should be less than 1MB") 
+		const t:any = document.getElementById('photo')
+		t.value =''
 		this.photo_file = null
 	}
 	else
@@ -390,6 +408,8 @@ onPhotoChange(event:any){
 		if(new_ != 'png'&& new_ != 'jpg' && new_!='jpeg')
 			{
 				window.alert("File is not of metioned type")
+				const t:any = document.getElementById('photo')
+				t.value =''
 				this.photo_file = null
 			}
 
@@ -411,6 +431,8 @@ onSignatureChange(event:any){
 	{
 		this.flag_for_size = true
 		window.alert("File size should be less than 2MB") 
+		const t:any = document.getElementById('sign')
+		t.value =''
 		this.signature_file = null
 
 	}
@@ -419,6 +441,8 @@ onSignatureChange(event:any){
 		if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
 		{
 			window.alert("File is not of metioned type")
+			const t:any = document.getElementById('sign')
+			t.value =''
 			this.signature_file = null
 		}
 			else

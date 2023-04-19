@@ -6,9 +6,8 @@ img{
 }
 .bd{
     height: 100%;
-    /* background-position: fixed; */
+    width: 100%;
     background-size: 100% ;
-    background-size: cover;
     background: linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
     background-position:0 0;
     align-items: center;

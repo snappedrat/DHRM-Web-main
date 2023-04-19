@@ -21,7 +21,7 @@
     <tr>
       <td>Marksheet:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
       <td><div class="text-center"> 
-        <input class="form-control" type="file" (change)="valid()"  (change)="onMarksheetChange($event)"> 
+        <input class="form-control" id="marksheet" type="file" (change)="valid()"  (change)="onMarksheetChange($event)"> 
 	</div> 
 
 	<td>
@@ -31,7 +31,7 @@
 	<tr>
         <td>Transfer Certificate:</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" (change)="valid()" (change)="onTransfercertificateChange($event)"> 
+          <input class="form-control" type="file" id="transfer" (change)="valid()" (change)="onTransfercertificateChange($event)"> 
 		</div> 
 
 		<td  >
@@ -41,7 +41,7 @@
       <tr>
         <td>Aadhar Card:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" (change)="valid()"  (change)="onAadharcardChange($event)"> 
+          <input class="form-control" id="aadhar" type="file" (change)="valid()"  (change)="onAadharcardChange($event)"> 
 		</div> 
 
 		<td>
@@ -51,7 +51,7 @@
       <tr>
         <td>Bank Passbook:</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" (change)="valid()"  (change)="onBankpassbookChange($event)"> 
+          <input class="form-control" id="passbook" type="file" (change)="valid()"  (change)="onBankpassbookChange($event)"> 
 		</div> 
 
 		<td> 
@@ -61,7 +61,7 @@
       <tr>
         <td>Photo:<span *ngIf="this.ishr == 'true' " class = "star-color">*</span></td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" accept="image/*"  (change)="onPhotoChange($event)" (change)="valid()"> 
+          <input class="form-control" type="file" id="photo" accept="image/*"  (change)="onPhotoChange($event)" (change)="valid()"> 
 		</div> 
 
 		<td>
@@ -71,7 +71,7 @@
       <tr>
         <td>Signature:</td>
         <td><div class="text-center"> 
-          <input class="form-control" type="file" (change)="valid()"   (change)="onSignatureChange($event)"> 
+          <input class="form-control" id="sign" type="file" (change)="valid()"   (change)="onSignatureChange($event)"> 
 		</div> 
 
 		<td>

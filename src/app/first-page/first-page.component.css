@@ -1,11 +1,12 @@
 .bd{
-  background-size: cover;
-  margin: 0;
   background: linear-gradient(135deg, #2d64b5, #4e82c1, #00d4ff);
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
   font-size: 14px;
+  background-position:0 0;
+  background-size: 100%;
+
 }
 .container{
   width: 100%;
