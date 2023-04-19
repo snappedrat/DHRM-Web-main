@@ -3,7 +3,7 @@
     <h3>Other Details</h3>  
     <form [formGroup]="forms">
         <div  style = "width:fit-content" class="other-form">  
-            <label class="form-header"for="known">Do you have any relations or friends employed in any group of rane group of Companies or office</label>  
+            <label class="form-header"for="known">Do You Have Any Relations Or Friends Employed In Any Location Of Rane Group Of Companies Or Office</label>  
             <select (click)="sendData()" formControlName="known" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let rel of Relations">{{rel}}</option>
@@ -22,7 +22,7 @@
  
         </div>
         <div style="width:fit-content" class="other-form">  
-            <label class="form-header"for="com">Company/Agency Name of the Acquaintance</label>  
+            <label class="form-header"for="com">Company/Agency Name Of The Acquaintance</label>  
             <input   
             (click)="sendData()"
                 formControlName="com"  
@@ -33,7 +33,7 @@
 
         </div>
         <div style = "width:fit-content" class="other-form">  
-            <label class="form-header"for="work">Have you ever worked in any company/plant/office of Rane Group </label>  
+            <label class="form-header"for="work">Have You Ever Worked In Any Company/Plant/Office Of Rane Group </label>  
             <select (click)="sendData()" formControlName="work" class="form-control">
                 <option>Choose</option>
               <option *ngFor="let wk of Works">{{wk}}</option>
@@ -41,7 +41,7 @@
         </div>  
 
         <div style="width:fit-content" class="other-form">  
-            <label class="form-header" for="place">Name of the company</label>  
+            <label class="form-header" for="place">Name Of The Company</label>  
             <input   
                 formControlName="place"  
                 (click)="sendData()"
