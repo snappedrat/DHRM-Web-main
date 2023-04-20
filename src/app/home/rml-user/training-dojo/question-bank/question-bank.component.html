@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="container">
     <div  style = "margin-top: 40px;">   
 
     <h1><b>Question Bank</b></h1>
@@ -29,10 +29,10 @@
             </thead>
             <tbody>
                 <tr *ngFor = "let i of questions; let a = index">
-                    <td style="background-color: rgb(218, 218, 218);width:30px; position: relative; text-align: center;">{{a+1}}.<button (click)="delete(a)" title="Delete" data-placement="top" mat-icon-button style="width:30px; position: relative; justify-content: center ;">❌</button></td>
-                    <td><textarea [readonly] = 'flag' style="resize:none;outline: none;border-color: white;width: 500px;height: 270px;" (change)="question($event, a)"  (click) ="addrow(a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
-                    <td><textarea maxlength="1" [readonly] = 'flag' name ="answer" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;width: 120px;" (change)="answers($event, a)" class="form-group">{{i.correct_answer}}</textarea></td>
-                    <td><div style="width: 300px;"><a [href] = 'this.url+this.questions[a].image_filename' target = "_blank" style="border-color: white;white-space: pre-wrap">{{this.questions[a].image_filename != null ? this.questions[a].image_filename : ''}}</a></div></td>
+                    <td style="background-color: rgb(255, 255, 255);width:30px; position: relative; text-align: center;">{{a+1}}.<button (click)="delete(a)" title="Delete" data-placement="top" mat-icon-button style="width:30px; position: relative; justify-content: center ;">❌</button></td>
+                    <td class="qb-input"><textarea [readonly] = 'flag' style="resize:none;outline: none;border-color: white;width: 400px;height: 270px;" (change)="question($event, a)"  (click) ="addrow(a)" type = 'text' class="form-group">{{i.question}}</textarea></td>
+                    <td class="qb-input"><textarea maxlength="1" [readonly] = 'flag' name ="answer" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;width: 120px;" (change)="answers($event, a)" class="form-group">{{i.correct_answer}}</textarea></td>
+                    <td><div style="width: 270px;"><a [href] = 'this.url+this.questions[a].image_filename' target = "_blank" style="border-color: white;white-space: pre-wrap">{{this.questions[a].image_filename != null ? this.questions[a].image_filename : ''}}</a></div></td>
                     <td><input [disabled] = 'flag' name ="file" type="file" style="overflow: hidden;resize:none;outline: none;border-color: white;height: 200px;" (change)="file($event,a)" class="form-group"></td>
                 </tr>
             </tbody>

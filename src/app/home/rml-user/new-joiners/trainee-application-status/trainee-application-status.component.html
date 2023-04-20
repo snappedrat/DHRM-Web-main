@@ -52,14 +52,14 @@
       <button mat-raised-button color="primary" (click)="searchfilter()"  >🔍</button></div>
   </div>
 </div>
-</form>
+</form></div>
 <div class="col">
   <div class = "download">
       <button mat-fab style=" margin-left: auto; " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
           <mat-icon>download</mat-icon>
       </button></div>
 </div>
-  <br><br>
+  <br><br></div>
   <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
   <ng-template #show>
     <div>
@@ -134,7 +134,7 @@
                     <!-- <td>{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td> -->
                     <td>{{ i.fullname }}</td>
                     <td>{{ i.fathername }}</td>
-                    <td>{{ i.birthdate }}</td>
+                    <td>{{ i.birthdate | date: 'dd-MM-yyyy'}}</td>
                     <td>{{ i.mobile_no1 }}</td>
                     <td>{{ i.aadhar_no }}</td>
                     <td>{{ i.apln_status }}</td>

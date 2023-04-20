@@ -21,7 +21,7 @@ table
 border-collapse: collapse;
 width: 100%;
 }
-td, th { border: 1px solid #cdcdcd; padding: 8px;}
+td, th { border: 1px solid #cdcdcd; padding: 8px;text-align: left;}
 .form-group
 {
 background-color: lightgrey;
