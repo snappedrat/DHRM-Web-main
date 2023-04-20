@@ -110,3 +110,7 @@ tbody {
 .text-center{
   text-align: left;
 }
+.thegap{
+  margin-left: 10px;
+  margin-right: 10px;
+}
