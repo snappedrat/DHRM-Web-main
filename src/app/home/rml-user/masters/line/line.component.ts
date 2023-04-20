@@ -74,9 +74,15 @@ export class LineComponent implements OnInit {
       Line_code: 'Line Code',
       Line_Name: 'Line Name',
       shop_code: 'Shop Code',
-      Module_code: 'Module Code',
-      Plant_code: 'Plant Code',
-
+      module_code: 'Module Code',
+      plant_code: 'Plant Code',
+      plant_name:'Plant Name',
+      dept_name: 'Department Name',
+      Created_By: 'Created by',
+      Created_Date: 'Created Date',
+      modifiedby: 'modified by',
+      Modified_Date: 'Modified Date',
+      personal_subarea: 'Personal Subarea'
     };
 
     // Map the array and transform each object
@@ -90,7 +96,7 @@ export class LineComponent implements OnInit {
     });
     console.log(transformedArray);
 
-    var ws = XLSX.utils.json_to_sheet(this.line);
+    var ws = XLSX.utils.json_to_sheet(transformedArray);
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'line.xlsx');

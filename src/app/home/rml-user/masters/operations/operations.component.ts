@@ -172,10 +172,32 @@ delete(a:any, slno:any)
 
 exportexcel(): void
 {
-  var ws = XLSX.utils.json_to_sheet(this.dummy);
+
+  const newKeys:any = {
+    oprn_slno: 'Slno',
+    plant_name: 'Plant Name',
+    oprn_desc: 'Descriptions',
+    line_code: 'Line Code',
+    skill_level: 'Skill Level',
+    critical_oprn: 'Critical Operation',
+    plant_code: 'Plant Code'
+  };
+
+  // Map the array and transform each object
+  const transformedArray:any = this.dummy.map((obj:any) => {
+    const transformedObj:any = {};
+    Object.keys(obj).forEach(key => {
+      const newKey = newKeys[key] || key;
+      transformedObj[newKey] = obj[key];
+    });
+    return transformedObj;
+  });
+  console.log(transformedArray);
+
+  var ws = XLSX.utils.json_to_sheet(transformedArray);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'department.xlsx');
+  XLSX.writeFile(wb, 'operations.xlsx');
 }
 
 reset()

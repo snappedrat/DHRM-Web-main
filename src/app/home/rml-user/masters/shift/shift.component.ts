@@ -172,7 +172,34 @@ export class ShiftComponent implements OnInit {
   }
 
   exportexcel(): void {
-    var ws = XLSX.utils.json_to_sheet(this.shift);
+
+    const newKeys:any = {
+      shift_id: 'Shift ID',
+      plant_code: 'Plant Code',
+      plant_desc: 'Plant Name',
+      shift_desc: 'Shift Description',
+      Shift_Start: 'Shift Start Time',
+      Shift_End: 'Shift End Time',
+      Min_Time: 'Minimum Time',
+      Max_Time: 'Maximum Time',
+      type: 'Shift Type',
+      shift_group: 'Shift Group',
+      security_shift: 'Security Shift',
+      coff_eligible_hours: 'Comp Off Eligible Hours',
+    };
+
+    // Map the array and transform each object
+    const transformedArray:any = this.shift.map((obj:any) => {
+      const transformedObj:any = {};
+      Object.keys(obj).forEach(key => {
+        const newKey = newKeys[key] || key;
+        transformedObj[newKey] = obj[key];
+      });
+      return transformedObj;
+    });
+    console.log(transformedArray);
+
+    var ws = XLSX.utils.json_to_sheet(transformedArray);
     var wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'shift.xlsx');

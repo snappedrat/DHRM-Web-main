@@ -20,6 +20,7 @@ colname :any
 colvalue :any
 searchfilterinfo: any;
 currentDate: Date;
+Date:any = 'Date'
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : FormService,public loader:LoaderserviceService, private active : ActivatedRoute) {
     this.form = this.fb.group({
