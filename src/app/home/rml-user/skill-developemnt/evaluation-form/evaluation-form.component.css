@@ -160,3 +160,9 @@ select:hover{
   align-items: flex-start;
   background-color: white;
 }
+.btn{
+  width: 100px;
+  margin-left: 45%;
+  background-color: rgb(54, 154, 54);
+  color: white;
+}
