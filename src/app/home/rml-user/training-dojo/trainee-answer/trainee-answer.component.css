@@ -1,58 +1,70 @@
-.titlebox{
-    text-align:center;
-    border-radius: 2px;
-    font-size: 20px;
-    margin-top: 5%;
-    border-color: white;
-  }
-.header{
-    text-align:left;
-    font-size: 20px;
+.titlebox {
+  text-align: center;
+  border-radius: 2px;
+  font-size: 20px;
+  margin-top: 5%;
+  border-color: white;
 }
+
+.header {
+  text-align: left;
+  font-size: 20px;
+}
+
 .table1 {
 
-    width: 100%;
-  }
-.color{
-    color:white
-}  
+  width: 100%;
+}
 
-.container-fluid
-{
+.color {
+  color: white
+}
+
+.container-fluid {
   background: rgb(255, 255, 255);
   box-shadow: rgb(255, 255, 255);
 }
 
-th{
+th {
   color: white;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 
 }
-td{
+
+td {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
   font-size: medium;
   align-items: left;
   text-align: left;
 }
-th { background: #c5c5c5;}
-table 
-{
-overflow-x: scroll;
-border-collapse: collapse;
-}
-td, th { border: 1px solid #cdcdcd; padding: 8px;}
 
-tbody
-{
-text-align: center;
-
+th {
+  background: #c5c5c5;
 }
 
-.table-wrapper
-{
+table {
+  overflow-x: scroll;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+}
+
+tbody {
+  text-align: center;
+
+}
+
+.table-wrapper {
   display: block;
   overflow-x: scroll;
 }
 
+.download {
+  margin-left: 95%;
+}

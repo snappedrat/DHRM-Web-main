@@ -43,7 +43,9 @@
 
         </div>
       </div>
-  </form><br>
+  </form>
+
+  <br>
     <div class="row">
       <div class = "col-sm-4 ">
         <label for="Status" id="center">Name: </label>
@@ -52,7 +54,12 @@
           
       </div></div>
     </div> 
-
+    <div class="col">
+      <div class = "download">
+          <button mat-fab style=" margin-left: auto; " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
+              <mat-icon>download</mat-icon>
+          </button></div>
+    </div>
       <br><br><app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
       <ng-template #show>
         <div class = "table-wrapper">

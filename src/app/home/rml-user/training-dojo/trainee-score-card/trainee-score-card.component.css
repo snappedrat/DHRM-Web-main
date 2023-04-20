@@ -1,23 +1,26 @@
-.titlebox{
-    text-align:center;
-    border-radius: 2px;
-    font-size: 20px;
-    margin-top: 5%;
-    border-color: white;
-  }
-.header{
-    text-align:left;
-    font-size: 20px;
+.titlebox {
+  text-align: center;
+  border-radius: 2px;
+  font-size: 20px;
+  margin-top: 5%;
+  border-color: white;
 }
+
+.header {
+  text-align: left;
+  font-size: 20px;
+}
+
 .table1 {
 
-    width: 100%;
-  }
-.color{
-    color:white
-}  
+  width: 100%;
+}
 
-.btn{
+.color {
+  color: white
+}
+
+.btn {
   font-size: 14px;
   color: aliceblue;
   background: blue;
@@ -25,63 +28,77 @@
 }
 
 
-.container-fluid
-{
+.container-fluid {
   background: rgb(255, 255, 255);
   box-shadow: rgb(255, 255, 255);
 }
+
 .example-spacer {
   flex: 1 1 auto;
 }
-.button{
+
+.button {
   float: left;
 
 }
-.button1{
+
+.button1 {
   float: left;
 }
+
 .btn {
   float: right;
 
 }
-.boxx{
+
+.boxx {
   box-sizing: 100%;
 }
 
-th{
+th {
   color: white;
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 
 }
-td{
+
+td {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
   font-size: medium;
   align-items: left;
   text-align: left;
 }
-th { background: #c5c5c5;}
-table 
-{
-overflow-x: scroll;
-border-collapse: collapse;
-}
-td, th { border: 1px solid #cdcdcd; padding: 8px;}
-.form-group
-{
-background-color: lightgrey;
+
+th {
+  background: #c5c5c5;
 }
 
-tbody
-{
-text-align: center;
+table {
+  overflow-x: scroll;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+}
+
+.form-group {
+  background-color: lightgrey;
+}
+
+tbody {
+  text-align: center;
 
 }
 
-.table-wrapper
-{
+.table-wrapper {
   display: block;
   overflow-x: scroll;
 }
 
+.download {
+  margin-left: 95%;
+}

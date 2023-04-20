@@ -93,7 +93,26 @@ export class EmployeeComponent implements OnInit {
 
   exportexcel(): void
 {
-  var ws = XLSX.utils.json_to_sheet(this.employee);
+
+  
+  // const newKeys:any = {
+  //   bank_code: 'Bank Code',
+  //   bank_name: 'Bank Name',
+  //   del_status: 'Del Status',
+  // };
+
+  // Map the array and transform each object
+  const transformedArray:any = this.employee.map((obj:any) => {
+    const transformedObj:any = {};
+    Object.keys(obj).forEach(key => {
+      const newKey = key.replace(/_/g, ' '); // replace hyphens with spaces
+      transformedObj[newKey] = obj[key];
+    });
+    return transformedObj;
+  });
+  console.log(transformedArray);
+
+  var ws = XLSX.utils.json_to_sheet(transformedArray);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "People");
   XLSX.writeFile(wb,"employee.xlsx");

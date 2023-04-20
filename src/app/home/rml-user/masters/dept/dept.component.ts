@@ -173,7 +173,27 @@ delete(a:any, slno:any)
 
 exportexcel(): void
 {
-  var ws = XLSX.utils.json_to_sheet(this.department);
+
+  const newKeys:any = {
+    dept_group: 'Department Group',
+    dept_slno: 'Slno',
+    dept_name: 'Department Name',
+    sap_code: 'Sap Code',
+    plant_name: 'Plant Name',
+    plant_code: 'Plant Code',
+  };
+
+  const transformedArray:any = this.department.map((obj:any) => {
+    const transformedObj:any = {};
+    Object.keys(obj).forEach(key => {
+      const newKey = newKeys[key] || key;
+      transformedObj[newKey] = obj[key];
+    });
+    return transformedObj;
+  });
+  console.log(transformedArray);
+
+  var ws = XLSX.utils.json_to_sheet(transformedArray);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
   XLSX.writeFile(wb, 'department.xlsx');

@@ -25,7 +25,7 @@ const material = [
 ];
 
 
- 
+
 
 @Component({
   selector: 'app-dept',
@@ -37,81 +37,96 @@ const material = [
 export class DesignationComponent implements OnInit {
   closeResult: string;
 
-  form:any
+  form: any
 
-  plantname:any
+  plantname: any
 
-  temp_a:any
-  sample : any = environment.path
-  array:any = []
-  index:any = -1
+  temp_a: any
+  sample: any = environment.path
+  array: any = []
+  index: any = -1
 
   designation: any = [
 
   ]
   editing_flag: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader:LoaderserviceService) {
+  constructor(private fb: UntypedFormBuilder, private modalService: NgbModal, private service: ApiService, public loader: LoaderserviceService) {
     this.form = this.fb.group({
-      slno:[''],
-      desig_name :[''],
-      plant_name : [''],
-      names:[''],
+      slno: [''],
+      desig_name: [''],
+      plant_name: [''],
+      names: [''],
       plant_code: ['']
-     
+
     })
-   }
+  }
 
-  
 
-  exportexcel(): void
-  {
-  var ws = XLSX.utils.json_to_sheet(this.designation);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  XLSX.writeFile(wb, 'designation.xlsx');
-}
 
-ngOnInit(): void {
-  this.getplantcode()
-  this.service.getdesignation().
-  subscribe({
-    next: (response)=>{console.log(response);this.designation = response}
-  })
-}
+  exportexcel(): void {
 
-getplantcode(){
-  var company = {'company_name': sessionStorage.getItem('companycode')}
-  this.service.plantcodelist(company)
-  .subscribe({
-    next: (response) =>{ console.log(response); this.plantname = response;
-     },
-    error: (error) => console.log(error),
-  });
-}
+        // Define the new key names
+        const newKeys:any = {
+          desig_name: 'Designation Name',
+          plant_code: 'Plant Code',
+          plant_name: 'Plant Name',
+        };
+    
+        // Map the array and transform each object
+        const transformedArray:any = this.designation.map((obj:any) => {
+          const transformedObj:any = {};
+          Object.keys(obj).forEach(key => {
+            const newKey = newKeys[key] || key;
+            transformedObj[newKey] = obj[key];
+          });
+          return transformedObj;
+        });
+        console.log(transformedArray);
 
-get_slno(event:any)
-{
-  console.log(this.form.value);
-}
+    var ws = XLSX.utils.json_to_sheet(transformedArray);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'designation.xlsx');
+  }
 
-   open(content:any)
-  {
+  ngOnInit(): void {
+    this.getplantcode()
+    this.service.getdesignation().
+      subscribe({
+        next: (response) => { console.log(response); this.designation = response }
+      })
+  }
+
+  getplantcode() {
+    var company = { 'company_name': sessionStorage.getItem('companycode') }
+    this.service.plantcodelist(company)
+      .subscribe({
+        next: (response) => {
+          console.log(response); this.plantname = response;
+        },
+        error: (error) => console.log(error),
+      });
+  }
+
+  get_slno(event: any) {
+    console.log(this.form.value);
+  }
+
+  open(content: any) {
     this.form.reset();
     this.editing_flag = false
 
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
-  opentoedit(content:any)
-  {
+  opentoedit(content: any) {
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
 
-   
-edit(a:any)
-  {
+
+  edit(a: any) {
     this.temp_a = a
     this.editing_flag = true
     this.form.controls['slno'].setValue(this.designation[a].slno)
@@ -120,64 +135,62 @@ edit(a:any)
     this.form.controls['plant_name'].setValue(this.designation[a]?.plant_code)
     this.form.get('plant_name').disable()
   }
-  save()
-  {
+  save() {
     console.log(this.form.value)
     this.service.adddesignation(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
 
-        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
-        this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
-        this.form.get('plant_name').setValue(this.plantname[index].plant_name)        
-        this.service.getdesignation().
-        subscribe({
-          next: (response)=>{console.log(response);this.designation = response}
-        })
-        this.form.reset()
-      }
-    })    
+          const index = this.plantname.findIndex((obj: any) => obj.plant_code === this.form.get('plant_name').value);
+          this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+          this.form.get('plant_name').setValue(this.plantname[index].plant_name)
+          this.service.getdesignation().
+            subscribe({
+              next: (response) => { console.log(response); this.designation = response }
+            })
+          this.form.reset()
+        }
+      })
 
   }
-  editSave()
-  {
+  editSave() {
     this.form.get('plant_name').enable()
 
     this.service.updatedesignation(this.form.value)
-    .subscribe({
-      next: (response:any)=>{console.log(response);
-      if(response.message == 'updated')
-      {
-        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
-        this.form.get('plant_code').setValue(this.form.get('plant_name').value)                
-        this.form.get('plant_name').setValue(this.plantname[index].plant_name)  
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'updated') {
+            const index = this.plantname.findIndex((obj: any) => obj.plant_code === this.form.get('plant_name').value);
+            this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+            this.form.get('plant_name').setValue(this.plantname[index].plant_name)
 
-        this.service.getdesignation().
-        subscribe({
-          next: (response)=>{console.log(response);this.designation = response}
-        })
-      }
-      }
-    })
+            this.service.getdesignation().
+              subscribe({
+                next: (response) => { console.log(response); this.designation = response }
+              })
+          }
+        }
+      })
   }
-/////////////////////////////////////////////////////edit functions
+  /////////////////////////////////////////////////////edit functions
 
-delete(a:any, slno:any)
-{
-  this.service.deletedesignation({slno : slno})
-  .subscribe({
-    next: (response:any) =>{console.log(response); 
-    if(response.message == 'success')
-      this.designation.splice(a,1)
+  delete(a: any, slno: any) {
+    this.service.deletedesignation({ slno: slno })
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'success')
+            this.designation.splice(a, 1)
+        }
+      })
   }
-  })
-}
 
 
 
 
-  reset()
-{
-  this.form.reset()
-}
+  reset() {
+    this.form.reset()
+  }
 }

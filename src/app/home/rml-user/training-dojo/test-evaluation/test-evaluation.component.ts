@@ -139,7 +139,7 @@ export class TestEvaluationComponent implements OnInit {
                   }
                 )
             }
-            if (response.status == 'The trainee is not qualified for this exam') 
+            if (response.status == 'The trainee is not qualified for this exam' || response.status == 'Please select the Trainee') 
             {
               alert(response.status)
               this.form.reset()

@@ -1,48 +1,59 @@
 .btn {
-    float: right;
+  float: right;
 
 }
-.boxx{
+
+.boxx {
   box-sizing: 100%;
-  width:200px;
+  width: 200px;
   margin: 0 15px;
 }
-th{
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-  }
-  td{
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 500;
-    font-size: medium;
-  }
-  th { background: #c5c5c5;}
-table 
-{
+
+th {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+td {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  font-size: medium;
+}
+
+th {
+  background: #c5c5c5;
+}
+
+table {
   border-collapse: collapse;
   width: 100%;
 }
-td, th { border: 1px solid #cdcdcd; padding: 8px;}
-.form-group
-{
+
+td,
+th {
+  border: 1px solid #cdcdcd;
+  padding: 8px;
+}
+
+.form-group {
   background-color: lightgrey;
 }
 
-tbody
-{
+tbody {
   text-align: center;
 
 }
 
-.table-wrapper
-{
-    display: block;
+.table-wrapper {
+  display: block;
 }
-.search{
+
+.search {
   margin-left: 0px;
   position: relative;
   width: 150px;
 }
+
 .input2 {
   min-width: 200px;
   background-color: #f5f5f5;
@@ -64,24 +75,32 @@ tbody
 .input2:hover {
   outline: 3px solid lightgrey;
 }
+
 ::ng-deep .mat-select-value {
   text-align: left;
   margin-top: 8%;
 }
+
 .form-container1 {
-  margin:5% auto;
-  -webkit-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
-  -moz-box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
-  box-shadow: 9px 10px 30px 0px rgba(0,0,0,0);
+  margin: 5% auto;
+  -webkit-box-shadow: 9px 10px 30px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 9px 10px 30px 0px rgba(0, 0, 0, 0);
+  box-shadow: 9px 10px 30px 0px rgba(0, 0, 0, 0);
   padding: 20px;
   border-radius: 10px;
   min-height: 100px;
   font-size: 16px;
   min-width: 600px;
-  background-color: rgba(211, 204, 204, 0.618); /* Update opacity here */
-  
-  
+  background-color: rgba(211, 204, 204, 0.618);
+  /* Update opacity here */
+
+
 }
-.button1{
+
+.button1 {
   margin-top: 15%;
+}
+
+.download {
+  margin-left: 90%;
 }

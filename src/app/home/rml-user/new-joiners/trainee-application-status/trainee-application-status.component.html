@@ -53,10 +53,17 @@
   </div>
 </div>
 </form>
-
+<div class="col">
+  <div class = "download">
+      <button mat-fab style=" margin-left: auto; " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
+          <mat-icon>download</mat-icon>
+      </button></div>
+</div>
   <br><br>
   <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
   <ng-template #show>
+    <div>
+    </div>
     <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">

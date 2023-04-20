@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../form.service';
 import { DatePipe } from '@angular/common';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-trainee-application-status',
@@ -18,7 +19,7 @@ filterinfo: any
 colname :any
 colvalue :any
 searchfilterinfo: any;
-  currentDate: Date;
+currentDate: Date;
 
   constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service : FormService,public loader:LoaderserviceService, private active : ActivatedRoute) {
     this.form = this.fb.group({
@@ -66,6 +67,15 @@ searchfilter()
     error: (error) => console.log(error),
   });
 
+}
+
+exportexcel()
+{
+  const x = document.querySelector("#table")
+  const ws = XLSX.utils.table_to_sheet(x);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Table');
+  XLSX.writeFile(wb, 'table.xlsx');
 }
 
 }

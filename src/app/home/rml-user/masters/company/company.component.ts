@@ -21,91 +21,86 @@ const material = [
 export class CompanyComponent implements OnInit {
   closeResult: string;
 
-  form:any
+  form: any
 
-  sample : any = environment.path
+  sample: any = environment.path
 
-  year:any 
-  month:any
-  day:any
-  date:any
+  year: any
+  month: any
+  day: any
+  date: any
   dummy: any = [
 
   ]
   editing_flag: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader:LoaderserviceService) {
+  constructor(private fb: UntypedFormBuilder, private modalService: NgbModal, private service: ApiService, public loader: LoaderserviceService) {
     this.form = this.fb.group({
-      sno : [''],
-      company_code :[''],
-      company_name : [''],
+      sno: [''],
+      company_code: [''],
+      company_name: [''],
       created_on: [''],
       created_by: [''],
       modified_on: [''],
-      modified_by: [''],     
+      modified_by: [''],
     })
-   }
+  }
 
   ngOnInit(): void {
     this.service.companyshow().
-    subscribe({
-      next: (response)=>{this.dummy = response}
-    })
+      subscribe({
+        next: (response) => { this.dummy = response }
+      })
   }
 
-  open(content:any)
-  {
+  open(content: any) {
     this.form.reset();
     this.editing_flag = false
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
 
-  date_format()
-  {
+  date_format() {
     this.year = new Date().getFullYear();
-    this.month = new Date().getMonth()+1;
-    this.day = new Date().getDate();  
-    this.date = this.year+'-'+this.month+'-'+this.day
+    this.month = new Date().getMonth() + 1;
+    this.day = new Date().getDate();
+    this.date = this.year + '-' + this.month + '-' + this.day
   }
 
-  save()
-  {
+  save() {
     this.date_format()
     this.form.controls['created_on'].setValue(this.date)
     console.log(this.month)
 
     this.form.controls['created_by'].setValue(sessionStorage.getItem('emp_name'))
     this.service.companyadd(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('company with same code value already exists')
-      }
-    else
-      {
-        this.service.companyshow().
-        subscribe({
-          next: (response)=>{this.dummy = response}
-        })
-        this.form.reset()
-        console.log(this.form.value)
-      }}
-    })    
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'already') {
+            alert('company with same code value already exists')
+          }
+          else {
+            this.service.companyshow().
+              subscribe({
+                next: (response) => { this.dummy = response }
+              })
+            this.form.reset()
+            console.log(this.form.value)
+          }
+        }
+      })
 
   }
 
-/////////////////////////////////////////////////////edit functions
+  /////////////////////////////////////////////////////edit functions
 
-  opentoedit(content:any)
-  {
+  opentoedit(content: any) {
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
 
-  edit(a:any)
-  {
+  edit(a: any) {
     console.log("-----------", a)
 
     this.editing_flag = true
@@ -115,63 +110,79 @@ export class CompanyComponent implements OnInit {
     console.log(this.editing_flag)
   }
 
-  editSave()
-  {
-    
+  editSave() {
+
     this.date_format()
     this.form.controls['modified_on'].setValue(this.date)
     this.form.controls['modified_by'].setValue(sessionStorage.getItem('emp_name'))
 
     this.service.companyedit(this.form.value)
-    .subscribe({
-      next: (response:any)=>{console.log(response);
-      if(response.message== 'already')
-      {
-        alert('company with same code already exists')
-      }
-    else
-      {
-        this.form.controls['created_on'].setValue(this.dummy[this.form.controls['sno'].value].created_on)    
-        this.form.controls['created_by'].setValue(this.dummy[this.form.controls['sno'].value].created_by)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'already') {
+            alert('company with same code already exists')
+          }
+          else {
+            this.form.controls['created_on'].setValue(this.dummy[this.form.controls['sno'].value].created_on)
+            this.form.controls['created_by'].setValue(this.dummy[this.form.controls['sno'].value].created_by)
 
-        this.service.companyshow().
-        subscribe({
-          next: (response)=>{this.dummy = response}
-        })
-      }}
-    })
+            this.service.companyshow().
+              subscribe({
+                next: (response) => { this.dummy = response }
+              })
+          }
+        }
+      })
   }
-/////////////////////////////////////////////////////edit functions
+  /////////////////////////////////////////////////////edit functions
 
-delete(a:any)
-{
-  this.service.companydel(this.dummy[a])
-  .subscribe({
-    next: (response:any) =>{console.log(response); 
-    if(response.message == 'success')
-      this.dummy.splice(a,1)
+  delete(a: any) {
+    this.service.companydel(this.dummy[a])
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'success')
+            this.dummy.splice(a, 1)
+        }
+      })
   }
-  })
-}
 
-exportexcel(): void
-{
-  // let element = document.getElementById('table');
-  // const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
-  // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-  // XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-  // XLSX.writeFile(wb, 'master_company.xlsx');
+  exportexcel(): void {
 
-  var ws = XLSX.utils.json_to_sheet(this.dummy);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "People");
-  XLSX.writeFile(wb,"company.xlsx");
+    // Define the new key names
+    const newKeys:any = {
+      company_code: 'Company Code',
+      company_name: 'Company Name',
+      status: 'Active Status',
+      created_on: 'Created On',
+      created_by: 'Created By',
+      modified_on: 'Modified On',
+      modified_by: 'Modified By',
 
-}
 
-reset()
-{
-  this.form.reset()
-}
+    };
+
+    // Map the array and transform each object
+    const transformedArray:any = this.dummy.map((obj:any) => {
+      const transformedObj:any = {};
+      Object.keys(obj).forEach(key => {
+        const newKey = newKeys[key] || key;
+        transformedObj[newKey] = obj[key];
+      });
+      return transformedObj;
+    });
+    console.log(transformedArray);
+    
+    var ws = XLSX.utils.json_to_sheet(transformedArray);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "company");
+    XLSX.writeFile(wb, "company.xlsx");
+
+  }
+
+  reset() {
+    this.form.reset()
+  }
 
 }

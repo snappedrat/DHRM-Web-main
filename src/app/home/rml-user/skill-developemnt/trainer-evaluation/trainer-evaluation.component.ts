@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/home/api.service';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-trainer-evaluation',
@@ -89,5 +90,14 @@ export class TrainerEvaluationComponent implements OnInit {
   save() {
     console.log(this.form.value)
   }
+
+  exportexcel()
+{
+  const x = document.querySelector("#table")
+  const ws = XLSX.utils.table_to_sheet(x);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Table');
+  XLSX.writeFile(wb, 'table.xlsx');
+}
 
 }

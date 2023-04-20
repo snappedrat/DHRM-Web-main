@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-trainee-score-card',
@@ -25,9 +26,22 @@ export class TraineeScoreCardComponent implements OnInit {
       next: (response)=>{console.log('score', response); this.data = response},
       error: (err)=>{console.log(err)}
     })
-
-
   }
+
+  exportexcel()
+  {
+    const wb = XLSX.utils.book_new();
+
+    // Create a new worksheet
+    const ws = XLSX.utils.json_to_sheet(this.data);
+
+    // Add the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'Table');
+
+    // Save the workbook as an Excel file
+    XLSX.writeFile(wb, 'table.xlsx');
+  }
+
   dummy :any = [
     {
       module_attended:'Induction Training',
