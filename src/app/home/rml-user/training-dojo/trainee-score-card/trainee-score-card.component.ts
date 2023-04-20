@@ -31,13 +31,11 @@ export class TraineeScoreCardComponent implements OnInit {
   exportexcel()
   {
     const wb = XLSX.utils.book_new();
-
+    const x = document.querySelector('#table')
     // Create a new worksheet
-    const ws = XLSX.utils.json_to_sheet(this.data);
-
+    const ws = XLSX.utils.table_to_sheet(x);
     // Add the worksheet to the workbook
     XLSX.utils.book_append_sheet(wb, ws, 'Table');
-
     // Save the workbook as an Excel file
     XLSX.writeFile(wb, 'table.xlsx');
   }
