@@ -1,4 +1,4 @@
-<div class = "container">
+
     <div  style = "margin-top: 40px;">   
     <h1><b>HR Approval</b></h1>
     <div class="mx-5">
@@ -34,14 +34,14 @@
               <thead>
               <tr>
                   <th
-                          div class="text-center"
+                          div class="text-center" style= "width:2000px"
                   >
                      Date
                   </th>
                   <th
-                          div class="text-center"
+                          div class="text-center" 
                   >
-                      Full name
+                      Full Name
                   </th>
                   <th
                           div class="text-center"
@@ -49,14 +49,14 @@
                       Father Name
                   </th>
                   <th
-                          div class="text-center"
+                          div class="text-center" style= "width:2000px"
                   >
-                      Date of birth 
+                      DOB
                   </th>
                   <th
                           div class="text-center"
                   >
-                      mobileNumber
+                      Mobile Number
                   </th>
                   <th
                   class="text-center"
@@ -68,12 +68,12 @@
                   <th
                           div class="text-center"
                   >
-                      Aaadhar number
+                      Aadhaar Number
                   </th>
                   <th
                           div class="text-center"
                   >
-                      Application status
+                      Application Status
                   </th>
     
                   <th
@@ -88,7 +88,7 @@
                         <td>{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
-                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.birthdate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{ i.mobile_no1 }}</td>
                         <td>{{i.trainee_idno}}</td>
                         <td>{{ i.aadhar_no }}</td>
@@ -106,4 +106,3 @@
               </table>
         </div></ng-template>
     </div>
-</div>

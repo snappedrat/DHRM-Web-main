@@ -1,5 +1,6 @@
-<div class = "container">
+<div class="container">
     <div  style = "margin-top: 40px;"> 
+        <div  style = "margin-left: 10px;">
 <h1><b>Onboard Details</b></h1>
 <div class="form-container1">
 <div class="row">
@@ -26,7 +27,7 @@
         <input placeholder="Enter Name"[(ngModel)]="searchText" class="input2" type="text">
     </div>     
       </div>    </div>
-<br>
+<br></div></div>
 
 
 <div class="px-5">
@@ -34,77 +35,69 @@
     <mat-icon>download</mat-icon></button>
 </div>
 
-    <div class="container">
+
     <div  style = "margin-top: 40px;">   
       <br><br>
       <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
       <ng-template #show>
+        <div class="onboard-container">
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
               <thead>
               <tr>
                   <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                          class="text-center" style="width:2200px"
+                        
                   >
                      Date
                   </th>
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                    
                   >
-                      Full name
+                      Full Name
                   </th>
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                       
                   >
                       Father Name
                   </th>
                   <th
-                          class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                          class="text-center"   style="width: 2200px"
+                   
                   >
-                      Date of birth 
+                      DOB
                   </th>
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                
                   >
-                      mobileNumber
+                      Mobile Number
                   </th>
                   <th
                   class="text-center"
-                  style="width: 500px"
-                  style="background-color: darkblue"
+            
                 >
                      ID NO
                  </th>
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                     
                   >
-                      Aaadhar number
+                      Aadhar number
                   </th>
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                     
                   >
                       Application status
                   </th>
     
                   <th
                           class="text-center"
-                          style="width: 500px"
-                          style="background-color: darkblue"
+                       
                           >
                       Approval
                   </th>
@@ -116,7 +109,7 @@
                         <td *ngIf="i.apln_status == 'APPROVED' ">{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
-                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.birthdate | date: 'dd-MM-yyyy'}}</td>
                         <td>{{ i.mobile_no1 }}</td>
                         <td>{{i.trainee_idno}}</td>
                         <td>{{ i.aadhar_no }}</td>
@@ -136,7 +129,7 @@
                         <td *ngIf="i.apln_status == 'APPROVED' ">{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.fullname }}</td>
                         <td>{{ i.fathername }}</td>
-                        <td>{{ i.birthdate }}</td>
+                        <td>{{ i.birthdate| date: 'dd-MM-yyyy' }}</td>
                         <td>{{ i.mobile_no1 }}</td>
                         <td>{{i.trainee_idno}}</td>
                         <td>{{ i.aadhar_no }}</td>
@@ -151,7 +144,7 @@
                       </tr>
                     </tbody>
                 </table>
-              </table>
+              </table></div>
         </div></ng-template>
     </div>
 
@@ -165,4 +158,3 @@
     </select> -->
     <br><br>
 
-</div></div>
