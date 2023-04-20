@@ -52,14 +52,14 @@
       <button mat-raised-button color="primary" (click)="searchfilter()"  >🔍</button></div>
   </div>
 </div>
-</form>
+</form></div>
 <div class="col">
   <div class = "download">
       <button mat-fab style=" margin-left: auto; " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
           <mat-icon>download</mat-icon>
       </button></div>
 </div>
-  <br><br>
+  <br><br></div>
   <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
   <ng-template #show>
     <div>
