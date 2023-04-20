@@ -9,7 +9,7 @@
                 <div class="header"><p><b>Trainee ID:</b></p></div>
                 
                         <br><br>
-                        
+                        <div class="test-evaluation-font">
 
                         <div class ="dropdown">Trainee:
 
@@ -58,13 +58,13 @@
                         </div>
                         
                         <br>
-                        <div class = "scorebox">Score:<br>
+                        <div class = "scorebox">Score (Out of 10):<br>
                             <input type="number" class="testevaluationinput" formControlName = "score">
-                        </div>
+                        </div> 
                         <br>
                         <div>
-                            <button mat-raised-button color="primary" (click)="offline_page()" [disabled] = 'form.invalid' >Upload</button>
-                        </div>
+                            <button mat-raised-button color="primary" style="width:150px " (click)="offline_page()" [disabled] = 'form.invalid' >Upload</button>
+                        </div></div>
 </form>
 </div>
 </div>
