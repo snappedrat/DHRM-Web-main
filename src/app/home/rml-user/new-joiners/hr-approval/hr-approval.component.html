@@ -1,4 +1,4 @@
-
+<div class="container">
     <div  style = "margin-top: 40px;">   
     <h1><b>HR Approval</b></h1>
     <div class="mx-5">
@@ -25,7 +25,7 @@
         <input type="date" class="input2" [value]="to" (change)="call2($event)">
       </div><div class="col-sm-3">
       <button mat-raised-button color="primary" class="button1"(click)="filter()" >Filter</button>
-      <br><br> </div> </div> </form> </div></div><br><br>
+      <br><br> </div> </div> </form> </div></div><br><br></div>
       <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
       <ng-template #show>
         <div class = "table-wrapper">

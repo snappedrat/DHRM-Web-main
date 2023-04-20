@@ -83,6 +83,7 @@ td,
 th {
   border: 1px solid #cdcdcd;
   padding: 8px;
+  text-align: left;
 }
 
 .form-group {

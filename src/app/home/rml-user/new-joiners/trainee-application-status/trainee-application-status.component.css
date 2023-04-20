@@ -28,11 +28,14 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-
+th{
+  text-align: left;
+}
 td,
 th {
   border: 1px solid #cdcdcd;
   padding: 8px;
+  text-align: left;
 }
 
 .form-group {
@@ -40,7 +43,7 @@ th {
 }
 
 tbody {
-  text-align: center;
+  text-align: left;
 
 }
 
@@ -103,4 +106,7 @@ tbody {
 
 .download {
   margin-left: 90%;
+}
+.text-center{
+  text-align: left;
 }
