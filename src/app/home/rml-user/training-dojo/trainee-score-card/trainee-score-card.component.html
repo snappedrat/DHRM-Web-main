@@ -1,5 +1,6 @@
 <div class="container"><div class="titlebox" ><p><b> Test Results for Trainee</b></p></div>
 <div class="container-fluid px-2 pt-2" style="font-size: 14px;">
+                <div class="header"><p><b>Trainee Name: {{fullname}}</b></p></div>
                 <div class="header"><p><b>Trainee ID: {{idno}}</b></p></div>
                 <div style='overflow-x:auto'>
                         <br><br>
@@ -82,7 +83,7 @@
                                   </thead>
                                   <tbody *ngFor="let i of data">
                                     <tr>
-                                        <td [width]="600"><a [routerLink]= "['/rml/training_dojo/trainee-answer',idno, i.module_name]" >{{i.module_name}}</a></td>
+                                        <td [width]="600"><a [routerLink]= "['/rml/training_dojo/trainee-answer',idno,fullname, i.module_name]" >{{i.module_name}}</a></td>
                                         <td [width]="100">{{i.date | date:'dd-MM-yyyy'}}</td>
                                         <td [width]="100">{{i.pass_percent}}</td>
                                         <td [width]="100">{{i.pretraining_score}}</td>

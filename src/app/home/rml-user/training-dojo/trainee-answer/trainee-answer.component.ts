@@ -15,9 +15,11 @@ export class TraineeAnswerComponent implements OnInit {
   data:any
   slno:any
   status:any
+  fullname: string | null;
 
   constructor(private active:ActivatedRoute, private service: ApiService,public loader:LoaderserviceService) {
     this.idno = this.active.snapshot.paramMap.get('trainee_idno')
+    this.fullname = this.active.snapshot.paramMap.get('fullname')
     this.module = this.active.snapshot.paramMap.get('module_name')
     this.slno = this.active.snapshot.paramMap.get('slno')
    }

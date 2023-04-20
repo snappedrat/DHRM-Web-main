@@ -12,74 +12,71 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class TestEvaluationComponent implements OnInit {
 
-  trainee:any
-  modules :any
-  form :any
+  trainee: any
+  modules: any
+  form: any
 
-  trainee_id :any = ''
+  trainee_id: any = ''
 
-  constructor(private service : ApiService, private fb : UntypedFormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(private service: ApiService, private fb: UntypedFormBuilder, private route: ActivatedRoute, private router: Router) {
     this.form = this.fb.group({
-      trainee: ['',Validators.required],
-      test : ['',Validators.required],
-      module : ['',Validators.required],
-      file :[''],
-      score :[''],
+      trainee: ['', Validators.required],
+      test: ['', Validators.required],
+      module: ['', Validators.required],
+      file: [''],
+      score: [''],
       pf: [''],
       percent: [''],
-      priorityval:[''],
-      min_percent:[''],
-      plant_code:['']
+      priorityval: [''],
+      min_percent: [''],
+      plant_code: ['']
 
     })
-   }
-   filterTrainee: Observable<any[]>;
+  }
+  filterTrainee: Observable<any[]>;
 
   ngOnInit(): void {
     this.form.get('test').disable()
     this.service.getTrainee()
-    .subscribe(
-      {
-        next: (response)=>{
-          console.log('trainee : ', response)
-          this.trainee = response
-          this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
-            startWith(''),
-            map((value:any) => this.filterOptions(value))
-          );
-      },
-        error: (error)=> console.log(error)
-      }
-    )
-    
+      .subscribe(
+        {
+          next: (response) => {
+            console.log('trainee : ', response)
+            this.trainee = response
+            this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+              startWith(''),
+              map((value: any) => this.filterOptions(value))
+            );
+          },
+          error: (error) => console.log(error)
+        }
+      )
+
     this.service.getOfflineModules()
-    .subscribe(
-      {
-        next: (response)=>{console.log('trainee : ', response) , this.modules = response},
-        error: (error)=> console.log(error)
-      }
-    )
+      .subscribe(
+        {
+          next: (response) => { console.log('trainee : ', response), this.modules = response },
+          error: (error) => console.log(error)
+        }
+      )
 
   }
 
   filterOptions(value: any): any[] {
     console.log(value, "/////////////////");
-    
+
     const filterValue = value?.toLowerCase();
-    return this.trainee.filter((trainee:any) => trainee.fullname.toLowerCase().includes(filterValue));
+    return this.trainee.filter((trainee: any) => trainee.fullname.toLowerCase().includes(filterValue));
   }
 
-  offline_page()
-  {
+  offline_page() {
     this.form.get('test').enable()
-    if(this.form.controls['score'].value == '' || this.form.controls['score'].value == null)
-    {
+    if (this.form.controls['score'].value == '' || this.form.controls['score'].value == null) {
       alert("please enter mark for the paper")
     }
-    else
-    {
+    else {
       console.log(this.form.value);
-      
+
       var i = this.form.controls['module'].value.index
       this.form.controls['pf'].setValue(this.modules[i].pass_criteria <= this.form.controls['score'].value ? 'p' : 'f')
       this.form.controls['priorityval'].setValue(this.modules[i].priorityval)
@@ -89,91 +86,107 @@ export class TestEvaluationComponent implements OnInit {
       this.form.controls['module'].setValue(this.form.controls['module'].value.module)
 
       console.log(this.form.value)
-  
+
       this.service.offlineUpload(this.form.value)
-      .subscribe({
-        next: (res) =>{console.log(res);
-        alert("Updated Successfully")
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload'
-        this.router.navigate(['/rml/training_dojo/test-evaluation'], {relativeTo: this.route})  
-        this.form.reset()
-        },
-        error: (err) => console.log(err) 
-      })
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            alert("Updated Successfully")
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload'
+            this.router.navigate(['/rml/training_dojo/test-evaluation'], { relativeTo: this.route })
+            this.form.reset()
+          },
+          error: (err) => console.log(err)
+        })
     }
 
   }
 
-  store_trainee(event:any)
-  {
+  store_trainee(event: any) {
     this.trainee_id = event.option.value
     console.log(this.trainee_id);
-    
+
   }
 
-  get_test_status(event:any)
-  {
+  get_test_status(event: any) {
     console.log(event);
-    
+
     var value = event.value.module
-    var obj = {module_name : value, idno : this.trainee_id}
+    var obj = { module_name: value, idno: this.trainee_id }
     console.log(obj)
     this.service.get_test_status(obj)
-    .subscribe(
-      {
-        next: (response:any)=>
+      .subscribe(
         {
-        console.log(response)
-        if(response.status=='already')
-        {
-          alert("Trainee already finished evauation")
-          this.form.reset()
-          this.service.getTrainee()
-    .subscribe(
-      {
-        next: (response)=>{
-          console.log('trainee : ', response)
-          this.trainee = response
-          this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
-            startWith(''),
-            map((value:any) => this.filterOptions(value))
-          );
-      },
-        error: (error)=> console.log(error)
-      }
-    )
+          next: (response: any) => {
+            console.log(response)
+            if (response.status == 'already') 
+            {
+              alert("Trainee already finished evauation")
+              this.form.reset()
+              this.service.getTrainee()
+                .subscribe(
+                  {
+                    next: (response) => {
+                      console.log('trainee : ', response)
+                      this.trainee = response
+                      this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+                        startWith(''),
+                        map((value: any) => this.filterOptions(value))
+                      );
+                    },
+                    error: (error) => console.log(error)
+                  }
+                )
+            }
+            if (response.status == 'The trainee is not qualified for this exam') 
+            {
+              alert(response.status)
+              this.form.reset()
+              this.service.getTrainee()
+                .subscribe(
+                  {
+                    next: (response) => {
+                      console.log('trainee : ', response)
+                      this.trainee = response
+                      this.filterTrainee = this.form.get('trainee').valueChanges.pipe(
+                        startWith(''),
+                        map((value: any) => this.filterOptions(value))
+                      );
+                    },
+                    error: (error) => console.log(error)
+                  }
+                )
+            }
+            if (response.status == 'exam failed') {
+              this.form.controls['test'].setValue('post-test')
+            }
+            else
+              this.form.controls['test'].setValue(response.status)
+          }
         }
-        if(response.status=='exam failed')
-        {
-          this.form.controls['test'].setValue('post-test')
-        }
-        else
-          this.form.controls['test'].setValue(response.status)
-        }
-      }
-    )
+      )
 
   }
 
-  offline_upload(event:any)
-  {
-    if(this.form.invalid)
+  offline_upload(event: any) {
+    if (this.form.invalid)
       alert('select the above requirements')
-    else
-    {
+    else {
       var exten = event.target.files[0].name.split('.')
       exten = exten.pop()
       var formData = new FormData()
-  
-      formData.append("file", event.target.files[0], this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten )
-    
+
+      formData.append("file", event.target.files[0], this.trainee_id + '_' + this.form.controls['module'].value + '_' + this.form.controls['test'].value + '.' + exten)
+
       this.service.offline_test(formData)
-      .subscribe({
-        next:(res) => {console.log(res)
-        this.form.controls['file'].setValue(this.trainee_id+'_'+this.form.controls['module'].value+'_'+this.form.controls['test'].value+'.'+exten)},
-        error:(err)=> {console.log(err)}
-      })
+        .subscribe({
+          next: (res) => {
+            console.log(res)
+            this.form.controls['file'].setValue(this.trainee_id + '_' + this.form.controls['module'].value + '_' + this.form.controls['test'].value + '.' + exten)
+          },
+          error: (err) => { console.log(err) }
+        })
     }
 
 

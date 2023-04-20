@@ -93,7 +93,7 @@
             <tr>
                 <td>{{a+1}}</td>
                 <td>{{i.apln_slno}}</td>
-                <td><a [routerLink]="['/rml/training_dojo/trainee-score-card', i.trainee_idno]">{{i.fullname}}</a></td>
+                <td><a [routerLink]="['/rml/training_dojo/trainee-score-card', i.trainee_idno, i.fullname]">{{i.fullname}}</a></td>
                 <td>{{i.trainee_idno}}</td>
                 <td>{{i.mark1 > 100 ? 100 : i.mark1}}%</td>
                 <td>{{i.mark2 > 100 ? 100 : i.mark2}}%</td>

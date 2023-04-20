@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 
@@ -32,9 +32,11 @@ export class TransferFormComponent implements OnInit {
         current_department: [''],
         current_line: [''],
         emp_name:[''],
-        changedepartment : [''],
-        changeline : [''],
-        reportingto:  [''],
+        changedepartment : ['', Validators.required],
+        changeline : ['', Validators.required],
+        reportingto:  ['', Validators.required],
+        fullname:[''],
+        idno: [''],
         plantcode:[sessionStorage.getItem('plantcode')]
      
       })
@@ -59,6 +61,8 @@ export class TransferFormComponent implements OnInit {
           this.form.controls['current_department'].setValue(this.obj[0]?.dept_name)
           this.form.controls['current_line'].setValue(this.obj[1]?.line_name)
           this.form.controls['emp_name'].setValue(this.obj[2]?.emp_name)
+          this.form.controls['fullname'].setValue(this.obj[3]?.fullname)
+          this.form.controls['idno'].setValue(this.obj[3]?.trainee_idno)
           this.obj = []
         }
       })

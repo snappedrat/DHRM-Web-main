@@ -12,11 +12,13 @@ export class TraineeScoreCardComponent implements OnInit {
 
   idno :any
   data:any 
+  fullname: any;
   constructor(private active: ActivatedRoute, private service : ApiService,public loader:LoaderserviceService) { }
 
   ngOnInit(): void {
 
     this.idno = this.active.snapshot.paramMap.get('trainee_idno')
+    this.fullname = this.active.snapshot.paramMap.get('fullname')
 
     this.service.traineeScorecard({'trainee_idno': this.idno})
     .subscribe({

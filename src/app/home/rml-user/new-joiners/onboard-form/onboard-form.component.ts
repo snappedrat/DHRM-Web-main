@@ -80,7 +80,7 @@ export class OnboardFormComponent implements OnInit {
       this.form = this.fb.group({
         
       ifsc_code:['', Validators.required],
-      grade:[''],
+      grade:[1],
       doj:['', Validators.required],
       account_number:['', Validators.required],
       department:[''],
@@ -109,6 +109,7 @@ export class OnboardFormComponent implements OnInit {
     
     ngOnInit(): void 
     {
+      this.form.get('bnum').setValue(this.active.snapshot.paramMap.get('id'))
       this.form.controls['bio_id'].setValue(false)
 
       this.service.getonboard({apln_slno : this.active.snapshot.paramMap.get('id'), readonly: this.readonly  })
@@ -134,7 +135,10 @@ export class OnboardFormComponent implements OnInit {
           this.trainee_id = this.basic[0]?.trainee_idno
 
           if(this.readonly == false)
+          {
+            this.form.controls['grade'].disable() 
             this.form.controls['active_status'].disable()
+          }
 
           if(this.readonly == true)
           {
@@ -218,6 +222,7 @@ export class OnboardFormComponent implements OnInit {
 
       if(this.readonly == false)
       {
+        this.form.get('grade').enable()
         this.service.onboard_form(this.form.value)
         .subscribe({
           next: (response:any)=>{console.log(response);

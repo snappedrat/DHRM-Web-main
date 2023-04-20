@@ -2,54 +2,89 @@
     <div class="row justify-content-md-center pt-5">
         <div class="table col-sm-20 shadow round pb-4">
             <div class="mx-5">
-<br><div class = "title"> Department Transfer Details</div>
-<form [formGroup] = "form">
+                <br>
+                <div class="title"> Department Transfer Details</div>
+                <form [formGroup]="form">
 
-            <div class="row">
-                <div class="col">                            
-                    <label>Gen ID: </label><br>
-                    <input class="form-control" formControlName = "apln_slno" readonly>
-                </div></div><br>
-                <div class="row">
-                <div class="col">
-                    <label>Current Department: </label><br>
-                    <input class="form-control"  type = "text" formControlName = "current_department" readonly>
-                </div></div>
-            <br>
-            <div class="row">
-            <div class="col">
-                <label>Current Line: </label><br>
-                <input class="form-control"  type = "text" formControlName = "current_line" readonly>
-            </div></div><br>
-            <div class="row">
-            <div class="col">
-                <label>Reporting Officer: </label><br>
-                <input class="form-control"  type = "text" formControlName = "emp_name" readonly>
-            </div>
-            </div><br>
-            <div class="row">
-                    <div class="col">                            
-                    <label>Change Department To: </label><br>
-                    <select (change)="getLineName($event)" class="form-control" formControlName = "changedepartment" ><option value="">select</option><option  *ngFor= "let i of changedepartment" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
-                </div></div>
-            <br>
-            <div class="row">
-            <div class="col">                            
-                <label>Change Line To: </label><br>
-                <select class="form-control" formControlName = "changeline" ><option value="">select</option><option  *ngFor= "let i of changeline"  [ngValue]="i.line_code">{{i.line_name}}</option></select>
-            </div>
-            </div><br>
-            <div class="row"> 
-                <div class="col">                            
-                    <label>Reporting To </label><br>
-                    <select class="form-control" formControlName = "reportingto"><option value="">select</option><option  *ngFor= "let i of reportingto" [ngValue]="i.empl_slno">{{i.emp_name}}</option></select>
-                </div></div>
-            <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Application No: </label><br>
+                            <input class="form-control" formControlName="apln_slno" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Trainee ID-NO: </label><br>
+                            <input class="form-control" formControlName="idno" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Trainee Name: </label><br>
+                            <input class="form-control" formControlName="fullname" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Current Department: </label><br>
+                            <input class="form-control" type="text" formControlName="current_department" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Current Line: </label><br>
+                            <input class="form-control" type="text" formControlName="current_line" readonly>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Reporting Officer: </label><br>
+                            <input class="form-control" type="text" formControlName="emp_name" readonly>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Change Department To: </label><br>
+                            <select (change)="getLineName($event)" class="form-control"
+                                formControlName="changedepartment">
+                                <option value="">select</option>
+                                <option *ngFor="let i of changedepartment" [ngValue]="i.dept_slno">{{i.dept_name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Change Line To: </label><br>
+                            <select class="form-control" formControlName="changeline">
+                                <option value="">select</option>
+                                <option *ngFor="let i of changeline" [ngValue]="i.line_code">{{i.line_name}}</option>
+                            </select>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col">
+                            <label>Reporting To </label><br>
+                            <select class="form-control" formControlName="reportingto">
+                                <option value="">select</option>
+                                <option *ngFor="let i of reportingto" [ngValue]="i.empl_slno">{{i.emp_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
 
-   
-               
-<br>
-    <button type="submit" class="btn btn-success btn-md"  (click)="submit()">Save</button>
-   
-</form>
-            </div></div></div></div> 
+
+
+                    <br>
+                    <button type="submit" class="btn btn-success btn-md" [disabled]="form.invalid" (click)="submit()">Save</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
