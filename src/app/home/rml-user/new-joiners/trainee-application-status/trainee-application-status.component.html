@@ -130,7 +130,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let i of filterinfo">
-                    <td>{{ i.apln_status == 'APPOINTED' ? (i.doj.split('T')[0] | date: 'dd-MM-yyyy') : i.apln_status == 'RELIEVED' ? (i.dol.split('T')[0] | date: 'dd-MM-yyyy') : i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
+                    <td>{{ i.apln_status == 'APPOINTED' ? (i.doj?.split('T')[0] | date: 'dd-MM-yyyy') : i.apln_status == 'RELIEVED' ? (i.dol?.split('T')[0] | date: 'dd-MM-yyyy') : i.created_dt?.split('T')[0] | date: 'dd-MM-yyyy' }}</td>
                     <!-- <td>{{ i.created_dt.split('T')[0] | date: 'dd-MM-yyyy' }}</td> -->
                     <td>{{ i.fullname }}</td>
                     <td>{{ i.fathername }}</td>

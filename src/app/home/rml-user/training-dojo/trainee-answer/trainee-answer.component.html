@@ -27,6 +27,9 @@
                             <div style="overflow-x:auto;">
                                 <thead>
                                     <tr>
+                                        <th class="text-center" style="width: 500px" style="background-color: darkblue">
+                                            Slno
+                                        </th>
                                         <th class="text-center" style="width: 1000px"
                                             style="background-color: darkblue">
                                             Question
@@ -48,9 +51,10 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody *ngFor="let i of data">
+                                <tbody *ngFor="let i of data; let a = index">
                                     <tr>
-                                        <td style="white-space: pre;" [width]="800">{{i.question}}</td>
+                                        <td [width]="100">{{a+1}}</td>
+                                        <td style="white-space: pre;" [width]="800">{{i.question.trim()}}</td>
                                         <td [width]="100">{{i.correct_answer}}</td>
                                         <td [width]="100">{{i.pretraining_result}}</td>
                                         <td [width]="100">{{i.posttraining_result}}</td>
