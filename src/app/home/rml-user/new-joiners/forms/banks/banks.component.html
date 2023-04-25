@@ -41,7 +41,7 @@
                     placeholder="IFSC Number">
         </div>
     </div>
-        <button mat-raised-button class="btn btn-primary btn-sm" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">Save</span></button>
+        <button mat-raised-button color="success" (ngModelChange)= "sendData()" (click)= "submit()" style ="margin-top: 20px; text-align:center;" type="submit"><span style="font-size: 14px;">Save</span></button>
         </div>
         <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 

@@ -28,6 +28,7 @@
       <br><br> </div> </div> </form> </div></div><br><br></div></div>
       <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
       <ng-template #show>
+        <div class="thegap">
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
           <table id="table">
@@ -103,6 +104,6 @@
                       </tr>
                     </tbody>
                 </table>
-              </table>
+              </table></div>
         </div></ng-template>
 

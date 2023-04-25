@@ -58,12 +58,13 @@
       <button mat-fab style=" margin-left: auto; " aria-label="Example icon button with a delete icon" (click)="exportexcel()">
           <mat-icon>download</mat-icon>
       </button></div>
-</div>
-  <br><br></div>
+</div></div>
+  <br><br>
   <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
   <ng-template #show>
     <div>
     </div>
+    <div class="thegap">
     <div class = "table-wrapper">
     <table class="table table-bordered table-striped table-hover">
       <table id="table">
@@ -151,5 +152,5 @@
                   </tr>
                 </tbody>
             </table>
-          </table>
+          </table></div>
     </div></ng-template>
