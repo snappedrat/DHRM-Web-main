@@ -4,6 +4,8 @@ import { ApiService } from 'src/app/home/api.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoaderserviceService } from 'src/app/loaderservice.service';
+
 
 @Component({
   selector: 'app-test-evaluation',
@@ -15,10 +17,11 @@ export class TestEvaluationComponent implements OnInit {
   trainee: any
   modules: any
   form: any
+  loading:any = false
 
   trainee_id: any = ''
 
-  constructor(private service: ApiService, private fb: UntypedFormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(private service: ApiService, private fb: UntypedFormBuilder, private route: ActivatedRoute, private router: Router, public loader:LoaderserviceService) {
     this.form = this.fb.group({
       trainee: ['', Validators.required],
       test: ['', Validators.required],
@@ -80,18 +83,18 @@ export class TestEvaluationComponent implements OnInit {
       var i = this.form.controls['module'].value.index
       this.form.controls['pf'].setValue(this.modules[i].pass_criteria <= this.form.controls['score'].value ? 'p' : 'f')
       this.form.controls['priorityval'].setValue(this.modules[i].priorityval)
-      this.form.controls['percent'].setValue(((this.form.controls['score'].value) / (this.modules[i].total_marks)) * 100)
+      this.form.controls['percent'].setValue(parseInt(String(((this.form.controls['score'].value) / (this.modules[i].total_marks)) * 100)))
       this.form.controls['min_percent'].setValue(this.modules[i].pass_percent)
       this.form.controls['plant_code'].setValue(sessionStorage.getItem('plantcode'))
       this.form.controls['module'].setValue(this.form.controls['module'].value.module)
 
       console.log(this.form.value)
-
+      this.loading = true
       this.service.offlineUpload(this.form.value)
         .subscribe({
           next: (res) => {
             console.log(res);
-            alert("Updated Successfully")
+            this.loading = false
             this.router.routeReuseStrategy.shouldReuseRoute = () => false;
             this.router.onSameUrlNavigation = 'reload'
             this.router.navigate(['/rml/training_dojo/test-evaluation'], { relativeTo: this.route })

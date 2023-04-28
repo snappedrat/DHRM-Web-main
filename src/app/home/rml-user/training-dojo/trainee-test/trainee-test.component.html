@@ -1,64 +1,117 @@
-<div>
-<mat-toolbar style="color: white;">
-    <span>Trainee Test Page</span>&nbsp;
-   &nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
-    <span class="example-spacer"></span>
-    <button id="logout" style="color: white; background-color:#007BFF;" (click)="logout()" ><mat-icon class="example-icon" aria-hidden="false">home</mat-icon></button>
-</mat-toolbar>
-<div class="pt-2">
-<div class="container-fluid pt-4">
-<div class="round">
-<div class = "pt-5 pl-5">
-    <form [formGroup] = "form">
-    <div class = "row">
-        <div class="col-sm-2">
-        <select (change)="Qualified($event)" formControlName="module" class="trainee-input">
-            <option value="" disabled>Select your module</option>            
-            <option  *ngFor= "let module of modules; let i = index">{{i+1}}.{{module.module_name}}</option>
-        </select>
+<ng-template #content let-modal>
+    <div class="modal-content-container">
+        <div class="modal-header">
+            <h4 class="modal-title">Add Bank Details</h4>
+            <button type="button" class="btn-close" aria-label="Close"
+                (click)="modal.dismiss('Cross click')">X</button>
         </div>
-        <div class="col-sm-2">
-            <input formControlName="test" class="trainee-input" readonly>
-                <!-- <option value="">Select test type</option>
+
+        <br>
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col">
+                    <label>Bank Name: </label><br>
+                    <input class="input2" type="text" formControlName="bank_name">
+                </div>
+                <div class="col">
+                    <label>IFSC Code: </label><br>
+                    <input class="input2" type="text" formControlName="bank_code">
+                </div>
+                <br>
+                <br>
+            </div><br>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+
+</ng-template>
+
+<div>
+    <mat-toolbar style="color: white;">
+        <span>Trainee Test Page</span>&nbsp;
+        &nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
+        <span class="example-spacer"></span>
+        <button id="logout" style="color: white; background-color:#007BFF;" (click)="logout()"><mat-icon
+                class="example-icon" aria-hidden="false">home</mat-icon></button>
+    </mat-toolbar>
+    <div class="pt-2">
+        <div class="container-fluid pt-4">
+            <div class="round">
+                <div class="pt-5 pl-5">
+                    <form [formGroup]="form">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <select (change)="Qualified($event)" formControlName="module" class="trainee-input">
+                                    <option value="" disabled>Select your module</option>
+                                    <option *ngFor="let module of modules; let i = index">{{i+1}}.{{module.module_name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <input formControlName="test" class="trainee-input" readonly>
+                                <!-- <option value="">Select test type</option>
                 <option *ngFor= "let i of test">{{i}}</option> -->
-                <!-- </input>  -->
+                                <!-- </input>  -->
+                            </div>
+                        </div>
+                    </form>
+                    <br><br>
+                    <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
+                    <ng-template #show>
+
+                        <div *ngIf="!loading" class="body form-group">
+
+                            <body>
+                                <b>
+                                    <p style="white-space: pre;">{{qualified}}</p>
+                                </b>
+                                <b>
+                                    <p style="white-space: pre;">{{offline}}</p>
+                                </b>
+                                <form *ngIf="offline == '' " [formGroup]="formtest">
+                                    <table class="table" style="width: 100%">
+                                        <thead>
+                                            <tr>
+                                                <td style="width: 10%;">S.No</td>
+                                                <td style="width: 90%;">Questions</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let a of questions;let i = index; ">
+                                            <tr>
+                                                <td>{{i+1}}</td>
+                                                <td style="white-space: pre;">{{a.question}}<br><br>
+                                                    <div
+                                                        *ngIf="a.image_filename != null && a.image_filename != 'null' && a.image_filename != '' ">
+                                                        <button data-toggle="modal"
+                                                            data-target="#exampleModalCenter"><img
+                                                                [src]="url+'/qbank/'+a.image_filename" width=300px
+                                                                height=200px alt="question"></button><br><br>
+                                                    </div>
+                                                    <select class="form-control-md"
+                                                        (change)='load_answers($event, i+1 ,a.qslno,  a.correct_answer)'
+                                                        formControlName="answers">
+                                                        <option value="">Choose your answer</option>
+                                                        <option *ngFor="let choice of choices">{{choice}}</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <button (click)="submit()" mat-raised-button color="primary" [disabled]='flag'
+                                        type="submit">save</button>
+                                </form>
+                            </body>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
         </div>
     </div>
-    </form>
-    <br><br>
-    <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
-      <ng-template #show>
-    
-    <div *ngIf = "!loading" class="body form-group">
-        <body>
-            <b><p style="white-space: pre;">{{qualified}}</p></b>
-            <b><p style="white-space: pre;">{{offline}}</p></b>
-        <form *ngIf = "offline == '' " [formGroup]="formtest" (ngSubmit)= "submit()">
-            <table class="table" style="width: 100%">
-                <thead>
-                    <tr>
-                        <td style="width: 10%;">S.No</td>
-                        <td style="width: 90%;">Questions</td>
-                    </tr>
-                </thead>
-                <tbody *ngFor = "let a of questions;let i = index; ">
-                    <tr>
-                        <td>{{i+1}}</td>
-                        <td  style="white-space: pre;" >{{a.question}}<br><br>
-                        <select class="form-control-md" (change) = 'load_answers($event, i+1 ,a.qslno,  a.correct_answer)' formControlName = "answers">
-                            <option value="">Choose your answer</option>
-                            <option *ngFor = "let choice of choices">{{choice}}</option>
-                        </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        <button mat-raised-button color="primary" [disabled] = 'flag' type="submit">save</button>
-        </form>
-        </body>
-    </div></ng-template>
-</div>
-</div>
-</div>
-</div>
 </div>

@@ -1,31 +1,35 @@
 <div class="container">
-    <div  style = "margin-top: 40px;">   
+    <div style="margin-top: 40px;">
 
-<h1><b> Trainee Offline Test Page</b></h1>
-<br>
-<div class="container-fluid px-2 pt-2" style="font-size: 14px;">
-    <div class="mx-5">
-    <form [formGroup] = "form">
-                <div class="header"><p><b>Trainee ID:</b></p></div>
-                
-                        <br><br>
-                        <div class="test-evaluation-font">
+        <h1><b> Trainee Offline Test Page</b></h1>
+        <br>
 
-                        <div class ="dropdown">Trainee:
+        <div *ngIf="loading">
+            <app-loader></app-loader>
+        </div>
+        <div class="container-fluid px-2 pt-2" style="font-size: 14px;">
+            <div class="mx-5" *ngIf="!loading">
+                <form [formGroup]="form">
+                    <div class="header">
+                        <p><b>Trainee ID:</b></p>
+                    </div>
+
+                    <br><br>
+                    <div class="test-evaluation-font">
+
+                        <div class="dropdown">Trainee:
 
                             <br>
-                                <input type="text"
-                                       placeholder="Search for Trainee"
-                                       class="testevaluationinput"
-                                       [matAutocomplete]="auto"
-                                       formControlName="trainee">
-                                <mat-autocomplete (optionSelected)="store_trainee($event)" #auto="matAutocomplete">
-                                  <mat-option *ngFor="let i of filterTrainee | async; let a = index" [value]= "i.trainee_idno">
+                            <input type="text" placeholder="Search for Trainee" class="testevaluationinput"
+                                [matAutocomplete]="auto" formControlName="trainee">
+                            <mat-autocomplete (optionSelected)="store_trainee($event)" #auto="matAutocomplete">
+                                <mat-option *ngFor="let i of filterTrainee | async; let a = index"
+                                    [value]="i.trainee_idno">
                                     {{i.fullname}} - {{i.trainee_idno}}
-                                  </mat-option> 
-                                </mat-autocomplete>                              
-                                <br>
-                        <!-- <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
+                                </mat-option>
+                            </mat-autocomplete>
+                            <br>
+                            <!-- <select (change) = "store_trainee($event)" style="font-size:14px"placeholder = "Select Trainee" class="form-control" formControlName = "trainee">
                             
                             <option value="" disabled>Select one</option>  
                             <option *ngFor = "let i of trainee">{{i}}<option>          
@@ -34,38 +38,43 @@
                         </div>
                         <br><br>
                         <div>Module :<br>
-                            <mat-select (selectionChange) = "get_test_status($event)" style="font-size:14px"placeholder = "Select Module" class="testevaluationinput" formControlName = "module">
-                                
-                                <mat-option value="" >Select Module</mat-option>  
-                                <mat-option [value]="{index: a, module: i.module_name}" *ngFor = "let i of modules; let a = index">{{a+1}}.{{i.module_name}}</mat-option>          
-    
+                            <mat-select (selectionChange)="get_test_status($event)" style="font-size:14px"
+                                placeholder="Select Module" class="testevaluationinput" formControlName="module">
+
+                                <mat-option value="">Select Module</mat-option>
+                                <mat-option [value]="{index: a, module: i.module_name}"
+                                    *ngFor="let i of modules; let a = index">{{a+1}}.{{i.module_name}}</mat-option>
+
                             </mat-select>
                         </div><br>
-                        <div class ="dropdown1">Exam type:<br>
-                            <mat-select  style="font-size:14px"  placeholder = "Select Exam Type" class="testevaluationinput" formControlName = "test">
-                                
-                                <mat-option value="" disabled>Select Exam Type</mat-option>     
-                                <mat-option value="pre-test">Pre-test</mat-option>            
-                                <mat-option value="post-test">Post-test</mat-option>            
-       
+                        <div class="dropdown1">Exam type:<br>
+                            <mat-select style="font-size:14px" placeholder="Select Exam Type"
+                                class="testevaluationinput" formControlName="test">
+
+                                <mat-option value="" disabled>Select Exam Type</mat-option>
+                                <mat-option value="pre-test">Pre-test</mat-option>
+                                <mat-option value="post-test">Post-test</mat-option>
+
                             </mat-select>
                         </div><br>
 
                         <br>
                         <div>
                             <p> Exam Paper: </p>
-                            <input type="file" (change) = "offline_upload($event)" [disabled] = "form.invalid">
+                            <input type="file" (change)="offline_upload($event)" [disabled]="form.invalid">
                         </div>
-                        
+
                         <br>
-                        <div class = "scorebox">Score (Out of 10):<br>
-                            <input type="number" class="testevaluationinput" formControlName = "score">
-                        </div> 
+                        <div class="scorebox">Score (Out of 10):<br>
+                            <input type="number" class="testevaluationinput" formControlName="score">
+                        </div>
                         <br>
                         <div>
-                            <button mat-raised-button color="primary" style="width:150px " (click)="offline_page()" [disabled] = 'form.invalid' >Upload</button>
-                        </div></div>
-</form>
-</div>
-</div>
-</div>
+                            <button mat-raised-button color="primary" style="width:150px " (click)="offline_page()"
+                                [disabled]='form.invalid'>Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

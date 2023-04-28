@@ -27,7 +27,7 @@ const material = [
 ];
 
 
- 
+
 
 @Component({
   selector: 'app-dept',
@@ -39,21 +39,21 @@ const material = [
 export class EmployeeComponent implements OnInit {
   closeResult: string;
 
- form:any
- plantname:any
- array:any = []
+  form: any
+  plantname: any
+  array: any = []
 
- all_details:any
- desig:any
- dept:any
- line:any
+  all_details: any
+  desig: any
+  dept: any
+  line: any
 
- desig_:any= []
- dept_:any= []
- line_:any= []
+  desig_: any = []
+  dept_: any = []
+  line_: any = []
 
 
-  sample : any = environment.path
+  sample: any = environment.path
 
   employee: any = [
 
@@ -61,107 +61,105 @@ export class EmployeeComponent implements OnInit {
   editing_flag: any;
   temp_a: any;
 
-  constructor(private fb : UntypedFormBuilder, private modalService : NgbModal,private formservice: FormService, private service : ApiService,public loader:LoaderserviceService) {
+  constructor(private fb: UntypedFormBuilder, private modalService: NgbModal, private formservice: FormService, private service: ApiService, public loader: LoaderserviceService) {
     this.form = this.fb.group({
       gen_id: ['', Validators.required],
-      Emp_Name :['', Validators.required],
-      plant_name:['', Validators.required],
-      dept_name : ['', Validators.required],
-      desig_name : ['', Validators.required],
-      Line_Name:['', Validators.required],
+      Emp_Name: ['', Validators.required],
+      plant_name: ['', Validators.required],
+      dept_name: ['', Validators.required],
+      desig_name: ['', Validators.required],
+      Line_Name: ['', Validators.required],
       Mail_Id: ['', Validators.required],
       Mobile_No: ['', Validators.required],
       User_Name: ['', Validators.required],
-      Password: [ '', Validators.required],     
-      Is_HR:[''],
-      is_admin:[''],
-      Is_HRAppr:[''],
-      Is_Trainer:[''],
-      Is_Supervisor:[''],
-      Is_ReportingAuth:[''],
-      Is_TOU:[''],
-      access_master:[''],
+      Password: ['', Validators.required],
+      Is_HR: [''],
+      is_admin: [''],
+      Is_HRAppr: [''],
+      Is_Trainer: [''],
+      Is_Supervisor: [''],
+      Is_ReportingAuth: [''],
+      Is_TOU: [''],
+      access_master: [''],
       plant_code: [''],
       Department: [''],
-      Designation : [''],
+      Designation: [''],
       line_code: [''],
 
     })
-   }
+  }
 
-  
 
-  exportexcel(): void
-{
 
-  
-  // const newKeys:any = {
-  //   bank_code: 'Bank Code',
-  //   bank_name: 'Bank Name',
-  //   del_status: 'Del Status',
-  // };
+  exportexcel(): void {
 
-  // Map the array and transform each object
-  const transformedArray:any = this.employee.map((obj:any) => {
-    const transformedObj:any = {};
-    Object.keys(obj).forEach(key => {
-      const newKey = key.replace(/_/g, ' '); // replace hyphens with spaces
-      transformedObj[newKey] = obj[key];
+
+    // const newKeys:any = {
+    //   bank_code: 'Bank Code',
+    //   bank_name: 'Bank Name',
+    //   del_status: 'Del Status',
+    // };
+
+    // Map the array and transform each object
+    const transformedArray: any = this.employee.map((obj: any) => {
+      const transformedObj: any = {};
+      Object.keys(obj).forEach(key => {
+        const newKey = key.replace(/_/g, ' '); // replace hyphens with spaces
+        transformedObj[newKey] = obj[key];
+      });
+      return transformedObj;
     });
-    return transformedObj;
-  });
-  console.log(transformedArray);
+    console.log(transformedArray);
 
-  var ws = XLSX.utils.json_to_sheet(transformedArray);
-  var wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "People");
-  XLSX.writeFile(wb,"employee.xlsx");
-}
+    var ws = XLSX.utils.json_to_sheet(transformedArray);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "People");
+    XLSX.writeFile(wb, "employee.xlsx");
+  }
 
 
-ngOnInit(): void {
-  this.getplantcode()
-  this.service.getemployee().
-  subscribe({
-    next: (response)=>{this.employee = response}
-  })
-}
+  ngOnInit(): void {
+    this.getplantcode()
+    this.service.getemployee().
+      subscribe({
+        next: (response) => { this.employee = response }
+      })
+  }
 
-getplantcode(){
-  var company = {'company_name': sessionStorage.getItem('companycode')}
-  this.service.plantcodelist(company)
-  .subscribe({
-    next: (response) =>
-    { console.log(response); this.plantname = response;
-    },
-    error: (error) => console.log(error),
-  });
-}
+  getplantcode() {
+    var company = { 'company_name': sessionStorage.getItem('companycode') }
+    this.service.plantcodelist(company)
+      .subscribe({
+        next: (response) => {
+          console.log(response); this.plantname = response;
+        },
+        error: (error) => console.log(error),
+      });
+  }
 
-getall(event:any)
-{
-  this.dept_ = []
-  this.line_ = []
-  this.desig = []
-  console.log(event.target.value)
+  getall(event: any) {
+    this.dept_ = []
+    this.line_ = []
+    this.desig = []
+    console.log(event.target.value)
 
-  this.form.get('dept_name').setValue('')
-  this.form.get('Line_Name').setValue('')
-  this.form.get('desig_name').setValue('')
+    this.form.get('dept_name').setValue('')
+    this.form.get('Line_Name').setValue('')
+    this.form.get('desig_name').setValue('')
 
-  var plantcode = {plantcode: event.target.value.split(' ')[1]}
+    var plantcode = { plantcode: event.target.value.split(' ')[1] }
     this.service.line_dept_design(plantcode)
-    .subscribe({
-      next: (response) =>{ console.log(response); this.all_details = response;
-        this.desig = this.all_details[0]
-        this.dept = this.all_details[1]
-      },
-      error: (error) => console.log(error),
-    });
-}
+      .subscribe({
+        next: (response) => {
+          console.log(response); this.all_details = response;
+          this.desig = this.all_details[0]
+          this.dept = this.all_details[1]
+        },
+        error: (error) => console.log(error),
+      });
+  }
 
-open(content:any)
-  {
+  open(content: any) {
     this.form.reset()
     this.form.controls['plant_name'].enable()
     this.form.controls['gen_id'].enable()
@@ -176,39 +174,39 @@ open(content:any)
 
     this.editing_flag = false
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
-  opentoedit(content:any)
-  {
+  opentoedit(content: any) {
 
     console.log("opening")
-    this.modalService.open(content, {centered: true})
+    this.modalService.open(content, { centered: true })
   }
 
-   
-edit(a:any)
-  {
-    this.temp_a = a    
 
-    var plantcode = {plantcode: this.employee[a].plant_code}
+  edit(a: any) {
+    this.temp_a = a
+
+    var plantcode = { plantcode: this.employee[a].plant_code }
 
     this.service.line_dept_design(plantcode)
-    .subscribe({
-      next: (response) =>{ console.log(response); this.all_details = response;
-        this.desig = this.all_details[0]
-        this.dept = this.all_details[1]     
+      .subscribe({
+        next: (response) => {
+          console.log(response); this.all_details = response;
+          this.desig = this.all_details[0]
+          this.dept = this.all_details[1]
 
-    this.service.getLineName({dept_slno: this.employee[a].Department})
-        .subscribe(
-          {
-            next: (response:any)=>{console.log("line", response)
-             this.line = response[0]
-            }
-          }
-        )
-      },
-      error: (error) => console.log(error),
-    });
+          this.service.getLineName({ dept_slno: this.employee[a].Department })
+            .subscribe(
+              {
+                next: (response: any) => {
+                  console.log("line", response)
+                  this.line = response[0]
+                }
+              }
+            )
+        },
+        error: (error) => console.log(error),
+      });
 
     this.editing_flag = true
     this.form.controls['Emp_Name'].setValue(this.employee[a].Emp_Name)
@@ -237,97 +235,94 @@ edit(a:any)
   }
 
 
-  save()
-  {
+  save() {
     console.log(this.form.value);
-    
-    this.service.addemployee(this.form.value)
-    .subscribe({
-      next : (response:any)=>{console.log(response);
-      if(response.message == 'already')
-      {
-        alert('username already exists')
-      }
-    else
-      {
-        const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
-        this.form.get('plant_code').setValue(this.form.get('plant_name').value)
-        this.form.get('plant_name').setValue(this.plantname[index].plant_name)
-        
-        const index2 = this.dept.findIndex((obj:any) => obj.dept_slno === this.form.get('dept_name').value);
-        this.form.get('Department').setValue(this.form.get('dept_name').value)
-        this.form.get('Designation').setValue(this.form.get('desig_name').value)
-        this.form.get('line_code').setValue(this.form.get('Line_Name').value)
-        this.form.get('dept_name').setValue(this.dept[index2].dept_name)
 
-        this.service.getemployee().
-        subscribe({
-          next: (response)=>{this.employee = response}
-        })
-        this.form.reset()
-      }}
-    })    
+    this.service.addemployee(this.form.value)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'already') {
+            alert('username already exists')
+          }
+          else {
+            const index = this.plantname.findIndex((obj: any) => obj.plant_code === this.form.get('plant_name').value);
+            this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+            this.form.get('plant_name').setValue(this.plantname[index].plant_name)
+
+            const index2 = this.dept.findIndex((obj: any) => obj.dept_slno === this.form.get('dept_name').value);
+            this.form.get('Department').setValue(this.form.get('dept_name').value)
+            this.form.get('Designation').setValue(this.form.get('desig_name').value)
+            this.form.get('line_code').setValue(this.form.get('Line_Name').value)
+            this.form.get('dept_name').setValue(this.dept[index2].dept_name)
+
+            this.service.getemployee().
+              subscribe({
+                next: (response) => { this.employee = response }
+              })
+            this.form.reset()
+          }
+        }
+      })
   }
 
 
-  editSave()
-  {
+  editSave() {
     this.form.controls['plant_name'].enable()
     this.form.controls['gen_id'].enable()
     console.log(this.form.value)
     this.service.updateemployee(this.form.value)
-    .subscribe({
-      next: (response:any)=>{console.log(response);
-        if(response.message != 'failure')
-        {
-          const index = this.plantname.findIndex((obj:any) => obj.plant_code === this.form.get('plant_name').value);
-          this.form.get('plant_code').setValue(this.form.get('plant_name').value)
-          this.form.get('plant_name').setValue(this.plantname[index].plant_name)
-      
-          const index2 = this.dept.findIndex((obj:any) => obj.dept_slno === this.form.get('dept_name').value);
-          this.form.get('Department').setValue(this.form.get('dept_name').value)
-          this.form.get('Designation').setValue(this.form.get('desig_name').value)
-          this.form.get('line_code').setValue(this.form.get('Line_Name').value)
-          this.form.get('dept_name').setValue(this.dept[index2].dept_name)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message != 'failure') {
+            const index = this.plantname.findIndex((obj: any) => obj.plant_code === this.form.get('plant_name').value);
+            this.form.get('plant_code').setValue(this.form.get('plant_name').value)
+            this.form.get('plant_name').setValue(this.plantname[index].plant_name)
 
-          this.service.getemployee().
-          subscribe({
-            next: (response)=>{this.employee = response}
-          })
+            const index2 = this.dept.findIndex((obj: any) => obj.dept_slno === this.form.get('dept_name').value);
+            this.form.get('Department').setValue(this.form.get('dept_name').value)
+            this.form.get('Designation').setValue(this.form.get('desig_name').value)
+            this.form.get('line_code').setValue(this.form.get('Line_Name').value)
+            this.form.get('dept_name').setValue(this.dept[index2].dept_name)
+
+            this.service.getemployee().
+              subscribe({
+                next: (response) => { this.employee = response }
+              })
+          }
         }
-      }
-    })
+      })
   }
-/////////////////////////////////////////////////////edit functions
+  /////////////////////////////////////////////////////edit functions
 
-delete(a:any, slno:any)
-{
-  this.service.deleteemployee({empl_slno : slno})
-  .subscribe({
-    next: (response:any) =>{console.log(response); 
-    if(response.message == 'success')
-      this.employee.splice(a,1)
+  delete(a: any, slno: any) {
+    this.service.deleteemployee({ empl_slno: slno })
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          if (response.message == 'success')
+            this.employee.splice(a, 1)
+        }
+      })
   }
-  })
-}
 
-getLineName(event:any)
-{
+  getLineName(event: any) {
 
-  this.service.getLineName({dept_slno: event.target.value.split(' ')[1]})
-  .subscribe(
-    {
-      next:(response:any)=>{console.log(response); 
-        this.line = response[0]
-        // this.line = this.line_.map((a:any)=>a.line_name)
-      }
-  })
-}
+    this.service.getLineName({ dept_slno: event.target.value.split(' ')[1] })
+      .subscribe(
+        {
+          next: (response: any) => {
+            console.log(response);
+            this.line = response[0]
+            // this.line = this.line_.map((a:any)=>a.line_name)
+          }
+        })
+  }
 
 
-  reset()
-{
-  this.form.reset()
-}
+  reset() {
+    this.form.reset()
+  }
 
 }

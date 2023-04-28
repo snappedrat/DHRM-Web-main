@@ -67,6 +67,13 @@
                     <label>Work Contract </label>
                     <select class="form-control" formControlName = "wcontract" ><option value="">select</option><option  *ngFor= "let i of w_contract" [ngValue]="i">{{i}}</option></select>
                 </div><br><br>
+                <div *ngIf="!readonly" class="col">                     
+                    <mat-form-field>
+                    <mat-select placeholder="process trained" formControlName = "process_trained" multiple>
+                        <mat-option  *ngFor= "let i of process_trained" [value]="i">{{i}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </div>
                 <div  *ngIf="readonly" class="col"><br>
                     <b>Process trained:</b> <br>
                      <div  *ngFor="let i of oprn; let a = index">
@@ -83,7 +90,7 @@
                     <input class="form-control"  type = "date" formControlName = "doj">
                 </div>
 
-                <div class="col">          <br>                  
+                <div class="col"><br>                  
                     <label>Active Status: </label>
                     <select class="form-control" (change)="rel()" formControlName = "active_status" (change)="change($event)"><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
                 </div>

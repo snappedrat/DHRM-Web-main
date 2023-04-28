@@ -1,21 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder, UntypedFormGroup, UntypedFormBuilder, UntypedFormControl} from '@angular/forms';
-import { ActivatedRoute, Route } from '@angular/router';
+import { FormGroup, UntypedFormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
-import{
-  Event,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router
-} from '@angular/router';
-import { threadId } from 'worker_threads';
-import { truncate } from 'fs';
-import { isThisSecond } from 'date-fns';
-import { eventNames } from 'process';
-
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-trainee-test',
   templateUrl: './trainee-test.component.html',
@@ -23,6 +11,7 @@ import { eventNames } from 'process';
 })
 export class TraineeTestComponent implements OnInit, OnDestroy {
 
+  url:any = environment.path
   form:FormGroup =new FormGroup({})
   formtest:FormGroup =new FormGroup({})
   ind :any

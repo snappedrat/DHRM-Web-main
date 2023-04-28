@@ -566,7 +566,7 @@ url2:any = environment.path2
   }
   questionbankupload(formvalue:any)
   {
-    return this.http.post(this.url+'/training/questionbankupload',formvalue)
+    return this.http.post(this.url+'/questionbankupload',formvalue)
   }
   skill_dev(form:any)
   {
