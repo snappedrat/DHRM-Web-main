@@ -7,7 +7,7 @@ h3{
     margin-top:20px;
     font-weight:bold;
 }
-input{
+input, mat-select{
     border-radius:0px;
     border-color: black;
     width:max-content;

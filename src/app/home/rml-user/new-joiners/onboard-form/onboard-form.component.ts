@@ -93,7 +93,7 @@ export class OnboardFormComponent implements OnInit {
       rfr:new FormControl(''),
       bnum:['', Validators.required],
       reportingto:[''],
-      uan:['', [Validators.required ,Validators.maxLength(12)]],
+      uan:['', Validators.maxLength(12)],
       wcontract:[''],
       trainee_id:[''],
       designation:[''],

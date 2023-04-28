@@ -11,7 +11,7 @@ mat-toolbar
     flex: 1 1 auto;
   }
   .trainee-input {
-    min-width: 150px;
+    width: max-content;
     background-color: #f5f5f5;
     color: #242424;
     padding: .15rem .5rem;

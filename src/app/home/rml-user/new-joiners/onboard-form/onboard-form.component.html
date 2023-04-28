@@ -2,117 +2,158 @@
     <div class="row justify-content-md-center pt-5">
         <div class="table col-sm-20 shadow round pb-4">
             <div class="mx-5">
-<br><div class = "title"> Onboard Details <span style="font-weight: 400;" > [ {{fullname}} - {{trainee_id}} ] </span></div><br><br>
+                <br>
+                <div class="title"> Onboard Details <span style="font-weight: 400;"> [ {{fullname}} - {{trainee_id}} ]
+                    </span></div><br><br>
 
-<form [formGroup] = "form">
-    <div class="flex-container">
-           <div class="onboard-column">
+                <form [formGroup]="form">
+                    <div class="flex-container">
+                        <div class="onboard-column">
 
-            <div class="row">                        
-                <div class="col">
-                    <label>IFSC Code: </label>
-                    <input class="form-control"  type = "text" formControlName = "ifsc_code">
-                </div>
-            <br>
-                <div class="col"><br>
-                    <label>Account Number: </label>
-                    <input class="form-control"  type = "text" formControlName = "account_number">
-                </div>
-<br>
-                <div class="col">  <br>                          
-                    <label>Bank Name </label>
-                    <input class="form-control" formControlName = "bank_name">
-                </div>
-                
-                <div class="col"><br>
-                    <label>UAN Number <span  style="color: red;">*</span ><span style="color: red;" *ngIf="this.true"> (it should be 12 digit)</span></label>
-                    <input class="form-control" (ngModelChange)="call($event)" type = "number" formControlName = "uan" [readonly]="readonly">
-                </div>  
-                <div class="col">    <br>                         
-                    <label>Category </label>
-                    <select class="form-control" formControlName = "category" (change)="gen_id($event)" ><option value="">select</option><option  *ngFor= "let i of cat" [ngValue]="i">{{i}}</option></select>
-                </div>
-                <div class="col"><br>
-                    <label>Trainee ID/Gen ID/Sap ID:</label>
-                    <input class="form-control"  type = "text" formControlName = "trainee_id" readonly>
-                </div>  
-                <div class="col"><br>
-                    <label>Biometric Number <span  style="color: red;">*</span></label>
-                    <input class="form-control"  type = "number" formControlName = "bnum" [readonly]=true>
-                </div>   
-            
-            </div><br><br>
+                            <div class="row">
+                                <div class="col"><br>
+                                    <label>IFSC Code: </label>
+                                    <input class="form-control" type="text" formControlName="ifsc_code">
+                                </div>
+                                <br>
+                                <div class="col"><br>
+                                    <label>Account Number: </label>
+                                    <input class="form-control" type="text" formControlName="account_number">
+                                </div>
+                                <br>
+                                <div class="col"> <br>
+                                    <label>Bank Name </label>
+                                    <input class="form-control" formControlName="bank_name">
+                                </div>
 
-            
-           </div>
-           <div class="onboard-column">  
-            <div class="row"> <br>
-                <div class="col">    <br>                        
-                    <label>Grade: </label>
-                    <select class="form-control" formControlName = "grade" ><option value="">select</option><option  *ngFor= "let i of grade" [ngValue]="i">{{i}}</option></select>
-                </div>
-                <div class="col">  <br>                          
-                    <label>Department : </label>
-                    <select (change)="getLineName($event)" class="form-control" formControlName = "department"><option value="">select</option><option  *ngFor= "let i of department" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
-                </div>
-                <div class="col">      <br>                      
-                    <label>Line </label>
-                    <select class="form-control" formControlName = "line"><option value="">select</option><option  *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
-                </div>
-                <div class="col">       <br>                     
-                    <label>Reporting To </label>
-                    <select class="form-control" formControlName = "reportingto"><option value="">select</option><option  *ngFor= "let i of reporting_to" [ngValue]="i.empl_slno">{{i.emp_name}}</option></select>
-                </div><br>
-                <div class="col"><br>                            
-                    <label>Work Contract </label>
-                    <select class="form-control" formControlName = "wcontract" ><option value="">select</option><option  *ngFor= "let i of w_contract" [ngValue]="i">{{i}}</option></select>
-                </div><br><br>
-                <div *ngIf="!readonly" class="col">                     
-                    <mat-form-field>
-                    <mat-select placeholder="process trained" formControlName = "process_trained" multiple>
-                        <mat-option  *ngFor= "let i of process_trained" [value]="i">{{i}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                </div>
-                <div  *ngIf="readonly" class="col"><br>
-                    <b>Process trained:</b> <br>
-                     <div  *ngFor="let i of oprn; let a = index">
-                     {{a+1}}.{{i}}
-                     </div>
-                 </div>
+                                <div class="col"><br>
+                                    <label>UAN Number <span style="color: red;">*</span><span style="color: red;"
+                                            *ngIf="this.true"> (it should be 12 digit)</span></label>
+                                    <input class="form-control" (ngModelChange)="call($event)" type="number"
+                                        formControlName="uan" [readonly]="readonly">
+                                </div>
+                                <div class="col"> <br>
+                                    <label>Category </label>
+                                    <select class="form-control" formControlName="category" (change)="gen_id($event)">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of cat" [ngValue]="i">{{i}}</option>
+                                    </select>
+                                </div>
+                                <div class="col"><br>
+                                    <label>Trainee ID/Gen ID/Sap ID:</label>
+                                    <input class="form-control" type="text" formControlName="trainee_id" readonly>
+                                </div>
+                                <div class="col"><br>
+                                    <label>Biometric Number <span style="color: red;">*</span></label>
+                                    <input class="form-control" type="number" formControlName="bnum" [readonly]=true>
+                                </div>
+
+                            </div><br><br>
+
+
+                        </div>
+                        <div class="onboard-column">
+                            <div class="row"> <br>
+                                <div class="col"> <br>
+                                    <label>Grade: </label>
+                                    <select class="form-control" formControlName="grade">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of grade" [ngValue]="i">{{i}}</option>
+                                    </select>
+                                </div>
+                                <div class="col"> <br>
+                                    <label>Department : </label>
+                                    <select (change)="getLineName($event)" class="form-control"
+                                        formControlName="department">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of department" [ngValue]="i.dept_slno">{{i.dept_name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col"> <br>
+                                    <label>Line </label>
+                                    <select class="form-control" formControlName="line">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of line" [ngValue]="i.line_code">{{i.line_name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col"> <br>
+                                    <label>Reporting To </label>
+                                    <select class="form-control" formControlName="reportingto">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of reporting_to" [ngValue]="i.empl_slno">{{i.emp_name}}
+                                        </option>
+                                    </select>
+                                </div><br>
+                                <div class="col"><br>
+                                    <label>Work Contract </label>
+                                    <select class="form-control" formControlName="wcontract">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of w_contract" [ngValue]="i">{{i}}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="!readonly" class="col"><br>
+                                    <mat-form-field>
+                                        <mat-select class="form-control" placeholder="process trained" formControlName="process_trained"
+                                            multiple>
+                                            <mat-option *ngFor="let i of process_trained" [value]="i">{{i}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="readonly" class="col"><br>
+                                    <b>Process trained:</b> <br>
+                                    <div *ngFor="let i of oprn; let a = index">
+                                        {{a+1}}.{{i}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="onboard-column">
+                            <div class="row">
+
+                                <div class="col"><br>
+                                    <label>Date of Joining: <span style="color: red;">*</span></label>
+                                    <input class="form-control" type="date" formControlName="doj">
+                                </div>
+
+                                <div class="col"><br>
+                                    <label>Active Status: </label>
+                                    <select class="form-control" (change)="rel()" formControlName="active_status"
+                                        (change)="change($event)">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of active_status" [ngValue]="i">{{i}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="col"><br>
+                                    <label>Date of Leaving </label> <span *ngIf="readonly" style="color: red;"> *</span>
+                                    <input class="form-control" (change)="rel()" type="date" formControlName="dol"
+                                        [readonly]="!readonly">
+                                </div>
+
+                                <div class="col"> <br>
+                                    <label>Remarks for Relieving </label> <span *ngIf="readonly" style="color: red;">
+                                        *</span>
+                                    <select class="form-control" (change)="rel()" formControlName="rfr">
+                                        <option value="">select</option>
+                                        <option *ngFor="let i of rfr" [ngValue]="i">{{i}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                    </div>
+                    <button mat-raised-button *ngIf="!readonly" [disabled]="form.invalid" type="submit"
+                        class="btn btn-success btn-md" (click)="submit()">Save</button>
+                    <div class="button-container">
+                        <button mat-raised-button color="primary" *ngIf="readonly" [disabled]="onboard" type="submit"
+                            (click)="submit()">Save</button>&nbsp;
+                        <button *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent"
+                            [routerLink]="['/perm-idcard', apln_slno]">Print ID card</button>
+                    </div>
+                </form>
             </div>
-           </div>
-           <div class="onboard-column"> 
-            <div class="row">
-
-                <div class="col"><br>
-                    <label>Date of Joining: <span  style="color: red;">*</span></label>
-                    <input class="form-control"  type = "date" formControlName = "doj">
-                </div>
-
-                <div class="col"><br>                  
-                    <label>Active Status: </label>
-                    <select class="form-control" (change)="rel()" formControlName = "active_status" (change)="change($event)"><option value="">select</option><option  *ngFor= "let i of active_status" [ngValue]="i">{{i}}</option></select>
-                </div>
-
-                <div class="col"><br>
-                    <label>Date of Leaving </label> <span *ngIf="readonly" style="color: red;"> *</span>
-                    <input class="form-control" (change)="rel()" type = "date" formControlName = "dol" [readonly]="!readonly">
-                </div>
-
-                <div class="col">   <br>                     
-                    <label>Remarks for Relieving </label> <span *ngIf="readonly" style="color: red;"> *</span>
-                    <select class="form-control" (change)="rel()" formControlName = "rfr"><option value="">select</option><option  *ngFor= "let i of rfr" [ngValue]="i">{{i}}</option></select>
-                </div>
-            </div>
-
-           </div>
-<br></div>
-    <button mat-raised-button *ngIf="!readonly" [disabled]="form.invalid"  type="submit" class="btn btn-success btn-md" (click)="submit()">Save</button>
-    <div class="button-container">
-            <button mat-raised-button color="primary" *ngIf="readonly" [disabled]="onboard"  type="submit" (click)="submit()">Save</button>&nbsp;
-            <button *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent" [routerLink]="['/perm-idcard', apln_slno]" >Print ID card</button>
+        </div>
     </div>
-</form>
-            </div></div></div></div>
-
+</div>

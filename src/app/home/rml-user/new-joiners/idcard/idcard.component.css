@@ -82,17 +82,17 @@ textarea {
 }
 
 .img2 {
-  height: 70px;
-  width: 40%;
+  max-height: 70px;
+  max-width: 40%;
 }
 
 .sign {
-  margin-left: 65%;
+  margin-left: 54%;
   width: 70%;
 }
 
 .sign1 {
-  margin-left: 65%;
+  margin-left: 38%;
   font-size: large;
 }
 
