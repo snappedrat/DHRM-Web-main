@@ -25,6 +25,9 @@
                             <div style="overflow-x:auto;">
                                 <thead>
                                     <tr>
+                                        <th class="text-center" style="width: 500px" style="background-color: darkblue">
+                                            Slno
+                                        </th>
                                         <th class="text-center" style="width: 1000px"
                                             style="background-color: darkblue">
                                             Module Attended
@@ -55,8 +58,9 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody *ngFor="let i of data">
+                                <tbody *ngFor="let i of data; let a = index">
                                     <tr>
+                                        <td [width]="100">{{a+1}}</td>
                                         <td [width]="600"><a
                                                 [routerLink]="['/rml/training_dojo/trainee-answer',idno,fullname, i.module_name]">{{i.module_name}}</a>
                                         </td>
