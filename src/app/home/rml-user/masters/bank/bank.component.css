@@ -21,7 +21,7 @@
   td, th { border: 1px solid #cdcdcd; padding: 8px;text-align: left;}
   .form-group
   {
-  background-color: lightgrey;
+  background-color: rgb(255, 255, 255);
   }
   
   tbody
