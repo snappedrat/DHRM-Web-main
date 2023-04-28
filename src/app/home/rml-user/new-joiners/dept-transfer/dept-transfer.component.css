@@ -103,5 +103,9 @@ tbody
   margin-right:10px;
 }
 .date-width{
-  width:1000px;
-}
+  width:1000px;}
+
+  .thegap{
+    margin-left: 40px;
+    margin-right: 40px;
+  }

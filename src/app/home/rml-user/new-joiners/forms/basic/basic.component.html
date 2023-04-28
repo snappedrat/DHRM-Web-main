@@ -84,7 +84,7 @@
                 <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert ">
                     <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
                 </div>
-            </div></div></div>
+            </div></div></div><br>
         <p>Aadhar Number:<span class = "star-color">*</span></p>
         <div class="row">
                 <div class = "col-sm-2">
@@ -141,7 +141,7 @@
             <div *ngIf="bd.touched && bd.invalid" class="alert ">
                 <div *ngIf="bd.errors.required">Birth Date is required</div>
             </div>
-        </div>
+        </div><br>
         <div  class="basic-form">
             <label class="form-header" for="">Nationality:<span class = "star-color">*</span></label>
             <select formControlName="nation" class="form-control" (ngModelChange)="sendData()" >
@@ -151,7 +151,7 @@
             <div *ngIf="Nation.nation.touched && Nation.nation.invalid" class="alert ">
                 <div *ngIf="Nation.nation.errors.required">Nation is required</div>
             </div>
-        </div>
+        </div><br>
         <div class="basic-form">
             <label class="form-header" for="">
                 Permanent Address:<span class = "star-color">*</span>
