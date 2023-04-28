@@ -41,7 +41,7 @@
    
         <label class="form-header">Relation:<span class = "star-color">*</span></label>
         <select formControlName="relations" class="form-control" (ngModelChange)= "emitData()" (ngModelChange)="sendData()">
-            <option disabled>Select Relation</option>
+            <option value="" > --select--</option>
             <option *ngFor="let nat of relations">{{nat}}</option>
           </select>
           <div *ngIf="r.relations.touched && r.relations.invalid"class="alert ">  
@@ -49,7 +49,7 @@
         </div>  
     </div>
 </div>
-<button mat-raised-button type="submit" class="emergency-btn emergency-btn-primary emergency-btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center;"  ><span style="font-size: 14px;">Save</span></button>
+<button  mat-raised-button type="submit" class="emergency-btn btn-primary emergency-btn-sm" (click)="submit()" [disabled]="form.invalid" style = "margin-top: 20px; text-align:center; margin-left:50%;"  ><span style="font-size: 14px;">Save</span></button>
 <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form>  

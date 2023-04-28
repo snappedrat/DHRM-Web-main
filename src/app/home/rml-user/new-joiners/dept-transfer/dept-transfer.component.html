@@ -31,6 +31,7 @@
     <br><br></div>
     <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
     <ng-template #show>
+        <div class="the-gap">
         <div class="dept-container">
         <div class = "table-wrapper">
         <table class="table table-bordered table-striped table-hover">
@@ -117,8 +118,8 @@
                     </tbody>
                 </table>
               </table></div>
-        </div></ng-template>
-    
+        </div>  </div></ng-template>
+   
 
     <!-- <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getPremiumData();">
     </ngb-pagination> -->
