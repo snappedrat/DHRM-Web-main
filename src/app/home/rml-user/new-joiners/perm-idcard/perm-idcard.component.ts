@@ -20,11 +20,13 @@ export class PermIdcardComponent implements OnInit {
   form:any
   url: any = environment.path
   url2: any = this.url
-  fromdate:any = new Date()
+  fromdate:any
   frommdate:any
   toodate:any
-  todate = new Date(this.fromdate.getTime() + (365000 * 60 * 60 * 24));
+  todate:any
   plant: any;
+  cat: any;
+  validdate:any
   // todate = this.fromdate.setDate(this.fromdate.getDate() + 10)
 
     constructor(private active: ActivatedRoute, private http: HttpClient,private fb: UntypedFormBuilder, private service: ApiService ) { 
@@ -34,23 +36,36 @@ export class PermIdcardComponent implements OnInit {
             company_address : []
           }
         )
-        var x = this.fromdate.getMonth()+1
-        var y = this.todate.getMonth()+1
+        this.cat = this.active.snapshot.paramMap.get('cat')
+        this.service.getValidDate({cat: this.cat})
+        .subscribe(
+            (data:any)=>
+            {
+              this.validdate = data[0].sap_p2; 
+              console.log(this.validdate);
+              if(this.validdate == null || this.validdate == undefined)
+                this.validdate = 1
+              else
+                this.validdate = this.validdate/12
 
-        if(x<10)
-        this.frommdate = this.fromdate.getDate()+'-0'+x+'-'+this.fromdate.getFullYear()
-        else
-        this.frommdate = this.fromdate.getDate()+'-'+x+'-'+this.fromdate.getFullYear()
+              this.fromdate = new Date()
 
-        if(y<10)
-        this.toodate = this.todate.getDate()+'-0'+y+'-'+this.todate.getFullYear()
-        else
-        this.toodate = this.todate.getDate()+'-'+y+'-'+this.todate.getFullYear()
-
-
-
-    console.log(this.toodate)
-
+              this.todate = new Date(this.fromdate.getTime() + ((365000*this.validdate) * 60 * 60 * 24));
+              
+              var x = this.fromdate.getMonth()+1
+              var y = this.todate.getMonth()+1
+      
+              if(x<10)
+              this.frommdate = this.fromdate.getDate()+'-0'+x+'-'+this.fromdate.getFullYear()
+              else
+              this.frommdate = this.fromdate.getDate()+'-'+x+'-'+this.fromdate.getFullYear()
+      
+              if(y<10)
+              this.toodate = this.todate.getDate()+'-0'+y+'-'+this.todate.getFullYear()
+              else
+              this.toodate = this.todate.getDate()+'-'+y+'-'+this.todate.getFullYear()
+            }
+        )
     }
 
   ngOnInit(): void {
@@ -59,9 +74,9 @@ export class PermIdcardComponent implements OnInit {
 
 
   printing(){
-    window.focus()
-    window.print()
-    window.close()
+    // window.focus()
+    // window.print()
+    // window.close()
   }
 
   

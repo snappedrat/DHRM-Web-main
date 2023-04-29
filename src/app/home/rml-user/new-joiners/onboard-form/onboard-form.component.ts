@@ -42,32 +42,13 @@ export class OnboardFormComponent implements OnInit {
   
   
   OnboardData = [
-    // {
-    //   'ifsc_code':'',
-    //   'grade':'',
-    //   'doj':'',
-    //   'account_number':'',
-    //   'department':'',
-    //   'active_status':'',
-    //   'bank_name':'',
-    //   'line':'',
-    //   'dol':'',
-    //   'b_id':'',
-    //   'process_trained':'',
-    //   'rfr':'',
-    //   'b_num':'',
-    //   'reporting_to':'',
-    //   'uan':'',
-    //   'w_contract':'',
-    //   'trainee_id':'',
-    //   'designation':'',
-    // }   
   ];
 
     flag: any = true;
     state: boolean;
     category: any;
     cat: any;
+    cate: any;
   oprn: any;
   setting: number;
   true: boolean = false;
@@ -167,7 +148,7 @@ export class OnboardFormComponent implements OnInit {
 
 
             this.form.controls['category'].setValue(this.basic[0]?.apprentice_type)
-
+            
             this.form.controls['department'].disable()
             this.form.controls['designation'].disable()
             this.form.controls['line'].disable()

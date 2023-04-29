@@ -38,7 +38,7 @@ const routes: Routes = [
     component: IdcardComponent
   },
   {
-    path:'perm-idcard/:apln_slno',
+    path:'perm-idcard/:apln_slno/:cat',
     component: PermIdcardComponent
   },
   {

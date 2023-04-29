@@ -64,6 +64,10 @@ url2:any = environment.path2
   {
     return this.http.get(this.url+'/hrOperation/getdataforpermid?apln_slno='+form.apln_slno)
   }
+  getValidDate(form:any)
+  {
+    return this.http.get(this.url+'/hrOperation/getValidDate?cat='+form.cat)
+  }
   filterForApproval(form:any)
   {
     return this.http.get(this.url+'/hrOperation/filterforapproval?status='+form.status+'&plantcode='+form.plantcode)
