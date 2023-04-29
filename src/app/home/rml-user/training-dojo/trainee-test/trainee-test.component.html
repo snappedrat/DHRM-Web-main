@@ -1,35 +1,11 @@
 <ng-template #content let-modal>
-    <div class="modal-content-container">
-        <div class="modal-header">
-            <h4 class="modal-title">Add Bank Details</h4>
-            <button type="button" class="btn-close" aria-label="Close"
-                (click)="modal.dismiss('Cross click')">X</button>
-        </div>
-
-        <br>
-        <form [formGroup]="form">
-            <div class="row">
-                <div class="col">
-                    <label>Bank Name: </label><br>
-                    <input class="input2" type="text" formControlName="bank_name">
-                </div>
-                <div class="col">
-                    <label>IFSC Code: </label><br>
-                    <input class="input2" type="text" formControlName="bank_code">
-                </div>
-                <br>
-                <br>
-            </div><br>
-
-        </form>
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <img width="700px" height="500px" [src]="imgUrl" alt="Question">
     </div>
-    <div class="modal-footer">
-    </div>
-
 </ng-template>
 
 <div>
-    <mat-toolbar style="color: white;">
+    <mat-toolbar style="color: white;  background-color:#007BFF;">
         <span>Trainee Test Page</span>&nbsp;
         &nbsp; {{x.fullname}} - {{x.trainee_idno}}({{x.plant_code}})
         <span class="example-spacer"></span>
@@ -89,10 +65,9 @@
                                                 <td style="white-space: pre;">{{a.question}}<br><br>
                                                     <div
                                                         *ngIf="a.image_filename != null && a.image_filename != 'null' && a.image_filename != '' ">
-                                                        <button data-toggle="modal"
-                                                            data-target="#exampleModalCenter"><img
-                                                                [src]="url+'/qbank/'+a.image_filename" width=300px
-                                                                height=200px alt="question"></button><br><br>
+                                                        <button (click)="open(content, a.image_filename)" ><img
+                                                                [src]="url+'/qbank/'+a.image_filename" width=300px ngbTooltip="click to view image"
+                                                                height=200px alt="question" ></button><br><br>
                                                     </div>
                                                     <select class="form-control-md"
                                                         (change)='load_answers($event, i+1 ,a.qslno,  a.correct_answer)'

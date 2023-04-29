@@ -1,13 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/home/api.service';
 import { LoaderserviceService } from 'src/app/loaderservice.service';
 import { environment } from 'src/environments/environment.prod';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+import { log } from 'console';
+
 @Component({
   selector: 'app-trainee-test',
   templateUrl: './trainee-test.component.html',
-  styleUrls: ['./trainee-test.component.css']
+  styleUrls: ['./trainee-test.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TraineeTestComponent implements OnInit, OnDestroy {
 
@@ -39,8 +44,9 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
   choices = ['A','B','C','D']
   flag: boolean = true
   offline: string = ''
+  imgUrl: any;
 
-  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router,public loader:LoaderserviceService) {
+  constructor(private fb: UntypedFormBuilder, private service: ApiService, private active: ActivatedRoute, private router:Router,public loader:LoaderserviceService, private modal : NgbModal) {
 
 
     this.form = fb.group({
@@ -62,6 +68,14 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
     localStorage.clear()
     sessionStorage.clear()
     this.router.navigate(['/first'])
+   }
+
+   open(content:any, img:any)
+   {
+    this.modal.open(content, {centered: true})
+    this.imgUrl = this.url+'/qbank/'+img
+    console.log(this.imgUrl);
+    
    }
 
   ngOnInit(): void {
