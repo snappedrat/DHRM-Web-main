@@ -43,7 +43,7 @@ export class BasicComponent implements OnInit{
         'SIKH',
         'JAIN',
         'PARSI'];
-    marital: any =['SINGLE','MARRIED','WINDOWER', 'WIDOW'];
+    marital: any =['UNMARRIED','MARRIED', 'WIDOW'];
     BloodGroup: any =['O+','O-','A+','A-','B+','B-','AB+','AB-'];
     physical:any=['No', 'Yes'];
     uniqueId :any = {'mobile':''}
