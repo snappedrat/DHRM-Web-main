@@ -74,9 +74,9 @@ export class PermIdcardComponent implements OnInit {
 
 
   printing(){
-    // window.focus()
-    // window.print()
-    // window.close()
+    window.focus()
+    window.print()
+    window.close()
   }
 
   

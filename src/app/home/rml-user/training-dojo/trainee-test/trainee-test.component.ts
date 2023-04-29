@@ -14,7 +14,7 @@ import { log } from 'console';
   styleUrls: ['./trainee-test.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TraineeTestComponent implements OnInit, OnDestroy {
+export class TraineeTestComponent implements OnInit {
 
   url:any = environment.path
   form:FormGroup =new FormGroup({})
@@ -57,10 +57,6 @@ export class TraineeTestComponent implements OnInit, OnDestroy {
     this.formtest = fb.group({
       answers: [''],
     })
-   }
-
-   ngOnDestroy(): void {
-     sessionStorage.clear()
    }
 
    logout()
@@ -198,7 +194,12 @@ submit()
       .subscribe({
         next : (response:any)=> {console.log(response)
           if(response.message == 'success')
-            location.reload()}    
+          {
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload'
+            this.router.navigate(['/trainee-test', this.username.username], { relativeTo: this.active })  
+          }
+          }    
       })
     }
     else if(this.form.controls['test'].value == 'post-test')
@@ -208,7 +209,12 @@ submit()
       .subscribe({
         next : (response:any)=> {console.log(response)
           if(response.message == 'success')
-          location.reload()}
+          {
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload'
+            this.router.navigate(['/trainee-test', this.username.username], { relativeTo: this.active })  
+          }
+        }
       })
     }
   }
