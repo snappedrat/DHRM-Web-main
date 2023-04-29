@@ -91,7 +91,6 @@ eduData = [
   state: boolean;
 
   constructor(private http: HttpClient, private cookie: CookieService, private formservice: FormService, private active : ActivatedRoute) { 
-    // this.mobile = this.cookie.get('mobilenum')
     this.eduData[0].passed = 'Yes'
 
   }
@@ -175,7 +174,9 @@ public valid(){
 
 valids(event:any){
   console.log(this.eduData)
-  if((this.eduData[0].school != ''&&this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
+  console.log(event.length);
+  
+  if((this.eduData[0].school != '' && this.eduData[0].school != undefined) && (this.eduData[0].percentage != ''&& this.eduData[0].percentage != undefined) && (this.eduData[0].year != ''&& this.eduData[0].year != undefined) && (this.eduData[0].passed != ''&& this.eduData[0].passed != undefined) && (this.eduData[0].department != ''&&this.eduData[0].department !=undefined)  && (this.eduData[0].certificatenumber != ''&& this.eduData[0].certificatenumber != undefined)  && (this.eduData[0].certificatedate != ''&& this.eduData[0].certificatedate != undefined))
   {
     console.log("good to go")
     this.flag = false

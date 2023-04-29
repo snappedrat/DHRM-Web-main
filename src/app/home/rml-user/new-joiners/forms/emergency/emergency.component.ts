@@ -30,7 +30,7 @@ export class EmergencyComponent implements OnInit  {
   @Output() emit = new EventEmitter<any>()
   message = {'emer': false}
 
-relations :any = ['Father','Mother','Sister','Brother'];
+relations :any = ['Father','Mother','Sister','Brother', 'Wife'];
 uniqueId :any = {'mobile':''}
 
  form: FormGroup = new FormGroup({});  
@@ -56,7 +56,8 @@ uniqueId :any = {'mobile':''}
   getdatabasic(){
     this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
     this.uniqueId.company = this.active.snapshot.paramMap.get('company');
-  
+      console.log(this.emer, "rkwehteruyugy");
+      
       this.form.controls['contactNumber'].setValue(this.emer[0]?.mobile_no2)
       this.form.controls['contactName'].setValue(this.emer[0]?.emergency_name)
       this.form.controls['relations'].setValue(this.emer[0]?.emergency_rel)

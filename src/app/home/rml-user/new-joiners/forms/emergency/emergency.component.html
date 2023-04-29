@@ -41,8 +41,8 @@
    
         <label class="form-header">Relation:<span class = "star-color">*</span></label>
         <select formControlName="relations" class="form-control" (ngModelChange)= "emitData()" (ngModelChange)="sendData()">
-            <option value="" > --select--</option>
-            <option *ngFor="let nat of relations">{{nat}}</option>
+            <option [ngValue]="">--Select a Relation--</option>
+            <option *ngFor="let nat of relations" [ngValue]="nat">{{nat}}</option>
           </select>
           <div *ngIf="r.relations.touched && r.relations.invalid"class="alert ">  
             <div *ngIf="r.relations.errors.required">Relation is required</div>   

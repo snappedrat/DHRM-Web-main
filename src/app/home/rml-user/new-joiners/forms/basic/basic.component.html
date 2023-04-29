@@ -1,395 +1,320 @@
-
-
-  <div class="container pt-2">
-        <div class="row justify-content-md-left pt-5">
-            <div class="table col-sm-20 shadow round pb-4">
-                <div class="mx-5">
-            <h3><b> Basic Details</b></h3>
-            <div>
-            <table >
-                <tbody >
-                    <tr >
-                        <td> Company Name</td>
-                        <td>:</td>
-                        <td>{{this.basic[0]?.company_name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Plant Name</td>
-                        <td>:</td>
-                        <td>{{this.basic[0]?.plant_name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Mobile Number</td>
-                        <td>:</td>
-                        <td>{{this.basic[0]?.mobile_no1}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-    <h3>(<span class = "star-color">*</span> fields are required)</h3>
-    <form [formGroup]="form" >
-        <div class="row">
-            <div class = "col-sm-3">
-        <div  class="basic-form">
-            <label class="form-header" for="title">Title:<span class = "star-color">*</span></label>
-            <select
-                    formControlName="title"
-                    id="title"
-                    type="text"
-                    class="form-control"
-                    (ngModelChange)="sendData()"
-                    placeholder="Title">
-                    <option value ="">Select Title</option>
-                    <option *ngFor="let i of Title">{{i}}</option>
-                </select>
-            </div></div>
-
-            <div class="col-sm-3">
-        <div  class="basic-form">
-            <label class="form-header" for="fname">First Name:<span class = "star-color">*</span></label>
-            <input
-                    formControlName="fname"
-                    id="fname"
-                    type="text"
-                    class="form-control"
-                    (ngModelChange)="sendData()"
-                    placeholder="First Name">
-            <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert">
-                <div *ngIf="fname.fname.errors.required">First Name is required</div>
-            </div></div></div>
-            <div class="col-sm-3">
-            <div  class="basic-form">
-                <label  class="form-header"for="lname">Last Name:<span class = "star-color">*</span></label>
-                <input
-                        formControlName="lname"
-                        id="lname"
-                        type="text"
-                        class="form-control"
-                        placeholder="Last Name"
-                        (ngModelChange)="sendData()">
-                <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert ">
-                    <div *ngIf="lname.lname.errors.required">Last Name is required</div>
-                </div></div></div>
-                        
-                <div class = "col-sm-3">
-                <div class="basic-form"> 
-                <label class="form-header"for="ftname">Father Name:<span class = "star-color">*</span></label>
-                <input
-                        formControlName="ftname"
-                        id="ftname"
-                        type="text"
-                        class="form-control"
-                        (ngModelChange)="sendData()"
-                        placeholder="Father Name">
-                <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert ">
-                    <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
+<div class="container pt-2">
+    <div class="row justify-content-md-left pt-5">
+        <div class="table col-sm-20 shadow round pb-4">
+            <div class="mx-5">
+                <h3><b> Basic Details</b></h3>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td> Company Name</td>
+                                <td>:</td>
+                                <td>{{this.basic[0]?.company_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Plant Name</td>
+                                <td>:</td>
+                                <td>{{this.basic[0]?.plant_name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile Number</td>
+                                <td>:</td>
+                                <td>{{this.basic[0]?.mobile_no1}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div></div></div><br>
-        <p>Aadhar Number:<span class = "star-color">*</span></p>
-        <div class="row">
-                <div class = "col-sm-2">
-                <input #txt1
-                       formControlName = "aadhar1"
-                       maxlength=4
-                       style="width:100px"
-                       [(ngModel)] = 'aadhar1'
-                       class="form-control"
-                       (ngModelChange)="sendData()"
-                       (ngModelChange) = "check_aadhar($event, 'a1')"
-                       type="text"
-                       (keyup)="move(txt1,txt2,$event)">
-            </div>
-            <div class = "col-sm-2">
-                <input #txt2
-                formControlName = "aadhar2"
-                       maxlength=4
-                       style="width:100px"
-                       class="form-control"
-                       [(ngModel)] = 'aadhar2'
-                       (ngModelChange)="sendData()"
-                       (ngModelChange) = "check_aadhar($event, 'a2')"
-                       type="text"
-                       (keyup)="move(txt2,txt3, $event)">
-            </div>
-            <div class = "col-sm-2">
-                <input #txt3
-                formControlName = "aadhar3"
-                       maxlength=4
-                       class="form-control"
-                       style="width:100px"
-                       [(ngModel)] = 'aadhar3'
-                       (ngModelChange)="sendData()"
-                       (ngModelChange) = "check_aadhar($event, 'a3')"
-                       type="text" >
-            </div>
+                <h3>(<span class="star-color">*</span> fields are required)</h3>
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="basic-form">
+                                <label class="form-header" for="title">Title:<span class="star-color">*</span></label>
+                                <select formControlName="title" id="title" type="text" class="form-control"
+                                    (ngModelChange)="sendData()" placeholder="Title">
+                                    <option value="">Select Title</option>
+                                    <option *ngFor="let i of Title">{{i}}</option>
+                                </select>
+                            </div>
+                        </div>
 
-        </div>
-        <div *ngIf="aadhar_invalid"  class = "alert ">Aadhar Already Exists</div>
-        <div *ngIf="this.form.get('aadhar1')?.touched && ((this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid))"
-         class = "alert ">Aadhar Number is invalid</div>
-<br>
-        <div class="basic-form">
-            <label class="form-header"for="bd">Birth Date:<span class = "star-color">*</span></label>
-            <input
-                    formControlName="bd"
-                    id="bd"
-                    type="date"
-                    max="2100-12-12"
-                    (ngModelChange)="sendData()"
-                    (change)="validate($event)"
-                    class="form-control"><div *ngIf="flag"  class = "alert ">Invalid Birth Date</div>
-            <div *ngIf="bd.touched && bd.invalid" class="alert ">
-                <div *ngIf="bd.errors.required">Birth Date is required</div>
-            </div>
-        </div><br>
-        <div  class="basic-form">
-            <label class="form-header" for="">Nationality:<span class = "star-color">*</span></label>
-            <select formControlName="nation" class="form-control" (ngModelChange)="sendData()" >
-                <option disabled>Select Nationality</option>
-                <option *ngFor="let nat of nation">{{nat}}</option>
-            </select>
-            <div *ngIf="Nation.nation.touched && Nation.nation.invalid" class="alert ">
-                <div *ngIf="Nation.nation.errors.required">Nation is required</div>
-            </div>
-        </div><br>
-        <div class="basic-form">
-            <label class="form-header" for="">
-                Permanent Address:<span class = "star-color">*</span>
-            </label>
-            <br>
-            <textarea type="text"  formControlName="permanent" (ngModelChange)="sendData()"  class="form-control" ></textarea>
-        </div>
-        <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert ">
-            <div *ngIf="p.permanent.errors.required" >Fill the permanent address.</div>
-        </div>
-        <p>Is permanent address same as present address</p>
-        <div class="basic-form" style="margin-left:20px;">
-            <input
-                    (change)="getValue($event)"
-                    type="radio"
-                    name="address"
-                    class="form-check-input" checked>YES
-        </div>
-        <div class="basic-form" style="margin-left:20px;">
-            <input
-                    (change)="noValue($event)"
-                    type="radio"
-                    name="address"
-                    class="form-check-input">NO
-        </div>
-        <div class="basic-form">
-            <label  class="form-header"for="present">
-                Present Address:<span class = "star-color">*</span>
-            </label>
-            <br>
-            <textarea type="text"  formControlName="present" class="form-control" [value]="inputValue"></textarea>
-        </div>
-        <div class="row">
-            <div  class="basic-form">
-                <div class = "col-lg-10">
-                <label  class="form-header"for="name">Pincode:<span class = "star-color">*</span></label>
-                <input
-                        formControlName="pc"
-                        id="pc"
-                        type="text"
-                        maxlength="6"
-                        class="form-control"
-                        placeholder="Pincode"
-                        (ngModelChange)="sendData()"
-                        [(ngModel)] = 'pincode_ng'
-                        (ngModelChange)="setcity_state($event)"
-                        >
-                <div *ngIf="pc.pc.touched && pc.pc.invalid" class="alert ">
-                    <div *ngIf="pc.pc.errors.required">Pincode is required</div>
-                </div></div></div>
+                        <div class="col-sm-3">
+                            <div class="basic-form">
+                                <label class="form-header" for="fname">First Name:<span
+                                        class="star-color">*</span></label>
+                                <input formControlName="fname" id="fname" type="text" class="form-control"
+                                    (ngModelChange)="sendData()" placeholder="First Name">
+                                <div *ngIf="fname.fname.touched && fname.fname.invalid" class="alert">
+                                    <div *ngIf="fname.fname.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="basic-form">
+                                <label class="form-header" for="lname">Last Name:<span
+                                        class="star-color">*</span></label>
+                                <input formControlName="lname" id="lname" type="text" class="form-control"
+                                    placeholder="Last Name" (ngModelChange)="sendData()">
+                                <div *ngIf="lname.lname.touched && lname.lname.invalid" class="alert ">
+                                    <div *ngIf="lname.lname.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div  class="basic-form">
-                <div class = "col-lg-10">
-                <label class="form-header" for="name">City:<span class = "star-color">*</span></label>
-                <input
-                        formControlName="city"
-                        id="city"
-                        type="text"
-                        class="form-control"
-                        placeholder="City"
-                        readonly>
-                <div *ngIf="city.city.touched && city.city.invalid" class="alert ">
-                    <div *ngIf="city.city.errors.required">City field is required</div>
-                </div></div></div>
+                        <div class="col-sm-3">
+                            <div class="basic-form">
+                                <label class="form-header" for="ftname">Father Name:<span
+                                        class="star-color">*</span></label>
+                                <input formControlName="ftname" id="ftname" type="text" class="form-control"
+                                    (ngModelChange)="sendData()" placeholder="Father Name">
+                                <div *ngIf="ftname.ftname.touched && ftname.ftname.invalid" class="alert ">
+                                    <div *ngIf="ftname.ftname.errors.required">Father Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <p>Aadhar Number:<span class="star-color">*</span></p>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <input #txt1 formControlName="aadhar1" maxlength=4 style="width:100px" [(ngModel)]='aadhar1'
+                                class="form-control" (ngModelChange)="sendData()"
+                                (ngModelChange)="check_aadhar($event, 'a1')" type="text"
+                                (keyup)="move(txt1,txt2,$event)">
+                        </div>
+                        <div class="col-sm-2">
+                            <input #txt2 formControlName="aadhar2" maxlength=4 style="width:100px" class="form-control"
+                                [(ngModel)]='aadhar2' (ngModelChange)="sendData()"
+                                (ngModelChange)="check_aadhar($event, 'a2')" type="text"
+                                (keyup)="move(txt2,txt3, $event)">
+                        </div>
+                        <div class="col-sm-2">
+                            <input #txt3 formControlName="aadhar3" maxlength=4 class="form-control" style="width:100px"
+                                [(ngModel)]='aadhar3' (ngModelChange)="sendData()"
+                                (ngModelChange)="check_aadhar($event, 'a3')" type="text">
+                        </div>
 
-        </div>
-        <div class="basic-form">
-            <label  class="form-header"for="">State:<span class = "star-color">*</span></label>
-            <!-- <select formControlName="st" class="form-control">
+                    </div>
+                    <div *ngIf="aadhar_invalid" class="alert ">Aadhar Already Exists</div>
+                    <div *ngIf="this.form.get('aadhar1')?.touched && ((this.form.get('aadhar1')?.invalid || this.form.get('aadhar2')?.invalid || this.form.get('aadhar3')?.invalid))"
+                        class="alert ">Aadhar Number is invalid</div>
+                    <br>
+                    <div class="basic-form">
+                        <label class="form-header" for="bd">Birth Date:<span class="star-color">*</span></label>
+                        <input formControlName="bd" id="bd" type="date" max="2100-12-12" (ngModelChange)="sendData()"
+                            (change)="validate($event)" class="form-control">
+                        <div *ngIf="flag" class="alert ">Invalid Birth Date</div>
+                        <div *ngIf="bd.touched && bd.invalid" class="alert ">
+                            <div *ngIf="bd.errors.required">Birth Date is required</div>
+                        </div>
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="">Nationality:<span class="star-color">*</span></label>
+                        <select formControlName="nation" class="form-control" (ngModelChange)="sendData()">
+                            <option disabled>Select Nationality</option>
+                            <option *ngFor="let nat of nation">{{nat}}</option>
+                        </select>
+                        <div *ngIf="Nation.nation.touched && Nation.nation.invalid" class="alert ">
+                            <div *ngIf="Nation.nation.errors.required">Nation is required</div>
+                        </div>
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="">
+                            Permanent Address:<span class="star-color">*</span>
+                        </label>
+                        <br>
+                        <textarea type="text" formControlName="permanent" (ngModelChange)="sendData()"
+                            class="form-control"></textarea>
+                    </div>
+                    <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert ">
+                        <div *ngIf="p.permanent.errors.required">Fill the permanent address.</div>
+                    </div><br>
+                    <p>Is permanent address same as present address</p>
+                    <div class="basic-form" style="margin-left:20px;">
+                        <input formControlName="sameAsPermanent" type="radio" value="true" class="form-check-input"
+                            checked>YES
+                    </div>
+                    <div class="basic-form" style="margin-left:20px;">
+                        <input formControlName="sameAsPermanent" type="radio" value="false" class="form-check-input">NO
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="present">
+                            Present Address:<span class="star-color">*</span>
+                        </label>
+                        <br>
+                        <textarea type="text" formControlName="present" class="form-control"
+                            (ngModelChange)="sendData()"></textarea>
+                    </div><br>
+                    <div class="row">
+                        <div class="basic-form">
+                            <div class="col-lg-10">
+                                <label class="form-header" for="name">Pincode:<span class="star-color">*</span></label>
+                                <input formControlName="pc" id="pc" type="text" maxlength="6" class="form-control"
+                                    placeholder="Pincode" (ngModelChange)="sendData()" [(ngModel)]='pincode_ng'
+                                    (ngModelChange)="setcity_state($event)">
+                                <div *ngIf="pc.pc.touched && pc.pc.invalid" class="alert ">
+                                    <div *ngIf="pc.pc.errors.required">Pincode is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="basic-form">
+                            <div class="col-lg-10">
+                                <label class="form-header" for="name">City:<span class="star-color">*</span></label>
+                                <input formControlName="city" id="city" type="text" class="form-control"
+                                    placeholder="City" readonly>
+                                <div *ngIf="city.city.touched && city.city.invalid" class="alert ">
+                                    <div *ngIf="city.city.errors.required">City field is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="">State:<span class="star-color">*</span></label>
+                        <!-- <select formControlName="st" class="form-control">
                 <option disabled>Select State</option>
                 <option>Choose State</option>
                 <option *ngFor="let st of State">{{st}}</option>
             </select> -->
-            <input
-            formControlName="st"
-            id="st"
-            type="text"
-            class="form-control"
-            placeholder="State"
-            readonly>
-            <div *ngIf="st.st.touched && st.st.invalid" class="alert ">
-                <div *ngIf="st.st.errors.required">state is required</div>
-            </div></div>
+                        <input formControlName="st" id="st" type="text" class="form-control" placeholder="State"
+                            readonly>
+                        <div *ngIf="st.st.touched && st.st.invalid" class="alert ">
+                            <div *ngIf="st.st.errors.required">state is required</div>
+                        </div>
+                    </div><br>
 
-       
-        <div class="basic-form">
-            <label class="form-header" for="">Religion:<span class = "star-color">*</span></label>
-            <select (ngModelChange)="sendData()" formControlName="reg" class="form-control">
-                <option value ="">Select Religion</option>
-                <option *ngFor="let rg of religion">{{rg}}</option>
-            </select>
-            <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert ">
-                <div *ngIf="reg.reg.errors.required">Religion is required</div>
-            </div></div>
 
-    
-        <div class="basic-form">
-           
-            <label class="form-header" for="">Marital Status:<span class = "star-color">*</span></label>
-            <select formControlName="mar" class="form-control" (ngModelChange)="sendData()" >
-                <option value ="">Select Marital Status</option>
+                    <div class="basic-form">
+                        <label class="form-header" for="">Religion:<span class="star-color">*</span></label>
+                        <select (ngModelChange)="sendData()" formControlName="reg" class="form-control">
+                            <option value="">Select Religion</option>
+                            <option *ngFor="let rg of religion">{{rg}}</option>
+                        </select>
+                        <div *ngIf="reg.reg.touched && reg.reg.invalid" class="alert ">
+                            <div *ngIf="reg.reg.errors.required">Religion is required</div>
+                        </div>
+                    </div><br>
 
-                <option *ngFor="let mr of marital">{{mr}}</option>
-            </select>
-            <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert ">
-                <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
+
+                    <div class="basic-form">
+
+                        <label class="form-header" for="">Marital Status:<span class="star-color">*</span></label>
+                        <select formControlName="mar" class="form-control" (ngModelChange)="sendData()">
+                            <option value="">Select Marital Status</option>
+
+                            <option *ngFor="let mr of marital">{{mr}}</option>
+                        </select>
+                        <div *ngIf="mar.mar.touched && mar.mar.invalid" class="alert ">
+                            <div *ngIf="mar.mar.errors.required">Marital Status is required</div>
+                        </div>
+                    </div><br>
+
+
+                    <div class="basic-form">
+                        <label class="form-header" for="">Blood Group:<span class="star-color">*</span></label>
+                        <select formControlName="bg" class="form-control" (ngModelChange)="sendData()">
+                            <option value="">Select BloodGroup</option>
+
+                            <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
+                        </select>
+                        <div *ngIf="bg.bg.touched && bg.bg.invalid" class="alert ">
+                            <div *ngIf="bg.bg.errors.required">BloodGroup is required</div>
+                        </div>
+                    </div><br>
+
+                    <div class="basic-form">
+
+                        <label class="form-header" for="">Gender:<span class="star-color">*</span></label>
+                        <select formControlName="gender" class="form-control" (ngModelChange)="sendData()">
+                            <option value="">Select Gender</option>
+
+                            <option *ngFor="let gen of  Gender">{{gen}}</option>
+                        </select>
+                        <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert ">
+                            <div *ngIf="gender.gender.errors.required">Gender is required</div>
+                        </div><br>
+
+                        <label class="form-header" for="vacc"> Vaccinated ?</label>
+                        <select class="form-control" formControlName="vacc" (change)="hide_vacc($event)">
+                            <option value='yes'> YES</option>
+                            <option value='no'>NO</option>
+                        </select>
+                    </div><br>
+
+                    <div *ngIf="vaccinated">
+                        <div class="basic-form">
+
+                            <label class="form-header" for="dd1">Dose1 Date</label>
+                            <input formControlName="dd1" id="dd1" type="date" class="form-control">
+                        </div>
+
+
+                        <div class="basic-form">
+                            <label class="form-header" for="dd2">Dose2 Date</label>
+                            <input formControlName="dd2" id="dd2" type="date" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="basic-form">
+
+                        <label class="form-header" for="height">Height(cms):</label>
+                        <input formControlName="height" id="height" type="number" class="form-control"
+                            placeholder="height in cms">
+                        <div class="alert " *ngIf="height.height.touched&&height.height.invalid">Please, Enter valid
+                            height.</div>
+                    </div><br>
+                    <div class="basic-form">
+
+                        <label class="form-header" for="weight">Weight(kgs):</label>
+                        <input formControlName="weight" id="weight" type="number" class="form-control"
+                            placeholder="weight in kgs">
+                        <div class="alert " *ngIf="weight.weight.touched&&weight.weight.invalid">Please, Enter valid
+                            weight.</div>
+
+                    </div><br>
+
+
+                    <div class="basic-form">
+
+
+                        <label class="form-header" for="">Physical Disability:</label>
+                        <select formControlName="pd" class="form-control" (click)="emitData()"
+                            (ngModelChange)="sendData()">
+                            <option disabled>Select Physical Disability</option>
+                            <option *ngFor="let phd of physical">{{phd}}</option>
+                        </select>
+                        <div *ngIf="pd.pd.touched && pd.pd.invalid" class="alert ">
+                            <div *ngIf="pd.pd.errors.required">Physical Disability field is required</div>
+                        </div>
+
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="bp">Birth Place:<span class="star-color">*</span></label>
+                        <input formControlName="bp" type="text" (ngModelChange)="sendData()" class="form-control"
+                            placeholder="Birth Place">
+                        <!-- <div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert ">
+<div *ngIf="bp.bp.errors.required">Birth Place is required</div> -->
+                    </div><br>
+                    <!-- </div> -->
+                    <div class="basic-form">
+                        <label class="form-header" for="idm1">Identification Mark 1:</label>
+                        <input formControlName="idm1" id="idm1" type="text" (click)="sendData()" class="form-control"
+                            placeholder="Identification Mark 1">
+                    </div><br>
+                    <div class='basic-form'>
+                        <label class="form-header" for="idm2">Identification Mark 2:</label>
+                        <input formControlName="idm2" id="idm2" type="text" (click)="sendData()" class="form-control"
+                            placeholder="Identification Mark 2">
+                    </div><br>
+
+                    <button mat-raised-button class="basic-btn btn-primary btn-sm bg-blue" (click)="submit()"
+                        style="margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid"
+                        type="submit"><span style="font-size: 14px;">Save</span></button>
+                    <span style='float:right;font-size: 20px;color: green;' class="animate" @slowAnimate
+                        *ngIf="state">&nbsp; Details are saved</span>
+
+                </form>
             </div>
-        </div>
-    
-
-        <div class="basic-form">
-            <label  class="form-header" for="">Blood Group:<span class = "star-color">*</span></label>
-            <select formControlName="bg" class="form-control" (ngModelChange)="sendData()">
-                <option value ="">Select BloodGroup</option>
-
-                <option *ngFor="let  bg of BloodGroup">{{bg}}</option>
-            </select>
-            <div *ngIf="bg.bg.touched && bg.bg.invalid" class="alert ">
-                <div *ngIf="bg.bg.errors.required">BloodGroup is required</div>
-            </div></div>
-
-        <div  class="basic-form">
-            
-            <label  class="form-header"for="">Gender:<span class = "star-color">*</span></label>
-            <select formControlName="gender" class="form-control" (ngModelChange)="sendData()">
-                <option value ="">Select Gender</option>
-
-                <option *ngFor="let gen of  Gender">{{gen}}</option>
-            </select>
-            <div *ngIf="gender.gender.touched && gender.gender.invalid" class="alert ">
-                <div *ngIf="gender.gender.errors.required">Gender is required</div>
-            </div>
-
-            <label  class="form-header" for = "vacc" > Vaccinated ?</label>
-            <select  class="form-control" formControlName= "vacc" (change)="hide_vacc($event)" >
-                <option value = 'yes' > YES</option>
-                <option value = 'no' >NO</option>
-            </select>
-        </div><br>
-        
-        <div *ngIf= "vaccinated">
-        <div class="basic-form">
-                
-            <label class="form-header" for="dd1">Dose1 Date</label>
-            <input
-                    formControlName="dd1"
-                    id="dd1"
-                    type="date"
-                    class="form-control">
-        </div>
-        
-       
-        <div class="basic-form">
-            <label class="form-header" for="dd2">Dose2 Date</label>
-            <input
-                    formControlName="dd2"
-                    id="dd2"
-                    type="date"
-                    class="form-control">
         </div>
     </div>
-
-        
-        <div class="basic-form">
-         
-            <label  class="form-header"for="height">Height(cms):</label>
-            <input
-                    formControlName="height"
-                    id="height"
-                    type="number"
-                    class="form-control"
-                    placeholder="height in cms">
-            <div class ="alert " *ngIf="height.height.touched&&height.height.invalid">Please, Enter valid height.</div> </div> 
-            <div class="basic-form">
-         
-            <label class="form-header" for="weight">Weight(kgs):</label>
-            <input
-                    formControlName="weight"
-                    id="weight"
-                    type="number"
-                    class="form-control"
-                    placeholder="weight in kgs">
-            <div class ="alert " *ngIf="weight.weight.touched&&weight.weight.invalid">Please, Enter valid weight.</div> 
-
-                </div>
-           
-                
-                <div class="basic-form">
-               
-
-            <label class="form-header" for="">Physical Disability:</label>
-            <select formControlName="pd" class="form-control" (click) = "emitData()" (ngModelChange)="sendData()">
-                <option disabled>Select Physical Disability</option>
-                <option *ngFor="let phd of physical">{{phd}}</option>
-            </select>
-            <div *ngIf="pd.pd.touched && pd.pd.invalid"  class="alert ">
-                <div *ngIf="pd.pd.errors.required">Physical Disability field is required</div>
-            </div>
-        
-</div>
-<div class="basic-form">    
-    <label class="form-header" for="bp">Birth Place:<span class = "star-color">*</span></label>
-<input
-
-    formControlName="bp"
-    type="text"
-    (ngModelChange)="sendData()"
-    class="form-control"
-    placeholder="Birth Place"
->
-<!-- <div *ngIf="bp.bp.touched && bp.bp.invalid" class="alert ">
-<div *ngIf="bp.bp.errors.required">Birth Place is required</div> -->
-</div>
-<!-- </div> -->
-<div class="basic-form">    
-    <label  class="form-header" for="idm1">Identification Mark 1:</label>
-<input
-    formControlName="idm1"
-    id="idm1"
-    type="text"
-    (click)="sendData()"
-    class="form-control"
-
-    placeholder="Identification Mark 1">
-</div>
-<div class = 'basic-form'>
-    <label class="form-header" for="idm2">Identification Mark 2:</label>
-    <input
-  formControlName="idm2"
-    id="idm2"
-    type="text"
-    (click)="sendData()"
-    class="form-control"
-    placeholder="Identification Mark 2">
-</div>
-
-        <button mat-raised-button class="basic-btn btn-primary btn-sm bg-blue" (click)="submit()" style = "margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid" type="submit"><span style="font-size: 14px;">Save</span></button>
-        <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
-
-    </form>
-</div></div></div>

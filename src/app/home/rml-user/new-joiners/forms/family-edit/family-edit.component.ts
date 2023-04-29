@@ -33,7 +33,7 @@ export class FamilyEditComponent implements OnInit {
   message = {'fam':false}
   message_bad = {'fam':true}
 
-relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter']
+relation: any = ['Father', 'Mother', 'Brother', 'Sister', 'Son', 'Daughter', 'Wife']
 dependent: any = ['Dependent', 'Self-Sufficient']
 mobile: any
 mobile_validate : any = false
@@ -181,7 +181,9 @@ public valid(){
 }
 
 valids(event :any, item:any){
-  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  console.log(event.length);
+  
+  if((this.familyData[0].age<=100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
     if(item == 'ContactNumber')
       {

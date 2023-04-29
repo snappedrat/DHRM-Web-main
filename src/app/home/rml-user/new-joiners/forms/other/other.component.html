@@ -4,16 +4,16 @@
     <form [formGroup]="forms">
         <div  style = "width:fit-content" class="other-form">  
             <label class="form-header"for="known">Do You Have Any Relations Or Friends Employed In Any Location Of Rane Group Of Companies Or Office</label>  
-            <select (click)="sendData()" formControlName="known" class="form-control">
+            <select (ngModelChange)="sendData()" formControlName="known" class="form-control">
                 <option>Choose</option>
-              <option *ngFor="let rel of Relations">{{rel}}</option>
+              <option *ngFor="let rel of Relations" [ngValue]="rel">{{rel}}</option>
               </select> 
     
         </div>  
         <div style="width:fit-content" class="other-form">  
             <label class="form-header"for="names"> Name</label>  
             <input   
-            (click)="sendData()"
+            (ngModelChange)="sendData()"
                 formControlName="names"  
                 id="names"   
                 type="text"   
@@ -24,7 +24,7 @@
         <div style="width:fit-content" class="other-form">  
             <label class="form-header"for="com">Company/Agency Name Of The Acquaintance</label>  
             <input   
-            (click)="sendData()"
+            (ngModelChange)="sendData()"
                 formControlName="com"  
                 id="com"   
                 type="text"   
@@ -34,9 +34,9 @@
         </div>
         <div style = "width:fit-content" class="other-form">  
             <label class="form-header"for="work">Have You Ever Worked In Any Company/Plant/Office Of Rane Group </label>  
-            <select (click)="sendData()" formControlName="work" class="form-control">
+            <select (ngModelChange)="sendData()" formControlName="work" class="form-control">
                 <option>Choose</option>
-              <option *ngFor="let wk of Works">{{wk}}</option>
+              <option *ngFor="let wk of Works" [ngValue]="wk">{{wk}}</option>
               </select>
         </div>  
 
@@ -44,7 +44,7 @@
             <label class="form-header" for="place">Name Of The Company</label>  
             <input   
                 formControlName="place"  
-                (click)="sendData()"
+                (ngModelChange)="sendData()"
                 id="place"   
                 type="text"   
                 class="form-control"
@@ -56,14 +56,14 @@
             <label class="form-header"for="extra">Extra Curricular Activities (Sports/Hobbies) </label>  
             <input   
                 formControlName="extra"  
-                (click)="sendData()"
+                (ngModelChange)="sendData()"
                 id="extra"   
                 type="text"   
                 class="form-control"
-                placeholder="Extra Curricular Activities (Sports/Hobbies)" (click)="sendData()">  
+                placeholder="Extra Curricular Activities (Sports/Hobbies)">  
  
         </div>
-           <button mat-raised-button (click)="submit()" (click)="sendData()" class="other-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
+           <button mat-raised-button (click)="submit()" (ngModelChange)="sendData()" class="other-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;"  type="submit"><span style="font-size: 14px;">Save</span></button>
            <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state" >&nbsp; Details are saved</span>
 
     </form></div>
