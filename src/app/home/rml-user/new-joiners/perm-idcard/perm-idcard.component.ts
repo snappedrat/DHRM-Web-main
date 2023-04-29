@@ -107,7 +107,7 @@ export class PermIdcardComponent implements OnInit {
         this.url = this.url+'/' + this.formvalues[0]?.other_files6
         this.plant = environment.path+'/plant/' + this.formvalues[0]?.plant_sign
 
-        console.log("url",this.plant)
+        console.log("url",this.plant, this.url)
       },
       error: (error) => 
       console.log(error),

@@ -61,10 +61,15 @@
 {
   font-size: 15px;
 }
+.name-container {
+  max-width: 2000px;
+  height: 80px;
+  }
+
 
 textarea{
   resize: none;
-  border-color: white;
+  border-color: transparent;
   text-align: center;
   background-color: transparent;
 }
@@ -96,11 +101,12 @@ textarea{
 }
 .sign{
   /* margin-left: 65%; */
+  padding-left: 25px;
   width: 70%;
 
 }
 .sign1{
-  margin-right:40%;
+  padding-left: 25px;
   font-size: large;
 }
 .company_addr{

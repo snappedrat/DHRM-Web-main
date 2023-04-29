@@ -2,14 +2,14 @@
   <div *ngFor="let i of formvalues" class="container">
     <div class="card bg-image">
       <div class="row px-2 pt-2"><img style="float: left; margin-left: 10px;" class="img"
-          src="../../../../../assets/rane.png" alt="Avatar"></div>
-      <img class="row text-center img" [src]=this.url alt="Avatar"><br><br><br>
+          src="assets/rane.png" alt="Avatar"></div>
+      <img class="row text-center img" [src]=this.url alt="Avatar"><br><br>
       <table class="font">
 
         <div class="mx-5" style="align-items: center; text-align: center;">
           <tr class="font">
-            <div style="display: inline-block; padding-left: 13px;">
-              <div style="font-size: large; text-align: center; font-size: 40px;">{{i.fullname}}</div><br>
+            <div style="padding-left: 5px;">
+              <div class="name-container" style="font-size: large; text-align: center; font-size: 30px; "><textarea style="height:100px;width:300px; line-height: 1;" readonly>{{i.fullname}}</textarea></div><br>
 
               <div style="font-size: large; text-align: center; font-size: 20px;">Trainee ID:{{i.gen_id}}</div>
               <br><br><br>
@@ -22,12 +22,12 @@
                     <td div class="aligncommand1"><b> Valid to</b></td>
                     <td div class="aligncommand1">:{{toodate}}</td><br><br> -->
             </div><br><br><br>
-            <div class="sign">
-              <img class="img2" [src]=this.plant alt="Avatar">
-            </div><br>
-            <div class="sign1">
-              <b>Issuing Authority </b>
-            </div>
+        </div>
+        <div class="sign">
+          <img class="img2" [src]=this.plant alt="Avatar">
+        </div><br>
+        <div class="sign1">
+          <b>Issuing Authority </b>
         </div>
       </table>
     </div>
@@ -59,7 +59,7 @@
                 <td div class="aligncommand1">:{{i.biometric_no}}</td>
             </div><br>
             <div style="font-size: 25px;"> <b>Address:</b></div><br>
-            <div>{{i.permanent_address}}</div><br><br>
+            <div>{{i.permanent_address}}</div><br>
             <!-- <textarea class = 'home_addr' type="text" formControlName="permanent" readonly style="width: 350px;height:auto;font-size: 15px;"></textarea> -->
             <div class="md">
               <tr>
