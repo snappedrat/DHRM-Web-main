@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="col"><br>
-                                    <label>UAN Number <span style="color: red;">*</span><span style="color: red;"
+                                    <label>UAN Number<span style="color: red;"
                                             *ngIf="this.true"> (it should be 12 digit)</span></label>
                                     <input class="form-control" (ngModelChange)="call($event)" type="number"
                                         formControlName="uan" [readonly]="readonly">
