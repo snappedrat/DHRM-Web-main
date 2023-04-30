@@ -4,13 +4,9 @@
         <br>
      <h1>&nbsp;<b>Evaluation Form</b></h1>
       <div class="card"> 
-          <table class="table-bordered" style="border: 8px; width: 400px;">
+        <img class = "img" [src]="this.image" alt="Avatar" style="display: flex;justify-content: center;align-items: center  ;">    
+          <table class="table-bordered" style=" width: 400px;">
             <br><br>
-            <div>
-            <tr>
-              <td><img class = "img" [src]="this.image" alt="Avatar" ></td>
-
-            </tr></div>
               <br><br><br>
               <div class="px-5">
                 <tr class="font">
@@ -40,11 +36,12 @@
                         <td *ngIf="readable" class = "stylecommand" ><b> Uploaded File&nbsp;</b></td><br>
                         <td  *ngIf="readable" ><a [href]="this.uploaded" target="_blank" >&nbsp;View Hr file</a></td></tr>
                     <tr>
-                        <td *ngIf="appr" class = "stylecommand" ><b> Uploaded File&nbsp;</b></td><br>
-                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >&nbsp;View Supervisor file</a></td></tr><br><br>
+                        <td *ngIf="appr && sup_file != null" class = "stylecommand" ><b> Uploaded File&nbsp;</b></td><br>
+                        <td  *ngIf="appr" ><a [href]="this.uploaded2" target="_blank" >&nbsp;{{sup_file == null ? null : txt}}</a></td></tr><br><br>
                 </div>
              </table>
-      </div></div>     
+      </div>
+    </div>     
     </div>
     <div class="row1">
     <div class="col">

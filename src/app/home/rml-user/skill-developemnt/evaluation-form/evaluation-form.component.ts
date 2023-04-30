@@ -37,7 +37,7 @@ export class EvaluationFormComponent implements OnInit {
   readable:any = false
   appr:any = false
   save:any = 'Save'
-
+  txt:any = "View Supervisor file"
   nav:any
 
   url: any = environment.path
@@ -49,6 +49,7 @@ export class EvaluationFormComponent implements OnInit {
   uploaded2: any;
   id: any;
   department_: any;
+  sup_file: any;
       constructor(private fb : UntypedFormBuilder, private http: HttpClient, private service: ApiService, private active: ActivatedRoute, private router: Router, private modalService : NgbModal) {
     
         this.form = this.fb.group({
@@ -119,7 +120,8 @@ export class EvaluationFormComponent implements OnInit {
             console.log(response)
             this.obj = response;
             this.image = this.url+'/'+this.obj[0][0]?.other_files6;
-
+            console.log(this.image);
+            
             
             try 
             {
@@ -189,6 +191,7 @@ export class EvaluationFormComponent implements OnInit {
                 this.form.controls['new_skill'].setValue(response[4][0]?.new_level)
                 this.uploaded = this.url+'/skill_dev/'+response[0][0]?.tnr_filename
                 this.uploaded2 = this.url+'/skill_dev/'+response[0][0]?.sup_filename
+                this.sup_file = response[0][0]?.sup_filename
               }
             }
           )

@@ -125,6 +125,32 @@ export class BasicComponent implements OnInit {
                 this.form.get('pres_city')?.setValue(this.form.get('city')?.value);
                 this.form.get('pres_pc')?.setValue(this.form.get('pc')?.value);
                 this.form.get('pres_st')?.setValue(this.form.get('st')?.value);
+
+                this.form.get('permanent')?.valueChanges.subscribe((value: any) => {
+                    if (this.form.get('sameAsPermanent')?.value == 'true') {
+                        this.form.get('present')?.setValue(value);
+                    }
+                });
+                
+                this.form.get('city')?.valueChanges.subscribe((value: any) => {
+                    if (this.form.get('sameAsPermanent')?.value == 'true') {
+                        this.form.get('pres_city')?.setValue(value);
+                    }
+                });
+                
+                this.form.get('pc')?.valueChanges.subscribe((value: any) => {
+                    if (this.form.get('sameAsPermanent')?.value == 'true') {
+                        this.form.get('pres_pc')?.setValue(value);
+                    }
+                });
+                
+                this.form.get('st')?.valueChanges.subscribe((value: any) => {
+                    if (this.form.get('sameAsPermanent')?.value == 'true') {
+                        this.form.get('pres_st')?.setValue(value);
+                    }
+                });
+                
+
             }
             if (value == 'false') {
                 this.form.get('present')?.setValue('')
@@ -169,8 +195,12 @@ export class BasicComponent implements OnInit {
                 this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
                 this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
                 this.form.controls['present'].setValue(this.basic[0]?.present_address)
-                if (this.form.controls['permanent'].value != this.form.controls['permanent'].value) {
-                    this.form.controls['sameAsPermanent'].setValue('false')
+                console.log(this.basic[0]?.pincode , this.basic[0]?.pres_pincode);
+                
+                if (this.basic[0]?.pincode == this.basic[0]?.pres_pincode) {
+                    this.form.controls['sameAsPermanent'].setValue('true')
+                    console.log("sameee", this.form.value);
+                    
                 }
                 this.form.controls['nation'].setValue(this.basic[0]?.nationality)
                 this.form.controls['height'].setValue(this.basic[0]?.height)
@@ -191,9 +221,11 @@ export class BasicComponent implements OnInit {
                 this.form.controls['reg'].setValue(this.basic[0]?.religion)
 
                 this.form.controls['pc'].setValue(this.basic[0]?.pincode)
-
                 this.form.controls['city'].setValue(this.basic[0]?.city)
                 this.form.controls['st'].setValue(this.basic[0]?.state_name)
+                this.form.controls['pres_pc'].setValue(this.basic[0]?.pres_pincode)
+                this.form.controls['pres_city'].setValue(this.basic[0]?.pres_city)
+                this.form.controls['pres_st'].setValue(this.basic[0]?.pres_state_name)
 
                 this.form.controls['bp'].setValue(this.basic[0]?.birth_place)
                 this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
@@ -280,7 +312,24 @@ export class BasicComponent implements OnInit {
                     error: (err) => console.log(err)
                 })
         }
+    }
 
+    pres_setcity_state(event: any) {
+        if (event?.length == 6) {
+            console.log(event.length)
+            var pincode = {
+                "pincode": event
+            }
+            this.formservice.getpincode(pincode)
+                .subscribe({
+                    next: (response) => {
+                        console.log("pincode : ", response), this.pincodes = response;
+                        this.form.controls['pres_st'].setValue(this.pincodes[0]?.statename)
+                        this.form.controls['pres_city'].setValue(this.pincodes[0]?.dvisionname)
+                    },
+                    error: (err) => console.log(err)
+                })
+        }
     }
 
     hide_vacc(event: any) {

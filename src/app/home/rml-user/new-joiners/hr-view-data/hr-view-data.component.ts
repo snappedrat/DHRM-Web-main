@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { threadId } from 'worker_threads';
 import { FormService } from '../form.service';
@@ -45,8 +46,13 @@ export class HrViewDataComponent implements OnInit {
 	url_natx_file: any
   apln_status: any;
 
-  constructor(private http: HttpClient, private active : ActivatedRoute, private router: Router, private service : FormService, private apiservice: ApiService) {
+  constructor(private http: HttpClient,public location : Location, private active : ActivatedRoute, private router: Router, private service : FormService, private apiservice: ApiService) {
     this.action = this.active.snapshot.paramMap.get('action')
+   }
+
+   goback()
+   {
+    this.location.back()
    }
 
   ngOnInit(): void {

@@ -97,6 +97,7 @@ export class ChooseFilesComponent implements OnInit {
 	flagged_for_rml: any = true;
 	state: boolean= false;
 	state_: boolean= false;
+	state_1: boolean= false;
 	
   constructor(private service: FormService, private active : ActivatedRoute, private http: HttpClient) {
 	this.ishr = sessionStorage.getItem('ishr')
@@ -140,7 +141,8 @@ generate_link(){
 
 	this.photo_file_name = this.filenames[0]?.other_files6
 	this.urlforphoto = this.url+this.filenames[0]?.other_files6
-
+	console.log(this.urlforphoto,"==");
+	
 	this.signature_file_name = this.filenames[0]?.other_files7
 	this.urlforSign = this.url+this.filenames[0]?.other_files7
 
@@ -174,7 +176,7 @@ generate_link_rml(){
 	this.basicDetails = response;
 	this.filenames = this.basicDetails;
 
-	this.appointmentorder_file_name = this.filenames[0]?.other_files8
+		this.appointmentorder_file_name = this.filenames[0]?.other_files8
 		this.url_appointmentorder_file = this.url+this.filenames[0]?.other_files8
 
 		this.declaration_file_name = this.filenames[0]?.other_files9
@@ -195,9 +197,9 @@ generate_link_rml(){
 		this.natx_file_name = this.filenames[0]?.other_files14
 		this.url_natx_file = this.url+this.filenames[0]?.other_files14
 		
-		this.state_ = true
+		this.state_1 = true
 		setTimeout(() => {
-			this.state_ = false
+			this.state_1 = false
 		}, 2000);},
 		error:(err)=>{console.error(err)}
 	})
@@ -216,7 +218,7 @@ valid()
 				this.flagged = false
 				this.emit.emit(this.message)
 			}
-	}, 50);
+	}, 500);
 	}
 	else
 	{
@@ -259,9 +261,18 @@ onResumeChange(event:any){
 				else
 				{
 					if(new_ != 'docx' && new_ != 'docs' && new_ != 'png'&& new_ != 'jpg' && new_!='jpeg'&& new_ != 'pdf')
+					{
+						const ms:any = document.getElementById('resume')
+						ms.value = ''
+						this.resume_file = null	
 						window.alert("File is not of metioned type")
+					}
 					else
+					{
+
 						this.service.fileupload(this.resume_file,this.uniqueId.mobile,this.uniqueId.company, this.rollno +'_resume','1' )
+
+					}
 				}
 	}
 
@@ -287,9 +298,20 @@ onMarksheetChange(event:any){
 			{
 				window.alert("File is not of metioned type")
 				this.marksheet_file = null
+				const ms:any = document.getElementById('marksheet')
+				ms.value = ''
+				this.marksheet_file = null
 			}
 			else
+			{
+				this.marksheet_file_name = this.marksheet_file_name == null ? 'photo' : this.marksheet_file_name
 				this.service.fileupload(this.marksheet_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_marksheet','2' )
+				if(this.photo_file_name != null && this.aadharcard_file_name != null && this.marksheet_file_name != null)
+				{
+						this.flagged = false
+						this.emit.emit(this.message)	
+				}
+			}
 		}
 }
 
@@ -350,7 +372,15 @@ onAadharcardChange(event:any){
 			this.aadharcard_file = null
 		}
 		else
+		{		
+			this.aadharcard_file_name = this.aadharcard_file_name == null ? 'photo' : this.aadharcard_file_name	
 			this.service.fileupload(this.aadharcard_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_aadhar','4' )
+			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.marksheet_file_name != null)
+			{
+					this.flagged = false
+					this.emit.emit(this.message)	
+			}
+		}
 	}
 	// this.urlforaadhar = this.url+this.filenames[0]?.other_files4
 
@@ -414,7 +444,17 @@ onPhotoChange(event:any){
 			}
 
 		else
+		{			
+			this.photo_file_name = this.photo_file_name == null ? 'photo' : this.photo_file_name	
 			this.service.fileupload(this.photo_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_photo','6' )
+			console.log(this.marksheet_file_name ,this.photo_file_name, this.aadharcard_file_name);
+
+			if(this.photo_file_name != null && this.aadharcard_file_name != null && this.marksheet_file_name != null)
+			{
+					this.flagged = false
+					this.emit.emit(this.message)	
+			}
+		}
 	}
 	// this.urlforphoto = this.url+this.filenames[0]?.other_files6
 

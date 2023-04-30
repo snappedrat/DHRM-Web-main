@@ -25,7 +25,7 @@
 	</div> 
 
 	<td>
-		<a [href]= 'urlforMark' target = "_blank">{{marksheet_file_name}}  </a>
+		<a [href]= 'urlforMark' target = "_blank">{{marksheet_file_name  == 'photo' ? null : marksheet_file_name}}  </a>
         </td>
     </tr> 
 	<tr>
@@ -45,7 +45,7 @@
 		</div> 
 
 		<td>
-			<a [href]= 'urlforaadhar' target = "_blank">{{aadharcard_file_name}}</a>
+			<a [href]= 'urlforaadhar' target = "_blank">{{aadharcard_file_name == 'photo' ? null : aadharcard_file_name}}</a>
           </td>
       </tr>
       <tr>
@@ -65,7 +65,7 @@
 		</div> 
 
 		<td>
-			<a [href]= 'urlforphoto' target = "_blank" (change)="valid()"> {{photo_file_name}} </a>
+			<a [href]= 'urlforphoto' target = "_blank" (change)="valid()"> {{photo_file_name == 'photo' ? null : photo_file_name}} </a>
     	</td>
       </tr>
       <tr>
@@ -168,7 +168,7 @@
      
 </table>
   <button mat-raised-button type="submit" value = "save" class="choose-btn btn-primary btn-sm" style = "margin-top: 20px; text-align:center;" (click)="generate_link_rml()"><span style="font-size: 14px;">Save</span></button>
-  <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_" >&nbsp; Details are saved</span>
+  <span style = 'float:right;font-size: 20px;color: green;' class="animate" @slowAnimate *ngIf="state_1" >&nbsp; Details are saved</span>
 
 </div>
 </form>

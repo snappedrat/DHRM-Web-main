@@ -194,7 +194,7 @@
                                 <label class="form-header" for="name">Present Pincode:<span class="star-color">*</span></label>
                                 <input formControlName="pres_pc" id="pres_pc" type="text" maxlength="6" class="form-control"
                                     placeholder="Present Pincode" (ngModelChange)="sendData()" [(ngModel)]='pincode_ng'
-                                    (ngModelChange)="setcity_state($event)">
+                                    (ngModelChange)="pres_setcity_state($event)">
                                 <div *ngIf="pc.pres_pc.touched && pc.pres_pc.invalid" class="alert ">
                                     <div *ngIf="pc.pres_pc.errors.required">Pincode is required</div>
                                 </div>
