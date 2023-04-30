@@ -59,7 +59,7 @@
                                                 <td>{{i+1}}</td>
                                                 <td style="white-space: pre;">{{a.question}}<br><br>
                                                     <div
-                                                        *ngIf="a.image_filename != null && a.image_filename != 'null' && a.image_filename != '' ">
+                                                        *ngIf="a.image_filename != null && a.image_filename != 'null' &&  a.image_filename != 'NULL' && a.image_filename != 'undefined'  && a.image_filename != '' ">
                                                         <button (click)="open(content, a.image_filename)" ><img
                                                                 [src]="url+'/qbank/'+a.image_filename" width=300px ngbTooltip="click to view image"
                                                                 height=200px alt="question" ></button><br><br>
