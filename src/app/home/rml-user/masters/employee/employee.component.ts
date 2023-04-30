@@ -131,7 +131,8 @@ export class EmployeeComponent implements OnInit {
     this.service.plantcodelist(company)
       .subscribe({
         next: (response) => {
-          console.log(response); this.plantname = response;
+          console.log(response); 
+          this.plantname = response;
         },
         error: (error) => console.log(error),
       });
@@ -151,7 +152,8 @@ export class EmployeeComponent implements OnInit {
     this.service.line_dept_design(plantcode)
       .subscribe({
         next: (response) => {
-          console.log(response); this.all_details = response;
+          console.log(response); 
+          this.all_details = response;
           this.desig = this.all_details[0]
           this.dept = this.all_details[1]
         },
@@ -191,7 +193,8 @@ export class EmployeeComponent implements OnInit {
     this.service.line_dept_design(plantcode)
       .subscribe({
         next: (response) => {
-          console.log(response); this.all_details = response;
+          console.log(response); 
+          this.all_details = response;
           this.desig = this.all_details[0]
           this.dept = this.all_details[1]
 

@@ -113,12 +113,16 @@ sendFormData()
 
     this.service.traineeFormData(this.bankForms.value)
     .subscribe({
-      next: (response:any) => {console.log("vathuchaaa",response);this.errmsg=response;
+      next: (response:any) => {
+      console.log("vathuchaaa",response);
+      this.errmsg=response;
       if(this.errmsg.status == 'newform')
       {
         this.service.getHr({username:'newuser', user:'emp2'})
         .subscribe({
-          next: (response)=>{console.log("hr",response); this.isHrappr = response
+          next: (response)=>{
+          console.log("hr",response); 
+          this.isHrappr = response
           sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
           sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
           sessionStorage.setItem('user', 'emp2')
@@ -130,7 +134,9 @@ sendFormData()
       { 
         this.service.getHr({username:'newuser', user:'emp2'})
         .subscribe({
-          next: (response)=>{console.log("hr",response); this.isHrappr = response
+          next: (response)=>{
+          console.log("hr",response); 
+          this.isHrappr = response
           sessionStorage.setItem('ishr', this.isHrappr[0]?.Is_HR)
           sessionStorage.setItem('ishrappr', this.isHrappr[0]?.Is_HRAppr)
           sessionStorage.setItem('user', 'emp2')
@@ -140,7 +146,9 @@ sendFormData()
 
       }
     else if(this.errmsg.status == 'registered')
-      {window.alert("Your application has already been registered. kindly contact HR department");console.log(this.bankForms.value)}},
+      {window.alert("Your application has already been registered. kindly contact HR department");
+      console.log(this.bankForms.value)
+    }},
       error: (error:any) => console.log(error),
     })
   }

@@ -94,7 +94,10 @@ export class DesignationComponent implements OnInit {
     this.getplantcode()
     this.service.getdesignation().
       subscribe({
-        next: (response) => { console.log(response); this.designation = response }
+        next: (response) => { 
+          console.log(response);
+          this.designation = response 
+          }
       })
   }
 
@@ -103,7 +106,8 @@ export class DesignationComponent implements OnInit {
     this.service.plantcodelist(company)
       .subscribe({
         next: (response) => {
-          console.log(response); this.plantname = response;
+          console.log(response);
+          this.plantname = response;
         },
         error: (error) => console.log(error),
       });
@@ -147,7 +151,8 @@ export class DesignationComponent implements OnInit {
           this.form.get('plant_name').setValue(this.plantname[index].plant_name)
           this.service.getdesignation().
             subscribe({
-              next: (response) => { console.log(response); this.designation = response }
+              next: (response) => { console.log(response);
+                 this.designation = response }
             })
           this.form.reset()
         }
@@ -168,7 +173,8 @@ export class DesignationComponent implements OnInit {
 
             this.service.getdesignation().
               subscribe({
-                next: (response) => { console.log(response); this.designation = response }
+                next: (response) => { console.log(response);
+                   this.designation = response }
               })
           }
         }

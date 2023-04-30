@@ -47,7 +47,9 @@ submitbank(){
   console.log(this.bank)
   this.http.put(this.url+'/hrOperation/bankforms', this.bank)
   .subscribe({
-      next: (response:any) => {console.log(response); this.res = response.message},
+      next: (response:any) => {
+        console.log(response);
+         this.res = response.message},
       error: (error) => console.log(error),
 })
 }
@@ -145,6 +147,7 @@ fileupload(file:any,uniqueId:any,company:any, id_no :any, fileno:any){
   var len = name.length
 
   formData.append("file",file, changedname +'.'+ file.name.split('.')[len-1] )
+  formData.append("name", changedname +'.'+ file.name.split('.')[len-1])
   formData.append("mobile",uniqueId)
   formData.append("company", company)
   formData.append("fileno",fileno)
@@ -160,15 +163,19 @@ submitted(uniqueId: any){
   console.log("----------------------------", uniqueId)
   this.http.put(this.url+'/hrOperation/submitted',uniqueId)
   .subscribe({
-    next: (response) =>{ console.log(response);},
-    error: (error) => console.log(error),
+    next: (response) =>{ 
+      console.log(response);
+    },
+    error: (error) => console.log(error)
+    ,
   })
 }
 
 pending(uniqueId: any){
   this.http.put(this.url+'/hrOperation/pending',uniqueId)
   .subscribe({
-    next: (response) =>{ console.log(response);},
+    next: (response) =>{ console.log(response);
+    },
     error: (error) => console.log(error),
   })
 }
@@ -177,7 +184,8 @@ approved(uniqueId:any){
 
   this.http.put(this.url+'/hrOperation/approved', uniqueId)
   .subscribe({
-    next: (response) =>{ console.log(response);},
+    next: (response) =>{ console.log(response);
+    },
     error: (error) => console.log(error),
   })
 }
@@ -187,7 +195,9 @@ rejected(uniqueId:any){
 
   this.http.put(this.url+'/hrOperation/rejected', uniqueId)
   .subscribe({
-    next: (response) =>{ console.log(response);},
+    next: (response) =>{ 
+      console.log(response);
+    },
     error: (error) => console.log(error),
   })
 }

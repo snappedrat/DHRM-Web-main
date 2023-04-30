@@ -86,7 +86,9 @@ export class PrevEditComponent implements OnInit {
       
       this.formservice.getdatacareer(this.mobile_no1)
       .subscribe({
-        next : (response)=>{console.log("career", response); this.career = response;
+        next : (response)=>{
+          console.log("career", response);
+         this.career = response;
         for(var i = 0; i<4; i++)
         {
           if(this.career[i]?.company_name != null)

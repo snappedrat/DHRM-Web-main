@@ -23,7 +23,7 @@ export class HrViewDataComponent implements OnInit {
   career: any
   education: any
   family: any
-  url:any = environment.path
+  url:any = environment.path+'/'
   flag: any = false
 
 	urlforResume: any 
@@ -88,21 +88,21 @@ export class HrViewDataComponent implements OnInit {
       this.is_vaccinated = 'YES'
       
 
-      this.url_appointmentorder_file = this.url+this.basic[0].other_files8
-      this.url_declaration_file = this.url+this.basic[0].other_files9
-      this.url_medicalfitness_file = this.url+this.basic[0].other_files10 
-      this.url_formA4_file = this.url+this.basic[0].other_files11
-      this.url_form11_file = this.url+this.basic[0].other_files12 
-      this.url_formh2_file = this.url+this.basic[0].other_files13
-      this.url_natx_file = this.url+this.basic[0].other_files14
+      this.url_appointmentorder_file = this.url+'uploads/'+this.basic[0].other_files8
+      this.url_declaration_file = this.url+'uploads/'+this.basic[0].other_files9
+      this.url_medicalfitness_file = this.url+'uploads/'+this.basic[0].other_files10 
+      this.url_formA4_file = this.url+'uploads/'+this.basic[0].other_files11
+      this.url_form11_file = this.url+'uploads/'+this.basic[0].other_files12 
+      this.url_formh2_file = this.url+'uploads/'+this.basic[0].other_files13
+      this.url_natx_file = this.url+'uploads/'+this.basic[0].other_files14
 
-      this.urlforResume = this.url+'/'+this.basic[0].other_files1
-      this.urlforMark = this.url+'/'+this.basic[0].other_files2
-      this.urlforTc = this.url+'/'+this.basic[0].other_files3
-      this.urlforaadhar = this.url+'/'+this.basic[0].other_files4 
-      this.urlforbankpass = this.url+'/'+this.basic[0].other_files5
-      this.urlforphoto = this.url+'/'+this.basic[0].other_files6
-      this.urlforSign = this.url+'/'+this.basic[0].other_files7
+      this.urlforResume = this.url+'uploads/'+this.basic[0].other_files1
+      this.urlforMark = this.url+'uploads/'+this.basic[0].other_files2
+      this.urlforTc = this.url+'uploads/'+this.basic[0].other_files3
+      this.urlforaadhar = this.url+'uploads/'+this.basic[0].other_files4 
+      this.urlforbankpass = this.url+'uploads/'+this.basic[0].other_files5
+      this.urlforphoto = this.url+'uploads/'+this.basic[0].other_files6
+      this.urlforSign = this.url+'uploads/'+this.basic[0].other_files7
 
 
       console.log(this.urlforResume)
@@ -120,7 +120,8 @@ export class HrViewDataComponent implements OnInit {
       this.apiservice.approved_mail({plant_code: sessionStorage.getItem('plant_code'), mobile: this.uniqueId.mobile, company: this.uniqueId.company })
       .subscribe(
         {
-          next: (response:any)=>{console.log(response)}
+          next: (response:any)=>{console.log(response)
+          }
         }
       )
        window.alert("Application has been approved")
@@ -146,7 +147,11 @@ getdatabasic(){
 
   this.service.getdatabasic(this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("basic",response); this.basic = response; this.apln_status = this.basic[0]?.apln_status} ,
+  next: (response) => {
+    console.log("basic",response); 
+    this.basic = response; 
+    this.apln_status = this.basic[0]?.apln_status
+  } ,
   error: (error) => console.log(error),
 })
 }
@@ -157,7 +162,10 @@ getdataqualifn(){
 
   this.service.getdataqualifn(this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("qual",response); this.education = response} ,
+  next: (response) => {
+    console.log("qual",response);
+    this.education = response
+    } ,
   error: (error) => console.log(error),
 })
 }
@@ -169,7 +177,9 @@ getdatafamily(){
 
   this.service.getdatafamily(this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("fam",response); this.family = response} ,
+  next: (response) => {
+    console.log("fam",response); 
+    this.family = response} ,
   error: (error) => console.log(error),
 })
 }
@@ -180,7 +190,10 @@ getdatacareer(){
 
   this.service.getdatacareer(this.uniqueId)
 .subscribe({
-  next: (response) => {console.log("career",response); this.career = response} ,
+  next: (response) => {
+    console.log("career",response); 
+    this.career = response
+  } ,
   error: (error) => console.log(error),
 })
 }

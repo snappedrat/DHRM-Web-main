@@ -227,7 +227,8 @@ export class FormsComponent implements OnInit, OnDestroy{
         this.service.submitted_mail({plant_code: sessionStorage.getItem('plantcode'), mobile: this.uniqueId.mobile, company: this.uniqueId.company})
         .subscribe(
           {
-            next: (response:any)=>{console.log(response)}
+            next: (response:any)=>{console.log(response)
+            }
           }
         )
         this.formservice.submitted(this.uniqueId)

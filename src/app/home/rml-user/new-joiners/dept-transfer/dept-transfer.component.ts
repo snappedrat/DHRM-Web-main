@@ -62,7 +62,12 @@ export class DeptTransferComponent implements OnInit {
     this.service.depttransfer(this.form.value)
     .subscribe(
       {
-        next: (response)=>{console.log(response); this.filterinfo = response;this.collectionSize = this.filterinfo.length;this.getPremiumData()        }
+        next: (response)=>{
+          console.log(response); 
+          this.filterinfo = response;
+          this.collectionSize = this.filterinfo.length;
+          this.getPremiumData()        
+        }
       }
     )
   }

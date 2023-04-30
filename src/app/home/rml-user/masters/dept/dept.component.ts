@@ -67,7 +67,8 @@ export class DeptComponent implements OnInit {
     var company = {'company_name': sessionStorage.getItem('companycode')}
     this.service.plantcodelist(company)
     .subscribe({
-      next: (response) =>{ console.log(response); this.plantname = response;
+      next: (response) =>{ console.log(response);
+         this.plantname = response;
         // for(var o in this.plantname)
         // this.array.push(this.plantname[o].plant_name)
        },

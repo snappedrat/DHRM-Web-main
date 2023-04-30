@@ -125,26 +125,26 @@ generate_link(){
 	this.basicDetails = response;
 	this.filenames = this.basicDetails;
 	this.resume_file_name = this.filenames[0]?.other_files1
-	this.urlforResume = this.url+this.filenames[0]?.other_files1
+	this.urlforResume = this.url+'uploads/'+this.filenames[0]?.other_files1
 
 	this.marksheet_file_name = this.filenames[0]?.other_files2
-	this.urlforMark = this.url+this.filenames[0]?.other_files2
+	this.urlforMark = this.url+'uploads/'+this.filenames[0]?.other_files2
 	
 	this.transfercertificate_file_name = this.filenames[0]?.other_files3
-	this.urlforTc = this.url+this.filenames[0]?.other_files3
+	this.urlforTc = this.url+'uploads/'+this.filenames[0]?.other_files3
 
 	this.aadharcard_file_name = this.filenames[0]?.other_files4
-	this.urlforaadhar = this.url+this.filenames[0]?.other_files4
+	this.urlforaadhar = this.url+'uploads/'+this.filenames[0]?.other_files4
 
 	this.bankpassbook_file_name = this.filenames[0]?.other_files5
-	this.urlforbankpass = this.url+this.filenames[0]?.other_files5
+	this.urlforbankpass = this.url+'uploads/'+this.filenames[0]?.other_files5
 
 	this.photo_file_name = this.filenames[0]?.other_files6
-	this.urlforphoto = this.url+this.filenames[0]?.other_files6
+	this.urlforphoto = this.url+'uploads/'+this.filenames[0]?.other_files6
 	console.log(this.urlforphoto,"==");
 	
 	this.signature_file_name = this.filenames[0]?.other_files7
-	this.urlforSign = this.url+this.filenames[0]?.other_files7
+	this.urlforSign = this.url+'uploads/'+this.filenames[0]?.other_files7
 
 
 	if(this.photo_file_name != null && this.aadharcard_file_name != null && this.marksheet_file_name != null)
@@ -177,25 +177,25 @@ generate_link_rml(){
 	this.filenames = this.basicDetails;
 
 		this.appointmentorder_file_name = this.filenames[0]?.other_files8
-		this.url_appointmentorder_file = this.url+this.filenames[0]?.other_files8
+		this.url_appointmentorder_file = this.url+'uploads/'+this.filenames[0]?.other_files8
 
 		this.declaration_file_name = this.filenames[0]?.other_files9
-		this.url_declaration_file = this.url+this.filenames[0]?.other_files9
+		this.url_declaration_file = this.url+'uploads/'+this.filenames[0]?.other_files9
 		
 		this.medicalfitness_file_name = this.filenames[0]?.other_files10
-		this.url_medicalfitness_file = this.url+this.filenames[0]?.other_files10
+		this.url_medicalfitness_file = this.url+'uploads/'+this.filenames[0]?.other_files10
 
 		this.formA4_file_name = this.filenames[0]?.other_files11
-		this.url_formA4_file = this.url+this.filenames[0]?.other_files11
+		this.url_formA4_file = this.url+'uploads/'+this.filenames[0]?.other_files11
 
 		this.form11_file_name = this.filenames[0]?.other_files12
-		this.url_form11_file = this.url+this.filenames[0]?.other_files12
+		this.url_form11_file = this.url+'uploads/'+this.filenames[0]?.other_files12
 
 		this.formh2_file_name = this.filenames[0]?.other_files13
-		this.url_formh2_file = this.url+this.filenames[0]?.other_files13
+		this.url_formh2_file = this.url+'uploads/'+this.filenames[0]?.other_files13
 
 		this.natx_file_name = this.filenames[0]?.other_files14
-		this.url_natx_file = this.url+this.filenames[0]?.other_files14
+		this.url_natx_file = this.url+'uploads/'+this.filenames[0]?.other_files14
 		
 		this.state_1 = true
 		setTimeout(() => {
@@ -399,7 +399,7 @@ onBankpassbookChange(event:any){
 		window.alert("File size should be less than 1MB") 
 		const t:any = document.getElementById('passbook')
 		t.value =''
-		this.aadharcard_file = null
+		this.bankpassbook_file = null
 	}
 	else
 	{
@@ -408,7 +408,7 @@ onBankpassbookChange(event:any){
 			window.alert("File is not of metioned type")
 			const t:any = document.getElementById('passbook')
 			t.value =''
-			this.aadharcard_file = null
+			this.bankpassbook_file = null
 		}
 				else
 			this.service.fileupload(this.bankpassbook_file,this.uniqueId.mobile,this.uniqueId.company,  this.rollno+'_passbook','5' )

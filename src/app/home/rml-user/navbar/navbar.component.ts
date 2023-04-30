@@ -71,7 +71,8 @@ getHr()
 
     next: (response) => 
     {
-      console.log(response); this.ishrappr = response;;
+      console.log(response);
+      this.ishrappr = response;;
 
       sessionStorage.setItem("all", JSON.stringify(this.ishrappr[0]))
 

@@ -54,7 +54,10 @@ filter()
 {
   this.service.filter(this.form.value)
   .subscribe({
-    next: (response) =>{ console.log(response); this.filterinfo = response},
+    next: (response) =>{ 
+      console.log(response);
+      this.filterinfo = response
+      },
     error: (error) => console.log(error),
   });
 
@@ -64,7 +67,10 @@ searchfilter()
 {
   this.service.searchfilter(this.form.value)
   .subscribe({
-    next: (response) =>{ console.log(response); this.searchfilterinfo= response; this.filterinfo = response},
+    next: (response) =>{ 
+      console.log(response);
+       this.searchfilterinfo= response; 
+       this.filterinfo = response},
     error: (error) => console.log(error),
   });
 

@@ -98,7 +98,9 @@ familyData = [
   ngOnInit(): void {
     this.formservice.getdatafamily(this.mobile_no1)
     .subscribe({
-      next: (response) => {console.log("family",response); this.family = response;
+      next: (response) => {
+        console.log("family",response);
+       this.family = response;
       for(var i= 0; i<4 ;i++)
       {
 

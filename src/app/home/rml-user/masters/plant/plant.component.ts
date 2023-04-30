@@ -207,8 +207,13 @@ upload(event:any)
   this.service.plantupload(formData)
   .subscribe(
     {
-      next: (res)=>{console.log(res)},
-      error: (err=>{console.log(err)})
+      next: (res)=>{
+        console.log(res)
+      },
+      error: (err=>{
+        console.log(err)
+      }
+      )
     }
   )
 

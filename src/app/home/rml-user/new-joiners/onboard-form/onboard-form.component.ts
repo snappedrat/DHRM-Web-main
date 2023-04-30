@@ -214,7 +214,9 @@ export class OnboardFormComponent implements OnInit {
             }
 
           },
-          error: (err) => { console.log(err) }
+          error: (err) => { 
+            console.log(err) 
+          }
         })
     }
     else if (this.readonly == true) {
@@ -227,7 +229,9 @@ export class OnboardFormComponent implements OnInit {
               this.router.navigate(['/rml/new_joiners/onboard'])
             }
           },
-          error: (err) => { console.log(err) }
+          error: (err) => { 
+            console.log(err) 
+          }
         })
     }
   }
@@ -283,7 +287,9 @@ export class OnboardFormComponent implements OnInit {
       .subscribe
       (
         {
-          next: (response) => { console.log(response) }
+          next: (response) => { 
+            console.log(response) 
+          }
         }
       )
 

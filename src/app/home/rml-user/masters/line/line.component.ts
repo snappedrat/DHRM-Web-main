@@ -108,7 +108,8 @@ export class LineComponent implements OnInit {
     this.service.getline().
       subscribe({
         next: (response) => {
-          console.log(response); this.line = response;
+          console.log(response);
+          this.line = response;
         }
       })
   }
@@ -117,7 +118,8 @@ export class LineComponent implements OnInit {
     var company = { 'company_name': sessionStorage.getItem('companycode') }
     this.service.plantcodelist(company)
       .subscribe({
-        next: (response) => { console.log(response); this.plantname = response },
+        next: (response) => { console.log(response); 
+          this.plantname = response },
         error: (error) => console.log(error),
       });
   }
@@ -174,7 +176,8 @@ export class LineComponent implements OnInit {
     this.service.line_dept_design(plantcode)
       .subscribe({
         next: (response) => {
-          console.log(response); this.all_details = response;
+          console.log(response); 
+          this.all_details = response;
           this.dept = this.all_details[1]
         },
         error: (error) => console.log(error),
@@ -208,7 +211,8 @@ export class LineComponent implements OnInit {
             this.service.getline().
               subscribe({
                 next: (response) => {
-                  console.log(response); this.line = response;
+                  console.log(response); 
+                  this.line = response;
                 }
               })
             this.form.reset()

@@ -151,7 +151,9 @@ export class EvaluationFormComponent implements OnInit {
               this.service.getLineName({dept_slno: this.obj[0][0]?.dept_slno})
               .subscribe(
                 {
-                  next:(response:any)=>{console.log(response); this.line = response[0]
+                  next:(response:any)=>{
+                    console.log(response);
+                    this.line = response[0]
                     this.line = this.line.map((a:any)=>a.line_name)
                     this.form.controls['line'].setValue(response[0][0]?.line_name)
                     this.form.controls['line'].disable()
@@ -214,7 +216,9 @@ export class EvaluationFormComponent implements OnInit {
                 this.service.evaluation_mail({plant_code : sessionStorage.getItem('plantcode'), idno : this.trainee_idno})
                 .subscribe(
                   {
-                    next: (response:any)=>{console.log(response)}
+                    next: (response:any)=>{
+                      console.log(response)
+                    }
                   }
 
                 )
@@ -225,7 +229,9 @@ export class EvaluationFormComponent implements OnInit {
           })
         }
         else if(this.active.snapshot.paramMap.get('nav')== '2')
-        {try{this.form.controls['upload_file'].setValue(this.trainee_idno+'_'+'sup_eval'+'.'+this.new)}catch(err){console.log(err)}
+        {try{this.form.controls['upload_file'].setValue(this.trainee_idno+'_'+'sup_eval'+'.'+this.new)}catch(err){
+          console.log(err)
+        }
         this.service.eval_form_sup(this.form.value)
         .subscribe({
           next: (response:any)=>{

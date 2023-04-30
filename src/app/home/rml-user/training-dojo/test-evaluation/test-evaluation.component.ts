@@ -33,7 +33,6 @@ export class TestEvaluationComponent implements OnInit {
       priorityval: [''],
       min_percent: [''],
       plant_code: ['']
-
     })
   }
   filterTrainee: Observable<any[]>;
@@ -165,7 +164,10 @@ export class TestEvaluationComponent implements OnInit {
               this.form.controls['test'].setValue('post-test')
             }
             else
+            {
               this.form.controls['test'].setValue(response.status)
+              // this.form.controls['test'].
+            }
           }
         }
       )
