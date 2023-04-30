@@ -416,11 +416,19 @@ export class BasicComponent implements OnInit {
     validate(event: any) {
         var date = new Date()
         var year = date.getFullYear()
+        console.log(event, event.value);
+        
 
-        if (year - event.target.value.split('-')[0] <= 18)
+        if (year - event.split('-')[0] <= 18)
+        {
             this.flag = 1
+            this.form.get('bd')?.setErrors({'incorrect':true})
+        }
         else
+        {
             this.flag = 0
+            this.form.get('bd')?.setErrors(null)
+        }
     }
 
     submit() {

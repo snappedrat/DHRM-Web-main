@@ -101,7 +101,7 @@
                     <div class="basic-form">
                         <label class="form-header" for="bd">Birth Date:<span class="star-color">*</span></label>
                         <input formControlName="bd" id="bd" type="date" max="2100-12-12" (ngModelChange)="sendData()"
-                            (change)="validate($event)" class="form-control">
+                            (ngModelChange)="validate($event)" class="form-control">
                         <div *ngIf="flag" class="alert ">Invalid Birth Date</div>
                         <div *ngIf="bd.touched && bd.invalid" class="alert ">
                             <div *ngIf="bd.errors.required">Birth Date is required</div>
@@ -350,7 +350,7 @@
                     </div><br>
 
                     <button mat-raised-button class="basic-btn btn-primary btn-sm bg-blue" (click)="submit()"
-                        style="margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid"
+                        style="margin-top: 20px; text-align:center;" [disabled]="form.invalid || aadhar_invalid "
                         type="submit"><span style="font-size: 14px;">Save</span></button>
                     <span style='float:right;font-size: 20px;color: green;' class="animate" @slowAnimate
                         *ngIf="state">&nbsp; Details are saved</span>
