@@ -169,7 +169,7 @@ sendData(){
 } 
 
 public valid(){
-  if((this.familyData[0].age <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != '' && this.familyData[0].contactnumber != undefined && String(this.familyData[0].contactnumber).length == 10 ) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  if((Number(this.familyData[0].age) <= 100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != '' && this.familyData[0].contactnumber != undefined && String(this.familyData[0].contactnumber).length == 10 ) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
     this.flag = false
     this.emit.emit(this.message)
@@ -183,7 +183,7 @@ public valid(){
 valids(event :any, item:any){
   console.log(event.length);
   
-  if((this.familyData[0].age<=100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
+  if((Number(this.familyData[0].age)<=100 && this.familyData[0].age != 0 &&  this.familyData[0].age !=undefined) && (this.familyData[0].contactnumber != ''&&this.familyData[0].contactnumber != undefined) && (this.familyData[0].name != '' && this.familyData[0].name !=   undefined) && (this.familyData[0].occupation != ''&& this.familyData[0].occupation != undefined) && (this.familyData[0].relation != ''&& this.familyData[0].relation != undefined))
   {
     if(item == 'ContactNumber')
       {

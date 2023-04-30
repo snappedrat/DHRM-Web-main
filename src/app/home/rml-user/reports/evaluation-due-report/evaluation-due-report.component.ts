@@ -60,8 +60,26 @@ export class EvaluationDueReportComponent implements OnInit {
 
   exportexcel(): void
 {
+  const newKeys:any = {
+    trainee_idno: 'Trainee ID',
+    fullname: 'Trainee Name',
+    dept_name: 'Department Name',
+    line_name: 'Line Name',
+    evaluation_completed: 'No of Evaluation Completed'
+  };
 
-  var ws = XLSX.utils.json_to_sheet(this.excel);
+  // Map the array and transform each object
+  const transformedArray:any = this.excel.map((obj:any) => {
+    const transformedObj:any = {};
+    Object.keys(obj).forEach(key => {
+      const newKey = newKeys[key] || key;
+      transformedObj[newKey] = obj[key];
+    });
+    return transformedObj;
+  });
+  console.log(transformedArray);
+
+  var ws = XLSX.utils.json_to_sheet(transformedArray);
   var wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "People");
   XLSX.writeFile(wb,"evaluation-due.xlsx");

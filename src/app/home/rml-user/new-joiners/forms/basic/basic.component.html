@@ -128,31 +128,20 @@
                     <div *ngIf="p.permanent.touched && p.permanent.invalid" class="alert ">
                         <div *ngIf="p.permanent.errors.required">Fill the permanent address.</div>
                     </div><br>
-                    <p>Is permanent address same as present address</p>
-                    <div class="basic-form" style="margin-left:20px;">
-                        <input formControlName="sameAsPermanent" type="radio" value="true" class="form-check-input"
-                            checked>YES
-                    </div>
-                    <div class="basic-form" style="margin-left:20px;">
-                        <input formControlName="sameAsPermanent" type="radio" value="false" class="form-check-input">NO
-                    </div><br>
-                    <div class="basic-form">
-                        <label class="form-header" for="present">
-                            Present Address:<span class="star-color">*</span>
-                        </label>
-                        <br>
-                        <textarea type="text" formControlName="present" class="form-control"
-                            (ngModelChange)="sendData()"></textarea>
-                    </div><br>
+
+
+
+
+
                     <div class="row">
                         <div class="basic-form">
                             <div class="col-lg-10">
                                 <label class="form-header" for="name">Pincode:<span class="star-color">*</span></label>
                                 <input formControlName="pc" id="pc" type="text" maxlength="6" class="form-control"
-                                    placeholder="Pincode" (ngModelChange)="sendData()" [(ngModel)]='pincode_ng'
+                                    placeholder="Pincode" (ngModelChange)="sendData()"
                                     (ngModelChange)="setcity_state($event)">
-                                <div *ngIf="pc.pc.touched && pc.pc.invalid" class="alert ">
-                                    <div *ngIf="pc.pc.errors.required">Pincode is required</div>
+                                <div *ngIf="pc['pc'].touched && pc.pc.invalid" class="alert ">
+                                    <div *ngIf="pc['pc'].errors.required">Pincode is required</div>
                                 </div>
                             </div>
                         </div>
@@ -171,17 +160,69 @@
                     </div><br>
                     <div class="basic-form">
                         <label class="form-header" for="">State:<span class="star-color">*</span></label>
-                        <!-- <select formControlName="st" class="form-control">
-                <option disabled>Select State</option>
-                <option>Choose State</option>
-                <option *ngFor="let st of State">{{st}}</option>
-            </select> -->
                         <input formControlName="st" id="st" type="text" class="form-control" placeholder="State"
                             readonly>
                         <div *ngIf="st.st.touched && st.st.invalid" class="alert ">
                             <div *ngIf="st.st.errors.required">state is required</div>
                         </div>
                     </div><br>
+
+
+
+
+                    <p>Is permanent address same as present address</p>
+                    <div class="basic-form" style="margin-left:20px;">
+                        <input formControlName="sameAsPermanent" type="radio" value="true" class="form-check-input"
+                            checked>YES
+                    </div>
+                    <div class="basic-form" style="margin-left:20px;">
+                        <input formControlName="sameAsPermanent" type="radio" value="false" class="form-check-input">NO
+                    </div><br>
+                    <div class="basic-form">
+                        <label class="form-header" for="present">
+                            Present Address:<span class="star-color">*</span>
+                        </label>
+                        <br>
+                        <textarea type="text" formControlName="present" class="form-control"
+                            (ngModelChange)="sendData()"></textarea>
+                    </div><br>
+
+
+                    <div class="row">
+                        <div class="basic-form">
+                            <div class="col-lg-10">
+                                <label class="form-header" for="name">Present Pincode:<span class="star-color">*</span></label>
+                                <input formControlName="pres_pc" id="pres_pc" type="text" maxlength="6" class="form-control"
+                                    placeholder="Present Pincode" (ngModelChange)="sendData()" [(ngModel)]='pincode_ng'
+                                    (ngModelChange)="setcity_state($event)">
+                                <div *ngIf="pc.pres_pc.touched && pc.pres_pc.invalid" class="alert ">
+                                    <div *ngIf="pc.pres_pc.errors.required">Pincode is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="basic-form">
+                            <div class="col-lg-10">
+                                <label class="form-header" for="name">Present City:<span class="star-color">*</span></label>
+                                <input formControlName="pres_city" id="city" type="text" class="form-control"
+                                    placeholder="Present City" readonly>
+                                <div *ngIf="city.pres_city.touched && city.pres_city.invalid" class="alert ">
+                                    <div *ngIf="city.pres_city.errors.required">City field is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="basic-form">
+                        <label class="form-header" for="">Present State:<span class="star-color">*</span></label>
+                        <input formControlName="pres_st" id="st" type="text" class="form-control" placeholder="Present State"
+                            readonly>
+                        <div *ngIf="st.pres_st.touched && st.pres_st.invalid" class="alert ">
+                            <div *ngIf="st.pres_st.errors.required">state is required</div>
+                        </div>
+                    </div>
+                    <br>
 
 
                     <div class="basic-form">

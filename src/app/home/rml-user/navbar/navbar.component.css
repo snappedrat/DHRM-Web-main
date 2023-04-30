@@ -39,11 +39,11 @@
   padding-right: 5px;
 }
 
-/deep/ .mat-drawer-container {
+ .mat-drawer-container {
   background-color: white !important;
 }
 
-/deep/ .mat-icon{
+ .mat-icon{
   width: 35px !important;
 }
 #logout{

@@ -93,13 +93,16 @@ export class BasicComponent implements OnInit {
             city: [''],
             st: [''],
             pc: ['', [Validators.required, Validators.maxLength(6), Validators.pattern('[0-9][0-9][0-9][0-9][0-9][0-9]')]],
+            pres_city: [''],
+            pres_st: [''],
+            pres_pc: ['', [Validators.required, Validators.maxLength(6), Validators.pattern('[0-9][0-9][0-9][0-9][0-9][0-9]')]],
             reg: ['', Validators.required],
             mar: ['', Validators.required],
             pd: ['', Validators.required],
             bp: ['', Validators.required],
             idm1: [''],
             idm2: [''],
-            sameAsPermanent: ['true'],
+            sameAsPermanent: ['false'],
             mobilenumber: [this.active.snapshot.paramMap.get('mobile_no1')],
             company: [this.active.snapshot.paramMap.get('company')]
         })
@@ -116,19 +119,38 @@ export class BasicComponent implements OnInit {
         })
 
         this.form.get('sameAsPermanent')?.valueChanges.subscribe((value: any) => {
-            console.log(value);
+
             if (value == 'true') {
                 this.form.get('present')?.setValue(this.form.get('permanent')?.value);
-            } else {
-                this.form.get('present')?.setValue('')
-                console.log(this.form.value);
+                this.form.get('pres_city')?.setValue(this.form.get('city')?.value);
+                this.form.get('pres_pc')?.setValue(this.form.get('pc')?.value);
+                this.form.get('pres_st')?.setValue(this.form.get('st')?.value);
             }
+            if (value == 'false') {
+                this.form.get('present')?.setValue('')
+                this.form.get('pres_city')?.setValue('')
+                this.form.get('pres_pc')?.setValue('')
+                this.form.get('pres_st')?.setValue('')
+            }
+
+            // console.log(value);
+            // if (value == 'true') {
+            //     this.form.get('present')?.setValue(this.form.get('permanent')?.value);
+            //     this.form.get('pres_city')?.setValue(this.form.get('city')?.value);
+            //     this.form.get('pres_pc')?.setValue(this.form.get('pc')?.value);
+            //     this.form.get('pres_st')?.setValue(this.form.get('st')?.value);
+            // } else {
+            //     this.form.get('present')?.setValue('')
+            //     this.form.get('pres_city')?.setValue('')
+            //     this.form.get('pres_pc')?.setValue('')
+            //     this.form.get('pres_st')?.setValue('')
+            //     console.log(this.form.value);
+            // }
         });
 
     }
 
     getdatabasic() {
-
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1')
         this.uniqueId.company = this.active.snapshot.paramMap.get('company')
         this.formservice.getdatabasic(this.uniqueId)
@@ -147,8 +169,7 @@ export class BasicComponent implements OnInit {
                 this.form.controls['bd'].setValue(this.basic[0]?.birthdate)
                 this.form.controls['permanent'].setValue(this.basic[0]?.permanent_address)
                 this.form.controls['present'].setValue(this.basic[0]?.present_address)
-                if(this.form.controls['permanent'].value != this.form.controls['permanent'].value)
-                {
+                if (this.form.controls['permanent'].value != this.form.controls['permanent'].value) {
                     this.form.controls['sameAsPermanent'].setValue('false')
                 }
                 this.form.controls['nation'].setValue(this.basic[0]?.nationality)
