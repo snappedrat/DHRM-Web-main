@@ -119,7 +119,7 @@ export class EvaluationFormComponent implements OnInit {
 
             console.log(response)
             this.obj = response;
-            this.image = this.url+'/'+this.obj[0][0]?.other_files6;
+            this.image = this.url+'/uploads/'+this.obj[0][0]?.other_files6;
             console.log(this.image);
             
             
