@@ -3,7 +3,7 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
         <mat-toolbar style="background-color:  #023075; color: white; padding-left: 90px">MENU</mat-toolbar>
         <mat-nav-list style="background-color: #023075;">
-            <a mat-list-item routerLink="#" style="color: white">
+            <a mat-list-item routerLink="/rml/dashboard" style="color: white">
                 <mat-icon class="icon-pad">dashboard</mat-icon> Dashboard</a>
             <div *ngIf = "isadmin == 'true' ">
             <mat-expansion-panel [class.mat-elevation-z0]="true" dense style="background-color: #023075;">

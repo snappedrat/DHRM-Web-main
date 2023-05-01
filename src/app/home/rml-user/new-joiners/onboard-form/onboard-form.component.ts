@@ -313,5 +313,11 @@ export class OnboardFormComponent implements OnInit {
           }
         })
   }
+  printid()
+  {
+    const url = this.router.createUrlTree(['/perm-idcard', this.apln_slno, this.form.controls['category'].value]);
+    window.open(url.toString(), '_blank');
+
+  }
 
 }

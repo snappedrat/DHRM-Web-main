@@ -5,6 +5,7 @@
   float: left;
   font-size:2px;
   border-color: black;
+  margin-right: 20px;
 }
 .card2 {
 
@@ -23,7 +24,7 @@
 
 .container {
   font-size:15px;
-  padding-top: 100px;
+  padding-top: 50px;
   padding-left: 10%;
 
 }
@@ -84,8 +85,8 @@ textarea{
 }
 .img{
   /* margin-left: 35%; */
-  height: 100px;
-  width: 25%;
+  /* height: 100px; */
+  /* width: 25%; */
   position: relative;
   align-items: center;
   align-self: center;
@@ -94,19 +95,15 @@ textarea{
   display: flex;
 
 }
-.img2{
-  /* margin-left: 35%; */
-  max-height: 70px;
-  max-width: 40%;
-}
 .sign{
   /* margin-left: 65%; */
-  padding-left: 25px;
-  width: 70%;
+  float: right;
+  padding-right: 25px;
 
 }
 .sign1{
-  padding-left: 25px;
+  float: right;
+  padding-right: 25px;
   font-size: large;
 }
 .company_addr{
@@ -128,7 +125,7 @@ textarea{
   font-size: 20px;
 }
 .aligncommand1{
-  line-height: 20px;
+  /* line-height: 20px; */
    width: 200px; 
    border: 1px ;
 }

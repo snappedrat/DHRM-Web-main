@@ -486,8 +486,7 @@
         (click)="approved()" style="margin-bottom:auto;" class="btn-primary btn-xlg">Approve</button>
     <button mat-raised-button *ngIf="apln_status == 'SUBMITTED' && action == 'approval' " type="submit"
         (click)="rejected()" style="margin-bottom:auto;" class="btn-danger btn-xlg">Reject</button>
-    <button mat-raised-button class="btn-info" *ngIf="this.apln_status == 'APPROVED' "
-        [routerLink]="['/idcard',this.apln_status, this.uniqueId.mobile, this.uniqueId.company]"><span
+    <button mat-raised-button class="btn-info" *ngIf="this.apln_status == 'APPROVED' " (click)="printid()"><span
             style="font-size: 14px;">PRINT ID CARD</span></button>
     <br><br>
 </div>

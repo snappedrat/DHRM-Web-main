@@ -11,6 +11,7 @@ import { TraineeTestComponent } from './home/rml-user/training-dojo/trainee-test
 import { AuthGuard } from './home/Guards/Auth.guard';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
 import { PermIdcardComponent } from './home/rml-user/new-joiners/perm-idcard/perm-idcard.component';
+import { DashboardComponent } from './home/rml-user/dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {
     path:"rml",
-    loadChildren:() => import('./home/rml-user/rml-user.module').then(m => m.RmlUserModule)  },
+    loadChildren:() => import('./home/rml-user/rml-user.module').then(m => m.RmlUserModule)  
+  },
   {
     path:'first',
     component:FirstPageComponent,
@@ -60,6 +62,10 @@ const routes: Routes = [
   {
     path:'page-not-found',
     component: PageNotFoundComponent
+  },
+  {
+    path:'dashboard',
+    component: DashboardComponent
   }
   
 ];

@@ -197,4 +197,10 @@ getdatacareer(){
   error: (error) => console.log(error),
 })
 }
+  printid()
+  {
+    const url = this.router.createUrlTree(['/idcard',this.apln_status, this.uniqueId.mobile, this.uniqueId.company]);
+    window.open(url.toString(), '_blank');
+
+  }
 }

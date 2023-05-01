@@ -149,8 +149,9 @@
                     <div class="button-container">
                         <button mat-raised-button color="primary" *ngIf="readonly" [disabled]="onboard" type="submit"
                             (click)="submit()">Save</button>&nbsp;
-                        <button *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent"
-                            [routerLink]="['/perm-idcard', apln_slno, this.form.controls['category'].value]">Print ID card</button>
+                            <button (click)="printid()" *ngIf="this.status == 'APPOINTED' " mat-raised-button color="accent">
+                                Print ID card
+                            </button>
                     </div>
                 </form>
             </div>

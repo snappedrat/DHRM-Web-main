@@ -20,6 +20,7 @@ import { AuthGuard } from './home/Guards/Auth.guard';
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 import { HeaderInterceptor } from './header.interceptor';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { DashboardComponent } from './home/rml-user/dashboard/dashboard.component';
 
 
 
@@ -30,6 +31,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AppComponent,
     NavbarComponent,
     FirstPageComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

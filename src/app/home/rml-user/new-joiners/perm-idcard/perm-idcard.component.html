@@ -1,9 +1,9 @@
 <form [formGroup]="form">
   <div *ngFor="let i of formvalues" class="container">
     <div class="card bg-image">
-      <div class="row px-2 pt-2"><img style="float: left; margin-left: 10px;" class="img"
-          src="assets/rane.png" alt="Avatar"></div>
-      <img class="row text-center img" [src]=this.url alt="Avatar"><br><br>
+      <div class="row px-2">
+        <img style="float: left; margin-left: 10px;" class="img" width="100px" height="75px" src="assets/rane.png" alt="Avatar"></div>
+      <img class="row text-center img" width="120px" height="150px" [src]=this.url alt="Avatar"><br>
       <table class="font">
 
         <div class="mx-5" style="align-items: center; text-align: center;">
@@ -12,7 +12,7 @@
               <div class="name-container" style="font-size: large; text-align: center; font-size: 30px; "><textarea style="height:100px;width:300px; line-height: 1;" readonly>{{i.fullname}}</textarea></div><br>
 
               <div style="font-size: large; text-align: center; font-size: 20px;">Trainee ID:{{i.gen_id}}</div>
-              <br><br><br>
+              <br><br>
               <div style="font-size: large; text-align: center; font-size: 16px; display: inline-block;"><b>Valid from :</b> {{frommdate}} to
                 {{toodate}}</div>
               <!-- <tr></div><div class="md">
@@ -21,17 +21,15 @@
                 <tr> 
                     <td div class="aligncommand1"><b> Valid to</b></td>
                     <td div class="aligncommand1">:{{toodate}}</td><br><br> -->
-            </div><br><br><br>
+            </div><br><br>
         </div>
-        <div class="sign">
-          <img class="img2" [src]=this.plant alt="Avatar">
-        </div><br>
+          <img class="sign" width="100px" height="75px"  [src]=this.plant alt="Avatar">
+        <br><br><br><br>
         <div class="sign1">
           <b>Issuing Authority </b>
         </div>
       </table>
     </div>
-
     <div class="card bg-image2">
       <div class="container2">
         <div class="col-sm-8">

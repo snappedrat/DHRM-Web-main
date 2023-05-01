@@ -3,6 +3,7 @@ import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { log } from 'console';
 import { ApiService } from "src/app/home/api.service";
 import { LoaderserviceService } from 'src/app/loaderservice.service';
 import { environment } from "src/environments/environment.prod";
@@ -25,10 +26,11 @@ export class PlantComponent implements OnInit {
   company:any
   companylist:any
 
-  sample : any = environment.path
+  sample : any = environment.path+'/plant/'
 
   dummy: any = []
   editing_flag: any;
+  sign:any = null
   inx: any;
 
   constructor(private fb : UntypedFormBuilder, private modalService : NgbModal, private service : ApiService,public loader: LoaderserviceService) {
@@ -63,6 +65,7 @@ export class PlantComponent implements OnInit {
 
   open(content:any)
   {
+    this.sign = null
     this.form.reset();
     this.editing_flag = false
     this.form.get('company_code').enable()
@@ -72,7 +75,6 @@ export class PlantComponent implements OnInit {
 
   save()
   {
-    // this.form.controls['company_code'].setValue(this.companylist[this.inx].company_code)
     this.form.controls['plant_sign'].setValue(this.form.controls['plant_code'].value+'_sign.'+this.new)
     console.log(this.form.value)
 
@@ -119,6 +121,9 @@ export class PlantComponent implements OnInit {
     this.form.controls['personal_area'].setValue(this.dummy[a].personal_area)
     this.form.controls['payroll_area'].setValue(this.dummy[a].payroll_area)
     console.log(this.form.value);
+    this.sign = this.dummy[a].plant_sign
+    console.log(this.sign);
+    
 
   }
 
@@ -203,7 +208,7 @@ upload(event:any)
   var formData = new FormData()
 
   formData.append("file", event.target.files[0], this.form.controls['plant_code'].value+'_sign.'+this.new )
-  
+  this.sign = this.form.controls['plant_code'].value+'_sign.'+this.new
   this.service.plantupload(formData)
   .subscribe(
     {

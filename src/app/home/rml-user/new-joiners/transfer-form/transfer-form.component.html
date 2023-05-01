@@ -15,14 +15,14 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <label>Trainee ID-NO: </label><br>
+                            <label>Employee ID: </label><br>
                             <input class="form-control" formControlName="idno" readonly>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col">
-                            <label>Trainee Name: </label><br>
+                            <label>Employee Name: </label><br>
                             <input class="form-control" formControlName="fullname" readonly>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     </div><br>
                     <div class="row">
                         <div class="col">
-                            <label>Reporting To </label><br>
+                            <label>Reporting To:</label><br>
                             <select class="form-control" formControlName="reportingto">
                                 <option value="">select</option>
                                 <option *ngFor="let i of reportingto" [ngValue]="i.empl_slno">{{i.emp_name}}</option>

@@ -121,8 +121,7 @@ export class EvaluationFormComponent implements OnInit {
             this.obj = response;
             this.image = this.url+'/uploads/'+this.obj[0][0]?.other_files6;
             console.log(this.image);
-            
-            
+                        
             try 
             {
               this.name = this.obj[0][0]?.fullname        
