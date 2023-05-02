@@ -104,9 +104,9 @@ export class OnboardFormComponent implements OnInit {
             this.category = this.obj[6]
             this.oprn = this.obj[7]
 
-            this.form.controls['ifsc_code'].setValue(this.basic[0]?.ifsc_code)
-            this.form.controls['account_number'].setValue(this.basic[0]?.bank_account_number)
-            this.form.controls['bank_name'].setValue(this.basic[0]?.bank_name)
+            this.form.controls['ifsc_code'].setValue(this.basic[0]?.ifsc_code == 'null' ? null : this.basic[0]?.ifsc_code)
+            this.form.controls['account_number'].setValue(this.basic[0]?.bank_account_number == 'null' ? null : this.basic[0]?.bank_account_number)
+            this.form.controls['bank_name'].setValue(this.basic[0]?.bank_name == 'null' ? null : this.basic[0]?.bank_name)
             this.form.controls['apln_slno'].setValue(this.basic[0]?.apln_slno)
             this.fullname = this.basic[0]?.fullname
             this.trainee_id = this.basic[0]?.trainee_idno
@@ -317,7 +317,6 @@ export class OnboardFormComponent implements OnInit {
   {
     const url = this.router.createUrlTree(['/perm-idcard', this.apln_slno, this.form.controls['category'].value]);
     window.open(url.toString(), '_blank');
-
   }
 
 }

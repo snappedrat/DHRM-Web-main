@@ -1,138 +1,176 @@
-
 <ng-template #content let-modal>
-    <div class="modal-content-container">
+  <div class="modal-content-container">
     <div class="modal-header">
-        <h4 class="modal-title">Add Line Details</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+      <h4 class="modal-title">Add Line Details</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="reset()"
+        (click)="modal.dismiss('Cross click')"
+      >
+        X
+      </button>
     </div>
-  
-        <br>
-      
-        <form [formGroup] = "form">
-            <div class="row">
-            <div class="col">
-                    <label>Plant Name: </label><br>
-                    <select class = "input2" formControlName = "plant_name" (change)="getall($event)">
-                        <option value="" >select an option</option>
-                        <option *ngFor= "let i of plantname" [ngValue] = "i.plant_code" >{{i.plant_name}}</option>
-                    </select>
-                </div>
-          
-                    <div class="col">                            
-                        <label>Department: </label><br>
-                        <select (change)="get($event)" class = "input2" formControlName = "dept_name" >
-                            <option value="" >select an option</option>
-                            <option *ngFor= "let i of dept" [ngValue] = "i.dept_slno">{{i.dept_name}}</option>
-                        </select>
-                    </div></div>
-                    <br>
-                <div class= "row">
-                <div class="col">
-                        <label>Line Name: </label><br>
-                        <input class = "input2"  type = "text" formControlName = "Line_Name">
-                    </div>
-    
-                    <div class="col">
-                            <label>Personal Subarea: </label><br>
-                            <input class = "input2"  type = "text" formControlName = "personal_subarea">
-                        </div>
-            </div><br>
-           
 
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button *ngIf="editing_flag==false"  type="button" class="btn btn-success btn-lg" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-        <button *ngIf="editing_flag==true" type="button" class="btn btn-success btn-lg" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-        <button type="button" class="btn btn-danger btn-lg" (click)="reset()" (click)="modal.close('Close click')">Close</button>
-    </div>
+    <br />
+
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col">
+          <label>Plant Name: </label><br />
+          <select
+            class="input2"
+            formControlName="plant_name"
+            (change)="getall($event)"
+          >
+            <option value="">select an option</option>
+            <option *ngFor="let i of plantname" [ngValue]="i.plant_code">
+              {{ i.plant_name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>Department: </label><br />
+          <select
+            (change)="get($event)"
+            class="input2"
+            formControlName="dept_name"
+          >
+            <option value="">select an option</option>
+            <option *ngFor="let i of dept" [ngValue]="i.dept_slno">
+              {{ i.dept_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <label>Line Name: </label><br />
+          <input class="input2" type="text" formControlName="Line_Name" />
+        </div>
+
+        <div class="col">
+          <label>Personal Subarea: </label><br />
+          <input
+            class="input2"
+            type="text"
+            formControlName="personal_subarea"
+          />
+        </div>
+      </div>
+      <br />
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      *ngIf="editing_flag == false"
+      type="button"
+      class="btn btn-success btn-lg"
+      (click)="save()"
+      (click)="modal.close('Close click')"
+    >
+      Save
+    </button>
+    <button
+      *ngIf="editing_flag == true"
+      type="button"
+      class="btn btn-success btn-lg"
+      (click)="editSave()"
+      (click)="modal.close('Close click')"
+    >
+      Save
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger btn-lg"
+      (click)="reset()"
+      (click)="modal.close('Close click')"
+    >
+      Close
+    </button>
+  </div>
 </ng-template>
-    <div class="container">
-  <br>
+<div class="container">
+  <br />
   <div>
-    <h1 id = "title1" >Line Master</h1>
+    <h1 id="title1">Line Master</h1>
     <hr style="border-block-color: orange" />
   </div>
   <div class="button">
-    <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
-        <mat-icon>person_add</mat-icon>
-    </button></div>
-    <div class = "button1">
-    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
-        <mat-icon>download</mat-icon>
-    </button></div>
-  <br><br><br>
-  <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
-      <ng-template #show>
-  <div class = "table-wrapper">
-    <table class="table table-bordered table-striped table-hover">
-      <table id="table">
-          <thead>
-          <tr>
-            <th
-                       div class="text-center"
-              >
-                 S.No</th>
-                 <th
-                 class="text-center"
-                
-                   >
-                   Line code
-                   </th>
-                   <th
-                   class="text-center"
-                
-                     >
-                     Line Name
-                     </th>
-              <th
-                       div class="text-center"
-              >
-                 Plant Name
-              </th>
-
-              <th
-              class="text-center"
-   
-      >
-        Department
-      </th>
-
-<th
-class="text-center"
-style="width: 500px"
-style="background-color: darkblue"
->
-Personal Subarea
-</th>
-              <th
-                       div class="text-center"
-                      >
-                  Action
-              </th>
-            </tr>
-            </thead>
-            <tbody >
-                <tr *ngFor = "let i of line; let a = index">
-                   <td>{{a+1}}</td>
-                   <td>{{i.Line_code}}</td>
-                   <td>{{i.Line_Name}}</td>
-                    <td>{{i.plant_name}}</td>
-                    <td>{{i.dept_name}}</td>
-                    <td>{{i.personal_subarea}}</td>   
-                    <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a, i.Line_code)" (click)="opentoedit(content)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.Line_code)" >
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </table>
+    <button
+      mat-fab
+      color="primary"
+      (click)="open(content)"
+      style="float: right"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>person_add</mat-icon>
+    </button>
   </div>
-  
-      </ng-template>
+  <div class="button1">
+    <button
+      mat-fab
+      style="float: right"
+      aria-label="Example icon button with a delete icon"
+      (click)="exportexcel()"
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+  </div>
+  <br /><br /><br />
+  <app-loader *ngIf="loader.isLoding | async; else show"></app-loader>
+  <ng-template #show>
+    <div class="table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+          <thead>
+            <tr>
+              <th div class="text-center">S.No</th>
+              <th div class="text-center">Plant Name</th>
+              <th div class="text-center">Department Code</th>
+              <th div class="text-center">Department Name</th>
+              <th class="text-center">Line code</th>
+              <th class="text-center">Line Name</th>
+              <th class="text-center">Personla Subarea</th>
+
+
+              <th div class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of line; let a = index">
+              <td>{{ a + 1 }}</td>
+              <td>{{ i.plant_name }}</td>
+              <td>{{ i.module_code }}</td>
+              <td>{{ i.dept_name }}</td>
+              <td>{{ i.Line_code}}</td>
+              <td>{{ i.Line_Name }}</td>
+              <td>{{ i.personal_subarea }}</td>
+              <td>
+                <button
+                  mat-mini-fab
+                  color="accent"
+                  (click)="edit(a, i.Line_code)"
+                  (click)="opentoedit(content)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-mini-fab
+                  color="warn"
+                  type="button"
+                  (click)="delete(a, i.Line_code)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
     </div>
+  </ng-template>
+</div>

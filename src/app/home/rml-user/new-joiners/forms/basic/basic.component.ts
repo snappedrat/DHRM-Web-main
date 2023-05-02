@@ -231,7 +231,11 @@ export class BasicComponent implements OnInit {
                 this.form.controls['bg'].setValue(this.basic[0]?.blood_group)
                 this.form.controls['gender'].setValue(this.basic[0]?.gender)
                 this.form.controls['idm1'].setValue(this.basic[0]?.ident_mark1)
+                if(this.form.controls['idm1'].value == 'null')
+                    this.form.controls['idm1'].setValue(null)
                 this.form.controls['idm2'].setValue(this.basic[0]?.ident_mark2)
+                if(this.form.controls['idm2'].value == 'null')
+                this.form.controls['idm2'].setValue(null)
                 this.form.get('nation')?.setValue('India')
                 console.log(this.form.value, "   ====================================");
                 setTimeout(() => {
@@ -414,12 +418,15 @@ export class BasicComponent implements OnInit {
     }
 
     validate(event: any) {
-        var date = new Date()
-        var year = date.getFullYear()
-        console.log(event, event.value);
+    
+        var date = new Date(event)
+        const diffInMs = Date.now() - new Date(date).getTime(); // calculating the difference in milliseconds
+        const diffInYears = diffInMs / (1000 * 60 * 60 * 24 * 365.25); // converting the difference into years
+
+          console.log(diffInYears >= 16,date)
         
 
-        if (year - event.split('-')[0] <= 18)
+        if (diffInYears < 16 || diffInYears > 50)
         {
             this.flag = 1
             this.form.get('bd')?.setErrors({'incorrect':true})
@@ -430,6 +437,7 @@ export class BasicComponent implements OnInit {
             this.form.get('bd')?.setErrors(null)
         }
     }
+
 
     submit() {
         this.formservice.submitbasic()

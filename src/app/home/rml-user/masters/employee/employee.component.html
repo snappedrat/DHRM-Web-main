@@ -1,190 +1,254 @@
-
 <ng-template #content let-modal>
-    <div class="modal-content-container">
+  <div class="modal-content-container">
     <div class="modal-header">
-        <h4 class="modal-title">Add User Details</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="reset()" (click)="modal.dismiss('Cross click')">X</button>
+      <h4 class="modal-title">Add User Details</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="reset()"
+        (click)="modal.dismiss('Cross click')"
+      >
+        X
+      </button>
     </div>
-  
-    <form [formGroup] = "form">
-        <div class="row">
 
-            <div class="col">
-                <label>Gen ID: </label><br>
-                <input class="input2"  type = "text" formControlName = "gen_id">
-            </div>
-
-
-            <div class="col">                            
-                <label>Designation: </label><br>
-                <select formControlName="desig_name" class = "input2"><option value="">select an option</option><option *ngFor= "let i of desig" [ngValue]="i.slno">{{i.desig_name}}</option></select>
-            </div>
-            
-            <br>
-        </div><br>
-        <div class="row">
-
-            <div class="col">
-                <label>Employee Name: </label><br>
-                <input class = "input2"  type = "text" formControlName = "Emp_Name">
-            </div>
-
-            <div class="col">
-                <label>Mobile No: </label><br>
-                    <input class = "input2"  type = "text" formControlName = "Mobile_No" maxlength="10" >
-            </div>
-
-        </div><br>
-        
-        <div class="row">
-
-            <div class="col">
-                <label>Plant Name: </label><br>
-        <select formControlName="plant_name" class = "input2" (change)="getall($event)" ><option value="">select an option</option><option *ngFor= "let i of plantname" [ngValue]="i.plant_code" >{{i.plant_name}}</option></select>
-            </div>
-
-            
-            <div class="col">
-                <label>Mail ID: </label><br>
-                <input class = "input2"  type = "text" formControlName = "Mail_Id">
-            </div>
-
-                
-            </div>
-            <br>
-        <div class="row">
-
-            
-            <div class="col">                            
-                <label>Department: </label><br>
-                <select (change)="getLineName($event)" formControlName="dept_name" class = "input2" ><option value="">select an option</option><option *ngFor= "let i of dept" [ngValue]="i.dept_slno">{{i.dept_name}}</option></select>
-            </div>
-
-            
-            <div class="col">
-                <label>User Name: </label><br>
-                <input class = "input2"  type = "text" formControlName = "User_Name">
-            </div>
-
-        </div><br>
-
-                        <div class="row">
-
-                            <div class="col">                            
-                                <label>Line: </label><br>
-                                <select formControlName="Line_Name" class = "input2" ><option value="">select an option</option><option *ngFor= "let i of line" [ngValue]="i.line_code">{{i.line_name}}</option></select>
-                            </div>
-
-                                <div class="col">
-                                    <label>Password: </label><br>
-                                    <input class = "input2"  type = "text" required formControlName = "Password">
-                                </div>
-                        </div><br>
-                        <div class="row">
-                        <div class="col">        
-        <div style="align-self: center;">
-            <input type="checkbox" formControlName="is_admin"> Admin <br>
-            <input type="checkbox" formControlName="Is_HR"> HR User <br>
-            <input type="checkbox" formControlName="Is_HRAppr"> HR Approver <br>
-            <input type="checkbox" formControlName="Is_Trainer"> Trainer <br>
-            <input type="checkbox" formControlName="Is_Supervisor"> Supervisor <br>
-            <input type="checkbox" formControlName="Is_ReportingAuth"> Reporting Authority <br>
-            <input type="checkbox" formControlName="Is_TOU"> Time Office User <br>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col">
+          <label>Gen ID: </label><br />
+          <input class="input2" type="text" formControlName="gen_id" />
         </div>
-        </div>  </div>
 
-        
-   
-        <div class="modal-footer">
-            <button *ngIf="editing_flag==false"  type="button" class="btn btn-success btn-lg" (click)="save()" (click)="modal.close('Close click')" >Save</button>
-            <button *ngIf="editing_flag==true" type="button" class="btn btn-success btn-lg" (click)="editSave()" (click)="modal.close('Close click')" >Save</button>
-            <button type="button" class="btn btn-danger btn-lg" (click)="reset()" (click)="modal.close('Close click')">Close</button>
+        <div class="col">
+          <label>Designation: </label><br />
+          <select formControlName="desig_name" class="input2">
+            <option value="">select an option</option>
+            <option *ngFor="let i of desig" [ngValue]="i.slno">
+              {{ i.desig_name }}
+            </option>
+          </select>
         </div>
-    </form></div>
+
+        <br />
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <label>Employee Name: </label><br />
+          <input class="input2" type="text" formControlName="Emp_Name" />
+        </div>
+
+        <div class="col">
+          <label>Mobile No: </label><br />
+          <input
+            class="input2"
+            type="text"
+            formControlName="Mobile_No"
+            maxlength="10"
+          />
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col">
+          <label>Plant Name: </label><br />
+          <select
+            formControlName="plant_name"
+            class="input2"
+            (change)="getall($event)"
+          >
+            <option value="">select an option</option>
+            <option *ngFor="let i of plantname" [ngValue]="i.plant_code">
+              {{ i.plant_name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>Mail ID: </label><br />
+          <input class="input2" type="text" formControlName="Mail_Id" />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <label>Department: </label><br />
+          <select
+            (change)="getLineName($event)"
+            formControlName="dept_name"
+            class="input2"
+          >
+            <option value="">select an option</option>
+            <option *ngFor="let i of dept" [ngValue]="i.dept_slno">
+              {{ i.dept_name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>User Name: </label><br />
+          <input class="input2" type="text" formControlName="User_Name" />
+        </div>
+      </div>
+      <br />
+
+      <div class="row">
+        <div class="col">
+          <label>Line: </label><br />
+          <select formControlName="Line_Name" class="input2">
+            <option value="">select an option</option>
+            <option *ngFor="let i of line" [ngValue]="i.line_code">
+              {{ i.line_name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>Password: </label><br />
+          <input
+            class="input2"
+            type="text"
+            required
+            formControlName="Password"
+          />
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col">
+          <div style="align-self: center">
+            <input type="checkbox" formControlName="is_admin" /> Admin <br />
+            <input type="checkbox" formControlName="Is_HR" /> HR User <br />
+            <input type="checkbox" formControlName="Is_HRAppr" /> HR Approver
+            <br />
+            <input type="checkbox" formControlName="Is_Trainer" /> Trainer
+            <br />
+            <input type="checkbox" formControlName="Is_Supervisor" /> Supervisor
+            <br />
+            <input type="checkbox" formControlName="Is_ReportingAuth" />
+            Reporting Authority <br />
+            <input type="checkbox" formControlName="Is_TOU" /> Time Office User
+            <br />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          *ngIf="editing_flag == false"
+          type="button"
+          class="btn btn-success btn-lg"
+          (click)="save()"
+          (click)="modal.close('Close click')"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="editing_flag == true"
+          type="button"
+          class="btn btn-success btn-lg"
+          (click)="editSave()"
+          (click)="modal.close('Close click')"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger btn-lg"
+          (click)="reset()"
+          (click)="modal.close('Close click')"
+        >
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
 </ng-template>
 
-    <div class="container">
-  <br>
+<div class="container">
+  <br />
   <div>
-    <h1 id = "title1" >Login User Details</h1>
+    <h1 id="title1">Login User Details</h1>
     <hr style="border-block-color: orange" />
   </div>
   <div class="button">
-    <button mat-fab color="primary" (click)="open(content)"  style="float: right" aria-label="Example icon button with a delete icon">
-        <mat-icon>person_add</mat-icon>
-    </button></div>
-    <div class = "button1">
-    <button mat-fab style="float: right" aria-label="Example icon button with a delete icon" (click)="exportexcel()">
-        <mat-icon>download</mat-icon>
-    </button></div>
-  <br><br><br>
-  <app-loader *ngIf="loader.isLoding | async;else show"></app-loader>
-      <ng-template #show>
-  <div class = "table-wrapper">
-    <table class="table table-bordered table-striped table-hover">
-      <table id="table">
-          <thead>
-          <tr>
-            <th
-                       div class="text-center"
-              >
-                 Gen ID
-              <th
-                       div class="text-center"
-              >
-                 Employee Name
-              </th>
-              <th
-                       div class="text-center"
-              >
-                  Plant Name
-              </th>
-              <th
-                       div class="text-center"
-              >
-                  Department
-              </th>
-
-              <th
-                       div class="text-center"
-              >
-                  Mail ID
-                  </th>
-                  <th
-                       div class="text-center"
-              >
-                  Mobile NO
-              </th>
-              <th
-                       div class="text-center"
-                      >
-                  Action
-              </th>
-            </tr>
-            </thead>
-            <tbody >
-                <tr *ngFor = "let i of employee; let a = index">
-                   <td>{{i.gen_id}}</td>
-                    <td>{{i.Emp_Name}}</td>
-                    <td>{{i.plant_name}}</td>
-                    <td>{{i.dept_name}}</td>
-                    <td>{{i.Mail_Id}}</td>
-                    <td>{{i.Mobile_No}}</td>
-                    
-  
-                    <td>
-                        <button mat-mini-fab color = 'accent' (click)= "edit(a)" (click)="opentoedit(content)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="warn" type="button" (click)="delete(a, i.empl_slno)" >
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </table>
+    <button
+      mat-fab
+      color="primary"
+      (click)="open(content)"
+      style="float: right"
+      aria-label="Example icon button with a delete icon"
+    >
+      <mat-icon>person_add</mat-icon>
+    </button>
   </div>
-  
-      </ng-template>
+  <div class="button1">
+    <button
+      mat-fab
+      style="float: right"
+      aria-label="Example icon button with a delete icon"
+      (click)="exportexcel()"
+    >
+      <mat-icon>download</mat-icon>
+    </button>
+  </div>
+  <br /><br /><br />
+  <app-loader *ngIf="loader.isLoding | async; else show"></app-loader>
+  <ng-template #show>
+    <div class="table-wrapper">
+      <table class="table table-bordered table-striped table-hover">
+        <table id="table">
+          <thead>
+            <tr>
+                <th div class="text-center">Sl.No</th>
+              <th div class="text-center">Gen ID</th>
+              <th div class="text-center">Employee Name</th>
+              <th div class="text-center">Designation</th>
+              <th div class="text-center">Department</th>
+              <th div class="text-center">Plant Name</th>
+              
+
+              <th div class="text-center">Mail ID</th>
+              <th div class="text-center">Mobile NO</th>
+              <th div class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of employee; let a = index">
+                <td>{{ a+1 }}</td>
+              <td>{{ i.gen_id }}</td>
+              <td>{{ i.Emp_Name }}</td>
+              <td>{{ i.desig_name }}</td>
+              <td>{{ i.dept_name }}</td>
+              <td>{{ i.plant_name }}</td>
+              
+              <td>{{ i.Mail_Id }}</td>
+              <td>{{ i.Mobile_No }}</td>
+
+              <td>
+                <button
+                  mat-mini-fab
+                  color="accent"
+                  (click)="edit(a)"
+                  (click)="opentoedit(content)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-mini-fab
+                  color="warn"
+                  type="button"
+                  (click)="delete(a, i.empl_slno)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
     </div>
+  </ng-template>
+</div>

@@ -78,9 +78,9 @@ flagger : any = false
         this.uniqueId.mobile = this.active.snapshot.paramMap.get('mobile_no1');
         this.uniqueId.company = this.active.snapshot.paramMap.get('company');
 
-        this.form.controls['account'].setValue(this.bank[0]?.bank_account_number)
-        this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code)
-        this.form.controls['bankName'].setValue(this.bank[0]?.bank_name)
+        this.form.controls['account'].setValue(this.bank[0]?.bank_account_number == 'null' ? null : this.bank[0]?.bank_account_number)
+        this.form.controls['ifsc'].setValue(this.bank[0]?.ifsc_code == 'null' ? null : this.bank[0]?.ifsc_code)
+        this.form.controls['bankName'].setValue(this.bank[0]?.bank_name == 'null' ? null : this.bank[0]?.bank_name)
         this.sendData()
         if(this.form.valid)
             this.emit.emit(this.message)
